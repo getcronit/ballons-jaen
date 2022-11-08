@@ -455,12 +455,13 @@ export default function ProductsPageShell(
         ></CategoryPicker>
       </SidebarContent>
 
-      <Box w="100%" h="100%">
+      <Flex w="100%" h="100%" flexDirection={'column'}>
         <Flex
           px={{ base: "4", md: "6" }}
           py={{ base: "4", md: "6" }}
           borderBottom="1px"
           borderBottomColor={useColorModeValue("gray.200", "gray.700")}
+          flexShrink={1}
         >
           <Wrap w="80%" display={{ base: "none", lg: "block" }}>
             {FilterElements({
@@ -514,10 +515,10 @@ export default function ProductsPageShell(
               </CSelect>
           </HStack>
         </Flex>
-        <Box pos="relative" overflowY={"scroll"} zIndex="0" w="100%" h="95%">
+        <Box pos="relative" overflowY={"scroll"} zIndex="0" pb={48}>
           {props.children}
         </Box>
-      </Box>
+      </Flex>
     </Flex>
   )
 }
