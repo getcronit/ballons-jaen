@@ -294,11 +294,22 @@ const ImportProductsFromExcel: React.FC<{
           taxable: true,
         },
         tags: buildTags([
+          ["Kategorie", gvoe("B")],
           ["Kategorie", gvoe("B"), gvoe("C")],
           ["Sortiment", gvoe("H")],
           ["Farbe", gvoe("I")],
           [
             "Größe",
+            gvoe("K") === gvoe("J")
+              ? gvoe("J")
+              : gvoe("K") && gvoe("J")
+              ? `${gvoe("J")} = ${gvoe("K")}`
+              : `${gvoe("J") || gvoe("K")} `,
+          ],
+          [
+            "Größe",
+            gvoe("B"),
+            gvoe("C"),
             gvoe("K") === gvoe("J")
               ? gvoe("J")
               : gvoe("K") && gvoe("J")
