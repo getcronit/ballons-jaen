@@ -250,10 +250,19 @@ const ImportProductsFromExcel: React.FC<{
 
         // if cell is object (e.g. formula) return the result
 
-        if (typeof cell.value === "object") {
-          // return result if formula
-          if (cell.value?.result) {
-            return cell.value.result
+        if (cell.value && typeof cell.value === "object") {
+          console.log(`object cell`, cell.value)
+
+          if ((cell.value as ExcelJS.CellFormulaValue).formula) {
+            const value = (cell.value as ExcelJS.CellFormulaValue).result
+
+            if ((value as { error: ExcelJS.CellErrorValue }).error) {
+              return ""
+            }
+
+            return (
+              (cell.value as ExcelJS.CellFormulaValue).result?.toString() || ""
+            )
           }
         }
 
@@ -292,7 +301,9 @@ const ImportProductsFromExcel: React.FC<{
             "Größe",
             gvoe("K") === gvoe("J")
               ? gvoe("J")
-              : `${gvoe("K").toString()} (${gvoe("J")})`,
+              : gvoe("K") && gvoe("J")
+              ? `${gvoe("J")} = ${gvoe("K")}`
+              : `${gvoe("J") || gvoe("K")} `,
           ],
           ["Form", gvoe("Q")],
           ["Druck", gvoe("R")],
@@ -320,7 +331,6 @@ const ImportProductsFromExcel: React.FC<{
 
     for (let i = 4; i < worksheet.actualRowCount + 1; i++) {
       if (error || loading) {
-        alert(error)
         break
       }
 
@@ -386,10 +396,10 @@ const ImportProductsFromExcel: React.FC<{
   }
 
   return (
-    <Box bg='gray.50' textAlign={'center'} p={2} borderRadius='md'>
+    <Box bg="gray.50" textAlign={"center"} p={2} borderRadius="md">
       {loading ? (
         <>
-          <Text >
+          <Text>
             Importing products... {currentTask && <>({currentTask})</>}
           </Text>
           <Progress value={progress} />
