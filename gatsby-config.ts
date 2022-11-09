@@ -5,8 +5,9 @@ import {GatsbyConfig} from 'gatsby'
 
 const {site} = require('./jaen-data/internal.json')
 
-
 dotenv.config()
+dotenv.config({path: '.env.public'})
+
 
 const config: GatsbyConfig = {
   jsxRuntime: "automatic",
