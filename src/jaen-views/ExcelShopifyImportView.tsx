@@ -24,17 +24,17 @@ import ExcelJS from "exceljs"
 import { saveAs } from "file-saver"
 
 import {
-  validateSecret,
-  createProduct,
-  updateProduct,
-} from "@snek-functions/shopify-admin"
+  shopifyValidateSecret,
+  shopifyCreateProduct,
+  shopifyUpdateProduct,
+} from "@snek-functions/origin"
+
+import type { ShopifyProductInput } from "@snek-functions/shopify/dist/internal/types"
 
 import theme from "../styles/theme"
 
 import { FileUpload } from "../components/molecules/FileUpload"
 import React, { useEffect, useRef } from "react"
-import { ShopifyProduct } from "@snek-at/gatsby-theme-shopify"
-import { ShopifyProductInput } from "shopify-admin/src/internal/types"
 
 const shop = process.env.GATSBY_MYSHOPIFY_URL
 
@@ -152,7 +152,7 @@ const EnterShopifySecret = ({
 
   const handleAuthenticate = async () => {
     try {
-      await validateSecret({
+      await shopifyValidateSecret({
         shop,
         accessToken: shopifySecret,
       })
@@ -352,13 +352,13 @@ const ImportProductsFromExcel: React.FC<{
 
       try {
         if (product.id) {
-          await updateProduct({
+          await shopifyUpdateProduct({
             accessToken: secret,
             shop,
             product: JSON.stringify(product),
           })
         } else {
-          const productId = await createProduct({
+          const productId = await shopifyCreateProduct({
             accessToken: secret,
             shop,
             product: JSON.stringify(product),

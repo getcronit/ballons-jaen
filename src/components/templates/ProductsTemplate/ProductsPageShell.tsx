@@ -230,7 +230,7 @@ export default function ProductsPageShell(
     }
 
     groupCategoriesTags(
-      groupedTags.allTags.Kategorie.map(c => c.tag),
+      groupedTags.allTags.Kategorie?.map(c => c.tag),
       grouped.allTags
     )
     groupCategoriesTags(activeTags.Kategorie, grouped.activeTags)
