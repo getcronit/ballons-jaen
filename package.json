@@ -12,7 +12,7 @@
     "@fontsource/poppins": "^4.5.10",
     "@jaenjs/jaen": "^3.0.0-beta.99",
     "@react-icons/all-files": "^4.1.0",
-    "@snek-at/gatsby-theme-shopify": "^1.8.1",
+    "@snek-at/gatsby-theme-shopify": "^1.9.1",
     "@snek-at/uikit": "^1.1.0",
     "@snek-functions/shopify-admin": "./shopify-admin/",
     "chakra-react-select": "^4.4.0",
