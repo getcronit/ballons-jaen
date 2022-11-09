@@ -38,6 +38,10 @@ import React, { useEffect, useRef } from "react"
 
 const shop = process.env.GATSBY_MYSHOPIFY_URL
 
+if (!shop) {
+  throw new Error("GATSBY_MYSHOPIFY_URL is not set")
+}
+
 const ExcelShopifyImportView: React.FC = props => {
   const { nextStep, prevStep, setStep, reset, activeStep } = useSteps({
     initialStep: 0,
@@ -291,7 +295,6 @@ const ImportProductsFromExcel: React.FC<{
         variants: {
           price: gvoe("Z") || undefined,
           sku: gvoe("D"),
-          taxable: true,
         },
         tags: buildTags([
           ["Kategorie", gvoe("B")],
@@ -361,7 +364,14 @@ const ImportProductsFromExcel: React.FC<{
           const productId = await shopifyCreateProduct({
             accessToken: secret,
             shop,
-            product: JSON.stringify(product),
+            product: JSON.stringify({
+              ...product,
+              variants: {
+                ...product.variants,
+                taxable: true,
+                inventoryPolicy: "CONTINUE",
+              },
+            }),
           })
 
           // Update first column of row with product id
