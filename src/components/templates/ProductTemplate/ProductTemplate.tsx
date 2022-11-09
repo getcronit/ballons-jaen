@@ -178,9 +178,9 @@ function Price({
 }
 
 enum ProductFilling {
-  AIR_ONLY = "Geeignet für Luftfüllung",
-  HELIUM_ONLY = "Geeignet für Heliumfüllung",
-  AIR_AND_HELIUM = "Geeignet für Luft- und Heliumfüllung",
+  AIR_ONLY = "nur für Luftfüllung geeignet!",
+  HELIUM_ONLY = "für Heliumfüllung geeignet",
+  AIR_AND_HELIUM = "für Helium- und Luftfüllung geeignet",
 }
 
 const getProductFilling = (

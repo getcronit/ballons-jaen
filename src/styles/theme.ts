@@ -4,6 +4,11 @@ import {
   withDefaultColorScheme,
 } from "@chakra-ui/react"
 
+import { StepsStyleConfig as Steps } from 'chakra-ui-steps';
+
+
+import {theme as jaenTheme} from "@jaenjs/jaen"
+
 export const colors = {
   gray: {
     100: "#F4F4F4",
@@ -20,10 +25,10 @@ export const colors = {
   },
 }
 export const fonts = {
-  body: `'Poppins', sans-serif`,
-  heading: `'Poppins', sans-serif`,
-  font_RB: `'Red Buttery', sans-serif`,
-  font_Pro: `'Proyale', sans-serif`,
+  body: `'Poppins', sans-serif !important`,
+  heading: `'Poppins', sans-serif !important`,
+  font_RB: `'Red Buttery', sans-serif !important`,
+  font_Pro: `'Proyale', sans-serif !important`,
 }
 const config: ThemeConfig = {
   initialColorMode: "light",
@@ -33,40 +38,41 @@ const config: ThemeConfig = {
 const theme = extendTheme(
   {
     radii: {
-      none: "0",
-      sm: ".1875rem",
-      base: ".3125rem",
-      md: ".625rem",
-      lg: "1.25rem",
-      xl: "1.875rem",
-      "2xl": "2.5rem",
-      "3xl": "3.125rem",
-      full: "625rem",
+      none: "0 !important",
+      sm: ".1875rem !important",
+      base: ".3125rem !important",
+      md: ".625rem !important",
+      lg: "1.25rem !important",
+      xl: "1.875rem !important",
+      "2xl": "2.5rem !important",
+      "3xl": "3.125rem !important",
+      full: "625rem !important",
     },
 
     fontSizes: {
-      xs: "0.75rem", // 12px
-      sm: "0.938rem", // 15px
-      md: "1.25rem", // 20px
-      lg: "1.5rem", // 24px
-      xl: "1.875rem", // 30px
-      "2xl": "2.5rem", // 40px
-      "3xl": "3.125rem", // 50px
-      "4xl": "3.75rem", // 60px
-      "5xl": "4.375rem", // 70px
-      "6xl": "5rem", // 80px
-      "7xl": "5.625rem", // 90px
-      "8xl": "6.25rem", // 100px
-      "9xl": "6.875rem", // 110px
-      "10xl": "7.5rem", // 120px
+      xs: "0.75rem !important", // 12px
+      sm: "0.938rem !important", // 15px
+      md: "1.25rem !important", // 20px
+      lg: "1.5rem !important", // 24px
+      xl: "1.875rem !important", // 30px
+      "2xl": "2.5rem !important", // 40px
+      "3xl": "3.125rem !important", // 50px
+      "4xl": "3.75rem !important", // 60px
+      "5xl": "4.375rem !important", // 70px
+      "6xl": "5rem !important", // 80px
+      "7xl": "5.625rem !important", // 90px
+      "8xl": "6.25rem !important", // 100px
+      "9xl": "6.875rem !important", // 110px
+      "10xl": "7.5rem !important", // 120px
     },
 
     shadows: {
-      light: "0px 4px 10px rgba(0, 0, 0, 0.10)",
-      dark: "0px 4px 10px rgba(0, 0, 0, 0.25)",
-      darker: "0px 4px 10px rgba(0, 0, 0, 0.50)",
+      light: "0px 4px 10px rgba(0, 0, 0, 0.10) !important",
+      dark: "0px 4px 10px rgba(0, 0, 0, 0.25) !important",
+      darker: "0px 4px 10px rgba(0, 0, 0, 0.50) !important",
     },
     components: {
+      Steps,
       Tag: {
         variants: {
           normal: {
@@ -251,7 +257,8 @@ const theme = extendTheme(
   },
   withDefaultColorScheme({
     colorScheme: "red",
-  })
+  }),
+  jaenTheme
 )
 
 export default theme
