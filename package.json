@@ -14,7 +14,7 @@
     "@react-icons/all-files": "^4.1.0",
     "@snek-at/gatsby-theme-shopify": "^1.9.1",
     "@snek-at/uikit": "^1.1.0",
-    "@snek-functions/shopify-admin": "./shopify-admin/",
+    "@snek-functions/origin": "^0.0.29",
     "chakra-react-select": "^4.4.0",
     "chakra-ui-steps": "^1.8.0",
     "exceljs": "^4.3.0",

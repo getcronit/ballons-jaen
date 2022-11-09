@@ -3852,8 +3852,55 @@
     react "^18.2.0"
     react-dom "^18.2.0"
 
-"@snek-functions/shopify-admin@./shopify-admin/":
-  version "0.0.1"
+"@snek-functions/authentication@*":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@snek-functions/authentication/-/authentication-0.0.5.tgz#66e56e2d38d694c0f1c3d9a8c9e8c383554f7f86"
+  integrity sha512-8HBq7YQPI1pNoqdJQHAuHVL2M5EIcV3ZMfnDi0+z0HLhLpwfhn4F/90jCz2Ms3g0h7bD5yWSLFTfaR4AiipuMw==
+  dependencies:
+    "@snek-at/functions" "*"
+
+"@snek-functions/email@*":
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/@snek-functions/email/-/email-0.0.15.tgz#e8df7cfbeecb74270d7dcc71e6e4c3cb0e2371f0"
+  integrity sha512-LSJuKoyRkdSkpa+1BoLgrm+KkMgdZB786SwzKIqCHJOWX7qP1I3aQ/TfKlJbllg2kYnj4/vHXspSYxatZWzCGw==
+  dependencies:
+    "@snek-at/functions" "*"
+    nodemailer "^6.7.8"
+    nodemailer-plugin-inline-base64 "^2.1.1"
+
+"@snek-functions/iam@*":
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/@snek-functions/iam/-/iam-0.0.10.tgz#6ad6d81f3995fab03ffb40aa82044c593d956c36"
+  integrity sha512-B9JLRuMRPk6mf5mqmI6fL0cqul4mhZdZohG8a26UgTh7pLF3VvijF7mJc93zKloVMfsneh08rp8MX0T8BaR5Lw==
+  dependencies:
+    "@snek-at/functions" "*"
+
+"@snek-functions/origin@^0.0.29":
+  version "0.0.29"
+  resolved "https://registry.yarnpkg.com/@snek-functions/origin/-/origin-0.0.29.tgz#8dc99ed6c99efbda51e46e45f9a3db3eb692b7c8"
+  integrity sha512-6N4WKimmMxQv2isWazJblAW7qu8M/LUdlvPSrJ9kPTSY83ONM9l1S45HbZwJvGpvLRyAZbsu5hdrWCjEJbZXfw==
+  dependencies:
+    "@snek-at/functions" "*"
+    "@snek-functions/authentication" "*"
+    "@snek-functions/email" "*"
+    "@snek-functions/iam" "*"
+    "@snek-functions/registration" "*"
+    "@snek-functions/shopify" "*"
+    cors "^2.8.5"
+    pinkie-promise "^2.0.1"
+
+"@snek-functions/registration@*":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@snek-functions/registration/-/registration-0.0.4.tgz#c0e6f42f670d2f9ad0125f90e0102485fb04b586"
+  integrity sha512-1JmGLhsMF3nso6+RI6Ja5t/Nb1DriLjY4P3aU3jc0sPnR/aJstfxFbIO/oPkrkHQp3nZz2f+3CXMnES/uVZ71g==
+  dependencies:
+    "@snek-at/functions" "*"
+    "@snek-functions/iam" "*"
+
+"@snek-functions/shopify@*":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@snek-functions/shopify/-/shopify-0.0.2.tgz#22bb05e073cc772a40af3837db7e59710582f089"
+  integrity sha512-HiMgjVVTxUlpWWwyfuG7iknZQotrX4rmQ2lUVSo4wvqNMfZW4ODSkmBv8zGfq/OWeJu9lr9/Kbe0GHeytRwPfA==
   dependencies:
     "@snek-at/functions" "*"
     "@types/file-saver" "^2.0.5"
@@ -13663,6 +13710,16 @@ node-releases@^2.0.6:
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.6.tgz#8a7088c63a55e493845683ebf3c828d8c51c5503"
   integrity sha512-PiVXnNuFm5+iYkLBNeq5211hvO38y63T0i2KKh2KnUs3RpzJ+JtODFjkD8yjLwnDkTYF1eKXheUwdssR+NRZdg==
 
+nodemailer-plugin-inline-base64@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/nodemailer-plugin-inline-base64/-/nodemailer-plugin-inline-base64-2.1.1.tgz#249cbc87ccf5ed26efb9a4023e4b6dc881e8d9b2"
+  integrity sha512-/cTnVq9vxZBDh5FjCOkPG5ioTs4o7flRuaqfDGLUfa5yeSMR21OW8hgWJIGuCHgcXmN5QHbR8IeujJeeOzi7uQ==
+
+nodemailer@^6.7.8:
+  version "6.8.0"
+  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.8.0.tgz#804bcc5256ee5523bc914506ee59f8de8f0b1cd5"
+  integrity sha512-EjYvSmHzekz6VNkNd12aUqAco+bOkRe3Of5jVhltqKhEsjw/y0PYPJfp83+s9Wzh1dspYAkUW/YNQ350NATbSQ==
+
 nodemon@^2.0.16:
   version "2.0.20"
   resolved "https://registry.yarnpkg.com/nodemon/-/nodemon-2.0.20.tgz#e3537de768a492e8d74da5c5813cb0c7486fc701"
@@ -14412,7 +14469,7 @@ pify@^4.0.1:
   resolved "https://registry.yarnpkg.com/pify/-/pify-4.0.1.tgz#4b2cd25c50d598735c50292224fd8c6df41e3231"
   integrity sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==
 
-pinkie-promise@^2.0.0:
+pinkie-promise@^2.0.0, pinkie-promise@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/pinkie-promise/-/pinkie-promise-2.0.1.tgz#2135d6dfa7a358c069ac9b178776288228450ffa"
   integrity sha512-0Gni6D4UcLTbv9c57DfxDGdr41XfgUjqWZu492f0cIGr16zDU06BWP/RAEvOuo7CQ0CNjHaLlM59YJJFm3NWlw==
