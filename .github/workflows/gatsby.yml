@@ -76,6 +76,9 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Gatsby
         env:
+          GATSBY_MYSHOPIFY_URL:  ${{ secrets.GATSBY_MYSHOPIFY_URL }}
+          GATSBY_STOREFRONT_API_KEY:  ${{ secrets.GATSBY_STOREFRONT_API_KEY }}
+          SHOPIFY_APP_PASSWORD:  ${{ secrets.SHOPIFY_APP_PASSWORD }}
           PREFIX_PATHS: 'true'
         run: ${{ steps.detect-package-manager.outputs.manager }} run build
       - name: Upload artifact
