@@ -307,9 +307,9 @@ const ImportProductsFromExcel: React.FC<{
               : `${gvoe("J") || gvoe("K")} `,
           ],
           [
-            "Größe",
             gvoe("B"),
             gvoe("C"),
+            "Größe",
             gvoe("K") === gvoe("J")
               ? gvoe("J")
               : gvoe("K") && gvoe("J")
