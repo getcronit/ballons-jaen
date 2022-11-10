@@ -1,11 +1,12 @@
-import { Grid, Heading, HStack, Stack, Text } from "@chakra-ui/react"
+import { Box, Grid, Heading, HStack, Stack, Text } from "@chakra-ui/react"
+import { Field } from "@jaenjs/jaen"
 import { FC } from "react"
 import { BiChevronRight } from "react-icons/bi"
 interface ICardWithImageBackgroundProps {
   card: {
-    title?: string
-    text?: string
-    image: string
+    headingFieldName: string
+    textFieldName?: string
+    imageFieldName: string
   }
   displayContent?: boolean
   w?: {}
@@ -20,6 +21,7 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
   h,
   isSmallText = false,
 }) => {
+  
   return (
     <Stack
       _hover={{
@@ -36,21 +38,36 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
       h={h ?? "full"}
       w={w ?? {}}
       borderRadius="xl"
-      bgImage={`url(${card.image})`}
-      bgSize="cover"
-      bgRepeat="no-repeat"
+      overflow={'hidden'}
+      minW='20rem'
     >
+
+      <Field.Image name={card.imageFieldName} defaultValue={undefined} />
+
+      <Box position='absolute'>
       {displayContent && (
         <Stack p="6" pb="4">
-          <Heading fontSize={{ base: "lg", xl: "xl" }} fontWeight="700">
-            {card.title}
-          </Heading>
-          <Text
-            fontSize={{ base: "sm", lg: isSmallText ? "sm" : "md" }}
-            maxW="80%"
-          >
-            {card.text}
-          </Text>
+          {card.headingFieldName && (
+            <Heading fontSize={{ base: "lg", xl: "xl" }} fontWeight="700">
+              <Field.Text
+                name={card.headingFieldName}
+                defaultValue="Großhandel"
+              />
+            </Heading>
+          )}
+
+          {card.textFieldName && (
+            <Text
+              fontSize={{ base: "sm", lg: isSmallText ? "sm" : "md" }}
+              maxW="80%"
+            >
+              <Field.Text
+                name={card.textFieldName}
+                defaultValue="Lorem ipsum dolor sit amet, consetetur sadipscing"
+              />
+            </Text>
+          )}
+
           <HStack
             cursor="pointer"
             _hover={{
@@ -78,6 +95,9 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
           </HStack>
         </Stack>
       )}
+      </Box>
+
+     
     </Stack>
   )
 }

@@ -1,4 +1,5 @@
 import { Box, Container, Flex, Image } from "@chakra-ui/react"
+import { Field } from "@jaenjs/jaen"
 import { FC } from "react"
 import { CONTAINER_MAX_WIDTH } from "../../../../constant/sizes"
 import NewsContent from "./NewsContent"
@@ -21,11 +22,12 @@ const NewsSection: FC<INewsSectionProps> = () => {
       </Box>
 
       <Box flex="1" px="6">
-        <Image
-          mx="auto"
-          w={{ base: "100%", sm: "80%", md: "25rem", lg: "auto" }}
-          src="/images/home/news/news_img.png"
-        />
+        <Box mx="auto" w={{ base: "100%", sm: "80%", md: "25rem", lg: "auto" }}>
+          <Field.Image
+            name="image2"
+            defaultValue={"/images/home/news/news_img.png"}
+          />
+        </Box>
       </Box>
     </Container>
   )

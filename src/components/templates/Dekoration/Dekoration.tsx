@@ -1,5 +1,6 @@
 import { FC } from "react"
 import { sliderDummyData } from "../../../constant/slider"
+import ContentPageSection from "../../ContentPageSection/ContentPageSection"
 import NewsSlider from "../../NewsSlider/NewsSlider"
 import DekorationenHero from "./DekorationenHero"
 import HochzeitsballonsSection from "./HochzeitsballonsSection/HochzeitsballonsSection"
@@ -10,7 +11,7 @@ const Dekorationens: FC<IDekorationensProps> = () => {
   return (
     <>
       <DekorationenHero />
-      <HochzeitsballonsSection />
+      <ContentPageSection />
       <NewsSlider
         withoutImageVariant
         showNewsTitle={true}
