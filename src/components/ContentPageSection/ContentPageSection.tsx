@@ -11,7 +11,7 @@ import {
   VStack,
 } from "@chakra-ui/react"
 import { connectSection, Field, useField } from "@jaenjs/jaen"
-import { useCallback, useState } from "react"
+import React, { useCallback, useState } from "react"
 import { CONTAINER_MAX_WIDTH } from "../../constant/sizes"
 import CustomImageViewer from "../CustomImageViewer"
 import FourCard from "../FourCard/FourCard"
@@ -50,6 +50,43 @@ const ImagesGallery3x3Section = connectSection(
 
     return (
       <>
+        <Images
+          onLoaded={(index, url) => {
+            if (loadedImages[index] !== url) {
+              setLoadedImages(prev => [...prev, url])
+            }
+          }}
+          openImageViewer={openImageViewer}
+          defaultImages={desktopImages}
+          loadedImages={loadedImages}
+        />
+        <CustomImageViewer
+          closeImageViewer={closeImageViewer}
+          currentImage={currentImage}
+          isViewerOpen={isViewerOpen}
+          desktopImages={loadedImages}
+        />
+      </>
+    )
+  },
+  {
+    name: "ImagesGallery3x3Section",
+    displayName: "Inhalt",
+  }
+)
+
+const Images = React.memo<{
+  openImageViewer: (url: number) => void
+  defaultImages: string[]
+  loadedImages: string[]
+  onLoaded: (index: number, url: string) => void
+}>(
+  ({ openImageViewer, defaultImages, onLoaded }) => {
+
+    console.log("render")
+
+    return (
+      <>
         <Container maxW={CONTAINER_MAX_WIDTH} pos="relative">
           <Grid
             display={{ base: "none", md: "grid" }}
@@ -68,6 +105,7 @@ const ImagesGallery3x3Section = connectSection(
               const imageField = useField<{
                 internalImageUrl: string
               }>(imageFieldName, "IMA:ImageField")
+              
 
               return (
                 <GridItem
@@ -89,21 +127,17 @@ const ImagesGallery3x3Section = connectSection(
                     boxShadow="light"
                     overflow={"hidden"}
                     onClick={() => {
+                      if(!imageField.isEditing) {
                         openImageViewer(i)
+                      }
                     }}
                   >
                     <Field.Image
                       onLoad={() => {
                         const imageUrl =
-                          imageField.value?.internalImageUrl || desktopImages[i]
+                          imageField.value?.internalImageUrl || defaultImages[i]
 
-                        // set loaded images if not already loaded at index i
-                        if (!loadedImages[i] && loadedImages[i] !== imageUrl) {
-                            setLoadedImages(prev => [...prev, imageUrl])
-                        }
-
-
-
+                        onLoaded(i, imageUrl)
                       }}
                       objectFit="cover"
                       name={imageFieldName}
@@ -171,18 +205,11 @@ const ImagesGallery3x3Section = connectSection(
             </Flex>
           </Box>
         </Box>
-        <CustomImageViewer
-          closeImageViewer={closeImageViewer}
-          currentImage={currentImage}
-          isViewerOpen={isViewerOpen}
-          desktopImages={loadedImages}
-        />
       </>
     )
   },
-  {
-    name: "ImagesGallery3x3Section",
-    displayName: "Inhalt",
+  () => {
+    return true
   }
 )
 
