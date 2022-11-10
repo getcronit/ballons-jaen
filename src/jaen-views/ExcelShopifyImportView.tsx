@@ -252,6 +252,7 @@ const ImportProductsFromExcel: React.FC<{
       const gvoe = (key: string) => {
         const cell = row.getCell(key)
 
+
         // if cell is object (e.g. formula) return the result
 
         if (cell.value && typeof cell.value === "object") {
@@ -328,6 +329,46 @@ const ImportProductsFromExcel: React.FC<{
             namespace: "details",
             key: "filling",
             value: gvoe("AC"),
+            type: "single_line_text_field",
+          },
+          {
+            namespace: "details",
+            key: "available",
+            value: gvoe("AB"),
+            type: "single_line_text_field",
+          },
+          {
+            namespace: "details",
+            key: "bundle",
+            value: gvoe("O"),
+            type: "number_integer",
+          },
+          {
+            namespace: "details",
+            key: "packaging",
+            value: gvoe("P"),
+            type: "single_line_text_field",
+          },
+          {
+            namespace: "details",
+            key: "_SU",
+            value: gvoe("Y"),
+            type: "single_line_text_field",
+          },
+          {
+            namespace: "wholesale",
+            key: "_SU",
+            value: gvoe("T"),
+            type: "single_line_text_field",
+          },
+          {
+            namespace: "wholesale",
+            key: "price",
+            value: JSON.stringify({
+              amount: parseFloat(gvoe("U") || "0"),
+              currency_code: "EUR",
+            }),
+            type: "money",
           },
         ],
       }
@@ -358,7 +399,17 @@ const ImportProductsFromExcel: React.FC<{
           await shopifyUpdateProduct({
             accessToken: secret,
             shop,
-            product: JSON.stringify(product),
+            product: JSON.stringify({
+              ...product,
+              variants: {
+                ...product.variants,
+                taxable: true,
+                inventoryPolicy: "CONTINUE",
+                inventoryItem: {
+                  tracked: false,
+                }
+              },
+            }),
           })
         } else {
           const productId = await shopifyCreateProduct({
@@ -370,6 +421,9 @@ const ImportProductsFromExcel: React.FC<{
                 ...product.variants,
                 taxable: true,
                 inventoryPolicy: "CONTINUE",
+                inventoryItem: {
+                  tracked: false,
+                }
               },
             }),
           })
