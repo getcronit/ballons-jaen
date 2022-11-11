@@ -53,7 +53,12 @@ const ImagesGallery3x3Section = connectSection(
         <Images
           onLoaded={(index, url) => {
             if (loadedImages[index] !== url) {
-              setLoadedImages(prev => [...prev, url])
+              // set url to specific index
+              setLoadedImages(prev => {
+                const newLoadedImages = [...prev]
+                newLoadedImages[index] = url
+                return newLoadedImages
+              })
             }
           }}
           openImageViewer={openImageViewer}
@@ -82,9 +87,6 @@ const Images = React.memo<{
   onLoaded: (index: number, url: string) => void
 }>(
   ({ openImageViewer, defaultImages, onLoaded }) => {
-
-    console.log("render")
-
     return (
       <>
         <Container maxW={CONTAINER_MAX_WIDTH} pos="relative">
@@ -105,7 +107,6 @@ const Images = React.memo<{
               const imageField = useField<{
                 internalImageUrl: string
               }>(imageFieldName, "IMA:ImageField")
-              
 
               return (
                 <GridItem
@@ -120,14 +121,16 @@ const Images = React.memo<{
                   transition="ease-in 0.2s"
                   cursor="pointer"
                   // h={{ base: '11.25rem', md: '18.75rem', lg: '25rem', xl: '29.375rem' }}
+                  boxSize={"full"}
                   key={i}
                 >
                   <Box
+                    boxSize={"full"}
                     borderRadius="xl"
                     boxShadow="light"
                     overflow={"hidden"}
                     onClick={() => {
-                      if(!imageField.isEditing) {
+                      if (!imageField.isEditing) {
                         openImageViewer(i)
                       }
                     }}
@@ -141,9 +144,7 @@ const Images = React.memo<{
                       }}
                       objectFit="cover"
                       name={imageFieldName}
-                      defaultValue={`/images/decorationen/grid/gridImage${
-                        1 + i
-                      }.png`}
+                      defaultValue={defaultImages[i]}
                     />
                   </Box>
                 </GridItem>
@@ -182,26 +183,47 @@ const Images = React.memo<{
               src="/images/decorationen/right_transparent.svg"
             />
             <Flex overflowY="auto">
-              {new Array(9).fill("").map((_, i) => (
-                <Box key={i} px="2" flexShrink="0" mb="2">
-                  <Image
-                    _hover={{
-                      transition: "all 0.2s ease",
-                      transform: {
-                        md: "scale(1.02) ",
-                        lg: "scale(1.02) ",
-                      },
-                    }}
-                    onClick={() => openImageViewer(i)}
-                    transition="ease-in 0.2s"
-                    boxSize="10.625rem"
-                    boxShadow="light"
-                    bg="blue"
-                    src={`/images/decorationen/grid/gridImage${1 + i}.png`}
-                    borderRadius="lg"
-                  />
-                </Box>
-              ))}
+              {new Array(9).fill("").map((_, i) => {
+                const imageFieldName = `images.${i}`
+                const imageField = useField<{
+                  internalImageUrl: string
+                }>(imageFieldName, "IMA:ImageField")
+
+                return (
+                  <Box key={i} px="2" flexShrink="0" mb="2">
+                    <Box
+                      _hover={{
+                        transition: "all 0.2s ease",
+                        transform: {
+                          md: "scale(1.02) ",
+                          lg: "scale(1.02) ",
+                        },
+                      }}
+                      onClick={() => openImageViewer(i)}
+                      transition="ease-in 0.2s"
+                      boxSize="10.625rem"
+                      boxShadow="light"
+                      bg="blue"
+                      borderRadius="lg"
+                      overflow={"hidden"}
+                    >
+                      <Field.Image
+                        onLoad={() => {
+                          const imageUrl =
+                            imageField.value?.internalImageUrl ||
+                            defaultImages[i]
+
+                          onLoaded(i, imageUrl)
+                        }}
+                        objectFit="cover"
+                        name={imageFieldName}
+                        defaultValue={defaultImages[i]}
+                      />
+                    </Box>
+                    <Image />
+                  </Box>
+                )
+              })}
             </Flex>
           </Box>
         </Box>
@@ -215,11 +237,76 @@ const Images = React.memo<{
 
 const FullWidthImageSection = connectSection(
   () => {
-    return <>content</>
+    return (
+      <Container maxW="CONTAINER_MAX_WIDTH">
+        <Heading
+          textAlign="center"
+          fontSize={{ base: "md", md: "2xl", lg: "3xl", xl: "4xl" }}
+          fontWeight="semibold"
+        >
+          <Field.Text
+            name="title"
+            defaultValue={"In Erinnerung behalten"}
+            rtf
+          />
+        </Heading>
+
+        <Box
+          my={{ base: "4 !important", md: "12 !important" }}
+          borderRadius={{ base: ".625rem", md: "2rem" }}
+          boxShadow="light"
+          overflow={"hidden"}
+        >
+          <Field.Image
+            name="image"
+            defaultValue="/images/placeholder.png"
+            objectFit="cover"
+          />
+        </Box>
+      </Container>
+    )
   },
   {
     name: "FullWidthImageSection",
     displayName: "Inhalt",
+  }
+)
+
+const TextSection = connectSection(
+  () => {
+    return (
+      <Container maxW={CONTAINER_MAX_WIDTH}>
+        <Text
+          maxW={{ base: "80%", md: "60%", lg: "50%" }}
+          fontSize={{ base: "sm", lg: "md" }}
+          textAlign="center"
+          as="span"
+        >
+          <Field.Text
+            name="text"
+            defaultValue={`
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+              tincidunt, nisl nec ultricies lacinia, nisl nunc aliquet nisl, nec
+              lacinia nisl nunc vel nunc. Sed tincidunt, nisl nec ultricies
+              lacinia, nisl nunc aliquet nisl, nec lacinia nisl nunc vel nunc.
+            </p>
+            
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+              tincidunt, nisl nec ultricies lacinia, nisl nunc aliquet nisl, nec
+              lacinia nisl nunc vel nunc. Sed tincidunt, nisl nec ultricies
+              lacinia, nisl nunc aliquet nisl, nec lacinia nisl nunc vel nunc.
+            </p>
+            `}
+          />
+        </Text>
+      </Container>
+    )
+  },
+  {
+    name: "TextSection",
+    displayName: "Text",
   }
 )
 
@@ -247,7 +334,7 @@ const SubCategoryContentSection = connectSection(
               fontSize={{ base: "md", md: "2xl", lg: "3xl", xl: "4xl" }}
               fontWeight="semibold"
             >
-              <Field.Text name="heading" defaultValue={"Überschrift"} />
+              <Field.Text name="heading" defaultValue={"Überschrift"} rtf />
             </Heading>
             <Text
               fontSize={{ base: "sm", lg: "md" }}
@@ -267,7 +354,11 @@ Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora necessitatibus
           <Field.Section
             name="content"
             displayName="Content"
-            sections={[ImagesGallery3x3Section]}
+            sections={[
+              ImagesGallery3x3Section,
+              FullWidthImageSection,
+              TextSection,
+            ]}
           />
         </Container>
       </>
