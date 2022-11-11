@@ -42,8 +42,9 @@ const MemorySection: FC<IMemorySectionProps> = () => {
           </Heading>
 
           <Image
-            mt={{ base: "4 !important", md: "12 !important" }}
             src="/images/decorationen/img1.png"
+            mt={{ base: "4 !important", md: "12 !important" }}
+
             borderRadius={{ base: ".625rem", md: "2rem" }}
             boxShadow="light"
           />

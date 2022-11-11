@@ -1,4 +1,5 @@
 import { Box } from "@chakra-ui/react"
+import React from "react"
 
 export function uuidv1() {
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
@@ -31,6 +32,30 @@ export function replaceHexColorsInHTML(
   coloraHex: string,
   colorbHex: string
 ) {
-  var re = new RegExp(coloraHex, 'g')
+  var re = new RegExp(coloraHex, "g")
   return html.replace(re, colorbHex)
+}
+
+export function useIsInViewport(ref: React.RefObject<HTMLElement>) {
+  const [isIntersecting, setIsIntersecting] = React.useState(false)
+
+  const observer = React.useMemo(() => {
+    if (typeof window !== "undefined") {
+      return new IntersectionObserver(([entry]) =>
+        setIsIntersecting(entry.isIntersecting)
+      )
+    }
+  }, [])
+
+  React.useEffect(() => {
+    if (ref.current) {
+      observer?.observe(ref.current)
+
+      return () => {
+        observer?.disconnect()
+      }
+    }
+  }, [ref, observer])
+
+  return isIntersecting
 }

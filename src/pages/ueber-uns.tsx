@@ -1,4 +1,5 @@
-import { PageProps } from "gatsby"
+import { connectPage } from "@jaenjs/jaen"
+import { graphql, PageProps } from "gatsby"
 
 import AboutUsPage from "../components/templates/AboutUs/AboutUs"
 import { Layout } from "../Layout"
@@ -9,4 +10,12 @@ const Page = (props: PageProps) => {
   </Layout>
 }
 
-export default Page
+export default connectPage(Page, {
+  displayName: "Über uns",
+})
+
+export const query = graphql`
+  query ($jaenPageId: String!) {
+    ...JaenPageQuery
+  }
+`

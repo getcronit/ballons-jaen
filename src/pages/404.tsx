@@ -1,5 +1,6 @@
 import { Text } from "@chakra-ui/react"
-import { PageProps } from "gatsby"
+import { connectPage } from "@jaenjs/jaen"
+import { graphql, PageProps } from "gatsby"
 import { Layout } from "../Layout"
 
 const Page = (props: PageProps) => {
@@ -10,4 +11,13 @@ const Page = (props: PageProps) => {
     </Layout>
 }
 
-export default Page
+export default connectPage(Page, {
+    displayName: "404",
+  })
+  
+  export const query = graphql`
+    query ($jaenPageId: String!) {
+      ...JaenPageQuery
+    }
+  `
+  
