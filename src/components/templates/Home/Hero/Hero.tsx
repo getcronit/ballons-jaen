@@ -10,6 +10,7 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react"
+import { Field } from "@jaenjs/jaen"
 import { FC } from "react"
 import Slider from "react-slick"
 import { fonts } from "../../../../styles/theme"
@@ -213,19 +214,20 @@ const Hero: FC<IHeroProps> = () => {
               <Box key={i} overflow="hidden">
                 <Flex>
                   <Grid flex="4" w="50%" placeItems="center">
-                    <Image
+                    <Box
                       bg="red"
                       h={{ md: "90%", lg: "80%", "2xl": "90%" }}
                       pos="relative"
-                      src={item.mainImage}
-                      alt="slider_img"
                       boxShadow="light"
                       mb="4"
                       borderRadius={{ md: "30px", xl: "50px" }}
                       transform={{ md: "skewX(-7deg)" }}
                       objectFit="cover"
                       left="1rem"
-                    />
+                      overflow={'hidden'}
+                    >
+                      <Field.Image name='image' defaultValue={item.mainImage} />
+                    </Box>
                   </Grid>
                   <Grid placeItems="center" flex="3" pos="relative" zIndex="4">
                     <Flex

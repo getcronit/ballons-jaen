@@ -41,10 +41,11 @@ const ConvincedSection: FC<IConvincedSectionProps> = () => {
         />
 
         <WhiteBoxWithDashBorder
-          title=" Überzeugt?"
-          text="   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus imperdiet sed id
-            elementum. Quam vel aliquam sit vulputate."
-          button={{ text: " Zur Beratung" }}
+          titleFieldName="convincedTitle"
+          textFieldName="convincedText"
+          button={{
+            textFieldName: "convincedButtonText",
+          }}
         />
       </Box>
     </Box>

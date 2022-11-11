@@ -1,4 +1,5 @@
 import { Stack } from "@chakra-ui/react"
+import { Field } from "@jaenjs/jaen"
 import { FC } from "react"
 import FourCard from "../../../FourCard/FourCard"
 import BallonsSection1 from "./BallonsSection1"
@@ -38,9 +39,15 @@ const HochzeitsballonsSection: FC<IHochzeitsballonsSectionProps> = () => {
     },
   ]
 
+  const sectionFieldName = "cardsData"
+  const sectionDisplayName = "Test"
+
   return (
     <Stack pt="32">
-      <FourCard cardsMobileData={cardsMobile} cardsData={cards} />
+      <FourCard sectionFieldName={sectionFieldName} sectionDisplayName={sectionDisplayName} />
+
+      <Field.Section name={sectionFieldName} displayName={sectionDisplayName} sections={[]} />
+
       <BallonsSection1 />
       <BallonsSection2 />
       <MemorySection />
