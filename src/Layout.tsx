@@ -1,10 +1,12 @@
 import { Box } from "@chakra-ui/react"
+import { SearchProvider } from "@snek-at/gatsby-theme-shopify"
 import React from "react"
 
 import Footer from "./components/Footer/Footer"
 import Navigation from "./components/Navigation/Navigation"
 import ScrollToTop from "./components/ScrollTop"
 import { BasketDrawerProvider } from "./services/basket"
+import { SearchModalProvider } from "./services/search"
 import { LayoutMode } from "./types/commonTypes"
 
 export interface LayoutProps {
@@ -21,7 +23,12 @@ export const Layout: React.FC<LayoutProps> = ({
   return (
     <ScrollToTop pathname={pathname}>
       <BasketDrawerProvider>
-        <Navigation mode={mode} />
+        <SearchProvider>
+          <SearchModalProvider>
+            <Navigation mode={mode} />
+          </SearchModalProvider>
+        </SearchProvider>
+
         <>{children}</>
       </BasketDrawerProvider>
 

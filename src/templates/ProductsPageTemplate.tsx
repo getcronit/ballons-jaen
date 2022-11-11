@@ -13,15 +13,19 @@ import {
   ProductsTemplateProps,
   splitAllTags,
 } from "../components/templates/ProductsTemplate/ProductsTemplate"
+import { SEO } from "@jaenjs/jaen"
 
-const ProductsPageTemplate = (
-  props: PageProps<
+export type ProductsPageTemplateProps = 
+  PageProps<
     ProductsPageData,
     ProductsPageContext,
     {
       activeTags: string[]
     }
   >
+
+const ProductsPageTemplate: React.FC<ProductsPageTemplateProps> = (
+  props
 ) => {
   const { implicitTags, tags, maxPrice, minPrice, vendors, productTypes } =
     props.pageContext
@@ -109,11 +113,13 @@ const ProductsPageTemplate = (
 
   return (
     <>
+      <SEO pagePath={props.path} pageMeta={buildProductsPageMeta()} />
       <Layout pathname={props.path} mode={"store"}>
         <ProductsTemplate
           path={props.path}
           products={search.products}
           isFetching={search.isFetching}
+          hasNextPage={search.hasNextPage}
           fetchNextPage={search.fetchNextPage}
           filters={{
             tags,
@@ -136,10 +142,7 @@ const ProductsPageTemplate = (
   )
 }
 
-export default (
-  props: JSX.IntrinsicAttributes &
-    PageProps<ProductsPageData, ProductsPageContext, unknown, object>
-) => (
+export default (props: ProductsPageTemplateProps) => (
   <SearchProvider>
     <ProductsPageTemplate {...props} />
   </SearchProvider>

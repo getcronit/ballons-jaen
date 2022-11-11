@@ -4,6 +4,7 @@ import {
   ProductPageContext,
   ProductPageData,
   ProductsPageContext,
+  SearchProvider,
 } from "@snek-at/gatsby-theme-shopify"
 import { graphql, navigate, PageProps } from "gatsby"
 import React from "react"
@@ -11,16 +12,19 @@ import React from "react"
 import { Layout } from "../Layout"
 import { ProductTemplate } from "../components/templates/ProductTemplate"
 import { buildAllTags } from "../components/templates/ProductsTemplate/ProductsTemplate"
+import { SEO } from "@jaenjs/jaen"
 
-const ProductPageTemplate = (
-  props: PageProps<
-    ProductPageData & {
-      productsPage: {
-        pageContext: ProductsPageContext
-      }
-    },
-    ProductPageContext
-  >
+export type ProductPageTemplateProps = PageProps<
+ProductPageData & {
+  productsPage: {
+    pageContext: ProductsPageContext
+  }
+},
+ProductPageContext
+>
+
+const ProductPageTemplate: React.FC<ProductPageTemplateProps> = (
+  props
 ) => {
   const { shopifyProduct, relatedProducts, productsPage } = props.data
 
@@ -55,6 +59,7 @@ const ProductPageTemplate = (
 
   return (
     <>
+      <SEO pagePath={props.path} pageMeta={buildProductPageMeta()} />
       <Layout pathname={props.path} mode={"store"}>
         <ProductTemplate
           path={props.path}
@@ -88,4 +93,8 @@ export const query = graphql`
   }
 `
 
-export default ProductPageTemplate
+export default (props: ProductPageTemplateProps) => (
+  <SearchProvider>
+    <ProductPageTemplate {...props} />
+  </SearchProvider>
+)

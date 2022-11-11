@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  ButtonGroup,
   Divider,
   Flex,
   HStack,
@@ -13,6 +14,7 @@ import {
 import { FC } from "react"
 import {
   AiOutlineArrowLeft,
+  AiOutlineSearch,
   AiOutlineShop,
   AiOutlineShoppingCart,
   AiOutlineUser,
@@ -24,10 +26,11 @@ import { LayoutMode } from "../../../types/commonTypes"
 
 interface IMobileNavProps {
   mode?: LayoutMode
+  onSearchClick?: () => void
   onBasketClick: () => void
 }
 
-const MobileNav: FC<IMobileNavProps> = ({ mode, onBasketClick }) => {
+const MobileNav: FC<IMobileNavProps> = ({ mode, onSearchClick, onBasketClick }) => {
   const { isOpen, onToggle } = useDisclosure()
 
   return (
@@ -66,13 +69,21 @@ const MobileNav: FC<IMobileNavProps> = ({ mode, onBasketClick }) => {
                 Unsere Produkte
               </Button>
             ) : (
-              <>
+              <ButtonGroup>
+                 <IconButton
+                  variant="ghost"
+                  icon={<AiOutlineSearch />}
+                  aria-label="Nach Artikel suchen"
+                  onClick={onSearchClick}
+                />
                 <IconButton
                   variant="ghost"
                   icon={<AiOutlineShoppingCart />}
                   aria-label="Warenkorb"
+                  onAbort={onBasketClick}
+
                 />
-              </>
+              </ButtonGroup>
             )}
           </HStack>
         </Flex>

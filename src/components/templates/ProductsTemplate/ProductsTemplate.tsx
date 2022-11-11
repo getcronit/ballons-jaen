@@ -62,6 +62,7 @@ export interface ProductsTemplateProps {
   }
   activeFilters: Partial<ProductsTemplateProps["filters"]>
   isFetching: boolean
+  hasNextPage: boolean
   fetchNextPage: () => void
   updateFilter: (filter: ProductsTemplateProps["activeFilters"]) => void
   sortOptions: string[]
@@ -115,23 +116,26 @@ export const ProductsTemplate = (props: ProductsTemplateProps) => {
           spacing={2}
         />
 
-        <Center>
-          <Button
-            ref={loadMoreButtonRef}
-            variant={"outline"}
-            onClick={() => {
-              if (props.isFetching) return
-              props.fetchNextPage()
-            }}
-            disabled={props.isFetching || !props.products.length}
-            isLoading={props.isFetching}
-          >
-            Mehr Produkte laden
-          </Button>
-          {props.products.length === 0 && !props.isFetching && (
+        <Center my={4}>
+          {props.products.length === 0 && !props.isFetching ? (
             <Heading as="h2" size="lg" mt={4}>
-              Keine Produkte gefunden
+              Keine Artikel gefunden
             </Heading>
+          ) : (
+            <Button
+              ref={loadMoreButtonRef}
+              variant={"outline"}
+              onClick={() => {
+                if (props.isFetching) return
+                props.fetchNextPage()
+              }}
+              disabled={
+                props.isFetching || !props.products.length || !props.hasNextPage
+              }
+              isLoading={props.isFetching}
+            >
+              Mehr Artikel laden
+            </Button>
           )}
         </Center>
       </Box>

@@ -300,7 +300,7 @@ const ImportProductsFromExcel: React.FC<{
       const product: DeepPartial<{ id: string } & ShopifyProductInput> = {
         id: gvoe("A") || undefined,
         title: gvoe("G"),
-        descriptionHtml: "",
+        descriptionHtml: gvoe("F"),
         vendor: gvoe("E"),
         productType: undefined,
         variants: {
@@ -333,6 +333,10 @@ const ImportProductsFromExcel: React.FC<{
           ["Form", gvoe("Q")],
           ["Druck", gvoe("R")],
           ["Divers", gvoe("S")],
+          ['Thema', gvoe('AD')],
+          ['Thema', gvoe('AE')],
+          ['Thema', gvoe('AF')],
+
         ]),
         metafields: [
           {

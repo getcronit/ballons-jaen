@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  ButtonGroup,
   Flex,
   HStack,
   IconButton,
@@ -24,9 +25,10 @@ import { LayoutMode } from "../../types/commonTypes"
 interface ITopNavProps {
   mode: LayoutMode
   onBasketClick?: () => void
+  onSearchClick?: () => void
 }
 
-const TopNav: FC<ITopNavProps> = ({ mode, onBasketClick }) => {
+const TopNav: FC<ITopNavProps> = ({ mode, onSearchClick, onBasketClick }) => {
 
   return (
     <Flex
@@ -69,7 +71,15 @@ const TopNav: FC<ITopNavProps> = ({ mode, onBasketClick }) => {
             Unsere Produkte
           </Button>
         ) : (
-          <>
+          <ButtonGroup>
+          <Button
+              size={"xs"}
+              variant="outline"
+              leftIcon={<AiOutlineSearch />}
+              onClick={onSearchClick}
+            >
+              Nach Artikel suchen
+            </Button>
             <Button
               size={"xs"}
               variant="outline"
@@ -78,7 +88,7 @@ const TopNav: FC<ITopNavProps> = ({ mode, onBasketClick }) => {
             >
               Warenkorb
             </Button>
-          </>
+          </ButtonGroup>
         )}
       </HStack>
     </Flex>
