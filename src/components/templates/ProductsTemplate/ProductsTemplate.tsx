@@ -117,22 +117,25 @@ export const ProductsTemplate = (props: ProductsTemplateProps) => {
         />
 
         <Center my={4}>
-          <Button
-            ref={loadMoreButtonRef}
-            variant={"outline"}
-            onClick={() => {
-              if (props.isFetching) return
-              props.fetchNextPage()
-            }}
-            disabled={props.isFetching || !props.products.length || !props.hasNextPage}
-            isLoading={props.isFetching}
-          >
-            Mehr Produkte laden
-          </Button>
-          {props.products.length === 0 && !props.isFetching && (
+          {props.products.length === 0 && !props.isFetching ? (
             <Heading as="h2" size="lg" mt={4}>
-              Keine Produkte gefunden
+              Keine Artikel gefunden
             </Heading>
+          ) : (
+            <Button
+              ref={loadMoreButtonRef}
+              variant={"outline"}
+              onClick={() => {
+                if (props.isFetching) return
+                props.fetchNextPage()
+              }}
+              disabled={
+                props.isFetching || !props.products.length || !props.hasNextPage
+              }
+              isLoading={props.isFetching}
+            >
+              Mehr Artikel laden
+            </Button>
           )}
         </Center>
       </Box>

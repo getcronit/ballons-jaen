@@ -1,6 +1,7 @@
 import { Box, Stack } from "@chakra-ui/react"
 import { FC } from "react"
 import { useBasket } from "../../services/basket"
+import { useSearch } from "../../services/search"
 import { LayoutMode } from "../../types/commonTypes"
 import BottomNav from "./BottomNav"
 import MobileNav from "./MobileNav/MobileNav"
@@ -13,16 +14,21 @@ interface INavigationProps {
 const Navigation: FC<INavigationProps> = ({mode}) => {
 
   const basket = useBasket()
+  const search = useSearch()
 
   const handleOnBasketClick = () => {
     basket.onOpen()
+  }
+
+  const handleOnSearchClick = () => {
+    search.onOpen()
   }
 
 
   return (
     <Box as="nav" zIndex="sticky" pos="sticky" top="0" bg="white">
       <Stack display={{ base: "none", md: "flex" }} spacing="0">
-        <TopNav mode={mode} onBasketClick={handleOnBasketClick} />
+        <TopNav mode={mode} onSearchClick={handleOnSearchClick} onBasketClick={handleOnBasketClick} />
         {
           mode === 'website' && (
             <BottomNav />
@@ -30,7 +36,7 @@ const Navigation: FC<INavigationProps> = ({mode}) => {
         }
       </Stack>
       <Box as="nav" display={{ base: "block", md: "none" }}>
-        <MobileNav mode={mode}  onBasketClick={handleOnBasketClick} />
+        <MobileNav mode={mode} onSearchClick={handleOnSearchClick}   onBasketClick={handleOnBasketClick}  />
       </Box>
     </Box>
   )
