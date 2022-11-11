@@ -1,22 +1,23 @@
-import {Box, Center, Spinner} from '@chakra-ui/react'
+import { Box, Button, Center, Heading, Spinner } from "@chakra-ui/react"
 import {
   ProductsPageContext,
-  ShopifyProduct
-} from '@snek-at/gatsby-theme-shopify'
-import React from 'react'
+  ShopifyProduct,
+} from "@snek-at/gatsby-theme-shopify"
+import React from "react"
+import { useIsInViewport } from "../../../common/utils"
 
-import {ProductGrid} from '../../molecules/ProductGrid'
-import SimpleCategorySidebar from './ProductsPageShell'
+import { ProductGrid } from "../../molecules/ProductGrid"
+import SimpleCategorySidebar from "./ProductsPageShell"
 
 enum SpecialTagOptions {
-  ProductType = 'Typ',
-  Vendor = 'Hersteller'
+  ProductType = "Typ",
+  Vendor = "Hersteller",
 }
 
 export function buildAllTags(
   filters:
-    | ProductsTemplateProps['filters']
-    | ProductsTemplateProps['activeFilters']
+    | ProductsTemplateProps["filters"]
+    | ProductsTemplateProps["activeFilters"]
 ) {
   return [
     ...(filters?.tags || []),
@@ -25,7 +26,7 @@ export function buildAllTags(
     ) || []),
     ...(filters?.productTypes?.map(
       productType => `${SpecialTagOptions.ProductType}:${productType}`
-    ) || [])
+    ) || []),
   ]
 }
 
@@ -35,72 +36,56 @@ export function splitAllTags(tags: string[]) {
   const otherTags = []
 
   for (const tag of tags) {
-    if (tag.startsWith(SpecialTagOptions.ProductType + ':')) {
-      const [, productType] = tag.split(':')
+    if (tag.startsWith(SpecialTagOptions.ProductType + ":")) {
+      const [, productType] = tag.split(":")
 
       if (productType) productTypeTags.push(productType)
-    } else if (tag.startsWith(SpecialTagOptions.Vendor + ':')) {
-      const [_, vendor] = tag.split(':')
+    } else if (tag.startsWith(SpecialTagOptions.Vendor + ":")) {
+      const [_, vendor] = tag.split(":")
       if (vendor) vendorTags.push(vendor)
     } else {
       if (tag) otherTags.push(tag)
     }
   }
-  return {otherTags, productTypeTags, vendorTags}
+  return { otherTags, productTypeTags, vendorTags }
 }
 
 export interface ProductsTemplateProps {
   path: string
   products: ShopifyProduct[]
   filters: {
-    tags: ProductsPageContext['tags']
-    vendors: ProductsPageContext['vendors']
-    productTypes: ProductsPageContext['productTypes']
-    minPrice: ProductsPageContext['minPrice']
-    maxPrice: ProductsPageContext['maxPrice']
+    tags: ProductsPageContext["tags"]
+    vendors: ProductsPageContext["vendors"]
+    productTypes: ProductsPageContext["productTypes"]
+    minPrice: ProductsPageContext["minPrice"]
+    maxPrice: ProductsPageContext["maxPrice"]
   }
-  activeFilters: Partial<ProductsTemplateProps['filters']>
+  activeFilters: Partial<ProductsTemplateProps["filters"]>
   isFetching: boolean
   fetchNextPage: () => void
-  updateFilter: (filter: ProductsTemplateProps['activeFilters']) => void
+  updateFilter: (filter: ProductsTemplateProps["activeFilters"]) => void
   sortOptions: string[]
   onSortChange: (sort: string) => void
 }
 
 export const ProductsTemplate = (props: ProductsTemplateProps) => {
-  const gridRef = React.useRef<HTMLDivElement>(null)
+  const loadMoreButtonRef = React.useRef<HTMLButtonElement>(null)
 
-  console.log(`products`, props.products)
+  const isButtonInViewport = useIsInViewport(loadMoreButtonRef)
 
   React.useEffect(() => {
-    const handleScroll = () => {
-      if (gridRef.current) {
-        const yOfDivEnd = gridRef.current.getBoundingClientRect().bottom
-
-        const currentScroll = window.pageYOffset + window.innerHeight
-
-        console.log(yOfDivEnd, currentScroll)
-
-        if (yOfDivEnd < currentScroll) {
-          props.fetchNextPage()
-        }
-      }
+    if (isButtonInViewport) {
+      loadMoreButtonRef.current?.click()
     }
-
-    window.addEventListener('scroll', handleScroll)
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [props.fetchNextPage])
+  }, [isButtonInViewport])
 
   const updateTags = (tags: string[]) => {
-    const {otherTags, productTypeTags, vendorTags} = splitAllTags(tags)
+    const { otherTags, productTypeTags, vendorTags } = splitAllTags(tags)
 
     props.updateFilter({
       tags: otherTags,
       productTypes: productTypeTags,
-      vendors: vendorTags
+      vendors: vendorTags,
     })
   }
 
@@ -114,25 +99,41 @@ export const ProductsTemplate = (props: ProductsTemplateProps) => {
       activeTags={allActiveTags}
       onActiveTagsChange={updateTags}
       sortOptions={props.sortOptions}
-      onSortChange={props.onSortChange}>
-      <Box w="100%" p={2} ref={gridRef}>
+      onSortChange={props.onSortChange}
+    >
+      <Box w="100%" p={2}>
         <ProductGrid
-          products={props.products}
-          minChildWidth="250px"
-          columns={{base: 2, sm: 3, md: 3, lg: 4, xl: 5}}
+          products={[
+            ...props.products,
+            ...props.products,
+            ...props.products,
+            ...props.products,
+            ...props.products,
+            ...props.products,
+          ]}
+          columns={{ base: 2, sm: 3, md: 3, lg: 4, xl: 5 }}
           spacing={2}
         />
-        {props.isFetching && (
-          <Center w="100%" h="xs">
-            <Spinner
-              thickness="4px"
-              speed="0.65s"
-              emptyColor="gray.200"
-              color="agt.blue"
-              size="xl"
-            />
-          </Center>
-        )}
+
+        <Center>
+          <Button
+            ref={loadMoreButtonRef}
+            variant={"outline"}
+            onClick={() => {
+              if (props.isFetching) return
+              props.fetchNextPage()
+            }}
+            disabled={props.isFetching || !props.products.length}
+            isLoading={props.isFetching}
+          >
+            Mehr Produkte laden
+          </Button>
+          {props.products.length === 0 && !props.isFetching && (
+            <Heading as="h2" size="lg" mt={4}>
+              Keine Produkte gefunden
+            </Heading>
+          )}
+        </Center>
       </Box>
     </SimpleCategorySidebar>
   )
