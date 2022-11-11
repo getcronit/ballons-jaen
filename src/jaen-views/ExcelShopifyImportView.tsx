@@ -207,6 +207,36 @@ const EnterShopifySecret = ({
   )
 }
 
+// gvoe: get value or empty
+const getValueOrEmpty = (row: ExcelJS.Row, key: string) => {
+  const cell = row.getCell(key)
+
+  // if cell is object (e.g. formula) return the result
+
+  console.log(`Cell value`, key, cell.value)
+
+  if (cell.value && typeof cell.value === "object") {
+    console.log(`object cell`, cell.value)
+
+    if (
+      (cell.value as ExcelJS.CellFormulaValue).formula ||
+      (cell.value as ExcelJS.CellSharedFormulaValue).sharedFormula
+    ) {
+      const value = (cell.value as ExcelJS.CellFormulaValue).result
+
+      console.log(`Forumal value`, value)
+
+      if (!value || (value as { error: ExcelJS.CellErrorValue }).error) {
+        return ""
+      }
+
+      return (cell.value as ExcelJS.CellFormulaValue).result?.toString() || ""
+    }
+  }
+
+  return cell.value?.toString() || ""
+}
+
 const ImportProductsFromExcel: React.FC<{
   active: boolean
   file: File
@@ -248,43 +278,23 @@ const ImportProductsFromExcel: React.FC<{
     const worksheet = workbook.getWorksheet(1)
 
     const loadProduct = (row: ExcelJS.Row): any => {
-      // gvoe: get value or empty
-      const gvoe = (key: string) => {
-        const cell = row.getCell(key)
-
-
-        // if cell is object (e.g. formula) return the result
-
-        if (cell.value && typeof cell.value === "object") {
-          console.log(`object cell`, cell.value)
-
-          if ((cell.value as ExcelJS.CellFormulaValue).formula) {
-            const value = (cell.value as ExcelJS.CellFormulaValue).result
-
-            if ((value as { error: ExcelJS.CellErrorValue }).error) {
-              return ""
-            }
-
-            return (
-              (cell.value as ExcelJS.CellFormulaValue).result?.toString() || ""
-            )
-          }
-        }
-
-        return cell.value?.toString() || ""
-      }
-
       const buildTags = (tags: string[][]) => {
         const result: string[] = []
 
         for (const [key, ...value] of tags) {
           // check if every value is not empty
           if (value.every(Boolean)) {
-            result.push(`${key}:${value.join(":")}`.trim())
+            const tag = `${key}:${value.join(":")}`.trim().replace(/,/g, ";")
+
+            result.push(tag)
           }
         }
 
         return result
+      }
+
+      const gvoe = (key: string) => {
+        return getValueOrEmpty(row, key)
       }
 
       const product: DeepPartial<{ id: string } & ShopifyProductInput> = {
@@ -390,6 +400,13 @@ const ImportProductsFromExcel: React.FC<{
       }
 
       const row = worksheet.getRow(i)
+
+      const productTitle = getValueOrEmpty(row, "G")
+
+      if (!productTitle) {
+        continue
+      }
+
       const product = loadProduct(row)
 
       console.log(product)
@@ -407,7 +424,7 @@ const ImportProductsFromExcel: React.FC<{
                 inventoryPolicy: "CONTINUE",
                 inventoryItem: {
                   tracked: false,
-                }
+                },
               },
             }),
           })
@@ -423,7 +440,7 @@ const ImportProductsFromExcel: React.FC<{
                 inventoryPolicy: "CONTINUE",
                 inventoryItem: {
                   tracked: false,
-                }
+                },
               },
             }),
           })
