@@ -247,6 +247,11 @@ const theme = extendTheme(
         "html, body": {
           background: "#f4f4f4",
         },
+        'i, em': {
+          fontFamily: "Red Buttery, sans-serif",
+          fontWeight: "normal",
+          color: "red.500",
+        },
       },
     },
     config,
