@@ -213,7 +213,9 @@ export const Searchbar = (props: SearchbarProps) => {
                       const tags = getProductTags(product)
 
                       const categoryTags = tags.categoryTags.map(tag => {
-                        const tagString = tag.split(":").join(", ")
+                        const splitTag = tag.split(":")
+
+                        const tagString = splitTag.slice(1).join(":")
 
                         return {
                           name: "Kategorie",
@@ -224,7 +226,7 @@ export const Searchbar = (props: SearchbarProps) => {
                       const otherTags = tags.otherTags.map(tag => {
                         const splitTag = tag.split(":")
 
-                        const tagString = splitTag.slice(1).join(" >")
+                        const tagString = splitTag.slice(1).join(":")
 
                         if (splitTag.length > 1) {
                           return {
@@ -241,18 +243,21 @@ export const Searchbar = (props: SearchbarProps) => {
 
                       for (let i = 0; i < categoryTags.length; i++) {
                         if (!tableTags[categoryTags[i].name]) {
-                          tableTags[categoryTags[i].name] = ""
+                          tableTags[categoryTags[i].name] =
+                            categoryTags[i].value
+                        } else {
+                          tableTags[categoryTags[i].name] +=
+                            ", " + categoryTags[i].value
                         }
-
-                        tableTags[categoryTags[i].name] += categoryTags[i].value
                       }
 
                       for (let i = 0; i < otherTags.length; i++) {
                         if (!tableTags[otherTags[i].name]) {
-                          tableTags[otherTags[i].name] = ""
+                          tableTags[otherTags[i].name] = otherTags[i].value
+                        } else {
+                          tableTags[otherTags[i].name] +=
+                            ", " + otherTags[i].value
                         }
-
-                        tableTags[otherTags[i].name] += otherTags[i].value
                       }
 
                       // tableTags to array with name as key and value as value
