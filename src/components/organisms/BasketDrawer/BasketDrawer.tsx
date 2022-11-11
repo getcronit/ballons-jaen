@@ -63,7 +63,7 @@ import {
                       description={'description'}
                       quantity={product.quantity}
                       price={parseFloat(product.variant.price.amount)}
-                      imageUrl={product.variant.image.src}
+                      imageUrl={product.variant.image?.src}
                       currency={currency}
                       onChangeQuantity={quantity => {
                         onProductQuantityChange(product.id.toString(), quantity)
