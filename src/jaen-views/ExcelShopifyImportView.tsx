@@ -213,18 +213,13 @@ const getValueOrEmpty = (row: ExcelJS.Row, key: string) => {
 
   // if cell is object (e.g. formula) return the result
 
-  console.log(`Cell value`, key, cell.value)
-
   if (cell.value && typeof cell.value === "object") {
-    console.log(`object cell`, cell.value)
 
     if (
       (cell.value as ExcelJS.CellFormulaValue).formula ||
       (cell.value as ExcelJS.CellSharedFormulaValue).sharedFormula
     ) {
       const value = (cell.value as ExcelJS.CellFormulaValue).result
-
-      console.log(`Forumal value`, value)
 
       if (!value || (value as { error: ExcelJS.CellErrorValue }).error) {
         return ""
@@ -412,8 +407,6 @@ const ImportProductsFromExcel: React.FC<{
       }
 
       const product = loadProduct(row)
-
-      console.log(product)
 
       try {
         if (product.id) {

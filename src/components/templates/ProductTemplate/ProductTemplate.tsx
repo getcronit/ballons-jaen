@@ -71,9 +71,6 @@ export const ProductTemplate = ({
     `Hersteller:${shopifyProduct.vendor}`,
   ]
 
-  console.log("allTags", allTags)
-  console.log("allActiveTags", allActiveTags)
-
   return (
     <>
       <ProductsPageShell
@@ -209,11 +206,6 @@ const ProductDetail = withStoreContext<{
   const prices = getFormattedProductPrices(props.product)
 
   const taxable = user ? false : props.product.variants[0]?.taxable
-
-  console.log(`product`, props.product)
-
-  console.log(user, props.product.variants[0]?.taxable)
-  console.log(taxable)
 
   const tags = getProductTags(props.product)
 

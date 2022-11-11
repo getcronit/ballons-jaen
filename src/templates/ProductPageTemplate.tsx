@@ -45,8 +45,6 @@ const ProductPageTemplate: React.FC<ProductPageTemplateProps> = (
     }
   }
 
-  console.log("shopifyProduct: ", props.data.shopifyProduct)
-
   const handleOnGoBack = () => {
     navigate(-1)
   }

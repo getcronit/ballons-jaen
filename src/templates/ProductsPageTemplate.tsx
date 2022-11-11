@@ -34,8 +34,6 @@ const ProductsPageTemplate: React.FC<ProductsPageTemplateProps> = (
 
   const splittedTags = prevActiveTags ? splitAllTags(prevActiveTags) : undefined
 
-  console.log(`splittedTags:`, splittedTags)
-
   const search = useProductSearch({
     filters: {
       mainTag: implicitTags.length > 0 ? implicitTags[0] : undefined,
@@ -75,7 +73,6 @@ const ProductsPageTemplate: React.FC<ProductsPageTemplateProps> = (
   }
 
   const updateFilter = (filters: Partial<ProductsTemplateProps["filters"]>) => {
-    console.log("set filters", filters)
     search.onChangeFilter({
       ...filters,
       maxPrice: filters.maxPrice || undefined,

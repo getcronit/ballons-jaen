@@ -105,8 +105,6 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
       setCheckout(newCheckout)
     }
 
-    console.log(`checkout`, checkout)
-
     return (
       <BasketContext.Provider value={{ onOpen, onClose, addProduct, checkout }}>
         <BasketDrawer
@@ -115,16 +113,13 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
           products={cleanLineItems(checkout?.lineItems) as any}
           subtotal={parseFloat(checkout?.lineItemsSubtotalPrice?.amount || "0")}
           onProductQuantityChange={(id, quantity) => {
-            console.log("onProductQuantityChange")
             updateProduct({ id, quantity })
           }}
           onProductRemove={id => {
-            console.log("onProductRemove")
 
             removeProduct(id)
           }}
           onClickCheckout={() => {
-            console.log("onClickCheckout")
 
             if (checkout?.webUrl) {
               window.open(checkout?.webUrl, "_blank")
