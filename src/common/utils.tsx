@@ -39,20 +39,20 @@ export function replaceHexColorsInHTML(
 export function useIsInViewport(ref: React.RefObject<HTMLElement>) {
   const [isIntersecting, setIsIntersecting] = React.useState(false)
 
-  const observer = React.useMemo(
-    () =>
-      new IntersectionObserver(([entry]) =>
+  const observer = React.useMemo(() => {
+    if (typeof window !== "undefined") {
+      return new IntersectionObserver(([entry]) =>
         setIsIntersecting(entry.isIntersecting)
-      ),
-    []
-  )
+      )
+    }
+  }, [])
 
   React.useEffect(() => {
     if (ref.current) {
-      observer.observe(ref.current)
+      observer?.observe(ref.current)
 
       return () => {
-        observer.disconnect()
+        observer?.disconnect()
       }
     }
   }, [ref, observer])

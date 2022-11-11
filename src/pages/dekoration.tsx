@@ -12,15 +12,13 @@ const Page = (props: PageProps) => {
   )
 }
 
-
 export default connectPage(Page, {
   displayName: "Inhaltseite 1",
   children: [],
 })
 
-
 export const query = graphql`
-query ($jaenPageId: String!) {
-  ...JaenPageQuery
-}
+  query ($jaenPageId: String!) {
+    ...JaenPageQuery
+  }
 `
