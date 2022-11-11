@@ -4,8 +4,6 @@ import React from 'react'
 import {ProductsTemplate} from '../ProductsTemplate'
 import data from './data'
 
-console.log(`data`, data)
-
 export default {
   title: 'Components/Templates/ProductsTemplate',
   component: ProductsTemplate,

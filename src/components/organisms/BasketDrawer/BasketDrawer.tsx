@@ -53,7 +53,6 @@ import {
             <Stack spacing={{base: '8', md: '10'}}>
               <Stack spacing="6">
                 {products.map(product => {
-                  console.log(product)
                   const id = product.variant.id.toString()
   
                   return (
