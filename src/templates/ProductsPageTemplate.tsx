@@ -13,6 +13,7 @@ import {
   ProductsTemplateProps,
   splitAllTags,
 } from "../components/templates/ProductsTemplate/ProductsTemplate"
+import { SEO } from "@jaenjs/jaen"
 
 const ProductsPageTemplate = (
   props: PageProps<
@@ -109,11 +110,13 @@ const ProductsPageTemplate = (
 
   return (
     <>
+      <SEO pagePath={props.path} pageMeta={buildProductsPageMeta()} />
       <Layout pathname={props.path} mode={"store"}>
         <ProductsTemplate
           path={props.path}
           products={search.products}
           isFetching={search.isFetching}
+          hasNextPage={search.hasNextPage}
           fetchNextPage={search.fetchNextPage}
           filters={{
             tags,

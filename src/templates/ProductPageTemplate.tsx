@@ -11,6 +11,7 @@ import React from "react"
 import { Layout } from "../Layout"
 import { ProductTemplate } from "../components/templates/ProductTemplate"
 import { buildAllTags } from "../components/templates/ProductsTemplate/ProductsTemplate"
+import { SEO } from "@jaenjs/jaen"
 
 const ProductPageTemplate = (
   props: PageProps<
@@ -55,6 +56,7 @@ const ProductPageTemplate = (
 
   return (
     <>
+      <SEO pagePath={props.path} pageMeta={buildProductPageMeta()} />
       <Layout pathname={props.path} mode={"store"}>
         <ProductTemplate
           path={props.path}
