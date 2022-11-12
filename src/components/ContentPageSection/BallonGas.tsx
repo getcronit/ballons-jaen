@@ -14,7 +14,6 @@ const BallonGas: FC<IBallonGasProps> = () => {
       bgPos="center"
       h={{ base: "31.25rem", md: "56.25rem" }}
       bgImage="url('/images/we_design_party/bg_ballon_gas.svg')"
-      bgColor="red.50"
       pos="relative"
     >
       <Flex

@@ -244,7 +244,7 @@ const theme = extendTheme(
     styles: {
       global: {
         "html, body": {
-          background: "#f4f4f4",
+          background: "#f4f4f4 !important",
         },
         'i, em': {
           fontFamily: "Red Buttery, sans-serif",
