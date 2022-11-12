@@ -5,8 +5,11 @@ import { BiChevronRight } from "react-icons/bi"
 interface ICardWithImageBackgroundProps {
   card: {
     headingFieldName: string
+    headingDefaultValue: string
     textFieldName?: string
+    textDefaultValue: string
     imageFieldName: string
+    imageDefaultValue?: string
   }
   displayContent?: boolean
   w?: {}
@@ -21,9 +24,9 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
   h,
   isSmallText = false,
 }) => {
-  
   return (
     <Stack
+      position="relative"
       _hover={{
         transition: "all 0.3s ease",
         transform: {
@@ -38,66 +41,71 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
       h={h ?? "full"}
       w={w ?? {}}
       borderRadius="xl"
-      overflow={'hidden'}
-      minW='20rem'
+      overflow={"hidden"}
+      minW="20rem"
     >
+      <Field.Image
+        name={card.imageFieldName}
+        defaultValue={card.imageDefaultValue}
+      />
+      <Box position="absolute">
+        {displayContent && (
+          <Stack p="6" pb="4">
+            {card.headingFieldName && (
+              <Heading fontSize={{ base: "lg", xl: "xl" }} fontWeight="700">
+                <Field.Text
+                  name={card.headingFieldName}
+                  defaultValue={card.headingDefaultValue}
+                />
+              </Heading>
+            )}
 
-      <Field.Image name={card.imageFieldName} defaultValue={undefined} />
+            {card.textFieldName && (
+              <Text
+                fontSize={{ base: "sm", lg: isSmallText ? "sm" : "md" }}
+                maxW="80%"
+              >
+                <Field.Text
+                  name={card.textFieldName}
+                  defaultValue={card.textDefaultValue}
+                />
+              </Text>
+            )}
 
-      <Box position='absolute'>
-      {displayContent && (
-        <Stack p="6" pb="4">
-          {card.headingFieldName && (
-            <Heading fontSize={{ base: "lg", xl: "xl" }} fontWeight="700">
-              <Field.Text
-                name={card.headingFieldName}
-                defaultValue="Großhandel"
-              />
-            </Heading>
-          )}
-
-          {card.textFieldName && (
-            <Text
-              fontSize={{ base: "sm", lg: isSmallText ? "sm" : "md" }}
-              maxW="80%"
+            <HStack
+              cursor="pointer"
+              _hover={{
+                textDecoration: "underline",
+                "&>div": { boxShadow: "0 0 5px 1px white" },
+              }}
+              // _hover={{
+              //   transform: {
+              //     md: "scale(1.05) translateX(0px)",
+              //     lg: "scale(1.05) translateX(5px)",
+              //   },
+              // }}
+              transition="ease-in 0.2s"
             >
-              <Field.Text
-                name={card.textFieldName}
-                defaultValue="Lorem ipsum dolor sit amet, consetetur sadipscing"
-              />
-            </Text>
-          )}
-
-          <HStack
-            cursor="pointer"
-            _hover={{
-              transform: {
-                md: "scale(1.05) translateX(0px)",
-                lg: "scale(1.05) translateX(5px)",
-              },
-            }}
-            transition="ease-in 0.2s"
-          >
-            <Text fontSize={{ base: "sm", lg: "md" }} fontWeight="700">
-              Mehr anzeigen
-            </Text>
-            <Grid
-              placeItems="center"
-              h={{ base: "4", lg: "6" }}
-              w={{ base: "4", lg: "6" }}
-              color="red.500"
-              bg="white"
-              fontSize={{ lg: "lg" }}
-              borderRadius="full"
-            >
-              <BiChevronRight />
-            </Grid>
-          </HStack>
-        </Stack>
-      )}
+              <Text fontSize={{ base: "sm", lg: "md" }} fontWeight="700">
+                Mehr anzeigen
+              </Text>
+              <Grid
+                placeItems="center"
+                h={{ base: "4", lg: "6" }}
+                w={{ base: "4", lg: "6" }}
+                color="red.500"
+                bg="white"
+                fontSize={{ lg: "lg" }}
+                borderRadius="full"
+                boxShadow="0 0 0px 0px white"
+                transition="ease-in 0.2s"
+              >
+                <BiChevronRight />
+              </Grid>
+            </HStack>
+          </Stack>
+        )}
       </Box>
-
-     
     </Stack>
   )
 }

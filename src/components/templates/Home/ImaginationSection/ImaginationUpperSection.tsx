@@ -1,4 +1,5 @@
 import { Box, Heading, Image, Text, VStack } from "@chakra-ui/react"
+import { Field } from "@jaenjs/jaen"
 import { FC } from "react"
 
 interface IImaginationUpperSectionProps {}
@@ -11,19 +12,21 @@ const ImaginationUpperSection: FC<IImaginationUpperSectionProps> = () => {
         textAlign="center"
         fontSize={{ base: "md", md: "xl", lg: "2xl" }}
       >
-        Was man mit
-        <Box as="br" display={{ base: "block", md: "none" }} />
-        <Box as="span" fontSize={{ base: "2xl", md: "xl", lg: "2xl" }} mx="1">
-          Ballons
-        </Box>
-        <Box as="br" display={{ base: "block", md: "none" }} />
-        alles machen kann...?
+        <Field.Text
+          display={"inline-block"}
+          name="heading1"
+          defaultValue="Was man mit Ballons alles machen kann...?"
+        />
       </Heading>
       <Heading
         textAlign="center"
         fontSize={{ base: "md", md: "xl", lg: "2xl" }}
       >
-        Mit ein wenig Phatansie…{" "}
+        <Field.Text
+          display={"inline-block"}
+          name="heading2"
+          defaultValue="Mit ein wenig Phatansie... "
+        />
       </Heading>
       <Box
         pos="relative"
@@ -35,7 +38,11 @@ const ImaginationUpperSection: FC<IImaginationUpperSectionProps> = () => {
           variant="cursive"
           fontSize={{ base: "4xl", md: "6xl", lg: "8xl" }}
         >
-          Alles
+          <Field.Text
+            display={"inline-block"}
+            name="text"
+            defaultValue="Alles"
+          />
         </Text>
         <Image
           pos="absolute"

@@ -1,5 +1,4 @@
 import {
-  Button,
   Flex,
   Grid,
   Heading,
@@ -8,46 +7,86 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react"
-import { FC } from "react"
+import { Field } from "@jaenjs/jaen"
+import { FC, ReactNode } from "react"
 import { fonts } from "../../../../styles/theme"
+import LinkButtonField from "../../../fields/LinkButtonField"
+
+export interface ISortiment {
+  heading: ReactNode
+  text: ReactNode
+}
+
+const items: ISortiment[] = [
+  {
+    heading: <Field.Text name="items-heading-1" defaultValue="Latexballons" />,
+    text: (
+      <Field.Text
+        name="items-text-1"
+        defaultValue="Lorem ipsum dolor sit amet, consetetur sadipscing"
+      />
+    ),
+  },
+  {
+    heading: (
+      <Field.Text name="items-heading-2" defaultValue="Bedruckbare Ballons" />
+    ),
+    text: (
+      <Field.Text
+        name="items-text-2"
+        defaultValue="Lorem ipsum dolor sit amet, consetetur sadipscing"
+      />
+    ),
+  },
+  {
+    heading: (
+      <Field.Text name="items-heading-3" defaultValue="Bedruckbare Ballons" />
+    ),
+    text: (
+      <Field.Text
+        name="items-text-3"
+        defaultValue="Lorem ipsum dolor sit amet, consetetur sadipscing"
+      />
+    ),
+  },
+  {
+    heading: (
+      <Field.Text name="items-heading-4" defaultValue="Bedruckbare Ballons" />
+    ),
+    text: (
+      <Field.Text
+        name="items-text-4"
+        defaultValue="Lorem ipsum dolor sit amet, consetetur sadipscing"
+      />
+    ),
+  },
+  {
+    heading: (
+      <Field.Text name="items-heading-5" defaultValue="Bedruckbare Ballons" />
+    ),
+    text: (
+      <Field.Text
+        name="items-text-5"
+        defaultValue="Lorem ipsum dolor sit amet, consetetur sadipscing"
+      />
+    ),
+  },
+  {
+    heading: (
+      <Field.Text name="items-heading-6" defaultValue="Bedruckbare Ballons" />
+    ),
+    text: (
+      <Field.Text
+        name="items-text-6"
+        defaultValue="Lorem ipsum dolor sit amet, consetetur sadipscing"
+      />
+    ),
+  },
+]
 
 interface IRiesgesBottomSectionProps {}
 
 const RiesgesBottomSection: FC<IRiesgesBottomSectionProps> = () => {
-  const leftTexts = {
-    title: "Riesiges",
-    subtitle: "Produktsortiment",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus imperdiet sed id elementum. Quam vel aliquam sit vulputate. ",
-  }
-
-  const items = [
-    {
-      title: "Latexballons",
-      text: "Lorem ipsum dolor sit amet, consetetur sadipscing",
-    },
-    {
-      title: "Bedruckbare Ballons",
-      text: "Lorem ipsum dolor sit amet, consetetur sadipscing",
-    },
-    {
-      title: "Bedruckbare Ballons",
-      text: "Lorem ipsum dolor sit amet, consetetur sadipscing",
-    },
-    {
-      title: "Bedruckbare Ballons",
-      text: "Lorem ipsum dolor sit amet, consetetur sadipscing",
-    },
-    {
-      title: "Bedruckbare Ballons",
-      text: "Lorem ipsum dolor sit amet, consetetur sadipscing",
-    },
-    {
-      title: "Bedruckbare Ballons",
-      text: "Lorem ipsum dolor sit amet, consetetur sadipscing",
-    },
-  ]
-
   return (
     <Flex flexDir={{ base: "column", xl: "row" }} gap="10">
       <Stack flex="1">
@@ -56,7 +95,7 @@ const RiesgesBottomSection: FC<IRiesgesBottomSectionProps> = () => {
           mb="4 !important"
           fontWeight="semibold"
         >
-          {leftTexts.title}
+          <Field.Text name="riesgesHeading" defaultValue="Riesiges" />
         </Heading>
         <Heading
           color="red.500"
@@ -66,7 +105,10 @@ const RiesgesBottomSection: FC<IRiesgesBottomSectionProps> = () => {
           mb={{ base: "4 !important", md: 0 }}
           fontWeight="semibold"
         >
-          {leftTexts.subtitle}
+          <Field.Text
+            name="riesgesSubheading"
+            defaultValue="Produktsortiment"
+          />
         </Heading>
         <Text
           maxW={{ base: "90%", md: "75%" }}
@@ -74,17 +116,20 @@ const RiesgesBottomSection: FC<IRiesgesBottomSectionProps> = () => {
           mt="-4 !important"
           mb="2 !important"
         >
-          {leftTexts.description}
+          <Field.Text
+            name="riesgesText"
+            defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus imperdiet sed id elementum."
+          />
         </Text>
-        <HStack display={{ base: "none", xl: "block" }}>
-          <Button
+        <HStack display={{ base: "none", xl: "flex" }}>
+          <LinkButtonField
+            name="button"
+            defaultValue="Mehr erfahren"
             size="lg"
             variant="outline"
             colorScheme="red"
             borderRadius="full"
-          >
-            Mehr erfahren
-          </Button>
+          />
         </HStack>
       </Stack>
 
@@ -110,7 +155,7 @@ const RiesgesBottomSection: FC<IRiesgesBottomSectionProps> = () => {
                 fontSize={{ base: "md", lg: "lg" }}
                 fontWeight="semibold"
               >
-                {item.title}
+                {item.heading}
               </Heading>
               <Text maxW="95%" fontSize={{ base: "xs", sm: "sm", lg: "md" }}>
                 {item.text}
@@ -120,9 +165,12 @@ const RiesgesBottomSection: FC<IRiesgesBottomSectionProps> = () => {
         ))}
       </Grid>
       <HStack display={{ base: "flex", xl: "none" }}>
-        <Button size={{ base: "sm", sm: "md" }} variant="outline">
-          Mehr erfahren
-        </Button>
+        <LinkButtonField
+          name="button"
+          defaultValue="Mehr erfahren"
+          variant="outline"
+          size={{ base: "sm", md: "md" }}
+        />
       </HStack>
     </Flex>
   )

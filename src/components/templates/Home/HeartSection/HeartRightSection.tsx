@@ -7,17 +7,17 @@ interface IHeartRightSectionProps {}
 const HeartRightSection: FC<IHeartRightSectionProps> = () => {
   const cards = [
     {
-      title: "Blog Post 1",
+      heading: "Blog Post 1",
       text: "Lorem ipsum dolor sit amet, consetetur sadipscing",
       image: "/images/home/heart/hsection2.png",
     },
     {
-      title: "Blog Post 2",
+      heading: "Blog Post 2",
       text: "Lorem ipsum dolor sit amet, consetetur sadipscing",
       image: "/images/home/heart/hsection1.png",
     },
     {
-      title: "Blog Post 3",
+      heading: "Blog Post 3",
       text: "Lorem ipsum dolor sit amet, consetetur sadipscing",
       image: "/images/home/heart/hsection1.png",
     },
@@ -41,7 +41,17 @@ const HeartRightSection: FC<IHeartRightSectionProps> = () => {
           h={{ base: "15rem", md: "22.1875rem" }}
           key={i}
         >
-          <CardWithImageBackground card={card} key={i} />
+          <CardWithImageBackground
+            card={{
+              headingFieldName: `heartCardheading${i}`,
+              headingDefaultValue: cards[0].heading,
+              textFieldName: `heartCardText${i}`,
+              textDefaultValue: cards[0].text,
+              imageFieldName: `heartCardImage${i}`,
+              imageDefaultValue: cards[0].image,
+            }}
+            key={i}
+          />
         </GridItem>
       ))}
     </Grid>

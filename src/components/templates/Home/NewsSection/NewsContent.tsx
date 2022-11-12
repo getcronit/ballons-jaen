@@ -1,5 +1,7 @@
-import { Box, Button, Heading, Stack, Text } from "@chakra-ui/react"
+import { Box, Heading, Stack, Text } from "@chakra-ui/react"
+import { Field } from "@jaenjs/jaen"
 import { FC } from "react"
+import LinkButtonField from "../../../fields/LinkButtonField"
 
 interface INewsContentProps {}
 
@@ -15,30 +17,45 @@ const NewsContent: FC<INewsContentProps> = () => {
         fontSize={{ base: "xl", md: "4xl", lg: "7xl" }}
         variant="cursive"
       >
-        News
+        <Field.Text
+          display={"inline-block"}
+          name="newsHeading"
+          defaultValue="News"
+        />
       </Text>
       <Heading fontSize={{ base: "md", md: "4xl" }}>
-        Bleib auf dem <br /> Laufenden
+        <Field.Text
+          display={"inline-block"}
+          name="newsHeading2"
+          defaultValue="Bleib auf dem Laufenden"
+        />
       </Heading>
       <Box w="3.4375rem" h=".375rem" bg="black" />
       <Heading fontWeight="semibold" fontSize="lg">
-        Gute Dekoration ist kein Zufall
+        <Field.Text
+          display={"inline-block"}
+          name="newsSubheading"
+          defaultValue="Gute Dekoration ist kein Zufall"
+        />
       </Heading>
       <Text
         fontSize={{ base: "sm", md: "md" }}
         maxW={{ sm: "60%", md: "50%" }}
         mb="4 !important"
       >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
-        libero risus semper
+        <Field.Text
+          display={"inline-block"}
+          name="newsText"
+          defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in libero risus semper"
+        />
       </Text>
-
-      <Button
+      <LinkButtonField
+        name="newsButton"
+        defaultValue="Alle News anzeigen"
+        size={{ base: "sm", lg: "md" }}
         fontSize={{ base: "sm", md: "1.375rem" }}
         w={{ base: "12.5rem", md: "16.875rem" }}
-      >
-        Alle News anzeigen
-      </Button>
+      />
     </Stack>
   )
 }

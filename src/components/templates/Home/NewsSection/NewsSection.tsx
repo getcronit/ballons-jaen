@@ -1,4 +1,4 @@
-import { Box, Container, Flex, Image } from "@chakra-ui/react"
+import { Box, Container, Flex } from "@chakra-ui/react"
 import { Field } from "@jaenjs/jaen"
 import { FC } from "react"
 import { CONTAINER_MAX_WIDTH } from "../../../../constant/sizes"
@@ -21,13 +21,19 @@ const NewsSection: FC<INewsSectionProps> = () => {
         <NewsContent />
       </Box>
 
-      <Box flex="1" px="6">
-        <Box mx="auto" w={{ base: "100%", sm: "80%", md: "25rem", lg: "auto" }}>
-          <Field.Image
-            name="image2"
-            defaultValue={"/images/home/news/news_img.png"}
-          />
-        </Box>
+      <Box
+        flex="1"
+        px="6"
+        mx="auto"
+        overflow="hidden"
+        w={{ base: "100%", sm: "80%", md: "25rem", lg: "auto" }}
+        //borderRadius="full"
+      >
+        <Field.Image
+          alt="slider_img"
+          name={"newsImage2"}
+          defaultValue={"/images/home/news/news_img.png"}
+        />
       </Box>
     </Container>
   )

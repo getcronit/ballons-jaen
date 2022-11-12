@@ -1,6 +1,8 @@
-import { Button, Grid, Heading, Stack, Text, VStack } from "@chakra-ui/react"
+import { Grid, Heading, Stack, Text, VStack } from "@chakra-ui/react"
+import { Field } from "@jaenjs/jaen"
 import { FC } from "react"
 import { TransparentCard } from "../../../../chakra/TransparentCard"
+import LinkButtonField from "../../../fields/LinkButtonField"
 
 interface IJoySectionProps {}
 
@@ -29,14 +31,14 @@ const JoySection: FC<IJoySectionProps> = () => {
             fontWeight="semibold"
             fontSize={{ base: "4xl", md: "8xl" }}
           >
-            Freude
+            <Field.Text name="joyHeading" defaultValue="Freude" />
           </Heading>
           <Heading
             fontWeight="semibold"
             fontSize={{ base: "lg", md: "3xl" }}
             as="span"
           >
-            liegt in der Luft
+            <Field.Text name="joySubheading" defaultValue="liegt in der Luft" />
           </Heading>
         </VStack>
         <Text
@@ -44,12 +46,19 @@ const JoySection: FC<IJoySectionProps> = () => {
           fontWeight="medium"
           textAlign="center"
         >
-          Selbst die kleinsten Dinge können viel Freude machen. Mit mehr als 30
-          Jahre Erfahrung sind wir der richtige Ansprechpartner, wenn es um
-          wirkungsvolle Ballons, eindrucksvolle Event-Dekorationen, Partyzubehör
-          uvm.
+          <Field.Text
+            name="joyText"
+            defaultValue="Selbst die kleinsten Dinge können viel Freude machen. Mit mehr als 30
+        Jahre Erfahrung sind wir der richtige Ansprechpartner, wenn es um
+        wirkungsvolle Ballons, eindrucksvolle Event-Dekorationen, Partyzubehör
+        uvm."
+          />
         </Text>
-        <Button size={{ base: "sm", md: "md" }}>Erfahre mehr über uns</Button>
+        <LinkButtonField
+          name="joyButton"
+          defaultValue="Erfahre mehr über uns"
+          size={{ base: "sm", md: "md" }}
+        />
       </Stack>
     </Grid>
   )
