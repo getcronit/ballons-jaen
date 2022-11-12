@@ -14,7 +14,7 @@ interface IHomeProps {}
 const Home: FC<IHomeProps> = () => {
   return (
     <>
-      <Hero />
+      <Hero anchor="hero" />
       <Riesges />
       <HeartSection />
       <LittleThingsSection />

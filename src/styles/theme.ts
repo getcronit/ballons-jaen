@@ -4,10 +4,9 @@ import {
   withDefaultColorScheme,
 } from "@chakra-ui/react"
 
-import { StepsStyleConfig as Steps } from 'chakra-ui-steps';
+import { StepsStyleConfig as Steps } from "chakra-ui-steps"
 
-
-import {theme as jaenTheme} from "@jaenjs/jaen"
+import { theme as jaenTheme } from "@jaenjs/jaen"
 
 export const colors = {
   gray: {

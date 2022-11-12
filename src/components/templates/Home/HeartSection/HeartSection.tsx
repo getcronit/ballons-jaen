@@ -1,6 +1,8 @@
-import { Box, Button, Container, Heading, Stack, Text } from "@chakra-ui/react"
+import { Box, Container, Heading, Stack, Text } from "@chakra-ui/react"
+import { Field } from "@jaenjs/jaen"
 import { FC } from "react"
 import { TransparentCard } from "../../../../chakra/TransparentCard"
+import LinkButtonField from "../../../fields/LinkButtonField"
 import HeartRightSection from "./HeartRightSection"
 
 interface IHeartSectionProps {}
@@ -35,20 +37,30 @@ const HeartSection: FC<IHeartSectionProps> = () => {
             h={{ base: "21.25rem", md: "auto", lg: "auto" }}
             w={{ base: "19.375rem", sm: "100%", lg: "38.125rem" }}
           >
-            <Text fontSize={{ base: "sm", lg: "xl" }}>Inspiration</Text>
+            <Text fontSize={{ base: "sm", lg: "xl" }}>
+              <Field.Text name="tag" defaultValue="Inspiration" />
+            </Text>
             <Heading fontSize={{ base: "md", lg: "4xl" }} fontWeight="800">
-              Lass dich von uns inspirieren
+              <Field.Text
+                name="heading"
+                defaultValue="Lass dich von uns inspirieren"
+              />
             </Heading>
             <Text fontSize={{ base: "xs", lg: "md" }} mb="2 !important">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus
-              imperdiet sed id elementum. Quam vel aliquam sit vulputate.
-              Faucibus nec gravida ipsum pulvinar vel non.
+              <Field.Text
+                name="text"
+                defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus imperdiet sed id elementum. Quam vel aliquam sit vulputate."
+              />
             </Text>
-            <Button size={{ base: "sm", lg: "md" }} w="12.5rem">
-              Mehr erfahren
-            </Button>
+            <Box display="flex">
+              <LinkButtonField
+                name="heartButton"
+                defaultValue="Mehr erfahren"
+                size={{ base: "sm", lg: "md" }}
+                w="12.5rem"
+              />
+            </Box>
           </Stack>
-
           <Box
             pb={{ base: 32, md: 0 }}
             display={{ base: "none", sm: "block" }}

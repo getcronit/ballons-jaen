@@ -27,7 +27,7 @@ const CustomImageViewer: FC<ICustomImageViewerProps> = ({
         <Box pos="absolute" top="0" zIndex="modal">
           <ImageViewer
             backgroundStyle={{
-              backgroundColor: "#FC8181",
+              backgroundColor: "rgba(0, 0, 0, 0.75)",
             }}
             src={isMobile ? newMobileImages : desktopImages}
             currentIndex={currentImage}

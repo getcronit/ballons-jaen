@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Container,
   Flex,
   Grid,
@@ -10,9 +9,11 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react"
+import { Field } from "@jaenjs/jaen"
 import { FC } from "react"
 import { CONTAINER_MAX_WIDTH } from "../../../../constant/sizes"
 import CardWithImageBackground from "../../../CardWithImageBackground"
+import LinkButtonField from "../../../fields/LinkButtonField"
 
 interface ILittleThingsSectionProps {}
 
@@ -59,7 +60,14 @@ const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
               h={cardHeight}
               w={cardWidth}
               displayContent={false}
-              card={{ image: cards[0].image }}
+              card={{
+                headingFieldName: "littleThingsCardheading1",
+                headingDefaultValue: "   ",
+                textFieldName: "littleThingsCardText1",
+                textDefaultValue: "   ",
+                imageFieldName: "littleThingsCardImage1",
+                imageDefaultValue: cards[0].image,
+              }}
             />
           </Stack>
           <Stack
@@ -77,21 +85,42 @@ const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
                 h={cardHeight}
                 w={cardWidth}
                 displayContent={false}
-                card={{ image: cards[0].image }}
+                card={{
+                  headingFieldName: "littleThingsCardheading1",
+                  headingDefaultValue: "   ",
+                  textFieldName: "littleThingsCardText1",
+                  textDefaultValue: "   ",
+                  imageFieldName: "littleThingsCardImage1",
+                  imageDefaultValue: cards[0].image,
+                }}
               />
             </Box>
             <CardWithImageBackground
               h={cardHeight}
               w={cardWidth}
               displayContent={false}
-              card={{ image: cards[1].image }}
+              card={{
+                headingFieldName: "littleThingsCardheading2",
+                headingDefaultValue: "   ",
+                textFieldName: "littleThingsCardText2",
+                textDefaultValue: "   ",
+                imageFieldName: "littleThingsCardImage2",
+                imageDefaultValue: cards[1].image,
+              }}
             />
 
             <CardWithImageBackground
               h={cardHeight}
               w={cardWidth}
               displayContent={false}
-              card={{ image: cards[2].image }}
+              card={{
+                headingFieldName: "littleThingsCardheading3",
+                headingDefaultValue: "   ",
+                textFieldName: "littleThingsCardText3",
+                textDefaultValue: "   ",
+                imageFieldName: "littleThingsCardImage3",
+                imageDefaultValue: cards[2].image,
+              }}
             />
           </Stack>
         </Flex>
@@ -104,11 +133,13 @@ const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
           placeItems="center"
         >
           <Image
+            //zIndex={"-1"}
             pos="absolute"
             src="/images/home/little/shape_round.png"
             w="80%"
           />
           <Image
+            //zIndex={"-1"}
             right={{ base: ".625rem", sm: 20 }}
             top="10rem"
             src="/images/home/little/shape.png"
@@ -117,24 +148,36 @@ const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
           />
         </Grid>
 
-        <Stack maxW={{ lg: "50%" }} spacing="8" justify="center">
+        <Stack zIndex={"999"} maxW={{ lg: "50%" }} spacing="8" justify="center">
           <Heading
             fontSize={{ base: "md", md: "xl", xl: "2xl" }}
             lineHeight={{ base: "1.25rem", md: "2rem", xl: "2.5rem" }}
             mb="-2"
             whiteSpace="nowrap"
           >
-            Auch die
+            <Field.Text
+              display={"inline-block"}
+              name="littleThingsHeading1"
+              defaultValue="Auch die"
+            />
             <Text
               ml="2"
               as="span"
               fontSize={{ base: "lg", xl: "2xl" }}
               variant="cursive"
             >
-              kleinsten
+              <Field.Text
+                display={"inline-block"}
+                name="littleThingsHeading2"
+                defaultValue="kleinsten"
+              />
             </Text>
             <br />
-            Dinge machen viel
+            <Field.Text
+              display={"inline-block"}
+              name="littleThingsHeading3"
+              defaultValue="Dinge machen viel"
+            />
             <Text
               ml="2"
               pos="relative"
@@ -143,8 +186,14 @@ const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
               variant="cursive"
               pr="8"
             >
-              Freude
+              <Field.Text
+                display={"inline-block"}
+                name="littleThingsHeading4"
+                defaultValue="Freude"
+              />
               <Image
+                //zIndex={"-1"}
+                pointerEvents={"none"}
                 display={{ base: "none", md: "block" }}
                 right={{ md: "1.625rem", xl: "2.25rem" }}
                 top={{
@@ -157,28 +206,35 @@ const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
             </Text>
           </Heading>
           <Heading fontSize={{ base: "sm", md: "md" }} fontWeight="semibold">
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-            erat, sed diam voluptua.
+            <Field.Text
+              display={"inline-block"}
+              name="littleThingsSubheading"
+              defaultValue="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
+            />
           </Heading>
           <Text fontSize={{ base: "sm", md: "md" }} fontWeight="light">
-            At vero eos et accusam et justo duo dolores et ea rebum. Stet clita
-            kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
-            amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-            diam nonumy eirmod tempor invidunt ut labore et dolore magna
-            aliquyam erat, sed diam voluptua. At vero eos et accusam et justo
-            duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-            sanctus est Lorem ipsum dolor sit amet.
+            <Field.Text
+              display={"inline-block"}
+              name="text"
+              defaultValue="At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+            />
           </Text>
           <HStack
             justify="center"
             gap="4"
             flexDir={{ base: "row-reverse", md: "row" }}
           >
-            <Button size={{ base: "sm", md: "md" }}>Zum Shop</Button>
-            <Button size={{ base: "sm", md: "md" }} variant="outline">
-              Großhandel
-            </Button>
+            <LinkButtonField
+              name="littleThingsButton1"
+              defaultValue="Zum Shop"
+              size={{ base: "sm", md: "md" }}
+            />
+            <LinkButtonField
+              name="littleThingsButton2"
+              defaultValue="Großhandel"
+              size={{ base: "sm", md: "md" }}
+              variant="outline"
+            />
           </HStack>
         </Stack>
       </Container>
