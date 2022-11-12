@@ -10,12 +10,19 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react"
-import { connectSection, Field, useField } from "@jaenjs/jaen"
+import {
+  connectSection,
+  Field,
+  useField,
+  useJaenSectionContext,
+} from "@jaenjs/jaen"
 import React, { useCallback, useState } from "react"
+import Slider from "react-slick"
 import { CONTAINER_MAX_WIDTH } from "../../constant/sizes"
 import CustomImageViewer from "../CustomImageViewer"
 import FourCard from "../FourCard/FourCard"
 import ConvincedSection from "../templates/Dekoration/HochzeitsballonsSection/ConvincedSection"
+import BallonGas from "./BallonGas"
 
 export interface ContentPageSectionProps {}
 
@@ -76,7 +83,7 @@ const ImagesGallery3x3Section = connectSection(
   },
   {
     name: "ImagesGallery3x3Section",
-    displayName: "Inhalt",
+    displayName: "Bildergalerie (3x3)",
   }
 )
 
@@ -87,6 +94,17 @@ const Images = React.memo<{
   onLoaded: (index: number, url: string) => void
 }>(
   ({ openImageViewer, defaultImages, onLoaded }) => {
+    const mobileSliderSettings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      arrows: true,
+      autoplay: true,
+      autoplaySpeed: 5000,
+    }
+
     return (
       <>
         <Container maxW={CONTAINER_MAX_WIDTH} pos="relative">
@@ -154,78 +172,59 @@ const Images = React.memo<{
         </Container>
         {/* for Mobile */}
         <Box
-          h="25rem"
-          pos="relative"
-          overflow="hidden"
+          // overflow="hidden"
           display={{ base: "block", md: "none" }}
+          sx={
+            {
+              'ul.slick-dots': {
+                top: 'auto',
+              },
+              '.slick-slider, .slick-slide': {
+                px: 2
+              }
+            }
+          }
         >
-          <Image
-            pos="absolute"
-            left="-6.25rem"
-            w="12.5rem"
-            src="/images/decorationen/ballons.png"
-          />
-          <Image
-            pos="absolute"
-            right="-6.25rem"
-            w="14.375rem"
-            src="/images/decorationen/ballons.png"
-          />
-          <Box pos="absolute" maxW="full" bottom="3rem">
-            <Image
-              pos="absolute"
-              left="0"
-              src="/images/decorationen/left_transparent.svg"
-            />
-            <Image
-              pos="absolute"
-              right="0"
-              src="/images/decorationen/right_transparent.svg"
-            />
-            <Flex overflowY="auto">
-              {new Array(9).fill("").map((_, i) => {
-                const imageFieldName = `images.${i}`
-                const imageField = useField<{
-                  internalImageUrl: string
-                }>(imageFieldName, "IMA:ImageField")
+          <Slider {...mobileSliderSettings}>
+            {new Array(9).fill("").map((_, i) => {
+              const imageFieldName = `images.${i}`
+              const imageField = useField<{
+                internalImageUrl: string
+              }>(imageFieldName, "IMA:ImageField")
 
-                return (
-                  <Box key={i} px="2" flexShrink="0" mb="2">
-                    <Box
-                      _hover={{
-                        transition: "all 0.2s ease",
-                        transform: {
-                          md: "scale(1.02) ",
-                          lg: "scale(1.02) ",
-                        },
-                      }}
-                      onClick={() => openImageViewer(i)}
-                      transition="ease-in 0.2s"
-                      boxSize="10.625rem"
-                      boxShadow="light"
-                      bg="blue"
-                      borderRadius="lg"
-                      overflow={"hidden"}
-                    >
-                      <Field.Image
-                        onLoad={() => {
-                          const imageUrl =
-                            imageField.value?.internalImageUrl ||
-                            defaultImages[i]
+              return (
+                <Box
+                  key={i}
+                  _hover={{
+                    transition: "all 0.2s ease",
+                    transform: {
+                      md: "scale(1.02) ",
+                      lg: "scale(1.02) ",
+                    },
+                  }}
+                  onClick={() => openImageViewer(i)}
+                  transition="ease-in 0.2s"
+                  boxSize="full"
+                  boxShadow="light"
+                  bg="blue"
+                  borderRadius="lg"
+                  overflow={"hidden"}
+                >
+                  <Field.Image
+                    onLoad={() => {
+                      const imageUrl =
+                        imageField.value?.internalImageUrl || defaultImages[i]
 
-                          onLoaded(i, imageUrl)
-                        }}
-                        objectFit="cover"
-                        name={imageFieldName}
-                        defaultValue={defaultImages[i]}
-                      />
-                    </Box>
-                    <Image />
-                  </Box>
-                )
-              })}
-            </Flex>
-          </Box>
+                      onLoaded(i, imageUrl)
+                    }}
+                    objectFit="cover"
+                    name={imageFieldName}
+                    defaultValue={defaultImages[i]}
+                  />
+                </Box>
+              )
+            })}
+          </Slider>
         </Box>
       </>
     )
@@ -254,12 +253,14 @@ const FullWidthImageSection = connectSection(
         <Box
           my={{ base: "4 !important", md: "12 !important" }}
           borderRadius={{ base: ".625rem", md: "2rem" }}
+          minH={{ base: "11.25rem", md: "18.75rem", lg: "25rem", xl: "29.375rem" }}
           boxShadow="light"
           overflow={"hidden"}
         >
           <Field.Image
+            style={{minHeight: "inherit"}}
             name="image"
-            defaultValue="/images/placeholder.png"
+            defaultValue={undefined}
             objectFit="cover"
           />
         </Box>
@@ -268,7 +269,7 @@ const FullWidthImageSection = connectSection(
   },
   {
     name: "FullWidthImageSection",
-    displayName: "Inhalt",
+    displayName: "Bild (Volle Breite)",
   }
 )
 
@@ -314,7 +315,7 @@ const SubCategoryContentSection = connectSection(
   () => {
     return (
       <>
-        <Image
+        <Box
           pos="absolute"
           display={{ base: "none", md: "block" }}
           left={{
@@ -324,42 +325,51 @@ const SubCategoryContentSection = connectSection(
             "2xl": "-16%",
           }}
           w="calc(20vw + 15vh)"
-          src="/images/decorationen/ballons.png"
-        />
+        >
+          <Field.Image
+            name="sideImageLeft"
+            defaultValue="/images/decorationen/ballons.png"
+          />
+        </Box>
+
         <Container maxW={CONTAINER_MAX_WIDTH} pos="relative">
           {/* Upper Section */}
 
-          <VStack>
-            <Heading
-              fontSize={{ base: "md", md: "2xl", lg: "3xl", xl: "4xl" }}
-              fontWeight="semibold"
-            >
-              <Field.Text name="heading" defaultValue={"Überschrift"} rtf />
-            </Heading>
-            <Text
-              fontSize={{ base: "sm", lg: "md" }}
-              textAlign="center"
-              maxW={{ md: "60%" }}
-            >
-              <Field.Text
-                name="Text"
-                defaultValue={`Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius quibusdam, atque iusto culpa libero nostrum sit fuga cumque sunt tenetur! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae ea praesentium, enim alias a nihil et aperiam
+          <Stack spacing={20}>
+            <VStack>
+              <Heading
+                fontSize={{ base: "md", md: "2xl", lg: "3xl", xl: "4xl" }}
+                fontWeight="semibold"
+              >
+                <Field.Text name="heading" defaultValue={"Überschrift"} rtf />
+              </Heading>
+              <Text
+                fontSize={{ base: "sm", lg: "md" }}
+                textAlign="center"
+                maxW={{ md: "60%" }}
+              >
+                <Field.Text
+                  name="Text"
+                  defaultValue={`Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius quibusdam, atque iusto culpa libero nostrum sit fuga cumque sunt tenetur! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae ea praesentium, enim alias a nihil et aperiam
 
 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora necessitatibus cupiditate explicabo facere, eligendi molestias Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, accusamus.
 `}
-              />
-            </Text>
-          </VStack>
+                />
+              </Text>
+            </VStack>
 
-          <Field.Section
-            name="content"
-            displayName="Content"
-            sections={[
-              ImagesGallery3x3Section,
-              FullWidthImageSection,
-              TextSection,
-            ]}
-          />
+            <Field.Section
+              as={Stack}
+              props={{ spacing: 20 }}
+              name="content"
+              displayName="Content"
+              sections={[
+                ImagesGallery3x3Section,
+                FullWidthImageSection,
+                TextSection,
+              ]}
+            />
+          </Stack>
         </Container>
       </>
     )
@@ -371,7 +381,14 @@ Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora necessitatibus
 )
 
 const CategoryContentSection = connectSection(
-  () => {
+  (props, i) => {
+    const self = useJaenSectionContext()
+
+    if (!self)
+      throw new Error(
+        "Something went terribly wrong. Maybe I should quit programming."
+      )
+
     return (
       <>
         <Box>
@@ -387,14 +404,19 @@ const CategoryContentSection = connectSection(
               h={{ md: "60rem", lg: "70rem", xl: "75rem" }}
               w="full"
             >
-              <Image
+              <Box
                 display={{ base: "none", md: "block" }}
                 pos="absolute"
                 top={{ md: "10rem", xl: "18.75rem" }}
                 right="-15rem"
                 w="calc(20vw + 15vh)"
-                src="/images/decorationen/ballons.png"
-              />
+              >
+                <Field.Image
+                  name="sideImageRight"
+                  defaultValue="/images/decorationen/ballons.png"
+                />
+              </Box>
+
               <Image
                 pos="absolute"
                 top={{ base: "0rem" }}
@@ -405,7 +427,7 @@ const CategoryContentSection = connectSection(
               <VStack pos="relative">
                 <Text variant="cursive" size="120" as="span">
                   <Field.Text
-                    name="heading"
+                    name="fourCardItemTitle"
                     displayName="Überschrift"
                     defaultValue="Überschrift"
                   />
@@ -438,18 +460,21 @@ const CategoryContentSection = connectSection(
         </Box>
         <Box
           pos="relative"
-          top={{
-            base: "0",
+          mt={{
+            base: 0,
             md: "-25rem",
           }}
         >
           <Field.Section
+            as={Stack}
+            props={{ spacing: 20 }}
             name="subContentCategories"
             displayName="Unterkategorie"
             sections={[SubCategoryContentSection]}
           />
         </Box>
-        <ConvincedSection />
+
+        {self.position % 2 === 0 ? <ConvincedSection /> : <BallonGas />}
       </>
     )
   },
@@ -471,6 +496,8 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> = () => {
       />
 
       <Field.Section
+        as={Stack}
+        props={{ spacing: 20 }}
         name={sectionFieldName}
         displayName="Content"
         sections={[CategoryContentSection]}

@@ -8,8 +8,10 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react"
+import { Field } from "@jaenjs/jaen"
 import { FC } from "react"
 import { CONTAINER_MAX_WIDTH } from "../../../constant/sizes"
+import LinkButtonField from "../../fields/LinkButtonField"
 
 interface IProductCatlogProps {}
 
@@ -23,10 +25,17 @@ const ProductCatlog: FC<IProductCatlogProps> = () => {
     >
       <Flex gap="12" align="center" flexDir={{ base: "column", lg: "row" }}>
         <Box flex="1" w={{ base: "70%", md: "unset" }}>
-          <Image h="full" src="/images/we_design_party/stack_cards.png" />
+          <Field.Image
+            name="stack_cards"
+            defaultValue="/images/we_design_party/stack_cards.png"
+          />
         </Box>
         <Box display={{ base: "block", md: "none" }}>
-          <Button>Zum Katalog</Button>
+          <LinkButtonField
+            name="catalogueButton"
+            defaultValue={"Zum Katalog"}
+            variant="outline"
+          />
         </Box>
         <Stack
           display={{ base: "none", md: "flex" }}
@@ -43,21 +52,22 @@ const ProductCatlog: FC<IProductCatlogProps> = () => {
             fontSize={{ base: "md", md: "lg", xl: "xl" }}
             fontWeight="semibold"
           >
-            PRODUKTE
+            <Field.Text name="cataloguePreTitle" defaultValue={"Katalog"} />
           </Heading>
           <Heading
             fontSize={{ base: "md", md: "xl", lg: "2xl", xl: "3xl" }}
             fontWeight="semibold"
+            sx={{
+              "i, em": {
+                fontSize: { base: "xl", md: "4xl", lg: "5xl", xl: "6xl" },
+              },
+            }}
           >
-            Unsere
-            <Text
-              ml="4"
-              fontSize={{ base: "xl", md: "4xl", lg: "5xl", xl: "6xl" }}
-              variant="cursive"
-              as="span"
-            >
-              Kataloge
-            </Text>
+            <Field.Text
+              name="catalogueTitle"
+              rtf
+              defaultValue={"<p>Unsere <i>Kataloge</i></p>"}
+            />
           </Heading>
           <Text fontSize={{ base: "sm", lg: "md" }}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius
@@ -65,9 +75,13 @@ const ProductCatlog: FC<IProductCatlogProps> = () => {
             tenetur! Lorem, ipsum dolor sit amet consectetur adipisicing elit.
           </Text>
           <Box>
-            <Button size="sm" variant="outline" mt="4">
-              Zum Shop
-            </Button>
+            <LinkButtonField
+              name="catalogueButton"
+              defaultValue={"Zum Katalog"}
+              size="sm"
+              variant="outline"
+              mt="4"
+            />
           </Box>
         </Stack>
       </Flex>
