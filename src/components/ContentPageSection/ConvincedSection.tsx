@@ -1,6 +1,6 @@
 import { Box, Image } from "@chakra-ui/react"
 import { FC } from "react"
-import WhiteBoxWithDashBorder from "../../../WhiteBoxWithDashBorder"
+import WhiteBoxWithDashBorder from "../WhiteBoxWithDashBorder"
 
 interface IConvincedSectionProps {}
 

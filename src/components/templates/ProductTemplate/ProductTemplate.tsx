@@ -71,9 +71,6 @@ export const ProductTemplate = ({
     `Hersteller:${shopifyProduct.vendor}`,
   ]
 
-  console.log("allTags", allTags)
-  console.log("allActiveTags", allActiveTags)
-
   return (
     <>
       <ProductsPageShell
@@ -178,9 +175,9 @@ function Price({
 }
 
 enum ProductFilling {
-  AIR_ONLY = "Geeignet für Luftfüllung",
-  HELIUM_ONLY = "Geeignet für Heliumfüllung",
-  AIR_AND_HELIUM = "Geeignet für Luft- und Heliumfüllung",
+  AIR_ONLY = "nur für Luftfüllung geeignet!",
+  HELIUM_ONLY = "für Heliumfüllung geeignet",
+  AIR_AND_HELIUM = "für Helium- und Luftfüllung geeignet",
 }
 
 const getProductFilling = (
@@ -209,11 +206,6 @@ const ProductDetail = withStoreContext<{
   const prices = getFormattedProductPrices(props.product)
 
   const taxable = user ? false : props.product.variants[0]?.taxable
-
-  console.log(`product`, props.product)
-
-  console.log(user, props.product.variants[0]?.taxable)
-  console.log(taxable)
 
   const tags = getProductTags(props.product)
 

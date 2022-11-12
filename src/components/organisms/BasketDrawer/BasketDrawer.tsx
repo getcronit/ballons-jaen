@@ -53,7 +53,6 @@ import {
             <Stack spacing={{base: '8', md: '10'}}>
               <Stack spacing="6">
                 {products.map(product => {
-                  console.log(product)
                   const id = product.variant.id.toString()
   
                   return (
@@ -63,7 +62,7 @@ import {
                       description={'description'}
                       quantity={product.quantity}
                       price={parseFloat(product.variant.price.amount)}
-                      imageUrl={product.variant.image.src}
+                      imageUrl={product.variant.image?.src}
                       currency={currency}
                       onChangeQuantity={quantity => {
                         onProductQuantityChange(product.id.toString(), quantity)

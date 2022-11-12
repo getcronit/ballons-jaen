@@ -162,7 +162,7 @@ import {
             h="100%"
             top="0"
             borderLeft="1px"
-            borderColor="border"
+            borderColor="gray.200"
             transform="scale(0.97)"
           />
           <Box
@@ -175,7 +175,7 @@ import {
             // minH={'full'}
             borderRadius="5px"
             border="1px"
-            borderColor="border"
+            borderColor="gray.200"
             _hover={{
               before: {borderColor: 'agt.red'},
               _after: {borderColor: 'agt.red'}

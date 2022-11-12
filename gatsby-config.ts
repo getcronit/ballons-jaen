@@ -5,8 +5,9 @@ import {GatsbyConfig} from 'gatsby'
 
 const {site} = require('./jaen-data/internal.json')
 
-
 dotenv.config()
+dotenv.config({path: '.env.public'})
+
 
 const config: GatsbyConfig = {
   jsxRuntime: "automatic",
@@ -22,10 +23,6 @@ const config: GatsbyConfig = {
         productPageTemplate: path.resolve(
           'src/templates/ProductPageTemplate.tsx'
         ),
-        collectionPageTemplate: path.resolve(
-          'src/templates/CollectionPageTemplate.tsx'
-        ),
-
         productsPageTemplate: path.resolve(
           'src/templates/ProductsPageTemplate.tsx'
         )

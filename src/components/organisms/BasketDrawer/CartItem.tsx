@@ -23,7 +23,7 @@ import {
     quantity: number
     price: number
     currency: string
-    imageUrl: string
+    imageUrl: string | undefined
     onChangeQuantity?: (quantity: number) => void
     onClickGiftWrapping?: () => void
     onClickDelete?: () => void

@@ -9,8 +9,10 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react"
+import { Field } from "@jaenjs/jaen"
 import { FC } from "react"
 import { CONTAINER_MAX_WIDTH } from "../../../constant/sizes"
+import LinkButtonField from "../../fields/LinkButtonField"
 
 interface IWirGestaltenPartyHeroProps {}
 
@@ -40,45 +42,48 @@ const WirGestaltenPartyHero: FC<IWirGestaltenPartyHeroProps> = () => {
             <Heading
               fontSize={{ base: "md", md: "2xl", lg: "3xl", xl: "4xl" }}
               fontWeight="semibold"
+              sx={{
+                'i, em': {
+                  fontSize: { base: "3xl", md: "4xl", lg: "5xl", xl: "7xl" },
+                }
+              }}
             >
-              Wir gestalten
+              <Field.Text name="title" rtf defaultValue={"<p>Wir gestalten </br> <i>Ihre Party</i></p>"} />
             </Heading>
-            <Text
-              mb="-8 !important"
-              fontSize={{ base: "3xl", md: "4xl", lg: "5xl", xl: "7xl" }}
-              variant="cursive"
-              as="span"
-            >
-              Party
-            </Text>
+           
             <Text
               display={{ base: "none", sm: "block" }}
               fontSize={{ base: "sm", lg: "md" }}
               maxW={{ md: "70%" }}
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus
-              in libero risus semper
+              <Field.Text
+                name="text"
+                defaultValue={
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in libero risus semper"
+                }
+              />
             </Text>
-            <Box>
-              <Button
-                size={{ base: "xs", md: "lg" }}
-                mt={{ base: "8 !important", md: "4" }}
-              >
-                Beratungstermin
-              </Button>
-            </Box>
+            <LinkButtonField
+              name="cta"
+              size={{ base: "xs", md: "lg" }}
+              mt={{ base: "8 !important", md: "4" }}
+            />
           </Stack>
           <Grid
             placeItems="center"
             pos="relative"
             top={{ base: "1.25rem", md: "unset" }}
           >
-            <Image
+            <Box
               borderRadius="full"
               boxShadow="light"
-              src="/images/we_design_party/round.png"
               w={{ base: "17.5rem", sm: "auto " }}
-            />
+            >
+              <Field.Image
+                name="heroImage"
+                defaultValue="/images/we_design_party/round.png"
+              />
+            </Box>
           </Grid>
         </Flex>
       </Container>
