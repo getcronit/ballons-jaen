@@ -7,11 +7,13 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react"
+import { connectSection, Field } from "@jaenjs/jaen"
 import { FC } from "react"
 import Slider, { Settings } from "react-slick"
 import { CONTAINER_MAX_WIDTH } from "../../../constant/sizes"
 import NextArrow from "../../CustomSlider/NextArrow"
 import PrevArrow from "../../CustomSlider/PrevArrow"
+import LinkButtonField from "../../fields/LinkButtonField"
 interface IDekorationenHeroProps {}
 
 export const settings: Settings = {
@@ -26,15 +28,6 @@ export const settings: Settings = {
 }
 
 const DekorationenHero: FC<IDekorationenHeroProps> = () => {
-  const slides = [
-    {
-      image: "/images/decorationen/slider/slider_image.png",
-    },
-    {
-      image: "/images/decorationen/slider/slider_image.png",
-    },
-  ]
-
   return (
     <Stack pos="relative">
       <VStack
@@ -54,44 +47,40 @@ const DekorationenHero: FC<IDekorationenHeroProps> = () => {
           variant="cursive"
           fontSize={{ base: "3xl", md: "4xl", lg: "5xl", xl: "6xl" }}
         >
-          Dekorationen
+          <Field.Text name="title" defaultValue={"Dekorationen"} />
         </Text>
         <Text
           pb="4"
           textAlign="center"
           fontSize={{ base: "sm", md: "md", "2xl": "lg" }}
         >
-          Wir dekorieren deine nächste Party. <br /> Egal ob Hochzeit,
-          Firmenfeier, Geburtstag <br /> oder dein ganz eigener Anlass.
+          <Field.Text
+            name="titleText"
+            defaultValue={
+              "Wir dekorieren deine nächste Party. <br /> Egal ob Hochzeit, Firmenfeier, Geburtstag <br /> oder dein ganz eigener Anlass."
+            }
+          />
         </Text>
-        <Button
-          size={{ md: "sm", xl: "lg" }}
-          display={{ base: "none", md: "flex" }}
-        >
-          Persönlichen Termin vereinbaren{" "}
-        </Button>
-        <Button size="xs" display={{ base: "flex", md: "none" }}>
-          Termin vereinbaren{" "}
-        </Button>
+        <LinkButtonField
+          name="ctaButton"
+          size={{ base: "xs", md: "sm", xl: "lg" }}
+          defaultValue={"Termin vereinbaren"}
+        />
       </VStack>
 
       <Stack pos="relative" maxH="93.75rem" overflow="hidden">
         <Box pos="absolute" bottom="0" w="full">
-          <Container maxW={CONTAINER_MAX_WIDTH} mb={{ base: "0", md: "16" }}>
-            <Slider {...settings} className="big_slider">
-              {slides.map((slide, index) => (
-                <Box key={index}>
-                  <Box
-                    m={{ base: 2, md: 4 }}
-                    borderRadius={{ base: "8", md: "16", lg: "24" }}
-                    overflow="hidden"
-                    boxShadow={{ base: "light", md: "dark" }}
-                  >
-                    <Image w="100%" src={slide.image} />
-                  </Box>
-                </Box>
-              ))}
-            </Slider>
+          <Container maxW={CONTAINER_MAX_WIDTH} mb={{ base: "0", md: "16" }} >
+            <Field.Section
+              as={Slider}
+              props={{
+                ...settings,
+              }}
+              className="big_slider"
+              name="slider"
+              displayName="Slider"
+              sections={[DekorationSliderItem]}
+            />
           </Container>
         </Box>
         <Image
@@ -102,4 +91,27 @@ const DekorationenHero: FC<IDekorationenHeroProps> = () => {
     </Stack>
   )
 }
+
+const DekorationSliderItem = connectSection(
+  () => {
+    return (
+      <Box
+        m={{ base: 2, md: 4 }}
+        borderRadius={{ base: "8", md: "16", lg: "24" }}
+        overflow="hidden"
+        boxShadow={{ base: "light", md: "dark" }}
+      >
+        <Field.Image
+          name="image"
+          defaultValue="/images/decorationen/slider/slider_image.png"
+        />
+      </Box>
+    )
+  },
+  {
+    name: "decorationSliderItem",
+    displayName: "Slider Item",
+  }
+)
+
 export default DekorationenHero
