@@ -34,7 +34,7 @@ import {
   ShopifyProduct,
   useProductSearch,
 } from "@snek-at/gatsby-theme-shopify"
-import GatsbyLink from "gatsby-link"
+import { navigate } from "gatsby"
 import React from "react"
 import { ProductRow } from "../components/molecules/ProductRow"
 
@@ -61,6 +61,7 @@ export const useSearch = () => {
 export interface SearchbarProps {
   searchResultProducts: Array<ShopifyProduct>
   onSearch: (value: string) => void
+  onProductClick: (index: number) => void
 }
 
 export const Searchbar = (props: SearchbarProps) => {
@@ -110,8 +111,6 @@ export const Searchbar = (props: SearchbarProps) => {
       window.removeEventListener("keydown", handleKeyDown)
     }
   }, [])
-
-  const searchItemBg = useColorModeValue("gray.200", "gray.600")
 
   return (
     <>
@@ -275,7 +274,16 @@ export const Searchbar = (props: SearchbarProps) => {
                     const price = getFormattedProductPrices(product)
 
                     return (
-                      <Tr key={index}>
+                      <Tr
+                        key={index}
+                        cursor="pointer"
+                        _hover={{
+                          bg: "gray.100",
+                        }}
+                        onClick={() => {
+                          props.onProductClick(index)
+                        }}
+                      >
                         <Td>
                           <Image
                             src={product.featuredMedia?.src}
@@ -343,9 +351,21 @@ export const SearchModalProvider: React.FC<{
     })
   }
 
+  const onProductClick = (index: number) => {
+    const product = search.products[index]
+
+    if (product) {
+      navigate(`/products/${product.handle}`)
+    }
+  }
+
   return (
     <SearchContext.Provider value={{ isOpen, onOpen, onClose }}>
-      <Searchbar searchResultProducts={search.products} onSearch={onSearch} />
+      <Searchbar
+        searchResultProducts={search.products}
+        onSearch={onSearch}
+        onProductClick={onProductClick}
+      />
       {memoedChildren}
     </SearchContext.Provider>
   )
