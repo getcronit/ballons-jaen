@@ -88,7 +88,7 @@ function CategoryPicker(props: CategoryPickerProps) {
         }
       }}
     >
-      {allCatArray.map(group => {
+      {allCatArray.map((group, index) => {
         const tags = props.groupedCategories.allTags[group]
 
         const tagStrings = tags.map(tag => tag.tag)
@@ -97,8 +97,9 @@ function CategoryPicker(props: CategoryPickerProps) {
           props.activeTags.Kategorie?.includes(tag)
         )
         false
+
         return (
-          <AccordionItem>
+          <AccordionItem key={index}>
             {({ isExpanded }) => (
               <>
                 <h2>
@@ -116,7 +117,7 @@ function CategoryPicker(props: CategoryPickerProps) {
                 </h2>
                 <AccordionPanel pb={4}>
                   <Stack pl={1}>
-                    {tags.map(item => {
+                    {tags.map((item, index) => {
                       const active =
                         isSelectAll ||
                         props.activeTags.Kategorie?.some(
@@ -124,6 +125,7 @@ function CategoryPicker(props: CategoryPickerProps) {
                         )
                       return (
                         <Text
+                          key={index}
                           onClick={e => {
                             // addOrRemoveTag(value, 'Kategorie')
                             // if (isSelectAll) {
@@ -191,7 +193,10 @@ type ActiveTags = {
 export default function ProductsPageShell(
   props: ProductsPageShellSidebarProps
 ) {
-  const groupedTags = React.useMemo(() => {
+  const groupedTags = React.useMemo<{
+    allTags: GroupedTags
+    activeTags: GroupedTags
+  }>(() => {
     const grouped: {
       allTags: GroupedTags
       activeTags: GroupedTags
@@ -309,7 +314,7 @@ export default function ProductsPageShell(
     const { Kategorie: activeKategorie, ...activeRest } = activeTags
 
     return Object.entries(rest)
-      .map(([label, items]) => {
+      .map(([label, items], index) => {
         // group items by item category
         const groupedItems = items.reduce<{
           [category: string]: Array<{
@@ -365,7 +370,7 @@ export default function ProductsPageShell(
         const Wrapper = props.wrapperAs || Box
 
         return (
-          <Wrapper {...props.wrapperProps}>
+          <Wrapper {...props.wrapperProps} key={index}>
             <Select<TagFilterOption, true, GroupBase<TagFilterOption>>
               menuPlacement="auto"
               menuPosition="fixed"
@@ -427,20 +432,18 @@ export default function ProductsPageShell(
         )
       })
       .concat(
-        <>
-          {Object.keys(activeTags).length > 0 && (
-            <Button
-              variant="link"
-              fontWeight={"normal"}
-              size={"xs"}
-              onClick={() => {
-                clearActiveTags()
-              }}
-            >
-              {"Zurücksetzen"}
-            </Button>
-          )}
-        </>
+        <Button
+          display={Object.keys(activeTags).length > 0 ? "block" : "none"}
+          key={`clear-${Object.keys(rest).length}`}
+          variant="link"
+          fontWeight={"normal"}
+          size={"xs"}
+          onClick={() => {
+            clearActiveTags()
+          }}
+        >
+          {"Zurücksetzen"}
+        </Button>
       )
   }
 
@@ -455,7 +458,7 @@ export default function ProductsPageShell(
         ></CategoryPicker>
       </SidebarContent>
 
-      <Flex w="100%" h="100%" flexDirection={'column'}>
+      <Flex w="100%" h="100%" flexDirection={"column"}>
         <Flex
           px={{ base: "4", md: "6" }}
           py={{ base: "4", md: "6" }}
@@ -496,23 +499,23 @@ export default function ProductsPageShell(
               Sortieren:
             </Text>
             <CSelect
-                size="sm"
-                variant={"unstyled"}
-                my="2"
-                icon={<ChevronDownIcon />}
-                cursor="pointer"
-                onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-                  props.onSortChange(e.target.value)
-                }}
-              >
-                {props.sortOptions.map(option => {
-                  return (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  )
-                })}
-              </CSelect>
+              size="sm"
+              variant={"unstyled"}
+              my="2"
+              icon={<ChevronDownIcon />}
+              cursor="pointer"
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                props.onSortChange(e.target.value)
+              }}
+            >
+              {props.sortOptions.map(option => {
+                return (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                )
+              })}
+            </CSelect>
           </HStack>
         </Flex>
         <Box pos="relative" overflowY={"scroll"} zIndex="0" pb={48}>
