@@ -10,11 +10,37 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react"
+import { connectSection, Field } from "@jaenjs/jaen"
 import { FC } from "react"
 import { BsFillShareFill } from "react-icons/bs"
 import Slider from "react-slick"
 import { CONTAINER_MAX_WIDTH } from "../../../constant/sizes"
 import { blogSliderSettings } from "../../../constant/slider"
+
+const SliderItem = connectSection(
+  () => {
+    return (
+      <Box
+        m={{ base: 2, lg: 4 }}
+        boxSize={{ base: "10rem", sm: "12rem", lg: "15rem" }}
+        mb="8 !important"
+        borderRadius="xl"
+        overflow="hidden"
+        boxShadow="dark"
+      >
+        <Field.Image
+          name="image"
+          defaultValue="/images/blog_page/sliderImg1.png"
+        />
+      </Box>
+    )
+  },
+  {
+    name: "SliderItem",
+    displayName: "SliderItem",
+  }
+)
+
 interface IBlogSliderProps {}
 
 const BlogSlider: FC<IBlogSliderProps> = () => {
@@ -46,41 +72,16 @@ const BlogSlider: FC<IBlogSliderProps> = () => {
       }}
     >
       <Container maxW={CONTAINER_MAX_WIDTH}>
-        <Container
-          maxW={CONTAINER_MAX_WIDTH}
-          display={{ base: "none", md: "block" }}
-        >
-          <Slider {...blogSliderSettings}>
-            {sliderImages.map((image, index) => (
-              <Box key={index}>
-                <Box
-                  m={{ base: 2, lg: 4 }}
-                  mb="8 !important"
-                  borderRadius="xl"
-                  overflow="hidden"
-                  boxShadow="dark"
-                >
-                  <Image src={image} alt="slider" w="full" />
-                </Box>
-              </Box>
-            ))}
-          </Slider>
-        </Container>
+        <Field.Section
+          as={Slider}
+          props={{ ...blogSliderSettings }}
+          name="SliderItem"
+          displayName="Blog Slider"
+          sections={[SliderItem]}
+        />
 
         <Box pt="12">
-          <Box
-            pos="relative"
-            top="12"
-            display={{ base: "block", md: "none" }}
-            mb="8"
-            bg="red"
-            w="full"
-            borderRadius="md"
-            overflow="hidden"
-            boxShadow="dark"
-          >
-            <Image w="100%" src="/images/blog_page/slider_mobile_image.png" />
-          </Box>
+        
         </Box>
         <Text size="b2012" textAlign="center" py={{ base: 16, md: 8, xl: 16 }}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in

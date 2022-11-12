@@ -31,27 +31,41 @@ export const settings: Settings = {
   ],
 }
 export const blogSliderSettings: Settings = {
-  infinite: true,
+  infinite: false,
   speed: 500,
-  slidesToShow: 1,
+  slidesToShow: 4,
   slidesToScroll: 1,
+  arrows: true,
+  nextArrow: <NextArrow out isBlack />,
+  prevArrow: <PrevArrow out isBlack />,
+
+  // responsive: [
+  //   {
+  //     breakpoint: 4000,
+  //     settings: {
+  //       slidesToShow: 4,
+  //       rows: 1,
+  //       slidesToScroll: 1,
+  //       infinite: false,
+  //       dots: false,
+  //       arrows: true,
+  //       nextArrow: <NextArrow out isBlack />,
+  //       prevArrow: <PrevArrow out isBlack />,
+  //     },
+  //   },
+
+  //   {
+  //     breakpoint: 768,
+  //     settings: {
+  //       slidesToShow: 1,
+  //       slidesToScroll: 1,
+  //     },
+  //   },
+  // ],
 
   responsive: [
     {
-      breakpoint: 4000,
-      settings: {
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        infinite: true,
-        dots: false,
-        arrows: true,
-        nextArrow: <NextArrow out isBlack />,
-        prevArrow: <PrevArrow out isBlack />,
-      },
-    },
-
-    {
-      breakpoint: 768,
+      breakpoint: 700,
       settings: {
         slidesToShow: 1,
         slidesToScroll: 1,

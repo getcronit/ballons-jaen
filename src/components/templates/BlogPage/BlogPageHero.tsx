@@ -9,6 +9,7 @@ import {
   Tag,
   Text,
 } from "@chakra-ui/react"
+import { Field } from "@jaenjs/jaen"
 import { FC } from "react"
 import { CONTAINER_MAX_WIDTH } from "../../../constant/sizes"
 
@@ -33,11 +34,13 @@ const BlogPageHero: FC<IBlogPageHeroProps> = () => {
         gap={{ base: 4, lg: "8" }}
       >
         <Box pos="relative" top={{ base: "-40px", md: 0 }}>
-          <Image
-            src="/images/blog_page/hero_image.png"
-            borderRadius="1.875rem"
-            boxShadow="dark"
-          />
+          <Box borderRadius="1.875rem" boxShadow="dark" overflow={"hidden"}>
+            <Field.Image
+              name="image"
+              defaultValue="/images/blog_page/hero_image.png"
+            />
+          </Box>
+
           <Flex
             justify="space-between"
             mt="8"
@@ -67,33 +70,41 @@ const BlogPageHero: FC<IBlogPageHeroProps> = () => {
           gap={{ base: 4, lg: "8" }}
         >
           <Flex justify="center">
-            <Heading size="h4020">Alles Rund ums</Heading>
-            <Text ml="4" mb="-6 !important" variant="cursive" size="60">
-              Helium
-            </Text>
+            <Heading size="h4020" sx={{
+              'i, em': {
+                fontSize: '60',
+              }
+            }}>
+              <Field.Text name="title" rtf defaultValue="<p>Blog <i>Title</i></p>" />
+            </Heading>
+          
           </Flex>
 
-          <Text size="b2012">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
-            libero risus semper Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit. Faucibus in libero risus semper Lorem ipsum dolor
-            sit amet, consectetur adipiscing elit. Faucibus in libero risus
-            semper Lorem ipsum dolor sit amet, cipiscing elit. Faucibus in
-            libero risus semper Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit. Faucibus in libero risus semper Lorem ipsum dolor
-            sit amet, consectetur adipiscing elit. Faucibus in libero risus
-            semper Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Faucibus in libero risus semper Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit. Faucibus in libero risus semper Lorem
-            ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
-            libero risus semper
-            <br /> <br />
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
-            libero risus semper Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit. Faucibus in libero risus semper Lorem ipsum dolor
-            sit amet, consectetur adipiscing elit. Faucibus in libero risus
-            semper Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Faucibus in libero risus semper
+          <Text size="b2012" as='span'>
+            <Field.Text name="description" rtf defaultValue={`
+              <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
+              libero risus semper Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit. Faucibus in libero risus semper Lorem ipsum dolor
+              sit amet, consectetur adipiscing elit. Faucibus in libero risus
+              semper Lorem ipsum dolor sit amet, cipiscing elit. Faucibus in
+              libero risus semper Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit. Faucibus in libero risus semper Lorem ipsum dolor
+              sit amet, consectetur adipiscing elit. Faucibus in libero risus
+              semper Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Faucibus in libero risus semper Lorem ipsum dolor sit amet,
+              consectetur adipiscing elit. Faucibus in libero risus semper Lorem
+              ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
+              libero risus semper
+              <br /> <br />
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
+              libero risus semper Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit. Faucibus in libero risus semper Lorem ipsum dolor
+              sit amet, consectetur adipiscing elit. Faucibus in libero risus
+              semper Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Faucibus in libero risus semper
+              </p>
+            `} />
           </Text>
         </Stack>
       </Container>
