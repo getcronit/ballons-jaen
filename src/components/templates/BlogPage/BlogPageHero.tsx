@@ -9,9 +9,36 @@ import {
   Tag,
   Text,
 } from "@chakra-ui/react"
-import { Field } from "@jaenjs/jaen"
+import { connectSection, Field } from "@jaenjs/jaen"
 import { FC } from "react"
 import { CONTAINER_MAX_WIDTH } from "../../../constant/sizes"
+
+const BlogTagItem = connectSection(
+  () => {
+    return (
+      <Tag variant="white">
+        {<Field.Text name="tagText" defaultValue="Tag" />}
+      </Tag>
+    )
+  },
+  {
+    name: "BlogTagItem",
+    displayName: "Tag",
+  }
+)
+
+export const BlogTags = () => {
+  return (
+    <Box minW="24">
+      <Field.Section
+        as={HStack}
+        name="tags"
+        displayName="Tags"
+        sections={[BlogTagItem]}
+      />
+    </Box>
+  )
+}
 
 interface IBlogPageHeroProps {}
 
@@ -41,27 +68,37 @@ const BlogPageHero: FC<IBlogPageHeroProps> = () => {
             />
           </Box>
 
-          <Flex
-            justify="space-between"
-            mt="8"
-            display={{ base: "flex", md: "none" }}
-          >
-            <HStack>
-              <Tag variant="white">Helium</Tag>
-              <Tag variant="white">Team</Tag>
-            </HStack>
+          <Flex justify="space-between" mt="8">
+            <BlogTags />
 
             <Box>
               <Text size="b2012" textAlign="end">
-                Von{" "}
+              Von{" "}
                 <Text as="span" size="b2012" fontWeight="bold" color="gray.700">
-                  Nikolai Doe
+                  <Field.Text name="author" defaultValue="Max Mustermann" as="span" display={'inline-block'} />
                 </Text>
               </Text>
               <Text size="b2012" textAlign="end">
-                5. Mai 2022
+                <Field.Text name="date" defaultValue="12.12.2020" />
               </Text>
             </Box>
+          </Flex>
+
+          <Flex justify="center">
+            <Heading
+              size="h4020"
+              sx={{
+                "i, em": {
+                  fontSize: "60",
+                },
+              }}
+            >
+              <Field.Text
+                name="title"
+                rtf
+                defaultValue="<p>Blog <i>Title</i></p>"
+              />
+            </Heading>
           </Flex>
         </Box>
         <Stack
@@ -69,19 +106,11 @@ const BlogPageHero: FC<IBlogPageHeroProps> = () => {
           top={{ base: "40px", md: 0 }}
           gap={{ base: 4, lg: "8" }}
         >
-          <Flex justify="center">
-            <Heading size="h4020" sx={{
-              'i, em': {
-                fontSize: '60',
-              }
-            }}>
-              <Field.Text name="title" rtf defaultValue="<p>Blog <i>Title</i></p>" />
-            </Heading>
-          
-          </Flex>
-
-          <Text size="b2012" as='span'>
-            <Field.Text name="description" rtf defaultValue={`
+          <Text size="b2012" as="span">
+            <Field.Text
+              name="description"
+              rtf
+              defaultValue={`
               <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
               libero risus semper Lorem ipsum dolor sit amet, consectetur
@@ -104,7 +133,8 @@ const BlogPageHero: FC<IBlogPageHeroProps> = () => {
               semper Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Faucibus in libero risus semper
               </p>
-            `} />
+            `}
+            />
           </Text>
         </Stack>
       </Container>

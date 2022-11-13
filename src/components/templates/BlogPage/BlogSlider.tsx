@@ -20,18 +20,20 @@ import { blogSliderSettings } from "../../../constant/slider"
 const SliderItem = connectSection(
   () => {
     return (
-      <Box
-        m={{ base: 2, lg: 4 }}
-        boxSize={{ base: "10rem", sm: "12rem", lg: "15rem" }}
-        mb="8 !important"
-        borderRadius="xl"
-        overflow="hidden"
-        boxShadow="dark"
-      >
-        <Field.Image
-          name="image"
-          defaultValue="/images/blog_page/sliderImg1.png"
-        />
+      <Box boxSize={"full"} display={"flex"} justifyContent="center">
+        <Box
+          m={{ base: 2, lg: 4 }}
+          boxSize={{ base: "10rem", sm: "12rem", lg: "15rem" }}
+          mb="8 !important"
+          borderRadius="xl"
+          overflow="hidden"
+          boxShadow="dark"
+        >
+          <Field.Image
+            name="image"
+            defaultValue="/images/blog_page/sliderImg1.png"
+          />
+        </Box>
       </Box>
     )
   },
@@ -80,43 +82,24 @@ const BlogSlider: FC<IBlogSliderProps> = () => {
           sections={[SliderItem]}
         />
 
-        <Box pt="12">
-        
-        </Box>
-        <Text size="b2012" textAlign="center" py={{ base: 16, md: 8, xl: 16 }}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
-          libero risus semper Lorem ipsum dolor sit amet, consectetur adipiscing
-          elit. Faucibus in libero risus semper Lorem ipsum dolor sit amet,
-          consectetur adipiscing elit. Faucibus in libero risus semper Lorem
-          ipsum dolor sit amet, cipiscing elit. Faucibus in liber
+        <Box pt="12"></Box>
+        <Text
+          size="b2012"
+          textAlign="center"
+          py={{ base: 16, md: 8, xl: 16 }}
+          as="span"
+        >
+          <Field.Text
+            name="text"
+            defaultValue={`<p>
+           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
+           libero risus semper Lorem ipsum dolor sit amet, consectetur adipiscing
+           elit. Faucibus in libero risus semper Lorem ipsum dolor sit amet,
+           consectetur adipiscing elit. Faucibus in libero risus semper Lorem
+           ipsum dolor sit amet, cipiscing elit. Faucibus in liber
+           </p>`}
+          />
         </Text>
-
-        <VStack display={{ base: "flex", md: "none" }}>
-          <Button size="sm">
-            <Flex align="center" gap="2">
-              <BsFillShareFill />
-              Artikel teilen
-            </Flex>
-          </Button>
-        </VStack>
-
-        <Stack align="end" display={{ base: "none", md: "flex" }}>
-          <HStack mb="2">
-            <Tag variant="normal">Helium</Tag>
-            <Tag variant="normal">Team</Tag>
-          </HStack>
-          <Box>
-            <Text size="b2012" textAlign="end">
-              Von{" "}
-              <Text as="span" size="b2012" fontWeight="bold" color="gray.700">
-                Nikolai Doe
-              </Text>
-            </Text>
-            <Text size="b2012" textAlign="end">
-              Veröffentlicht am 20. April 2022
-            </Text>
-          </Box>
-        </Stack>
       </Container>
     </Box>
   )

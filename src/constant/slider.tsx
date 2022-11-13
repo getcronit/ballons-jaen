@@ -39,39 +39,39 @@ export const blogSliderSettings: Settings = {
   nextArrow: <NextArrow out isBlack />,
   prevArrow: <PrevArrow out isBlack />,
 
-  // responsive: [
-  //   {
-  //     breakpoint: 4000,
-  //     settings: {
-  //       slidesToShow: 4,
-  //       rows: 1,
-  //       slidesToScroll: 1,
-  //       infinite: false,
-  //       dots: false,
-  //       arrows: true,
-  //       nextArrow: <NextArrow out isBlack />,
-  //       prevArrow: <PrevArrow out isBlack />,
-  //     },
-  //   },
-
-  //   {
-  //     breakpoint: 768,
-  //     settings: {
-  //       slidesToShow: 1,
-  //       slidesToScroll: 1,
-  //     },
-  //   },
-  // ],
-
   responsive: [
     {
-      breakpoint: 700,
+      breakpoint: 4000,
+      settings: {
+        slidesToShow: 4,
+        rows: 1,
+        slidesToScroll: 1,
+        infinite: false,
+        dots: false,
+        arrows: true,
+        nextArrow: <NextArrow out isBlack />,
+        prevArrow: <PrevArrow out isBlack />,
+      },
+    },
+
+    {
+      breakpoint: 768,
       settings: {
         slidesToShow: 1,
         slidesToScroll: 1,
       },
     },
   ],
+
+  // responsive: [
+  //   {
+  //     breakpoint: 700,
+  //     settings: {
+  //       slidesToShow: 1,
+  //       slidesToScroll: 1,
+  //     },
+  //   },
+  // ],
 }
 export const brandSettings: Settings = {
   infinite: true,

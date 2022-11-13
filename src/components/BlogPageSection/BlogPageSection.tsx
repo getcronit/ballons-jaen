@@ -1,6 +1,8 @@
 import { Box, Container, Flex, Image, Stack, Text } from "@chakra-ui/react"
 import { connectSection, Field } from "@jaenjs/jaen"
+import Slider from "react-slick"
 import { CONTAINER_MAX_WIDTH } from "../../constant/sizes"
+import { blogSliderSettings } from "../../constant/slider"
 import CardWithImageBackground from "../CardWithImageBackground"
 import BlogSlider from "../templates/BlogPage/BlogSlider"
 
@@ -35,7 +37,7 @@ const TextBlockSection = connectSection(
   {
     name: "TextBlockSection",
 
-    displayName: "TextBlockSection",
+    displayName: "Text (Dunkel)",
   }
 )
 
@@ -49,14 +51,38 @@ const WhiteTextBlockSection = connectSection(
   },
   {
     name: "WhiteTextBlockSection",
-    displayName: "WhiteTextBlockSection",
+    displayName: "Text (Hell)",
   }
 )
 
 const ThreeCardBlogSection = connectSection(
   () => {
-    const cardHeight = { base: "15rem", lg: "15rem", xl: "20rem" }
-    const cardWidth = { base: "12.5rem", lg: "12.5rem", xl: "17.5rem" }
+    const threeCards = Array.from({ length: 3 }).map((_, index) => {
+      const cards = [
+        {
+          image: "/images/blog_page/threeCard1.png",
+        },
+        {
+          image: "/images/blog_page/threeCard2.png",
+        },
+        {
+          image: "/images/blog_page/threeCard3.png",
+        },
+      ]
+
+      return (
+        <CardWithImageBackground
+          key={index}
+          h={{ base: "15rem", lg: "15rem", xl: "20rem" }}
+          w={{ base: "12.5rem", lg: "12.5rem", xl: "17.5rem" }}
+          displayContent={false}
+          card={{
+            imageFieldName: `cards[${index}].image`,
+            imageDefaultValue: cards[index].image,
+          }}
+        />
+      )
+    })
 
     return (
       <Stack
@@ -85,12 +111,7 @@ const ThreeCardBlogSection = connectSection(
               justify="center"
               display={{ base: "none", lg: "flex" }}
             >
-              <CardWithImageBackground
-                h={cardHeight}
-                w={cardWidth}
-                displayContent={false}
-                card={{}}
-              />
+              {threeCards[0]}
             </Stack>
             <Stack
               gap="4"
@@ -102,40 +123,28 @@ const ThreeCardBlogSection = connectSection(
               justify={{ base: "space-between", lg: "center" }}
               flexDirection={{ base: "row", lg: "column" }}
             >
-              <Box display={{ lg: "none" }}>
-                <CardWithImageBackground
-                  h={cardHeight}
-                  w={cardWidth}
-                  displayContent={false}
-                  card={{}}
-                />
-              </Box>
-              <CardWithImageBackground
-                h={cardHeight}
-                w={cardWidth}
-                displayContent={false}
-                card={{}}
-              />
-
-              <CardWithImageBackground
-                h={cardHeight}
-                w={cardWidth}
-                displayContent={false}
-                card={{}}
-              />
+              {threeCards[1]}
+              {threeCards[2]}
             </Stack>
           </Flex>
 
           <Box
             display={{ base: "block", md: "none" }}
             mb="8"
-            bg="red"
             w="full"
             borderRadius="lg"
             overflow="hidden"
             boxShadow="dark"
           >
-            <Image w="100%" src="/images/blog_page/mobileImage.png" />
+            <Slider {...blogSliderSettings}>
+              {threeCards.map((card, index) => (
+               <Box>
+                 <Box key={index} w="full" h="full" display={'flex'} justifyContent='center'>
+                  {card}
+                </Box>
+               </Box>
+              ))}
+            </Slider>
           </Box>
 
           <Text size="b2012" as="span">
@@ -168,7 +177,7 @@ const ThreeCardBlogSection = connectSection(
   {
     name: "ThreeCardBlogSection",
 
-    displayName: "ThreeCardBlogSection",
+    displayName: "Text mit 3 Bildkarten",
   }
 )
 
@@ -179,7 +188,7 @@ const ImageSliderSection = connectSection(
   {
     name: "ImageSliderSection",
 
-    displayName: "ImageSliderSection",
+    displayName: "Bildslider mit Text",
   }
 )
 
@@ -187,6 +196,9 @@ const BlogPageSection = () => {
   return (
     <Field.Section
       as={Stack}
+      props={{
+        spacing: 0
+      }}
       name="blogPageSection"
       displayName="News Inhalt"
       sections={[
