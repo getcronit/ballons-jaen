@@ -374,6 +374,7 @@ export default function ProductsPageShell(
             <Select<TagFilterOption, true, GroupBase<TagFilterOption>>
               menuPlacement="auto"
               menuPosition="fixed"
+              size="sm"
               isMulti
               name={label}
               options={
