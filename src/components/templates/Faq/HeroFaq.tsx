@@ -1,4 +1,5 @@
 import { Container, Flex, Heading, Text, VStack } from "@chakra-ui/react"
+import { Field } from "@jaenjs/jaen"
 import { FC } from "react"
 
 interface IHeroFaqProps {}
@@ -22,19 +23,26 @@ const HeroFaq: FC<IHeroFaqProps> = () => {
             fontWeight="semibold"
             whiteSpace="nowrap"
           >
-            Häufig gestellte
+            <Field.Text
+              rtf
+              name="faqTitle"
+              defaultValue={"<p>Häufig gestellte <i>Fragen</i></p>"}
+            />
           </Heading>
-          <Text mb="-6 !important" as="span" variant="cursive" size="80">
-            Fragen
-          </Text>
         </Flex>
-        <Text size="b2415" fontWeight="light" maxW="800px" textAlign="center">
-          Wir beantworten hier Fragen, welche wir häufig von unseren Kunden
+        <Text
+          size="b2415"
+          fontWeight="light"
+          maxW="800px"
+          textAlign="center"
+          as="span"
+        >
+          <Field.Text
+            name="faqSubtitle"
+            defaultValue={`<p>Wir beantworten hier Fragen, welche wir häufig von unseren Kunden
           hören. Lies dich gerne ein! Falls du weitere Fragen hast, stehen wir
-          dir natürlich gerne zur Verfügung.
-          <Text ml="1" as="span" size="b2415" fontWeight="bold">
-            +43 2 326 34 25.
-          </Text>
+          dir natürlich gerne zur Verfügung. <b>+43 2 326 34 25.</b></p>`}
+          />
         </Text>
       </VStack>
     </Container>

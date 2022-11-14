@@ -27,17 +27,20 @@ const TwoCards: FC<ITwoCardsProps> = () => {
           mb={{ base: "16 !important", md: "0" }}
         >
           <HorizontalImageCard
-            cardData={{
-              tag: "PRODUKTE",
-              cursiveTitle: "Kataloge",
-              title: "Unsere",
-              leftCrusive: false,
-              description:
+            card={{
+              tagFieldName: "wholeSaleCardTag1",
+              tagDefaultValue: "PRODUKTE",
+              titleFieldName: "wholeSaleCardTitle1",
+              titleDefaultValue: "<p>Unsere <i>Kataloge</i></p>",
+              descriptionFieldName: "wholeSaleCardDescription1",
+              descriptionDefaultValue:
                 "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et do",
-              buttonText: "Zum Shop",
-              imgUrl: "/images/großhandel/img1.png",
-              imageLeft: true,
+              imageFieldName: "wholeSaleCardImage1",
+              imageDefaultValue: "/images/großhandel/img1.png",
+              buttonTextFieldName: "wholeSaleCardButtonTextField1",
+              buttonTextFieldDefaultValue: "Zum Shop",
             }}
+            orientation="left"
           />
         </Container>
       </Box>
@@ -53,17 +56,20 @@ const TwoCards: FC<ITwoCardsProps> = () => {
         />
         <Container maxW={CONTAINER_MAX_WIDTH} pos="relative">
           <HorizontalImageCard
-            cardData={{
-              tag: "WERDE PARTNER",
-              cursiveTitle: "Rund",
-              title: "umsteigen",
-              leftCrusive: true,
-              description:
+            card={{
+              tagFieldName: "wholeSaleCardTag2",
+              tagDefaultValue: "PRODUKTE",
+              titleFieldName: "wholeSaleCardTitle2",
+              titleDefaultValue: "<p><i>Rund</i> umsteigen</p>",
+              descriptionFieldName: "wholeSaleCardDescription2",
+              descriptionDefaultValue:
                 "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et do",
-              buttonText: "Mehr erfahren",
-              imgUrl: "/images/großhandel/img2.png",
-              imageLeft: false,
+              imageFieldName: "wholeSaleCardImage2",
+              imageDefaultValue: "/images/großhandel/img1.png",
+              buttonTextFieldName: "wholeSaleCardButtonTextField2",
+              buttonTextFieldDefaultValue: "Mehr erfahren",
             }}
+            orientation="right"
           />
         </Container>
       </Box>

@@ -44,7 +44,7 @@ const WirGestaltenPartyHero: FC<IWirGestaltenPartyHeroProps> = () => {
               fontWeight="semibold"
               sx={{
                 'i, em': {
-                  fontSize: { base: "3xl", md: "4xl", lg: "5xl", xl: "7xl" },
+                  fontSize: '1.5em',
                 }
               }}
             >

@@ -5,9 +5,11 @@ import {
   Heading,
   HStack,
   Image,
+  Stack,
   Text,
   VStack,
 } from "@chakra-ui/react"
+import { connectSection, Field } from "@jaenjs/jaen"
 import { FC } from "react"
 import Slider from "react-slick"
 import { CONTAINER_MAX_WIDTH } from "../../../constant/sizes"
@@ -59,21 +61,20 @@ const Brands: FC<IBrandsProps> = () => {
         pb={{ base: "24", md: "60" }}
       >
         <Heading mb="8" fontSize={{ base: "md", lg: "xl" }}>
-          Wir sind
+          <Field.Text
+            name="title"
+            defaultValue={"<p>Wir sind Distributor von</p>"}
+          />
         </Heading>
-
-        <BrandsSection
-          title="Qualatex"
-          images={brandsImg1}
-          cursiveTitle="Distributor"
-          text="Profitieren Sie von einer unglaublichen Auswahl an Ideen, Produkten und Business-Boostern in unserem Netzwerk."
-        />
-        <Box mt="8 !important">
-          <BrandsSection
-            images={brandsImg1}
-            title="Conwin"
-            cursiveTitle="Distributor"
-            text="Wir versorgen Sie mit der professionellen Ausrüstung von Conwin zum Arbeiten und Dekorieren mit Ballons, sowie mit Luft als auch mit Helium."
+        <Box w="full">
+          <Field.Section
+            as={Stack}
+            props={{
+              spacing: 8,
+            }}
+            name="brands"
+            displayName="Unsere Partner"
+            sections={[BrandsSection]}
           />
         </Box>
       </VStack>
@@ -82,60 +83,68 @@ const Brands: FC<IBrandsProps> = () => {
 }
 export default Brands
 
-interface IBrandsSectionProps {
-  title: string
-  cursiveTitle: string
-  text: string
-
-  images: {
-    url: string
-  }[]
-}
-
-export const BrandsSection: FC<IBrandsSectionProps> = ({
-  title,
-  cursiveTitle,
-  text,
-  images,
-}) => {
-  return (
-    <>
-      <VStack>
-        <Flex gap={{ base: 2, md: 4 }}>
-          <Heading size="h5020" as="span" fontWeight="semibold">
-            {title}
-          </Heading>
-          <Text mb="-6 !important" as="span" variant="cursive" size="80">
-            {cursiveTitle}
+export const BrandsSection = connectSection(
+  () => {
+    return (
+      <>
+        <VStack>
+          <Flex gap={{ base: 2, md: 4 }}>
+            <Heading size="h5020" as="span" fontWeight="semibold">
+              <Field.Text
+                rtf
+                name="partnerTitle"
+                defaultValue={"<p>Ein <i>Partner</i></p>"}
+              />
+            </Heading>
+          </Flex>
+          <Text size="b2412" maxW="60%" mb="4 !important" textAlign="center">
+            <Field.Text
+              rtf
+              name="partnerText"
+              defaultValue={
+                "<p>Profitieren Sie von einer unglaublichen Auswahl an Ideen, Produkten und Business-Boostern in unserem Netzwerk.</p>"
+              }
+            />
           </Text>
-        </Flex>
-        <Text size="b2412" maxW="60%" mb="4 !important" textAlign="center">
-          {text}
-        </Text>
 
-        <Container
-          maxW={{ base: "400px", sm: "600px" }}
-          display={{ base: "block", md: "none" }}
+          <Box w="full">
+            <Field.Section
+              as={Slider}
+              props={{ ...brandSettings }}
+              name="partnerSlider"
+              displayName="Partner Logos"
+              sections={[BrandsLogoSection]}
+            />
+          </Box>
+        </VStack>
+      </>
+    )
+  },
+  {
+    name: "BrandsSection",
+    displayName: "Partner",
+  }
+)
+
+const BrandsLogoSection = connectSection(
+  () => {
+    return (
+      <Box boxSize={"full"} display={"flex"} justifyContent="center">
+        <Box
+          boxSize={{ base: "10rem", sm: "12rem", lg: "15rem" }}
+          borderRadius="xl"
+          overflow="hidden"
         >
-          <Slider {...brandSettings}>
-            {images.map((img, index) => (
-              <Box key={index}>
-                <Box mx="4">
-                  <Image src={img.url} h="100px" />
-                </Box>
-              </Box>
-            ))}
-          </Slider>
-        </Container>
-
-        <HStack spacing="4" display={{ base: "none", md: "flex" }}>
-          {images.map((image, index) => (
-            <Box key={index}>
-              <Image src={image.url} />
-            </Box>
-          ))}
-        </HStack>
-      </VStack>
-    </>
-  )
-}
+          <Field.Image
+            name="partnerLogo"
+            defaultValue="/images/großhandel/distributors/dist1.png"
+          />
+        </Box>
+      </Box>
+    )
+  },
+  {
+    name: "BrandsLogoSection",
+    displayName: "Partner Logo",
+  }
+)

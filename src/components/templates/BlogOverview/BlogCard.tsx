@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Flex,
   Grid,
   Heading,
@@ -9,13 +10,19 @@ import {
   Tag,
   Text,
 } from "@chakra-ui/react"
+import { Field, navigate } from "@jaenjs/jaen"
+import { Link } from "gatsby"
 import { FC } from "react"
 import { BiChevronRight } from "react-icons/bi"
 import { CONTAINER_MAX_WIDTH } from "../../../constant/sizes"
+import { BlogMeta } from "../BlogPage/BlogMeta"
+import { BlogTags } from "../BlogPage/BlogTags"
 
-interface IBlogCardProps {}
+interface IBlogCardProps {
+  slug: string
+}
 
-const BlogCard: FC<IBlogCardProps> = () => {
+const BlogCard: FC<IBlogCardProps> = ({ slug }) => {
   return (
     <Flex
       maxW={CONTAINER_MAX_WIDTH}
@@ -40,50 +47,70 @@ const BlogCard: FC<IBlogCardProps> = () => {
         justify="center"
         py={{ base: 2, md: 0 }}
       >
-        <HStack mb="2">
-          <Tag variant="normal">Helium</Tag>
-          <Tag variant="normal">Team</Tag>
-        </HStack>
+        <BlogTags fieldName="tags" />
         <Heading size="h2418" noOfLines={1}>
-          Alles Rund ums Helium
+          <Field.Text
+            name="title"
+            rtf
+            defaultValue="Ballons & Ballons: Die Geschichte"
+          />{" "}
         </Heading>
         <Text variant="light" size="b2012" noOfLines={3}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
-          libero risus semper Lorem ipsum dolor sit amet, consectetur adipiscing
-          elit. Faucibus in libero risus semper
+          <Field.Text
+            name="description"
+            rtf
+            noOfLines={3}
+            defaultValue={`
+            <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
+            libero risus semper Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit. Faucibus in libero risus semper Lorem ipsum dolor
+            sit amet, consectetur adipiscing elit. Faucibus in libero risus
+            semper Lorem ipsum dolor sit amet, cipiscing elit. Faucibus in
+            libero risus semper Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit. Faucibus in libero risus semper Lorem ipsum dolor
+            sit amet, consectetur adipiscing elit. Faucibus in libero risus
+            semper Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Faucibus in libero risus semper Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit. Faucibus in libero risus semper Lorem
+            ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
+            libero risus semper
+            <br /> <br />
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
+            libero risus semper Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit. Faucibus in libero risus semper Lorem ipsum dolor
+            sit amet, consectetur adipiscing elit. Faucibus in libero risus
+            semper Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Faucibus in libero risus semper
+            </p>
+            `}
+          />
         </Text>
+
         <Flex justify="space-between" w="full" mt="4 !important">
-          <HStack>
-            <Text
-              color="red.500"
-              fontSize={{ base: "sm", lg: "md" }}
-              fontWeight="700"
-            >
-              Weiterlesen
-            </Text>
-            <Grid
-              placeItems="center"
-              h={{ base: "4", lg: "6" }}
-              w={{ base: "4", lg: "6" }}
-              color="white"
-              bg="red.500"
-              fontSize={{ lg: "lg" }}
-              borderRadius="full"
-            >
-              <BiChevronRight />
-            </Grid>
-          </HStack>
-          <Box>
-            <Text size="b2012" textAlign="end">
-              Von{" "}
-              <Text as="span" size="b2012" fontWeight="bold" color="gray.700">
-                Nikolai Doe
-              </Text>
-            </Text>
-            <Text size="b2012" textAlign="end">
-              5. Mai 2022
-            </Text>
-          </Box>
+          <Button
+            variant="link"
+            rightIcon={
+              <Grid
+                placeItems="center"
+                h={{ base: "4", lg: "6" }}
+                w={{ base: "4", lg: "6" }}
+                color="white"
+                bg="red.500"
+                fontSize={{ lg: "lg" }}
+                borderRadius="full"
+              >
+                <BiChevronRight />
+              </Grid>
+            }
+            onClick={() => {
+              navigate(`/news/${slug}`)
+            }}
+          >
+            Weiterlesen
+          </Button>
+
+          <BlogMeta />
         </Flex>
       </Stack>
     </Flex>

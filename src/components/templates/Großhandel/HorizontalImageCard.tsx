@@ -8,33 +8,31 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react"
+import { Field } from "@jaenjs/jaen"
 import { FC } from "react"
 import { CONTAINER_MAX_WIDTH } from "../../../constant/sizes"
+import theme from "../../../styles/theme"
+import LinkButtonField from "../../fields/LinkButtonField"
 
 interface IHorizontalImageCardProps {
-  cardData: {
-    tag: string
-    cursiveTitle: string
-    title: string
-    leftCrusive: boolean
-    description: string
-    buttonText: string
-    imgUrl: string
-    imageLeft: boolean
+  card: {
+    tagFieldName: string
+    tagDefaultValue: string
+    titleFieldName: string
+    titleDefaultValue: string
+    descriptionFieldName: string
+    descriptionDefaultValue: string
+    imageFieldName: string
+    imageDefaultValue: string
+    buttonTextFieldName: string
+    buttonTextFieldDefaultValue: string
   }
+  orientation: "left" | "right"
 }
 
 const HorizontalImageCard: FC<IHorizontalImageCardProps> = ({
-  cardData: {
-    tag,
-    cursiveTitle,
-    title,
-    leftCrusive,
-    description,
-    buttonText,
-    imgUrl,
-    imageLeft,
-  },
+  card,
+  orientation,
 }) => {
   return (
     <Flex
@@ -42,7 +40,10 @@ const HorizontalImageCard: FC<IHorizontalImageCardProps> = ({
       borderRadius="xl"
       bg="white"
       boxShadow="dark"
-      flexDir={{ base: "column", md: imageLeft ? "row" : "row-reverse" }}
+      flexDir={{
+        base: "column",
+        md: orientation === "left" ? "row" : "row-reverse",
+      }}
     >
       <Grid
         borderRadius="xl"
@@ -50,7 +51,10 @@ const HorizontalImageCard: FC<IHorizontalImageCardProps> = ({
         flex="1"
         maxH={{ base: "120px", sm: "240px", md: "400px" }}
       >
-        <Image src={imgUrl} h="full" w="full" />
+        <Field.Image
+          name={card.imageFieldName}
+          defaultValue={card.imageDefaultValue}
+        />
       </Grid>
       <Stack
         flex="1"
@@ -67,31 +71,53 @@ const HorizontalImageCard: FC<IHorizontalImageCardProps> = ({
           textTransform="uppercase"
           display={{ base: "none", md: "block" }}
         >
-          {tag}
+          <Field.Text
+            name={card.tagFieldName}
+            defaultValue={card.tagDefaultValue}
+          />
         </Heading>
-        <Flex gap="4" flexDir={leftCrusive ? "row-reverse" : "row"}>
-          <Heading size="h5020" as="span" fontWeight="semibold">
-            {title}
-          </Heading>
-          <Text mb="-6 !important" as="span" variant="cursive" size="80">
-            {cursiveTitle}
-          </Text>
-        </Flex>
+        <Heading
+          fontSize={{
+            base: "md", md: "xl", lg: "2xl", xl: "3xl" 
+          }}
+          as="span"
+          fontWeight="semibold"
+          // sx={
+          //   {
+          //     "i, em": {
+          //       fontSize: { md: "3xl", lg: "4xl", xl: "5xl" },
+
+          //     },
+          //   }
+          // }
+        >
+          <Field.Text
+            rtf
+            name={card.titleFieldName}
+            defaultValue={card.titleDefaultValue}
+          />
+        </Heading>
+
+      
+
         <Text
           variant="light"
           size="b2012"
           textAlign={{ base: "center", md: "start" }}
         >
-          {description}
+          <Field.Text
+            name={card.descriptionFieldName}
+            defaultValue={card.descriptionDefaultValue}
+          />
         </Text>
         <Box>
-          <Button
+          <LinkButtonField
+            name={card.buttonTextFieldName}
+            defaultValue={card.buttonTextFieldDefaultValue}
             mt={{ base: "0", md: "4" }}
             size={{ base: "sm", lg: "md" }}
             variant="outline"
-          >
-            {buttonText}
-          </Button>
+          />
         </Box>
       </Stack>
     </Flex>

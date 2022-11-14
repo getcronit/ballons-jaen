@@ -17,11 +17,7 @@ const Großhandel: FC<IGroßhandelProps> = () => {
       <Brands />
       <AdviceSection />
       <PartnersSection />
-      <NewsSlider
-        withoutImageVariant
-        showNewsTitle={true}
-        slides={sliderDummyData}
-      />
+      <NewsSlider showNewsTitle={true} />
     </>
   )
 }

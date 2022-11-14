@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Center,
   Container,
   Flex,
   Grid,
@@ -12,12 +13,131 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react"
+import { Field, navigate, useJaenPageIndex } from "@jaenjs/jaen"
 import { FC } from "react"
 import { CONTAINER_MAX_WIDTH } from "../../../constant/sizes"
+import { JaenPageIndexType } from "../../../types/commonTypes"
+import { BlogMeta } from "../BlogPage/BlogMeta"
+import { BlogTags } from "../BlogPage/BlogTags"
 
-interface IBlogOverviewHeroProps {}
+const FeaturedBlog: React.FC<{
+  featuredBlog: JaenPageIndexType["children"][number]
+  withJaenPage: JaenPageIndexType["withJaenPage"]
+}> = props => {
+  return (
+    <>
+      {props.withJaenPage(
+        props.featuredBlog.id,
+        <Flex
+          maxW={CONTAINER_MAX_WIDTH}
+          borderRadius="xl"
+          bg="white"
+          boxShadow="dark"
+          flexDir={{
+            base: "column",
+            md: "row",
+          }}
+        >
+          <Box
+            borderRadius="xl"
+            overflow="hidden"
+            flex="1"
+            maxH={{
+              base: "200px",
+              sm: "300px",
+              md: "600px",
+            }}
+          >
+            <Field.Image
+              name="heroImage"
+              defaultValue="/images/blog_overview/blogHero.png"
+            />
+          </Box>
+          <Stack
+            flex="1"
+            gap={{
+              base: 2,
+              md: 0,
+            }}
+            spacing="0"
+            px={{
+              base: 4,
+              md: 6,
+              xl: 10,
+            }}
+            justify="center"
+            py="6"
+          >
+            <BlogTags fieldName="tags" />
 
-const BlogOverviewHero: FC<IBlogOverviewHeroProps> = () => {
+            <Heading size="h3015">
+              <Field.Text
+                name="title"
+                rtf
+                defaultValue="Ballons & Ballons: Die Geschichte"
+              />
+            </Heading>
+            <Text variant="light" size="b2012" as="span">
+              <Field.Text
+                name="description"
+                rtf
+                noOfLines={6}
+                defaultValue={`
+                <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
+                libero risus semper Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit. Faucibus in libero risus semper Lorem ipsum dolor
+                sit amet, consectetur adipiscing elit. Faucibus in libero risus
+                semper Lorem ipsum dolor sit amet, cipiscing elit. Faucibus in
+                libero risus semper Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit. Faucibus in libero risus semper Lorem ipsum dolor
+                sit amet, consectetur adipiscing elit. Faucibus in libero risus
+                semper Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Faucibus in libero risus semper Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit. Faucibus in libero risus semper Lorem
+                ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
+                libero risus semper
+                <br /> <br />
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
+                libero risus semper Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit. Faucibus in libero risus semper Lorem ipsum dolor
+                sit amet, consectetur adipiscing elit. Faucibus in libero risus
+                semper Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Faucibus in libero risus semper
+                </p>
+              `}
+              />
+            </Text>
+            <Flex justify="space-between" w="full" mt="4 !important">
+              <Box>
+                <Button
+                  variant="outline"
+                  size={{
+                    base: "sm",
+                    lg: "md",
+                  }}
+                  onClick={() => {
+                    navigate(`/news/${props.featuredBlog.slug}`)
+                  }}
+                >
+                  Weiterlesen
+                </Button>
+              </Box>
+              <BlogMeta />
+            </Flex>
+          </Stack>
+        </Flex>
+      )}
+    </>
+  )
+}
+
+interface IBlogOverviewHeroProps {
+  featuredBlog?: JaenPageIndexType["children"][number]
+  withJaenPage: JaenPageIndexType["withJaenPage"]
+}
+
+const BlogOverviewHero: FC<IBlogOverviewHeroProps> = props => {
   return (
     <Box
       bgImage={{
@@ -32,97 +152,28 @@ const BlogOverviewHero: FC<IBlogOverviewHeroProps> = () => {
     >
       <Container maxW={CONTAINER_MAX_WIDTH}>
         <VStack>
-          <Flex
+          <Heading
             mb={{ base: "25%", md: "5%" }}
-            gap={{ base: 2, md: 4 }}
-            flexDir={{ base: "column", md: "row" }}
-            align="center"
+            size="h6020"
+            as="span"
+            fontWeight="semibold"
+            whiteSpace="nowrap"
           >
-            <Heading
-              size="h6020"
-              as="span"
-              fontWeight="semibold"
-              whiteSpace="nowrap"
-            >
-              Wissenswertes über
-            </Heading>
-            <Text
-              mb="-6 !important"
-              as="span"
-              variant="cursive"
-              size="80"
-              display={{ base: "none", md: "block" }}
-            >
-              Ballons & Ballons
-            </Text>
-            <Image
-              display={{ base: "block", md: "none" }}
-              src="/images/red_logo.png"
-              w="15.625rem"
+            <Field.Text
+              rtf
+              name="heroTitle"
+              defaultValue="Wissenswertes über Ballons & Ballons"
             />
-          </Flex>
+          </Heading>
         </VStack>
-        <Flex
-          maxW={CONTAINER_MAX_WIDTH}
-          borderRadius="xl"
-          bg="white"
-          boxShadow="dark"
-          flexDir={{ base: "column", md: "row" }}
-        >
-          <Grid
-            borderRadius="xl"
-            overflow="hidden"
-            flex="1"
-            maxH={{ base: "200px", sm: "300px", md: "600px" }}
-          >
-            <Image src="/images/blog_overview/blogHero.png" h="full" w="full" />
-          </Grid>
-          <Stack
-            flex="1"
-            gap={{ base: 2, md: 0 }}
-            spacing="0"
-            px={{ base: 4, md: 6, xl: 10 }}
-            justify="center"
-            py="6"
-          >
-            <HStack mb="2">
-              <Tag variant="normal">Helium</Tag>
-              <Tag variant="normal">Team</Tag>
-            </HStack>
-            <Heading size="h3015">Alles Rund ums Helium</Heading>
-            <Text variant="light" size="b2012">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus
-              in libero risus semper Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit. Faucibus in libero risus semper
-              <br /> <br />
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus
-              in libero risus semper
-            </Text>
-            <Flex justify="space-between" w="full" mt="4 !important">
-              <Box>
-                <Button variant="outline" size={{ base: "sm", lg: "md" }}>
-                  Weiterlesen
-                </Button>
-              </Box>
-              <Box>
-                <Text size="b2012" textAlign="end">
-                  Von{" "}
-                  <Text
-                    as="span"
-                    size="b2012"
-                    fontWeight="bold"
-                    color="gray.700"
-                  >
-                    Nikolai Doe
-                  </Text>
-                </Text>
-                <Text size="b2012" textAlign="end">
-                  5. Mai 2022
-                </Text>
-              </Box>
-            </Flex>
-          </Stack>
-        </Flex>
+        {props.featuredBlog ? (
+          <FeaturedBlog
+            featuredBlog={props.featuredBlog}
+            withJaenPage={props.withJaenPage}
+          />
+        ) : (
+          <Box my="64" />
+        )}
       </Container>
     </Box>
   )
