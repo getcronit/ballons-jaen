@@ -1,26 +1,43 @@
+import { Field, useField } from "@jaenjs/jaen"
 import { FC } from "react"
 import { MdLocalPhone, MdLocationPin, MdMail } from "react-icons/md"
 import ContactBottomSection from "./ContactBottomSection"
 import ContactHero from "./ContactHero"
 import ContactTimings from "./ContactTimings"
-import Popup from "./Popup"
+
 interface IContactProps {}
 
 const Contact: FC<IContactProps> = () => {
   const contactDetails = [
     {
-      text: "Taborstraße 98, 1020 Wien, Österreich",
+      isEditing: useField<string>("email", "IMA:TextField").isEditing,
+      text: (
+        <Field.Text
+          name="address"
+          defaultValue="Taborstraße 98, 1020 Wien, Österreich"
+        />
+      ),
       icon: <MdLocationPin />,
     },
     {
-      text: "+43 2 326 34 25",
+      isEditing: useField<string>("email", "IMA:TextField").isEditing,
+      text: <Field.Text name="phone" defaultValue="+43 2 326 34 25" />,
       icon: <MdLocalPhone />,
-      link: "tel:+43 2 326 34 25",
+      link: `tel:${useField<string>("phone", "IMA:TextField").value?.replace(
+        /<[^>]*>?/gm,
+        ""
+      )}`,
     },
     {
-      text: "office@ballons-ballons.com",
+      isEditing: useField<string>("email", "IMA:TextField").isEditing,
+      text: (
+        <Field.Text name="email" defaultValue="office@ballons-ballons.com" />
+      ),
       icon: <MdMail />,
-      link: "mailto:office@ballons-ballons.com",
+      link: `mailto:${useField<string>("email", "IMA:TextField").value?.replace(
+        /<[^>]*>?/gm,
+        ""
+      )}`,
     },
   ]
 
@@ -29,7 +46,6 @@ const Contact: FC<IContactProps> = () => {
       <ContactHero contactDetails={contactDetails} />
       <ContactTimings contactDetails={contactDetails} />
       <ContactBottomSection />
-      <Popup />
     </>
   )
 }
