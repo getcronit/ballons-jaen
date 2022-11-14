@@ -126,6 +126,9 @@ const WhiteDesktopSlider: FC<IWhiteDesktopSliderProps> = ({
                       <Button
                         variant="outline"
                         size={{ md: "sm", lg: "sm", xl: "md" }}
+                        onClick={() => {
+                          navigate(`/news/${page.slug}`)
+                        }}
                       >
                         Mehr anzeigen
                       </Button>

@@ -93,7 +93,13 @@ const WhiteMobileSlider: FC<IWhiteMobileSliderProps> = ({}) => {
                         sit amet, consectetur adipiscing "
                     />
                   </Text>
-                  <Button size={{ base: "sm", md: "md" }} variant="outline">
+                  <Button
+                    size={{ base: "sm", md: "md" }}
+                    variant="outline"
+                    onClick={() => {
+                      navigate(`/news/${page.slug}`)
+                    }}
+                  >
                     Mehr anzeigen
                   </Button>
                 </VStack>
