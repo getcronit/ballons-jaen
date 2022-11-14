@@ -43,12 +43,16 @@ const ContactBottomSection: FC<IContactBottomSectionProps> = () => {
             transform="rotate(180deg)"
             src="/images/decorationen/shapes/shape2.svg"
           />
-
           <WhiteBoxWithDashBorder
-            title=" Noch "
-            cursiveText=" Fragen?"
-            text="  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus imperdiet sed id element."
-            button={{ text: " Zur Beratung", outline: true }}
+            titleFieldName="justaskTitle"
+            titleDefaultValue="<p>Noch <i>Fragen?<i/></p>"
+            textFieldName="justaskText"
+            textDefaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc auctor, nisl eget ultricies lacinia, nisl nunc aliquet nisl, eget aliquet nisl lorem eget lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc auctor."
+            button={{
+              textFieldName: "justaskButtonText",
+              textDefaultValue: "Zur Beratung",
+              outline: true,
+            }}
           />
         </Box>
       </Box>
