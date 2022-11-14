@@ -12,17 +12,15 @@ import {
 import { settings } from "../../constant/slider"
 import { FC } from "react"
 import Slider from "react-slick"
-import { INewsSlides } from "../../types/commonTypes"
+import { INewsSlides, JaenPageIndexType } from "../../types/commonTypes"
 import { CONTAINER_MAX_WIDTH } from "../../constant/sizes"
-import { Field, useJaenPageIndex } from "@jaenjs/jaen"
+import { Field, navigate, useJaenPageIndex } from "@jaenjs/jaen"
 
-interface IWhiteMobileSliderProps {}
+interface IWhiteMobileSliderProps {
+  index: JaenPageIndexType
+}
 
-const WhiteMobileSlider: FC<IWhiteMobileSliderProps> = ({}) => {
-  const index = useJaenPageIndex({
-    jaenPageId: "JaenPage /news/",
-  })
-
+const WhiteMobileSlider: FC<IWhiteMobileSliderProps> = ({ index }) => {
   return (
     <Container maxW={CONTAINER_MAX_WIDTH}>
       <Slider {...settings} className="white_slider">
