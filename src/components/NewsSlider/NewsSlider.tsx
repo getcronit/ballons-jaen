@@ -14,10 +14,28 @@ interface INewsSlidesProps {
 const NewsSlider: FC<INewsSlidesProps> = ({
   showNewsTitle,
 }) => {
+  const index = useJaenPageIndex({
+    jaenPageId: "JaenPage /news/",
+  })
+
+  // override index children to exclude a blog page if it is the current page
+
+  const { jaenPage } = useJaenPageContext()
+
+  const children = index.children.filter(
+    (child) => child.id !== jaenPage.id
+  )
+
+  index.children = children
+
+
   return (
     <>
-      <Box px="4" my={{ md: "50", lg: 20 }}>
-        <WhiteDesktopSlider showTitle={showNewsTitle} />
+      <Box px="4" my={{ md: "50", lg: 20 }} display={{
+        base: "none",
+        md: "block",
+      }}>
+        <WhiteDesktopSlider showTitle={showNewsTitle} index={index} />
       </Box>
 
       {/* Form mobile */}
@@ -27,7 +45,7 @@ const NewsSlider: FC<INewsSlidesProps> = ({
             News
           </Text>
         )}
-        <WhiteMobileSlider
+        <WhiteMobileSlider index={index}
         />
       </Box>
     </>

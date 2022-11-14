@@ -74,7 +74,7 @@ const BlogsSection: FC<IBlogsSectionProps> = props => {
                 console.error("Blog not found")
               }
 
-              return <BlogCard key={blog.id} slug={blog.slug!} />
+              return props.withJaenPage(blog.id, <BlogCard key={blog.id} slug={blog.slug!} />)
             })}
           </Grid>
           <VStack>

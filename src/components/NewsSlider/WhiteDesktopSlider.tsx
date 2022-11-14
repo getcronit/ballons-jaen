@@ -9,23 +9,21 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react"
-import { Field, useJaenPageIndex } from "@jaenjs/jaen"
+import { Field, navigate, useJaenPageIndex } from "@jaenjs/jaen"
 import { FC } from "react"
 import Slider from "react-slick"
 import { CONTAINER_MAX_WIDTH } from "../../constant/sizes"
-import { INewsSlides } from "../../types/commonTypes"
+import { INewsSlides, JaenPageIndexType } from "../../types/commonTypes"
 
 interface IWhiteDesktopSliderProps {
   showTitle?: boolean
+  index: JaenPageIndexType
 }
 
 const WhiteDesktopSlider: FC<IWhiteDesktopSliderProps> = ({
   showTitle = false,
+  index,
 }) => {
-  const index = useJaenPageIndex({
-    jaenPageId: "JaenPage /news/",
-  })
-
   var settings = {
     dots: true,
     infinite: true,
@@ -48,8 +46,7 @@ const WhiteDesktopSlider: FC<IWhiteDesktopSliderProps> = ({
         </Text>
       )}
 
-      <Flex
-        display={{ base: "none", md: "block" }}
+      <Box
         borderRadius={{ base: "md", md: "lg", lg: "xl" }}
         boxShadow="dark"
         py="8"
@@ -59,7 +56,7 @@ const WhiteDesktopSlider: FC<IWhiteDesktopSliderProps> = ({
           {index.children.map((page, i) =>
             index.withJaenPage(
               page.id,
-              <Box key={i} py='8'>
+              <Box key={i} py="8">
                 <Flex
                   h={{ xl: "22.5rem" }}
                   pb="8"
@@ -70,22 +67,20 @@ const WhiteDesktopSlider: FC<IWhiteDesktopSliderProps> = ({
                   justify="center"
                   flexDir={{ base: "column", md: "row" }}
                 >
-                  <Grid placeItems="center">
-                    <Box
-                      boxShadow="light"
-                      overflow="hidden"
-                      boxSize={{ md: "8rem", lg: "12rem", xl: "14.375rem" }}
-                      bg="gray.800"
-                      borderRadius="full"
-                    >
-                      <Field.Image
-                        name="image"
-                        defaultValue="/images/blog_page/hero_image.png"
-                      />
-                    </Box>
-                  </Grid>
+                  <Box
+                    boxShadow="light"
+                    overflow="hidden"
+                    boxSize={{ md: "8rem", lg: "12rem", xl: "14.375rem" }}
+                    bg="gray.800"
+                    borderRadius="full"
+                  >
+                    <Field.Image
+                      name="image"
+                      defaultValue="/images/blog_page/hero_image.png"
+                    />
+                  </Box>
                   <Stack gap={{ md: 0, lg: 2, xl: 4 }} flex="1">
-                    <Text fontSize={'md'} as="span">
+                    <Text fontSize={"md"} as="span">
                       <Field.Text
                         display={"inline-block"}
                         name="date"
@@ -126,6 +121,9 @@ const WhiteDesktopSlider: FC<IWhiteDesktopSliderProps> = ({
                       <Button
                         variant="outline"
                         size={{ md: "sm", lg: "sm", xl: "md" }}
+                        onClick={() => {
+                          navigate(`/news/${page.slug}`)
+                        }}
                       >
                         Mehr anzeigen
                       </Button>
@@ -136,7 +134,7 @@ const WhiteDesktopSlider: FC<IWhiteDesktopSliderProps> = ({
             )
           )}
         </Slider>
-      </Flex>
+      </Box>
     </Container>
   )
 }
