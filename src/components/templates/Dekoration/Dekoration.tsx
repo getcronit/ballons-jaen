@@ -12,11 +12,7 @@ const Dekorationens: FC<IDekorationensProps> = () => {
     <>
       <DekorationenHero />
       <ContentPageSection />
-      <NewsSlider
-        withoutImageVariant
-        showNewsTitle={true}
-        slides={sliderDummyData}
-      />
+      <NewsSlider showNewsTitle={true} />
     </>
   )
 }

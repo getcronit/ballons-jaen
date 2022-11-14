@@ -15,11 +15,7 @@ const WirGestaltenParty: FC<IWirGestaltenPartyProps> = () => {
       <WirGestaltenPartyHero />
       <ProductCatlog />
       <ContentPageSection />
-      <NewsSlider
-        withoutImageVariant
-        showNewsTitle={true}
-        slides={sliderDummyData}
-      />
+      <NewsSlider showNewsTitle={true} />
     </>
   )
 }
