@@ -116,7 +116,7 @@ export const sliderDummyData = [
 
 export const customerSliderSettings: Settings = {
   dots: true,
-  infinite: true,
+  infinite: false,
   speed: 500,
   slidesToShow: 1,
   slidesToScroll: 1,
@@ -128,7 +128,7 @@ export const customerSliderSettings: Settings = {
       settings: {
         slidesToShow: 2,
         slidesToScroll: 2,
-        infinite: true,
+        infinite: false,
         dots: true,
       },
     },

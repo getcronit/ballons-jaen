@@ -8,8 +8,12 @@ import {
   Image,
   Stack,
   Text,
+  VStack,
 } from "@chakra-ui/react"
+import { Field } from "@jaenjs/jaen"
 import { FC } from "react"
+
+import AboutUsVideo from "./aboutus_presentation.mp4"
 import { CONTAINER_MAX_WIDTH } from "../../../constant/sizes"
 
 interface IAboutHeroSectionProps {}
@@ -29,92 +33,49 @@ const AboutHeroSection: FC<IAboutHeroSectionProps> = () => {
       bgImage="url('/images/about_us/redline1.svg'),url('/images/about_us/hero_bg_big.svg')"
     >
       <Container
-        alignItems={{ base: "center", lg: "center" }}
+        alignItems={"center"}
         justifyContent="space-between"
-        flexDir={{ base: "column", md: "row" }}
+        flexDir={{ base: "column-reverse", md: "row" }}
         pos="relative"
-        top={{ base: "-18.75rem", md: "0" }}
-        mb={{ base: "-18.75rem", md: "5rem" }}
+        // top={{ base: "-18.75rem", md: "0" }}
+        // mb={{ base: "-18.75rem", md: "5rem" }}
         py="8"
         as={Flex}
         gap="8"
         maxW={CONTAINER_MAX_WIDTH}
       >
-        <Box flex="1">
-          <Image
-            borderRadius="xl"
-            boxShadow="dark"
-            mx="auto"
-            src="/images/about_us/hero_image.png"
-          />
-        </Box>
-        <Box flex="1">
-          <Stack
-            align={{ base: "center", md: "start" }}
-            textAlign={{ base: "center", md: "start" }}
-          >
-            <Flex gap={{ base: 2, md: 4 }}>
-              <Heading
-                size="h5020"
-                as="span"
-                fontWeight="semibold"
-                whiteSpace="nowrap"
-              >
-                Freude liegt in der
-              </Heading>
-              <Text mb="-6 !important" as="span" variant="cursive" size="80">
-                Luft
-              </Text>
-            </Flex>
-
-            <Text
-              size="b2012"
-              variant="light"
-              maxW={{ base: "80%", md: "90%" }}
+        <VStack>
+          <Flex gap={{ base: 2, md: 4 }}>
+            <Heading
+              size="h5020"
+              as="span"
+              fontWeight="semibold"
+              whiteSpace="nowrap"
             >
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut labore et do
-            </Text>
+              <Field.Text
+                name="heroTitle"
+                defaultValue="<p>Freude liegt in der <i>Luft</i></p>"
+              />
+            </Heading>
+          </Flex>
 
-            <Box>
-              <Button
-                mt="4"
-                size={{ base: "sm", md: "md" }}
-                display={{ base: "none", md: "inline-flex" }}
-              >
-                Persönliche Beratung anfragen
-              </Button>
-              <Button
-                mt="4"
-                size={{ base: "sm", md: "md" }}
-                display={{ base: "inline-flex", md: "none" }}
-              >
-                Beraten lassen
-              </Button>
-            </Box>
-          </Stack>
+          <Text size="b2012" variant="light" maxW={{ base: "80%", md: "90%" }}>
+            <Field.Text
+              name="heroDescription"
+              defaultValue="<p>Wir sind ein junges Team aus kreativen Köpfen, die sich mit Leidenschaft für die Entwicklung von innovativen und nachhaltigen Produkten einsetzen.</p>"
+            />
+          </Text>
+
+          <Button mt="4" size={{ base: "sm", md: "md" }}>
+            Beraten lassen
+          </Button>
+        </VStack>
+
+        <Box boxShadow="dark" borderRadius="xl" overflow="hidden">
+          <video autoPlay muted width={"100%"} height="100%">
+            <source src={`${AboutUsVideo}#t=1,14`} type="video/mp4" />
+          </video>
         </Box>
-      </Container>
-
-      <Container maxW={CONTAINER_MAX_WIDTH}>
-        <AspectRatio ratio={16 / 9} display={{ base: "none", md: "block" }}>
-          <Image
-            boxShadow="dark"
-            borderRadius="xl"
-            mx="auto"
-            w={{ base: "80%", sm: "80%", md: "25rem", lg: "auto" }}
-            src="/images/about_us/hero_video_image.png"
-          />
-        </AspectRatio>
-        <AspectRatio ratio={350 / 500} display={{ base: "block", md: "none" }}>
-          <Image
-            boxShadow="dark"
-            borderRadius="xl"
-            mx="auto"
-            w={{ base: "80%", sm: "80%", md: "25rem", lg: "auto" }}
-            src="/images/about_us/hero_video_image.png"
-          />
-        </AspectRatio>
       </Container>
     </Box>
   )
