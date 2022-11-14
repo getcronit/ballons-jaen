@@ -3,6 +3,7 @@ import { useJaenPageIndex } from "@jaenjs/jaen"
 import React, { FC } from "react"
 import { CONTAINER_MAX_WIDTH } from "../../../constant/sizes"
 import { JaenPageIndexType } from "../../../types/commonTypes"
+import { useNewsPages } from "../../hooks/useNewsPages"
 import HorizontalImageCard from "../Großhandel/HorizontalImageCard"
 import BlogOverviewHero from "./BlogOverviewHero"
 import BlogsSection from "./BlogsSection"
@@ -10,9 +11,7 @@ import BlogsSection from "./BlogsSection"
 interface IBlogOverviewProps {}
 
 const BlogOverview: FC<IBlogOverviewProps> = () => {
-  const index = useJaenPageIndex({
-    jaenPageId: "JaenPage /news/",
-  })
+  const index = useNewsPages()
 
   const featuredBlog = React.useMemo(() => {
     let latestBlog: JaenPageIndexType["children"][number] | undefined =

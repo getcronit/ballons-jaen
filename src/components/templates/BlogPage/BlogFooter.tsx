@@ -56,11 +56,7 @@ export const BlogFooter = () => {
         <ShareBlogButton />
       </VStack>
 
-      <NewsSlider
-        withoutImageVariant
-        showNewsTitle={true}
-        slides={sliderDummyData}
-      />
+      <NewsSlider showNewsTitle={true} />
     </Stack>
   )
 }

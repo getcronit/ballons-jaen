@@ -11,23 +11,25 @@ import {
   UnorderedList,
   VStack,
 } from "@chakra-ui/react"
+import { Field } from "@jaenjs/jaen"
 import { FC } from "react"
 import { CONTAINER_MAX_WIDTH } from "../../../../constant/sizes"
 
 interface IOurBossProps {
   member: {
-    image: string
-    name: string
-    qoute: string
-    qualities: string[]
-    isLeft: boolean
-    role: string
-    about: string
+    imageFieldName: string
+    imageDefaultValue: string
+    nameFieldName: string
+    nameDefaultValue: string
+    quoteFieldName: string
+    quoteDefaultValue: string
+    qualificationsFieldName: string
+    qualificationsDefaultValue: string
   }
 }
 
 const OurBoss: FC<IOurBossProps> = ({
-  member: { image, name, qoute, qualities, isLeft, about, role },
+  member,
 }) => {
   return (
     <>
@@ -48,29 +50,29 @@ const OurBoss: FC<IOurBossProps> = ({
           <VStack gap="4" flex="1">
             <Grid placeItems="center" pos="relative">
               <Image src="/images/about_us/boss_bg.svg" />
-              <Image
-                src={image}
+
+              <Box
                 pos="absolute"
                 boxShadow="dark"
                 w="70%"
                 borderRadius="full"
-              />
+                overflow={"hidden"}
+              >
+                <Field.Image name={member.imageFieldName} defaultValue={member.imageDefaultValue} />
+                </Box>
+
+            
             </Grid>
             <Heading size="h3015" fontWeight="semibold">
-              {name}
+              <Field.Text name={member.nameFieldName} defaultValue={member.nameDefaultValue} />
+
             </Heading>
           </VStack>
           <Stack flex="1">
             <Heading color="red.500" size="h4015" fontWeight="semibold">
-              {qoute}
+              <Field.Text name={member.quoteFieldName} defaultValue={member.quoteDefaultValue} />
             </Heading>
-            {
-              <UnorderedList ml="8 !important">
-                {qualities.map(quality => (
-                  <ListItem>{quality}</ListItem>
-                ))}
-              </UnorderedList>
-            }
+            <Field.Text name={member.qualificationsFieldName} defaultValue={member.qualificationsDefaultValue} />
           </Stack>
         </Flex>
       </Container>
@@ -84,30 +86,33 @@ const OurBoss: FC<IOurBossProps> = ({
       >
         <Flex
           align="end"
-          flexDir={{ base: isLeft ? "row" : "row-reverse" }}
-          textAlign={{ base: isLeft ? "start" : "end" }}
+          flexDir={{ base: "row-reverse" }}
+          textAlign={{ base:  "end" }}
         >
           <Box flex="1">
             <Heading fontSize="md" fontWeight="semibold" color="red.600">
-              {name}
+            <Field.Text name={member.nameFieldName} defaultValue={member.nameDefaultValue} />
             </Heading>
-            <Text fontSize="sm" fontWeight="semibold">
-              {role}
-            </Text>
+           
           </Box>
           <Grid placeItems="center" pos="relative" w="38%">
-            <Image src="/images/about_us/boss_bg.svg" />
-            <Image
-              src={image}
+            <Image src="/images/about_us/profile_bg.svg" />
+
+            <Box
               pos="absolute"
               boxShadow="dark"
               w="80%"
               borderRadius="full"
-            />
+              overflow={"hidden"}
+            >
+              <Field.Image name={member.imageFieldName} defaultValue={member.imageDefaultValue} />
+            </Box>
+
+
           </Grid>
         </Flex>
-        <Text fontSize="xs" textAlign={{ base: isLeft ? "start" : "end" }}>
-          {about}
+        <Text fontSize="xs" textAlign={{ base: "end" }}>
+          <Field.Text name={member.qualificationsFieldName} defaultValue={member.qualificationsDefaultValue} />
         </Text>
       </Stack>
     </>

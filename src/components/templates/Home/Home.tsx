@@ -21,7 +21,7 @@ const Home: FC<IHomeProps> = () => {
       <JoySection />
       <ImaginationSection />
       <NewsSection />
-      <NewsSlider slides={sliderDummyData} />
+      <NewsSlider/>
     </>
   )
 }

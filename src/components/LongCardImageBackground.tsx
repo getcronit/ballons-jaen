@@ -1,12 +1,17 @@
-import { Grid, Heading, HStack, Stack, Text } from "@chakra-ui/react"
+import { Box, Grid, Heading, HStack, Stack, Text } from "@chakra-ui/react"
+import { Field } from "@jaenjs/jaen"
 import { FC } from "react"
 import { BiChevronRight } from "react-icons/bi"
 interface ILongCardImageBackgroundProps {
   card: {
-    title?: string
-    text?: string
-    image: string
+    headingFieldName?: string
+    headingDefaultValue?: string
+    textFieldName?: string
+    textDefaultValue?: string
+    imageFieldName: string
+    imageDefaultValue: string
   }
+  onClick?: () => void
   displayContent?: boolean
   w?: {}
   h?: {}
@@ -15,6 +20,7 @@ interface ILongCardImageBackgroundProps {
 
 const LongCardImageBackground: FC<ILongCardImageBackgroundProps> = ({
   card,
+  onClick,
   displayContent = true,
   w,
   h,
@@ -27,20 +33,36 @@ const LongCardImageBackground: FC<ILongCardImageBackgroundProps> = ({
       justify="end"
       h={h ?? "full"}
       w={w ?? {}}
+      overflow="hidden"
       borderRadius="xl"
-      bgImage={`url(${card.image})`}
-      bgSize="cover"
-      bgRepeat="no-repeat"
     >
-      {displayContent && (
+      <Field.Image
+        name={card.imageFieldName}
+        defaultValue={card.imageDefaultValue}
+      />
+
+  <Box position={'absolute'}>
+  {displayContent && (
         <Stack p="6" pb="4" spacing="0">
-          <Heading size="h4020" fontWeight="700">
-            {card.title}
-          </Heading>
-          <Text fontSize="sm" maxW={{ xl: "60%" }} noOfLines={2}>
-            {card.text}
-          </Text>
+          {card.headingFieldName && (
+            <Heading size="h4020" fontWeight="700">
+              <Field.Text
+                name={card.headingFieldName}
+                defaultValue={card.headingDefaultValue ?? ""}
+              />
+            </Heading>
+          )}
+
+          {card.textFieldName && (
+            <Text fontSize="sm" maxW={{ xl: "60%" }} noOfLines={2} as="span">
+              <Field.Text
+                name={card.textFieldName}
+                defaultValue={card.textDefaultValue ?? ""}
+              />
+            </Text>
+          )}
           <HStack
+          onClick={onClick}
             mt="2 !important"
             cursor="pointer"
             _hover={{
@@ -67,6 +89,7 @@ const LongCardImageBackground: FC<ILongCardImageBackgroundProps> = ({
           </HStack>
         </Stack>
       )}
+  </Box>
     </Stack>
   )
 }

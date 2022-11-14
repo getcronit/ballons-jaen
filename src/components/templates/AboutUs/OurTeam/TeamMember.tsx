@@ -10,23 +10,26 @@ import {
   UnorderedList,
   VStack,
 } from "@chakra-ui/react"
+import { Field } from "@jaenjs/jaen"
 import { FC } from "react"
 
 interface ITeamMemberProps {
   member: {
-    image: string
-    name: string
-    qoute: string
-    qualities: string[]
-    isLeft: boolean
-    role: string
-    about: string
+    imageFieldName: string
+    imageDefaultValue: string
+    nameFieldName: string
+    nameDefaultValue: string
+    quoteFieldName: string
+    quoteDefaultValue: string
+    qualificationsFieldName: string
+    qualificationsDefaultValue: string
   }
+  orientation: "left" | "right"
 }
 
-const TeamMember: FC<ITeamMemberProps> = ({
-  member: { image, name, qoute, qualities, isLeft, about, role },
-}) => {
+const TeamMember: FC<ITeamMemberProps> = ({ member, orientation }) => {
+  const isLeft = orientation === "left"
+
   return (
     <>
       <Flex
@@ -45,29 +48,38 @@ const TeamMember: FC<ITeamMemberProps> = ({
           <VStack>
             <Grid placeItems="center" pos="relative">
               <Image src="/images/about_us/profile_bg.svg" />
-              <Image
-                src={image}
+              <Box
                 pos="absolute"
                 boxShadow="dark"
                 w="80%"
                 borderRadius="full"
-              />
+                overflow={"hidden"}
+              >
+                <Field.Image
+                  name={member.imageFieldName}
+                  defaultValue={member.imageDefaultValue}
+                />
+              </Box>
             </Grid>
             <Heading size="h3015" fontWeight="semibold">
-              {name}
+              <Field.Text
+                name={member.nameFieldName}
+                defaultValue={member.nameDefaultValue}
+              />
             </Heading>
           </VStack>
           <Stack>
             <Heading color="red.500" size="h4015" fontWeight="semibold">
-              {qoute}
+              <Field.Text
+                name={member.quoteFieldName}
+                defaultValue={member.quoteDefaultValue}
+              />
             </Heading>
-            {
-              <UnorderedList ml="8 !important">
-                {qualities.map(quality => (
-                  <ListItem>{quality}</ListItem>
-                ))}
-              </UnorderedList>
-            }
+            <Field.Text
+              rtf
+              name={member.qualificationsFieldName}
+              defaultValue={member.qualificationsDefaultValue}
+            />
           </Stack>
         </Flex>
       </Flex>
@@ -80,25 +92,31 @@ const TeamMember: FC<ITeamMemberProps> = ({
         >
           <Box flex="1">
             <Heading fontSize="md" fontWeight="semibold" color="red.600">
-              {name}
+              <Field.Text
+                name={member.nameFieldName}
+                defaultValue={member.nameDefaultValue}
+              />
             </Heading>
-            <Text fontSize="sm" fontWeight="semibold">
-              {role}
-            </Text>
           </Box>
           <Grid placeItems="center" pos="relative" w="38%">
             <Image src="/images/about_us/profile_bg.svg" />
-            <Image
-              src={image}
+
+            <Box
               pos="absolute"
               boxShadow="dark"
               w="80%"
               borderRadius="full"
-            />
+              overflow={"hidden"}
+            >
+              <Field.Image
+                name={member.imageFieldName}
+                defaultValue={member.imageDefaultValue}
+              />
+            </Box>
           </Grid>
         </Flex>
-        <Text fontSize="xs" textAlign={{ base: isLeft ? "start" : "end" }}>
-          {about}
+        <Text fontSize="xs" textAlign={{ base: "end" }}>
+          <Field.Text name={member.qualificationsFieldName} defaultValue={member.qualificationsDefaultValue} />
         </Text>
       </Stack>
     </>
