@@ -10,13 +10,12 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react"
-import { Field, useJaenPageIndex } from "@jaenjs/jaen"
+import { Field } from "@jaenjs/jaen"
 import { FC } from "react"
 import Slider from "react-slick"
 import { fonts } from "../../../../styles/theme"
 import LinkButtonField from "../../../fields/LinkButtonField"
 import { useContentPages } from "../../../hooks/useContentPages"
-import { useNewsPages } from "../../../hooks/useNewsPages"
 
 export interface IHeroProps {
   anchor?: string
@@ -312,6 +311,7 @@ const Hero: FC<IHeroProps> = props => {
                             <LinkButtonField
                               name="joyButton"
                               defaultValue="Mehr erfahren"
+                              defaultUrl={`/${page.slug}`}
                               mt="2"
                               size={{
                                 base: "sm",
