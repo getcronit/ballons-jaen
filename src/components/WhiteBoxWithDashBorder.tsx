@@ -15,20 +15,17 @@ import LinkButtonField from "./fields/LinkButtonField"
 
 interface IWhiteBoxWithDashBorderProps {
   titleFieldName: string
+  titleDefaultValue: string
   textFieldName?: string
-  cursiveTextFieldName?: string
+  textDefaultValue?: string
   button: {
     textFieldName: string
+    textDefaultValue: string
     outline?: boolean
   }
 }
 
-const WhiteBoxWithDashBorder: FC<IWhiteBoxWithDashBorderProps> = ({
-  titleFieldName,
-  textFieldName,
-  button,
-  cursiveTextFieldName,
-}) => {
+const WhiteBoxWithDashBorder: FC<IWhiteBoxWithDashBorderProps> = (props) => {
   return (
     <VStack
       bg="#FFFFFFDE"
@@ -39,42 +36,28 @@ const WhiteBoxWithDashBorder: FC<IWhiteBoxWithDashBorderProps> = ({
       mx="auto"
       p="10"
     >
-      <Flex>
-        {titleFieldName && (
+        {props.titleFieldName && (
           <Heading fontWeight="semibold" size="h8020">
-            <Field.Text name={titleFieldName} defaultValue={"Titel"} />
+            <Field.Text rtf name={props.titleFieldName} defaultValue={props.titleDefaultValue} />
           </Heading>
         )}
 
-        {cursiveTextFieldName && (
-          <Text
-            ml={titleFieldName ? { base: 2, md: 4 } : 0}
-            variant="cursive"
-            size="100"
-            as="span"
-          >
-            <Field.Text
-              name={cursiveTextFieldName}
-              defaultValue={"Cursive Text"}
-            />
-          </Text>
-        )}
-      </Flex>
-
-      {textFieldName && (
+       
+      {props.textFieldName && (
         <Text
           maxW={{ lg: "50%" }}
           fontSize={{ base: "sm", lg: "md" }}
           textAlign="center"
           as="span"
         >
-          <Field.Text name={textFieldName} defaultValue={"Text"} />
+          <Field.Text name={props.textFieldName} defaultValue={props.textDefaultValue || ""} />
         </Text>
       )}
       <Box mt={{ base: "4 !important", md: "8 !important" }}>
         <LinkButtonField
-          name={button.textFieldName}
-          variant={button.outline ? "outline" : "solid"}
+          name={props.button.textFieldName}
+          defaultValue={props.button.textDefaultValue}
+          variant={props.button.outline ? "outline" : "solid"}
           size={{ base: "sm", md: "md" }}
         />
       </Box>
