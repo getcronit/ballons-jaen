@@ -16,12 +16,10 @@ import { CONTAINER_MAX_WIDTH } from "../../constant/sizes"
 import { INewsSlides } from "../../types/commonTypes"
 
 interface IWhiteDesktopSliderProps {
-  slides: INewsSlides[]
   showTitle?: boolean
 }
 
 const WhiteDesktopSlider: FC<IWhiteDesktopSliderProps> = ({
-  slides,
   showTitle = false,
 }) => {
   const index = useJaenPageIndex({
@@ -32,7 +30,7 @@ const WhiteDesktopSlider: FC<IWhiteDesktopSliderProps> = ({
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 1,
+    slidesToShow: 2,
     slidesToScroll: 1,
   }
 
@@ -60,8 +58,8 @@ const WhiteDesktopSlider: FC<IWhiteDesktopSliderProps> = ({
         <Slider {...settings} className="white_slider">
           {index.children.map((page, i) =>
             index.withJaenPage(
-              page.id || "",
-              <Box key={i}>
+              page.id,
+              <Box key={i} py='8'>
                 <Flex
                   h={{ xl: "22.5rem" }}
                   pb="8"
@@ -80,33 +78,47 @@ const WhiteDesktopSlider: FC<IWhiteDesktopSliderProps> = ({
                       bg="gray.800"
                       borderRadius="full"
                     >
-                      <Image src={"slide.image"} />
+                      <Field.Image
+                        name="image"
+                        defaultValue="/images/blog_page/hero_image.png"
+                      />
                     </Box>
                   </Grid>
                   <Stack gap={{ md: 0, lg: 2, xl: 4 }} flex="1">
-                    <Text fontSize={{ md: "sm", lg: "md", xl: "xl" }}>
+                    <Text fontSize={'md'} as="span">
                       <Field.Text
                         display={"inline-block"}
                         name="date"
-                        defaultValue="Alles"
+                        defaultValue="12.12.2020"
                       />
                     </Text>
                     <Heading
                       color="black.500"
                       fontSize={{ md: "sm", lg: "md", xl: "xl" }}
                       fontWeight="semibold"
+                      noOfLines={2}
                     >
                       <Field.Text
-                        display={"inline-block"}
-                        name="heading"
-                        defaultValue="Alles"
+                        name="title"
+                        rtf
+                        defaultValue="Ballons & Ballons: Die Geschichte"
                       />
                     </Heading>
-                    <Text fontSize={{ md: "xs", lg: "sm", xl: "md" }}>
+                    <Text
+                      fontSize={{ md: "xs", lg: "sm", xl: "md" }}
+                      as="span"
+                      noOfLines={4}
+                    >
                       <Field.Text
-                        display={"inline-block"}
-                        name="text"
-                        defaultValue="Alles"
+                        name="description"
+                        defaultValue=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
+                        libero risus semper Lorem ipsum dolor sit amet, consectetur
+                        adipiscing elit. Faucibus in libero risus semper Lorem ipsum dolor
+                        sit amet, consectetur adipiscing elit. Faucibus in libero risus
+                        semper Lorem ipsum dolor sit amet, cipiscing elit. Faucibus in
+                        libero risus semper Lorem ipsum dolor sit amet, consectetur
+                        adipiscing elit. Faucibus in libero risus semper Lorem ipsum dolor
+                        sit amet, consectetur adipiscing "
                       />
                     </Text>
 

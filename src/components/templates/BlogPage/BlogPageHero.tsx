@@ -3,42 +3,15 @@ import {
   Container,
   Flex,
   Heading,
-  HStack,
   Image,
   Stack,
-  Tag,
   Text,
 } from "@chakra-ui/react"
-import { connectSection, Field } from "@jaenjs/jaen"
+import { Field } from "@jaenjs/jaen"
 import { FC } from "react"
 import { CONTAINER_MAX_WIDTH } from "../../../constant/sizes"
-
-const BlogTagItem = connectSection(
-  () => {
-    return (
-      <Tag variant="white">
-        {<Field.Text name="tagText" defaultValue="Tag" />}
-      </Tag>
-    )
-  },
-  {
-    name: "BlogTagItem",
-    displayName: "Tag",
-  }
-)
-
-export const BlogTags = () => {
-  return (
-    <Box minW="24">
-      <Field.Section
-        as={HStack}
-        name="tags"
-        displayName="Tags"
-        sections={[BlogTagItem]}
-      />
-    </Box>
-  )
-}
+import { BlogMeta } from "./BlogMeta"
+import { BlogTags } from "./BlogTags"
 
 interface IBlogPageHeroProps {}
 
@@ -69,34 +42,16 @@ const BlogPageHero: FC<IBlogPageHeroProps> = () => {
           </Box>
 
           <Flex justify="space-between" mt="8">
-            <BlogTags />
-
-            <Box>
-              <Text size="b2012" textAlign="end">
-              Von{" "}
-                <Text as="span" size="b2012" fontWeight="bold" color="gray.700">
-                  <Field.Text name="author" defaultValue="Max Mustermann" as="span" display={'inline-block'} />
-                </Text>
-              </Text>
-              <Text size="b2012" textAlign="end">
-                <Field.Text name="date" defaultValue="12.12.2020" />
-              </Text>
-            </Box>
+            <BlogTags fieldName="tags" />
+            <BlogMeta />
           </Flex>
 
           <Flex justify="center">
-            <Heading
-              size="h4020"
-              sx={{
-                "i, em": {
-                  fontSize: "60",
-                },
-              }}
-            >
+            <Heading size="h4020">
               <Field.Text
                 name="title"
                 rtf
-                defaultValue="<p>Blog <i>Title</i></p>"
+                defaultValue="Ballons & Ballons: Die Geschichte"
               />
             </Heading>
           </Flex>

@@ -1,6 +1,8 @@
 import { Box, Container, Image } from "@chakra-ui/react"
-import { FC } from "react"
+import { useJaenPageIndex } from "@jaenjs/jaen"
+import React, { FC } from "react"
 import { CONTAINER_MAX_WIDTH } from "../../../constant/sizes"
+import { JaenPageIndexType } from "../../../types/commonTypes"
 import HorizontalImageCard from "../Großhandel/HorizontalImageCard"
 import BlogOverviewHero from "./BlogOverviewHero"
 import BlogsSection from "./BlogsSection"
@@ -8,10 +10,39 @@ import BlogsSection from "./BlogsSection"
 interface IBlogOverviewProps {}
 
 const BlogOverview: FC<IBlogOverviewProps> = () => {
+  const index = useJaenPageIndex({
+    jaenPageId: "JaenPage /news/",
+  })
+
+  const featuredBlog = React.useMemo(() => {
+    let latestBlog: JaenPageIndexType["children"][number] | undefined =
+      undefined
+
+    for (const child of index.children) {
+      if (!latestBlog) {
+        latestBlog = child
+      } else {
+        const latestBlogDate = new Date(
+          latestBlog.jaenPageMetadata?.datePublished || ""
+        )
+        const childDate = new Date(child.jaenPageMetadata?.datePublished || "")
+
+        if (childDate > latestBlogDate) {
+          latestBlog = child
+        }
+      }
+    }
+
+    return latestBlog
+  }, [index.children])
+
   return (
     <>
-      <BlogOverviewHero />
-      <BlogsSection />
+      <BlogOverviewHero
+        featuredBlog={featuredBlog}
+        withJaenPage={index.withJaenPage}
+      />
+      <BlogsSection blogs={index.children} withJaenPage={index.withJaenPage} />
       <Box
         pos="relative"
         overflow="hidden"
@@ -31,17 +62,20 @@ const BlogOverview: FC<IBlogOverviewProps> = () => {
           mb={{ base: "16 !important", md: "0" }}
         >
           <HorizontalImageCard
-            cardData={{
-              tag: "PRODUKTE",
-              cursiveTitle: "Kataloge",
-              title: "Unsere",
-              leftCrusive: false,
-              description:
+            card={{
+              tagFieldName: "blogOverviewCard1Tag",
+              tagDefaultValue: "PRODUKTE",
+              titleFieldName: "blogOverviewCard1Title",
+              titleDefaultValue: "<p>Unsere <i>Kataloge</i></p>",
+              descriptionFieldName: "blogOverviewCard1Description",
+              descriptionDefaultValue:
                 "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et do",
-              buttonText: "Zum Shop",
-              imgUrl: "/images/großhandel/img1.png",
-              imageLeft: true,
+              imageFieldName: "blogOverviewCard1Image",
+              imageDefaultValue: "/images/großhandel/img1.png",
+              buttonTextFieldName: "blogOverviewCard1ButtonTextField",
+              buttonTextFieldDefaultValue: "Zum Shop",
             }}
+            orientation="left"
           />
         </Container>
       </Box>

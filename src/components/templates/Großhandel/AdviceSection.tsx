@@ -8,8 +8,10 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react"
+import { Field } from "@jaenjs/jaen"
 import { FC } from "react"
 import { CONTAINER_MAX_WIDTH } from "../../../constant/sizes"
+import LinkButtonField from "../../fields/LinkButtonField"
 
 interface IAdviceSectionProps {}
 
@@ -29,37 +31,36 @@ const AdviceSection: FC<IAdviceSectionProps> = () => {
         <Stack>
           <Flex gap={{ base: 2, md: 4 }}>
             <Heading size="h5020" as="span" fontWeight="semibold">
-              Lass dich von uns
+              <Field.Text
+                name="adviceTitle"
+                defaultValue={"<p>Lass dich von uns <i>beraten</i></p>"}
+              />
             </Heading>
-            <Text mb="-6 !important" as="span" variant="cursive" size="80">
-              beraten
-            </Text>
           </Flex>
 
           <Text size="b2012" variant="light" maxW="90%">
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            nonumy eirmod tempor invidunt ut labore et doLorem ipsum dolor sit
-            amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-            invidunt ut labore et do
-            <br />
-            <br />
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            nonumy eirmod tempor invidunt ut labore et do
+            <Field.Text
+              name="adviceText"
+              defaultValue={
+                "<p>Wir sind für dich da und beraten dich gerne bei der Planung deiner Party. Wir haben viele Ideen und Tipps für dich parat.</p>"
+              }
+            />
           </Text>
 
           <Box>
-            <Button mt="4" size={{ base: "sm", md: "md" }}>
-              Jetzt Beratung anfragen
-            </Button>
+            <LinkButtonField
+              name="adviceButton"
+              defaultValue={"Zur Beratung"}
+              variant="outline"
+            />
           </Box>
         </Stack>
       </Box>
 
       <Box flex="2">
-        <Image
-          mx="auto"
-          w={{ base: "80%", sm: "80%", md: "25rem", lg: "auto" }}
-          src="/images/großhandel/shape_bg.png"
+        <Field.Image
+          name="adviceImage"
+          defaultValue="/images/großhandel/shape_bg.png"
         />
       </Box>
     </Container>

@@ -73,27 +73,15 @@ export const blogSliderSettings: Settings = {
   //   },
   // ],
 }
+
+export const partnerSliderSettings = {
+  ...blogSliderSettings,
+}
+
 export const brandSettings: Settings = {
-  infinite: true,
-  speed: 100,
-
-  responsive: [
-    {
-      breakpoint: 786,
-      settings: {
-        slidesToShow: 4,
-        slidesToScroll: 1,
-      },
-    },
-
-    {
-      breakpoint: 450,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 1,
-      },
-    },
-  ],
+  ...blogSliderSettings,
+  slidesToShow: 4,
+  slidesToScroll: 1,
 }
 
 export const sliderDummyData = [

@@ -8,6 +8,7 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react"
+import { Field } from "@jaenjs/jaen"
 import { FC } from "react"
 import { CONTAINER_MAX_WIDTH } from "../../../../constant/sizes"
 
@@ -23,13 +24,18 @@ const GroßhandelUpperHero: FC<IGroßhandelUpperHeroProps> = () => {
           py={{ base: "16", md: "44", lg: "52", xl: "56" }}
         >
           <Heading fontWeight="semibold" size="h5030">
-            GROßHANDEL
+            <Field.Text name="title" defaultValue="Großhandel" />
           </Heading>
-          <Heading mb="-4 !important" fontWeight="semibold" size="h5020">
-            Werde{" "}
-            <Text ml="2" variant="cursive" size="80" as="span">
-              Ballon-Partner
-            </Text>
+          <Heading
+            mb="-4 !important"
+            fontWeight="semibold"
+            size="h5020"
+            as="span"
+          >
+            <Field.Text
+              name="subtitle"
+              defaultValue="<p>Werde <i>Ballon-Partner</i></p>"
+            />
           </Heading>
           <HStack>
             <Button size={{ base: "sm", md: "md" }} variant="outline">
@@ -44,7 +50,9 @@ const GroßhandelUpperHero: FC<IGroßhandelUpperHeroProps> = () => {
             top="6.25rem"
             w={{ md: "12.5rem", lg: "16.875rem", xl: "20rem" }}
           >
-            <Image src="/images/großhandel/ballon_box.png" />
+
+            <Field.Image name="image" defaultValue="/images/großhandel/ballon_box.png" />
+
           </Grid>
         </VStack>
       </Container>
