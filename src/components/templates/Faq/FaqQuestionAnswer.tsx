@@ -7,13 +7,64 @@ import {
   Box,
   Container,
   Flex,
+  HStack,
   Stack,
   Text,
   VStack,
 } from "@chakra-ui/react"
+import { connectSection, Field } from "@jaenjs/jaen"
 import { FC } from "react"
 import { BiChevronDown } from "react-icons/bi"
 import { CONTAINER_MAX_WIDTH } from "../../../constant/sizes"
+
+const FaqQuestionAnswerItemSection = connectSection(
+  () => {
+    return (
+      <AccordionItem border="none">
+        {({ isExpanded }) => (
+          <Stack
+            spacing="0"
+            p={{ base: 4, md: 6, xl: 8 }}
+            mb={{ base: 4, md: 6, xl: 8 }}
+            borderRadius={{
+              base: ".625rem",
+              md: "1.25rem",
+              xl: "1.875rem",
+            }}
+            boxShadow="light"
+            borderWidth="1px"
+            borderColor={isExpanded ? "red.500" : "gray.200"}
+          >
+            <AccordionButton _hover={{ bg: "none" }}>
+              <HStack w="full">
+                <Text
+                  ml="1"
+                  size="b2415"
+                  fontWeight="semibold"
+                  textAlign="start"
+                  as="span"
+                >
+                  <Field.Text name="question" defaultValue="Frage?" />
+                </Text>
+              </HStack>
+              <AccordionIcon />
+            </AccordionButton>
+
+            <AccordionPanel as={Text} pr="4rem">
+              <Text size="b2012" as="span">
+                <Field.Text name="antwort" defaultValue="Antwort" />
+              </Text>
+            </AccordionPanel>
+          </Stack>
+        )}
+      </AccordionItem>
+    )
+  },
+  {
+    name: "FaqQuestionAnswerItemSection",
+    displayName: "Frage und Antwort",
+  }
+)
 
 interface IFaqQuestionAnswerProps {}
 
@@ -57,56 +108,15 @@ const FaqQuestionAnswer: FC<IFaqQuestionAnswerProps> = () => {
       bgSize={{ base: "55%", sm: "40%", md: "50%" }}
     >
       <Container maxW={CONTAINER_MAX_WIDTH}>
-        <Accordion allowToggle>
-          {faqData.map((item, index) => (
-            <AccordionItem border="none">
-              {({ isExpanded }) => (
-                <Stack
-                  spacing="0"
-                  key={index}
-                  p={{ base: 4, md: 6, xl: 8 }}
-                  mb={{ base: 4, md: 6, xl: 8 }}
-                  borderRadius={{
-                    base: ".625rem",
-                    md: "1.25rem",
-                    xl: "1.875rem",
-                  }}
-                  boxShadow="light"
-                  borderWidth="1px"
-                  borderColor={isExpanded ? "red.500" : "gray.200"}
-                >
-                  <AccordionButton _hover={{ bg: "none" }}>
-                    <Box flex="1">
-                      <Text
-                        ml="1"
-                        size="b2415"
-                        fontWeight="semibold"
-                        textAlign="start"
-                      >
-                        {item.question}
-                      </Text>
-                    </Box>
-                    <AccordionIcon />
-                  </AccordionButton>
-
-                  <AccordionPanel as={Text} pr="4rem">
-                    <Text size="b2012">{item.answer}</Text>
-                  </AccordionPanel>
-                </Stack>
-              )}
-            </AccordionItem>
-          ))}
-        </Accordion>
-        <VStack mt={{ base: 4, md: 8 }}>
-          <Flex align="center">
-            <Text fontWeight="semibold" size="b2415">
-              Mehr anzeigen
-            </Text>
-            <Box as="span" fontSize={{ base: "md", lg: "2xl" }}>
-              <BiChevronDown />
-            </Box>
-          </Flex>
-        </VStack>
+        <Field.Section
+          as={Accordion}
+          props={{
+            allowToggle: true,
+          }}
+          name="FaqQuestionAnswerSection"
+          displayName="Fragen und Antworten"
+          sections={[FaqQuestionAnswerItemSection]}
+        />
       </Container>
     </Box>
   )
