@@ -226,7 +226,15 @@ const Hero: FC<IHeroProps> = props => {
                         <Grid flex="4" w="50%" placeItems="center">
                           <Box
                             bg="red"
-                            h={{ md: "90%", lg: "80%", "2xl": "90%" }}
+                            h={{
+                              md: "35rem",
+                              lg: "25rem",
+                              "2xl": "35rem",
+                            }}
+                            w={{
+                              md: "90%",
+                            }}
+                            //h={{ md: "90%", lg: "80%", "2xl": "90%" }}
                             pos="relative"
                             boxShadow="light"
                             mb="4"
