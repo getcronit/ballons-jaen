@@ -31,18 +31,22 @@ export const settings: Settings = {
   ],
 }
 export const blogSliderSettings: Settings = {
-  infinite: true,
+  infinite: false,
   speed: 500,
-  slidesToShow: 1,
+  slidesToShow: 4,
   slidesToScroll: 1,
+  arrows: true,
+  nextArrow: <NextArrow out isBlack />,
+  prevArrow: <PrevArrow out isBlack />,
 
   responsive: [
     {
       breakpoint: 4000,
       settings: {
         slidesToShow: 4,
+        rows: 1,
         slidesToScroll: 1,
-        infinite: true,
+        infinite: false,
         dots: false,
         arrows: true,
         nextArrow: <NextArrow out isBlack />,
@@ -58,28 +62,26 @@ export const blogSliderSettings: Settings = {
       },
     },
   ],
+
+  // responsive: [
+  //   {
+  //     breakpoint: 700,
+  //     settings: {
+  //       slidesToShow: 1,
+  //       slidesToScroll: 1,
+  //     },
+  //   },
+  // ],
 }
+
+export const partnerSliderSettings = {
+  ...blogSliderSettings,
+}
+
 export const brandSettings: Settings = {
-  infinite: true,
-  speed: 100,
-
-  responsive: [
-    {
-      breakpoint: 786,
-      settings: {
-        slidesToShow: 4,
-        slidesToScroll: 1,
-      },
-    },
-
-    {
-      breakpoint: 450,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 1,
-      },
-    },
-  ],
+  ...blogSliderSettings,
+  slidesToShow: 4,
+  slidesToScroll: 1,
 }
 
 export const sliderDummyData = [

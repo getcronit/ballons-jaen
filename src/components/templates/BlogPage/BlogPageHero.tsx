@@ -3,14 +3,15 @@ import {
   Container,
   Flex,
   Heading,
-  HStack,
   Image,
   Stack,
-  Tag,
   Text,
 } from "@chakra-ui/react"
+import { Field } from "@jaenjs/jaen"
 import { FC } from "react"
 import { CONTAINER_MAX_WIDTH } from "../../../constant/sizes"
+import { BlogMeta } from "./BlogMeta"
+import { BlogTags } from "./BlogTags"
 
 interface IBlogPageHeroProps {}
 
@@ -33,32 +34,26 @@ const BlogPageHero: FC<IBlogPageHeroProps> = () => {
         gap={{ base: 4, lg: "8" }}
       >
         <Box pos="relative" top={{ base: "-40px", md: 0 }}>
-          <Image
-            src="/images/blog_page/hero_image.png"
-            borderRadius="1.875rem"
-            boxShadow="dark"
-          />
-          <Flex
-            justify="space-between"
-            mt="8"
-            display={{ base: "flex", md: "none" }}
-          >
-            <HStack>
-              <Tag variant="white">Helium</Tag>
-              <Tag variant="white">Team</Tag>
-            </HStack>
+          <Box borderRadius="1.875rem" boxShadow="dark" overflow={"hidden"}>
+            <Field.Image
+              name="image"
+              defaultValue="/images/blog_page/hero_image.png"
+            />
+          </Box>
 
-            <Box>
-              <Text size="b2012" textAlign="end">
-                Von{" "}
-                <Text as="span" size="b2012" fontWeight="bold" color="gray.700">
-                  Nikolai Doe
-                </Text>
-              </Text>
-              <Text size="b2012" textAlign="end">
-                5. Mai 2022
-              </Text>
-            </Box>
+          <Flex justify="space-between" mt="8">
+            <BlogTags fieldName="tags" />
+            <BlogMeta />
+          </Flex>
+
+          <Flex justify="center">
+            <Heading size="h4020">
+              <Field.Text
+                name="title"
+                rtf
+                defaultValue="Ballons & Ballons: Die Geschichte"
+              />
+            </Heading>
           </Flex>
         </Box>
         <Stack
@@ -66,34 +61,35 @@ const BlogPageHero: FC<IBlogPageHeroProps> = () => {
           top={{ base: "40px", md: 0 }}
           gap={{ base: 4, lg: "8" }}
         >
-          <Flex justify="center">
-            <Heading size="h4020">Alles Rund ums</Heading>
-            <Text ml="4" mb="-6 !important" variant="cursive" size="60">
-              Helium
-            </Text>
-          </Flex>
-
-          <Text size="b2012">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
-            libero risus semper Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit. Faucibus in libero risus semper Lorem ipsum dolor
-            sit amet, consectetur adipiscing elit. Faucibus in libero risus
-            semper Lorem ipsum dolor sit amet, cipiscing elit. Faucibus in
-            libero risus semper Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit. Faucibus in libero risus semper Lorem ipsum dolor
-            sit amet, consectetur adipiscing elit. Faucibus in libero risus
-            semper Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Faucibus in libero risus semper Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit. Faucibus in libero risus semper Lorem
-            ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
-            libero risus semper
-            <br /> <br />
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
-            libero risus semper Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit. Faucibus in libero risus semper Lorem ipsum dolor
-            sit amet, consectetur adipiscing elit. Faucibus in libero risus
-            semper Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Faucibus in libero risus semper
+          <Text size="b2012" as="span">
+            <Field.Text
+              name="description"
+              rtf
+              defaultValue={`
+              <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
+              libero risus semper Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit. Faucibus in libero risus semper Lorem ipsum dolor
+              sit amet, consectetur adipiscing elit. Faucibus in libero risus
+              semper Lorem ipsum dolor sit amet, cipiscing elit. Faucibus in
+              libero risus semper Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit. Faucibus in libero risus semper Lorem ipsum dolor
+              sit amet, consectetur adipiscing elit. Faucibus in libero risus
+              semper Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Faucibus in libero risus semper Lorem ipsum dolor sit amet,
+              consectetur adipiscing elit. Faucibus in libero risus semper Lorem
+              ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
+              libero risus semper
+              <br /> <br />
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
+              libero risus semper Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit. Faucibus in libero risus semper Lorem ipsum dolor
+              sit amet, consectetur adipiscing elit. Faucibus in libero risus
+              semper Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Faucibus in libero risus semper
+              </p>
+            `}
+            />
           </Text>
         </Stack>
       </Container>

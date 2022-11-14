@@ -8,43 +8,16 @@ import WhiteDesktopSlider from "./WhiteDesktopSlider"
 import WhiteMobileSlider from "./WhiteMobileSlider"
 
 interface INewsSlidesProps {
-  slides: INewsSlides[]
   showNewsTitle?: boolean
-  withoutImageVariant?: boolean
 }
 
 const NewsSlider: FC<INewsSlidesProps> = ({
-  withoutImageVariant,
-  slides,
   showNewsTitle,
 }) => {
-  const index = useJaenPageIndex({
-    jaenPageId: "JaenPage /news/",
-  })
-
-  const { jaenPage: myJaenPage } = useJaenPageContext()
-
-  var settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  }
-
-  const filteredChildren = index.children.filter(c => c.id !== myJaenPage.id)
-
   return (
     <>
       <Box px="4" my={{ md: "50", lg: 20 }}>
-        <Slider {...settings}>
-          {filteredChildren.map((page, i) =>
-            index.withJaenPage(
-              page.id || "",
-              <WhiteDesktopSlider showTitle={showNewsTitle} slides={slides} />
-            )
-          )}
-        </Slider>
+        <WhiteDesktopSlider showTitle={showNewsTitle} />
       </Box>
 
       {/* Form mobile */}
@@ -55,8 +28,6 @@ const NewsSlider: FC<INewsSlidesProps> = ({
           </Text>
         )}
         <WhiteMobileSlider
-          withoutImageVariant={withoutImageVariant}
-          slides={slides}
         />
       </Box>
     </>

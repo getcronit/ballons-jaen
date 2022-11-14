@@ -1,3 +1,5 @@
+import type { useJaenPageIndex } from "@jaenjs/jaen"
+
 export interface INewsSlides {
   image: string
   date: string
@@ -12,3 +14,5 @@ export interface ICardData {
 }
 
 export type LayoutMode = 'website' | 'store'
+
+export type JaenPageIndexType = ReturnType<typeof useJaenPageIndex>

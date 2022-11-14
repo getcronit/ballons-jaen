@@ -4,11 +4,11 @@ import { FC } from "react"
 import { BiChevronRight } from "react-icons/bi"
 interface ICardWithImageBackgroundProps {
   card: {
-    headingFieldName: string
-    headingDefaultValue: string
+    headingFieldName?: string
+    headingDefaultValue?: string
     textFieldName?: string
-    textDefaultValue: string
-    imageFieldName: string
+    textDefaultValue?: string
+    imageFieldName?: string
     imageDefaultValue?: string
   }
   displayContent?: boolean
@@ -44,10 +44,12 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
       overflow={"hidden"}
       minW="20rem"
     >
-      <Field.Image
-        name={card.imageFieldName}
-        defaultValue={card.imageDefaultValue}
-      />
+     {card.imageFieldName && (
+       <Field.Image
+       name={card.imageFieldName}
+       defaultValue={card.imageDefaultValue}
+     />
+     )}
       <Box position="absolute">
         {displayContent && (
           <Stack p="6" pb="4">
@@ -55,7 +57,7 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
               <Heading fontSize={{ base: "lg", xl: "xl" }} fontWeight="700">
                 <Field.Text
                   name={card.headingFieldName}
-                  defaultValue={card.headingDefaultValue}
+                  defaultValue={card.headingDefaultValue ?? ""}
                 />
               </Heading>
             )}
@@ -67,7 +69,7 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
               >
                 <Field.Text
                   name={card.textFieldName}
-                  defaultValue={card.textDefaultValue}
+                  defaultValue={card.textDefaultValue ?? ""}
                 />
               </Text>
             )}

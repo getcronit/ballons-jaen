@@ -57,11 +57,6 @@ const ProductCatlog: FC<IProductCatlogProps> = () => {
           <Heading
             fontSize={{ base: "md", md: "xl", lg: "2xl", xl: "3xl" }}
             fontWeight="semibold"
-            sx={{
-              "i, em": {
-                fontSize: { base: "xl", md: "4xl", lg: "5xl", xl: "6xl" },
-              },
-            }}
           >
             <Field.Text
               name="catalogueTitle"
@@ -70,9 +65,12 @@ const ProductCatlog: FC<IProductCatlogProps> = () => {
             />
           </Heading>
           <Text fontSize={{ base: "sm", lg: "md" }}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius
-            quibusdam, atque iusto culpa libero nostrum sit fuga cumque sunt
-            tenetur! Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+            <Field.Text
+              name="catalogueText"
+              defaultValue={
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius quibusdam, atque iusto culpa libero nostrum sit fuga cumque sunt tenetur! Lorem, ipsum dolor sit amet consectetur adipisicing elit."
+              }
+            />
           </Text>
           <Box>
             <LinkButtonField

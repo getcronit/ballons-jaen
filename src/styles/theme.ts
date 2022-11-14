@@ -250,6 +250,9 @@ const theme = extendTheme(
           fontFamily: "Red Buttery, sans-serif",
           fontWeight: "normal",
           color: "red.500",
+          fontSize: '1.3em'
+          // verticalAlign: 'text-top',
+
         },
       },
     },
