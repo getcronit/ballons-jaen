@@ -1,9 +1,6 @@
 import { Box, Text } from "@chakra-ui/react"
-import { useJaenPageIndex } from "@jaenjs/jaen"
-import { useJaenPageContext } from "@jaenjs/jaen/src/internal-plugins/pages/internal/services/page"
 import { FC } from "react"
-import Slider from "react-slick"
-import { INewsSlides } from "../../types/commonTypes"
+import { useNewsPages } from "../hooks/useNewsPages"
 import WhiteDesktopSlider from "./WhiteDesktopSlider"
 import WhiteMobileSlider from "./WhiteMobileSlider"
 
@@ -14,20 +11,7 @@ interface INewsSlidesProps {
 const NewsSlider: FC<INewsSlidesProps> = ({
   showNewsTitle,
 }) => {
-  const index = useJaenPageIndex({
-    jaenPageId: "JaenPage /news/",
-  })
-
-  // override index children to exclude a blog page if it is the current page
-
-  const { jaenPage } = useJaenPageContext()
-
-  const children = index.children.filter(
-    (child) => child.id !== jaenPage.id
-  )
-
-  index.children = children
-
+  const index = useNewsPages()
 
   return (
     <>

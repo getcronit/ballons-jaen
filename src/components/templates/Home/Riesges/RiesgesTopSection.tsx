@@ -2,6 +2,7 @@ import { Grid, GridItem } from "@chakra-ui/react"
 import { useJaenPageIndex } from "@jaenjs/jaen"
 import { FC } from "react"
 import CardWithImageBackground from "../../../../components/CardWithImageBackground"
+import { useContentPages } from "../../../hooks/useContentPages"
 
 interface IRiesgesTopSectionProps {}
 
@@ -24,11 +25,7 @@ const RiesgesTopSection: FC<IRiesgesTopSectionProps> = () => {
     },
   ]
 
-  const index = useJaenPageIndex({
-    jaenPageId: "JaenPage /",
-  })
-
-  const templates = ["ContentPage1", "ContentPage2"]
+  const index = useContentPages()
 
   return (
     <Grid
@@ -41,33 +38,31 @@ const RiesgesTopSection: FC<IRiesgesTopSectionProps> = () => {
       }}
     >
       {index.children.map((page, i) =>
-        templates.includes(page.template || "")
-          ? index.withJaenPage(
-              page.id || "",
-              <GridItem
-                justifySelf="center"
-                h={{
-                  base: "11.25rem",
-                  md: "18.75rem",
-                  lg: "25rem",
-                  xl: "31.25rem",
-                }}
-                key={i}
-              >
-                <CardWithImageBackground
-                  card={{
-                    headingFieldName: `riesgesCardheading${i}`,
-                    headingDefaultValue: cards[0].heading,
-                    textFieldName: `riesgesCardText${i}`,
-                    textDefaultValue: cards[0].text,
-                    imageFieldName: `riesgesCardImage${i}`,
-                    imageDefaultValue: cards[0].image,
-                  }}
-                  key={i}
-                />
-              </GridItem>
-            )
-          : null
+        index.withJaenPage(
+          page.id || "",
+          <GridItem
+            justifySelf="center"
+            h={{
+              base: "11.25rem",
+              md: "18.75rem",
+              lg: "25rem",
+              xl: "31.25rem",
+            }}
+            key={i}
+          >
+            <CardWithImageBackground
+              card={{
+                headingFieldName: `riesgesCardheading${i}`,
+                headingDefaultValue: cards[0].heading,
+                textFieldName: `riesgesCardText${i}`,
+                textDefaultValue: cards[0].text,
+                imageFieldName: `riesgesCardImage${i}`,
+                imageDefaultValue: cards[0].image,
+              }}
+              key={i}
+            />
+          </GridItem>
+        )
       )}
     </Grid>
   )
