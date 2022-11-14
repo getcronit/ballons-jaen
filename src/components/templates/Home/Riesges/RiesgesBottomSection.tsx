@@ -9,7 +9,6 @@ import {
 } from "@chakra-ui/react"
 import { Field } from "@jaenjs/jaen"
 import { FC, ReactNode } from "react"
-import { fonts } from "../../../../styles/theme"
 import LinkButtonField from "../../../fields/LinkButtonField"
 
 export interface ISortiment {
@@ -95,19 +94,10 @@ const RiesgesBottomSection: FC<IRiesgesBottomSectionProps> = () => {
           mb="4 !important"
           fontWeight="semibold"
         >
-          <Field.Text name="riesgesHeading" defaultValue="Riesiges" />
-        </Heading>
-        <Heading
-          color="red.500"
-          lineHeight={{ base: "1.875rem", md: "3.125rem", lg: "5rem" }}
-          fontSize={{ base: "2.1875rem", md: "3xl", lg: "6xl" }}
-          fontFamily={fonts.font_RB}
-          mb={{ base: "4 !important", md: 0 }}
-          fontWeight="semibold"
-        >
           <Field.Text
-            name="riesgesSubheading"
-            defaultValue="Produktsortiment"
+            name="riesgesHeading"
+            defaultValue="Riesiges <i>Produktsortiment</i>"
+            rtf
           />
         </Heading>
         <Text

@@ -158,25 +158,8 @@ const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
             <Field.Text
               display={"inline-block"}
               name="littleThingsHeading1"
-              defaultValue="Auch die"
-            />
-            <Text
-              ml="2"
-              as="span"
-              fontSize={{ base: "lg", xl: "2xl" }}
-              variant="cursive"
-            >
-              <Field.Text
-                display={"inline-block"}
-                name="littleThingsHeading2"
-                defaultValue="kleinsten"
-              />
-            </Text>
-            <br />
-            <Field.Text
-              display={"inline-block"}
-              name="littleThingsHeading3"
-              defaultValue="Dinge machen viel"
+              defaultValue="Auch die <i>kleinsten</i><br/> Dinge machen viel <i>Freude</i>"
+              rtf
             />
             <Text
               ml="2"
@@ -186,11 +169,6 @@ const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
               variant="cursive"
               pr="8"
             >
-              <Field.Text
-                display={"inline-block"}
-                name="littleThingsHeading4"
-                defaultValue="Freude"
-              />
               <Image
                 //zIndex={"-1"}
                 pointerEvents={"none"}
