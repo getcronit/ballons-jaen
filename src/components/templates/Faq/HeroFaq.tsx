@@ -26,7 +26,7 @@ const HeroFaq: FC<IHeroFaqProps> = () => {
             <Field.Text
               rtf
               name="faqTitle"
-              defaultValue={"<p>Häufig gestellte <i>Fragen</i></p>"}
+              defaultValue="<p>Häufig gestellte <i>Fragen</i></p>"
             />
           </Heading>
         </Flex>

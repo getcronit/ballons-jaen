@@ -44,13 +44,10 @@ const CustomerItemSection = connectSection(
           </Flex>
           <Stack spacing="0">
             <Heading fontWeight="semibold" fontSize="lg">
-              <Field.Text name="customerName" defaultValue="John Doe" />
+              <Field.Text name="customerName" defaultValue="Nik Doe" />
             </Heading>
-            <Text fontSize="md" as='span'>
-              <Field.Text
-                name="customerPosition"
-                defaultValue="Kunde"
-              />
+            <Text fontSize="md" as="span">
+              <Field.Text name="customerPosition" defaultValue="Kunde" />
             </Text>
             <Text size="b2012" variant="light">
               <Field.Text
@@ -111,7 +108,7 @@ const OurCustomers: FC<IOurCustomersProps> = () => {
                 <Field.Text
                   rtf
                   name="aboutUsCustomerTitle"
-                  defaultValue={"<p>Unsere <i>Kunden</i></p>"}
+                  defaultValue="<p>Unsere <i>Kunden</i></p>"
                 />
               </Heading>
             </Flex>
@@ -120,7 +117,7 @@ const OurCustomers: FC<IOurCustomersProps> = () => {
               size="b2012"
               variant="light"
               maxW={{ base: "80%", md: "90%" }}
-              as='span'
+              as="span"
             >
               <Field.Text
                 name="aboutUsCustomerDescription"

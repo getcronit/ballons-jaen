@@ -44,7 +44,7 @@ const ContactHero: FC<IContactHeroProps> = ({ contactDetails }) => {
               >
                 <Field.Text
                   name="heading1"
-                  defaultValue="Mitten in <i>Wien</i>"
+                  defaultValue="<p>Mitten in <i>Wien</i></p>"
                   rtf
                 />
               </Heading>

@@ -3,17 +3,15 @@ import {
   Button,
   Container,
   Flex,
-  Grid,
   Heading,
-  Image,
   Stack,
   Text,
 } from "@chakra-ui/react"
-import { Field, navigate, useJaenPageIndex } from "@jaenjs/jaen"
+import { Field, navigate } from "@jaenjs/jaen"
 import { FC } from "react"
 import Slider from "react-slick"
 import { CONTAINER_MAX_WIDTH } from "../../constant/sizes"
-import { INewsSlides, JaenPageIndexType } from "../../types/commonTypes"
+import { JaenPageIndexType } from "../../types/commonTypes"
 
 interface IWhiteDesktopSliderProps {
   showTitle?: boolean
@@ -97,7 +95,6 @@ const WhiteDesktopSlider: FC<IWhiteDesktopSliderProps> = ({
                     >
                       <Field.Text
                         name="title"
-                        rtf
                         defaultValue="Ballons & Ballons: Die Geschichte"
                       />
                     </Heading>
@@ -108,7 +105,7 @@ const WhiteDesktopSlider: FC<IWhiteDesktopSliderProps> = ({
                     >
                       <Field.Text
                         name="description"
-                        defaultValue=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
+                        defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
                         libero risus semper Lorem ipsum dolor sit amet, consectetur
                         adipiscing elit. Faucibus in libero risus semper Lorem ipsum dolor
                         sit amet, consectetur adipiscing elit. Faucibus in libero risus

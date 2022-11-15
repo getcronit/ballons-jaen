@@ -1,5 +1,5 @@
-import { Box, Text } from "@chakra-ui/react";
-import { Field } from "@jaenjs/jaen";
+import { Box, Text } from "@chakra-ui/react"
+import { Field } from "@jaenjs/jaen"
 
 export const BlogMeta: React.FC = () => {
   return (
@@ -9,14 +9,15 @@ export const BlogMeta: React.FC = () => {
         <Text as="span" size="b2012" fontWeight="bold" color="gray.700">
           <Field.Text
             name="author"
-            defaultValue="Max Mustermann"
+            defaultValue="Nik Doe"
             as="span"
-            display={"inline-block"} />
+            display={"inline-block"}
+          />
         </Text>
       </Text>
       <Text size="b2012" textAlign="end">
         <Field.Text name="date" defaultValue="12.12.2020" />
       </Text>
     </Box>
-  );
+  )
 }

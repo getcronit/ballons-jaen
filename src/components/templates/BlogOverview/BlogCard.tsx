@@ -1,17 +1,13 @@
 import {
-  Box,
   Button,
   Flex,
   Grid,
   Heading,
-  HStack,
   Image,
   Stack,
-  Tag,
   Text,
 } from "@chakra-ui/react"
 import { Field, navigate } from "@jaenjs/jaen"
-import { Link } from "gatsby"
 import { FC } from "react"
 import { BiChevronRight } from "react-icons/bi"
 import { CONTAINER_MAX_WIDTH } from "../../../constant/sizes"
@@ -52,7 +48,7 @@ const BlogCard: FC<IBlogCardProps> = ({ slug }) => {
           <Field.Text
             name="title"
             rtf
-            defaultValue="Ballons & Ballons: Die Geschichte"
+            defaultValue="<p>Ballons & Ballons: Die Geschichte</p>"
           />{" "}
         </Heading>
         <Text variant="light" size="b2012" noOfLines={3}>

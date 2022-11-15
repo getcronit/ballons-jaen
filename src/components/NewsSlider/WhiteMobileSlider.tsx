@@ -4,17 +4,16 @@ import {
   Container,
   Grid,
   Heading,
-  Image,
   Stack,
   Text,
   VStack,
 } from "@chakra-ui/react"
-import { settings } from "../../constant/slider"
+import { Field, navigate } from "@jaenjs/jaen"
 import { FC } from "react"
 import Slider from "react-slick"
-import { INewsSlides, JaenPageIndexType } from "../../types/commonTypes"
 import { CONTAINER_MAX_WIDTH } from "../../constant/sizes"
-import { Field, navigate, useJaenPageIndex } from "@jaenjs/jaen"
+import { settings } from "../../constant/slider"
+import { JaenPageIndexType } from "../../types/commonTypes"
 
 interface IWhiteMobileSliderProps {
   index: JaenPageIndexType
@@ -74,14 +73,13 @@ const WhiteMobileSlider: FC<IWhiteMobileSliderProps> = ({ index }) => {
                   >
                     <Field.Text
                       name="title"
-                      rtf
                       defaultValue="Ballons & Ballons: Die Geschichte"
                     />
                   </Heading>
                   <Text color="black.500" fontSize="sm" as="span" noOfLines={4}>
                     <Field.Text
                       name="description"
-                      defaultValue=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
+                      defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
                         libero risus semper Lorem ipsum dolor sit amet, consectetur
                         adipiscing elit. Faucibus in libero risus semper Lorem ipsum dolor
                         sit amet, consectetur adipiscing elit. Faucibus in libero risus

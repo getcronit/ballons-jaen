@@ -19,7 +19,7 @@ import {
 } from "@chakra-ui/react"
 import { useForm } from "react-hook-form"
 
-import { Field, navigate, useField } from "@jaenjs/jaen"
+import { navigate, NotifyField, useField } from "@jaenjs/jaen"
 import React from "react"
 
 const validateUrl = (value: string): boolean => {
@@ -95,18 +95,17 @@ const UpdateUrlForm: React.FC<{
   )
 }
 
-const LinkButtonField: React.FC<
+const LinkButtonNotifyField: React.FC<
   {
     name: string
     defaultValue?: string
-    defaultUrl?: string
   } & ButtonProps
-> = ({ name, defaultValue, defaultUrl, ...buttonProps }) => {
+> = ({ name, defaultValue, ...buttonProps }) => {
   const { onOpen, onClose, isOpen } = useDisclosure()
   const firstFieldRef = React.useRef(null)
 
   const hiddenUrlFieldName = `${name}.url`
-  const hiddenUrlFieldDefaultValue = defaultUrl || "https://example.com"
+  const hiddenUrlFieldDefaultValue = "https://example.com"
 
   const buttonTextField = useField<string>(name, "IMA:TextField")
   const hiddenUrlField = useField<string>(hiddenUrlFieldName, "IMA:TextField")
@@ -138,7 +137,10 @@ const LinkButtonField: React.FC<
           buttonTextField.isEditing ? "text !important" : "pointer !important"
         }
       >
-        <Field.Text name={name} defaultValue={defaultValue || "Button Text"} />
+        <NotifyField.Text
+          name={name}
+          defaultValue={defaultValue || "Button Text"}
+        />
       </Button>
       {buttonTextField.isEditing && (
         <Box pos={"absolute"} right={0} top={0}>
@@ -174,4 +176,4 @@ const LinkButtonField: React.FC<
   )
 }
 
-export default LinkButtonField
+export default LinkButtonNotifyField

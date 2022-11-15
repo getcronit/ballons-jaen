@@ -14,18 +14,8 @@ const ImaginationUpperSection: FC<IImaginationUpperSectionProps> = () => {
       >
         <Field.Text
           display={"inline-block"}
-          name="heading1"
-          defaultValue="Was man mit Ballons alles machen kann...?"
-        />
-      </Heading>
-      <Heading
-        textAlign="center"
-        fontSize={{ base: "md", md: "xl", lg: "2xl" }}
-      >
-        <Field.Text
-          display={"inline-block"}
-          name="heading2"
-          defaultValue="Mit ein wenig Phatansie... "
+          name="imaginationHeading"
+          defaultValue="Was man mit Ballons alles machen kann...<br/>Mit ein wenig Phatansie...?"
         />
       </Heading>
       <Box
@@ -40,7 +30,7 @@ const ImaginationUpperSection: FC<IImaginationUpperSectionProps> = () => {
         >
           <Field.Text
             display={"inline-block"}
-            name="text"
+            name="imaginationText"
             defaultValue="Alles"
           />
         </Text>

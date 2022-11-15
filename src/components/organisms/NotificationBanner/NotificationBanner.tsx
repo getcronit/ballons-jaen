@@ -75,7 +75,7 @@ export const NotificationBanner = (props: NotificationBannerProps) => {
                 <Heading fontWeight="semibold" size="h6020">
                   <NotifyField.Text
                     name="heading"
-                    defaultValue={"Wir sind auf <i>Urlaub</i>"}
+                    defaultValue="<p>Wir sind auf <i>Urlaub</i></p>"
                     rtf
                   />
                 </Heading>
@@ -108,6 +108,7 @@ export const NotificationBanner = (props: NotificationBannerProps) => {
                 <Button
                   size={{ base: "sm", md: "md" }}
                   mt={{ base: "4 !important", md: "8 !important" }}
+                  onClick={onClose}
                 >
                   Zur Website
                 </Button>
