@@ -1,5 +1,4 @@
 import { Grid, GridItem } from "@chakra-ui/react"
-import { useJaenPageIndex } from "@jaenjs/jaen"
 import { FC } from "react"
 import CardWithImageBackground from "../../../../components/CardWithImageBackground"
 import { useContentPages } from "../../../hooks/useContentPages"
@@ -58,6 +57,7 @@ const RiesgesTopSection: FC<IRiesgesTopSectionProps> = () => {
                 textDefaultValue: cards[0].text,
                 imageFieldName: `riesgesCardImage${i}`,
                 imageDefaultValue: cards[0].image,
+                linkUrl: `/${page.slug}`,
               }}
               key={i}
             />

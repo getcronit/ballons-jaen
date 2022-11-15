@@ -1,5 +1,5 @@
 import { Box, Grid, Heading, HStack, Stack, Text } from "@chakra-ui/react"
-import { Field } from "@jaenjs/jaen"
+import { Field, navigate } from "@jaenjs/jaen"
 import { FC } from "react"
 import { BiChevronRight } from "react-icons/bi"
 interface ICardWithImageBackgroundProps {
@@ -10,6 +10,7 @@ interface ICardWithImageBackgroundProps {
     textDefaultValue?: string
     imageFieldName?: string
     imageDefaultValue?: string
+    linkUrl?: string
   }
   displayContent?: boolean
   w?: {}
@@ -26,6 +27,7 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
 }) => {
   return (
     <Stack
+      onClick={() => navigate(card.linkUrl || "")}
       position="relative"
       _hover={{
         transition: "all 0.3s ease",
@@ -44,12 +46,12 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
       overflow={"hidden"}
       minW="20rem"
     >
-     {card.imageFieldName && (
-       <Field.Image
-       name={card.imageFieldName}
-       defaultValue={card.imageDefaultValue}
-     />
-     )}
+      {card.imageFieldName && (
+        <Field.Image
+          name={card.imageFieldName}
+          defaultValue={card.imageDefaultValue}
+        />
+      )}
       <Box position="absolute">
         {displayContent && (
           <Stack p="6" pb="4">
@@ -88,7 +90,11 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
               // }}
               transition="ease-in 0.2s"
             >
-              <Text fontSize={{ base: "sm", lg: "md" }} fontWeight="700">
+              <Text
+                onClick={() => navigate(card.linkUrl || "")}
+                fontSize={{ base: "sm", lg: "md" }}
+                fontWeight="700"
+              >
                 Mehr anzeigen
               </Text>
               <Grid

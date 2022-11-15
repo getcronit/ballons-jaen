@@ -108,6 +108,7 @@ export const NotificationBanner = (props: NotificationBannerProps) => {
                 <Button
                   size={{ base: "sm", md: "md" }}
                   mt={{ base: "4 !important", md: "8 !important" }}
+                  onClick={onClose}
                 >
                   Zur Website
                 </Button>
