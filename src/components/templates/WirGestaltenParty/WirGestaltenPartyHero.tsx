@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Container,
   Flex,
   Grid,
@@ -43,14 +42,18 @@ const WirGestaltenPartyHero: FC<IWirGestaltenPartyHeroProps> = () => {
               fontSize={{ base: "md", md: "2xl", lg: "3xl", xl: "4xl" }}
               fontWeight="semibold"
               sx={{
-                'i, em': {
-                  fontSize: '1.5em',
-                }
+                "i, em": {
+                  fontSize: "1.5em",
+                },
               }}
             >
-              <Field.Text name="title" rtf defaultValue={"<p>Wir gestalten </br> <i>Ihre Party</i></p>"} />
+              <Field.Text
+                name="title"
+                rtf
+                defaultValue="<p>Wir gestalten </br> <i>Ihre Party</i></p>"
+              />
             </Heading>
-           
+
             <Text
               display={{ base: "none", sm: "block" }}
               fontSize={{ base: "sm", lg: "md" }}

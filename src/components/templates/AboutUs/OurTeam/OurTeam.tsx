@@ -1,4 +1,4 @@
-import { Box, Container, Flex, Heading, Text, VStack } from "@chakra-ui/react"
+import { Box, Container, Heading, VStack } from "@chakra-ui/react"
 import { connectSection, Field, useJaenSectionContext } from "@jaenjs/jaen"
 import { FC } from "react"
 import { CONTAINER_MAX_WIDTH } from "../../../../constant/sizes"
@@ -200,7 +200,7 @@ const OurTeam: FC<IOurTeamProps> = () => {
               <Field.Text
                 rtf
                 name="aboutUsOurTeamTitle"
-                defaultValue={`<p>Unser <i>Team</i></p>`}
+                defaultValue="<p>Unser <i>Team</i></p>"
               />
             </Heading>
             <Heading size="h3015">
@@ -255,24 +255,23 @@ const OurTeam: FC<IOurTeamProps> = () => {
             <TeamMember member={teamMembers[4]} />
           </Container>
         </Box> */}
-         <OurBoss
-        member={{
-          imageFieldName: `bossImage`,
-          imageDefaultValue: "/images/about_us/bossProfile.png",
-          nameFieldName: `bossName`,
-          nameDefaultValue: "Nik D.",
-          quoteFieldName: `bossQoute`,
-          quoteDefaultValue: `"Der Boss"`,
-          qualificationsFieldName: `bossQualities`,
-          qualificationsDefaultValue: `<ul>
+        <OurBoss
+          member={{
+            imageFieldName: `bossImage`,
+            imageDefaultValue: "/images/about_us/bossProfile.png",
+            nameFieldName: `bossName`,
+            nameDefaultValue: "Nik D.",
+            quoteFieldName: `bossQoute`,
+            quoteDefaultValue: `"Der Boss"`,
+            qualificationsFieldName: `bossQualities`,
+            qualificationsDefaultValue: `<ul>
               <li>geht erst heim, wenn wirklich alles passt</li>
               <li>wechselt zwischen Kopf- und Bauchgefühl</li>
               <li>kreativ und analytisch</li>
             </ul>`,
-        }}
-      />
+          }}
+        />
       </Box>
-     
     </>
   )
 }

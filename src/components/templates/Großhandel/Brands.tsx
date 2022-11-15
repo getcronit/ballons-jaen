@@ -1,6 +1,5 @@
 import {
   Box,
-  Container,
   Flex,
   Heading,
   HStack,
@@ -93,7 +92,7 @@ export const BrandsSection = connectSection(
               <Field.Text
                 rtf
                 name="partnerTitle"
-                defaultValue={"<p>Ein <i>Partner</i></p>"}
+                defaultValue="<p>Ein <i>Partner</i></p>"
               />
             </Heading>
           </Flex>

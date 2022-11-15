@@ -1,13 +1,4 @@
-import {
-  Box,
-  Button,
-  Container,
-  Flex,
-  Heading,
-  Image,
-  Stack,
-  Text,
-} from "@chakra-ui/react"
+import { Box, Container, Flex, Heading, Stack, Text } from "@chakra-ui/react"
 import { Field } from "@jaenjs/jaen"
 import { FC } from "react"
 import { CONTAINER_MAX_WIDTH } from "../../../constant/sizes"
@@ -61,7 +52,7 @@ const ProductCatlog: FC<IProductCatlogProps> = () => {
             <Field.Text
               name="catalogueTitle"
               rtf
-              defaultValue={"<p>Unsere <i>Kataloge</i></p>"}
+              defaultValue="<p>Unsere <i>Kataloge</i></p>"
             />
           </Heading>
           <Text fontSize={{ base: "sm", lg: "md" }}>

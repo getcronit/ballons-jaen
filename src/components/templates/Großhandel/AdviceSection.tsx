@@ -1,13 +1,4 @@
-import {
-  Box,
-  Button,
-  Container,
-  Flex,
-  Heading,
-  Image,
-  Stack,
-  Text,
-} from "@chakra-ui/react"
+import { Box, Container, Flex, Heading, Stack, Text } from "@chakra-ui/react"
 import { Field } from "@jaenjs/jaen"
 import { FC } from "react"
 import { CONTAINER_MAX_WIDTH } from "../../../constant/sizes"
@@ -33,7 +24,7 @@ const AdviceSection: FC<IAdviceSectionProps> = () => {
             <Heading size="h5020" as="span" fontWeight="semibold">
               <Field.Text
                 name="adviceTitle"
-                defaultValue={"<p>Lass dich von uns <i>beraten</i></p>"}
+                defaultValue="<p>Lass dich von uns <i>beraten</i></p>"
               />
             </Heading>
           </Flex>

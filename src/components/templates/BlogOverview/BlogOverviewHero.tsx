@@ -1,19 +1,14 @@
 import {
   Box,
   Button,
-  Center,
   Container,
   Flex,
-  Grid,
   Heading,
-  HStack,
-  Image,
   Stack,
-  Tag,
   Text,
   VStack,
 } from "@chakra-ui/react"
-import { Field, navigate, useJaenPageIndex } from "@jaenjs/jaen"
+import { Field, navigate } from "@jaenjs/jaen"
 import { FC } from "react"
 import { CONTAINER_MAX_WIDTH } from "../../../constant/sizes"
 import { JaenPageIndexType } from "../../../types/commonTypes"
@@ -74,7 +69,7 @@ const FeaturedBlog: React.FC<{
               <Field.Text
                 name="title"
                 rtf
-                defaultValue="Ballons & Ballons: Die Geschichte"
+                defaultValue="<p>Ballons & Ballons: Die Geschichte</p>"
               />
             </Heading>
             <Text variant="light" size="b2012" as="span">
@@ -162,7 +157,7 @@ const BlogOverviewHero: FC<IBlogOverviewHeroProps> = props => {
             <Field.Text
               rtf
               name="heroTitle"
-              defaultValue="Wissenswertes über Ballons & Ballons"
+              defaultValue="<p>Wissenswertes über Ballons & Ballons</p>"
             />
           </Heading>
         </VStack>

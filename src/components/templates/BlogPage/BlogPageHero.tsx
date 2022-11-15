@@ -1,12 +1,4 @@
-import {
-  Box,
-  Container,
-  Flex,
-  Heading,
-  Image,
-  Stack,
-  Text,
-} from "@chakra-ui/react"
+import { Box, Container, Flex, Heading, Stack, Text } from "@chakra-ui/react"
 import { Field } from "@jaenjs/jaen"
 import { FC } from "react"
 import { CONTAINER_MAX_WIDTH } from "../../../constant/sizes"
@@ -51,7 +43,7 @@ const BlogPageHero: FC<IBlogPageHeroProps> = () => {
               <Field.Text
                 name="title"
                 rtf
-                defaultValue="Ballons & Ballons: Die Geschichte"
+                defaultValue="<p>Ballons & Ballons: Die Geschichte</p>"
               />
             </Heading>
           </Flex>
