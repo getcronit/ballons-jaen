@@ -32,7 +32,9 @@ export const Layout: React.FC<LayoutProps> = ({
         <>{children}</>
       </BasketDrawerProvider>
 
-      <Footer />
+      {mode === "website" && (
+        <Footer />
+      )}
     </ScrollToTop>
   )
 }

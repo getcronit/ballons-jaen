@@ -17,6 +17,7 @@ import {
   Select as CSelect,
   Spacer,
   Stack,
+  StackDivider,
   StackProps,
   Text,
   useColorModeValue,
@@ -25,6 +26,7 @@ import {
 } from "@chakra-ui/react"
 import { FaSort } from "@react-icons/all-files/fa/FaSort"
 import { GroupBase, OptionBase, Select } from "chakra-react-select"
+import { Link } from "gatsby"
 import React, { ReactNode } from "react"
 
 interface TagFilterOption extends OptionBase {
@@ -449,14 +451,18 @@ export default function ProductsPageShell(
   }
 
   return (
-    <Flex h="100vh" bg={"white"} overflow="hidden">
+    <Flex
+      h={{ sm: "calc(100vh - 5rem)", md: "calc(100vh - 4rem)" }}
+      bg={"white"}
+      overflow="hidden"
+    >
       <SidebarContent display={{ base: "none", lg: "block" }}>
         <CategoryPicker
           groupedCategories={groupedCategories}
           activeTags={activeTags}
           updateActiveTags={updateActiveTags}
           addOrRemoveTag={addOrRemoveTag}
-        ></CategoryPicker>
+        />
       </SidebarContent>
 
       <Flex w="100%" h="100%" flexDirection={"column"}>
@@ -519,9 +525,42 @@ export default function ProductsPageShell(
             </CSelect>
           </HStack>
         </Flex>
-        <Box pos="relative" overflowY={"scroll"} zIndex="0" pb={48}>
+        <Box flex='1' pos="relative" overflowY={"scroll"} zIndex="0" pb={48}>
           {props.children}
         </Box>
+        <HStack as="footer" justifyContent={"right"} mr="8" spacing="4" divider={<StackDivider />}>
+          {[
+            {
+              text: "Kontakt",
+              to: "/kontakt/",
+            },
+
+            {
+              text: "Datenschutz",
+              to: "/datenschutz/",
+            },
+            {
+              text: "Impressum",
+              to: "/impressum/",
+            },
+          ].map((item, index) => {
+            return (
+              <Link to={item.to}>
+                <Text
+                  key={index}
+                  fontSize="xs"
+                  color="gray.400"
+                  _hover={{
+                    color: "gray.500",
+                    textDecoration: "underline",
+                  }}
+                >
+                  {item.text}
+                </Text>
+              </Link>
+            )
+          })}
+        </HStack>
       </Flex>
     </Flex>
   )
