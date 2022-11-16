@@ -26,7 +26,9 @@ const Navigation: FC<INavigationProps> = ({mode}) => {
 
 
   return (
-    <Box as="nav" zIndex="sticky" pos="sticky" top="0" bg="white">
+    <Box as="nav" zIndex="sticky" pos={
+      mode === "website" ? "sticky" : "relative"
+    } top="0" bg="white">
       <Stack display={{ base: "none", md: "flex" }} spacing="0">
         <TopNav mode={mode} onSearchClick={handleOnSearchClick} onBasketClick={handleOnBasketClick} />
         {

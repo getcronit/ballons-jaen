@@ -4,7 +4,7 @@ export default function ScrollToTop({
   children,
   pathname,
 }: {
-  children: React.ReactElement | React.ReactElement[]
+  children: React.ReactNode
   pathname: string
 }) {
   useEffect(() => {
