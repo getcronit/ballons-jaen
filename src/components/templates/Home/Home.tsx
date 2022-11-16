@@ -1,5 +1,4 @@
 import { FC } from "react"
-import { sliderDummyData } from "../../../constant/slider"
 import NewsSlider from "../../NewsSlider/NewsSlider"
 import HeartSection from "./HeartSection/HeartSection"
 import Hero from "./Hero/Hero"
@@ -21,7 +20,7 @@ const Home: FC<IHomeProps> = () => {
       <JoySection />
       <ImaginationSection />
       <NewsSection />
-      <NewsSlider/>
+      <NewsSlider />
     </>
   )
 }
