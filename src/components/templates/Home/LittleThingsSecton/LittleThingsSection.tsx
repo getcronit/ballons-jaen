@@ -158,7 +158,7 @@ const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
             <Field.Text
               display={"inline-block"}
               name="littleThingsHeading1"
-              defaultValue="Auch die <i>kleinsten</i><br/> Dinge machen viel <i>Freude</i>"
+              defaultValue="<p>Auch die <i>kleinsten</i><br/> Dinge machen viel <i>Freude</i></p>"
               rtf
             />
             <Text
