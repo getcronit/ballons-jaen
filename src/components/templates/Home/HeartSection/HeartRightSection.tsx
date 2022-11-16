@@ -1,6 +1,6 @@
 import { Grid, GridItem } from "@chakra-ui/react"
 import { FC } from "react"
-import CardWithImageBackground from "../../../CardWithImageBackground"
+import CardWithImageBackgroundField from "../../../fields/CardWithImageBackgroundField"
 
 interface IHeartRightSectionProps {}
 
@@ -41,9 +41,10 @@ const HeartRightSection: FC<IHeartRightSectionProps> = () => {
           h={{ base: "15rem", md: "22.1875rem" }}
           key={i}
         >
-          <CardWithImageBackground
+          <CardWithImageBackgroundField
+            name={`heartCardLink${i}`}
             card={{
-              headingFieldName: `heartCardheading${i}`,
+              headingFieldName: `heartCardHeading${i}`,
               headingDefaultValue: cards[0].heading,
               textFieldName: `heartCardText${i}`,
               textDefaultValue: cards[0].text,
