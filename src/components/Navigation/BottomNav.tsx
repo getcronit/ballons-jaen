@@ -21,6 +21,7 @@ import {
   useDisclosure,
   VStack,
 } from "@chakra-ui/react"
+import { navigate } from "@jaenjs/jaen"
 import { store } from "@jaenjs/jaen/src/redux"
 import { Link } from "gatsby"
 import React, { FC } from "react"
@@ -64,6 +65,12 @@ const BottomNav: FC<IBottomNavProps> = () => {
               }}
               as={Link}
               to={link.to}
+              onClick={(e) => {
+                e.preventDefault()
+                navigate(link.to)
+
+                return false
+              }}
               key={index}
               textAlign="center"
               _hover={{

@@ -27,7 +27,7 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
 }) => {
   return (
     <Stack
-      onClick={() => navigate(card.linkUrl || "")}
+      onClick={() => card.linkUrl && navigate(card.linkUrl)}
       position="relative"
       _hover={{
         transition: "all 0.3s ease",
