@@ -1,4 +1,5 @@
 import { Box, Stack } from "@chakra-ui/react"
+import { useField } from "@jaenjs/jaen"
 import { FC } from "react"
 import { useBasket } from "../../services/basket"
 import { useSearch } from "../../services/search"
@@ -23,6 +24,8 @@ const Navigation: FC<INavigationProps> = ({mode}) => {
   const handleOnSearchClick = () => {
     search.onOpen()
   }
+
+
 
 
   return (
