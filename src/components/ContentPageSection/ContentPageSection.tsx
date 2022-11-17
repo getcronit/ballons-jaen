@@ -1,11 +1,18 @@
+import { ArrowUpIcon } from "@chakra-ui/icons"
 import {
   Box,
+  Button,
   Container,
   Flex,
   Grid,
   GridItem,
   Heading,
+  HStack,
+  IconButton,
   Image,
+  Link,
+  Progress,
+  Spacer,
   Stack,
   Text,
   VStack,
@@ -13,10 +20,12 @@ import {
 import {
   connectSection,
   Field,
+  navigate,
   useField,
   useJaenSectionContext,
+  useSection,
 } from "@jaenjs/jaen"
-import React, { useCallback, useState } from "react"
+import React, { forwardRef, useCallback, useRef, useState } from "react"
 import Slider from "react-slick"
 import { CONTAINER_MAX_WIDTH } from "../../constant/sizes"
 import CustomImageViewer from "../CustomImageViewer"
@@ -174,16 +183,14 @@ const Images = React.memo<{
         <Box
           // overflow="hidden"
           display={{ base: "block", md: "none" }}
-          sx={
-            {
-              'ul.slick-dots': {
-                top: 'auto',
-              },
-              '.slick-slider, .slick-slide': {
-                px: 2
-              }
-            }
-          }
+          sx={{
+            "ul.slick-dots": {
+              top: "auto",
+            },
+            ".slick-slider, .slick-slide": {
+              px: 2,
+            },
+          }}
         >
           <Slider {...mobileSliderSettings}>
             {new Array(9).fill("").map((_, i) => {
@@ -253,12 +260,17 @@ const FullWidthImageSection = connectSection(
         <Box
           my={{ base: "4 !important", md: "12 !important" }}
           borderRadius={{ base: ".625rem", md: "2rem" }}
-          minH={{ base: "11.25rem", md: "18.75rem", lg: "25rem", xl: "29.375rem" }}
+          minH={{
+            base: "11.25rem",
+            md: "18.75rem",
+            lg: "25rem",
+            xl: "29.375rem",
+          }}
           boxShadow="light"
           overflow={"hidden"}
         >
           <Field.Image
-            style={{minHeight: "inherit"}}
+            style={{ minHeight: "inherit" }}
             name="image"
             defaultValue={undefined}
             objectFit="cover"
@@ -427,7 +439,7 @@ const CategoryContentSection = connectSection(
               <VStack pos="relative">
                 <Text variant="cursive" size="120" as="span">
                   <Field.Text
-                    name="fourCardItemTitle"
+                    name="title"
                     displayName="Überschrift"
                     defaultValue="Überschrift"
                   />
@@ -437,7 +449,7 @@ const CategoryContentSection = connectSection(
                   fontSize={{ base: "md", md: "lg", lg: "xl", xl: "2xl" }}
                 >
                   <Field.Text
-                    name="subHeading"
+                    name="subtitle"
                     displayName="Unterüberschrift"
                     defaultValue="Unterüberschrift"
                   />
@@ -484,26 +496,223 @@ const CategoryContentSection = connectSection(
   }
 )
 
-export const ContentPageSection: React.FC<ContentPageSectionProps> = () => {
-  const sectionFieldName = "contentCategories"
-  const sectionDisplayName = "Content"
+const CategoryNavigationBar: React.FC<{
+  categorySectionFieldName: string
+  refs: React.MutableRefObject<HTMLDivElement[]>
+}> = ({ categorySectionFieldName, refs }) => {
+  const section = useSection(categorySectionFieldName)
+
+  console.log(`section`, section)
+
+  const [progress, setProgress] = useState(0)
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  console.log(refs)
+
+  const sectionItems: {
+    title: string
+    subtitle: string
+    text: string
+    ref: HTMLDivElement
+  }[] = React.useMemo(() => {
+    return (
+      section.data?.items?.map((item, i) => {
+        const textFields = item.jaenFields?.["IMA:TextField"] || {}
+
+        console.log(item.jaenFields)
+
+        const titleField = (textFields?.["title"] as any) || {}
+        const subtitleField = (textFields?.["subtitle"] as any) || {}
+        const textField = (textFields?.["text"] as any) || {}
+
+        return {
+          title: titleField.value || titleField.props?.defaultValue,
+          subtitle: subtitleField.value || subtitleField.props?.defaultValue,
+          text: textField.value || textField.props?.defaultValue,
+          ref: refs.current[i],
+        }
+      }) ?? []
+    )
+  }, [section])
+
+  const handleScroll = (e: any) => {
+    // check if scroll is inside a section
+
+    if (sectionItems[0].ref) {
+      const sectionBeginY = sectionItems[0].ref.offsetTop
+      const sectionEndY = sectionItems[sectionItems.length - 1].ref.offsetTop
+
+      // check if scroll is inside a section
+      if (
+        e.target.scrollTop >= sectionBeginY &&
+        e.target.scrollTop <= sectionEndY
+      ) {
+        console.log(`scrolling inside section`)
+
+        // calculate progress
+        const progress =
+          (e.target.scrollTop - sectionBeginY) / (sectionEndY - sectionBeginY)
+
+        // round progress to 2 decimal places
+        const roundedProgress = Math.round(progress * 100) / 100
+
+        // set progress
+        setProgress(roundedProgress)
+      }
+
+      // find active index
+      const activeIndex = sectionItems.findIndex((item, i) => {
+        const nextItem = sectionItems[i + 1]
+
+        if (nextItem) {
+          return (
+            e.target.scrollTop >= item.ref.offsetTop  &&
+            e.target.scrollTop < nextItem.ref.offsetTop
+          )
+        } else {
+          return e.target.scrollTop >= item.ref.offsetTop 
+        }
+      })
+
+      // set active index
+      setActiveIndex(activeIndex === -1 ? 0 : activeIndex)
+    }
+  }
+  React.useEffect(() => {
+    // get element by id jaen-content-container
+    // add event listener scroll
+
+    const element = document.getElementById("jaen-content-container")
+
+    if (!element) throw new Error("jaen-content-container not found")
+
+    element.addEventListener("scroll", handleScroll)
+
+    return () => {
+      element.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
 
   return (
-    <Stack>
-      <FourCard
-        sectionFieldName={sectionFieldName}
-        sectionDisplayName={sectionDisplayName}
+    <Box bg="gray.700" color="white" pos="sticky" top="0" zIndex={9999} mb="24">
+      <Container maxW={CONTAINER_MAX_WIDTH} pos="relative" py="2">
+        <HStack spacing="8">
+          <IconButton
+            aria-label="Go to top"
+            icon={<ArrowUpIcon />}
+            onClick={() => {
+              const currentPath = window.location.href
+
+              navigate(currentPath)
+            }}
+            // onClick={() => {
+
+            //   ref?
+
+            //   ref?.scrollIntoView({
+            //     behavior: "smooth",
+
+            //   })
+            // }}
+          />
+
+          <HStack w="full" justifyContent={"space-between"}>
+            {sectionItems.map((item, i) => {
+              return (
+                <Link
+                  fontWeight={
+                    activeIndex === i ? "bold" : "normal"
+                  }
+                  onClick={() => {
+                    item.ref?.scrollIntoView({
+                      behavior: "smooth",
+                    })
+                  }}
+                >
+                  {item.title}
+                </Link>
+              )
+            })}
+          </HStack>
+        </HStack>
+      </Container>
+
+      <Progress
+        colorScheme="pink"
+        bg="gray.600"
+        size="sm"
+        value={progress * 100}
       />
 
-      <Field.Section
-        as={Stack}
-        props={{ spacing: 20 }}
-        name={sectionFieldName}
-        displayName="Content"
-        sections={[CategoryContentSection]}
-      />
-    </Stack>
+      <Container maxW={CONTAINER_MAX_WIDTH} pos="relative" py="2">
+        <Flex>
+          <Flex w="40%" direction={"column"} justifyContent="left" align="left">
+            <Text>{sectionItems[activeIndex]?.title}</Text>
+
+            <Text fontSize='xs'>{sectionItems[activeIndex]?.subtitle}</Text>
+
+            <Spacer />
+
+            <Button variant="link" size="sm" justifyContent={"left"}>
+              Interessiert? Jetzt anfragen
+            </Button>
+          </Flex>
+          <Box flex="1" p="4">
+            <Text noOfLines={3}>{sectionItems[activeIndex]?.text}</Text>
+          </Box>
+        </Flex>
+      </Container>
+    </Box>
   )
 }
+
+export const ContentPageSection: React.FC<ContentPageSectionProps> =
+  forwardRef<HTMLDivElement>((props, ref) => {
+    const sectionFieldName = "contentCategories"
+    const sectionDisplayName = "Content"
+
+    const section = useSection(sectionFieldName)
+
+    const refs = useRef<HTMLDivElement[]>([])
+
+    return (
+      <>
+        <CategoryNavigationBar
+          categorySectionFieldName={sectionFieldName}
+          refs={refs}
+        />
+
+        {/* <HStack>
+          {refs.current.map((ref, index) => (
+            <Button onClick={() => ref.scrollIntoView()}>
+              {ref.innerText} 
+            </Button>
+          ))}
+        </HStack> */}
+
+        <Stack my="8">
+          <FourCard
+            sectionFieldName={sectionFieldName}
+            sectionDisplayName={sectionDisplayName}
+          />
+
+          <Field.Section
+            as={Stack}
+            props={{ spacing: 20 }}
+            sectionProps={({ count }) => ({
+              ref: (el: HTMLDivElement) => {
+                refs.current[count - 1] = el
+
+                console.log(`refs.current`, refs.current)
+              },
+            })}
+            name={sectionFieldName}
+            displayName="Content"
+            sections={[CategoryContentSection]}
+          />
+        </Stack>
+      </>
+    )
+  })
 
 export default ContentPageSection

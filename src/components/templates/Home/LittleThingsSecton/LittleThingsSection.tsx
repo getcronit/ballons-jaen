@@ -186,7 +186,7 @@ const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
           <Heading fontSize={{ base: "sm", md: "md" }} fontWeight="semibold">
             <Field.Text
               display={"inline-block"}
-              name="littleThingsSubheading"
+              name="littleThingssubtitle"
               defaultValue="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
             />
           </Heading>

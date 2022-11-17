@@ -30,7 +30,7 @@ const BallonGas: FC<IBallonGasProps> = () => {
             variant="cursive"
             as="span"
           >
-            <Field.Text name="title" defaultValue={"Ballongas"} />
+            <Field.Text name="BallonGas.title" defaultValue={"Ballongas"} />
           </Text>
           <Text
             maxW="80%"
@@ -39,7 +39,7 @@ const BallonGas: FC<IBallonGasProps> = () => {
             as="span"
           >
             <Field.Text
-              name="titleText"
+              name="BallonGas.titleText"
               defaultValue={
                 " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in libero risus semper.Lo."
               }
@@ -47,7 +47,7 @@ const BallonGas: FC<IBallonGasProps> = () => {
           </Text>
           <Box>
             <LinkButtonField
-              name="ctaButton"
+              name="BallonGas.ctaButton"
               size={{ base: "xs", md: "lg" }}
               mt="4"
               defaultValue={"Mehr erfahren"}
@@ -57,7 +57,7 @@ const BallonGas: FC<IBallonGasProps> = () => {
         <VStack flex="1" display={{ base: "none", md: "block" }}>
           <Text maxW="90%" fontSize={{ base: "sm", lg: "md" }} as="span">
             <Field.Text
-              name="titleText"
+              name="BallonGas.titleText"
               rtf
               defaultValue={
                 " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in libero risus semper.Lo."

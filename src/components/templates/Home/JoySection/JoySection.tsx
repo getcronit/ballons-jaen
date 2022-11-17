@@ -38,7 +38,7 @@ const JoySection: FC<IJoySectionProps> = () => {
             fontSize={{ base: "lg", md: "3xl" }}
             as="span"
           >
-            <Field.Text name="joySubheading" defaultValue="liegt in der Luft" />
+            <Field.Text name="joysubtitle" defaultValue="liegt in der Luft" />
           </Heading>
         </VStack>
         <Text
