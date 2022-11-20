@@ -546,7 +546,7 @@ const CategoryNavigationBar: React.FC<{
   const handleScroll = (e: any) => {
     // check if scroll is inside a section
 
-    if (sectionItems[0].ref) {
+    if (sectionItems.length > 0 && sectionItems[0].ref) {
       const sectionBeginY = sectionItems[0].ref.offsetTop
       const sectionEndY = sectionItems[sectionItems.length - 1].ref.offsetTop
 
@@ -661,7 +661,7 @@ const CategoryNavigationBar: React.FC<{
           </Box>
 
           <HStack
-            w='full'
+            w="full"
             justifyContent={"space-between"}
             display={{
               base: "none",
