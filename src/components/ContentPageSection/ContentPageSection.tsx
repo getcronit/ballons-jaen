@@ -1,4 +1,4 @@
-import { ArrowUpIcon } from "@chakra-ui/icons"
+import { ArrowUpIcon, ChevronDownIcon } from "@chakra-ui/icons"
 import {
   Box,
   Button,
@@ -11,6 +11,10 @@ import {
   IconButton,
   Image,
   Link,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   Progress,
   Spacer,
   Stack,
@@ -32,6 +36,8 @@ import CustomImageViewer from "../CustomImageViewer"
 import FourCard from "../FourCard/FourCard"
 import ConvincedSection from "../templates/Dekoration/HochzeitsballonsSection/ConvincedSection"
 import BallonGas from "./BallonGas"
+
+import { removeHtmlFromString } from "../../common/utils"
 
 export interface ContentPageSectionProps {}
 
@@ -521,18 +527,16 @@ const CategoryNavigationBar: React.FC<{
         const subtitleField = (textFields?.["subtitle"] as any) || {}
         const textField = (textFields?.["text"] as any) || {}
 
-        const removeHtml = (html: string) => {
-          const tmp = document.createElement("DIV")
-          tmp.innerHTML = html
-          return tmp.textContent || tmp.innerText || ""
-        }
-
         return {
-          title: removeHtml(titleField.value || titleField.props?.defaultValue),
-          subtitle: removeHtml(
+          title: removeHtmlFromString(
+            titleField.value || titleField.props?.defaultValue
+          ),
+          subtitle: removeHtmlFromString(
             subtitleField.value || subtitleField.props?.defaultValue
           ),
-          text: removeHtml(textField.value || textField.props?.defaultValue),
+          text: removeHtmlFromString(
+            textField.value || textField.props?.defaultValue
+          ),
           ref: refs.current[i],
         }
       }) ?? []
@@ -598,17 +602,72 @@ const CategoryNavigationBar: React.FC<{
     }
   }, [sectionItems])
 
+  const scrollToSection = React.useCallback(
+    (index: number) => {
+      if (!element) throw new Error("jaen-content-container not found")
+
+      element.scrollTo({
+        top: sectionItems[index].ref.offsetTop,
+        behavior: "smooth",
+      })
+    },
+    [sectionItems]
+  )
+
   return (
     <Box bg="gray.700" color="white" pos="sticky" top="0" zIndex={9999} mb="24">
       <Container maxW={CONTAINER_MAX_WIDTH} pos="relative" py="2">
-        <HStack spacing="8">
+        <HStack justifyContent={"center"}>
           <IconButton
+            left="0"
+            mx={{
+              base: "2",
+              md: "0",
+            }}
+            pos={{
+              base: "absolute",
+              md: "relative",
+            }}
             aria-label="Go to top"
             icon={<ArrowUpIcon />}
             onClick={backToTop}
           />
 
-          <HStack w="full" justifyContent={"space-between"}>
+          <Box
+            display={{
+              base: "block",
+              md: "none",
+            }}
+          >
+            <Menu>
+              <MenuButton as={Button} rightIcon={<ChevronDownIcon />} size="sm">
+                {sectionItems[activeIndex]?.title}
+              </MenuButton>
+              <MenuList bg="gray.700" color="white">
+                {sectionItems.map((item, i) => (
+                  <MenuItem
+                    key={i}
+                    color={activeIndex === i ? "red" : "white"}
+                    _hover={{
+                      bg: "gray.600",
+                    }}
+                    onClick={() => scrollToSection(i)}
+                  >
+                    {item.title}
+                  </MenuItem>
+                ))}
+              </MenuList>
+            </Menu>
+          </Box>
+
+          <HStack
+            w='full'
+            justifyContent={"space-between"}
+            display={{
+              base: "none",
+              md: "flex",
+            }}
+          >
             {sectionItems.map((item, i) => {
               return (
                 <Link
@@ -626,6 +685,50 @@ const CategoryNavigationBar: React.FC<{
             })}
           </HStack>
         </HStack>
+
+        <HStack
+          display={"none"}
+          spacing="8"
+          justifyContent={"space-between"}
+          align="center"
+        >
+          <IconButton
+            aria-label="Go to top"
+            icon={<ArrowUpIcon />}
+            onClick={backToTop}
+          />
+
+          {/* <HStack
+            w="full"
+            justifyContent={"space-between"}
+            display={{
+              base: "none",
+              md: "flex",
+            }}
+          >
+            {sectionItems.map((item, i) => {
+              return (
+                <Link
+                  key={i}
+                  fontWeight={activeIndex === i ? "bold" : "normal"}
+                  onClick={() => {
+                    item.ref?.scrollIntoView({
+                      behavior: "smooth",
+                    })
+                  }}
+                >
+                  {item.title}
+                </Link>
+              )
+            })}
+          </HStack> */}
+
+          <Button rightIcon={<ChevronDownIcon />} size="sm">
+            {sectionItems[activeIndex]?.title}
+          </Button>
+
+          <Spacer />
+        </HStack>
       </Container>
 
       <Progress
@@ -637,8 +740,29 @@ const CategoryNavigationBar: React.FC<{
 
       <Container maxW={CONTAINER_MAX_WIDTH} pos="relative" py="2">
         <Flex>
-          <Flex w="40%" direction={"column"} justifyContent="left" align="left">
-            <Text>{sectionItems[activeIndex]?.title}</Text>
+          <VStack
+            w={{
+              base: "100%",
+              md: "40%",
+            }}
+            direction={"column"}
+            justifyContent={{
+              base: "center",
+              md: "flex-start",
+            }}
+            align={{
+              base: "center",
+              md: "flex-start",
+            }}
+          >
+            <Text
+              display={{
+                base: "none",
+                md: "block",
+              }}
+            >
+              {sectionItems[activeIndex]?.title}
+            </Text>
 
             <Text fontSize="xs">{sectionItems[activeIndex]?.subtitle}</Text>
 
@@ -647,8 +771,15 @@ const CategoryNavigationBar: React.FC<{
             <Button variant="link" size="sm" justifyContent={"left"}>
               Interessiert? Jetzt anfragen
             </Button>
-          </Flex>
-          <Box flex="1" p="4">
+          </VStack>
+          <Box
+            flex="1"
+            p="4"
+            display={{
+              base: "none",
+              md: "block",
+            }}
+          >
             <Text noOfLines={3}>{sectionItems[activeIndex]?.text}</Text>
           </Box>
         </Flex>
@@ -684,7 +815,7 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
               ref: (el: HTMLDivElement) => {
                 refs.current[count - 1] = el
               },
-              scrollMarginTop: -20
+              scrollMarginTop: -20,
             })}
             name={sectionFieldName}
             displayName="Content"
