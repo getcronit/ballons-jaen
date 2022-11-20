@@ -38,6 +38,7 @@ import ConvincedSection from "../templates/Dekoration/HochzeitsballonsSection/Co
 import BallonGas from "./BallonGas"
 
 import { removeHtmlFromString } from "../../common/utils"
+import { useContactModal } from "../../services/contact"
 
 export interface ContentPageSectionProps {}
 
@@ -513,6 +514,8 @@ const CategoryNavigationBar: React.FC<{
   const [progress, setProgress] = useState(0)
   const [activeIndex, setActiveIndex] = useState(0)
 
+  const contactModal = useContactModal()
+
   const sectionItems: {
     title: string
     subtitle: string
@@ -615,7 +618,14 @@ const CategoryNavigationBar: React.FC<{
   )
 
   return (
-    <Box bg="gray.700" color="white" pos="sticky" top="0" zIndex={9999} mb="24">
+    <Box
+      bg="gray.700"
+      color="white"
+      pos="sticky"
+      top="0"
+      zIndex="banner"
+      mb="24"
+    >
       <Container maxW={CONTAINER_MAX_WIDTH} pos="relative" py="2">
         <HStack justifyContent={"center"}>
           <IconButton
@@ -768,7 +778,20 @@ const CategoryNavigationBar: React.FC<{
 
             <Spacer />
 
-            <Button variant="link" size="sm" justifyContent={"left"}>
+            <Button
+              variant="link"
+              size="sm"
+              justifyContent={"left"}
+              onClick={() =>
+                contactModal.onOpen({
+                  meta: {
+                    section: {
+                      title: sectionItems[activeIndex]?.title,
+                    },
+                  },
+                })
+              }
+            >
               Interessiert? Jetzt anfragen
             </Button>
           </VStack>

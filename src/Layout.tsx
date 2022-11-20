@@ -6,6 +6,7 @@ import Footer from "./components/Footer/Footer"
 import Navigation from "./components/Navigation/Navigation"
 import ScrollToTop from "./components/ScrollTop"
 import { BasketDrawerProvider } from "./services/basket"
+import { ContactModalProvider } from "./services/contact"
 import { SearchModalProvider } from "./services/search"
 import { LayoutMode } from "./types/commonTypes"
 
@@ -22,19 +23,19 @@ export const Layout: React.FC<LayoutProps> = ({
 }) => {
   return (
     <ScrollToTop pathname={pathname}>
-      <BasketDrawerProvider>
-        <SearchProvider>
-          <SearchModalProvider>
-            <Navigation mode={mode} />
-          </SearchModalProvider>
-        </SearchProvider>
+      <ContactModalProvider>
+        <BasketDrawerProvider>
+          <SearchProvider>
+            <SearchModalProvider>
+              <Navigation mode={mode} />
+            </SearchModalProvider>
+          </SearchProvider>
 
-        <>{children}</>
-      </BasketDrawerProvider>
+          <>{children}</>
+        </BasketDrawerProvider>
 
-      {mode === "website" && (
-        <Footer />
-      )}
+        {mode === "website" && <Footer />}
+      </ContactModalProvider>
     </ScrollToTop>
   )
 }
