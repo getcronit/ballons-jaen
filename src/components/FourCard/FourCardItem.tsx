@@ -12,7 +12,7 @@ export const FourCardItem = connectSection(
       >
         <CardWithImageBackground
           card={{
-            headingFieldName: "fourCardItemTitle",
+            headingFieldName: "title",
             imageFieldName: "fourCardItemImage",
           }}
         />

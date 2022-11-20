@@ -34,7 +34,7 @@ const NewsContent: FC<INewsContentProps> = () => {
       <Heading fontWeight="semibold" fontSize="lg">
         <Field.Text
           display={"inline-block"}
-          name="newsSubheading"
+          name="newssubtitle"
           defaultValue="Gute Dekoration ist kein Zufall"
         />
       </Heading>

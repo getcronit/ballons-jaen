@@ -142,7 +142,7 @@ const Hero: FC<IHeroProps> = props => {
                           fontWeight="semibold"
                         >
                           <Field.Text
-                            name="heroSubheading"
+                            name="herosubtitle"
                             defaultValue={"Momente"}
                           />
                         </Heading>
@@ -290,7 +290,7 @@ const Hero: FC<IHeroProps> = props => {
                             fontSize="clamp(3.125rem,5vw + 8px,6.25rem)"
                           >
                             <Field.Text
-                              name="heroSubheading"
+                              name="herosubtitle"
                               defaultValue={"Momente"}
                             />
                           </Text>
