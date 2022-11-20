@@ -507,7 +507,10 @@ const CategoryNavigationBar: React.FC<{
   categorySectionFieldName: string
   refs: React.MutableRefObject<HTMLDivElement[]>
 }> = ({ categorySectionFieldName, refs }) => {
-  const element = document.getElementById("jaen-content-container")
+  const element =
+    typeof window !== "undefined"
+      ? document.getElementById("jaen-content-container")
+      : null
 
   const section = useSection(categorySectionFieldName)
 
