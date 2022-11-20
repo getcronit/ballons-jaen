@@ -500,14 +500,12 @@ const CategoryNavigationBar: React.FC<{
   categorySectionFieldName: string
   refs: React.MutableRefObject<HTMLDivElement[]>
 }> = ({ categorySectionFieldName, refs }) => {
-  const section = useSection(categorySectionFieldName)
+  const element = document.getElementById("jaen-content-container")
 
-  console.log(`section`, section)
+  const section = useSection(categorySectionFieldName)
 
   const [progress, setProgress] = useState(0)
   const [activeIndex, setActiveIndex] = useState(0)
-
-  console.log(refs)
 
   const sectionItems: {
     title: string
@@ -519,16 +517,22 @@ const CategoryNavigationBar: React.FC<{
       section.data?.items?.map((item, i) => {
         const textFields = item.jaenFields?.["IMA:TextField"] || {}
 
-        console.log(item.jaenFields)
-
         const titleField = (textFields?.["title"] as any) || {}
         const subtitleField = (textFields?.["subtitle"] as any) || {}
         const textField = (textFields?.["text"] as any) || {}
 
+        const removeHtml = (html: string) => {
+          const tmp = document.createElement("DIV")
+          tmp.innerHTML = html
+          return tmp.textContent || tmp.innerText || ""
+        }
+
         return {
-          title: titleField.value || titleField.props?.defaultValue,
-          subtitle: subtitleField.value || subtitleField.props?.defaultValue,
-          text: textField.value || textField.props?.defaultValue,
+          title: removeHtml(titleField.value || titleField.props?.defaultValue),
+          subtitle: removeHtml(
+            subtitleField.value || subtitleField.props?.defaultValue
+          ),
+          text: removeHtml(textField.value || textField.props?.defaultValue),
           ref: refs.current[i],
         }
       }) ?? []
@@ -547,8 +551,6 @@ const CategoryNavigationBar: React.FC<{
         e.target.scrollTop >= sectionBeginY &&
         e.target.scrollTop <= sectionEndY
       ) {
-        console.log(`scrolling inside section`)
-
         // calculate progress
         const progress =
           (e.target.scrollTop - sectionBeginY) / (sectionEndY - sectionBeginY)
@@ -566,11 +568,11 @@ const CategoryNavigationBar: React.FC<{
 
         if (nextItem) {
           return (
-            e.target.scrollTop >= item.ref.offsetTop  &&
+            e.target.scrollTop >= item.ref.offsetTop &&
             e.target.scrollTop < nextItem.ref.offsetTop
           )
         } else {
-          return e.target.scrollTop >= item.ref.offsetTop 
+          return e.target.scrollTop >= item.ref.offsetTop
         }
       })
 
@@ -578,12 +580,15 @@ const CategoryNavigationBar: React.FC<{
       setActiveIndex(activeIndex === -1 ? 0 : activeIndex)
     }
   }
+
+  const backToTop = () => {
+    element?.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    })
+  }
+
   React.useEffect(() => {
-    // get element by id jaen-content-container
-    // add event listener scroll
-
-    const element = document.getElementById("jaen-content-container")
-
     if (!element) throw new Error("jaen-content-container not found")
 
     element.addEventListener("scroll", handleScroll)
@@ -591,7 +596,7 @@ const CategoryNavigationBar: React.FC<{
     return () => {
       element.removeEventListener("scroll", handleScroll)
     }
-  }, [])
+  }, [sectionItems])
 
   return (
     <Box bg="gray.700" color="white" pos="sticky" top="0" zIndex={9999} mb="24">
@@ -600,29 +605,15 @@ const CategoryNavigationBar: React.FC<{
           <IconButton
             aria-label="Go to top"
             icon={<ArrowUpIcon />}
-            onClick={() => {
-              const currentPath = window.location.href
-
-              navigate(currentPath)
-            }}
-            // onClick={() => {
-
-            //   ref?
-
-            //   ref?.scrollIntoView({
-            //     behavior: "smooth",
-
-            //   })
-            // }}
+            onClick={backToTop}
           />
 
           <HStack w="full" justifyContent={"space-between"}>
             {sectionItems.map((item, i) => {
               return (
                 <Link
-                  fontWeight={
-                    activeIndex === i ? "bold" : "normal"
-                  }
+                  key={i}
+                  fontWeight={activeIndex === i ? "bold" : "normal"}
                   onClick={() => {
                     item.ref?.scrollIntoView({
                       behavior: "smooth",
@@ -649,7 +640,7 @@ const CategoryNavigationBar: React.FC<{
           <Flex w="40%" direction={"column"} justifyContent="left" align="left">
             <Text>{sectionItems[activeIndex]?.title}</Text>
 
-            <Text fontSize='xs'>{sectionItems[activeIndex]?.subtitle}</Text>
+            <Text fontSize="xs">{sectionItems[activeIndex]?.subtitle}</Text>
 
             <Spacer />
 
@@ -671,8 +662,6 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
     const sectionFieldName = "contentCategories"
     const sectionDisplayName = "Content"
 
-    const section = useSection(sectionFieldName)
-
     const refs = useRef<HTMLDivElement[]>([])
 
     return (
@@ -681,14 +670,6 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
           categorySectionFieldName={sectionFieldName}
           refs={refs}
         />
-
-        {/* <HStack>
-          {refs.current.map((ref, index) => (
-            <Button onClick={() => ref.scrollIntoView()}>
-              {ref.innerText} 
-            </Button>
-          ))}
-        </HStack> */}
 
         <Stack my="8">
           <FourCard
@@ -702,9 +683,8 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
             sectionProps={({ count }) => ({
               ref: (el: HTMLDivElement) => {
                 refs.current[count - 1] = el
-
-                console.log(`refs.current`, refs.current)
               },
+              scrollMarginTop: -20
             })}
             name={sectionFieldName}
             displayName="Content"
