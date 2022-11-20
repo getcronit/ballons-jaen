@@ -240,19 +240,24 @@ const theme = extendTheme(
           },
         },
       },
+
+      Modal: {
+        sizes: {
+          "2xl": { dialog: { maxWidth: "72rem" } },
+        },
+      },
     },
     styles: {
       global: {
         "html, body": {
           background: "#f4f4f4 !important",
         },
-        'i, em': {
+        "i, em": {
           fontFamily: "Red Buttery, sans-serif",
           fontWeight: "normal",
           color: "red.500",
-          fontSize: '1.3em'
+          fontSize: "1.3em",
           // verticalAlign: 'text-top',
-
         },
       },
     },
