@@ -8,12 +8,14 @@ export interface ProductSliderProps {
   products: ShopifyProduct[]
   heading?: string
   prefixPath?: string
+  wholesale?: boolean
 }
 
 export const ProductSlider = ({
   products,
   heading,
-  prefixPath
+  prefixPath,
+  wholesale
 }: ProductSliderProps) => {
   return (
     <>
@@ -46,6 +48,7 @@ export const ProductSlider = ({
             prefixPath={prefixPath}
             // borderline
             left={0 !== index}
+            wholesale={wholesale}
           />
         ))}
       </Slider>

@@ -8,25 +8,22 @@ import {
 import { ShopifyProduct } from "@snek-at/gatsby-theme-shopify"
 import React from "react"
 
-import { gridPadBoxes } from "../../../common/utils"
 import { ProductCard } from "../ProductCard"
 
 export interface ProductGridProps extends SimpleGridProps {
   heading?: string
   products: ShopifyProduct[]
   prefixPath?: string
-  taxable?: boolean
+  wholesale?: boolean
 }
 
 export const ProductGrid = ({
   heading,
   products,
   prefixPath,
-  taxable,
+  wholesale,
   ...gridProps
 }: ProductGridProps) => {
-  const emptyBoxes = gridPadBoxes(products)
-
   const v = gridProps.columns
     ? useBreakpointValue(gridProps.columns as any)
     : 0 || 0
@@ -47,7 +44,7 @@ export const ProductGrid = ({
               product={item}
               key={index}
               left={0 === (index + 1) % v}
-              taxable={taxable}
+              wholesale={wholesale}
             />
           )
         })}

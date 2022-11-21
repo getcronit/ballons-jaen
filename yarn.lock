@@ -3841,10 +3841,10 @@
     regenerator-runtime "^0.13.9"
     serverless-http "^3.0.1"
 
-"@snek-at/gatsby-theme-shopify@^1.9.1":
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/@snek-at/gatsby-theme-shopify/-/gatsby-theme-shopify-1.9.1.tgz#0dd07756214e543a1f3d1eb7990adf349b9a6009"
-  integrity sha512-P5/fpiYjwAo5iF+2yr+dfj3oimFpFzfS8T6zIaK2i0yl7Jv2mAkCQRSuSDr7ytO52XvEwrdU99xq3k/7YwTr5g==
+"@snek-at/gatsby-theme-shopify@^1.10.0":
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/@snek-at/gatsby-theme-shopify/-/gatsby-theme-shopify-1.10.0.tgz#b7183aa6125469becf2abc586bbf0bfa15c67941"
+  integrity sha512-quC844TVR8KKtwAIBF3+UI3XiRaMQXE1eLc+YrpvpLzvIyKkjFCHjnKeflkmXUPtl6nww4rRhxhagsYD2euenQ==
   dependencies:
     "@types/shopify-buy" "^2.10.10"
     gatsby "^4.12.1"
