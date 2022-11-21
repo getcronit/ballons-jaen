@@ -3,6 +3,12 @@ import {
   Button,
   ButtonGroup,
   Divider,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerHeader,
+  DrawerOverlay,
   Flex,
   HStack,
   IconButton,
@@ -25,6 +31,8 @@ import { navlinks } from "../../../constant/navLink"
 import { LayoutMode } from "../../../types/commonTypes"
 import { NavAuthButton } from "../NavAuthButton"
 import { NavLinks } from "../NavLinks"
+import { FaPhone, FaPhoneAlt } from "react-icons/fa"
+import { useContactModal } from "../../../services/contact"
 
 interface IMobileNavProps {
   mode?: LayoutMode
@@ -39,6 +47,8 @@ const MobileNav: FC<IMobileNavProps> = ({
 }) => {
   const { isOpen, onToggle } = useDisclosure()
 
+  const contactModal = useContactModal()
+
   return (
     <>
       <Box
@@ -50,9 +60,13 @@ const MobileNav: FC<IMobileNavProps> = ({
       >
         <Flex h="3.75rem" justify="space-between" align="center">
           {mode === "website" ? (
-            <Box fontSize="xl" onClick={onToggle}>
-              {isOpen ? <IoCloseOutline /> : <IoMenuOutline />}
-            </Box>
+            <IconButton
+              aria-label="Open menu"
+              variant="ghost"
+              icon={isOpen ? <IoCloseOutline /> : <IoMenuOutline />}
+              fontSize="xl"
+              onClick={onToggle}
+            />
           ) : (
             <IconButton
               as={Link}
@@ -65,7 +79,12 @@ const MobileNav: FC<IMobileNavProps> = ({
           )}
 
           <Box>
-            <Image onClick={() => navigate('/')} h=".875rem" w="10rem" src="/images/red_logo.png" />
+            <Image
+              onClick={() => navigate("/")}
+              h=".875rem"
+              w="10rem"
+              src="/images/red_logo.png"
+            />
           </Box>
           <HStack gap="0" justifySelf="end" spacing="0">
             <NavAuthButton />
@@ -95,20 +114,53 @@ const MobileNav: FC<IMobileNavProps> = ({
             )}
           </HStack>
         </Flex>
-        {isOpen && (
-          <NavLinks
-            align="center"
-            pos="absolute"
-            bg="white"
-            w="full"
-            left="0"
-            px="4"
-            pb="8"
-            zIndex="5"
-            spacing='4'
-            fontSize={'md'}
-          />
-        )}
+        <Drawer placement="left" onClose={onToggle} isOpen={isOpen}>
+          <DrawerOverlay />
+          <DrawerContent>
+            <DrawerCloseButton />
+            <DrawerHeader>
+              <Image
+                onClick={() => navigate("/")}
+                h=".875rem"
+                w="10rem"
+                src="/images/red_logo.png"
+              />
+            </DrawerHeader>
+            <Divider />
+            <DrawerBody>
+              <Stack spacing="8" pt='4'>
+                <NavLinks
+                  childrenTextAlign="left"
+                  w="full"
+                  px="2"
+                  zIndex="5"
+                  spacing="6"
+                  fontSize={"md"}
+                />
+
+                <Stack
+                  direction="row"
+                  justify="space-between"
+                  align="center"
+                  spacing="4"
+                  mt="4"
+                >
+                  <Button
+                  w='full'
+                    leftIcon={<FaPhoneAlt />}
+                    onClick={() => {
+                      contactModal.onOpen({
+                        meta: {},
+                      })
+                    }}
+                  >
+                    Serivce
+                  </Button>
+                </Stack>
+              </Stack>
+            </DrawerBody>
+          </DrawerContent>
+        </Drawer>
       </Box>
       <Box
         onClick={onToggle}

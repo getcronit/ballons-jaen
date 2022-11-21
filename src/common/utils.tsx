@@ -60,8 +60,12 @@ export function useIsInViewport(ref: React.RefObject<HTMLElement>) {
   return isIntersecting
 }
 
-export function removeHtmlFromString(html: string) {
-  const tmp = document.createElement("DIV")
-  tmp.innerHTML = html
-  return tmp.textContent || tmp.innerText || ""
+export function removeHtmlFromString(htmlString: string) {
+  // remove sourounding <p></p> tags of htmlString
+  const htmlStringWithoutP = htmlString.replace(/^<p>|<\/p>$/g, "")
+
+  // decode all html entities
+  const decodedHtmlString = htmlStringWithoutP.replace(/&amp;/g, "&")
+
+  return decodedHtmlString
 }

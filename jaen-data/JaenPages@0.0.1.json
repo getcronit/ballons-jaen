@@ -1,1 +1,26 @@
-{}
+{
+  "JaenPage /": {
+    "context": {
+      "createdAt": "2022-11-21T12:01:30.623Z",
+      "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIUHWN7aJoNCbbdLj1FTFQTgCMiqNGvAAKGCwACCwAB4VObCJCy3tbwPSsE"
+    },
+    "migrations": [
+      {
+        "createdAt": "2022-11-21T12:01:30.623Z",
+        "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIUHWN7aJoNCbbdLj1FTFQTgCMiqNGvAAKGCwACCwAB4VObCJCy3tbwPSsE"
+      }
+    ]
+  },
+  "JaenPage /dekoration/": {
+    "context": {
+      "createdAt": "2022-11-21T12:01:30.756Z",
+      "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIUHmN7aJrLbwXt2JPIRz7w2LDVUmTFAAKHCwACCwAB4VPv0wbJNLkxjisE"
+    },
+    "migrations": [
+      {
+        "createdAt": "2022-11-21T12:01:30.756Z",
+        "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIUHmN7aJrLbwXt2JPIRz7w2LDVUmTFAAKHCwACCwAB4VPv0wbJNLkxjisE"
+      }
+    ]
+  }
+}
