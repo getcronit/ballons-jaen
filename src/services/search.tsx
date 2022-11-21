@@ -29,14 +29,14 @@ import {
   VStack,
 } from "@chakra-ui/react"
 import {
-  getFormattedProductPrices,
   getProductTags,
   ShopifyProduct,
   useProductSearch,
 } from "@snek-at/gatsby-theme-shopify"
 import { navigate } from "gatsby"
 import React from "react"
-import { ProductRow } from "../components/molecules/ProductRow"
+import { getProductPrices } from "../common/utils"
+import { useAuthentication } from "./authentication"
 
 export interface SearchContextProps {
   isOpen: boolean
@@ -111,6 +111,10 @@ export const Searchbar = (props: SearchbarProps) => {
       window.removeEventListener("keydown", handleKeyDown)
     }
   }, [])
+
+  const auth = useAuthentication()
+
+  const wholesale = !!auth.user
 
   return (
     <>
@@ -271,7 +275,9 @@ export const Searchbar = (props: SearchbarProps) => {
                     }
 
                     const tagsTable = buildTagsTable()
-                    const price = getFormattedProductPrices(product)
+                    const price = getProductPrices(product, {
+                      isWholesale: wholesale,
+                    })
 
                     return (
                       <Tr

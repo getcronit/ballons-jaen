@@ -108,14 +108,14 @@ const ProductsPageTemplate: React.FC<ProductsPageTemplateProps> = props => {
 
   const auth = useAuthentication()
 
-  const taxable = !auth.user
+  const wholesale = !!auth.user
 
   return (
     <>
       <SEO pagePath={props.path} pageMeta={buildProductsPageMeta()} />
       <Layout pathname={props.path} mode={"store"}>
         <ProductsTemplate
-          taxable={taxable}
+          wholesale={wholesale}
           path={props.path}
           products={search.products}
           isFetching={search.isFetching}

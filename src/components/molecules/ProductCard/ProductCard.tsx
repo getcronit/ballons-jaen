@@ -20,7 +20,7 @@ import { Link as GatsbyLink } from "gatsby"
 import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image"
 import React from "react"
 
-import { uuidv1 } from "../../../common/utils"
+import { getProductPrices, uuidv1 } from "../../../common/utils"
 import * as styles from "./styles"
 
 export interface ProductCardProps {
@@ -31,6 +31,7 @@ export interface ProductCardProps {
   bcolor?: string
   prefixPath?: string
   taxable?: boolean
+  wholesale?: boolean
 }
 
 export const ProductCard = ({
@@ -41,8 +42,8 @@ export const ProductCard = ({
   bcolor,
   prefixPath,
   taxable,
+  wholesale,
 }: ProductCardProps) => {
-  const user = null
 
   const path = prefixPath ? `${prefixPath}/${product.handle}` : product.handle
 
@@ -50,7 +51,9 @@ export const ProductCard = ({
 
   const tags = getProductTags(product)
 
-  const prices = getFormattedProductPrices(product)
+  const prices = getProductPrices(product, {
+    isWholesale: wholesale || false,
+  })
 
   taxable = taxable !== undefined ? taxable : product.variants[0]?.taxable
 

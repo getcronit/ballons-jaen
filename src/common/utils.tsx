@@ -1,5 +1,10 @@
 import { Box } from "@chakra-ui/react"
+import {
+  getFormattedProductPrices,
+  ShopifyProduct,
+} from "@snek-at/gatsby-theme-shopify"
 import React from "react"
+import { getProductMetafields } from "./getProductMetafields"
 
 export function uuidv1() {
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
@@ -68,4 +73,36 @@ export function removeHtmlFromString(htmlString: string) {
   const decodedHtmlString = htmlStringWithoutP.replace(/&amp;/g, "&")
 
   return decodedHtmlString
+}
+
+export function formatPrice(
+  value: number,
+  opts: { locale?: string; currency?: string } = {}
+) {
+  const { locale = "de-DE", currency = "USD" } = opts
+  const formatter = new Intl.NumberFormat(locale, {
+    currency,
+    style: "currency",
+    maximumFractionDigits: 2,
+  })
+
+  return formatter.format(value)
+}
+
+export const getProductPrices = (
+  product: ShopifyProduct,
+  opts: { isWholesale: boolean }
+) => {
+  const metafields = getProductMetafields(product)
+  const prices = getFormattedProductPrices(product)
+
+  if (opts.isWholesale) {
+    const { amount: price, currency_code: currency } = JSON.parse(
+      metafields.wholesale?.price || "{}"
+    )
+
+    prices.priceFormatted = formatPrice(price, { currency })
+  }
+
+  return prices
 }

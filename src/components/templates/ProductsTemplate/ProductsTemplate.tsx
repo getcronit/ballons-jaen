@@ -67,7 +67,7 @@ export interface ProductsTemplateProps {
   updateFilter: (filter: ProductsTemplateProps["activeFilters"]) => void
   sortOptions: string[]
   onSortChange: (sort: string) => void
-  taxable: boolean
+  wholesale: boolean
 }
 
 export const ProductsTemplate = (props: ProductsTemplateProps) => {
@@ -105,7 +105,7 @@ export const ProductsTemplate = (props: ProductsTemplateProps) => {
     >
       <Box w="100%" p={2}>
         <ProductGrid
-          taxable={props.taxable}
+          wholesale={props.wholesale}
           products={[
             ...props.products,
             ...props.products,

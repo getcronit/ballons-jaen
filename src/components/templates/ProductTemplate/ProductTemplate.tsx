@@ -37,11 +37,19 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import ImagesViewer from "react-images-viewer"
 
-import { replaceHexColorsInHTML } from "../../../common/utils"
+import {
+  replaceHexColorsInHTML,
+  formatPrice,
+  getProductPrices,
+} from "../../../common/utils"
 import { useBasket } from "../../../services/basket"
 import { ProductSlider } from "../../molecules/ProductSlider"
 import ProductsPageShell from "../ProductsTemplate/ProductsPageShell"
-import { getProductMetafields, ProductFilling } from "./getProductMetafields"
+import {
+  getProductMetafields,
+  ProductFilling,
+  ProductMetafields,
+} from "../../../common/getProductMetafields"
 
 export interface ProductTemplateProps extends ProductPageData {
   path: string
@@ -75,57 +83,56 @@ export const ProductTemplate = ({
   ]
 
   return (
-    <>
-      <ProductsPageShell
-        allTags={allTags}
-        activeTags={allActiveTags}
-        onActiveTagsChange={tags => {
-          navigate("/products", {
-            state: {
-              activeTags: tags,
-            },
-          })
-        }}
-        sortOptions={["Alphabetisch", "Preis aufsteigend", "Preis absteigend"]}
-        onSortChange={() => {}}
-      >
-        <VStack dir="column" w="100%" px={2}>
-          <VStack spacing={12}>
-            <Flex direction={{ base: "column", lg: "row" }}>
-              <ProductDetail
-                wholesale={wholesale}
-                product={shopifyProduct}
-                onWishlistAdd={onWishlistAdd}
-                isOnWishList={isOnWishList}
-                onGoBack={onGoBack}
-              />
-              <ImageSlider
-                featuredMedia={shopifyProduct.featuredMedia}
-                media={shopifyProduct.media}
-                description={shopifyProduct.descriptionHtml}
-              />
-            </Flex>
-            <Box display={{ base: "block", md: "none" }}>
-              <ProductMoreDetail description={shopifyProduct.descriptionHtml} />
-            </Box>
-          </VStack>
-          <Box
-            w={{
-              base: "20rem",
-              md: "30rem",
-              lg: "55rem",
-              xl: "80rem",
-            }}
-          >
-            <ProductSlider
-              heading="Ähnliche Produkte"
-              products={relatedProducts.nodes}
-              prefixPath={prefixPath}
+    <ProductsPageShell
+      allTags={allTags}
+      activeTags={allActiveTags}
+      onActiveTagsChange={tags => {
+        navigate("/products", {
+          state: {
+            activeTags: tags,
+          },
+        })
+      }}
+      sortOptions={["Alphabetisch", "Preis aufsteigend", "Preis absteigend"]}
+      onSortChange={() => {}}
+    >
+      <VStack dir="column" w="100%" px={2}>
+        <VStack spacing={12}>
+          <Flex direction={{ base: "column", lg: "row" }}>
+            <ProductDetail
+              wholesale={wholesale}
+              product={shopifyProduct}
+              onWishlistAdd={onWishlistAdd}
+              isOnWishList={isOnWishList}
+              onGoBack={onGoBack}
             />
+            <ImageSlider
+              featuredMedia={shopifyProduct.featuredMedia}
+              media={shopifyProduct.media}
+              description={shopifyProduct.descriptionHtml}
+            />
+          </Flex>
+          <Box display={{ base: "block", md: "none" }}>
+            <ProductMoreDetail description={shopifyProduct.descriptionHtml} />
           </Box>
         </VStack>
-      </ProductsPageShell>
-    </>
+        <Box
+          w={{
+            base: "20rem",
+            md: "30rem",
+            lg: "55rem",
+            xl: "80rem",
+          }}
+        >
+          <ProductSlider
+            heading="Ähnliche Produkte"
+            products={relatedProducts.nodes}
+            prefixPath={prefixPath}
+            wholesale={wholesale}
+          />
+        </Box>
+      </VStack>
+    </ProductsPageShell>
   )
 }
 
@@ -157,7 +164,7 @@ function Price({
         </Text>
 
         <Heading
-         fontSize={'lg'}
+          fontSize={"lg"}
           mt={{
             base: 0,
             md: 4,
@@ -197,7 +204,9 @@ const ProductDetail = withStoreContext<{
 
   const [quantity, setQuantity] = React.useState(minQuantity)
 
-  const prices = getFormattedProductPrices(props.product)
+  const prices = getProductPrices(props.product, {
+    isWholesale: props.wholesale || false,
+  })
 
   const taxable =
     props.wholesale !== undefined
