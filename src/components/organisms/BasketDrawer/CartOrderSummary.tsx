@@ -16,12 +16,16 @@ import { formatPrice } from "./PriceTag"
 export interface CartOrderSummaryProps {
   subtotal: number
   currency: string
+  infoText?: React.ReactNode
+  checkoutButtonText: string
   onClickCheckout?: () => void
 }
 
 export const CartOrderSummary = ({
   subtotal,
   currency,
+  infoText,
+  checkoutButtonText,
   onClickCheckout,
 }: CartOrderSummaryProps) => {
   return (
@@ -36,12 +40,7 @@ export const CartOrderSummary = ({
           </Text>
         </Box>
 
-        <HStack color={mode("gray.600", "gray.400")}>
-          <FaBox />
-          <Text fontSize="sm">
-            Versand + Steuern werden im nächsten Schritt berechnet.
-          </Text>
-        </HStack>
+        <>{infoText}</>
       </Stack>
       <Button
         colorScheme="blue"
@@ -50,7 +49,7 @@ export const CartOrderSummary = ({
         rightIcon={<FaArrowRight />}
         onClick={onClickCheckout}
       >
-        zur Kassa
+        {checkoutButtonText}
       </Button>
     </Stack>
   )

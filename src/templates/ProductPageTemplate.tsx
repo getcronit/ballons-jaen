@@ -13,6 +13,7 @@ import { Layout } from "../Layout"
 import { ProductTemplate } from "../components/templates/ProductTemplate"
 import { buildAllTags } from "../components/templates/ProductsTemplate/ProductsTemplate"
 import { SEO } from "@jaenjs/jaen"
+import { useAuthentication } from "../services/authentication"
 
 export type ProductPageTemplateProps = PageProps<
 ProductPageData & {
@@ -55,12 +56,17 @@ const ProductPageTemplate: React.FC<ProductPageTemplateProps> = (
     productTypes: productsPage.pageContext.productTypes,
   })
 
+  const auth = useAuthentication()
+
+  const wholesale = !!auth.user
+
   return (
     <>
       <SEO pagePath={props.path} pageMeta={buildProductPageMeta()} />
       <Layout pathname={props.path} mode={"store"}>
         <ProductTemplate
           path={props.path}
+          wholesale={wholesale}
           allTags={allTags}
           shopifyProduct={props.data.shopifyProduct}
           relatedProducts={props.data.relatedProducts}

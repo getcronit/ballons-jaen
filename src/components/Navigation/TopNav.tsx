@@ -22,6 +22,7 @@ import {
 } from "react-icons/ai"
 import { useBasket } from "../../services/basket"
 import { LayoutMode } from "../../types/commonTypes"
+import { NavAuthButton } from "./NavAuthButton"
 interface ITopNavProps {
   mode: LayoutMode
   onBasketClick?: () => void
@@ -29,7 +30,6 @@ interface ITopNavProps {
 }
 
 const TopNav: FC<ITopNavProps> = ({ mode, onSearchClick, onBasketClick }) => {
-
   return (
     <Flex
       h={{ sm: 20, md: 16 }}
@@ -48,32 +48,40 @@ const TopNav: FC<ITopNavProps> = ({ mode, onSearchClick, onBasketClick }) => {
         display={mode === "website" ? "none" : undefined}
         leftIcon={<AiOutlineArrowLeft />}
       >
-        Zur Website
+        <Image h=".875rem" w="10rem" src="/images/white_logo.png" />
       </Button>
 
       <Box>
         <Image
-          w={{ base: "20rem", lg: "26.25rem" }}
-          h={{ base: "1.875rem", lg: "2.125rem" }}
+          display={mode === "website" ? "block" : "none"}
+          cursor={"pointer"}
+          onClick={() => navigate("/")}
+          w={{ base: "20rem", "2xl": "26.25rem" }}
+          h={{ base: "1.875rem", "2xl": "2.125rem" }}
           src="/images/red_logo.png"
           alt="logo"
         />
       </Box>
 
       <HStack position={"absolute"} right={2}>
+        <NavAuthButton />
         {mode === "website" ? (
           <Button
+            display={{
+              base: "none",
+              md: "flex",
+            }}
             size={"sm"}
             as={Link}
             to="/products"
             leftIcon={<AiOutlineShop />}
           >
-            Unsere Produkte
+            Unsere Artikel
           </Button>
         ) : (
           <ButtonGroup>
-          <Button
-              size={"xs"}
+            <Button
+              size={"sm"}
               variant="outline"
               leftIcon={<AiOutlineSearch />}
               onClick={onSearchClick}
@@ -81,7 +89,7 @@ const TopNav: FC<ITopNavProps> = ({ mode, onSearchClick, onBasketClick }) => {
               Nach Artikel suchen
             </Button>
             <Button
-              size={"xs"}
+              size={"sm"}
               variant="outline"
               leftIcon={<AiOutlineShoppingCart />}
               onClick={onBasketClick}

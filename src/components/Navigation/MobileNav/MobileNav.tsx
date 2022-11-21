@@ -23,6 +23,7 @@ import { IoCloseOutline, IoMenuOutline } from "react-icons/io5"
 import { Link } from "gatsby"
 import { navlinks } from "../../../constant/navLink"
 import { LayoutMode } from "../../../types/commonTypes"
+import { NavAuthButton } from "../NavAuthButton"
 
 interface IMobileNavProps {
   mode?: LayoutMode
@@ -30,47 +31,55 @@ interface IMobileNavProps {
   onBasketClick: () => void
 }
 
-const MobileNav: FC<IMobileNavProps> = ({ mode, onSearchClick, onBasketClick }) => {
+const MobileNav: FC<IMobileNavProps> = ({
+  mode,
+  onSearchClick,
+  onBasketClick,
+}) => {
   const { isOpen, onToggle } = useDisclosure()
 
   return (
     <>
-      <Box px="4" boxShadow={
-        mode === "website" ? "dark" : "light"
-      } pos="relative" bg="white" zIndex="sticky">
+      <Box
+        px="4"
+        boxShadow={mode === "website" ? "dark" : "light"}
+        pos="relative"
+        bg="white"
+        zIndex="sticky"
+      >
         <Flex h="3.75rem" justify="space-between" align="center">
           {mode === "website" ? (
             <Box fontSize="xl" onClick={onToggle}>
               {isOpen ? <IoCloseOutline /> : <IoMenuOutline />}
             </Box>
           ) : (
-            <Button
+            <IconButton
               as={Link}
               to="/"
-              leftIcon={<AiOutlineArrowLeft />}
+              icon={<AiOutlineArrowLeft />}
+              aria-label="Zur Website"
               variant="link"
-              size='xs'
-            >
-              Zur Website
-            </Button>
+              size="xs"
+            />
+              
           )}
 
           <Box>
             <Image h=".875rem" w="10rem" src="/images/red_logo.png" />
           </Box>
-          <HStack gap="0" justifySelf="end">
+          <HStack gap="0" justifySelf="end" spacing='0'>
+            <NavAuthButton />
             {mode === "website" ? (
-              <Button
-                size={"sm"}
+              <IconButton
                 as={Link}
                 to="/products"
-                leftIcon={<AiOutlineShop />}
-              >
-                Unsere Produkte
-              </Button>
+                icon={<AiOutlineShop />}
+                aria-label="Shop"
+                onClick={onSearchClick}
+              />
             ) : (
-              <ButtonGroup>
-                 <IconButton
+              <ButtonGroup spacing='0'>
+                <IconButton
                   variant="ghost"
                   icon={<AiOutlineSearch />}
                   aria-label="Nach Artikel suchen"
@@ -81,7 +90,6 @@ const MobileNav: FC<IMobileNavProps> = ({ mode, onSearchClick, onBasketClick }) 
                   icon={<AiOutlineShoppingCart />}
                   aria-label="Warenkorb"
                   onAbort={onBasketClick}
-
                 />
               </ButtonGroup>
             )}

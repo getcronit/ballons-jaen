@@ -5,6 +5,7 @@
  */
 
 import { GatsbySSR } from "gatsby"
+import { AuthenticationProvider } from "./src/services/authentication"
 import { RootWrapper } from "./src/Wrapper"
 
 export const onRenderBody: GatsbySSR["onRenderBody"] = ({
@@ -15,4 +16,8 @@ export const onRenderBody: GatsbySSR["onRenderBody"] = ({
 
 export const wrapRootElement: GatsbySSR["wrapRootElement"] = ({ element }) => {
   return <RootWrapper>{element}</RootWrapper>
+}
+
+export const wrapPageElement: GatsbySSR["wrapPageElement"] = ({ element }) => {
+  return <AuthenticationProvider>{element}</AuthenticationProvider>
 }

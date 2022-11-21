@@ -2,11 +2,16 @@ import { withStoreContext } from "@snek-at/gatsby-theme-shopify"
 import React from "react"
 
 import { BasketDrawer } from "../components/organisms/BasketDrawer"
+import { useAuthentication } from "./authentication"
 
 export interface BaseketContextProps {
   onOpen: () => void
   onClose: () => void
-  addProduct: (args: { variantId: string; quantity: number }) => void
+  addProduct: (args: {
+    variantId: string
+    quantity: number
+    stepperQuantity: number
+  }) => void
   checkout: ShopifyBuy.Cart | null
 }
 
@@ -28,6 +33,8 @@ export const useBasket = () => {
 const cleanLineItems = (lineItems: any[] = []) => {
   // Remove all line items that have a variant of null
 
+  console.log(`lineItems`, lineItems)
+
   return lineItems.filter(lineItem => lineItem.variant !== null)
 }
 
@@ -40,6 +47,10 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
     const [open, setOpen] = React.useState(false)
 
     const [checkout, setCheckout] = React.useState<ShopifyBuy.Cart | null>(null)
+
+    const auth = useAuthentication()
+
+    const wholesale = !!auth.user
 
     React.useEffect(() => {
       // get checkout id from local storage if it exists and set it to state
@@ -74,13 +85,24 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
       setOpen(false)
     }
 
-    const addProduct = async (args: {
+    const addProduct = async ({
+      stepperQuantity,
+      ...args
+    }: {
       variantId: string
       quantity: number
+      stepperQuantity: number
     }) => {
       const newCheckout = await props.client.checkout.addLineItems(
         checkout?.id as string,
-        [args]
+        [
+          {
+            ...args,
+            customAttributes: [
+              { key: "stepperQuantity", value: stepperQuantity.toString() },
+            ],
+          },
+        ]
       )
 
       setCheckout(newCheckout)
@@ -97,12 +119,18 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
     }
 
     const removeProduct = async (id: string) => {
-      const newCheckout = await props.client.checkout.removeLineItems(
-        checkout?.id as string,
-        [id]
-      )
+      try {
+        const newCheckout = await props.client.checkout.removeLineItems(
+          checkout?.id as string,
+          [id]
+        )
 
-      setCheckout(newCheckout)
+        setCheckout(newCheckout)
+      } catch (e) {
+        console.log(e)
+
+        setCheckout(null)
+      }
     }
 
     return (
@@ -111,18 +139,26 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
           isOpen={open}
           onClose={onClose}
           products={cleanLineItems(checkout?.lineItems) as any}
+          wholesale={wholesale}
           subtotal={parseFloat(checkout?.lineItemsSubtotalPrice?.amount || "0")}
           onProductQuantityChange={(id, quantity) => {
             updateProduct({ id, quantity })
           }}
           onProductRemove={id => {
-
             removeProduct(id)
           }}
           onClickCheckout={() => {
+            if (wholesale) {
+              alert(
+                `Email sent to ${auth.user?.email}. Please check your inbox. (mock)`
+              )
 
-            if (checkout?.webUrl) {
-              window.open(checkout?.webUrl, "_blank")
+            } else {
+              if (checkout?.webUrl) {
+                window.open(checkout?.webUrl, "_blank")
+              }
+            
+              setCheckout(null)
             }
           }}
         />
