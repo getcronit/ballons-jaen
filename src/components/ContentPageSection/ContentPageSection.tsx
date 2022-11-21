@@ -599,7 +599,7 @@ const CategoryNavigationBar: React.FC<{
   }
 
   React.useEffect(() => {
-    if (!element) throw new Error("jaen-content-container not found")
+    if (!element) return
 
     element.addEventListener("scroll", handleScroll)
 
@@ -610,7 +610,7 @@ const CategoryNavigationBar: React.FC<{
 
   const scrollToSection = React.useCallback(
     (index: number) => {
-      if (!element) throw new Error("jaen-content-container not found")
+      if (!element) return
 
       element.scrollTo({
         top: sectionItems[index].ref.offsetTop,
