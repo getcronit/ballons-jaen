@@ -62,8 +62,6 @@ export const ProductTemplate = ({
   relatedProducts,
   isOnWishList = false,
 }: ProductTemplateProps) => {
-  console.log(`getProductMetafields`, getProductMetafields(shopifyProduct))
-
   // remove last part of path
   const prefixPath = path.split("/").slice(0, -1).join("/")
 
@@ -191,8 +189,6 @@ const ProductDetail = withStoreContext<{
   onGoBack: () => void
 }>(props => {
   const productMetatfields = getProductMetafields(props.product)
-
-  console.log(`productMetatfields`, productMetatfields, props.wholesale)
 
   const stepperStep = props.wholesale
     ? parseInt(productMetatfields.wholesale?._SU || "1")
