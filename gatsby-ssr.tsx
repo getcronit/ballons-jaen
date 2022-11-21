@@ -10,8 +10,20 @@ import { RootWrapper } from "./src/Wrapper"
 
 export const onRenderBody: GatsbySSR["onRenderBody"] = ({
   setHtmlAttributes,
+  setHeadComponents
 }) => {
   setHtmlAttributes({ lang: `de` })
+
+  setHeadComponents([
+    <link
+      key="red-buttery"
+      rel="preload"
+      href="/fonts/red_buttery-webfont.woff2"
+      as="font"
+      type="font/woff2"
+      crossOrigin="anonymous"
+    />
+  ]);
 }
 
 export const wrapRootElement: GatsbySSR["wrapRootElement"] = ({ element }) => {
