@@ -15,7 +15,9 @@ import { useJaenNavigation } from "./useJaenNavigation";
 import { MarkdownLinksForm } from "./BottomNav";
 
 
-export const NavLinks: React.FC<StackProps> = props => {
+export const NavLinks: React.FC<StackProps & {
+  childrenTextAlign?: "left" | "center" | "right";
+}> = ({childrenTextAlign, ...props}) => {
   const { isEditing, navLinks, markdown, updateNavigation } = useJaenNavigation();
 
   const { onOpen, onClose, isOpen } = useDisclosure();
@@ -44,7 +46,7 @@ export const NavLinks: React.FC<StackProps> = props => {
                 return false;
               }}
               key={index}
-              textAlign="center"
+              textAlign={childrenTextAlign || "center"}
               _hover={{
                 fontWeight: "bold",
                 transform: "scale(1.05)",

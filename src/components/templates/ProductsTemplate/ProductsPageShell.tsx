@@ -16,6 +16,7 @@ import {
   DrawerHeader,
   DrawerOverlay,
   Flex,
+  Heading,
   HStack,
   Icon,
   Menu,
@@ -29,6 +30,7 @@ import {
   Text,
   useColorModeValue,
   useDisclosure,
+  VStack,
   Wrap,
   WrapItem,
 } from "@chakra-ui/react"
@@ -36,6 +38,7 @@ import { FaSort } from "@react-icons/all-files/fa/FaSort"
 import { GroupBase, OptionBase, Select } from "chakra-react-select"
 import { Link } from "gatsby"
 import React, { ReactNode } from "react"
+import { BsFilter, BsFilterCircle, BsFilterCircleFill } from "react-icons/bs"
 
 interface TagFilterOption extends OptionBase {
   label: string
@@ -319,6 +322,8 @@ export default function ProductsPageShell(
     props?: StackProps
     wrapperAs?: BoxProps["as"]
     wrapperProps?: BoxProps
+    fixedMenuPosition?: boolean
+    size?: "sm" | "md" | "lg"
   }) => {
     const { Kategorie, ...rest } = groupedTags.allTags
     const { Kategorie: activeKategorie, ...activeRest } = activeTags
@@ -382,9 +387,7 @@ export default function ProductsPageShell(
         return (
           <Wrapper {...props.wrapperProps} key={index}>
             <Select<TagFilterOption, true, GroupBase<TagFilterOption>>
-              menuPlacement="auto"
-              menuPosition="fixed"
-              size="sm"
+              size={props.size || "sm"}
               isMulti
               name={label}
               options={
@@ -417,12 +420,12 @@ export default function ProductsPageShell(
                 menu: provided => ({
                   ...provided,
                   zIndex: 9999,
-
-                  backgroundColor: "red",
                 }),
                 menuList: ({ minW, ...provided }) => ({
                   ...provided,
-                  position: "fixed",
+                  position: props.fixedMenuPosition
+                    ? "fixed"
+                    : provided.position,
                 }),
                 container: provided => ({
                   ...provided,
@@ -487,19 +490,28 @@ export default function ProductsPageShell(
               wrapperProps: {
                 py: "px",
               },
+              fixedMenuPosition: true,
             })}
           </Wrap>
 
           <FilterDrawer
-            display={{ base: "block", lg: "none" }}
-            filterMenuList={FilterElements({})}
+            display={{ base: "flex", lg: "none" }}
           >
-            <CategoryPicker
-              groupedCategories={groupedCategories}
-              activeTags={activeTags}
-              updateActiveTags={updateActiveTags}
-              addOrRemoveTag={addOrRemoveTag}
-            />
+            <Stack divider={<StackDivider />}>
+              <Heading size="sm">Kategorien</Heading>
+
+              <CategoryPicker
+                groupedCategories={groupedCategories}
+                activeTags={activeTags}
+                updateActiveTags={updateActiveTags}
+                addOrRemoveTag={addOrRemoveTag}
+              />
+              <Heading size="sm">Filter</Heading>
+
+              <Stack>{FilterElements({
+                size: "md"
+              })}</Stack>
+            </Stack>
           </FilterDrawer>
 
           <Spacer />
@@ -578,42 +590,30 @@ export default function ProductsPageShell(
 const FilterDrawer: React.FC<
   ButtonProps & {
     children: React.ReactNode
-    filterMenuList: React.ReactNode
   }
 > = ({ children, filterMenuList, ...buttonProps }) => {
-
   const drawerDisclosure = useDisclosure()
 
   return (
     <>
       <Button
-        display={{ base: "block", lg: "none" }}
-        variant="link"
+        leftIcon={<BsFilterCircleFill />}
+        size="sm"
         onClick={drawerDisclosure.onOpen}
         {...buttonProps}
       >
         Filter
       </Button>
 
-      <Drawer isOpen={drawerDisclosure.isOpen} onClose={drawerDisclosure.onClose} placement="left">
+      <Drawer
+        isOpen={drawerDisclosure.isOpen}
+        onClose={drawerDisclosure.onClose}
+        placement="bottom"
+      >
         <DrawerOverlay />
 
-        <DrawerContent>
+        <DrawerContent maxHeight="55%">
           <DrawerCloseButton />
-
-          <DrawerHeader>
-            <Menu>
-              <MenuButton
-                as={Button}
-                variant={"link"}
-                fontWeight="normal"
-                leftIcon={<Icon as={FaSort} w={3} h={3} />}
-              >
-                Filter
-              </MenuButton>
-              <MenuList>{filterMenuList}</MenuList>
-            </Menu>
-          </DrawerHeader>
 
           <DrawerBody>{children}</DrawerBody>
         </DrawerContent>
