@@ -17,7 +17,7 @@ import {
   Stack,
   useDisclosure,
 } from "@chakra-ui/react"
-import { FC } from "react"
+import React, { FC } from "react"
 import {
   AiOutlineArrowLeft,
   AiOutlineSearch,
@@ -39,6 +39,7 @@ interface IMobileNavProps {
   onSearchClick?: () => void
   onBasketClick: () => void
 }
+
 
 const MobileNav: FC<IMobileNavProps> = ({
   mode,
@@ -128,7 +129,7 @@ const MobileNav: FC<IMobileNavProps> = ({
             </DrawerHeader>
             <Divider />
             <DrawerBody>
-              <Stack spacing="8" pt='4'>
+              <Stack spacing="8" pt="4">
                 <NavLinks
                   childrenTextAlign="left"
                   w="full"
@@ -136,6 +137,7 @@ const MobileNav: FC<IMobileNavProps> = ({
                   zIndex="5"
                   spacing="6"
                   fontSize={"md"}
+                  onClick={onToggle}
                 />
 
                 <Stack
@@ -146,7 +148,7 @@ const MobileNav: FC<IMobileNavProps> = ({
                   mt="4"
                 >
                   <Button
-                  w='full'
+                    w="full"
                     leftIcon={<FaPhoneAlt />}
                     onClick={() => {
                       contactModal.onOpen({
