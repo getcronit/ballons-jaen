@@ -150,7 +150,7 @@ function Price({
         }}
       >
         <Text
-          fontSize="xl"
+          fontSize="md"
           fontWeight="semibold"
           color="gray.600"
           textDecoration={"line-through"}
@@ -159,7 +159,7 @@ function Price({
         </Text>
 
         <Heading
-          size="3xl"
+         fontSize={'lg'}
           mt={{
             base: 0,
             md: 4,
@@ -174,7 +174,7 @@ function Price({
   }
 
   return (
-    <Heading size="3xl" fontWeight={"semibold"}>
+    <Heading size="lg" fontWeight={"semibold"}>
       {priceFormatted}
     </Heading>
   )
@@ -262,7 +262,7 @@ const ProductDetail = withStoreContext<{
           >
             Zurück
           </Button>
-          <Heading as="h1" size="xl">
+          <Heading as="h1" size="lg">
             {props.product.title}
           </Heading>
           <Price prices={prices} />
