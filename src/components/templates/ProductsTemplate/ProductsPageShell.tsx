@@ -8,6 +8,13 @@ import {
   Box,
   BoxProps,
   Button,
+  ButtonProps,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerHeader,
+  DrawerOverlay,
   Flex,
   HStack,
   Icon,
@@ -21,6 +28,7 @@ import {
   StackProps,
   Text,
   useColorModeValue,
+  useDisclosure,
   Wrap,
   WrapItem,
 } from "@chakra-ui/react"
@@ -482,22 +490,17 @@ export default function ProductsPageShell(
             })}
           </Wrap>
 
-          <Menu>
-            <MenuButton
-              as={Button}
-              variant={"link"}
-              fontWeight="normal"
-              leftIcon={<Icon as={FaSort} w={3} h={3} />}
-              display={{ base: "block", lg: "none" }}
-            >
-              Filter
-            </MenuButton>
-            <MenuList>
-              <Stack px="2" maxW={"80vw"}>
-                {FilterElements({})}
-              </Stack>
-            </MenuList>
-          </Menu>
+          <FilterDrawer
+            display={{ base: "block", lg: "none" }}
+            filterMenuList={FilterElements({})}
+          >
+            <CategoryPicker
+              groupedCategories={groupedCategories}
+              activeTags={activeTags}
+              updateActiveTags={updateActiveTags}
+              addOrRemoveTag={addOrRemoveTag}
+            />
+          </FilterDrawer>
 
           <Spacer />
 
@@ -525,10 +528,16 @@ export default function ProductsPageShell(
             </CSelect>
           </HStack>
         </Flex>
-        <Box flex='1' pos="relative" overflowY={"scroll"} zIndex="0" pb={48}>
+        <Box flex="1" pos="relative" overflowY={"scroll"} zIndex="0" pb={48}>
           {props.children}
         </Box>
-        <HStack as="footer" justifyContent={"right"} mr="8" spacing="4" divider={<StackDivider />}>
+        <HStack
+          as="footer"
+          justifyContent={"right"}
+          mr="8"
+          spacing="4"
+          divider={<StackDivider />}
+        >
           {[
             {
               text: "Kontakt",
@@ -563,6 +572,53 @@ export default function ProductsPageShell(
         </HStack>
       </Flex>
     </Flex>
+  )
+}
+
+const FilterDrawer: React.FC<
+  ButtonProps & {
+    children: React.ReactNode
+    filterMenuList: React.ReactNode
+  }
+> = ({ children, filterMenuList, ...buttonProps }) => {
+
+  const drawerDisclosure = useDisclosure()
+
+  return (
+    <>
+      <Button
+        display={{ base: "block", lg: "none" }}
+        variant="link"
+        onClick={drawerDisclosure.onOpen}
+        {...buttonProps}
+      >
+        Filter
+      </Button>
+
+      <Drawer isOpen={drawerDisclosure.isOpen} onClose={drawerDisclosure.onClose} placement="left">
+        <DrawerOverlay />
+
+        <DrawerContent>
+          <DrawerCloseButton />
+
+          <DrawerHeader>
+            <Menu>
+              <MenuButton
+                as={Button}
+                variant={"link"}
+                fontWeight="normal"
+                leftIcon={<Icon as={FaSort} w={3} h={3} />}
+              >
+                Filter
+              </MenuButton>
+              <MenuList>{filterMenuList}</MenuList>
+            </Menu>
+          </DrawerHeader>
+
+          <DrawerBody>{children}</DrawerBody>
+        </DrawerContent>
+      </Drawer>
+    </>
   )
 }
 
