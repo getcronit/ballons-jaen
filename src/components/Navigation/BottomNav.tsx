@@ -1,43 +1,23 @@
-import { EditIcon } from "@chakra-ui/icons"
 import {
-  Box,
   Button,
   ButtonGroup,
   Flex,
   FormControl,
   FormErrorMessage,
   FormLabel,
-  HStack,
-  IconButton,
   Input,
-  Link as CLink,
-  Popover,
-  PopoverArrow,
-  PopoverCloseButton,
-  PopoverContent,
-  PopoverTrigger,
   Stack,
   Textarea,
-  useDisclosure,
   VStack,
 } from "@chakra-ui/react"
-import { navigate } from "@jaenjs/jaen"
-import { store } from "@jaenjs/jaen/src/redux"
-import { Link } from "gatsby"
 import React, { FC } from "react"
 import { useForm } from "react-hook-form"
 import { CONTAINER_MAX_WIDTH } from "../../constant/sizes"
-import { useJaenNavigation } from "./useJaenNavigation"
+import { NavLinks } from "./NavLinks"
 
 interface IBottomNavProps {}
 
 const BottomNav: FC<IBottomNavProps> = () => {
-  const { onOpen, onClose, isOpen } = useDisclosure()
-  const firstFieldRef = React.useRef(null)
-
-  const { isEditing, navLinks, markdown, updateNavigation } =
-    useJaenNavigation()
-
   return (
     <Flex
       h={{ base: "14", lg: "16" }}
@@ -46,77 +26,13 @@ const BottomNav: FC<IBottomNavProps> = () => {
       justify="center"
       align="center"
     >
-      <HStack
+      <NavLinks
         gap={{ md: 6, lg: 8, "2xl": 10 }}
         maxW={CONTAINER_MAX_WIDTH}
         marginX="auto"
         justify="center"
-      >
-        {navLinks.map((link, index) => {
-          return (
-            <CLink
-              _before={{
-                display: "block",
-                content: `"${link.label}"`,
-                fontWeight: "bold",
-                height: "0",
-                overflow: "hidden",
-                visibility: "hidden",
-              }}
-              as={Link}
-              to={link.to}
-              onClick={(e) => {
-                e.preventDefault()
-                navigate(link.to)
-
-                return false
-              }}
-              key={index}
-              textAlign="center"
-              _hover={{
-                fontWeight: "bold",
-                transform: "scale(1.05)",
-                transition: "0.2s ease-in",
-              }}
-              fontSize={{ md: "sm", lg: "1rem", xl: "1.125rem", "2xl": "md" }}
-              transition="0.2s ease-in"
-              color="brand.dark_gray"
-            >
-              {link.label}
-            </CLink>
-          )
-        })}
-      </HStack>
-      {isEditing && (
-        <Box m={2}>
-          <Popover
-            isOpen={isOpen}
-            initialFocusRef={firstFieldRef}
-            onOpen={onOpen}
-            onClose={onClose}
-            placement="bottom"
-            closeOnBlur={false}
-          >
-            <PopoverTrigger>
-              <IconButton
-                size="sm"
-                icon={<EditIcon />}
-                aria-label={""}
-                colorScheme="teal"
-              />
-            </PopoverTrigger>
-            <PopoverContent p={5}>
-              <PopoverArrow />
-              <PopoverCloseButton />
-              <MarkdownLinksForm
-                onSaved={updateNavigation}
-                onCancle={onClose}
-                markdownUrls={markdown}
-              />
-            </PopoverContent>
-          </Popover>
-        </Box>
-      )}
+        direction={'row'}
+      />
     </Flex>
   )
 }
@@ -142,7 +58,7 @@ export const extractUrlsFromMarkdown = (
   return urls
 }
 
-const MarkdownLinksForm: React.FC<{
+export const MarkdownLinksForm: React.FC<{
   onSaved: (markdownUrls: string) => void
   onCancle: () => void
   markdownUrls: string
@@ -180,7 +96,7 @@ const MarkdownLinksForm: React.FC<{
         <FormControl isInvalid={!!errors.markdownUrls}>
           <FormLabel htmlFor="markdownUrls">Markdown URLs</FormLabel>
 
-          <Textarea minH='md' {...register("markdownUrls", {})} />
+          <Textarea minH="md" {...register("markdownUrls", {})} />
 
           <FormErrorMessage>
             {errors.markdownUrls && errors.markdownUrls.message?.toString()}

@@ -15,12 +15,14 @@ export interface ProductGridProps extends SimpleGridProps {
   heading?: string
   products: ShopifyProduct[]
   prefixPath?: string
+  taxable?: boolean
 }
 
 export const ProductGrid = ({
   heading,
   products,
   prefixPath,
+  taxable,
   ...gridProps
 }: ProductGridProps) => {
   const emptyBoxes = gridPadBoxes(products)
@@ -45,6 +47,7 @@ export const ProductGrid = ({
               product={item}
               key={index}
               left={0 === (index + 1) % v}
+              taxable={taxable}
             />
           )
         })}

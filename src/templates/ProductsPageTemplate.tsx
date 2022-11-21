@@ -14,19 +14,17 @@ import {
   splitAllTags,
 } from "../components/templates/ProductsTemplate/ProductsTemplate"
 import { SEO } from "@jaenjs/jaen"
+import { useAuthentication } from "../services/authentication"
 
-export type ProductsPageTemplateProps = 
-  PageProps<
-    ProductsPageData,
-    ProductsPageContext,
-    {
-      activeTags: string[]
-    }
-  >
+export type ProductsPageTemplateProps = PageProps<
+  ProductsPageData,
+  ProductsPageContext,
+  {
+    activeTags: string[]
+  }
+>
 
-const ProductsPageTemplate: React.FC<ProductsPageTemplateProps> = (
-  props
-) => {
+const ProductsPageTemplate: React.FC<ProductsPageTemplateProps> = props => {
   const { implicitTags, tags, maxPrice, minPrice, vendors, productTypes } =
     props.pageContext
 
@@ -108,11 +106,16 @@ const ProductsPageTemplate: React.FC<ProductsPageTemplateProps> = (
     }
   }
 
+  const auth = useAuthentication()
+
+  const taxable = !auth.user
+
   return (
     <>
       <SEO pagePath={props.path} pageMeta={buildProductsPageMeta()} />
       <Layout pathname={props.path} mode={"store"}>
         <ProductsTemplate
+          taxable={taxable}
           path={props.path}
           products={search.products}
           isFetching={search.isFetching}

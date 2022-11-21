@@ -20,9 +20,11 @@ import {
   AiOutlineUser,
 } from "react-icons/ai"
 import { IoCloseOutline, IoMenuOutline } from "react-icons/io5"
-import { Link } from "gatsby"
+import { Link, navigate } from "gatsby"
 import { navlinks } from "../../../constant/navLink"
 import { LayoutMode } from "../../../types/commonTypes"
+import { NavAuthButton } from "../NavAuthButton"
+import { NavLinks } from "../NavLinks"
 
 interface IMobileNavProps {
   mode?: LayoutMode
@@ -30,47 +32,54 @@ interface IMobileNavProps {
   onBasketClick: () => void
 }
 
-const MobileNav: FC<IMobileNavProps> = ({ mode, onSearchClick, onBasketClick }) => {
+const MobileNav: FC<IMobileNavProps> = ({
+  mode,
+  onSearchClick,
+  onBasketClick,
+}) => {
   const { isOpen, onToggle } = useDisclosure()
 
   return (
     <>
-      <Box px="4" boxShadow={
-        mode === "website" ? "dark" : "light"
-      } pos="relative" bg="white" zIndex="sticky">
+      <Box
+        px="4"
+        boxShadow={mode === "website" ? "dark" : "light"}
+        pos="relative"
+        bg="white"
+        zIndex="sticky"
+      >
         <Flex h="3.75rem" justify="space-between" align="center">
           {mode === "website" ? (
             <Box fontSize="xl" onClick={onToggle}>
               {isOpen ? <IoCloseOutline /> : <IoMenuOutline />}
             </Box>
           ) : (
-            <Button
+            <IconButton
               as={Link}
               to="/"
-              leftIcon={<AiOutlineArrowLeft />}
+              icon={<AiOutlineArrowLeft />}
+              aria-label="Zur Website"
               variant="link"
-              size='xs'
-            >
-              Zur Website
-            </Button>
+              size="xs"
+            />
           )}
 
           <Box>
-            <Image h=".875rem" w="10rem" src="/images/red_logo.png" />
+            <Image onClick={() => navigate('/')} h=".875rem" w="10rem" src="/images/red_logo.png" />
           </Box>
-          <HStack gap="0" justifySelf="end">
+          <HStack gap="0" justifySelf="end" spacing="0">
+            <NavAuthButton />
             {mode === "website" ? (
-              <Button
-                size={"sm"}
+              <IconButton
                 as={Link}
                 to="/products"
-                leftIcon={<AiOutlineShop />}
-              >
-                Unsere Produkte
-              </Button>
+                icon={<AiOutlineShop />}
+                aria-label="Shop"
+                onClick={onSearchClick}
+              />
             ) : (
-              <ButtonGroup>
-                 <IconButton
+              <ButtonGroup spacing="0">
+                <IconButton
                   variant="ghost"
                   icon={<AiOutlineSearch />}
                   aria-label="Nach Artikel suchen"
@@ -80,15 +89,14 @@ const MobileNav: FC<IMobileNavProps> = ({ mode, onSearchClick, onBasketClick }) 
                   variant="ghost"
                   icon={<AiOutlineShoppingCart />}
                   aria-label="Warenkorb"
-                  onAbort={onBasketClick}
-
+                  onClick={onBasketClick}
                 />
               </ButtonGroup>
             )}
           </HStack>
         </Flex>
         {isOpen && (
-          <Stack
+          <NavLinks
             align="center"
             pos="absolute"
             bg="white"
@@ -97,27 +105,9 @@ const MobileNav: FC<IMobileNavProps> = ({ mode, onSearchClick, onBasketClick }) 
             px="4"
             pb="8"
             zIndex="5"
-          >
-            <Divider />
-            {navlinks.map((link, index) => {
-              return (
-                <CLink
-                  as={Link}
-                  to={link.path}
-                  onClick={onToggle}
-                  key={index}
-                  w="full"
-                  textAlign="center"
-                  _hover={{ fontWeight: "bold", transition: "0.2s ease-in" }}
-                  fontSize="1.125rem"
-                  transition="0.2s ease-in"
-                  color="brand.dark_gray"
-                >
-                  {link.label}
-                </CLink>
-              )
-            })}
-          </Stack>
+            spacing='4'
+            fontSize={'md'}
+          />
         )}
       </Box>
       <Box

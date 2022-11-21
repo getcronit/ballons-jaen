@@ -41,9 +41,11 @@ import { replaceHexColorsInHTML } from "../../../common/utils"
 import { useBasket } from "../../../services/basket"
 import { ProductSlider } from "../../molecules/ProductSlider"
 import ProductsPageShell from "../ProductsTemplate/ProductsPageShell"
+import { getProductMetafields, ProductFilling } from "./getProductMetafields"
 
 export interface ProductTemplateProps extends ProductPageData {
   path: string
+  wholesale?: boolean
   allTags: string[]
   onWishlistAdd: (id: string) => void
   isOnWishList?: boolean
@@ -52,6 +54,7 @@ export interface ProductTemplateProps extends ProductPageData {
 
 export const ProductTemplate = ({
   path,
+  wholesale,
   allTags,
   onWishlistAdd,
   onGoBack,
@@ -59,6 +62,8 @@ export const ProductTemplate = ({
   relatedProducts,
   isOnWishList = false,
 }: ProductTemplateProps) => {
+  console.log(`getProductMetafields`, getProductMetafields(shopifyProduct))
+
   // remove last part of path
   const prefixPath = path.split("/").slice(0, -1).join("/")
 
@@ -90,6 +95,7 @@ export const ProductTemplate = ({
           <VStack spacing={12}>
             <Flex direction={{ base: "column", lg: "row" }}>
               <ProductDetail
+                wholesale={wholesale}
                 product={shopifyProduct}
                 onWishlistAdd={onWishlistAdd}
                 isOnWishList={isOnWishList}
@@ -174,38 +180,33 @@ function Price({
   )
 }
 
-enum ProductFilling {
-  AIR_ONLY = "nur für Luftfüllung geeignet!",
-  HELIUM_ONLY = "für Heliumfüllung geeignet",
-  AIR_AND_HELIUM = "für Helium- und Luftfüllung geeignet",
-}
-
-const getProductFilling = (
-  product: ShopifyProduct
-): ProductFilling | undefined => {
-  const metafield = product.metafields.find(
-    metafield =>
-      metafield.key === "filling" && metafield.namespace === "details"
-  )?.value as ProductFilling | undefined
-
-  return metafield
-}
-
 const ProductDetail = withStoreContext<{
   product: ProductPageData["shopifyProduct"]
   isOnWishList?: boolean
+
+  wholesale?: boolean
 
   onWishlistAdd: (id: string) => void
 
   onGoBack: () => void
 }>(props => {
-  const user = null
+  const productMetatfields = getProductMetafields(props.product)
 
-  const [quantity, setQuantity] = React.useState(1)
+  console.log(`productMetatfields`, productMetatfields, props.wholesale)
+
+  const stepperStep = props.wholesale
+    ? parseInt(productMetatfields.wholesale?._SU || "1")
+    : parseInt(productMetatfields.details?._SU || "1")
+  const minQuantity = stepperStep
+
+  const [quantity, setQuantity] = React.useState(minQuantity)
 
   const prices = getFormattedProductPrices(props.product)
 
-  const taxable = user ? false : props.product.variants[0]?.taxable
+  const taxable =
+    props.wholesale !== undefined
+      ? !props.wholesale
+      : props.product.variants[0]?.taxable
 
   const tags = getProductTags(props.product)
 
@@ -233,13 +234,13 @@ const ProductDetail = withStoreContext<{
     basket.addProduct({
       variantId: props.product.variants[0].shopifyId,
       quantity,
+      stepperQuantity: stepperStep,
     })
 
-    setQuantity(1)
+    setQuantity(minQuantity)
   }
 
   const availableForSale = props.product.variants[0].availableForSale
-  const productFilling = getProductFilling(props.product)
 
   return (
     <>
@@ -266,11 +267,9 @@ const ProductDetail = withStoreContext<{
           </Heading>
           <Price prices={prices} />
 
-          {taxable && (
-            <Text fontSize="xs" color="gray.600">
-              inkl. MwSt.
-            </Text>
-          )}
+          <Text fontSize="xs" color="gray.600">
+            {taxable ? "inkl." : "exkl."} MwSt.
+          </Text>
 
           {/* <Divider />
 
@@ -286,14 +285,14 @@ const ProductDetail = withStoreContext<{
             </Box>
           ))} */}
 
-          {productFilling && (
+          {productMetatfields.details?.filling && (
             <>
               <Divider />
 
               <HStack spacing="4">
                 <Icon as={GiBalloons} boxSize={10} />
                 <Text size="xs" color="gray.600">
-                  Für Luftfüllung geeignet
+                  {productMetatfields.details.filling}
                 </Text>
               </HStack>
             </>
@@ -314,9 +313,9 @@ const ProductDetail = withStoreContext<{
             <NumberInput
               size="md"
               maxW={24}
-              step={1}
-              defaultValue={1}
-              min={1}
+              step={stepperStep}
+              defaultValue={minQuantity}
+              min={minQuantity}
               value={quantity}
               onChange={valueString => setQuantity(parseInt(valueString))}
             >
@@ -342,18 +341,6 @@ const ProductDetail = withStoreContext<{
           </HStack>
           <Divider />
           <Flex alignItems={"center"} justifyContent="center" fontSize={"xl"}>
-            <Box mx="auto" onClick={addProductToBasket}>
-              <Center
-                color={props.isOnWishList ? "red.500" : undefined}
-                _hover={{
-                  color: props.isOnWishList ? "red.400" : "red.300",
-                }}
-                cursor="pointer"
-              >
-                <Icon as={FaHeart} mr="2" />
-                <Text fontWeight={"semibold"}>Merken</Text>
-              </Center>
-            </Box>
             <Box mx="auto">
               <ShareText />
             </Box>
