@@ -1,18 +1,23 @@
 {
-    "site": {
-      "siteMetadata": {
-        "title": "Ballons & Ballons - Freude schenken mit Ballons",
-        "siteUrl": "https://ballons-ballons.at",
-        "description": "",
-        "author": {
-          "name": ""
-        },
-        "organization": {
-          "name": "",
-          "url": ""
-        }
+  "site": {
+    "siteMetadata": {
+      "title": "Ballons & Ballons - Freude schenken mit Ballons",
+      "siteUrl": "https://ballons-ballons.at",
+      "description": "",
+      "author": {
+        "name": ""
+      },
+      "organization": {
+        "name": "",
+        "url": ""
       }
-    },
-    "migrationHistory": [],
-    "finderUrl": ""
-  }
+    }
+  },
+  "migrationHistory": [
+    {
+      "createdAt": "2022-11-21T12:01:30.454Z",
+      "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIUHGN7aEuI2Nx-4-yCojy09mjqzV2VAAKECwACCwAB4VPdjqz6_tZv-CsE"
+    }
+  ],
+  "finderUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIUG2N7aEszo2kBo4dPk8yUsw27_zElAAKDCwACCwAB4VMiZ5C6DypxDysE"
+}
