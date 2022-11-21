@@ -114,7 +114,7 @@ export const ProductsTemplate = (props: ProductsTemplateProps) => {
             ...props.products,
             ...props.products,
           ]}
-          columns={{ base: 2, sm: 3, md: 3, lg: 4, xl: 5 }}
+          columns={{ base: 2, sm: 2, md: 3, lg: 3, xl: 4, "2xl": 5 }}
           spacing={2}
         />
 
