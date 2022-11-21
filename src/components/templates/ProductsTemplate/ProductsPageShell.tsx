@@ -497,7 +497,7 @@ export default function ProductsPageShell(
           <FilterDrawer
             display={{ base: "flex", lg: "none" }}
           >
-            <Stack divider={<StackDivider />}>
+            <Stack  spacing='8'>
               <Heading size="sm">Kategorien</Heading>
 
               <CategoryPicker
@@ -591,7 +591,7 @@ const FilterDrawer: React.FC<
   ButtonProps & {
     children: React.ReactNode
   }
-> = ({ children, filterMenuList, ...buttonProps }) => {
+> = ({ children, ...buttonProps }) => {
   const drawerDisclosure = useDisclosure()
 
   return (
@@ -612,10 +612,10 @@ const FilterDrawer: React.FC<
       >
         <DrawerOverlay />
 
-        <DrawerContent maxHeight="55%">
+        <DrawerContent maxHeight="55%" borderTopRadius={'lg'} overflow='hidden'>
           <DrawerCloseButton />
 
-          <DrawerBody>{children}</DrawerBody>
+          <DrawerBody pt='16'>{children}</DrawerBody>
         </DrawerContent>
       </Drawer>
     </>
