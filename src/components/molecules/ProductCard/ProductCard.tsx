@@ -57,6 +57,10 @@ export const ProductCard = ({
 
   taxable = taxable !== undefined ? taxable : product.variants[0]?.taxable
 
+  if(wholesale) {
+    taxable = false
+  }
+
   const cardId = uuidv1()
 
   if (product.media.length === 0) {
