@@ -536,13 +536,13 @@ const CategoryNavigationBar: React.FC<{
 
         return {
           title: removeHtmlFromString(
-            titleField.value || titleField.props?.defaultValue
+            titleField.value || titleField.props?.defaultValue || ""
           ),
           subtitle: removeHtmlFromString(
-            subtitleField.value || subtitleField.props?.defaultValue
+            subtitleField.value || subtitleField.props?.defaultValue || ""
           ),
           text: removeHtmlFromString(
-            textField.value || textField.props?.defaultValue
+            textField.value || textField.props?.defaultValue || ""
           ),
           ref: refs.current[i],
         }
