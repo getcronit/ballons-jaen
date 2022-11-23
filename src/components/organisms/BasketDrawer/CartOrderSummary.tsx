@@ -1,17 +1,11 @@
 import {
   Box,
-  Button,
-  Flex,
-  HStack,
-  Stack,
-  Text,
-  useColorModeValue as mode,
+  Button, Stack,
+  Text
 } from "@chakra-ui/react"
 import { FaArrowRight } from "@react-icons/all-files/fa/FaArrowRight"
-import { FaBox } from "@react-icons/all-files/fa/FaBox"
 import * as React from "react"
-
-import { formatPrice } from "./PriceTag"
+import { formatPrice } from "../../../common/utils"
 
 export interface CartOrderSummaryProps {
   subtotal: number

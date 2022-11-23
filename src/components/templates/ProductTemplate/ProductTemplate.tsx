@@ -208,10 +208,11 @@ const ProductDetail = withStoreContext<{
     isWholesale: props.wholesale || false,
   })
 
-  const taxable =
-    props.wholesale !== undefined
-      ? !props.wholesale
-      : props.product.variants[0]?.taxable
+  let taxable = props.product.variants[0]?.taxable
+
+  if (props.wholesale) {
+    taxable = false
+  }
 
   const tags = getProductTags(props.product)
 
