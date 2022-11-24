@@ -70,7 +70,7 @@ const DekorationenHero: FC<IDekorationenHeroProps> = () => {
 
       <Stack pos="relative" maxH="93.75rem" overflow="hidden">
         <Box pos="absolute" bottom="0" w="full">
-          <Container maxW={CONTAINER_MAX_WIDTH} mb={{ base: "0", md: "16" }} >
+          <Container maxW={CONTAINER_MAX_WIDTH} mb={{ base: "0", md: "16" }}>
             <Field.Section
               as={Slider}
               props={{

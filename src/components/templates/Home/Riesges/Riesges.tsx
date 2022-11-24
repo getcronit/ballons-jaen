@@ -19,7 +19,6 @@ const Riesges: FC<IRiesgesProps> = () => {
       <Stack bg="white" py="20" px={{ base: 0, sm: 4, md: 8 }}>
         <Container
           as={Stack}
-          spacing={{ base: 20, md: 32, xl: 40 }}
           maxW={CONTAINER_MAX_WIDTH}
         >
           <RiesgesTopSection />

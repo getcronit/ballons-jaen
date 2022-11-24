@@ -38,7 +38,7 @@ const AdviceSection: FC<IAdviceSectionProps> = () => {
             />
           </Text>
 
-          <Box>
+          <Box pt="5">
             <LinkButtonField
               name="adviceButton"
               defaultValue={"Zur Beratung"}

@@ -87,7 +87,7 @@ interface IRiesgesBottomSectionProps {}
 
 const RiesgesBottomSection: FC<IRiesgesBottomSectionProps> = () => {
   return (
-    <Flex flexDir={{ base: "column", xl: "row" }} gap="10">
+    <Flex flexDir={{ base: "column", xl: "row" }} gap="10" pb="10">
       <Stack flex="1">
         <Heading
           fontSize={{ base: "xl", md: "3xl", lg: "4xl" }}
@@ -96,7 +96,13 @@ const RiesgesBottomSection: FC<IRiesgesBottomSectionProps> = () => {
         >
           <Field.Text
             name="riesgesHeading"
-            defaultValue="<p>Riesiges <i>Produktsortiment</i></p>"
+            defaultValue="<p>Riesiges</p>"
+            rtf
+            mb="5"
+          />
+          <Field.Text
+            name="riesgesHeading"
+            defaultValue="<p><i>Produktsortiment</i></p>"
             rtf
           />
         </Heading>
@@ -132,11 +138,10 @@ const RiesgesBottomSection: FC<IRiesgesBottomSectionProps> = () => {
         }}
       >
         {items.map((item, index) => (
-          <Flex key={index} gap="1" flexDir={{ base: "column", xl: "row" }}>
+          <Flex key={index} gap="1" flexDir={{ base: "column", xl: "row" }} mb="5">
             <Image
               w={{ base: "3.75rem", lg: "5.375rem" }}
               h={{ base: "2.8125rem", lg: "4.6875rem" }}
-              ml="-4"
               src="/images/home/reisges/pink_blob.svg"
               alt="pink blob"
             />
