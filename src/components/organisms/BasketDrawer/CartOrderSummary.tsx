@@ -1,8 +1,4 @@
-import {
-  Box,
-  Button, Stack,
-  Text
-} from "@chakra-ui/react"
+import { Box, Button, Stack, Text } from "@chakra-ui/react"
 import { FaArrowRight } from "@react-icons/all-files/fa/FaArrowRight"
 import * as React from "react"
 import { formatPrice } from "../../../common/utils"
@@ -26,10 +22,23 @@ export const CartOrderSummary = ({
     <Stack spacing="8" width="full" px="2">
       <Stack spacing="6">
         <Box>
-          <Text as={"span"} fontSize="xl" fontWeight="semibold">
+          <Text
+            as={"span"}
+            fontSize={{
+              base: "md",
+              md: "lg",
+            }}
+            fontWeight="semibold"
+          >
             Zwischensumme:
           </Text>
-          <Text fontSize="2xl" fontWeight="extrabold">
+          <Text
+            fontSize={{
+              base: "lg",
+              md: "xl",
+            }}
+            fontWeight="extrabold"
+          >
             {formatPrice(subtotal, { currency })}
           </Text>
         </Box>

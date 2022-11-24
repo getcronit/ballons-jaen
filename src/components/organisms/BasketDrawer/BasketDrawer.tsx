@@ -98,9 +98,9 @@ export const BasketDrawer = ({
             onClickCheckout={onClickCheckout}
             infoText={
               wholesale ? (
-                "Alle Preise exkl. 19% MwSt."
+                <Text fontSize="sm" mt="0 !important">Alle Preise exkl. 19% MwSt.</Text>
               ) : (
-                <HStack color={'gray.600'}>
+                <HStack color={'gray.600'} mt="0 !important">
                   <FaBox />
                   <Text fontSize="sm">
                     Versand + Steuern werden im nächsten Schritt berechnet.
