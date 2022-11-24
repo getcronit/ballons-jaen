@@ -43,7 +43,7 @@ const Images = React.memo<{
             internalImageUrl: string
           }>(imageFieldName, "IMA:ImageField")
           return (
-            <GridItem gridArea={`I${i + 1}`} key={i}>
+            <GridItem gridArea={`I${i + 1}`} key={i} cursor="pointer">
               <Box
                 _hover={{
                   transition: "all 0.2s ease",
@@ -52,7 +52,6 @@ const Images = React.memo<{
                     lg: "scale(1.02) ",
                   },
                 }}
-                cursor="pointer"
                 transition="ease-in 0.2s"
                 boxShadow="dark"
                 borderRadius="xl"
