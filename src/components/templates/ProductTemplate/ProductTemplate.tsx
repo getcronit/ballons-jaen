@@ -476,11 +476,12 @@ const ImageSlider = (props: {
       <Box
         my="4"
         minW={{
-          base: "25rem",
+          base: "20rem",
           md: "30rem",
           lg: "35rem",
           xl: "40rem",
         }}
+        /* w="100%" */
       >
         <AspectRatio ratio={4 / 3}>
           <Box onClick={() => setIsPreviewOpen(true)} cursor="zoom-in">
