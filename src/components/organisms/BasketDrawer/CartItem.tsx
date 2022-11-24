@@ -86,8 +86,14 @@ export const CartItem = (props: CartItemProps) => {
       <Stack direction="row" spacing="5" width="full">
         <Image
           rounded="lg"
-          width="120px"
-          height="120px"
+          width={{
+            base: "90px",
+            md: "110px",
+          }}
+          height={{
+            base: "90px",
+            md: "110px",
+          }}
           fit="cover"
           src={imageUrl}
           alt={name}
@@ -97,12 +103,24 @@ export const CartItem = (props: CartItemProps) => {
         <Box pt="4" width="full">
           <Stack spacing="0.5" width="full">
             <HStack justifyContent={"space-between"}>
-              <Text fontWeight="medium" noOfLines={1}>
+              <Text
+                fontWeight="medium"
+                fontSize="md"
+                noOfLines={1}
+              >
                 {name}
               </Text>
               <PriceTag price={price} currency={currency} />
             </HStack>
-            <Text color={mode("gray.400", "gray.400")}>{description}</Text>
+            <Text
+              color={mode("gray.400", "gray.400")}
+              fontSize={{
+                base: "xs",
+                md: "sm",
+              }}
+            >
+              {description}
+            </Text>
             <HStack justifyContent={"space-between"}>
               <QuantitySelect
                 stepperQuantity={stepperQuantity}

@@ -297,7 +297,13 @@ const ProductDetail = withStoreContext<{
 
               <HStack spacing="4">
                 <Icon as={GiBalloons} boxSize={10} />
-                <Text size="xs" color="gray.600">
+                <Text
+                  fontSize={{
+                    base: "xs",
+                    md: "sm",
+                  }}
+                  color="gray.600"
+                >
                   {productMetatfields.details.filling}
                 </Text>
               </HStack>
@@ -306,7 +312,7 @@ const ProductDetail = withStoreContext<{
 
           <Divider />
 
-          <Text size="xs" fontWeight={"thin"}>
+          <Text fontSize="xs" fontWeight={"thin"}>
             Artikelnummer: {props.product.variants[0].sku || "-"}
           </Text>
           <Divider />
@@ -334,15 +340,24 @@ const ProductDetail = withStoreContext<{
 
             <Button
               disabled={availableForSale === false}
-              fontSize={"xl"}
               fontWeight={"semibold"}
               textTransform="uppercase"
               leftIcon={<Icon as={FaShoppingBasket} />}
               borderRadius={"full"}
-              size="lg"
+              size={{
+                base: "sm",
+                md: "md",
+              }}
               onClick={addProductToBasket}
             >
-              <Text>In den Warenkorb</Text>
+              <Text
+                fontSize={{
+                  base: "sm",
+                  md: "md",
+                }}
+              >
+                In den Warenkorb
+              </Text>
             </Button>
           </HStack>
           <Divider />
@@ -476,11 +491,12 @@ const ImageSlider = (props: {
       <Box
         my="4"
         minW={{
-          base: "25rem",
+          base: "20rem",
           md: "30rem",
           lg: "35rem",
           xl: "40rem",
         }}
+        /* w="100%" */
       >
         <AspectRatio ratio={4 / 3}>
           <Box onClick={() => setIsPreviewOpen(true)} cursor="zoom-in">

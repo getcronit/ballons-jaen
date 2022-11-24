@@ -47,7 +47,7 @@ const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
         gap={{ base: 32, lg: 8 }}
         spacing={{ base: 20, md: 32, xl: 40 }}
         flexDirection={{ base: "column", lg: "row" }}
-        pt={{ base: 44, md: 20 }}
+        py={{ base: 44, md: 20 }}
         maxW={CONTAINER_MAX_WIDTH}
       >
         <Flex display={{ base: "none", md: "flex" }} gap="4">
