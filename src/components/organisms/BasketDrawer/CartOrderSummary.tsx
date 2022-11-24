@@ -38,7 +38,10 @@ export const CartOrderSummary = ({
       </Stack>
       <Button
         colorScheme="blue"
-        size="lg"
+        size={{
+          base: "sm",
+          md: "md",
+        }}
         fontSize="md"
         rightIcon={<FaArrowRight />}
         onClick={onClickCheckout}

@@ -494,10 +494,8 @@ export default function ProductsPageShell(
             })}
           </Wrap>
 
-          <FilterDrawer
-            display={{ base: "flex", lg: "none" }}
-          >
-            <Stack  spacing='8'>
+          <FilterDrawer display={{ base: "flex", lg: "none" }}>
+            <Stack spacing="8">
               <Heading size="sm">Kategorien</Heading>
 
               <CategoryPicker
@@ -508,9 +506,11 @@ export default function ProductsPageShell(
               />
               <Heading size="sm">Filter</Heading>
 
-              <Stack>{FilterElements({
-                size: "md"
-              })}</Stack>
+              <Stack>
+                {FilterElements({
+                  size: "md",
+                })}
+              </Stack>
             </Stack>
           </FilterDrawer>
 
@@ -613,10 +613,10 @@ const FilterDrawer: React.FC<
       >
         <DrawerOverlay />
 
-        <DrawerContent maxHeight="55%" borderTopRadius={'lg'} overflow='hidden'>
+        <DrawerContent maxHeight="55%" borderTopRadius={"lg"} overflow="hidden">
           <DrawerCloseButton />
 
-          <DrawerBody pt='16'>{children}</DrawerBody>
+          <DrawerBody pt="16">{children}</DrawerBody>
         </DrawerContent>
       </Drawer>
     </>
