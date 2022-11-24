@@ -79,7 +79,10 @@ export const LoginModal: React.FC<LoginModalProps> = ({
 
       <ModalContent maxW="56rem" h="32rem" overflow="hidden">
         <ModalBody display={"flex"} p={0}>
-          <Flex w="full">
+          <Flex w="full" display={{
+            base: "none",
+            md: "flex",
+          }}>
             <Image src="https://ballons.snek.at/images/home/heart/hsection2.png" />
           </Flex>
           <Flex w="full">
@@ -87,7 +90,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
               <form onSubmit={handleSubmit(handleFormSubmit)}>
                 <Stack align={"left"} spacing="4">
                   <Box>
-                    <Text fontSize={"md"}>Wilkommen zurück!</Text>
+                    <Text fontSize={"md"}>Willkommen zurück!</Text>
                     <Text fontSize="sm">
                       Hunderte von Ballone warten auf Sie.
                     </Text>
