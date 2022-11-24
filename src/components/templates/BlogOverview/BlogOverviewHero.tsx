@@ -157,7 +157,7 @@ const BlogOverviewHero: FC<IBlogOverviewHeroProps> = props => {
             <Field.Text
               rtf
               name="heroTitle"
-              defaultValue="<p>Wissenswertes über Ballons & Ballons</p>"
+              defaultValue="<p><i>Wissenswertes</i> über Ballons & Ballons</p>"
             />
           </Heading>
         </VStack>
