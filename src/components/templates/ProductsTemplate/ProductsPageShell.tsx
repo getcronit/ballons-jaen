@@ -540,13 +540,14 @@ export default function ProductsPageShell(
             </CSelect>
           </HStack>
         </Flex>
-        <Box flex="1" pos="relative" overflowY={"scroll"} zIndex="0" pb={48}>
+        <Box flex="1" pos="relative" overflowY={"scroll"} zIndex="0" pb={50}>
           {props.children}
         </Box>
         <HStack
           as="footer"
-          justifyContent={"right"}
-          mr="8"
+          justifyContent={"end"}
+          my="5"
+          px={{ base: "4", md: "6" }}
           spacing="4"
           divider={<StackDivider />}
         >
