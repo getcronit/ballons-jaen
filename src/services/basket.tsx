@@ -33,8 +33,6 @@ export const useBasket = () => {
 const cleanLineItems = (lineItems: any[] = []) => {
   // Remove all line items that have a variant of null
 
-  console.log(`lineItems`, lineItems)
-
   return lineItems.filter(lineItem => lineItem.variant !== null)
 }
 
