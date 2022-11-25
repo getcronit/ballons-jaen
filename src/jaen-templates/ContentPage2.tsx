@@ -1,5 +1,5 @@
 import { connectTemplate } from "@jaenjs/jaen"
-import { PageProps } from "gatsby"
+import { graphql, PageProps } from "gatsby"
 
 import ContentPage2 from "../components/templates/WirGestaltenParty/WirGestaltenParty"
 import { Layout } from "../Layout"
@@ -14,3 +14,9 @@ export default connectTemplate(Page, {
     displayName: "Inhaltseite 2",
     children: [],
 })
+
+export const query = graphql`
+  query ($jaenPageId: String!) {
+    ...JaenPageQuery
+  }
+`
