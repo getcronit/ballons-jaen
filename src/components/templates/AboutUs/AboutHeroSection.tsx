@@ -59,7 +59,7 @@ const AboutHeroSection: FC<IAboutHeroSectionProps> = () => {
             </Heading>
           </Flex>
 
-          <Text size="b2012" variant="light" maxW={{ base: "80%", md: "90%" }}>
+          <Text size="b2012" variant="light" maxW={{ base: "80%", md: "90%" }} as="span">
             <Field.Text
               name="heroDescription"
               defaultValue="<p>Wir sind ein junges Team aus kreativen Köpfen, die sich mit Leidenschaft für die Entwicklung von innovativen und nachhaltigen Produkten einsetzen.</p>"

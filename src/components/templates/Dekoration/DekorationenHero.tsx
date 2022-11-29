@@ -53,6 +53,7 @@ const DekorationenHero: FC<IDekorationenHeroProps> = () => {
           pb="4"
           textAlign="center"
           fontSize={{ base: "sm", md: "md", "2xl": "lg" }}
+          as="span"
         >
           <Field.Text
             name="titleText"

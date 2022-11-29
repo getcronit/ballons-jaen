@@ -152,6 +152,7 @@ const Hero: FC<IHeroProps> = props => {
                           fontSize={{ base: "sm" }}
                           mt="-4 !important"
                           mb="2 !important"
+                          as="span"
                         >
                           <Field.Text
                             name="heroText"
@@ -288,6 +289,7 @@ const Hero: FC<IHeroProps> = props => {
                               "2xl": "-18 !important",
                             }}
                             fontSize="clamp(3.125rem,5vw + 8px,6.25rem)"
+                            as="span"
                           >
                             <Field.Text
                               name="herosubtitle"
@@ -299,6 +301,7 @@ const Hero: FC<IHeroProps> = props => {
                             fontWeight="light"
                             noOfLines={3}
                             fontSize="clamp(.9375rem,1vw + 1.6px,1.25rem)"
+                            as="span"
                           >
                             <Field.Text
                               name="heroText"

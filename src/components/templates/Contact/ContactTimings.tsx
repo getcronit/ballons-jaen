@@ -100,13 +100,13 @@ const ContactTimings: FC<IContactTimingsProps> = ({ contactDetails }) => {
             borderRadius="xl"
             mx={{ base: 4, md: "0" }}
           >
-            <Text variant="cursive" size="50" mb="8" textAlign="center">
+            <Text variant="cursive" size="50" mb="8" textAlign="center" as="span">
               <Field.Text name="timingHeading2" defaultValue="Öffnungszeiten" />
             </Text>
             <Stack spacing={{ base: 2, md: 6, lg: 8 }}>
               {timings.map((item, index) => (
                 <Flex key={item.day} justify="space-between" align="flex-end">
-                  <Text w={{ base: "5rem", lg: "7.5rem" }} size="b2012">
+                  <Text w={{ base: "5rem", lg: "7.5rem" }} size="b2012" as="span">
                     <Field.Text
                       name={`timingsDay${index}`}
                       defaultValue={item.day}
@@ -117,7 +117,7 @@ const ContactTimings: FC<IContactTimingsProps> = ({ contactDetails }) => {
                     bg="black"
                     maxW={{ base: "4rem", md: "6rem", lg: "8.2rem" }}
                   />
-                  <Text w={{ base: "5rem", lg: "8.2rem" }} size="b2012">
+                  <Text w={{ base: "5rem", lg: "8.2rem" }} size="b2012" as="span">
                     <Field.Text
                       name={`timingsTime${index}`}
                       defaultValue={item.time}

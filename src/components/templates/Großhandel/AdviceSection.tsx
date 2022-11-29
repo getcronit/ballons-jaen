@@ -29,7 +29,7 @@ const AdviceSection: FC<IAdviceSectionProps> = () => {
             </Heading>
           </Flex>
 
-          <Text size="b2012" variant="light" maxW="90%">
+          <Text size="b2012" variant="light" maxW="90%" as="span">
             <Field.Text
               name="adviceText"
               defaultValue={

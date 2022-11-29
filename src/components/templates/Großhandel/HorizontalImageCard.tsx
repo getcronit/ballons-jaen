@@ -104,6 +104,7 @@ const HorizontalImageCard: FC<IHorizontalImageCardProps> = ({
           variant="light"
           size="b2012"
           textAlign={{ base: "center", md: "start" }}
+          as="span"
         >
           <Field.Text
             name={card.descriptionFieldName}

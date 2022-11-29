@@ -16,6 +16,7 @@ const NewsContent: FC<INewsContentProps> = () => {
         mb={{ base: "-8", md: "-12", lg: "-16 !important" }}
         fontSize={{ base: "xl", md: "4xl", lg: "7xl" }}
         variant="cursive"
+        as="span"
       >
         <Field.Text
           display={"inline-block"}
@@ -42,6 +43,7 @@ const NewsContent: FC<INewsContentProps> = () => {
         fontSize={{ base: "sm", md: "md" }}
         maxW={{ sm: "60%", md: "50%" }}
         mb="4 !important"
+        as="span"
       >
         <Field.Text
           display={"inline-block"}

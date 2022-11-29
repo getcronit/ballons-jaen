@@ -366,6 +366,7 @@ const SubCategoryContentSection = connectSection(
                 fontSize={{ base: "sm", lg: "md" }}
                 textAlign="center"
                 maxW={{ md: "60%" }}
+                as="span"
               >
                 <Field.Text
                   name="Text"
