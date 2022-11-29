@@ -49,7 +49,7 @@ const CustomerItemSection = connectSection(
             <Text fontSize="md" as="span">
               <Field.Text name="customerPosition" defaultValue="Kunde" />
             </Text>
-            <Text size="b2012" variant="light">
+            <Text size="b2012" variant="light" as="span">
               <Field.Text
                 name="customerFeedbackText"
                 defaultValue={

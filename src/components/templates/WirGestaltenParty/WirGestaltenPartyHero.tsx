@@ -58,6 +58,7 @@ const WirGestaltenPartyHero: FC<IWirGestaltenPartyHeroProps> = () => {
               display={{ base: "none", sm: "block" }}
               fontSize={{ base: "sm", lg: "md" }}
               maxW={{ md: "70%" }}
+              as="span"
             >
               <Field.Text
                 name="text"

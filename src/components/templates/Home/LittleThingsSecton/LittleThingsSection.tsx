@@ -190,7 +190,7 @@ const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
               defaultValue="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
             />
           </Heading>
-          <Text fontSize={{ base: "sm", md: "md" }} fontWeight="light">
+          <Text fontSize={{ base: "sm", md: "md" }} fontWeight="light" as="span">
             <Field.Text
               display={"inline-block"}
               name="text"

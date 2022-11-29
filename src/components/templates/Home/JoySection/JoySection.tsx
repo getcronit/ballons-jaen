@@ -45,6 +45,7 @@ const JoySection: FC<IJoySectionProps> = () => {
           fontSize={{ base: "sm", md: "md" }}
           fontWeight="medium"
           textAlign="center"
+          as="span"
         >
           <Field.Text
             name="joyText"

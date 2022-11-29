@@ -51,7 +51,7 @@ const BlogCard: FC<IBlogCardProps> = ({ slug }) => {
             defaultValue="<p>Ballons & Ballons: Die Geschichte</p>"
           />{" "}
         </Heading>
-        <Text variant="light" size="b2012" noOfLines={3}>
+        <Text variant="light" size="b2012" noOfLines={3} as="span">
           <Field.Text
             name="description"
             rtf

@@ -27,6 +27,7 @@ const ImaginationUpperSection: FC<IImaginationUpperSectionProps> = () => {
           lineHeight={{ base: "3.75rem", lg: "6.25rem" }}
           variant="cursive"
           fontSize={{ base: "4xl", md: "6xl", lg: "8xl" }}
+          as="span"
         >
           <Field.Text
             display={"inline-block"}

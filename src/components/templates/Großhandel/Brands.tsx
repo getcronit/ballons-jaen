@@ -96,7 +96,7 @@ export const BrandsSection = connectSection(
               />
             </Heading>
           </Flex>
-          <Text size="b2412" maxW="60%" mb="4 !important" textAlign="center">
+          <Text size="b2412" maxW="60%" mb="4 !important" textAlign="center" as="span">
             <Field.Text
               rtf
               name="partnerText"

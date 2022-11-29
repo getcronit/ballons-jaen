@@ -111,6 +111,7 @@ const RiesgesBottomSection: FC<IRiesgesBottomSectionProps> = () => {
           fontSize={{ base: "sm", lg: "lg" }}
           mt="-4 !important"
           mb="2 !important"
+          as="span"
         >
           <Field.Text
             name="riesgesText"
@@ -152,7 +153,7 @@ const RiesgesBottomSection: FC<IRiesgesBottomSectionProps> = () => {
               >
                 {item.heading}
               </Heading>
-              <Text maxW="95%" fontSize={{ base: "xs", sm: "sm", lg: "md" }}>
+              <Text maxW="95%" fontSize={{ base: "xs", sm: "sm", lg: "md" }} as="span">
                 {item.text}
               </Text>
             </Stack>

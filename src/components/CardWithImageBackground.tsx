@@ -68,6 +68,7 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
               <Text
                 fontSize={{ base: "sm", lg: isSmallText ? "sm" : "md" }}
                 maxW="80%"
+                as="span"
               >
                 <Field.Text
                   name={card.textFieldName}

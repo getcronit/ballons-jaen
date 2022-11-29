@@ -15,7 +15,7 @@ export const BlogMeta: React.FC = () => {
           />
         </Text>
       </Text>
-      <Text size="b2012" textAlign="end">
+      <Text size="b2012" textAlign="end" as="span">
         <Field.Text name="date" defaultValue="12.12.2020" />
       </Text>
     </Box>

@@ -115,7 +115,7 @@ const TeamMember: FC<ITeamMemberProps> = ({ member, orientation }) => {
             </Box>
           </Grid>
         </Flex>
-        <Text fontSize="xs" textAlign={{ base: "end" }}>
+        <Text fontSize="xs" textAlign={{ base: "end" }} as="span">
           <Field.Text name={member.qualificationsFieldName} defaultValue={member.qualificationsDefaultValue} />
         </Text>
       </Stack>

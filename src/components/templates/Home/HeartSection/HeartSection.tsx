@@ -37,7 +37,7 @@ const HeartSection: FC<IHeartSectionProps> = () => {
             h={{ base: "21.25rem", md: "auto", lg: "auto" }}
             w={{ base: "19.375rem", sm: "100%", lg: "38.125rem" }}
           >
-            <Text fontSize={{ base: "sm", lg: "xl" }}>
+            <Text fontSize={{ base: "sm", lg: "xl" }} as="span">
               <Field.Text name="tag" defaultValue="Inspiration" />
             </Text>
             <Heading fontSize={{ base: "md", lg: "4xl" }} fontWeight="800">
@@ -46,7 +46,7 @@ const HeartSection: FC<IHeartSectionProps> = () => {
                 defaultValue="Lass dich von uns inspirieren"
               />
             </Heading>
-            <Text fontSize={{ base: "xs", lg: "md" }} mb="2 !important">
+            <Text fontSize={{ base: "xs", lg: "md" }} mb="2 !important" as="span">
               <Field.Text
                 name="text"
                 defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus imperdiet sed id elementum. Quam vel aliquam sit vulputate."

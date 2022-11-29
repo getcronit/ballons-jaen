@@ -66,7 +66,7 @@ const ContactHero: FC<IContactHeroProps> = ({ contactDetails }) => {
                     <Box fontSize="xl" color="red.500">
                       {item.icon}
                     </Box>{" "}
-                    <Text size="b2012">
+                    <Text size="b2012" as="span">
                       {!item.isEditing ? (
                         <Link href={item.link} target="_blank" rel="noreferrer">
                           {item.text}
