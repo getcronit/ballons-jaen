@@ -22,6 +22,7 @@ export const NavAuthButton: React.FC<NavAuthButtonProps> = () => {
 
   const buttons = [
     <Button
+    key='login'
       display={{ base: "none", md: "flex" }}
       size={"sm"}
       variant="outline"
@@ -32,6 +33,7 @@ export const NavAuthButton: React.FC<NavAuthButtonProps> = () => {
     </Button>,
 
     <IconButton
+      key='basket'
       display={{ base: "flex", md: "none" }}
       variant="ghost"
       icon={<AiOutlineUser />}
@@ -46,7 +48,7 @@ export const NavAuthButton: React.FC<NavAuthButtonProps> = () => {
 
   return (
     <Menu>
-      <MenuButton>{buttons}</MenuButton>
+      <MenuButton as="span">{buttons}</MenuButton>
 
       <MenuList>
         <MenuItem as={Link} to="/products">
