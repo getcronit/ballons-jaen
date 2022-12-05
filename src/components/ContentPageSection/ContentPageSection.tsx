@@ -267,15 +267,9 @@ const FullWidthImageSection = connectSection(
         <Box
           my={{ base: "4 !important", md: "12 !important" }}
           borderRadius={{ base: ".625rem", md: "2rem" }}
-          // minH={{
-          //   base: "11.25rem",
-          //   md: "18.75rem",
-          //   lg: "25rem",
-          //   xl: "29.375rem",
-          // }}
-          
           boxShadow="light"
           overflow={"hidden"}
+          h={{ base: "11.25rem", md: "18.75rem", lg: "25rem", xl: "29.375rem" }}
         >
           <Field.Image
             name="image"

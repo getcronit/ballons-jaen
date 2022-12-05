@@ -51,9 +51,16 @@ const TeamMember: FC<ITeamMemberProps> = ({ member, orientation }) => {
               <Box
                 pos="absolute"
                 boxShadow="dark"
-                w="80%"
                 borderRadius="full"
                 overflow={"hidden"}
+                h={{
+                  base: "15rem",
+                  md: "20rem",
+                }}
+                w={{
+                  base: "15rem",
+                  md: "20rem",
+                }}
               >
                 <Field.Image
                   name={member.imageFieldName}
@@ -104,7 +111,8 @@ const TeamMember: FC<ITeamMemberProps> = ({ member, orientation }) => {
             <Box
               pos="absolute"
               boxShadow="dark"
-              w="80%"
+              h="5rem"
+              w="5rem"
               borderRadius="full"
               overflow={"hidden"}
             >
@@ -116,7 +124,10 @@ const TeamMember: FC<ITeamMemberProps> = ({ member, orientation }) => {
           </Grid>
         </Flex>
         <Text fontSize="xs" textAlign={{ base: "end" }} as="span">
-          <Field.Text name={member.qualificationsFieldName} defaultValue={member.qualificationsDefaultValue} />
+          <Field.Text
+            name={member.qualificationsFieldName}
+            defaultValue={member.qualificationsDefaultValue}
+          />
         </Text>
       </Stack>
     </>
