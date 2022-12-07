@@ -30,12 +30,13 @@ const CustomerItemSection = connectSection(
           borderRadius="xl"
           maxW="21.875rem"
           py="8"
+          bg="white"
         >
           <Flex gap="1">
             <Box>
               <Image src="/images/about_us/comma.svg" />
             </Box>
-            <Box boxSize="180px" borderRadius="full">
+            <Box boxSize="180px" borderRadius="full" overflow="hidden">
               <Field.Image
                 name="customerImage"
                 defaultValue="/images/about_us/cardProfile1.png"
