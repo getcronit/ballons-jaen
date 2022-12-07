@@ -81,7 +81,8 @@ const WirGestaltenPartyHero: FC<IWirGestaltenPartyHeroProps> = () => {
             <Box
               borderRadius="full"
               boxShadow="light"
-              w={{ base: "17.5rem", sm: "auto " }}
+              w={{ base: "10rem", md: "20rem", lg: "25rem", xl: "30rem" }}
+              h={{ base: "10rem", md: "20rem", lg: "25rem", xl: "30rem" }}
             >
               <Field.Image
                 name="heroImage"
