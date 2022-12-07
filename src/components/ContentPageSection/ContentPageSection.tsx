@@ -263,13 +263,13 @@ const FullWidthImageSection = connectSection(
             rtf
           />
         </Heading>
-
         <Box
           my={{ base: "4 !important", md: "12 !important" }}
           borderRadius={{ base: ".625rem", md: "2rem" }}
           boxShadow="light"
           overflow={"hidden"}
           h={{ base: "11.25rem", md: "18.75rem", lg: "25rem", xl: "29.375rem" }}
+          w="full"
         >
           <Field.Image
             name="image"
