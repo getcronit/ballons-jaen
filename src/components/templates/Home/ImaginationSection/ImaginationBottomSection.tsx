@@ -17,7 +17,7 @@ const Images = React.memo<{
     return (
       <Grid
         w="100%"
-        minH="100vh"
+        minH="175vh"
         px="4"
         gridGap={{ base: "2", md: "4" }}
         gridTemplateAreas={{
