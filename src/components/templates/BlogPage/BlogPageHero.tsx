@@ -26,7 +26,7 @@ const BlogPageHero: FC<IBlogPageHeroProps> = () => {
         gap={{ base: 4, lg: "8" }}
       >
         <Box pos="relative" top={{ base: "-40px", md: 0 }}>
-          <Box borderRadius="1.875rem" boxShadow="dark" overflow={"hidden"} h='50vh'>
+          <Box borderRadius="1.875rem" boxShadow="dark" overflow={"hidden"} h={{ base: "30vh", "xl": "50vh" }}>
             <Field.Image
               name="image"
               defaultValue="/images/blog_page/hero_image.png"
