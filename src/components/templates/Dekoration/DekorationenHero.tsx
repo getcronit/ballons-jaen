@@ -97,6 +97,7 @@ const DekorationSliderItem = connectSection(
   () => {
     return (
       <Box
+        height='60vh'
         m={{ base: 2, md: 4 }}
         borderRadius={{ base: "8", md: "16", lg: "24" }}
         overflow="hidden"
