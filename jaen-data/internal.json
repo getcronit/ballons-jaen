@@ -3,7 +3,7 @@
     "siteMetadata": {
       "title": "Ballons & Ballons - Freude schenken mit Ballons",
       "siteUrl": "https://ballons-ballons.at",
-      "description": "",
+      "description": "Wir sind Ballon-Händler für Wiederverkäufer und für Privatkunden. Profitieren Sie von unserer Top-Beratung und der großen Auswahl.",
       "author": {
         "name": ""
       },
@@ -21,14 +21,21 @@
     {
       "createdAt": "2022-11-25T08:26:43.875Z",
       "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIUMGOAe70vkkk-9QtLGF-SJGECXooDAAImDwAC1L4IUBIkZkap4IN9KwQ"
+    },
+    {
+      "createdAt": "2022-12-13T19:09:07.571Z",
+      "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIUgmOYsGf6UPoW-n4nByzHKXWs4VkRAALBDwACtszIUJJAqOdgcL-BLAQ"
     }
   ],
-  "finderUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIUL2OAe7yjzJ0yXuYRyCcgeofL9ZHwAAIlDwAC1L4IUPa2YWmCbwQoKwQ",
-  "widgets": [
-    {
-      "name": "menu",
-      "data": {
-        "markdown": "\n  [Home](/)\n  [Partyshop](/partyshop2)\n[Deko & Design](/dekoration)\n[Grosshandel](/grosshandel)\n[Ballongas](/ballongas)\n[Wissen](/news)\n[FAQ](/faq)\n[Über Uns](/ueber-uns)\n[Kontakt](/kontakt)"      }
-    }
-  ]
+  "finderUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIUgWOYsGfeuLE87tJIl044-0wULNy5AALADwACtszIUMpx5luq47OMLAQ",
+  "widgets": {
+    "widgets": [
+      {
+        "name": "menu",
+        "data": {
+          "markdown": "\n  [Home](/)\n  [Partyshop](/party)\n[Deko & Design](/dekorationen)\n[Grosshandel](/grosshandel)\n[Ballongas](/news/helium)\n[Wissen](/news)\n[FAQ](/faq)\n[Kontakt](/kontakt)"
+        }
+      }
+    ]
+  }
 }
