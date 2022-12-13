@@ -69,9 +69,16 @@ const DekorationenHero: FC<IDekorationenHeroProps> = () => {
         />
       </VStack>
 
-      <Stack pos="relative" maxH="93.75rem" overflow="hidden">
-        <Box pos="absolute" bottom="0" w="full">
-          <Container maxW={CONTAINER_MAX_WIDTH} mb={{ base: "0", md: "16" }}>
+      <Stack pos="relative" maxH="93.75rem" overflow="hidden" pb={{base: "15px", md: "0"}}>
+          <Box 
+            pos="absolute"
+            w="full" 
+            top={{ base: "7vh", md: '23vh', xl: '400px'}} 
+          >
+        <Container 
+          maxW={CONTAINER_MAX_WIDTH} 
+          mb={{ base: "0", md: "16" }}
+        >
             <Field.Section
               as={Slider}
               props={{
@@ -97,7 +104,7 @@ const DekorationSliderItem = connectSection(
   () => {
     return (
       <Box
-        height='60vh'
+        height={{ base: '40vh', md: '45vh', lg: '50vh'}}
         m={{ base: 2, md: 4 }}
         borderRadius={{ base: "8", md: "16", lg: "24" }}
         overflow="hidden"
