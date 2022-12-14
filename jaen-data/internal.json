@@ -28,14 +28,12 @@
     }
   ],
   "finderUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIUgWOYsGfeuLE87tJIl044-0wULNy5AALADwACtszIUMpx5luq47OMLAQ",
-  "widgets": {
-    "widgets": [
-      {
-        "name": "menu",
-        "data": {
-          "markdown": "\n  [Home](/)\n  [Partyshop](/party)\n[Deko & Design](/dekorationen)\n[Grosshandel](/grosshandel)\n[Ballongas](/news/helium)\n[Wissen](/news)\n[FAQ](/faq)\n[Kontakt](/kontakt)"
-        }
+  "widgets": [
+    {
+      "name": "menu",
+      "data": {
+        "markdown": "\n  [Home](/)\n  [Partyshop](/party)\n[Deko & Design](/dekorationen)\n[Grosshandel](/grosshandel)\n[Ballongas](/news/helium)\n[Wissen](/news)\n[FAQ](/faq)\n[Kontakt](/kontakt)"
       }
-    ]
-  }
+    }
+  ]
 }
