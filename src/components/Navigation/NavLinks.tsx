@@ -1,27 +1,33 @@
-import { EditIcon } from "@chakra-ui/icons";
+import { EditIcon } from "@chakra-ui/icons"
 import {
-  Box, HStack,
-  IconButton, Link as CLink,
+  Box,
+  IconButton,
+  Link as CLink,
   Popover,
   PopoverArrow,
   PopoverCloseButton,
   PopoverContent,
-  PopoverTrigger, Stack, StackProps, useDisclosure
-} from "@chakra-ui/react";
-import { navigate } from "@jaenjs/jaen";
-import { Link } from "gatsby";
-import React from "react";
-import { useJaenNavigation } from "./useJaenNavigation";
-import { MarkdownLinksForm } from "./BottomNav";
+  PopoverTrigger,
+  Stack,
+  StackProps,
+  useDisclosure,
+} from "@chakra-ui/react"
+import { navigate } from "@jaenjs/jaen"
+import { Link } from "gatsby"
+import React from "react"
+import { MarkdownLinksForm } from "./BottomNav"
+import { useJaenNavigation } from "./useJaenNavigation"
 
+export const NavLinks: React.FC<
+  StackProps & {
+    childrenTextAlign?: "left" | "center" | "right"
+  }
+> = ({ childrenTextAlign, ...props }) => {
+  const { isEditing, navLinks, markdown, updateNavigation } =
+    useJaenNavigation()
 
-export const NavLinks: React.FC<StackProps & {
-  childrenTextAlign?: "left" | "center" | "right";
-}> = ({childrenTextAlign, ...props}) => {
-  const { isEditing, navLinks, markdown, updateNavigation } = useJaenNavigation();
-
-  const { onOpen, onClose, isOpen } = useDisclosure();
-  const firstFieldRef = React.useRef(null);
+  const { onOpen, onClose, isOpen } = useDisclosure()
+  const firstFieldRef = React.useRef(null)
 
   return (
     <>
@@ -40,10 +46,10 @@ export const NavLinks: React.FC<StackProps & {
               as={Link}
               to={link.to}
               onClick={e => {
-                e.preventDefault();
-                navigate(link.to);
+                e.preventDefault()
+                navigate(link.to)
 
-                return false;
+                return false
               }}
               key={index}
               textAlign={childrenTextAlign || "center"}
@@ -58,7 +64,7 @@ export const NavLinks: React.FC<StackProps & {
             >
               {link.label}
             </CLink>
-          );
+          )
         })}
       </Stack>
 
@@ -77,7 +83,8 @@ export const NavLinks: React.FC<StackProps & {
                 size="sm"
                 icon={<EditIcon />}
                 aria-label={""}
-                colorScheme="teal" />
+                colorScheme="teal"
+              />
             </PopoverTrigger>
             <PopoverContent p={5}>
               <PopoverArrow />
@@ -85,11 +92,12 @@ export const NavLinks: React.FC<StackProps & {
               <MarkdownLinksForm
                 onSaved={updateNavigation}
                 onCancle={onClose}
-                markdownUrls={markdown} />
+                markdownUrls={markdown}
+              />
             </PopoverContent>
           </Popover>
         </Box>
       )}
     </>
-  );
-};
+  )
+}
