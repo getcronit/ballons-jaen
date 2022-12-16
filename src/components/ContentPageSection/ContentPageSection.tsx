@@ -159,6 +159,7 @@ const Images = React.memo<{
                   key={i}
                 >
                   <Box
+                    mx="auto"
                     boxSize={"full"}
                     borderRadius="xl"
                     boxShadow="light"
@@ -168,6 +169,8 @@ const Images = React.memo<{
                         openImageViewer(i)
                       }
                     }}
+                    w="calc(95vh / 3)"
+                    h="calc(95vh / 3)"
                   >
                     <Field.Image
                       onLoad={() => {
@@ -223,6 +226,7 @@ const Images = React.memo<{
                   bg="blue"
                   borderRadius="lg"
                   overflow={"hidden"}
+                  h="30vh"
                 >
                   <Field.Image
                     onLoad={() => {
@@ -266,10 +270,20 @@ const FullWidthImageSection = connectSection(
         <Box
           my={{ base: "4 !important", md: "12 !important" }}
           borderRadius={{ base: ".625rem", md: "2rem" }}
+          // minH={{
+          //   base: "11.25rem",
+          //   md: "18.75rem",
+          //   lg: "25rem",
+          //   xl: "29.375rem",
+          // }}
+
           boxShadow="light"
           overflow={"hidden"}
-          h={{ base: "11.25rem", md: "18.75rem", lg: "25rem", xl: "29.375rem" }}
-          w="full"
+          h={{
+            base: "30vh",
+            md: "50vh",
+            lg: "60vh",
+          }}
         >
           <Field.Image
             name="image"
@@ -338,6 +352,7 @@ const SubCategoryContentSection = connectSection(
             "2xl": "-16%",
           }}
           w="calc(20vw + 15vh)"
+          h="60vh"
         >
           <Field.Image
             name="sideImageLeft"
@@ -424,6 +439,7 @@ const CategoryContentSection = connectSection(
                 top={{ md: "10rem", xl: "18.75rem" }}
                 right="-15rem"
                 w="calc(20vw + 15vh)"
+                h="60vh"
               >
                 <Field.Image
                   name="sideImageRight"

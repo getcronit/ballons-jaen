@@ -50,6 +50,7 @@ const HorizontalImageCard: FC<IHorizontalImageCardProps> = ({
         overflow="hidden"
         flex="1"
         maxH={{ base: "120px", sm: "240px", md: "400px" }}
+        h='30vh'
       >
         <Field.Image
           name={card.imageFieldName}

@@ -55,9 +55,10 @@ const Brands: FC<IBrandsProps> = () => {
         maxW={CONTAINER_MAX_WIDTH}
         mx="auto"
         pos="relative"
-        justify="end"
         h="full"
         pb={{ base: "24", md: "60" }}
+        justify="start"
+        top='350px'
       >
         <Heading mb="8" fontSize={{ base: "md", lg: "xl" }}>
           <Field.Text

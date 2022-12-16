@@ -49,7 +49,7 @@ const GroßhandelUpperHero: FC<IGroßhandelUpperHeroProps> = () => {
             pos="absolute"
             top="6.25rem"
             w={{ md: "12.5rem", lg: "16.875rem", xl: "20rem" }}
-            h={{ md: "17rem", lg: "25rem", xl: "30rem" }}
+            h='40vh'
           >
             <Field.Image
               name="image"

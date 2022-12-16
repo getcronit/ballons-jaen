@@ -48,17 +48,7 @@ const AdviceSection: FC<IAdviceSectionProps> = () => {
         </Stack>
       </Box>
 
-      <Box
-        flex="2"
-        h={{
-          base: "20rem",
-          md: "40rem",
-        }}
-        w={{
-          base: "20rem",
-          md: "40rem",
-        }}
-      >
+      <Box flex="2" h='40vh'>
         <Field.Image
           name="adviceImage"
           defaultValue="/images/großhandel/shape_bg.png"
