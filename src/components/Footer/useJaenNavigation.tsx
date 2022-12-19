@@ -16,7 +16,6 @@ export const extractUrlsFromMarkdown = (
     })
   }
 
-  console.log(`urls`, urls)
 
   return urls
 }

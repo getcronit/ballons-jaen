@@ -102,7 +102,6 @@ export const OpeningHoursForm: React.FC<{
       }
     })
 
-    console.log(`hours`, hours, days, reducedDays)
     onSaved(data.openingHours)
 
     // reset the form

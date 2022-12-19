@@ -276,7 +276,6 @@ const FullWidthImageSection = connectSection(
           //   lg: "25rem",
           //   xl: "29.375rem",
           // }}
-
           boxShadow="light"
           overflow={"hidden"}
           h={{
