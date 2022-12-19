@@ -95,7 +95,7 @@ const DekorationenHero: FC<IDekorationenHeroProps> = () => {
 const DekorationSliderItem = connectSection(
   () => {
     return (
-      <Boxs
+      <Box
         height={{ base: "40vh", md: "45vh", lg: "50vh" }}
         m={{ base: 2, md: 4 }}
         borderRadius={{ base: "8", md: "16", lg: "24" }}
