@@ -6,7 +6,7 @@ interface IImaginationUpperSectionProps {}
 
 const ImaginationUpperSection: FC<IImaginationUpperSectionProps> = () => {
   return (
-    <VStack>
+    <VStack id="testo">
       <Heading
         mb={{ base: "48", md: "0" }}
         textAlign="center"
