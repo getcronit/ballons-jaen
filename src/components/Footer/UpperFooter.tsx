@@ -87,12 +87,12 @@ const UpperFooter: FC<IUpperFooterProps> = () => {
   const categoryLinks = LinkField(
     "footerCategory",
     `
-    [Großhandel]()
-    [Luftballons]()
-    [Ballongas]()
-    [Bubbles]()
-    [Pinatas]()
-    [Partyartikel]()
+    [Großhandel](/grosshandel)
+    [Luftballons](/luftballons)
+    [Ballongas](/ballongas)
+    [Bubbles](/bubbles)
+    [Pinatas](/pinatas)
+    [Partyartikel](/partyartikel)
   `
   )
 
@@ -101,10 +101,10 @@ const UpperFooter: FC<IUpperFooterProps> = () => {
     "footerOther",
     `
     [Home](/)
-    [Kontakt](/)
-    [AGB](/)
-    [Datenschutz](/)
-    [Impressum](/)
+    [Kontakt](/kontakt)
+    [AGB](/agb)
+    [Datenschutz](/datenschutz])
+    [Impressum](/impressum)
   `
   )
 

@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Text, VStack } from "@chakra-ui/react"
+import { Box, Flex, Text, VStack } from "@chakra-ui/react"
 import { Field } from "@jaenjs/jaen"
 import { FC } from "react"
 import { CONTAINER_MAX_WIDTH } from "../../constant/sizes"
@@ -51,6 +51,7 @@ const BallonGas: FC<IBallonGasProps> = () => {
               size={{ base: "xs", md: "lg" }}
               mt="4"
               defaultValue={"Mehr erfahren"}
+              defaultUrl={`/news/helium`}
             />
           </Box>
         </VStack>

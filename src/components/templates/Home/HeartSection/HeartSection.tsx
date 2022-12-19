@@ -46,7 +46,11 @@ const HeartSection: FC<IHeartSectionProps> = () => {
                 defaultValue="Lass dich von uns inspirieren"
               />
             </Heading>
-            <Text fontSize={{ base: "xs", lg: "md" }} mb="2 !important" as="span">
+            <Text
+              fontSize={{ base: "xs", lg: "md" }}
+              mb="2 !important"
+              as="span"
+            >
               <Field.Text
                 name="text"
                 defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus imperdiet sed id elementum. Quam vel aliquam sit vulputate."
@@ -56,6 +60,7 @@ const HeartSection: FC<IHeartSectionProps> = () => {
               <LinkButtonField
                 name="heartButton"
                 defaultValue="Mehr erfahren"
+                defaultUrl={`/dekoration`}
                 size={{ base: "sm", lg: "md" }}
                 w="12.5rem"
               />

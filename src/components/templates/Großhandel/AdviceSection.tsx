@@ -41,6 +41,7 @@ const AdviceSection: FC<IAdviceSectionProps> = () => {
           <Box pt="5">
             <LinkButtonField
               name="adviceButton"
+              defaultUrl={`/dekoration`}
               defaultValue={"Zur Beratung"}
               variant="outline"
             />
@@ -48,7 +49,7 @@ const AdviceSection: FC<IAdviceSectionProps> = () => {
         </Stack>
       </Box>
 
-      <Box flex="2" h='40vh'>
+      <Box flex="2" h="40vh">
         <Field.Image
           name="adviceImage"
           defaultValue="/images/großhandel/shape_bg.png"

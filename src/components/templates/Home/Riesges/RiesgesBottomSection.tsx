@@ -122,6 +122,7 @@ const RiesgesBottomSection: FC<IRiesgesBottomSectionProps> = () => {
           <LinkButtonField
             name="button"
             defaultValue="Mehr erfahren"
+            defaultUrl={`/products`}
             size="lg"
             variant="outline"
             colorScheme="red"
@@ -139,7 +140,12 @@ const RiesgesBottomSection: FC<IRiesgesBottomSectionProps> = () => {
         }}
       >
         {items.map((item, index) => (
-          <Flex key={index} gap="1" flexDir={{ base: "column", xl: "row" }} mb="5">
+          <Flex
+            key={index}
+            gap="1"
+            flexDir={{ base: "column", xl: "row" }}
+            mb="5"
+          >
             <Image
               w={{ base: "3.75rem", lg: "5.375rem" }}
               h={{ base: "2.8125rem", lg: "4.6875rem" }}
@@ -153,7 +159,11 @@ const RiesgesBottomSection: FC<IRiesgesBottomSectionProps> = () => {
               >
                 {item.heading}
               </Heading>
-              <Text maxW="95%" fontSize={{ base: "xs", sm: "sm", lg: "md" }} as="span">
+              <Text
+                maxW="95%"
+                fontSize={{ base: "xs", sm: "sm", lg: "md" }}
+                as="span"
+              >
                 {item.text}
               </Text>
             </Stack>
@@ -164,6 +174,7 @@ const RiesgesBottomSection: FC<IRiesgesBottomSectionProps> = () => {
         <LinkButtonField
           name="button"
           defaultValue="Mehr erfahren"
+          defaultUrl={`/products`}
           variant="outline"
           size={{ base: "sm", md: "md" }}
         />

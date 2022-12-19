@@ -58,6 +58,7 @@ const JoySection: FC<IJoySectionProps> = () => {
         <LinkButtonField
           name="joyButton"
           defaultValue="Erfahre mehr über uns"
+          defaultUrl={`/ueber-uns`}
           size={{ base: "sm", md: "md" }}
         />
       </Stack>
