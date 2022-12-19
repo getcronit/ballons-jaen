@@ -1,17 +1,7 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Grid,
-  Heading,
-  Image,
-  Stack,
-  Text,
-} from "@chakra-ui/react"
+import { Box, Flex, Grid, Heading, Stack, Text } from "@chakra-ui/react"
 import { Field } from "@jaenjs/jaen"
 import { FC } from "react"
 import { CONTAINER_MAX_WIDTH } from "../../../constant/sizes"
-import theme from "../../../styles/theme"
 import LinkButtonField from "../../fields/LinkButtonField"
 
 interface IHorizontalImageCardProps {
@@ -50,7 +40,7 @@ const HorizontalImageCard: FC<IHorizontalImageCardProps> = ({
         overflow="hidden"
         flex="1"
         maxH={{ base: "120px", sm: "240px", md: "400px" }}
-        h='30vh'
+        h="30vh"
       >
         <Field.Image
           name={card.imageFieldName}
@@ -79,7 +69,10 @@ const HorizontalImageCard: FC<IHorizontalImageCardProps> = ({
         </Heading>
         <Heading
           fontSize={{
-            base: "md", md: "xl", lg: "2xl", xl: "3xl" 
+            base: "md",
+            md: "xl",
+            lg: "2xl",
+            xl: "3xl",
           }}
           as="span"
           fontWeight="semibold"
@@ -98,8 +91,6 @@ const HorizontalImageCard: FC<IHorizontalImageCardProps> = ({
             defaultValue={card.titleDefaultValue}
           />
         </Heading>
-
-      
 
         <Text
           variant="light"

@@ -267,7 +267,6 @@ const FullWidthImageSection = connectSection(
             rtf
           />
         </Heading>
-
         <Box
           my={{ base: "4 !important", md: "12 !important" }}
           borderRadius={{ base: ".625rem", md: "2rem" }}
@@ -277,7 +276,6 @@ const FullWidthImageSection = connectSection(
           //   lg: "25rem",
           //   xl: "29.375rem",
           // }}
-
           boxShadow="light"
           overflow={"hidden"}
           h={{

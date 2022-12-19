@@ -54,6 +54,7 @@ const NewsContent: FC<INewsContentProps> = () => {
       <LinkButtonField
         name="newsButton"
         defaultValue="Alle News anzeigen"
+        defaultUrl={`/news`}
         size={{ base: "sm", lg: "md" }}
         fontSize={{ base: "sm", md: "1.375rem" }}
         w={{ base: "12.5rem", md: "16.875rem" }}

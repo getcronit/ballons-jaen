@@ -1,15 +1,5 @@
-import {
-  Box,
-  Button,
-  ButtonProps,
-  Flex,
-  Heading,
-  Text,
-  useToast,
-  VStack,
-} from "@chakra-ui/react"
+import { Box, Heading, Text, useToast, VStack } from "@chakra-ui/react"
 import { Field, useField } from "@jaenjs/jaen"
-import { navigate } from "gatsby"
 import React, { FC } from "react"
 import LinkButtonField from "./fields/LinkButtonField"
 
@@ -25,7 +15,7 @@ interface IWhiteBoxWithDashBorderProps {
   }
 }
 
-const WhiteBoxWithDashBorder: FC<IWhiteBoxWithDashBorderProps> = (props) => {
+const WhiteBoxWithDashBorder: FC<IWhiteBoxWithDashBorderProps> = props => {
   return (
     <VStack
       bg="#FFFFFFDE"
@@ -36,13 +26,16 @@ const WhiteBoxWithDashBorder: FC<IWhiteBoxWithDashBorderProps> = (props) => {
       mx="auto"
       p="10"
     >
-        {props.titleFieldName && (
-          <Heading fontWeight="semibold" size="h8020">
-            <Field.Text rtf name={props.titleFieldName} defaultValue={props.titleDefaultValue} />
-          </Heading>
-        )}
+      {props.titleFieldName && (
+        <Heading fontWeight="semibold" size="h8020">
+          <Field.Text
+            rtf
+            name={props.titleFieldName}
+            defaultValue={props.titleDefaultValue}
+          />
+        </Heading>
+      )}
 
-       
       {props.textFieldName && (
         <Text
           maxW={{ lg: "50%" }}
@@ -50,13 +43,17 @@ const WhiteBoxWithDashBorder: FC<IWhiteBoxWithDashBorderProps> = (props) => {
           textAlign="center"
           as="span"
         >
-          <Field.Text name={props.textFieldName} defaultValue={props.textDefaultValue || ""} />
+          <Field.Text
+            name={props.textFieldName}
+            defaultValue={props.textDefaultValue || ""}
+          />
         </Text>
       )}
       <Box mt={{ base: "4 !important", md: "8 !important" }}>
         <LinkButtonField
           name={props.button.textFieldName}
           defaultValue={props.button.textDefaultValue}
+          defaultUrl={`/kontakt`}
           variant={props.button.outline ? "outline" : "solid"}
           size={{ base: "sm", md: "md" }}
         />

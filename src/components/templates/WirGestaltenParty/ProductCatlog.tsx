@@ -15,16 +15,27 @@ const ProductCatlog: FC<IProductCatlogProps> = () => {
       mb={{ base: "1rem", md: "-4.25rem", lg: "-10.5rem" }}
     >
       <Flex gap="12" align="center" flexDir={{ base: "column", lg: "row" }}>
-        <Box flex="1" w={{ base: "70%", md: "unset" }}>
+        <Box
+          flex="1"
+          w={{ base: "70%" }}
+          h={{
+            base: "30rem",
+            sm: "31.25rem",
+            md: "35rem",
+            lg: "40rem",
+          }}
+        >
           <Field.Image
             name="stack_cards"
             defaultValue="/images/we_design_party/stack_cards.png"
+            objectFit="contain"
           />
         </Box>
         <Box display={{ base: "block", md: "none" }}>
           <LinkButtonField
             name="catalogueButton"
             defaultValue={"Zum Katalog"}
+            defaultUrl={`/products`}
             variant="outline"
           />
         </Box>
@@ -67,6 +78,7 @@ const ProductCatlog: FC<IProductCatlogProps> = () => {
             <LinkButtonField
               name="catalogueButton"
               defaultValue={"Zum Katalog"}
+              defaultUrl={`/products`}
               size="sm"
               variant="outline"
               mt="4"

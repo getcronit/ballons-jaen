@@ -28,9 +28,7 @@ interface IOurBossProps {
   }
 }
 
-const OurBoss: FC<IOurBossProps> = ({
-  member,
-}) => {
+const OurBoss: FC<IOurBossProps> = ({ member }) => {
   return (
     <>
       <Container
@@ -54,25 +52,41 @@ const OurBoss: FC<IOurBossProps> = ({
               <Box
                 pos="absolute"
                 boxShadow="dark"
-                w="70%"
+                h={{
+                  base: "15rem",
+                  md: "20rem",
+                }}
+                w={{
+                  base: "15rem",
+                  md: "20rem",
+                }}
                 borderRadius="full"
                 overflow={"hidden"}
               >
-                <Field.Image name={member.imageFieldName} defaultValue={member.imageDefaultValue} />
-                </Box>
-
-            
+                <Field.Image
+                  name={member.imageFieldName}
+                  defaultValue={member.imageDefaultValue}
+                />
+              </Box>
             </Grid>
             <Heading size="h3015" fontWeight="semibold">
-              <Field.Text name={member.nameFieldName} defaultValue={member.nameDefaultValue} />
-
+              <Field.Text
+                name={member.nameFieldName}
+                defaultValue={member.nameDefaultValue}
+              />
             </Heading>
           </VStack>
           <Stack flex="1">
             <Heading color="red.500" size="h4015" fontWeight="semibold">
-              <Field.Text name={member.quoteFieldName} defaultValue={member.quoteDefaultValue} />
+              <Field.Text
+                name={member.quoteFieldName}
+                defaultValue={member.quoteDefaultValue}
+              />
             </Heading>
-            <Field.Text name={member.qualificationsFieldName} defaultValue={member.qualificationsDefaultValue} />
+            <Field.Text
+              name={member.qualificationsFieldName}
+              defaultValue={member.qualificationsDefaultValue}
+            />
           </Stack>
         </Flex>
       </Container>
@@ -87,13 +101,15 @@ const OurBoss: FC<IOurBossProps> = ({
         <Flex
           align="end"
           flexDir={{ base: "row-reverse" }}
-          textAlign={{ base:  "end" }}
+          textAlign={{ base: "end" }}
         >
           <Box flex="1">
             <Heading fontSize="md" fontWeight="semibold" color="red.600">
-            <Field.Text name={member.nameFieldName} defaultValue={member.nameDefaultValue} />
+              <Field.Text
+                name={member.nameFieldName}
+                defaultValue={member.nameDefaultValue}
+              />
             </Heading>
-           
           </Box>
           <Grid placeItems="center" pos="relative" w="38%">
             <Image src="/images/about_us/profile_bg.svg" />
@@ -101,18 +117,23 @@ const OurBoss: FC<IOurBossProps> = ({
             <Box
               pos="absolute"
               boxShadow="dark"
-              w="80%"
+              h="5rem"
+              w="5rem"
               borderRadius="full"
               overflow={"hidden"}
             >
-              <Field.Image name={member.imageFieldName} defaultValue={member.imageDefaultValue} />
+              <Field.Image
+                name={member.imageFieldName}
+                defaultValue={member.imageDefaultValue}
+              />
             </Box>
-
-
           </Grid>
         </Flex>
         <Text fontSize="xs" textAlign={{ base: "end" }} as="span">
-          <Field.Text name={member.qualificationsFieldName} defaultValue={member.qualificationsDefaultValue} />
+          <Field.Text
+            name={member.qualificationsFieldName}
+            defaultValue={member.qualificationsDefaultValue}
+          />
         </Text>
       </Stack>
     </>

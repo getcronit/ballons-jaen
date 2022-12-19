@@ -33,6 +33,7 @@ const FaqQuestionAnswerItemSection = connectSection(
             }}
             boxShadow="light"
             borderWidth="1px"
+            bg="white"
             borderColor={isExpanded ? "red.500" : "gray.200"}
           >
             <AccordionButton _hover={{ bg: "none" }}>
@@ -49,7 +50,6 @@ const FaqQuestionAnswerItemSection = connectSection(
               </HStack>
               <AccordionIcon />
             </AccordionButton>
-
             <AccordionPanel as={Text} pr="4rem">
               <Text size="b2012" as="span">
                 <Field.Text name="antwort" defaultValue="Antwort" />

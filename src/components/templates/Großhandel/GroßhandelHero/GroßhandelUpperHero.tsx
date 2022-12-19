@@ -11,6 +11,7 @@ import {
 import { Field } from "@jaenjs/jaen"
 import { FC } from "react"
 import { CONTAINER_MAX_WIDTH } from "../../../../constant/sizes"
+import { Box } from "@chakra-ui/react"
 
 interface IGroßhandelUpperHeroProps {}
 
@@ -44,16 +45,17 @@ const GroßhandelUpperHero: FC<IGroßhandelUpperHeroProps> = () => {
             <Button size={{ base: "sm", md: "md" }}>Registrieren</Button>
           </HStack>
           <Grid
-            display={{ base: "none", md: "grid" }}
             right="0"
             pos="absolute"
             top="6.25rem"
             w={{ md: "12.5rem", lg: "16.875rem", xl: "20rem" }}
             h='40vh'
           >
-
-            <Field.Image name="image" defaultValue="/images/großhandel/ballon_box.png" />
-
+            <Field.Image
+              name="image"
+              defaultValue="/images/großhandel/ballon_box.png"
+              objectFit="contain"
+            />
           </Grid>
         </VStack>
       </Container>

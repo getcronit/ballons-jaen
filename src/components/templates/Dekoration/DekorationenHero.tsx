@@ -1,12 +1,4 @@
-import {
-  Box,
-  Button,
-  Container,
-  Image,
-  Stack,
-  Text,
-  VStack,
-} from "@chakra-ui/react"
+import { Box, Container, Image, Stack, Text, VStack } from "@chakra-ui/react"
 import { connectSection, Field } from "@jaenjs/jaen"
 import { FC } from "react"
 import Slider, { Settings } from "react-slick"
@@ -66,9 +58,9 @@ const DekorationenHero: FC<IDekorationenHeroProps> = () => {
           name="ctaButton"
           size={{ base: "xs", md: "sm", xl: "lg" }}
           defaultValue={"Termin vereinbaren"}
+          defaultUrl={`/kontakt`}
         />
       </VStack>
-
       <Stack pos="relative" maxH="93.75rem" overflow="hidden" pb={{base: "15px", md: "0"}}>
           <Box 
             pos="absolute"
@@ -103,8 +95,8 @@ const DekorationenHero: FC<IDekorationenHeroProps> = () => {
 const DekorationSliderItem = connectSection(
   () => {
     return (
-      <Box
-        height={{ base: '40vh', md: '45vh', lg: '50vh'}}
+      <Boxs
+        height={{ base: "40vh", md: "45vh", lg: "50vh" }}
         m={{ base: 2, md: 4 }}
         borderRadius={{ base: "8", md: "16", lg: "24" }}
         overflow="hidden"
