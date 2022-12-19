@@ -107,9 +107,6 @@ const UpperFooter: FC<IUpperFooterProps> = () => {
     [Impressum](/)
   `
   )
-  console.log("imprint", imprintData)
-  console.log("footerData", footerData)
-  console.log(formatOpeningHours(openingHours.data.hours))
 
   return (
     <Container color="white" maxW={CONTAINER_MAX_WIDTH}>
