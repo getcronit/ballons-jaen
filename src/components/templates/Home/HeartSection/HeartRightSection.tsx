@@ -1,4 +1,4 @@
-import { Grid, GridItem } from "@chakra-ui/react"
+import { GridItem, SimpleGrid } from "@chakra-ui/react"
 import { FC } from "react"
 import CardWithImageBackgroundField from "../../../fields/CardWithImageBackgroundField"
 
@@ -23,20 +23,16 @@ const HeartRightSection: FC<IHeartRightSectionProps> = () => {
     },
   ]
   return (
-    <Grid
+    <SimpleGrid
       placeItems="center"
       my="8"
-      gap={{ base: "4", md: "4", lg: "8" }}
+      spacing={{ base: "4", md: "4", lg: "8" }}
       w={{ base: "100%", lg: "unset" }}
-      gridTemplateColumns={{
-        md: "repeat(3, 1fr)",
-
-        lg: "repeat(auto-fit, minmax(15.625rem,1fr))",
-      }}
+      columns={{ base: 1 }}
     >
       {cards.map((card, i) => (
         <GridItem
-          w={{ base: "19.375rem", sm: "80%", md: "100%", lg: "17.875rem" }}
+          w={{ base: "19.375rem", sm: "80%", md: "100%" }}
           justifySelf="center"
           h={{ base: "15rem", md: "22.1875rem" }}
           key={i}
@@ -55,7 +51,7 @@ const HeartRightSection: FC<IHeartRightSectionProps> = () => {
           />
         </GridItem>
       ))}
-    </Grid>
+    </SimpleGrid>
   )
 }
 export default HeartRightSection
