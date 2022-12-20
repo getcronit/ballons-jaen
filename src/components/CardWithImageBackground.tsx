@@ -13,14 +13,16 @@ interface ICardWithImageBackgroundProps {
     linkUrl?: string
   }
   displayContent?: boolean
-  w?: {}
-  h?: {}
+  minW?: {} | string
+  w?: {} | string
+  h?: {} | string
   isSmallText?: boolean
 }
 
 const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
   card,
   displayContent = true,
+  minW,
   w,
   h,
   isSmallText = false,
@@ -44,7 +46,7 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
       w={w ?? {}}
       borderRadius="xl"
       overflow={"hidden"}
-      minW="20rem"
+      minW={minW || "20rem"}
     >
       {card.imageFieldName && (
         <Field.Image
