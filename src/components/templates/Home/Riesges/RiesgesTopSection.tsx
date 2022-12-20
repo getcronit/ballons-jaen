@@ -1,4 +1,4 @@
-import { Grid, GridItem } from "@chakra-ui/react"
+import { GridItem, SimpleGrid } from "@chakra-ui/react"
 import { FC } from "react"
 import CardWithImageBackground from "../../../../components/CardWithImageBackground"
 import { useContentPages } from "../../../hooks/useContentPages"
@@ -27,14 +27,15 @@ const RiesgesTopSection: FC<IRiesgesTopSectionProps> = () => {
   const index = useContentPages()
 
   return (
-    <Grid
+    <SimpleGrid
       placeItems="center"
       mb={{ lg: 10 }}
       mt="0"
-      gap={{ base: "4", md: "4", lg: "8" }}
-      gridTemplateColumns={{
-        md: "repeat(auto-fit, minmax(15rem, auto))",
-      }}
+      minChildWidth="300px"
+      spacing="30px"
+      // gridTemplateColumns={{
+      //   md: "repeat(auto-fit, minmax(15rem, auto))",
+      // }}
     >
       {index.children.map((page, i) =>
         index.withJaenPage(
@@ -64,7 +65,7 @@ const RiesgesTopSection: FC<IRiesgesTopSectionProps> = () => {
           </GridItem>
         )
       )}
-    </Grid>
+    </SimpleGrid>
   )
 }
 export default RiesgesTopSection
