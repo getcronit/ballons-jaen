@@ -31,7 +31,7 @@ const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
   ]
 
   const cardHeight = { base: "15rem", lg: "15rem", xl: "20rem" }
-  const cardWidth = { base: "12.5rem", lg: "12.5rem", xl: "17.5rem" }
+  const cardWidth = { base: "12.5rem", lg: "15.5rem", xl: "17.5rem" }
 
   return (
     <Stack
@@ -44,9 +44,9 @@ const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
       <Container
         justifyContent="space-between"
         as={Flex}
-        gap={{ base: 32, lg: 8 }}
+        gap={{ base: 32, xl: 8 }}
         spacing={{ base: 20, md: 32, xl: 40 }}
-        flexDirection={{ base: "column", lg: "row" }}
+        flexDirection={{ base: "column", xl: "row" }}
         py={{ base: 44, md: 20 }}
         maxW={CONTAINER_MAX_WIDTH}
       >
@@ -54,11 +54,12 @@ const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
           <Stack
             flex="1"
             justify="center"
-            display={{ base: "none", lg: "flex" }}
+            display={{ base: "none", xl: "flex" }}
           >
             <CardWithImageBackground
               h={cardHeight}
               w={cardWidth}
+              minW={"none"}
               displayContent={false}
               card={{
                 headingFieldName: "littleThingsCardheading1",
@@ -73,17 +74,17 @@ const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
           <Stack
             gap="4"
             spacing="0"
-            maxW="43.75rem"
             h="full"
             w="full"
-            align="start"
-            justify={{ base: "space-between", lg: "center" }}
-            flexDirection={{ base: "row", lg: "column" }}
+            align="center"
+            justify="center"
+            flexDirection={{ base: "row", xl: "column" }}
           >
-            <Box display={{ lg: "none" }}>
+            <Box display={{ xl: "none" }}>
               <CardWithImageBackground
                 h={cardHeight}
                 w={cardWidth}
+                minW={"none"}
                 displayContent={false}
                 card={{
                   headingFieldName: "littleThingsCardheading1",
@@ -98,6 +99,7 @@ const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
             <CardWithImageBackground
               h={cardHeight}
               w={cardWidth}
+              minW={"none"}
               displayContent={false}
               card={{
                 headingFieldName: "littleThingsCardheading2",
@@ -112,6 +114,7 @@ const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
             <CardWithImageBackground
               h={cardHeight}
               w={cardWidth}
+              minW={"none"}
               displayContent={false}
               card={{
                 headingFieldName: "littleThingsCardheading3",
@@ -148,7 +151,7 @@ const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
           />
         </Grid>
 
-        <Stack zIndex={"999"} maxW={{ lg: "50%" }} spacing="8" justify="center">
+        <Stack zIndex={"999"} maxW={{ xl: "50%" }} spacing="8" justify="center">
           <Heading
             fontSize={{ base: "md", md: "xl", xl: "2xl" }}
             lineHeight={{ base: "1.25rem", md: "2rem", xl: "2.5rem" }}

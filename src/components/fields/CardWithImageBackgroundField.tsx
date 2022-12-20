@@ -1,21 +1,6 @@
 import { Box, Grid, Heading, HStack, Stack, Text } from "@chakra-ui/react"
 import { Field, navigate } from "@jaenjs/jaen"
 import { BiChevronRight } from "react-icons/bi"
-interface ICardWithImageBackgroundProps {
-  card: {
-    headingFieldName?: string
-    headingDefaultValue?: string
-    textFieldName?: string
-    textDefaultValue?: string
-    imageFieldName?: string
-    imageDefaultValue?: string
-    linkUrl?: string
-  }
-  displayContent?: boolean
-  w?: {}
-  h?: {}
-  isSmallText?: boolean
-}
 
 import { EditIcon } from "@chakra-ui/icons"
 import {
@@ -37,6 +22,23 @@ import { useForm } from "react-hook-form"
 
 import { useField } from "@jaenjs/jaen"
 import React from "react"
+
+interface ICardWithImageBackgroundProps {
+  card: {
+    headingFieldName?: string
+    headingDefaultValue?: string
+    textFieldName?: string
+    textDefaultValue?: string
+    imageFieldName?: string
+    imageDefaultValue?: string
+    linkUrl?: string
+  }
+  displayContent?: boolean
+  minW?: {} | string
+  w?: {} | string
+  h?: {} | string
+  isSmallText?: boolean
+}
 
 const validateUrl = (value: string): boolean => {
   try {
@@ -123,6 +125,7 @@ const CardWithImageBackgroundField: React.FC<
   defaultUrl,
   card,
   displayContent = true,
+  minW,
   w,
   h,
   isSmallText = false,
@@ -153,7 +156,7 @@ const CardWithImageBackgroundField: React.FC<
   }, [hiddenUrlField.value])
 
   return (
-    <Box pos={"relative"} h="full" w="full" minW="20rem">
+    <Box pos={"relative"} h="full" w="full" minW={minW || "20rem"}>
       <Stack
         onClick={!buttonTextField.isEditing ? handleButtonClick : undefined}
         position="relative"
@@ -172,7 +175,7 @@ const CardWithImageBackgroundField: React.FC<
         w={w ?? {}}
         borderRadius="xl"
         overflow={"hidden"}
-        minW="20rem"
+        minW={minW || "20rem"}
       >
         {card.imageFieldName && (
           <Field.Image
