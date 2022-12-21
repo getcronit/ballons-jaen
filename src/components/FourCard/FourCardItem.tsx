@@ -11,6 +11,8 @@ export const FourCardItem = connectSection(
         w="full"
       >
         <CardWithImageBackground
+          w="full"
+          minW="none"
           card={{
             headingFieldName: "title",
             imageFieldName: "fourCardItemImage",
