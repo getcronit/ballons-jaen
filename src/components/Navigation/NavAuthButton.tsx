@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   IconButton,
   Menu,
@@ -22,8 +21,8 @@ export const NavAuthButton: React.FC<NavAuthButtonProps> = () => {
 
   const buttons = [
     <Button
-    key='login'
-      display={{ base: "none", md: "flex" }}
+      key="login"
+      display={{ base: "none", lg: "flex" }}
       size={"sm"}
       variant="outline"
       leftIcon={<AiOutlineUser />}
@@ -33,8 +32,8 @@ export const NavAuthButton: React.FC<NavAuthButtonProps> = () => {
     </Button>,
 
     <IconButton
-      key='basket'
-      display={{ base: "flex", md: "none" }}
+      key="basket"
+      display={{ base: "flex", lg: "none" }}
       variant="ghost"
       icon={<AiOutlineUser />}
       aria-label="Login"

@@ -19,6 +19,16 @@ export default connectTemplate(Page, {
 
 export const query = graphql`
   query ($jaenPageId: String!) {
-    ...JaenPageQuery
+    jaenPage(id: { eq: $jaenPageId }) {
+      ...JaenPageData
+    }
+    allJaenPage {
+      nodes {
+        ...JaenPageData
+        children {
+          ...JaenPageData
+        }
+      }
+    }
   }
 `

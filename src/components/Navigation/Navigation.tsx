@@ -1,5 +1,4 @@
 import { Box, Stack } from "@chakra-ui/react"
-import { useField } from "@jaenjs/jaen"
 import { FC } from "react"
 import { useBasket } from "../../services/basket"
 import { useSearch } from "../../services/search"
@@ -12,8 +11,7 @@ interface INavigationProps {
   mode: LayoutMode
 }
 
-const Navigation: FC<INavigationProps> = ({mode}) => {
-
+const Navigation: FC<INavigationProps> = ({ mode }) => {
   const basket = useBasket()
   const search = useSearch()
 
@@ -25,23 +23,28 @@ const Navigation: FC<INavigationProps> = ({mode}) => {
     search.onOpen()
   }
 
-
-
-
   return (
-    <Box as="nav" zIndex="sticky" pos={
-      mode === "website" ? "sticky" : "relative"
-    } top="0" bg="white">
-      <Stack display={{ base: "none", md: "flex" }} spacing="0">
-        <TopNav mode={mode} onSearchClick={handleOnSearchClick} onBasketClick={handleOnBasketClick} />
-        {
-          mode === 'website' && (
-            <BottomNav />
-          )
-        }
+    <Box
+      as="nav"
+      zIndex="sticky"
+      pos={mode === "website" ? "sticky" : "relative"}
+      top="0"
+      bg="white"
+    >
+      <Stack display={{ base: "none", lg: "flex" }} spacing="0">
+        <TopNav
+          mode={mode}
+          onSearchClick={handleOnSearchClick}
+          onBasketClick={handleOnBasketClick}
+        />
+        {mode === "website" && <BottomNav />}
       </Stack>
-      <Box as="nav" display={{ base: "block", md: "none" }}>
-        <MobileNav mode={mode} onSearchClick={handleOnSearchClick}   onBasketClick={handleOnBasketClick}  />
+      <Box as="nav" display={{ base: "block", lg: "none" }}>
+        <MobileNav
+          mode={mode}
+          onSearchClick={handleOnSearchClick}
+          onBasketClick={handleOnBasketClick}
+        />
       </Box>
     </Box>
   )

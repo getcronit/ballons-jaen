@@ -24,7 +24,6 @@ import {
 import {
   connectSection,
   Field,
-  navigate,
   useField,
   useJaenSectionContext,
   useSection,
@@ -637,7 +636,7 @@ const CategoryNavigationBar: React.FC<{
       color="white"
       pos="sticky"
       top="0"
-      zIndex="banner"
+      zIndex="sticky"
       mb="24"
     >
       <Container maxW={CONTAINER_MAX_WIDTH} pos="relative" py="2">
