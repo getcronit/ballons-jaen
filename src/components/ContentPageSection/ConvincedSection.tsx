@@ -42,7 +42,7 @@ const ConvincedSection: FC<IConvincedSectionProps> = () => {
 
         <WhiteBoxWithDashBorder
           titleFieldName="convincedTitle"
-          title<p>ÜbeDefaultValue="rzeugt?</p>"
+          titleDefaultValue="<p>Überzeugt?</p>"
           textFieldName="convincedText"
           textDefaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc auctor, nisl eget ultricies lacinia, nisl nunc aliquet nisl, eget aliquet nisl lorem eget lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc auctor."
           button={{
