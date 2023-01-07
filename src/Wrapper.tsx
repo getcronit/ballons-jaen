@@ -18,7 +18,7 @@ import "./styles/global.css"
 import Fonts from "./styles/fonts"
 import theme from "./styles/theme"
 
-export const RootWrapper = ({ children }: { children: React.ReactNode }) => {
+export const PageWrapper = ({ children }: { children: React.ReactNode }) => {
   return (
     <ChakraProvider resetCSS={true} theme={theme}>
       <Fonts />

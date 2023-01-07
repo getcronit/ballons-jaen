@@ -6,11 +6,11 @@
 
 import { GatsbySSR } from "gatsby"
 import { AuthenticationProvider } from "./src/services/authentication"
-import { RootWrapper } from "./src/Wrapper"
+import { PageWrapper } from "./src/Wrapper"
 
 export const onRenderBody: GatsbySSR["onRenderBody"] = ({
   setHtmlAttributes,
-  setHeadComponents
+  setHeadComponents,
 }) => {
   setHtmlAttributes({ lang: `de` })
 
@@ -22,14 +22,14 @@ export const onRenderBody: GatsbySSR["onRenderBody"] = ({
       as="font"
       type="font/woff2"
       crossOrigin="anonymous"
-    />
-  ]);
-}
-
-export const wrapRootElement: GatsbySSR["wrapRootElement"] = ({ element }) => {
-  return <RootWrapper>{element}</RootWrapper>
+    />,
+  ])
 }
 
 export const wrapPageElement: GatsbySSR["wrapPageElement"] = ({ element }) => {
-  return <AuthenticationProvider>{element}</AuthenticationProvider>
+  return (
+    <PageWrapper>
+      <AuthenticationProvider>{element}</AuthenticationProvider>
+    </PageWrapper>
+  )
 }
