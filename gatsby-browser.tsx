@@ -8,16 +8,14 @@
 
 import { GatsbyBrowser } from "gatsby"
 import { AuthenticationProvider } from "./src/services/authentication"
-import { RootWrapper } from "./src/Wrapper"
-
-export const wrapRootElement: GatsbyBrowser["wrapRootElement"] = ({
-  element,
-}) => {
-  return <RootWrapper>{element}</RootWrapper>
-}
+import { PageWrapper } from "./src/Wrapper"
 
 export const wrapPageElement: GatsbyBrowser["wrapPageElement"] = ({
   element,
 }) => {
-  return <AuthenticationProvider>{element}</AuthenticationProvider>
+  return (
+    <PageWrapper>
+      <AuthenticationProvider>{element}</AuthenticationProvider>
+    </PageWrapper>
+  )
 }
