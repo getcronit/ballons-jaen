@@ -7,11 +7,13 @@ import { FourCardItem } from "./FourCardItem"
 interface IFourCardProps {
   sectionFieldName: string
   sectionDisplayName: string
+  onCardClick: (index: number) => void
 }
 
 const FourCard: FC<IFourCardProps> = ({
   sectionFieldName,
   sectionDisplayName,
+  onCardClick,
 }) => {
   return (
     <Container maxW={CONTAINER_MAX_WIDTH} mb={{ base: 16, md: 0 }}>
@@ -32,6 +34,9 @@ const FourCard: FC<IFourCardProps> = ({
         name={sectionFieldName}
         displayName={sectionDisplayName}
         sections={[FourCardItem]}
+        sectionProps={(p) => ({
+          onClick: () => onCardClick(p.count - 1)
+        })}
       />
     </Container>
   )

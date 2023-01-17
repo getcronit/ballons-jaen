@@ -515,12 +515,10 @@ const CategoryContentSection = connectSection(
 const CategoryNavigationBar: React.FC<{
   categorySectionFieldName: string
   refs: React.MutableRefObject<HTMLDivElement[]>
-}> = ({ categorySectionFieldName, refs }) => {
-  const [element, setElement] = useState<HTMLElement | null>(null)
+  element: HTMLElement | null
+}> = ({ categorySectionFieldName, refs, element }) => {
 
-  React.useEffect(() => {
-    setElement(document.getElementById("jaen-content-container"))
-  }, [element])
+
 
   const section = useSection(categorySectionFieldName)
 
@@ -632,7 +630,7 @@ const CategoryNavigationBar: React.FC<{
 
   return (
     <Box
-      bg="gray.700"
+      bg="gray.800"
       color="white"
       pos="sticky"
       top="0"
@@ -666,12 +664,15 @@ const CategoryNavigationBar: React.FC<{
               <MenuButton as={Button} rightIcon={<ChevronDownIcon />} size="sm">
                 {sectionItems[activeIndex]?.title}
               </MenuButton>
-              <MenuList bg="gray.700" color="white">
+              <MenuList bg="gray.800" color="white">
                 {sectionItems.map((item, i) => (
                   <MenuItem
                     key={i}
                     color={activeIndex === i ? "red" : "white"}
                     _hover={{
+                      bg: "gray.600",
+                    }}
+                    _focus={{
                       bg: "gray.600",
                     }}
                     onClick={() => scrollToSection(i)}
@@ -831,17 +832,27 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
 
     const refs = useRef<HTMLDivElement[]>([])
 
+    const element = typeof window !== "undefined" ? document.getElementById("jaen-content-container") : null
+
     return (
       <>
         <CategoryNavigationBar
           categorySectionFieldName={sectionFieldName}
           refs={refs}
+          element={element}
         />
 
         <Stack my="8">
           <FourCard
             sectionFieldName={sectionFieldName}
             sectionDisplayName={sectionDisplayName}
+            onCardClick={(index) => {
+              element?.scrollTo({
+                top: refs.current[index]?.offsetTop,
+                behavior: "smooth",
+              })
+            }}
+            
           />
 
           <Field.Section
