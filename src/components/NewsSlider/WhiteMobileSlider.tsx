@@ -12,7 +12,6 @@ import { Field, navigate } from "@jaenjs/jaen"
 import { FC } from "react"
 import Slider from "react-slick"
 import { CONTAINER_MAX_WIDTH } from "../../constant/sizes"
-import { settings } from "../../constant/slider"
 import { JaenPageIndexType } from "../../types/commonTypes"
 
 interface IWhiteMobileSliderProps {
@@ -20,6 +19,18 @@ interface IWhiteMobileSliderProps {
 }
 
 const WhiteMobileSlider: FC<IWhiteMobileSliderProps> = ({ index }) => {
+  console.log("index.children", index.children)
+
+  const slidesToShow = 1
+
+  var settings = {
+    dots: true,
+    infinite: index.children.length > slidesToShow,
+    speed: 500,
+    slidesToShow,
+    slidesToScroll: 1,
+  }
+
   return (
     <Container maxW={CONTAINER_MAX_WIDTH}>
       <Slider {...settings} className="white_slider">
@@ -59,11 +70,7 @@ const WhiteMobileSlider: FC<IWhiteMobileSliderProps> = ({ index }) => {
                 </Grid>
                 <VStack gap="0" flex="1" textAlign="center">
                   <Text fontSize="sm" color="gray.700" as="span">
-                    <Field.Text
-                      display={"inline-block"}
-                      name="date"
-                      defaultValue="12.12.2020"
-                    />
+                    <Field.Text name="date" defaultValue="12.12.2020" />
                   </Text>
                   <Heading
                     color="black.500"

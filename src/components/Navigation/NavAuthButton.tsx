@@ -11,6 +11,7 @@ import { Link } from "gatsby"
 import { AiOutlineUser } from "react-icons/ai"
 import { useAuthentication } from "../../services/authentication"
 import { useBasket } from "../../services/basket"
+import { useIsClient } from "../../common/useIsClient"
 
 export interface NavAuthButtonProps {}
 
@@ -19,35 +20,40 @@ export const NavAuthButton: React.FC<NavAuthButtonProps> = () => {
 
   const basket = useBasket()
 
-  const buttons = [
-    <Button
-      key="login"
-      display={{ base: "none", lg: "flex" }}
-      size={"sm"}
-      variant="outline"
-      leftIcon={<AiOutlineUser />}
-      onClick={openLoginModal}
-    >
-      {user ? user.name : "Login"}
-    </Button>,
+  const { isClient, key } = useIsClient()
 
-    <IconButton
-      key="basket"
-      display={{ base: "flex", lg: "none" }}
-      variant="ghost"
-      icon={<AiOutlineUser />}
-      aria-label="Login"
-      onClick={openLoginModal}
-    />,
-  ]
+  if (!isClient) {
+    return null
+  }
+
+  const responsiveButton = (
+    <>
+      <Button
+        display={{ base: "none", lg: "flex" }}
+        size={"sm"}
+        variant="outline"
+        leftIcon={<AiOutlineUser />}
+        onClick={openLoginModal}
+      >
+        {user ? user.name : "Login"}
+      </Button>
+      <IconButton
+        display={{ base: "flex", lg: "none" }}
+        variant="ghost"
+        icon={<AiOutlineUser />}
+        aria-label="Login"
+        onClick={openLoginModal}
+      />
+    </>
+  )
 
   if (!user) {
-    return <>{buttons}</>
+    return responsiveButton
   }
 
   return (
     <Menu>
-      <MenuButton as="span">{buttons}</MenuButton>
+      <MenuButton as="span">{responsiveButton}</MenuButton>
 
       <MenuList>
         <MenuItem as={Link} to="/products">

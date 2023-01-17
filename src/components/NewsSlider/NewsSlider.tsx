@@ -8,17 +8,19 @@ interface INewsSlidesProps {
   showNewsTitle?: boolean
 }
 
-const NewsSlider: FC<INewsSlidesProps> = ({
-  showNewsTitle,
-}) => {
+const NewsSlider: FC<INewsSlidesProps> = ({ showNewsTitle }) => {
   const index = useNewsPages()
 
   return (
     <>
-      <Box px="4" my={{ md: "50", lg: 20 }} display={{
-        base: "none",
-        md: "block",
-      }}>
+      <Box
+        px="4"
+        my={{ md: "50", lg: 20 }}
+        display={{
+          base: "none",
+          md: "block",
+        }}
+      >
         <WhiteDesktopSlider showTitle={showNewsTitle} index={index} />
       </Box>
 
@@ -29,8 +31,7 @@ const NewsSlider: FC<INewsSlidesProps> = ({
             News
           </Text>
         )}
-        <WhiteMobileSlider index={index}
-        />
+        <WhiteMobileSlider index={index} />
       </Box>
     </>
   )
