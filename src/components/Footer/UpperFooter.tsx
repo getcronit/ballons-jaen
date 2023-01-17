@@ -141,11 +141,11 @@ const UpperFooter: FC<IUpperFooterProps> = () => {
             {imprintData.data?.imprint.city} <br />
             {imprintData.data?.imprint.country} <br />
             <br />
-            <CLink as={Link} to={"tel:" + imprintData.data?.imprint.telephone}>
+            <CLink href={"tel:" + imprintData.data?.imprint.telephone}>
               {imprintData.data?.imprint.telephone}
             </CLink>{" "}
             <br />
-            <CLink as={Link} to={"mailto:" + imprintData.data?.imprint.email}>
+            <CLink href={"mailto:" + imprintData.data?.imprint.email}>
               {imprintData.data?.imprint.email}
             </CLink>
           </Text>

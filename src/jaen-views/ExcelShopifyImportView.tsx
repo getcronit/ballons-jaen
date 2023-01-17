@@ -214,7 +214,6 @@ const getValueOrEmpty = (row: ExcelJS.Row, key: string) => {
   // if cell is object (e.g. formula) return the result
 
   if (cell.value && typeof cell.value === "object") {
-
     if (
       (cell.value as ExcelJS.CellFormulaValue).formula ||
       (cell.value as ExcelJS.CellSharedFormulaValue).sharedFormula
@@ -328,10 +327,9 @@ const ImportProductsFromExcel: React.FC<{
           ["Form", gvoe("Q")],
           ["Druck", gvoe("R")],
           ["Divers", gvoe("S")],
-          ['Thema', gvoe('AD')],
-          ['Thema', gvoe('AE')],
-          ['Thema', gvoe('AF')],
-
+          ["Thema", gvoe("AD")],
+          ["Thema", gvoe("AE")],
+          ["Thema", gvoe("AF")],
         ]),
         metafields: [
           {
