@@ -1,5 +1,5 @@
 import { Box, Grid, Heading, HStack, Stack, Text } from "@chakra-ui/react"
-import { Field, navigate } from "@jaenjs/jaen"
+import { Field, navigate, useIsEditing } from "@jaenjs/jaen"
 import { FC } from "react"
 import { BiChevronRight } from "react-icons/bi"
 interface ICardWithImageBackgroundProps {
@@ -27,9 +27,12 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
   h,
   isSmallText = false,
 }) => {
+
+  const isEditing = useIsEditing()
+
   return (
     <Stack
-      onClick={() => card.linkUrl && navigate(card.linkUrl)}
+      onClick={() => !isEditing && card.linkUrl && navigate(card.linkUrl)}
       position="relative"
       _hover={{
         transition: "all 0.3s ease",
@@ -94,7 +97,11 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
               transition="ease-in 0.2s"
             >
               <Text
-                onClick={() => navigate(card.linkUrl || "")}
+                onClick={() => {
+                  if(isEditing) return
+
+                  navigate(card.linkUrl || "")
+                }}
                 fontSize={{ base: "sm", lg: "md" }}
                 fontWeight="700"
               >
