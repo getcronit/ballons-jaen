@@ -1,5 +1,5 @@
 import { Container, SimpleGrid } from "@chakra-ui/react"
-import { Field } from "@jaenjs/jaen"
+import { Field, useIsEditing } from "@jaenjs/jaen"
 import { FC } from "react"
 import { CONTAINER_MAX_WIDTH } from "../../constant/sizes"
 import { FourCardItem } from "./FourCardItem"
@@ -7,12 +7,17 @@ import { FourCardItem } from "./FourCardItem"
 interface IFourCardProps {
   sectionFieldName: string
   sectionDisplayName: string
+  onCardClick: (index: number) => void
 }
 
 const FourCard: FC<IFourCardProps> = ({
   sectionFieldName,
   sectionDisplayName,
+  onCardClick,
 }) => {
+
+  const isEditing = useIsEditing()
+
   return (
     <Container maxW={CONTAINER_MAX_WIDTH} mb={{ base: 16, md: 0 }}>
       <Field.Section
@@ -32,6 +37,13 @@ const FourCard: FC<IFourCardProps> = ({
         name={sectionFieldName}
         displayName={sectionDisplayName}
         sections={[FourCardItem]}
+        sectionProps={(p) => ({
+          onClick: () => {
+            if(isEditing) return
+            
+            onCardClick(p.count - 1)
+          }
+        })}
       />
     </Container>
   )

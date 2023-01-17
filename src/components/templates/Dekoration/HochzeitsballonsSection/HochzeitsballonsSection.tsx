@@ -44,7 +44,7 @@ const HochzeitsballonsSection: FC<IHochzeitsballonsSectionProps> = () => {
 
   return (
     <Stack pt="32">
-      <FourCard sectionFieldName={sectionFieldName} sectionDisplayName={sectionDisplayName} />
+      <FourCard sectionFieldName={sectionFieldName} sectionDisplayName={sectionDisplayName} onCardClick={() => {}} />
 
       <Field.Section name={sectionFieldName} displayName={sectionDisplayName} sections={[]} />
 
