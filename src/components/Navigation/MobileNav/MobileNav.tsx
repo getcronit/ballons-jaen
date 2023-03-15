@@ -13,26 +13,24 @@ import {
   HStack,
   IconButton,
   Image,
-  Link as CLink,
   Stack,
-  useDisclosure,
-} from "@chakra-ui/react"
-import React, { FC } from "react"
+  useDisclosure
+} from '@chakra-ui/react'
+import {Link, navigate} from 'gatsby'
+import {FC} from 'react'
 import {
   AiOutlineArrowLeft,
   AiOutlineSearch,
   AiOutlineShop,
-  AiOutlineShoppingCart,
-  AiOutlineUser,
-} from "react-icons/ai"
-import { IoCloseOutline, IoMenuOutline } from "react-icons/io5"
-import { Link, navigate } from "gatsby"
-import { navlinks } from "../../../constant/navLink"
-import { LayoutMode } from "../../../types/commonTypes"
-import { NavAuthButton } from "../NavAuthButton"
-import { NavLinks } from "../NavLinks"
-import { FaPhone, FaPhoneAlt } from "react-icons/fa"
-import { useContactModal } from "../../../services/contact"
+  AiOutlineShoppingCart
+} from 'react-icons/ai'
+import {FaPhoneAlt} from 'react-icons/fa'
+
+import {IoCloseOutline, IoMenuOutline} from 'react-icons/io5'
+import {useContactModal} from '../../../services/contact'
+import {LayoutMode} from '../../../types/commonTypes'
+import {NavAuthButton} from '../NavAuthButton'
+import {NavLinks} from '../NavLinks'
 
 interface IMobileNavProps {
   mode?: LayoutMode
@@ -40,13 +38,12 @@ interface IMobileNavProps {
   onBasketClick: () => void
 }
 
-
 const MobileNav: FC<IMobileNavProps> = ({
   mode,
   onSearchClick,
-  onBasketClick,
+  onBasketClick
 }) => {
-  const { isOpen, onToggle } = useDisclosure()
+  const {isOpen, onToggle} = useDisclosure()
 
   const contactModal = useContactModal()
 
@@ -54,13 +51,12 @@ const MobileNav: FC<IMobileNavProps> = ({
     <>
       <Box
         px="4"
-        boxShadow={mode === "website" ? "dark" : "light"}
+        boxShadow={mode === 'website' ? 'dark' : 'light'}
         pos="relative"
         bg="white"
-        zIndex="sticky"
-      >
+        zIndex="sticky">
         <Flex h="3.75rem" justify="space-between" align="center">
-          {mode === "website" ? (
+          {mode === 'website' ? (
             <IconButton
               aria-label="Open menu"
               variant="ghost"
@@ -81,7 +77,9 @@ const MobileNav: FC<IMobileNavProps> = ({
 
           <Box>
             <Image
-              onClick={() => navigate("/")}
+              onClick={() => {
+                void navigate('/')
+              }}
               h=".875rem"
               w="10rem"
               src="/images/red_logo.png"
@@ -89,7 +87,7 @@ const MobileNav: FC<IMobileNavProps> = ({
           </Box>
           <HStack gap="0" justifySelf="end" spacing="0">
             <NavAuthButton />
-            {mode === "website" ? (
+            {mode === 'website' ? (
               <IconButton
                 as={Link}
                 to="/products"
@@ -121,7 +119,9 @@ const MobileNav: FC<IMobileNavProps> = ({
             <DrawerCloseButton />
             <DrawerHeader>
               <Image
-                onClick={() => navigate("/")}
+                onClick={() => {
+                  void navigate('/')
+                }}
                 h=".875rem"
                 w="10rem"
                 src="/images/red_logo.png"
@@ -136,7 +136,7 @@ const MobileNav: FC<IMobileNavProps> = ({
                   px="2"
                   zIndex="5"
                   spacing="6"
-                  fontSize={"md"}
+                  fontSize="md"
                   onClick={onToggle}
                 />
 
@@ -145,17 +145,15 @@ const MobileNav: FC<IMobileNavProps> = ({
                   justify="space-between"
                   align="center"
                   spacing="4"
-                  mt="4"
-                >
+                  mt="4">
                   <Button
                     w="full"
                     leftIcon={<FaPhoneAlt />}
                     onClick={() => {
                       contactModal.onOpen({
-                        meta: {},
+                        meta: {}
                       })
-                    }}
-                  >
+                    }}>
                     Serivce
                   </Button>
                 </Stack>
@@ -166,15 +164,14 @@ const MobileNav: FC<IMobileNavProps> = ({
       </Box>
       <Box
         onClick={onToggle}
-        display={isOpen ? "block" : "none"}
+        display={isOpen ? 'block' : 'none'}
         bg="rgba(0,0,0,0.7)"
         h="100vh"
         pos="absolute"
         top="0"
         left="0"
         zIndex="3"
-        w="full"
-      ></Box>
+        w="full"></Box>
     </>
   )
 }

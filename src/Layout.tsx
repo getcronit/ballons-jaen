@@ -1,15 +1,15 @@
-import { Box } from "@chakra-ui/react"
-import { SearchProvider } from "@snek-at/gatsby-theme-shopify"
-import React from "react"
+import {SearchProvider} from '@snek-at/gatsby-theme-shopify'
+import React from 'react'
 
-import Footer from "./components/Footer/Footer"
-import Navigation from "./components/Navigation/Navigation"
-import ScrollToTop from "./components/ScrollTop"
-import { AuthenticationProvider } from "./services/authentication"
-import { BasketDrawerProvider } from "./services/basket"
-import { ContactModalProvider } from "./services/contact"
-import { SearchModalProvider } from "./services/search"
-import { LayoutMode } from "./types/commonTypes"
+import Footer from './components/Footer/Footer'
+import Navigation from './components/Navigation/Navigation'
+import ScrollToTop from './components/ScrollTop'
+
+import {BasketDrawerProvider} from './services/basket'
+import {ContactModalProvider} from './services/contact'
+import {SearchModalProvider} from './services/search'
+
+import {LayoutMode} from './types/commonTypes'
 
 export interface LayoutProps {
   pathname: string
@@ -20,7 +20,7 @@ export interface LayoutProps {
 export const Layout: React.FC<LayoutProps> = ({
   children,
   pathname,
-  mode = "website",
+  mode = 'website'
 }) => {
   return (
     <ScrollToTop pathname={pathname}>
@@ -35,7 +35,7 @@ export const Layout: React.FC<LayoutProps> = ({
           <>{children}</>
         </BasketDrawerProvider>
 
-        {mode === "website" && <Footer />}
+        {mode === 'website' && <Footer />}
       </ContactModalProvider>
     </ScrollToTop>
   )

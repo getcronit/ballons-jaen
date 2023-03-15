@@ -4,15 +4,15 @@
  * See: https://www.gatsbyjs.com/docs/ssr-apis/
  */
 
-import { GatsbySSR } from "gatsby"
-import { AuthenticationProvider } from "./src/services/authentication"
-import { PageWrapper } from "./src/Wrapper"
+import {GatsbySSR} from 'gatsby'
+import {AuthenticationProvider} from './src/services/authentication'
+import {PageWrapper} from './src/Wrapper'
 
-export const onRenderBody: GatsbySSR["onRenderBody"] = ({
+export const onRenderBody: GatsbySSR['onRenderBody'] = ({
   setHtmlAttributes,
-  setHeadComponents,
+  setHeadComponents
 }) => {
-  setHtmlAttributes({ lang: `de` })
+  setHtmlAttributes({lang: `de`})
 
   setHeadComponents([
     <link
@@ -22,11 +22,13 @@ export const onRenderBody: GatsbySSR["onRenderBody"] = ({
       as="font"
       type="font/woff2"
       crossOrigin="anonymous"
-    />,
+    />
   ])
 }
 
-export const wrapPageElement: GatsbySSR["wrapPageElement"] = ({ element }) => {
+export const wrapPageElement: GatsbySSR['wrapPageElement'] = ({element}) => {
+  return <PageWrapper>{element}</PageWrapper>
+
   return (
     <PageWrapper>
       <AuthenticationProvider>{element}</AuthenticationProvider>

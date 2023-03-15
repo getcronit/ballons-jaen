@@ -1,4 +1,4 @@
-import type { useJaenPageIndex } from "@jaenjs/jaen"
+import type {useIndexField} from '@snek-at/jaen'
 
 export interface INewsSlides {
   image: string
@@ -15,4 +15,4 @@ export interface ICardData {
 
 export type LayoutMode = 'website' | 'store'
 
-export type JaenPageIndexType = ReturnType<typeof useJaenPageIndex>
+export type JaenPageIndexType = ReturnType<typeof useIndexField>

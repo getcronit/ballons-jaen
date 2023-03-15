@@ -44,10 +44,9 @@ export const ProductCard = ({
   taxable,
   wholesale,
 }: ProductCardProps) => {
-
   const path = prefixPath ? `${prefixPath}/${product.handle}` : product.handle
 
-  const radioRef = React.useRef<(HTMLInputElement | null)[]>([])
+  const radioRef = React.useRef<Array<HTMLInputElement | null>>([])
 
   const tags = getProductTags(product)
 
@@ -57,7 +56,7 @@ export const ProductCard = ({
 
   taxable = taxable !== undefined ? taxable : product.variants[0]?.taxable
 
-  if(wholesale) {
+  if (wholesale) {
     taxable = false
   }
 
@@ -88,9 +87,9 @@ export const ProductCard = ({
     <VStack
       as={GatsbyLink}
       to={path}
-      display={"block"}
+      display="block"
       css={styles.cardStyle(borderline, bwidth, bcolor, left)}
-      boxSize={"full"}
+      boxSize="full"
       cursor="pointer"
       // bg="red"
       textAlign={{
@@ -106,7 +105,7 @@ export const ProductCard = ({
         px={{ base: "1", md: "2", lg: "3" }}
         py="5"
         // h={'full'}
-        minH={"full"}
+        minH="full"
         borderRadius="5px"
         // boxShadow="lg"
         // border="1px"
@@ -120,7 +119,7 @@ export const ProductCard = ({
                 type="radio"
                 className="radioimg"
                 name={"imgbox-" + cardId}
-                id={"imgbox-" + cardId + "-" + 0}
+                id={`imgbox-${cardId}-${0}`}
                 key={0}
                 ref={el => (radioRef.current[0] = el)}
                 readOnly
@@ -142,7 +141,7 @@ export const ProductCard = ({
                     type="radio"
                     className="radioimg"
                     name={"imgbox-" + cardId}
-                    id={"imgbox-" + cardId + "-" + index}
+                    id={`imgbox-${cardId}-${index}`}
                     ref={el => (radioRef.current[index] = el)}
                   />
                   <ImageBoxWithTags
@@ -161,7 +160,7 @@ export const ProductCard = ({
         </Text>
         <Text fontWeight="semibold">{product.title}</Text>
         <ProductPrices prices={prices} />
-        <Text fontSize="xs" color="gray.600" textAlign={"center"}>
+        <Text fontSize="xs" color="gray.600" textAlign="center">
           {taxable ? "inkl." : "exkl."} MwSt.
         </Text>
         <Spacer
@@ -194,23 +193,27 @@ export const ProductCard = ({
             className="imgline"
             position="absolute"
             opacity="0"
-            boxSize={"full"}
+            boxSize="full"
             py="0.5rem"
             px="1"
           >
             {product.media.slice(0, 3).map((m, index) => (
-              <label htmlFor={"imgbox-" + cardId + "-" + index} key={index}>
+              <label htmlFor={`imgbox-${cardId}-${index}`} key={index}>
                 <Box
                   transform="scale(0.97)"
                   borderBottom="1px"
                   borderColor="border"
                   py="1"
                   _hover={{ borderColor: "agt.red" }}
+                  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                   onMouseOver={() => (radioRef.current[index]!.checked = true)}
+                  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                   onMouseLeave={() => (radioRef.current[0]!.checked = true)}
                 >
                   <GatsbyImage
-                    onDragStart={e => e.preventDefault()}
+                    onDragStart={e => {
+                      e.preventDefault()
+                    }}
                     draggable="false"
                     image={m.image.gatsbyImageData}
                     alt={m.image.altText || ""}
@@ -241,11 +244,13 @@ function ImageBoxWithTags(
     <Box overflow="hidden" position="relative" {...props}>
       {image ? (
         <Image
-          onDragStart={e => e.preventDefault()}
+          onDragStart={e => {
+            e.preventDefault()
+          }}
           draggable="false"
-          src={image.gatsbyImageData.images.fallback?.src}
-          sizes={image.gatsbyImageData.images.fallback?.sizes}
-          srcSet={image.gatsbyImageData.images.fallback?.srcSet}
+          src={image.gatsbyImageData?.images?.fallback?.src}
+          sizes={image.gatsbyImageData?.images?.fallback?.sizes}
+          srcSet={image.gatsbyImageData?.images?.fallback?.srcSet}
           alt={image.altText || "-"}
           style={{
             height: "100%",
@@ -297,7 +302,7 @@ const ProductPrices = ({
           fontSize="sm"
           fontWeight="semibold"
           color="gray.600"
-          textDecoration={"line-through !important"}
+          textDecoration="line-through !important"
         >
           {prices.compareAtPriceFormatted}
         </Text>

@@ -1,11 +1,10 @@
-import { FC } from "react"
-import NewsSlider from "../../../components/NewsSlider/NewsSlider"
-import { sliderDummyData } from "../../../constant/slider"
-import AdviceSection from "./AdviceSection"
-import Brands from "./Brands"
-import GroßhandelHero from "./GroßhandelHero/GroßhandelHero"
-import PartnersSection from "./PartnersSection"
-import TwoCards from "./TwoCards"
+import {FC} from 'react'
+import NewsSlider from '../../organisms/NewsSlider/NewsSlider'
+import AdviceSection from './AdviceSection'
+import Brands from './Brands'
+import GroßhandelHero from './GroßhandelHero/GroßhandelHero'
+import PartnersSection from './PartnersSection'
+import TwoCards from './TwoCards'
 
 interface IGroßhandelProps {}
 

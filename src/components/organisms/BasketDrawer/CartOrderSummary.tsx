@@ -1,7 +1,8 @@
-import { Box, Button, Stack, Text } from "@chakra-ui/react"
-import { FaArrowRight } from "@react-icons/all-files/fa/FaArrowRight"
-import * as React from "react"
-import { formatPrice } from "../../../common/utils"
+import {Box, Button, Stack, Text} from '@chakra-ui/react'
+import {FaArrowRight} from '@react-icons/all-files/fa/FaArrowRight'
+import * as React from 'react'
+
+import {formatPrice} from '../../../common/utils'
 
 export interface CartOrderSummaryProps {
   subtotal: number
@@ -16,30 +17,28 @@ export const CartOrderSummary = ({
   currency,
   infoText,
   checkoutButtonText,
-  onClickCheckout,
+  onClickCheckout
 }: CartOrderSummaryProps) => {
   return (
     <Stack spacing="8" width="full" px="2">
       <Stack spacing="6">
         <Box>
           <Text
-            as={"span"}
+            as="span"
             fontSize={{
-              base: "md",
-              md: "lg",
+              base: 'md',
+              md: 'lg'
             }}
-            fontWeight="semibold"
-          >
+            fontWeight="semibold">
             Zwischensumme:
           </Text>
           <Text
             fontSize={{
-              base: "lg",
-              md: "xl",
+              base: 'lg',
+              md: 'xl'
             }}
-            fontWeight="extrabold"
-          >
-            {formatPrice(subtotal, { currency })}
+            fontWeight="extrabold">
+            {formatPrice(subtotal, {currency})}
           </Text>
         </Box>
 
@@ -48,13 +47,12 @@ export const CartOrderSummary = ({
       <Button
         colorScheme="blue"
         size={{
-          base: "sm",
-          md: "md",
+          base: 'sm',
+          md: 'md'
         }}
         fontSize="md"
         rightIcon={<FaArrowRight />}
-        onClick={onClickCheckout}
-      >
+        onClick={onClickCheckout}>
         {checkoutButtonText}
       </Button>
     </Stack>

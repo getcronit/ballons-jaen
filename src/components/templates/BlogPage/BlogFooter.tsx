@@ -1,8 +1,8 @@
-import { VStack, Button, Flex, Stack, useToast } from "@chakra-ui/react"
-import { useEffect, useState } from "react"
-import { BsFillShareFill } from "react-icons/bs"
-import { sliderDummyData } from "../../../constant/slider"
-import NewsSlider from "../../NewsSlider/NewsSlider"
+import {Button, Stack, useToast, VStack} from '@chakra-ui/react'
+import {useEffect, useState} from 'react'
+import {BsFillShareFill} from 'react-icons/bs'
+
+import NewsSlider from '../../organisms/NewsSlider/NewsSlider'
 
 const ShareBlogButton = () => {
   const toast = useToast()
@@ -17,12 +17,12 @@ const ShareBlogButton = () => {
     navigator.clipboard.writeText(window.location.href)
 
     toast({
-      title: "Kopiert",
-      description: "Blog-Link wurde in die Zwischenablage kopiert",
-      status: "info",
-      variant: "subtle",
+      title: 'Kopiert',
+      description: 'Blog-Link wurde in die Zwischenablage kopiert',
+      status: 'info',
+      variant: 'subtle',
       duration: 3000,
-      isClosable: true,
+      isClosable: true
     })
   }
 
@@ -39,7 +39,7 @@ const ShareBlogButton = () => {
 
   return (
     <Button leftIcon={<BsFillShareFill />} size="sm" onClick={handleShareClick}>
-      Artikel teilen {isShareOpen && "(Kopiert)"}
+      Artikel teilen {isShareOpen && '(Kopiert)'}
     </Button>
   )
 }
@@ -49,9 +49,8 @@ export const BlogFooter = () => {
     <Stack
       my={{
         base: 8,
-        lg: 16,
-      }}
-    >
+        lg: 16
+      }}>
       <VStack>
         <ShareBlogButton />
       </VStack>

@@ -10,19 +10,17 @@ import {
   Heading,
   HStack,
   Stack,
-  Text,
-} from "@chakra-ui/react"
-import React from "react"
-import { FaBox } from "react-icons/fa"
-import { useAuthentication } from "../../../services/authentication"
+  Text
+} from '@chakra-ui/react'
+import {FaBox} from 'react-icons/fa'
 
-import { CartItem } from "./CartItem"
-import { CartOrderSummary } from "./CartOrderSummary"
-import { CheckoutLineItem } from "./stories/data"
+import {CartItem} from './CartItem'
+import {CartOrderSummary} from './CartOrderSummary'
+import {CheckoutLineItem} from './stories/data'
 
 export interface BasketDrawerProps {
   isOpen: boolean
-  products: Array<CheckoutLineItem>
+  products: CheckoutLineItem[]
   wholesale: boolean
   subtotal: number
   onClickCheckout: () => void
@@ -38,9 +36,9 @@ export const BasketDrawer = ({
   onProductRemove,
   products,
   wholesale,
-  subtotal,
+  subtotal
 }: BasketDrawerProps) => {
-  const currency = "EUR"
+  const currency = 'EUR'
 
   return (
     <Drawer isOpen={isOpen} placement="right" size="md" onClose={onClose}>
@@ -48,7 +46,7 @@ export const BasketDrawer = ({
       <DrawerContent>
         <DrawerCloseButton size="lg" />
         <DrawerHeader>
-          <Heading fontSize="lg" as="h2" fontWeight={"normal"}>
+          <Heading fontSize="lg" as="h2" fontWeight="normal">
             Warenkorb ({products.length} Artikel)
           </Heading>
         </DrawerHeader>
@@ -56,23 +54,22 @@ export const BasketDrawer = ({
         <Divider />
 
         <DrawerBody>
-          <Stack spacing={{ base: "8", md: "10" }}>
+          <Stack spacing={{base: '8', md: '10'}}>
             <Stack spacing="6">
               {products.map(product => {
                 const id = product.variant.id.toString()
 
-                // @ts-ignore
                 const stepperQuantity = parseInt(
-                  product.customAttributes.find(
-                    attr => attr.key === "stepperQuantity"
-                  )?.value || "1"
+                  (product.customAttributes as any[]).find(
+                    attr => attr.key === 'stepperQuantity'
+                  )?.value || '1'
                 )
 
                 return (
                   <CartItem
                     key={id}
                     name={product.title}
-                    description={"description"}
+                    description="description"
                     quantity={product.quantity}
                     stepperQuantity={stepperQuantity}
                     price={parseFloat(product.variant.price.amount)}
@@ -81,7 +78,9 @@ export const BasketDrawer = ({
                     onChangeQuantity={quantity => {
                       onProductQuantityChange(product.id.toString(), quantity)
                     }}
-                    onClickDelete={() => onProductRemove(product.id.toString())}
+                    onClickDelete={() => {
+                      onProductRemove(product.id.toString())
+                    }}
                   />
                 )
               })}
@@ -98,9 +97,11 @@ export const BasketDrawer = ({
             onClickCheckout={onClickCheckout}
             infoText={
               wholesale ? (
-                <Text fontSize="sm" mt="0 !important">Alle Preise exkl. 19% MwSt.</Text>
+                <Text fontSize="sm" mt="0 !important">
+                  Alle Preise exkl. 19% MwSt.
+                </Text>
               ) : (
-                <HStack color={'gray.600'} mt="0 !important">
+                <HStack color="gray.600" mt="0 !important">
                   <FaBox />
                   <Text fontSize="sm">
                     Versand + Steuern werden im nächsten Schritt berechnet.

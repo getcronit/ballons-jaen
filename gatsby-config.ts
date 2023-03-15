@@ -1,22 +1,19 @@
-import dotenv from 'dotenv';
+import type {GatsbyConfig} from 'gatsby'
 import path from 'path'
 
-import {GatsbyConfig} from 'gatsby'
-
-const {site} = require('./jaen-data/internal.json')
-
-dotenv.config()
-dotenv.config({path: '.env.public'})
-
-
 const config: GatsbyConfig = {
-  jsxRuntime: "automatic",
-  jsxImportSource: "@emotion/react",
-  siteMetadata: site.siteMetadata,
+  siteMetadata: {
+    title: `ballons-and-ballons`,
+    siteUrl: `https://www.yourdomain.tld`
+  },
+  jsxRuntime: 'automatic',
   plugins: [
-    `gatsby-plugin-image`,
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-jaen`,
+      options: {
+        snekResourceId: `236d377c-cd47-497a-a74c-9101f6fced60`
+      }
+    },
     {
       resolve: '@snek-at/gatsby-theme-shopify',
       options: {
@@ -27,9 +24,8 @@ const config: GatsbyConfig = {
           'src/templates/ProductsPageTemplate.tsx'
         )
       }
-    },
-    "@jaenjs/jaen"
-  ],
+    }
+  ]
 }
 
 export default config

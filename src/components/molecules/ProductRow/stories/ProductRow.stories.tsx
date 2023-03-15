@@ -1,6 +1,5 @@
-import React from 'react'
-import {ComponentStory, ComponentMeta} from '@storybook/react'
 import {getProductTags} from '@snek-at/gatsby-theme-shopify'
+import {ComponentMeta, ComponentStory} from '@storybook/react'
 import {ProductRow} from '../ProductRow'
 import data from './data'
 
@@ -21,6 +20,6 @@ export const Default = Template.bind({})
 Default.args = {
   title: shopifyProduct.title,
   featuredMedia: shopifyProduct.featuredMedia,
-  categoryString: tags.categoryString,
-  otherString: tags.otherString
+  categoryTags: tags.categoryTags,
+  otherTags: tags.otherTags
 }

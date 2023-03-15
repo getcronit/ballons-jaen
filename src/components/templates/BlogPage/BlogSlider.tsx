@@ -1,36 +1,24 @@
-import {
-  Box,
-  Button,
-  Container,
-  Flex,
-  HStack,
-  Image,
-  Stack,
-  Tag,
-  Text,
-  VStack,
-} from "@chakra-ui/react"
-import { connectSection, Field } from "@jaenjs/jaen"
-import { FC } from "react"
-import { BsFillShareFill } from "react-icons/bs"
-import Slider from "react-slick"
-import { CONTAINER_MAX_WIDTH } from "../../../constant/sizes"
-import { blogSliderSettings } from "../../../constant/slider"
+import {Box, Container, Text} from '@chakra-ui/react'
+import {connectBlock, Field} from '@snek-at/jaen'
+import {FC} from 'react'
+import Slider from 'react-slick'
+import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
+import {blogSliderSettings} from '../../../constant/slider'
 
-const SliderItem = connectSection(
+const SliderItem = connectBlock(
   () => {
     return (
-      <Box boxSize={"full"} display={"flex"} justifyContent="center">
+      <Box boxSize={'full'} display={'flex'} justifyContent="center">
         <Box
-          m={{ base: 2, lg: 4 }}
-          boxSize={{ base: "10rem", sm: "12rem", lg: "15rem" }}
+          m={{base: 2, lg: 4}}
+          boxSize={{base: '10rem', sm: '12rem', lg: '15rem'}}
           mb="8 !important"
           borderRadius="xl"
           overflow="hidden"
-          boxShadow="dark"
-        >
+          boxShadow="dark">
           <Field.Image
             name="image"
+            label="Image"
             defaultValue="/images/blog_page/sliderImg1.png"
           />
         </Box>
@@ -38,29 +26,14 @@ const SliderItem = connectSection(
     )
   },
   {
-    name: "SliderItem",
-    displayName: "SliderItem",
+    name: 'SliderItem',
+    label: 'SliderItem'
   }
 )
 
 interface IBlogSliderProps {}
 
 const BlogSlider: FC<IBlogSliderProps> = () => {
-  const sliderImages = [
-    "/images/blog_page/sliderImg1.png",
-    "/images/blog_page/sliderImg2.png",
-    "/images/blog_page/sliderImg3.png",
-    "/images/blog_page/sliderImg4.png",
-    "/images/blog_page/sliderImg1.png",
-    "/images/blog_page/sliderImg2.png",
-    "/images/blog_page/sliderImg3.png",
-    "/images/blog_page/sliderImg4.png",
-    "/images/blog_page/sliderImg1.png",
-    "/images/blog_page/sliderImg2.png",
-    "/images/blog_page/sliderImg3.png",
-    "/images/blog_page/sliderImg4.png",
-  ]
-
   return (
     <Box
       bgSize="cover"
@@ -69,28 +42,28 @@ const BlogSlider: FC<IBlogSliderProps> = () => {
       mt="24"
       py="8"
       bgImage={{
-        base: "/images/blog_page/slider_mobile_bg.svg",
-        md: "/images/blog_page/sliderBg.svg",
-      }}
-    >
+        base: '/images/blog_page/slider_mobile_bg.svg',
+        md: '/images/blog_page/sliderBg.svg'
+      }}>
       <Container maxW={CONTAINER_MAX_WIDTH}>
         <Field.Section
+          //@ts-expect-error
           as={Slider}
-          props={{ ...blogSliderSettings }}
+          props={{...blogSliderSettings}}
           name="SliderItem"
-          displayName="Blog Slider"
-          sections={[SliderItem]}
+          label="Blog Slider"
+          blocks={[SliderItem]}
         />
 
         <Box pt="12"></Box>
         <Text
           size="b2012"
           textAlign="center"
-          py={{ base: 16, md: 8, xl: 16 }}
-          as="span"
-        >
+          py={{base: 16, md: 8, xl: 16}}
+          as="span">
           <Field.Text
             name="text"
+            label="Text"
             defaultValue={`<p>
            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
            libero risus semper Lorem ipsum dolor sit amet, consectetur adipiscing

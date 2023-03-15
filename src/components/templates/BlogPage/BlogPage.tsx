@@ -1,10 +1,7 @@
-import { Box } from "@chakra-ui/react"
-import { FC } from "react"
-import NewsSlider from "../../../components/NewsSlider/NewsSlider"
-import { sliderDummyData } from "../../../constant/slider"
-import BlogPageSection from "../../BlogPageSection/BlogPageSection"
-import { BlogFooter } from "./BlogFooter"
-import BlogPageHero from "./BlogPageHero"
+import {FC} from 'react'
+import {BlogFooter} from './BlogFooter'
+import BlogPageHero from './BlogPageHero'
+import BlogPageSection from './BlogPageSection'
 
 interface IBlogPageProps {}
 

@@ -1,5 +1,4 @@
 import {ComponentMeta, ComponentStory} from '@storybook/react'
-import React from 'react'
 
 import {LoginModal} from '../LoginModal'
 
@@ -14,9 +13,9 @@ const Template: ComponentStory<typeof LoginModal> = args => (
 
 export const Default = Template.bind({})
 Default.args = {
-    isOpen: true,
-    onSubmit: (data) => {
-      // sleep 3 seconds to simulate a network request
-      return new Promise((resolve) => setTimeout(resolve, 3000))
-    }
+  isOpen: true,
+  onSubmit: async () => {
+    // sleep 3 seconds to simulate a network request
+    return await new Promise(resolve => setTimeout(resolve, 3000))
+  }
 }

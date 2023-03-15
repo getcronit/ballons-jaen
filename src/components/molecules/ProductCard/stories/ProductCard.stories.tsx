@@ -1,9 +1,7 @@
-import React from 'react'
+import {ComponentMeta, ComponentStory} from '@storybook/react'
 
-import {ComponentStory, ComponentMeta} from '@storybook/react'
-
-import {ProductCard} from '../ProductCard'
 import * as ProductPageStories from '../../../templates/ProductTemplate/stories/ProductTemplate.stories'
+import {ProductCard} from '../ProductCard'
 
 export default {
   title: 'Components/Molecules/ProductCard',
@@ -28,7 +26,7 @@ const Template: ComponentStory<typeof ProductCard> = args => (
 
 export const Default = Template.bind({})
 Default.args = {
-  product: ProductPageStories.Default.args?.shopifyProduct,
+  product: ProductPageStories.Default.args?.shopifyProduct
 }
 
 export const WithBorderline = Template.bind({})

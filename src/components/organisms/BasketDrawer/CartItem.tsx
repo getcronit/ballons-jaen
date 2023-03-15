@@ -11,13 +11,13 @@ import {
   NumberInputStepper,
   Stack,
   Text,
-  useColorModeValue as mode,
-} from "@chakra-ui/react"
-import * as React from "react"
+  useColorModeValue as mode
+} from '@chakra-ui/react'
+import * as React from 'react'
 
-import { PriceTag } from "./PriceTag"
+import {PriceTag} from './PriceTag'
 
-type CartItemProps = {
+interface CartItemProps {
   name: string
   description: string
   quantity: number
@@ -53,8 +53,7 @@ const QuantitySelect = (props: {
       }}
       onBlur={e => {
         props.onChange(value)
-      }}
-    >
+      }}>
       <NumberInputField />
       <NumberInputStepper>
         <NumberIncrementStepper />
@@ -74,25 +73,24 @@ export const CartItem = (props: CartItemProps) => {
     price,
     onChangeQuantity,
     onClickDelete,
-    stepperQuantity,
+    stepperQuantity
   } = props
 
   return (
     <Flex
-      direction={{ base: "column", md: "row" }}
+      direction={{base: 'column', md: 'row'}}
       justify="space-between"
-      align="center"
-    >
+      align="center">
       <Stack direction="row" spacing="5" width="full">
         <Image
           rounded="lg"
           width={{
-            base: "90px",
-            md: "110px",
+            base: '90px',
+            md: '110px'
           }}
           height={{
-            base: "90px",
-            md: "110px",
+            base: '90px',
+            md: '110px'
           }}
           fit="cover"
           src={imageUrl}
@@ -102,26 +100,21 @@ export const CartItem = (props: CartItemProps) => {
         />
         <Box pt="4" width="full">
           <Stack spacing="0.5" width="full">
-            <HStack justifyContent={"space-between"}>
-              <Text
-                fontWeight="medium"
-                fontSize="md"
-                noOfLines={1}
-              >
+            <HStack justifyContent="space-between">
+              <Text fontWeight="medium" fontSize="md" noOfLines={1}>
                 {name}
               </Text>
               <PriceTag price={price} currency={currency} />
             </HStack>
             <Text
-              color={mode("gray.400", "gray.400")}
+              color={mode('gray.400', 'gray.400')}
               fontSize={{
-                base: "xs",
-                md: "sm",
-              }}
-            >
+                base: 'xs',
+                md: 'sm'
+              }}>
               {description}
             </Text>
-            <HStack justifyContent={"space-between"}>
+            <HStack justifyContent="space-between">
               <QuantitySelect
                 stepperQuantity={stepperQuantity}
                 value={quantity}
@@ -131,12 +124,11 @@ export const CartItem = (props: CartItemProps) => {
               />
               <Link
                 fontSize="sm"
-                color={"blue.500"}
+                color="blue.500"
                 _hover={{
-                  textDecoration: "underline",
+                  textDecoration: 'underline'
                 }}
-                onClick={onClickDelete}
-              >
+                onClick={onClickDelete}>
                 Delete
               </Link>
             </HStack>

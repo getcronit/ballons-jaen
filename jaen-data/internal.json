@@ -1,47 +1,5 @@
 {
-  "site": {
-    "siteMetadata": {
-      "title": "Ballons & Ballons - Freude schenken mit Ballons",
-      "siteUrl": "https://ballons-ballons.at",
-      "description": "Wir sind Ballon-Händler für Wiederverkäufer und für Privatkunden. Profitieren Sie von unserer Top-Beratung und der großen Auswahl.",
-      "author": {
-        "name": ""
-      },
-      "organization": {
-        "name": "",
-        "url": ""
-      }
-    }
-  },
-  "migrationHistory": [
-    {
-      "createdAt": "2022-11-21T12:01:30.454Z",
-      "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIUHGN7aEuI2Nx-4-yCojy09mjqzV2VAAKECwACCwAB4VPdjqz6_tZv-CsE"
-    },
-    {
-      "createdAt": "2022-11-25T08:26:43.875Z",
-      "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIUMGOAe70vkkk-9QtLGF-SJGECXooDAAImDwAC1L4IUBIkZkap4IN9KwQ"
-    },
-    {
-      "createdAt": "2022-12-13T19:09:07.571Z",
-      "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIUgmOYsGf6UPoW-n4nByzHKXWs4VkRAALBDwACtszIUJJAqOdgcL-BLAQ"
-    },
-    {
-      "createdAt": "2023-01-17T08:53:50.409Z",
-      "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIUumPGYYYgCg6HWCxivBQERFs7ufmvAAIjEQACusowUlfKR52Otwg3LQQ"
-    },
-    {
-      "createdAt": "2023-01-17T09:59:33.424Z",
-      "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIUxWPGcWMjpq6DBLgYFUYQVFVj6NPTAAInDwAC-CAxUvsLBQKaWNitLQQ"
-    }
-  ],
-  "finderUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIUxGPGcWK-rR69VVjKwUrHFBswwZBWAAImDwAC-CAxUvZj-6cTP3sCLQQ",
-  "widgets": [
-    {
-      "name": "menu",
-      "data": {
-        "markdown": "\n  [Home](/)\n  [Partyshop](/party)\n[Deko & Design](/dekorationen)\n[Grosshandel](/grosshandel)\n[Ballongas](/news/helium)\n[Wissen](/news)\n[FAQ](/faq)\n[Kontakt](/kontakt)"
-      }
-    }
-  ]
+  "site": {},
+  "migrationHistory": [],
+  "widgets": []
 }

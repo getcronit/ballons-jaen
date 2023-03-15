@@ -1,15 +1,15 @@
-import { ShopifyProduct } from "@snek-at/gatsby-theme-shopify"
+import {ShopifyProduct} from '@snek-at/gatsby-theme-shopify'
 
 export enum ProductFilling {
-  AIR_ONLY = "nur für Luftfüllung geeignet!",
-  HELIUM_ONLY = "für Heliumfüllung geeignet",
-  AIR_AND_HELIUM = "für Helium- und Luftfüllung geeignet",
+  AIR_ONLY = 'nur für Luftfüllung geeignet!',
+  HELIUM_ONLY = 'für Heliumfüllung geeignet',
+  AIR_AND_HELIUM = 'für Helium- und Luftfüllung geeignet'
 }
 
 // "{"amount":"4.4521","currency_code":"EUR"}"
 type Money = string
 
-export type ProductMetafields = {
+export interface ProductMetafields {
   details?: {
     filling: ProductFilling
     bundle: number
@@ -24,13 +24,13 @@ export type ProductMetafields = {
 
 export const getProductMetafields = (product: ShopifyProduct) => {
   const metafields = product.metafields.map(metafield => {
-    const { key, value } = metafield
-    const { namespace } = metafield
+    const {key, value} = metafield
+    const {namespace} = metafield
 
     return {
       [namespace]: {
-        [key]: value,
-      },
+        [key]: value
+      }
     }
   })
 
@@ -45,8 +45,8 @@ export const getProductMetafields = (product: ShopifyProduct) => {
         ...acc,
         [namespace]: {
           ...acc[namespace],
-          [key]: value,
-        },
+          [key]: value
+        }
       }
     },
     {}

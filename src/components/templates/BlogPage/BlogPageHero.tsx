@@ -1,9 +1,9 @@
-import { Box, Container, Flex, Heading, Stack, Text } from "@chakra-ui/react"
-import { Field } from "@jaenjs/jaen"
-import { FC } from "react"
-import { CONTAINER_MAX_WIDTH } from "../../../constant/sizes"
-import { BlogMeta } from "./BlogMeta"
-import { BlogTags } from "./BlogTags"
+import {Box, Container, Flex, Heading, Stack, Text} from '@chakra-ui/react'
+import {Field} from '@snek-at/jaen'
+import {FC} from 'react'
+import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
+import {BlogMeta} from './BlogMeta'
+import {BlogTags} from './BlogTags'
 
 interface IBlogPageHeroProps {}
 
@@ -12,23 +12,23 @@ const BlogPageHero: FC<IBlogPageHeroProps> = () => {
     <Box
       bgImage={{
         base: 'url("/images/blog_page/hero_bg_mobile.svg")',
-        md: "/images/blog_overview/hero_bg.svg",
+        md: '/images/blog_overview/hero_bg.svg'
       }}
-      pt={{ base: 4, md: 32 }}
-      pb={{ base: 16, md: 32 }}
-      bgPos={{ base: "top", md: "top 2rem left 0" }}
+      pt={{base: 4, md: 32}}
+      pb={{base: 16, md: 32}}
+      bgPos={{base: 'top', md: 'top 2rem left 0'}}
       bgRepeat="no-repeat"
-      bgSize="cover"
-    >
-      <Container
-        maxW={CONTAINER_MAX_WIDTH}
-        as={Stack}
-        gap={{ base: 4, lg: "8" }}
-      >
-        <Box pos="relative" top={{ base: "-40px", md: 0 }}>
-          <Box borderRadius="1.875rem" boxShadow="dark" overflow={"hidden"} h={{ base: "30vh", "xl": "50vh" }}>
+      bgSize="cover">
+      <Container maxW={CONTAINER_MAX_WIDTH} as={Stack} gap={{base: 4, lg: '8'}}>
+        <Box pos="relative" top={{base: '-40px', md: 0}}>
+          <Box
+            borderRadius="1.875rem"
+            boxShadow="dark"
+            overflow={'hidden'}
+            h={{base: '30vh', xl: '50vh'}}>
             <Field.Image
               name="image"
+              label="Image"
               defaultValue="/images/blog_page/hero_image.png"
             />
           </Box>
@@ -42,6 +42,7 @@ const BlogPageHero: FC<IBlogPageHeroProps> = () => {
             <Heading size="h4020">
               <Field.Text
                 name="title"
+                label="Title"
                 rtf
                 defaultValue="<p>Ballons & Ballons: Die Geschichte</p>"
               />
@@ -50,12 +51,12 @@ const BlogPageHero: FC<IBlogPageHeroProps> = () => {
         </Box>
         <Stack
           pos="relative"
-          top={{ base: "40px", md: 0 }}
-          gap={{ base: 4, lg: "8" }}
-        >
+          top={{base: '40px', md: 0}}
+          gap={{base: 4, lg: '8'}}>
           <Text size="b2012" as="span">
             <Field.Text
               name="description"
+              label="Description"
               rtf
               defaultValue={`
               <p>

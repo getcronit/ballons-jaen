@@ -9,98 +9,93 @@ import {
   Select,
   Stack,
   Text,
-  VStack,
-} from "@chakra-ui/react"
-import React from "react"
-import { useForm } from "react-hook-form"
+  VStack
+} from '@chakra-ui/react'
+import React from 'react'
+import {useForm} from 'react-hook-form'
 
-interface IOpeningHours {
-  [day: string]: { open: string; close: string }
-}
+type IOpeningHours = Record<string, {open: string; close: string}>
 
 export const OpeningHoursForm: React.FC<{
   onSaved: (openingHours: IOpeningHours) => void
   onCancle: () => void
   openingHours: IOpeningHours
-}> = ({ onSaved, onCancle, openingHours }) => {
+}> = ({onSaved, onCancle, openingHours}) => {
   const {
     handleSubmit,
     register,
     reset,
-    formState: { errors, isSubmitting },
+    formState: {errors, isSubmitting}
   } = useForm<{
     openingHours: IOpeningHours
   }>({
     defaultValues: {
-      openingHours: openingHours,
-    },
+      openingHours
+    }
   })
 
   // Update default values when initUrl changes
   React.useEffect(() => {
     reset({
-      openingHours,
+      openingHours
     })
   }, [openingHours, reset])
 
-  const onSubmit = (data: { openingHours: IOpeningHours }) => {
-    const daysFullNames: {
-      [day: string]: string
-    } = {
-      Mo: "Montag",
-      Di: "Dienstag",
-      Mi: "Mittwoch",
-      Do: "Donnerstag",
-      Fr: "Freitag",
-      Sa: "Samstag",
-      So: "Sonntag",
-    }
+  const onSubmit = (data: {openingHours: IOpeningHours}) => {
+    // const daysFullNames: Record<string, string> = {
+    //   Mo: 'Montag',
+    //   Di: 'Dienstag',
+    //   Mi: 'Mittwoch',
+    //   Do: 'Donnerstag',
+    //   Fr: 'Freitag',
+    //   Sa: 'Samstag',
+    //   So: 'Sonntag'
+    // }
 
     // match with dayss full name (e.g. Montag 10:00-18:00)
-    const days = Object.entries(data.openingHours).map(([day, hours]) => {
-      return {
-        day: daysFullNames[day],
-        open: hours.open,
-        close: hours.close,
-        closed: hours.open === "00:00" && hours.close === "00:00",
-      }
-    })
+    // const days = Object.entries(data.openingHours).map(([day, hours]) => {
+    //   return {
+    //     day: daysFullNames[day],
+    //     open: hours.open,
+    //     close: hours.close,
+    //     closed: hours.open === '00:00' && hours.close === '00:00'
+    //   }
+    // })
 
     // reduce to days with unique open and close time pairs (e.g. Mo-Fr 10:00-18:00) if there is only one day instead match with dayss full name (e.g. Montag 10:00-18:00)
-    const reducedDays = Object.entries(data.openingHours).reduce(
-      (acc, [day, hours]) => {
-        const last = acc[acc.length - 1]
-        if (last && last.open === hours.open && last.close === hours.close) {
-          last.days.push(day)
-        } else {
-          acc.push({
-            days: [day],
-            open: hours.open,
-            close: hours.close,
-          })
-        }
-        return acc
-      },
-      [] as { days: string[]; open: string; close: string }[]
-    )
+    // const reducedDays = Object.entries(data.openingHours).reduce<
+    //   Array<{days: string[]; open: string; close: string}>
+    // >((acc, [day, hours]) => {
+    //   const last = acc[acc.length - 1]
+    //   if (last && last.open === hours.open && last.close === hours.close) {
+    //     last.days.push(day)
+    //   } else {
+    //     acc.push({
+    //       days: [day],
+    //       open: hours.open,
+    //       close: hours.close
+    //     })
+    //   }
+    //   return acc
+    // }, [])
 
     // map days to string (e.g. Montag 10:00-18:00) if there is only one day else use key and value (e.g. Mo-Fr 10:00-18:00)
-    const hours = reducedDays.map(day => {
-      if (day.days.length === 1) {
-        return {
-          name: `${daysFullNames[day.days[0]]}`,
-          open: day.open,
-          close: day.close,
-          closed: day.open === "00:00" && day.close === "00:00",
-        }
-      } else {
-        return {
-          name: `${day.days[0]}-${day.days[day.days.length - 1]}`,
-          open: day.open,
-          closed: day.open === "00:00" && day.close === "00:00",
-        }
-      }
-    })
+    // const hours = reducedDays.map(day => {
+    //   if (day.days.length === 1) {
+    //     return {
+    //       name: `${daysFullNames[day.days[0]]}`,
+    //       open: day.open,
+    //       close: day.close,
+    //       closed: day.open === '00:00' && day.close === '00:00'
+    //     }
+    //   } else {
+    //     return {
+    //       name: `${day.days[0]}-${day.days[day.days.length - 1]}`,
+    //       open: day.open,
+    //       closed: day.open === '00:00' && day.close === '00:00'
+    //     }
+    //   }
+    // })
 
     onSaved(data.openingHours)
 
@@ -109,7 +104,10 @@ export const OpeningHoursForm: React.FC<{
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form
+      onSubmit={event => {
+        void handleSubmit(onSubmit)(event)
+      }}>
       <Stack color="chakra-body-text">
         <FormControl isInvalid={!!errors.openingHours}>
           <FormLabel htmlFor="openingHours">ÖFFNUNGSZEITEN</FormLabel>
@@ -122,12 +120,11 @@ export const OpeningHoursForm: React.FC<{
               <Select
                 placeholder="Von"
                 size="md"
-                key={"open" + i}
+                key={`open${i}`}
                 defaultValue={Object.values(openingHours)[i].open}
                 {...register(`openingHours.${day}.open`, {
-                  required: "Bitte füllen Sie dieses Feld aus",
-                })}
-              >
+                  required: 'Bitte füllen Sie dieses Feld aus'
+                })}>
                 <option value="00:00">00:00</option>
                 <option value="01:00">01:00</option>
                 <option value="02:00">02:00</option>
@@ -156,12 +153,11 @@ export const OpeningHoursForm: React.FC<{
               <Select
                 placeholder="Bis"
                 size="md"
-                key={"close" + i}
+                key={`close${i}`}
                 defaultValue={Object.values(openingHours)[i].close}
                 {...register(`openingHours.${day}.close`, {
-                  required: "Bitte füllen Sie dieses Feld aus",
-                })}
-              >
+                  required: 'Bitte füllen Sie dieses Feld aus'
+                })}>
                 <option value="00:00">00:00</option>
                 <option value="01:00">01:00</option>
                 <option value="02:00">02:00</option>
@@ -191,7 +187,7 @@ export const OpeningHoursForm: React.FC<{
           ))}
 
           <FormErrorMessage>
-            {errors.openingHours && errors.openingHours.message?.toString()}
+            {errors.openingHours?.message?.toString()}
           </FormErrorMessage>
         </FormControl>
 
@@ -209,16 +205,14 @@ export const OpeningHoursForm: React.FC<{
 }
 
 export const formatOpeningHours = (openingHours: IOpeningHours) => {
-  const daysFullNames: {
-    [day: string]: string
-  } = {
-    Mo: "Montag",
-    Di: "Dienstag",
-    Mi: "Mittwoch",
-    Do: "Donnerstag",
-    Fr: "Freitag",
-    Sa: "Samstag",
-    So: "Sonntag",
+  const daysFullNames: Record<string, string> = {
+    Mo: 'Montag',
+    Di: 'Dienstag',
+    Mi: 'Mittwoch',
+    Do: 'Donnerstag',
+    Fr: 'Freitag',
+    Sa: 'Samstag',
+    So: 'Sonntag'
   }
 
   // match with dayss full name (e.g. Montag 10:00-18:00)
@@ -227,27 +221,26 @@ export const formatOpeningHours = (openingHours: IOpeningHours) => {
       day: daysFullNames[day],
       open: hours.open,
       close: hours.close,
-      closed: hours.open === "00:00" && hours.close === "00:00",
+      closed: hours.open === '00:00' && hours.close === '00:00'
     }
   })
 
   // reduce to days with unique open and close time pairs (e.g. Mo-Fr 10:00-18:00) if there is only one day instead match with dayss full name (e.g. Montag 10:00-18:00)
-  const reducedDays = Object.entries(openingHours).reduce(
-    (acc, [day, hours]) => {
-      const last = acc[acc.length - 1]
-      if (last && last.open === hours.open && last.close === hours.close) {
-        last.days.push(day)
-      } else {
-        acc.push({
-          days: [day],
-          open: hours.open,
-          close: hours.close,
-        })
-      }
-      return acc
-    },
-    [] as { days: string[]; open: string; close: string }[]
-  )
+  const reducedDays = Object.entries(openingHours).reduce<
+    Array<{days: string[]; open: string; close: string}>
+  >((acc, [day, hours]) => {
+    const last = acc[acc.length - 1]
+    if (last && last.open === hours.open && last.close === hours.close) {
+      last.days.push(day)
+    } else {
+      acc.push({
+        days: [day],
+        open: hours.open,
+        close: hours.close
+      })
+    }
+    return acc
+  }, [])
 
   // map days to string (e.g. Montag 10:00-18:00) if there is only one day else use key and value (e.g. Mo-Fr 10:00-18:00)
   const hours = reducedDays.map(day => {
@@ -256,51 +249,49 @@ export const formatOpeningHours = (openingHours: IOpeningHours) => {
         name: `${daysFullNames[day.days[0]]}`,
         open: day.open,
         close: day.close,
-        closed: day.open === "00:00" && day.close === "00:00",
+        closed: day.open === '00:00' && day.close === '00:00'
       }
     } else {
       return {
         name: `${day.days[0]}-${day.days[day.days.length - 1]}`,
         open: day.open,
         close: day.close,
-        closed: day.open === "00:00" && day.close === "00:00",
+        closed: day.open === '00:00' && day.close === '00:00'
       }
     }
   })
 
-  return { hours: hours, days: days, reducedDays: reducedDays }
+  return {hours, days, reducedDays}
 }
 
-interface IImprint {
-  [key: string]: { [key: string]: string }
-}
+type IImprint = Record<string, Record<string, string>>
 
 export const ImprintForm: React.FC<{
   onSaved: (imprint: IImprint) => void
   onCancle: () => void
   imprint: IImprint
-}> = ({ onSaved, onCancle, imprint }) => {
+}> = ({onSaved, onCancle, imprint}) => {
   const {
     handleSubmit,
     register,
     reset,
-    formState: { errors, isSubmitting },
+    formState: {errors, isSubmitting}
   } = useForm<{
     imprint: IImprint
   }>({
     defaultValues: {
-      imprint: imprint,
-    },
+      imprint
+    }
   })
 
   // Update default values when initUrl changes
   React.useEffect(() => {
     reset({
-      imprint,
+      imprint
     })
   }, [imprint, reset])
 
-  const onSubmit = (data: { imprint: IImprint }) => {
+  const onSubmit = (data: {imprint: IImprint}) => {
     onSaved(data.imprint)
 
     // reset the form
@@ -308,7 +299,10 @@ export const ImprintForm: React.FC<{
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form
+      onSubmit={event => {
+        void handleSubmit(onSubmit)(event)
+      }}>
       <Stack color="chakra-body-text">
         <FormControl isInvalid={!!errors.imprint}>
           <FormLabel htmlFor="imprint">ÖFFNUNGSZEITEN</FormLabel>
@@ -323,7 +317,7 @@ export const ImprintForm: React.FC<{
           ))}
 
           <FormErrorMessage>
-            {errors.imprint && errors.imprint.message?.toString()}
+            {errors.imprint?.message?.toString()}
           </FormErrorMessage>
         </FormControl>
 

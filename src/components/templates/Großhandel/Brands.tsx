@@ -6,43 +6,24 @@ import {
   Image,
   Stack,
   Text,
-  VStack,
-} from "@chakra-ui/react"
-import { connectSection, Field } from "@jaenjs/jaen"
-import { FC } from "react"
-import Slider from "react-slick"
-import { CONTAINER_MAX_WIDTH } from "../../../constant/sizes"
-import { brandSettings } from "../../../constant/slider"
+  VStack
+} from '@chakra-ui/react'
+import {connectBlock, Field} from '@snek-at/jaen'
+import {FC} from 'react'
+import Slider from 'react-slick'
+import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
+import {brandSettings} from '../../../constant/slider'
 
 interface IBrandsProps {}
 
 const Brands: FC<IBrandsProps> = () => {
-  const brandsImg1 = [
-    {
-      url: "/images/großhandel/distributors/dist1.png",
-    },
-    {
-      url: "/images/großhandel/distributors/dist2.png",
-    },
-    {
-      url: "/images/großhandel/distributors/dist3.png",
-    },
-    {
-      url: "/images/großhandel/distributors/dist4.png",
-    },
-    {
-      url: "/images/großhandel/distributors/dist5.png",
-    },
-  ]
-
   return (
     <HStack
       pos="relative"
       justify="center"
       align="end"
-      h={{ base: "800px", md: "1100px", lg: "1400px", "2xl": "1500px" }}
-      overflow="hidden"
-    >
+      h={{base: '800px', md: '1100px', lg: '1400px', '2xl': '1500px'}}
+      overflow="hidden">
       <Image
         pos="absolute"
         src="/images/großhandel/logo2_bg.svg"
@@ -56,25 +37,29 @@ const Brands: FC<IBrandsProps> = () => {
         mx="auto"
         pos="relative"
         h="full"
-        pb={{ base: "24", md: "60" }}
+        pb={{base: '24', md: '60'}}
         justify="start"
-        top='350px'
-      >
-        <Heading mb="8" fontSize={{ base: "md", lg: "xl" }}>
+        top="350px">
+        <Heading mb="8" fontSize={{base: 'md', lg: 'xl'}}>
           <Field.Text
             name="title"
-            defaultValue={"<p>Wir sind Distributor von</p>"}
+            label="Titel"
+            defaultValue={'<p>Wir sind Distributor von</p>'}
           />
         </Heading>
         <Box w="full">
           <Field.Section
             as={Stack}
             props={{
-              spacing: 8,
+              pt: 8,
+              spacing: 8
+            }}
+            sectionProps={{
+              pt: 8
             }}
             name="brands"
-            displayName="Unsere Partner"
-            sections={[BrandsSection]}
+            label="Unsere Partner"
+            blocks={[BrandsSection]}
           />
         </Box>
       </VStack>
@@ -83,26 +68,33 @@ const Brands: FC<IBrandsProps> = () => {
 }
 export default Brands
 
-export const BrandsSection = connectSection(
+export const BrandsSection = connectBlock(
   () => {
     return (
       <>
         <VStack>
-          <Flex gap={{ base: 2, md: 4 }}>
+          <Flex gap={{base: 2, md: 4}}>
             <Heading size="h5020" as="span" fontWeight="semibold">
               <Field.Text
                 rtf
                 name="partnerTitle"
+                label="Titel"
                 defaultValue="<p>Ein <i>Partner</i></p>"
               />
             </Heading>
           </Flex>
-          <Text size="b2412" maxW="60%" mb="4 !important" textAlign="center" as="span">
+          <Text
+            size="b2412"
+            maxW="60%"
+            mb="4 !important"
+            textAlign="center"
+            as="span">
             <Field.Text
               rtf
               name="partnerText"
+              label="Text"
               defaultValue={
-                "<p>Profitieren Sie von einer unglaublichen Auswahl an Ideen, Produkten und Business-Boostern in unserem Netzwerk.</p>"
+                '<p>Profitieren Sie von einer unglaublichen Auswahl an Ideen, Produkten und Business-Boostern in unserem Netzwerk.</p>'
               }
             />
           </Text>
@@ -110,10 +102,10 @@ export const BrandsSection = connectSection(
           <Box w="full">
             <Field.Section
               as={Slider}
-              props={{ ...brandSettings }}
+              props={{...brandSettings}}
               name="partnerSlider"
-              displayName="Partner Logos"
-              sections={[BrandsLogoSection]}
+              label="Partner Logos"
+              blocks={[BrandsLogoSection]}
             />
           </Box>
         </VStack>
@@ -121,22 +113,22 @@ export const BrandsSection = connectSection(
     )
   },
   {
-    name: "BrandsSection",
-    displayName: "Partner",
+    name: 'BrandsSection',
+    label: 'Partner'
   }
 )
 
-const BrandsLogoSection = connectSection(
+const BrandsLogoSection = connectBlock(
   () => {
     return (
-      <Box boxSize={"full"} display={"flex"} justifyContent="center">
+      <Box boxSize={'full'} display={'flex'} justifyContent="center">
         <Box
-          boxSize={{ base: "10rem", sm: "12rem", lg: "15rem" }}
+          boxSize={{base: '10rem', sm: '12rem', lg: '15rem'}}
           borderRadius="xl"
-          overflow="hidden"
-        >
+          overflow="hidden">
           <Field.Image
             name="partnerLogo"
+            label="Logo"
             defaultValue="/images/großhandel/distributors/dist1.png"
           />
         </Box>
@@ -144,7 +136,7 @@ const BrandsLogoSection = connectSection(
     )
   },
   {
-    name: "BrandsLogoSection",
-    displayName: "Partner Logo",
+    name: 'BrandsLogoSection',
+    label: 'Partner Logo'
   }
 )

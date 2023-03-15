@@ -1,8 +1,9 @@
-import { withStoreContext } from "@snek-at/gatsby-theme-shopify"
-import React from "react"
+import {withStoreContext} from '@snek-at/gatsby-theme-shopify'
+import React from 'react'
 
-import { BasketDrawer } from "../components/organisms/BasketDrawer"
-import { useAuthentication } from "./authentication"
+import {BasketDrawer} from '../components/organisms/BasketDrawer'
+
+import {useAuthentication} from './authentication'
 
 export interface BaseketContextProps {
   onOpen: () => void
@@ -12,19 +13,19 @@ export interface BaseketContextProps {
     quantity: number
     stepperQuantity: number
   }) => void
-  checkout: ShopifyBuy.Cart | null
+  checkout: ShopifyBuy.Checkout | null
 }
 
 export const BasketContext = React.createContext<BaseketContextProps>({
   onOpen: () => {},
   onClose: () => {},
   addProduct: () => {},
-  checkout: null,
+  checkout: null
 })
 
 export const useBasket = () => {
   if (!BasketContext) {
-    throw new Error("useBasket must be used within a BasketProvider")
+    throw new Error('useBasket must be used within a BasketProvider')
   }
 
   return React.useContext(BasketContext)
@@ -44,7 +45,8 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
   props => {
     const [open, setOpen] = React.useState(false)
 
-    const [checkout, setCheckout] = React.useState<ShopifyBuy.Cart | null>(null)
+    const [checkout, setCheckout] =
+      React.useState<ShopifyBuy.Checkout | null>(null)
 
     const auth = useAuthentication()
 
@@ -52,7 +54,7 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
 
     React.useEffect(() => {
       // get checkout id from local storage if it exists and set it to state
-      const checkoutId = localStorage.getItem("checkoutId")
+      const checkoutId = localStorage.getItem('checkoutId')
 
       if (checkoutId) {
         const getCheckout = async () => {
@@ -60,18 +62,18 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
           setCheckout(newCheckout)
         }
 
-        getCheckout()
+        void getCheckout()
       }
 
       const createCheckout = async () => {
         const checkout = await props.client.checkout.create()
         setCheckout(checkout)
-        localStorage.setItem("checkoutId", checkout.id.toString())
+        localStorage.setItem('checkoutId', checkout.id.toString())
       }
 
       // if checkout id does not exist, create a new checkout
       if (!checkoutId) {
-        createCheckout()
+        void createCheckout()
       }
     }, [])
 
@@ -97,9 +99,9 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
           {
             ...args,
             customAttributes: [
-              { key: "stepperQuantity", value: stepperQuantity.toString() },
-            ],
-          },
+              {key: 'stepperQuantity', value: stepperQuantity.toString()}
+            ]
+          }
         ]
       )
 
@@ -107,7 +109,7 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
       onOpen()
     }
 
-    const updateProduct = async (args: { id: string; quantity: number }) => {
+    const updateProduct = async (args: {id: string; quantity: number}) => {
       const newCheckout = await props.client.checkout.updateLineItems(
         checkout?.id as string,
         [args]
@@ -132,30 +134,31 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
     }
 
     return (
-      <BasketContext.Provider value={{ onOpen, onClose, addProduct, checkout }}>
+      // eslint-disable-next-line @typescript-eslint/no-misused-promises
+      <BasketContext.Provider value={{onOpen, onClose, addProduct, checkout}}>
         <BasketDrawer
           isOpen={open}
           onClose={onClose}
           products={cleanLineItems(checkout?.lineItems) as any}
           wholesale={wholesale}
-          subtotal={parseFloat(checkout?.lineItemsSubtotalPrice?.amount || "0")}
+          // @ts-expect-error
+          subtotal={parseFloat(checkout?.lineItemsSubtotalPrice?.amount || '0')}
           onProductQuantityChange={(id, quantity) => {
-            updateProduct({ id, quantity })
+            void updateProduct({id, quantity})
           }}
           onProductRemove={id => {
-            removeProduct(id)
+            void removeProduct(id)
           }}
           onClickCheckout={() => {
             if (wholesale) {
               alert(
                 `Email sent to ${auth.user?.email}. Please check your inbox. (mock)`
               )
-
             } else {
               if (checkout?.webUrl) {
-                window.open(checkout?.webUrl, "_blank")
+                window.open(checkout?.webUrl, '_blank')
               }
-            
+
               setCheckout(null)
             }
           }}

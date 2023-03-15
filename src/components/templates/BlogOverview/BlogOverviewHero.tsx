@@ -6,18 +6,19 @@ import {
   Heading,
   Stack,
   Text,
-  VStack,
-} from "@chakra-ui/react"
-import { Field, navigate } from "@jaenjs/jaen"
-import { FC } from "react"
-import { CONTAINER_MAX_WIDTH } from "../../../constant/sizes"
-import { JaenPageIndexType } from "../../../types/commonTypes"
-import { BlogMeta } from "../BlogPage/BlogMeta"
-import { BlogTags } from "../BlogPage/BlogTags"
+  VStack
+} from '@chakra-ui/react'
+import {Field} from '@snek-at/jaen'
+import {Link} from 'gatsby'
+import {FC} from 'react'
+import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
+import {JaenPageIndexType} from '../../../types/commonTypes'
+import {BlogMeta} from '../BlogPage/BlogMeta'
+import {BlogTags} from '../BlogPage/BlogTags'
 
 const FeaturedBlog: React.FC<{
-  featuredBlog: JaenPageIndexType["children"][number]
-  withJaenPage: JaenPageIndexType["withJaenPage"]
+  featuredBlog: JaenPageIndexType['children'][number]
+  withJaenPage: JaenPageIndexType['withJaenPage']
 }> = props => {
   return (
     <>
@@ -29,22 +30,21 @@ const FeaturedBlog: React.FC<{
           bg="white"
           boxShadow="dark"
           flexDir={{
-            base: "column",
-            md: "row",
-          }}
-        >
+            base: 'column',
+            md: 'row'
+          }}>
           <Box
             borderRadius="xl"
             overflow="hidden"
             flex="1"
             maxH={{
-              base: "200px",
-              sm: "300px",
-              md: "600px",
-            }}
-          >
+              base: '200px',
+              sm: '300px',
+              md: '600px'
+            }}>
             <Field.Image
               name="heroImage"
+              label="Image"
               defaultValue="/images/blog_overview/blogHero.png"
             />
           </Box>
@@ -52,31 +52,31 @@ const FeaturedBlog: React.FC<{
             flex="1"
             gap={{
               base: 2,
-              md: 0,
+              md: 0
             }}
             spacing="0"
             px={{
               base: 4,
               md: 6,
-              xl: 10,
+              xl: 10
             }}
             justify="center"
-            py="6"
-          >
+            py="6">
             <BlogTags fieldName="tags" />
 
             <Heading size="h3015">
               <Field.Text
                 name="title"
                 rtf
+                label="Title"
                 defaultValue="<p>Ballons & Ballons: Die Geschichte</p>"
               />
             </Heading>
-            <Text variant="light" size="b2012" as="span">
+            <Text variant="light" size="b2012" as="span" noOfLines={6}>
               <Field.Text
                 name="description"
+                label="Description"
                 rtf
-                noOfLines={6}
                 defaultValue={`
                 <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
@@ -106,15 +106,13 @@ const FeaturedBlog: React.FC<{
             <Flex justify="space-between" w="full" mt="4 !important">
               <Box>
                 <Button
+                  as={Link}
+                  to={`/news/${props.featuredBlog.slug}`}
                   variant="outline"
                   size={{
-                    base: "sm",
-                    lg: "md",
-                  }}
-                  onClick={() => {
-                    navigate(`/news/${props.featuredBlog.slug}`)
-                  }}
-                >
+                    base: 'sm',
+                    lg: 'md'
+                  }}>
                   Weiterlesen
                 </Button>
               </Box>
@@ -128,35 +126,34 @@ const FeaturedBlog: React.FC<{
 }
 
 interface IBlogOverviewHeroProps {
-  featuredBlog?: JaenPageIndexType["children"][number]
-  withJaenPage: JaenPageIndexType["withJaenPage"]
+  featuredBlog?: JaenPageIndexType['children'][number]
+  withJaenPage: JaenPageIndexType['withJaenPage']
 }
 
 const BlogOverviewHero: FC<IBlogOverviewHeroProps> = props => {
   return (
     <Box
       bgImage={{
-        base: "/images/blog_overview/mobile_hero_bg.svg",
-        md: "/images/blog_overview/hero_bg.svg",
+        base: '/images/blog_overview/mobile_hero_bg.svg',
+        md: '/images/blog_overview/hero_bg.svg'
       }}
-      pt={{ base: 4, md: 32 }}
+      pt={{base: 4, md: 32}}
       pb="32"
-      bgPos={{ base: "top 2rem left 0" }}
+      bgPos={{base: 'top 2rem left 0'}}
       bgRepeat="no-repeat"
-      bgSize={{ base: "contain", md: "cover" }}
-    >
+      bgSize={{base: 'contain', md: 'cover'}}>
       <Container maxW={CONTAINER_MAX_WIDTH}>
         <VStack>
           <Heading
-            mb={{ base: "25%", md: "5%" }}
+            mb={{base: '25%', md: '5%'}}
             size="h6020"
             as="span"
             fontWeight="semibold"
-            whiteSpace="nowrap"
-          >
+            whiteSpace="nowrap">
             <Field.Text
               rtf
               name="heroTitle"
+              label="Title"
               defaultValue="<p><i>Wissenswertes</i> über Ballons & Ballons</p>"
             />
           </Heading>

@@ -1,14 +1,8 @@
-import { SearchIcon } from "@chakra-ui/icons"
+import {SearchIcon} from '@chakra-ui/icons'
 import {
-  Badge,
-  Box,
-  Divider,
-  HStack,
-  Image,
   Input,
   InputGroup,
   InputLeftElement,
-  Link,
   Modal,
   ModalBody,
   ModalContent,
@@ -20,23 +14,21 @@ import {
   Tbody,
   Td,
   Text,
-  Tfoot,
   Th,
   Thead,
   Tr,
   useColorModeValue,
-  useDisclosure,
-  VStack,
-} from "@chakra-ui/react"
+  useDisclosure
+} from '@chakra-ui/react'
 import {
   getProductTags,
   ShopifyProduct,
-  useProductSearch,
-} from "@snek-at/gatsby-theme-shopify"
-import { navigate } from "gatsby"
-import React from "react"
-import { getProductPrices } from "../common/utils"
-import { useAuthentication } from "./authentication"
+  useProductSearch
+} from '@snek-at/gatsby-theme-shopify'
+import {navigate} from 'gatsby'
+import React from 'react'
+import {getProductPrices} from '../common/utils'
+import {useAuthentication} from './authentication'
 
 export interface SearchContextProps {
   isOpen: boolean
@@ -47,29 +39,29 @@ export interface SearchContextProps {
 export const SearchContext = React.createContext<SearchContextProps>({
   isOpen: false,
   onOpen: () => {},
-  onClose: () => {},
+  onClose: () => {}
 })
 
 export const useSearch = () => {
   if (!SearchContext) {
-    throw new Error("useSearch must be used within a SearchContext")
+    throw new Error('useSearch must be used within a SearchContext')
   }
 
   return React.useContext(SearchContext)
 }
 
 export interface SearchbarProps {
-  searchResultProducts: Array<ShopifyProduct>
+  searchResultProducts: ShopifyProduct[]
   onSearch: (value: string) => void
   onProductClick: (index: number) => void
 }
 
 export const Searchbar = (props: SearchbarProps) => {
-  const { isOpen, onOpen, onClose } = useSearch()
+  const {isOpen, onOpen, onClose} = useSearch()
 
   let timeout: NodeJS.Timeout | null = null
 
-  const [searchValue, setSearchValue] = React.useState("")
+  const [searchValue, setSearchValue] = React.useState('')
 
   const delayedSearch = (e: React.SyntheticEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value
@@ -95,7 +87,7 @@ export const Searchbar = (props: SearchbarProps) => {
   React.useEffect(() => {
     // handle strg + k
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "k" && e.ctrlKey) {
+      if (e.key === 'k' && e.ctrlKey) {
         e.preventDefault()
         // prevents the event from being called twice, thus the search modal
         // only opens once
@@ -105,10 +97,10 @@ export const Searchbar = (props: SearchbarProps) => {
       }
     }
 
-    document.addEventListener("keydown", handleKeyDown)
+    document.addEventListener('keydown', handleKeyDown)
 
     return () => {
-      window.removeEventListener("keydown", handleKeyDown)
+      window.removeEventListener('keydown', handleKeyDown)
     }
   }, [])
 
@@ -120,20 +112,19 @@ export const Searchbar = (props: SearchbarProps) => {
     <>
       <Modal isOpen={isOpen} onClose={onClose} scrollBehavior="inside">
         <ModalOverlay />
-        <ModalContent maxW={"container.xl"}>
+        <ModalContent maxW="container.xl">
           <ModalHeader p={0} m={2}>
             <InputGroup>
-              <InputLeftElement
-                pointerEvents="none"
-                children={<SearchIcon color={"agt.blue"} />}
-              />
+              <InputLeftElement pointerEvents="none">
+                <SearchIcon color="agt.blue" />
+              </InputLeftElement>
               <Input
-                placeholder={"Suche nach Artikeln"}
+                placeholder="Suche nach Artikeln"
                 border="none"
                 _focus={{
-                  boxShadow: "none",
+                  boxShadow: 'none'
                 }}
-                color={useColorModeValue("gray.700", "gray.300")}
+                color={useColorModeValue('gray.700', 'gray.300')}
                 onChange={delayedSearch}
               />
             </InputGroup>
@@ -179,11 +170,10 @@ export const Searchbar = (props: SearchbarProps) => {
               <Table
                 variant="simple"
                 sx={{
-                  "th, td": {
-                    borderColor: "gray.200",
-                  },
-                }}
-              >
+                  'th, td': {
+                    borderColor: 'gray.200'
+                  }
+                }}>
                 <TableCaption>
                   <Text fontSize="sm" color="gray.500">
                     {props.searchResultProducts.length} Ergebnisse
@@ -192,10 +182,9 @@ export const Searchbar = (props: SearchbarProps) => {
                 <Thead
                   position="sticky"
                   top={-2}
-                  bg={"white"}
+                  bg="white"
                   zIndex={1}
-                  boxShadow="xs"
-                >
+                  boxShadow="xs">
                   <Tr>
                     <Th>Produktbild</Th>
                     <Th>Artikel</Th>
@@ -205,42 +194,42 @@ export const Searchbar = (props: SearchbarProps) => {
                 </Thead>
                 <Tbody>
                   {props.searchResultProducts.map((product, index) => {
-                    type TagsTable = {
+                    type TagsTable = Array<{
                       name: string
                       value: string
-                    }[]
+                    }>
 
                     const buildTagsTable = (): TagsTable => {
-                      const tableTags: { [key: string]: string } = {}
+                      const tableTags: Record<string, string> = {}
 
                       const tags = getProductTags(product)
 
                       const categoryTags = tags.categoryTags.map(tag => {
-                        const splitTag = tag.split(":")
+                        const splitTag = tag.split(':')
 
-                        const tagString = splitTag.slice(1).join(":")
+                        const tagString = splitTag.slice(1).join(':')
 
                         return {
-                          name: "Kategorie",
-                          value: tagString,
+                          name: 'Kategorie',
+                          value: tagString
                         }
                       })
 
                       const otherTags = tags.otherTags.map(tag => {
-                        const splitTag = tag.split(":")
+                        const splitTag = tag.split(':')
 
-                        const tagString = splitTag.slice(1).join(":")
+                        const tagString = splitTag.slice(1).join(':')
 
                         if (splitTag.length > 1) {
                           return {
                             name: splitTag[0],
-                            value: tagString,
+                            value: tagString
                           }
                         }
 
                         return {
-                          name: "Sonstiges",
-                          value: tag,
+                          name: 'Sonstiges',
+                          value: tag
                         }
                       })
 
@@ -250,7 +239,7 @@ export const Searchbar = (props: SearchbarProps) => {
                             categoryTags[i].value
                         } else {
                           tableTags[categoryTags[i].name] +=
-                            ", " + categoryTags[i].value
+                            ', ' + categoryTags[i].value
                         }
                       }
 
@@ -258,8 +247,9 @@ export const Searchbar = (props: SearchbarProps) => {
                         if (!tableTags[otherTags[i].name]) {
                           tableTags[otherTags[i].name] = otherTags[i].value
                         } else {
+                          // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
                           tableTags[otherTags[i].name] +=
-                            ", " + otherTags[i].value
+                            ', ' + otherTags[i].value
                         }
                       }
 
@@ -267,7 +257,7 @@ export const Searchbar = (props: SearchbarProps) => {
                       const tableTagsArray = Object.keys(tableTags).map(key => {
                         return {
                           name: key,
-                          value: tableTags[key],
+                          value: tableTags[key]
                         }
                       }) as TagsTable
 
@@ -276,7 +266,7 @@ export const Searchbar = (props: SearchbarProps) => {
 
                     const tagsTable = buildTagsTable()
                     const price = getProductPrices(product, {
-                      isWholesale: wholesale,
+                      isWholesale: wholesale
                     })
 
                     return (
@@ -284,21 +274,20 @@ export const Searchbar = (props: SearchbarProps) => {
                         key={index}
                         cursor="pointer"
                         _hover={{
-                          bg: "gray.100",
+                          bg: 'gray.100'
                         }}
                         onClick={() => {
                           props.onProductClick(index)
-                        }}
-                      >
+                        }}>
                         <Td>
-                          <Image
+                          {/* <Image
                             src={product.featuredMedia?.src}
                             alt={product.featuredMedia?.altText}
                             fallback={<p>Kein Bild vorhanden</p>}
                             boxSize="100px"
                             borderRadius="md"
                             objectFit="cover"
-                          />
+                          /> */}
                         </Td>
                         <Td>{product.title}</Td>
                         <Td>
@@ -306,10 +295,9 @@ export const Searchbar = (props: SearchbarProps) => {
                             <Table
                               size="sm"
                               sx={{
-                                "scrollbar-width": "thin",
-                                "scrollbar-color": "gray.200 gray.100",
-                              }}
-                            >
+                                'scrollbar-width': 'thin',
+                                'scrollbar-color': 'gray.200 gray.100'
+                              }}>
                               <Tbody>
                                 {tagsTable.map((tag, index) => {
                                   return (
@@ -339,21 +327,21 @@ export const Searchbar = (props: SearchbarProps) => {
 
 export const SearchModalProvider: React.FC<{
   children: React.ReactNode
-}> = ({ children }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+}> = ({children}) => {
+  const {isOpen, onOpen, onClose} = useDisclosure()
 
   const memoedChildren = React.useMemo(() => children, [children])
 
   const search = useProductSearch({
     options: {
-      count: 15,
+      count: 15
     },
-    persistData: false,
+    persistData: false
   })
 
   const onSearch = (searchTerm: string) => {
     search.onChangeFilter({
-      searchTerm,
+      searchTerm
     })
   }
 
@@ -361,12 +349,12 @@ export const SearchModalProvider: React.FC<{
     const product = search.products[index]
 
     if (product) {
-      navigate(`/products/${product.handle}`)
+      void navigate(`/products/${product.handle}`)
     }
   }
 
   return (
-    <SearchContext.Provider value={{ isOpen, onOpen, onClose }}>
+    <SearchContext.Provider value={{isOpen, onOpen, onClose}}>
       <Searchbar
         searchResultProducts={search.products}
         onSearch={onSearch}

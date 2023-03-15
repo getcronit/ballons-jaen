@@ -1,6 +1,7 @@
-import { useDisclosure } from "@chakra-ui/react"
-import React from "react"
-import { LoginModal } from "../components/organisms/LoginModal"
+import {useDisclosure} from '@chakra-ui/react'
+import React from 'react'
+
+import {LoginModal} from '../components/organisms/LoginModal'
 
 export interface AuthenticationContextProps {
   user?: {
@@ -15,13 +16,13 @@ export const AuthenticationContext =
   React.createContext<AuthenticationContextProps>({
     user: undefined,
     openLoginModal: () => {},
-    logout: () => Promise.resolve(),
+    logout: async () => {}
   })
 
 export const useAuthentication = () => {
   if (!AuthenticationContext) {
     throw new Error(
-      "useAuthentication must be used within a AuthenticationProvider"
+      'useAuthentication must be used within a AuthenticationProvider'
     )
   }
 
@@ -33,13 +34,12 @@ export interface AuthenticationProviderProps {
 }
 
 export const AuthenticationProvider: React.FC<AuthenticationProviderProps> = ({
-  children,
+  children
 }) => {
-  const [user, setUser] =
-    React.useState<AuthenticationContextProps["user"]>({
-      name: "Nico Schett",
-      email: "schett@snek.at"
-    })
+  const [user, setUser] = React.useState<AuthenticationContextProps['user']>({
+    name: 'Nico Schett',
+    email: 'schett@snek.at'
+  })
 
   const login = React.useCallback(async (email: string, password: string) => {
     // sleep 3 seconds to simulate a network request
@@ -49,8 +49,8 @@ export const AuthenticationProvider: React.FC<AuthenticationProviderProps> = ({
     // assume the login was successful
 
     setUser({
-      name: "John Doe",
-      email: "schett@snek.at",
+      name: 'John Doe',
+      email: 'schett@snek.at'
     })
 
     return true
@@ -70,12 +70,11 @@ export const AuthenticationProvider: React.FC<AuthenticationProviderProps> = ({
 
   return (
     <AuthenticationContext.Provider
-      value={{ user, openLoginModal: loginModalDisclosure.onOpen, logout }}
-    >
+      value={{user, openLoginModal: loginModalDisclosure.onOpen, logout}}>
       <LoginModal
         isOpen={loginModalDisclosure.isOpen}
         onClose={loginModalDisclosure.onClose}
-        onSubmit={data => login(data.email, data.password)}
+        onSubmit={async data => await login(data.email, data.password)}
       />
       {children}
     </AuthenticationContext.Provider>

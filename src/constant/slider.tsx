@@ -1,6 +1,6 @@
-import { Settings } from "react-slick"
-import NextArrow from "../components/CustomSlider/NextArrow"
-import PrevArrow from "../components/CustomSlider/PrevArrow"
+import {Settings} from 'react-slick'
+import NextArrow from '../components/CustomSlider/NextArrow'
+import PrevArrow from '../components/CustomSlider/PrevArrow'
 
 export const settings: Settings = {
   dots: true,
@@ -17,18 +17,18 @@ export const settings: Settings = {
         slidesToShow: 2,
         slidesToScroll: 2,
         infinite: true,
-        dots: true,
-      },
+        dots: true
+      }
     },
 
     {
       breakpoint: 768,
       settings: {
         slidesToShow: 1,
-        slidesToScroll: 1,
-      },
-    },
-  ],
+        slidesToScroll: 1
+      }
+    }
+  ]
 }
 export const blogSliderSettings: Settings = {
   infinite: false,
@@ -50,18 +50,18 @@ export const blogSliderSettings: Settings = {
         dots: false,
         arrows: true,
         nextArrow: <NextArrow out isBlack />,
-        prevArrow: <PrevArrow out isBlack />,
-      },
+        prevArrow: <PrevArrow out isBlack />
+      }
     },
 
     {
       breakpoint: 768,
       settings: {
         slidesToShow: 1,
-        slidesToScroll: 1,
-      },
-    },
-  ],
+        slidesToScroll: 1
+      }
+    }
+  ]
 
   // responsive: [
   //   {
@@ -75,43 +75,43 @@ export const blogSliderSettings: Settings = {
 }
 
 export const partnerSliderSettings = {
-  ...blogSliderSettings,
+  ...blogSliderSettings
 }
 
 export const brandSettings: Settings = {
   ...blogSliderSettings,
   slidesToShow: 4,
-  slidesToScroll: 1,
+  slidesToScroll: 1
 }
 
 export const sliderDummyData = [
   {
-    image: "/images/home/slides/slide1.png",
-    date: "08. Februar 2022",
-    title: "Frauenlauf Dekoration",
-    text: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in libero risus semper",
+    image: '/images/home/slides/slide1.png',
+    date: '08. Februar 2022',
+    title: 'Frauenlauf Dekoration',
+    text: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in libero risus semper'
   },
   {
-    image: "/images/home/slides/slide2.png",
+    image: '/images/home/slides/slide2.png',
 
-    date: "08. Februar 2022",
-    title: "Frauenlauf Dekoration",
-    text: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in libero risus semper",
+    date: '08. Februar 2022',
+    title: 'Frauenlauf Dekoration',
+    text: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in libero risus semper'
   },
   {
-    image: "/images/home/slides/slide1.png",
+    image: '/images/home/slides/slide1.png',
 
-    date: "08. Februar 2022",
-    title: "Frauenlauf Dekoration",
-    text: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in libero risus semper",
+    date: '08. Februar 2022',
+    title: 'Frauenlauf Dekoration',
+    text: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in libero risus semper'
   },
   {
-    image: "/images/home/slides/slide2.png",
+    image: '/images/home/slides/slide2.png',
 
-    date: "08. Februar 2022",
-    title: "Frauenlauf Dekoration",
-    text: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in libero risus semper",
-  },
+    date: '08. Februar 2022',
+    title: 'Frauenlauf Dekoration',
+    text: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in libero risus semper'
+  }
 ]
 
 export const customerSliderSettings: Settings = {
@@ -129,16 +129,16 @@ export const customerSliderSettings: Settings = {
         slidesToShow: 2,
         slidesToScroll: 2,
         infinite: false,
-        dots: true,
-      },
+        dots: true
+      }
     },
 
     {
       breakpoint: 768,
       settings: {
         slidesToShow: 1,
-        slidesToScroll: 1,
-      },
-    },
-  ],
+        slidesToScroll: 1
+      }
+    }
+  ]
 }

@@ -1,27 +1,29 @@
-import { useIsEditing, useWidget } from "@jaenjs/jaen";
-import { extractUrlsFromMarkdown } from "./BottomNav";
+import {useStatus, useWidget} from '@snek-at/jaen'
+import {extractUrlsFromMarkdown} from './BottomNav'
 
 export const useJaenNavigation = () => {
-  const isEditing = useIsEditing();
+  const {isEditing} = useStatus()
 
-  const menuWidget = useWidget<{
-    markdown: string;
-  }>("menu");
+  const menuWidget =
+    useWidget<{
+      markdown: string
+    }>('menu')
 
-  const markdown = menuWidget?.data?.markdown ||
+  const markdown =
+    menuWidget?.data?.markdown ||
     `
   [Home](/)
-  `;
+  `
 
-  const navLinks: {
-    label: string;
-    to: string;
-  }[] = extractUrlsFromMarkdown(markdown);
+  const navLinks: Array<{
+    label: string
+    to: string
+  }> = extractUrlsFromMarkdown(markdown)
 
   return {
     isEditing,
     navLinks,
     markdown,
-    updateNavigation: (markdown: string) => menuWidget.writeData({ markdown }),
-  };
-};
+    updateNavigation: (markdown: string) => menuWidget.writeData({markdown})
+  }
+}

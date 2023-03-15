@@ -5,10 +5,8 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
-  Input,
   Stack,
   Textarea,
-  VStack,
 } from "@chakra-ui/react"
 import React, { FC } from "react"
 import { useForm } from "react-hook-form"
@@ -31,7 +29,7 @@ const BottomNav: FC<IBottomNavProps> = () => {
         maxW={CONTAINER_MAX_WIDTH}
         marginX="auto"
         justify="center"
-        direction={'row'}
+        direction="row"
       />
     </Flex>
   )
@@ -39,10 +37,10 @@ const BottomNav: FC<IBottomNavProps> = () => {
 
 export const extractUrlsFromMarkdown = (
   markdown: string
-): {
+): Array<{
   label: string
   to: string
-}[] => {
+}> => {
   const urls = []
   const regex = /\[(.*?)\]\((.*?)\)/g
   let match
@@ -52,8 +50,6 @@ export const extractUrlsFromMarkdown = (
       to: match[2],
     })
   }
-
-  console.log(`urls`, urls)
 
   return urls
 }
@@ -72,7 +68,7 @@ export const MarkdownLinksForm: React.FC<{
     markdownUrls: string
   }>({
     defaultValues: {
-      markdownUrls: markdownUrls,
+      markdownUrls,
     },
   })
 
@@ -91,7 +87,11 @@ export const MarkdownLinksForm: React.FC<{
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form
+      onSubmit={event => {
+        void handleSubmit(onSubmit)(event)
+      }}
+    >
       <Stack color="chakra-body-text">
         <FormControl isInvalid={!!errors.markdownUrls}>
           <FormLabel htmlFor="markdownUrls">Markdown URLs</FormLabel>
@@ -99,7 +99,7 @@ export const MarkdownLinksForm: React.FC<{
           <Textarea minH="md" {...register("markdownUrls", {})} />
 
           <FormErrorMessage>
-            {errors.markdownUrls && errors.markdownUrls.message?.toString()}
+            {errors.markdownUrls?.message?.toString()}
           </FormErrorMessage>
         </FormControl>
 

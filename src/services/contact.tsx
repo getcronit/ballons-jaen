@@ -1,25 +1,25 @@
-import React from "react"
+import React from 'react'
 
 import {
   ContactFormValues,
-  ContactModal,
-} from "../components/organisms/ContactModal"
+  ContactModal
+} from '../components/organisms/ContactModal'
 
 export interface ContactModalContextProps {
-  onOpen: ({ meta }: { meta: object }) => void
+  onOpen: ({meta}: {meta: object}) => void
   onClose: () => void
 }
 
 export const ContactModalContext =
   React.createContext<ContactModalContextProps>({
     onOpen: () => {},
-    onClose: () => {},
+    onClose: () => {}
   })
 
 export const useContactModal = () => {
   if (!ContactModalContext) {
     throw new Error(
-      "useContactModal must be used within a ContactModalProvider"
+      'useContactModal must be used within a ContactModalProvider'
     )
   }
 
@@ -31,32 +31,34 @@ export interface ContactModalDrawerProps {
 }
 
 export const ContactModalProvider: React.FC<ContactModalDrawerProps> = ({
-  children,
+  children
 }) => {
   const [meta, setMeta] = React.useState<object | null>(null)
   const [isOpen, setIsOpen] = React.useState(false)
 
-  const onOpen: ContactModalContextProps["onOpen"] = ({ meta }) => {
+  const onOpen: ContactModalContextProps['onOpen'] = ({meta}) => {
     const updatedMeta = {
       ...meta,
-      url: window.location.href,
+      url: window.location.href
     }
 
     setMeta(updatedMeta)
     setIsOpen(true)
   }
-  const onClose = () => setIsOpen(false)
+  const onClose = () => {
+    setIsOpen(false)
+  }
 
   const onSubmit = async (data: ContactFormValues): Promise<void> => {
     // sleep 3 seconds to simulate a network request
 
     console.log(data, meta)
 
-    return new Promise(resolve => setTimeout(resolve, 3000))
+    await new Promise(resolve => setTimeout(resolve, 3000))
   }
 
   return (
-    <ContactModalContext.Provider value={{ onOpen, onClose }}>
+    <ContactModalContext.Provider value={{onOpen, onClose}}>
       {children}
       <ContactModal isOpen={isOpen} onClose={onClose} onSubmit={onSubmit} />
     </ContactModalContext.Provider>

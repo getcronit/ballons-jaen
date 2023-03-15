@@ -1,8 +1,8 @@
-import { connectPage } from "@jaenjs/jaen"
-import { graphql, PageProps } from "gatsby"
+import {connectPage} from '@snek-at/jaen'
+import {graphql, PageProps} from 'gatsby'
 
-import HomePage from "../components/templates/Home/Home"
-import { Layout } from "../Layout"
+import HomePage from '../components/templates/HomeTemplate/Home'
+import {Layout} from '../Layout'
 
 const Page = (props: PageProps) => {
   return (
@@ -13,8 +13,8 @@ const Page = (props: PageProps) => {
 }
 
 export default connectPage(Page, {
-  displayName: "Home",
-  children: ["ContentPage1", "ContentPage2"],
+  label: 'Home',
+  children: ['KategorieA', 'KategorieB']
 })
 
 export const query = graphql`

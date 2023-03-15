@@ -1,17 +1,19 @@
-import { connectPage } from "@jaenjs/jaen"
-import { graphql, PageProps } from "gatsby"
+import {connectPage} from '@snek-at/jaen'
+import {graphql, PageProps} from 'gatsby'
 
-import ContactPage from "../components/templates/Contact/Contact"
-import { Layout } from "../Layout"
+import ContactPage from '../components/templates/Contact/Contact'
+import {Layout} from '../Layout'
 
 const Page = (props: PageProps) => {
-  return <Layout pathname={props.path}>
-    <ContactPage />
-  </Layout>
+  return (
+    <Layout pathname={props.path}>
+      <ContactPage />
+    </Layout>
+  )
 }
 
 export default connectPage(Page, {
-  displayName: "Kontakt",
+  label: 'Kontakt'
 })
 
 export const query = graphql`

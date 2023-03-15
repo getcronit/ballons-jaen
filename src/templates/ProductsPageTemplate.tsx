@@ -1,20 +1,19 @@
 import {
-  getCollectionStructure,
   ProductsPageContext,
   ProductsPageData,
   SearchProvider,
-  useProductSearch,
-} from "@snek-at/gatsby-theme-shopify"
-import { PageProps } from "gatsby"
+  useProductSearch
+} from '@snek-at/gatsby-theme-shopify'
+import {Head as JaenHead} from '@snek-at/jaen'
+import {PageProps} from 'gatsby'
 
-import { Layout } from "../Layout"
-import { ProductsTemplate } from "../components/templates/ProductsTemplate"
+import {ProductsTemplate} from '../components/templates/ProductsTemplate'
 import {
   ProductsTemplateProps,
-  splitAllTags,
-} from "../components/templates/ProductsTemplate/ProductsTemplate"
-import { SEO } from "@jaenjs/jaen"
-import { useAuthentication } from "../services/authentication"
+  splitAllTags
+} from '../components/templates/ProductsTemplate/ProductsTemplate'
+import {Layout} from '../Layout'
+import {useAuthentication} from '../services/authentication'
 
 export type ProductsPageTemplateProps = PageProps<
   ProductsPageData,
@@ -25,7 +24,7 @@ export type ProductsPageTemplateProps = PageProps<
 >
 
 const ProductsPageTemplate: React.FC<ProductsPageTemplateProps> = props => {
-  const { implicitTags, tags, maxPrice, minPrice, vendors, productTypes } =
+  const {implicitTags, tags, maxPrice, minPrice, vendors, productTypes} =
     props.pageContext
 
   const prevActiveTags = props.location.state?.activeTags
@@ -37,8 +36,8 @@ const ProductsPageTemplate: React.FC<ProductsPageTemplateProps> = props => {
       mainTag: implicitTags.length > 0 ? implicitTags[0] : undefined,
       tags: splittedTags?.otherTags,
       vendors: splittedTags?.vendorTags,
-      productTypes: splittedTags?.productTypeTags,
-    },
+      productTypes: splittedTags?.productTypeTags
+    }
   })
 
   const onSortChange = (sort: string) => {
@@ -47,63 +46,35 @@ const ProductsPageTemplate: React.FC<ProductsPageTemplateProps> = props => {
     let reverse
 
     switch (sort) {
-      case "Alphabetisch":
-        sortKey = "TITLE"
+      case 'Alphabetisch':
+        sortKey = 'TITLE'
         reverse = false
         break
-      case "Preis aufsteigend":
-        sortKey = "PRICE"
+      case 'Preis aufsteigend':
+        sortKey = 'PRICE'
         reverse = false
         break
-      case "Preis absteigend":
-        sortKey = "PRICE"
+      case 'Preis absteigend':
+        sortKey = 'PRICE'
         reverse = true
         break
       default:
-        sortKey = "TITLE"
+        sortKey = 'TITLE'
         reverse = false
     }
 
     search.onChangeOptions({
       sortKey,
-      reverse,
+      reverse
     })
   }
 
-  const updateFilter = (filters: Partial<ProductsTemplateProps["filters"]>) => {
+  const updateFilter = (filters: Partial<ProductsTemplateProps['filters']>) => {
     search.onChangeFilter({
       ...filters,
       maxPrice: filters.maxPrice || undefined,
-      minPrice: filters.minPrice || undefined,
+      minPrice: filters.minPrice || undefined
     })
-  }
-
-  const buildProductsPageMeta = () => {
-    const collectionTitle = props.pageContext.collectionId
-
-    let title = "Sortiment"
-    let description =
-      "Unser Sortiment" +
-      " | Hersteller: " +
-      vendors.join(", ") +
-      " | Produkttypen: " +
-      productTypes.join(", ") +
-      " | Tags: " +
-      tags.join(", ")
-
-    if (collectionTitle) {
-      const struct = getCollectionStructure(collectionTitle)
-
-      if (struct.name) {
-        title = struct.name
-        description += " | Kategorie: " + title
-      }
-    }
-
-    return {
-      title,
-      description,
-    }
   }
 
   const auth = useAuthentication()
@@ -112,8 +83,7 @@ const ProductsPageTemplate: React.FC<ProductsPageTemplateProps> = props => {
 
   return (
     <>
-      <SEO pagePath={props.path} pageMeta={buildProductsPageMeta()} />
-      <Layout pathname={props.path} mode={"store"}>
+      <Layout pathname={props.path} mode="store">
         <ProductsTemplate
           wholesale={wholesale}
           path={props.path}
@@ -126,14 +96,14 @@ const ProductsPageTemplate: React.FC<ProductsPageTemplateProps> = props => {
             vendors,
             productTypes,
             minPrice,
-            maxPrice,
+            maxPrice
           }}
           activeFilters={search.filters}
           updateFilter={updateFilter}
           sortOptions={[
-            "Alphabetisch",
-            "Preis aufsteigend",
-            "Preis absteigend",
+            'Alphabetisch',
+            'Preis aufsteigend',
+            'Preis absteigend'
           ]}
           onSortChange={onSortChange}
         />
@@ -147,3 +117,15 @@ export default (props: ProductsPageTemplateProps) => (
     <ProductsPageTemplate {...props} />
   </SearchProvider>
 )
+
+export const Head = (props: ProductsPageTemplateProps) => {
+  return (
+    <JaenHead {...(props as any)}>
+      <title id="title">Ballons & Ballons - Artikel</title>
+      <meta
+        name="meta-description"
+        content="Alle Artikel von Ballons & Ballons auf einen Blick"
+      />
+    </JaenHead>
+  )
+}

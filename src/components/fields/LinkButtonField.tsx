@@ -1,4 +1,4 @@
-import { EditIcon } from "@chakra-ui/icons"
+import {EditIcon} from '@chakra-ui/icons'
 import {
   Box,
   Button,
@@ -15,12 +15,13 @@ import {
   PopoverContent,
   PopoverTrigger,
   Stack,
-  useDisclosure,
-} from "@chakra-ui/react"
-import { useForm } from "react-hook-form"
+  useDisclosure
+} from '@chakra-ui/react'
+import {useForm} from 'react-hook-form'
 
-import { Field, navigate, useField } from "@jaenjs/jaen"
-import React from "react"
+import {Field, useField} from '@snek-at/jaen'
+import {navigate} from 'gatsby'
+import React from 'react'
 
 const validateUrl = (value: string): boolean => {
   try {
@@ -35,28 +36,28 @@ const UpdateUrlForm: React.FC<{
   onSaved: (url: string) => void
   onCancle: () => void
   initUrl: string
-}> = ({ onSaved, onCancle, initUrl }) => {
+}> = ({onSaved, onCancle, initUrl}) => {
   const {
     handleSubmit,
     register,
     reset,
-    formState: { errors, isSubmitting },
+    formState: {errors, isSubmitting}
   } = useForm<{
     url: string
   }>({
     defaultValues: {
-      url: initUrl,
-    },
+      url: initUrl
+    }
   })
 
   // Update default values when initUrl changes
   React.useEffect(() => {
     reset({
-      url: initUrl,
+      url: initUrl
     })
   }, [initUrl, reset])
 
-  const onSubmit = (data: { url: string }) => {
+  const onSubmit = (data: {url: string}) => {
     onSaved(data.url)
 
     // reset the form
@@ -71,10 +72,10 @@ const UpdateUrlForm: React.FC<{
           <Input
             id="url"
             placeholder={initUrl}
-            {...register("url", {
-              required: "This is required",
+            {...register('url', {
+              required: 'This is required',
               validate: value =>
-                validateUrl(value) || "Please enter a valid url",
+                validateUrl(value) || 'Please enter a valid url'
             })}
           />
           <FormErrorMessage>
@@ -101,15 +102,15 @@ const LinkButtonField: React.FC<
     defaultValue?: string
     defaultUrl?: string
   } & ButtonProps
-> = ({ name, defaultValue, defaultUrl, ...buttonProps }) => {
-  const { onOpen, onClose, isOpen } = useDisclosure()
+> = ({name, defaultValue, defaultUrl, ...buttonProps}) => {
+  const {onOpen, onClose, isOpen} = useDisclosure()
   const firstFieldRef = React.useRef(null)
 
   const hiddenUrlFieldName = `${name}.url`
-  const hiddenUrlFieldDefaultValue = defaultUrl || "https://example.com"
+  const hiddenUrlFieldDefaultValue = defaultUrl || 'https://example.com'
 
-  const buttonTextField = useField<string>(name, "IMA:TextField")
-  const hiddenUrlField = useField<string>(hiddenUrlFieldName, "IMA:TextField")
+  const buttonTextField = useField<string>(name, 'IMA:TextField')
+  const hiddenUrlField = useField<string>(hiddenUrlFieldName, 'IMA:TextField')
 
   const handleUrlChange = (url: string) => {
     hiddenUrlField.write(url)
@@ -121,40 +122,42 @@ const LinkButtonField: React.FC<
 
   const urlValue = React.useMemo(() => {
     const valueWithoutHTML =
-      hiddenUrlField.value?.replace(/<[^>]*>?/gm, "") ||
+      hiddenUrlField.value?.replace(/<[^>]*>?/gm, '') ||
       hiddenUrlFieldDefaultValue ||
-      ""
+      ''
     return valueWithoutHTML
   }, [hiddenUrlField.value])
 
   return (
-    <Box pos={"relative"}>
+    <Box pos={'relative'}>
       <Button
         {...buttonProps}
         onClick={handleButtonClick}
         mr={3}
         disabled={buttonTextField.isEditing}
         cursor={
-          buttonTextField.isEditing ? "text !important" : "pointer !important"
-        }
-      >
-        <Field.Text name={name} defaultValue={defaultValue || "Button Text"} />
+          buttonTextField.isEditing ? 'text !important' : 'pointer !important'
+        }>
+        <Field.Text
+          name={name}
+          label="Text"
+          defaultValue={defaultValue || 'Button Text'}
+        />
       </Button>
       {buttonTextField.isEditing && (
-        <Box pos={"absolute"} right={0} top={0}>
+        <Box pos={'absolute'} right={0} top={0}>
           <Popover
             isOpen={isOpen}
             initialFocusRef={firstFieldRef}
             onOpen={onOpen}
             onClose={onClose}
             placement="right"
-            closeOnBlur={false}
-          >
+            closeOnBlur={false}>
             <PopoverTrigger>
               <IconButton
                 size="sm"
                 icon={<EditIcon />}
-                aria-label={""}
+                aria-label={''}
                 colorScheme="teal"
               />
             </PopoverTrigger>

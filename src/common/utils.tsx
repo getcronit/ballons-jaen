@@ -1,15 +1,15 @@
-import { Box } from "@chakra-ui/react"
+import {Box} from '@chakra-ui/react'
 import {
   getFormattedProductPrices,
-  ShopifyProduct,
-} from "@snek-at/gatsby-theme-shopify"
-import React from "react"
-import { getProductMetafields } from "./getProductMetafields"
+  ShopifyProduct
+} from '@snek-at/gatsby-theme-shopify'
+import React from 'react'
+import {getProductMetafields} from './getProductMetafields'
 
 export function uuidv1() {
-  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
-    var r = (Math.random() * 16) | 0,
-      v = c == "x" ? r : (r & 0x3) | 0x8
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    const r = (Math.random() * 16) | 0
+    const v = c === 'x' ? r : (r & 0x3) | 0x8
     return v.toString(16)
   })
 }
@@ -25,7 +25,7 @@ export function gridPadBoxes(items: any[], gridSize: number = 6, Filler = Box) {
   const toFill = gridSize - (items.length % gridSize || gridSize)
 
   if (toFill > 0) {
-    return Array.from({ length: toFill }, (_, index) => (
+    return Array.from({length: toFill}, (_, index) => (
       <Filler key={`grid-pad-${index}`} />
     ))
   }
@@ -37,7 +37,7 @@ export function replaceHexColorsInHTML(
   coloraHex: string,
   colorbHex: string
 ) {
-  var re = new RegExp(coloraHex, "g")
+  const re = new RegExp(coloraHex, 'g')
   return html.replace(re, colorbHex)
 }
 
@@ -45,10 +45,10 @@ export function useIsInViewport(ref: React.RefObject<HTMLElement>) {
   const [isIntersecting, setIsIntersecting] = React.useState(false)
 
   const observer = React.useMemo(() => {
-    if (typeof window !== "undefined") {
-      return new IntersectionObserver(([entry]) =>
+    if (typeof window !== 'undefined') {
+      return new IntersectionObserver(([entry]) => {
         setIsIntersecting(entry.isIntersecting)
-      )
+      })
     }
   }, [])
 
@@ -67,23 +67,23 @@ export function useIsInViewport(ref: React.RefObject<HTMLElement>) {
 
 export function removeHtmlFromString(htmlString: string) {
   // remove sourounding <p></p> tags of htmlString
-  const htmlStringWithoutP = htmlString.replace(/^<p>|<\/p>$/g, "")
+  const htmlStringWithoutP = htmlString.replace(/^<p>|<\/p>$/g, '')
 
   // decode all html entities
-  const decodedHtmlString = htmlStringWithoutP.replace(/&amp;/g, "&")
+  const decodedHtmlString = htmlStringWithoutP.replace(/&amp;/g, '&')
 
   return decodedHtmlString
 }
 
 export function formatPrice(
   value: number,
-  opts: { locale?: string; currency?: string } = {}
+  opts: {locale?: string; currency?: string} = {}
 ) {
-  const { locale = "de-DE", currency = "USD" } = opts
+  const {locale = 'de-DE', currency = 'USD'} = opts
   const formatter = new Intl.NumberFormat(locale, {
     currency,
-    style: "currency",
-    maximumFractionDigits: 2,
+    style: 'currency',
+    maximumFractionDigits: 2
   })
 
   return formatter.format(value)
@@ -91,17 +91,17 @@ export function formatPrice(
 
 export const getProductPrices = (
   product: ShopifyProduct,
-  opts: { isWholesale: boolean }
+  opts: {isWholesale: boolean}
 ) => {
   const metafields = getProductMetafields(product)
   const prices = getFormattedProductPrices(product)
 
   if (opts.isWholesale) {
-    const { amount: price, currency_code: currency } = JSON.parse(
-      metafields.wholesale?.price || "{}"
+    const {amount: price, currency_code: currency} = JSON.parse(
+      metafields.wholesale?.price || '{}'
     )
 
-    prices.priceFormatted = formatPrice(price, { currency })
+    prices.priceFormatted = formatPrice(price, {currency})
   }
 
   return prices

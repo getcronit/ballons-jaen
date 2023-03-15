@@ -1,6 +1,4 @@
 import {
-  getFormattedProductPrices,
-  getProductTags,
   ProductPageContext,
   ProductPageData,
   ProductsPageContext,
@@ -9,45 +7,26 @@ import {
 import { graphql, navigate, PageProps } from "gatsby"
 import React from "react"
 
-import { Layout } from "../Layout"
-import { ProductTemplate } from "../components/templates/ProductTemplate"
 import { buildAllTags } from "../components/templates/ProductsTemplate/ProductsTemplate"
-import { SEO } from "@jaenjs/jaen"
+import { ProductTemplate } from "../components/templates/ProductTemplate"
+
+import { Layout } from "../Layout"
 import { useAuthentication } from "../services/authentication"
 
 export type ProductPageTemplateProps = PageProps<
-ProductPageData & {
-  productsPage: {
-    pageContext: ProductsPageContext
-  }
-},
-ProductPageContext
+  ProductPageData & {
+    productsPage: {
+      pageContext: ProductsPageContext
+    }
+  },
+  ProductPageContext
 >
 
-const ProductPageTemplate: React.FC<ProductPageTemplateProps> = (
-  props
-) => {
-  const { shopifyProduct, relatedProducts, productsPage } = props.data
-
-  const buildProductPageMeta = () => {
-    let title = shopifyProduct.title
-    let description =
-      shopifyProduct.description +
-      ` | Produkttyp: ${shopifyProduct.productType}` +
-      ` | Hersteller: ${shopifyProduct.vendor}`
-
-    return {
-      title,
-      description,
-      image:
-        shopifyProduct.featuredMedia?.image.gatsbyImageData.images.fallback
-          ?.src,
-      datePublished: shopifyProduct.createdAt,
-    }
-  }
+const ProductPageTemplate: React.FC<ProductPageTemplateProps> = props => {
+  const { productsPage } = props.data
 
   const handleOnGoBack = () => {
-    navigate(-1)
+    void navigate(-1)
   }
 
   const allTags = buildAllTags({
@@ -62,8 +41,8 @@ const ProductPageTemplate: React.FC<ProductPageTemplateProps> = (
 
   return (
     <>
-      <SEO pagePath={props.path} pageMeta={buildProductPageMeta()} />
-      <Layout pathname={props.path} mode={"store"}>
+      {/* <SEO pagePath={props.path} pageMeta={buildProductPageMeta()} /> */}
+      <Layout pathname={props.path} mode="store">
         <ProductTemplate
           path={props.path}
           wholesale={wholesale}
@@ -91,7 +70,7 @@ export const query = graphql`
     shopifyProduct(id: { eq: $productId }) {
       ...shopifyProductData
     }
-    productsPage: sitePage(id: { eq: "SitePage /products" }) {
+    productsPage: sitePage(id: { eq: "SitePage /products/" }) {
       pageContext
     }
   }
@@ -102,3 +81,36 @@ export default (props: ProductPageTemplateProps) => (
     <ProductPageTemplate {...props} />
   </SearchProvider>
 )
+
+// export const Head = (props: ProductPageTemplateProps) => {
+//   const {shopifyProduct} = props.data
+
+//   const buildProductPageMeta = () => {
+//     const title = shopifyProduct.title
+//     const description = shopifyProduct.description
+//     const longDescription =
+//       description +
+//       ` | Produkttyp: ${shopifyProduct.productType}` +
+//       ` | Hersteller: ${shopifyProduct.vendor}`
+
+//     return {
+//       title,
+//       description,
+//       longDescription,
+//       image:
+//         shopifyProduct.featuredMedia?.image.gatsbyImageData?.images?.fallback?.src
+//     }
+//   }
+
+//   const meta = buildProductPageMeta()
+
+//   return (
+//     <JaenHead {...(props as any)}>
+//       <title id="title">
+//         {meta.title} | {meta.description}
+//       </title>
+//       <meta name="meta-description" content={meta.longDescription} />
+//       <meta id="meta-image" name="image" content={meta.image} />
+//     </JaenHead>
+//   )
+// }

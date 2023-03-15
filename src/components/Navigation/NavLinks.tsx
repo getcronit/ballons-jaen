@@ -1,4 +1,4 @@
-import { EditIcon } from "@chakra-ui/icons"
+import {EditIcon} from '@chakra-ui/icons'
 import {
   Box,
   IconButton,
@@ -10,23 +10,22 @@ import {
   PopoverTrigger,
   Stack,
   StackProps,
-  useDisclosure,
-} from "@chakra-ui/react"
-import { navigate } from "@jaenjs/jaen"
-import { Link } from "gatsby"
-import React from "react"
-import { MarkdownLinksForm } from "./BottomNav"
-import { useJaenNavigation } from "./useJaenNavigation"
+  useDisclosure
+} from '@chakra-ui/react'
+import {Link, navigate} from 'gatsby'
+import React from 'react'
+
+import {MarkdownLinksForm} from './BottomNav'
+import {useJaenNavigation} from './useJaenNavigation'
 
 export const NavLinks: React.FC<
   StackProps & {
-    childrenTextAlign?: "left" | "center" | "right"
+    childrenTextAlign?: 'left' | 'center' | 'right'
   }
-> = ({ childrenTextAlign, ...props }) => {
-  const { isEditing, navLinks, markdown, updateNavigation } =
-    useJaenNavigation()
+> = ({childrenTextAlign, ...props}) => {
+  const {isEditing, navLinks, markdown, updateNavigation} = useJaenNavigation()
 
-  const { onOpen, onClose, isOpen } = useDisclosure()
+  const {onOpen, onClose, isOpen} = useDisclosure()
   const firstFieldRef = React.useRef(null)
 
   return (
@@ -36,32 +35,31 @@ export const NavLinks: React.FC<
           return (
             <CLink
               _before={{
-                display: "block",
+                display: 'block',
                 content: `"${link.label}"`,
-                fontWeight: "bold",
-                height: "0",
-                overflow: "hidden",
-                visibility: "hidden",
+                fontWeight: 'bold',
+                height: '0',
+                overflow: 'hidden',
+                visibility: 'hidden'
               }}
               as={Link}
               to={link.to}
               onClick={e => {
                 e.preventDefault()
-                navigate(link.to)
+                void navigate(link.to)
 
                 return false
               }}
               key={index}
-              textAlign={childrenTextAlign || "center"}
+              textAlign={childrenTextAlign || 'center'}
               _hover={{
-                fontWeight: "bold",
-                transform: "scale(1.05)",
-                transition: "0.2s ease-in",
+                fontWeight: 'bold',
+                transform: 'scale(1.05)',
+                transition: '0.2s ease-in'
               }}
-              fontSize={{ md: "sm", lg: "1rem", xl: "1.125rem", "2xl": "md" }}
+              fontSize={{md: 'sm', lg: '1rem', xl: '1.125rem', '2xl': 'md'}}
               transition="0.2s ease-in"
-              color="brand.dark_gray"
-            >
+              color="brand.dark_gray">
               {link.label}
             </CLink>
           )
@@ -76,13 +74,12 @@ export const NavLinks: React.FC<
             onOpen={onOpen}
             onClose={onClose}
             placement="bottom"
-            closeOnBlur={false}
-          >
+            closeOnBlur={false}>
             <PopoverTrigger>
               <IconButton
                 size="sm"
                 icon={<EditIcon />}
-                aria-label={""}
+                aria-label=""
                 colorScheme="teal"
               />
             </PopoverTrigger>

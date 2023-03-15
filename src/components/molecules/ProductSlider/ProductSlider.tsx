@@ -47,7 +47,7 @@ export const ProductSlider = ({
             product={product}
             prefixPath={prefixPath}
             // borderline
-            left={0 !== index}
+            left={index !== 0}
             wholesale={wholesale}
           />
         ))}

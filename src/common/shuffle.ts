@@ -1,26 +1,25 @@
-export function shuffle<T>(array: Array<T>, seed: number): Array<T> {
-    // <-- ADDED ARGUMENT
-    var m = array.length,
-      t: T,
-      i: number
-  
-    // While there remain elements to shuffle…
-    while (m) {
-      // Pick a remaining element…
-      i = Math.floor(random(seed) * m--) // <-- MODIFIED LINE
-  
-      // And swap it with the current element.
-      t = array[m]
-      array[m] = array[i]
-      array[i] = t
-      ++seed // <-- ADDED LINE
-    }
-  
-    return array
+export function shuffle<T>(array: T[], seed: number): T[] {
+  // <-- ADDED ARGUMENT
+  let m = array.length
+  let t: T
+  let i: number
+
+  // While there remain elements to shuffle…
+  while (m) {
+    // Pick a remaining element…
+    i = Math.floor(random(seed) * m--) // <-- MODIFIED LINE
+
+    // And swap it with the current element.
+    t = array[m]
+    array[m] = array[i]
+    array[i] = t
+    ++seed // <-- ADDED LINE
   }
-  
-  function random(seed: number) {
-    var x = Math.sin(seed++) * 10000
-    return x - Math.floor(x)
-  }
-  
+
+  return array
+}
+
+function random(seed: number) {
+  const x = Math.sin(seed++) * 10000
+  return x - Math.floor(x)
+}

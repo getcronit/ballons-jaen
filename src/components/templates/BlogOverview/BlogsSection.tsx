@@ -5,17 +5,17 @@ import {
   Divider,
   Grid,
   Heading,
-  VStack,
-} from "@chakra-ui/react"
-import { Field } from "@jaenjs/jaen"
-import React, { FC } from "react"
-import { CONTAINER_MAX_WIDTH } from "../../../constant/sizes"
-import { JaenPageIndexType } from "../../../types/commonTypes"
-import BlogCard from "./BlogCard"
+  VStack
+} from '@chakra-ui/react'
+import {Field} from '@snek-at/jaen'
+import React, {FC} from 'react'
+import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
+import {JaenPageIndexType} from '../../../types/commonTypes'
+import BlogCard from './BlogCard'
 
 interface IBlogsSectionProps {
-  blogs: JaenPageIndexType["children"]
-  withJaenPage: JaenPageIndexType["withJaenPage"]
+  blogs: JaenPageIndexType['children']
+  withJaenPage: JaenPageIndexType['withJaenPage']
 }
 
 const MAX_LOADED_BLOGS = 3
@@ -38,20 +38,25 @@ const BlogsSection: FC<IBlogsSectionProps> = props => {
     }
   }
 
-  if(props.blogs.length === 0) {
-    return <Box my='64'>
-      <Heading as="h2" size="lg" textAlign="center" mb={4}>
-        Derzeit sind keine News verfügbar.
-      </Heading>
-    </Box>
-
+  if (props.blogs.length === 0) {
+    return (
+      <Box my="64">
+        <Heading as="h2" size="lg" textAlign="center" mb={4}>
+          Derzeit sind keine News verfügbar.
+        </Heading>
+      </Box>
+    )
   }
 
   return (
     <>
-      <Container maxW={CONTAINER_MAX_WIDTH} mt={{ base: "-16", md: "16" }}>
+      <Container maxW={CONTAINER_MAX_WIDTH} mt={{base: '-16', md: '16'}}>
         <Heading fontWeight="semibold" size="h4020">
-          <Field.Text name="title" defaultValue="Weitere Beiträge" />
+          <Field.Text
+            name="title"
+            label="Titel"
+            defaultValue="Weitere Beiträge"
+          />
         </Heading>
         <Divider mb="8" mt="4" bg="red.500" h="1px" border="0" />
       </Container>
@@ -59,32 +64,32 @@ const BlogsSection: FC<IBlogsSectionProps> = props => {
         bgImage="/images/blog_overview/blog_shape.svg"
         bgPos="right -20rem bottom 20rem"
         bgSize="60%"
-        bgRepeat="no-repeat"
-      >
+        bgRepeat="no-repeat">
         <Container maxW={CONTAINER_MAX_WIDTH}>
           <Grid
-            gridTemplateColumns={{ md: "repeat(2,1fr)", xl: "repeat(3,1fr)" }}
-            gap={{ base: "4", md: 6, xl: "8" }}
-            rowGap={{ base: "6", md: 12, xl: "16" }}
-          >
-            {Array.from({ length: maxLoadedBlogs }).map((_, index) => {
+            gridTemplateColumns={{md: 'repeat(2,1fr)', xl: 'repeat(3,1fr)'}}
+            gap={{base: '4', md: 6, xl: '8'}}
+            rowGap={{base: '6', md: 12, xl: '16'}}>
+            {Array.from({length: maxLoadedBlogs}).map((_, index) => {
               const blog = props.blogs[index]
 
               if (!blog) {
-                console.error("Blog not found")
+                console.error('Blog not found')
               }
 
-              return props.withJaenPage(blog.id, <BlogCard key={blog.id} slug={blog.slug!} />)
+              return props.withJaenPage(
+                blog.id,
+                <BlogCard key={blog.id} slug={blog.slug!} />
+              )
             })}
           </Grid>
           <VStack>
             <Button
-              display={maxLoadedBlogs < props.blogs.length ? "flex" : "none"}
-              size={{ base: "sm", md: "md" }}
+              display={maxLoadedBlogs < props.blogs.length ? 'flex' : 'none'}
+              size={{base: 'sm', md: 'md'}}
               mt="16"
               variant="outline"
-              onClick={loadMoreBlogs}
-            >
+              onClick={loadMoreBlogs}>
               Mehr Artikel anzeigen
             </Button>
           </VStack>

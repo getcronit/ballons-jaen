@@ -1,9 +1,7 @@
-import React from 'react'
+import {ComponentMeta, ComponentStory} from '@storybook/react'
 
-import {ComponentStory, ComponentMeta} from '@storybook/react'
-
-import {ProductSlider} from '../ProductSlider'
 import * as ProductsPageStories from '../../../templates/ProductsTemplate/stories/ProductsTemplate.stories'
+import {ProductSlider} from '../ProductSlider'
 
 export default {
   title: 'Components/Molecules/ProductSlider',
@@ -17,5 +15,5 @@ const Template: ComponentStory<typeof ProductSlider> = args => (
 export const Default = Template.bind({})
 Default.args = {
   heading: 'Related Products',
-  products: ProductsPageStories.Simple.args?.products ?? []
+  products: ProductsPageStories.Default.args?.products ?? []
 }

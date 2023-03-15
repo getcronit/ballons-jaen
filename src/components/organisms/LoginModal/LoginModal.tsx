@@ -1,4 +1,4 @@
-import { ChevronRightIcon } from "@chakra-ui/icons"
+import {ChevronRightIcon} from '@chakra-ui/icons'
 import {
   Box,
   Button,
@@ -6,30 +6,21 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
-  Heading,
-  HStack,
   Image,
   Input,
   Link,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
-  ModalFooter,
-  ModalHeader,
   ModalOverlay,
   Stack,
   Text,
-  Textarea,
-  Tooltip,
-  VStack,
-  Wrap,
-  WrapItem,
-} from "@chakra-ui/react"
-import React from "react"
-import { useForm } from "react-hook-form"
+  Tooltip
+} from '@chakra-ui/react'
+import React from 'react'
+import {useForm} from 'react-hook-form'
 
-export type LoginFormValues = {
+export interface LoginFormValues {
   email: string
   password: string
 }
@@ -44,17 +35,16 @@ export interface LoginModalProps {
 export const LoginModal: React.FC<LoginModalProps> = ({
   isOpen,
   onClose,
-  onSubmit,
+  onSubmit
 }) => {
   const {
     register,
-    control,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitting },
+    formState: {errors, isSubmitting}
   } = useForm<LoginFormValues>()
 
-  const [loginFailedMessage, setLoginFailedMessage] = React.useState("")
+  const [loginFailedMessage, setLoginFailedMessage] = React.useState('')
 
   React.useEffect(() => {
     if (!isOpen) {
@@ -68,7 +58,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
       onClose()
     } else {
       setLoginFailedMessage(
-        "Anmeldung fehlgeschlagen. Bitte überprüfen Sie Ihre Eingaben."
+        'Anmeldung fehlgeschlagen. Bitte überprüfen Sie Ihre Eingaben.'
       )
     }
   }
@@ -78,19 +68,24 @@ export const LoginModal: React.FC<LoginModalProps> = ({
       <ModalOverlay />
 
       <ModalContent maxW="56rem" h="32rem" overflow="hidden">
-        <ModalBody display={"flex"} p={0}>
-          <Flex w="full" display={{
-            base: "none",
-            md: "flex",
-          }}>
+        <ModalBody display="flex" p={0}>
+          <Flex
+            w="full"
+            display={{
+              base: 'none',
+              md: 'flex'
+            }}>
             <Image src="https://ballons.snek.at/images/home/heart/hsection2.png" />
           </Flex>
           <Flex w="full">
-            <Stack spacing={8} maxW={"lg"} py={24} px="8" w="full">
-              <form onSubmit={handleSubmit(handleFormSubmit)}>
-                <Stack align={"left"} spacing="4">
+            <Stack spacing={8} maxW="lg" py={24} px="8" w="full">
+              <form
+                onSubmit={event => {
+                  void handleSubmit(handleFormSubmit)(event)
+                }}>
+                <Stack align="left" spacing="4">
                   <Box>
-                    <Text fontSize={"md"}>Willkommen zurück!</Text>
+                    <Text fontSize="md">Willkommen zurück!</Text>
                     <Text fontSize="sm">
                       Hunderte von Ballone warten auf Sie.
                     </Text>
@@ -105,12 +100,12 @@ export const LoginModal: React.FC<LoginModalProps> = ({
                       <Input
                         type="email"
                         placeholder="Email"
-                        {...register("email", {
-                          required: true,
+                        {...register('email', {
+                          required: true
                         })}
                       />
                       <FormErrorMessage>
-                        {errors.email && errors.email.message}
+                        {errors.email?.message}
                       </FormErrorMessage>
                     </FormControl>
                     <FormControl id="password" isInvalid={!!errors.password}>
@@ -121,12 +116,12 @@ export const LoginModal: React.FC<LoginModalProps> = ({
                       <Input
                         type="password"
                         placeholder="Passwort"
-                        {...register("password", {
-                          required: true,
+                        {...register('password', {
+                          required: true
                         })}
                       />
                       <FormErrorMessage>
-                        {errors.email && errors.email.message}
+                        {errors.email?.message}
                       </FormErrorMessage>
                     </FormControl>
                   </Stack>
@@ -134,8 +129,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
                   <Button
                     rightIcon={<ChevronRightIcon />}
                     type="submit"
-                    isLoading={isSubmitting}
-                  >
+                    isLoading={isSubmitting}>
                     Anmelden
                   </Button>
 
@@ -144,11 +138,9 @@ export const LoginModal: React.FC<LoginModalProps> = ({
                   </Text>
 
                   <Text fontSize="sm">
-                    Neu bei Ballons & Ballons?{" "}
+                    Neu bei Ballons & Ballons?{' '}
                     <Tooltip label="Derzeit nicht verfügbar">
-                      <Link textDecoration={"underline"}>
-                        Jetzt registrieren
-                      </Link>
+                      <Link textDecoration="underline">Jetzt registrieren</Link>
                     </Tooltip>
                   </Text>
                 </Stack>

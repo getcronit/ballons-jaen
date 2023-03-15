@@ -1,6 +1,13 @@
-import React from 'react'
-
-import {Flex, useColorModeValue, Text, Box, Heading, VStack, StackDivider, HStack} from '@chakra-ui/react'
+import {
+  Box,
+  Flex,
+  Heading,
+  HStack,
+  StackDivider,
+  Text,
+  useColorModeValue,
+  VStack
+} from '@chakra-ui/react'
 import {ShopifyProduct} from '@snek-at/gatsby-theme-shopify'
 import {GatsbyImage} from 'gatsby-plugin-image'
 
@@ -30,14 +37,11 @@ export const ProductRow = (props: {
         </Heading>
 
         <VStack divider={<StackDivider />}>
-            <HStack>
-                <Text fontWeight="semibold">Category:</Text>
-                <Text>{props.categoryTags.join(' > ')}</Text>
-            </HStack>
-
+          <HStack>
+            <Text fontWeight="semibold">Category:</Text>
+            <Text>{props.categoryTags.join(' > ')}</Text>
+          </HStack>
         </VStack>
-
-      
       </Flex>
     </Flex>
   )

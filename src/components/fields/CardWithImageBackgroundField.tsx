@@ -1,8 +1,8 @@
-import { Box, Grid, Heading, HStack, Stack, Text } from "@chakra-ui/react"
-import { Field, navigate } from "@jaenjs/jaen"
-import { BiChevronRight } from "react-icons/bi"
+import {Box, Grid, Heading, HStack, Stack, Text} from '@chakra-ui/react'
+import {Field, useField} from '@snek-at/jaen'
+import {BiChevronRight} from 'react-icons/bi'
 
-import { EditIcon } from "@chakra-ui/icons"
+import {EditIcon} from '@chakra-ui/icons'
 import {
   Button,
   ButtonGroup,
@@ -16,12 +16,12 @@ import {
   PopoverCloseButton,
   PopoverContent,
   PopoverTrigger,
-  useDisclosure,
-} from "@chakra-ui/react"
-import { useForm } from "react-hook-form"
+  useDisclosure
+} from '@chakra-ui/react'
+import {useForm} from 'react-hook-form'
 
-import { useField } from "@jaenjs/jaen"
-import React from "react"
+import {navigate} from 'gatsby'
+import React from 'react'
 
 interface ICardWithImageBackgroundProps {
   card: {
@@ -53,28 +53,28 @@ const UpdateUrlForm: React.FC<{
   onSaved: (url: string) => void
   onCancle: () => void
   initUrl: string
-}> = ({ onSaved, onCancle, initUrl }) => {
+}> = ({onSaved, onCancle, initUrl}) => {
   const {
     handleSubmit,
     register,
     reset,
-    formState: { errors, isSubmitting },
+    formState: {errors, isSubmitting}
   } = useForm<{
     url: string
   }>({
     defaultValues: {
-      url: initUrl,
-    },
+      url: initUrl
+    }
   })
 
   // Update default values when initUrl changes
   React.useEffect(() => {
     reset({
-      url: initUrl,
+      url: initUrl
     })
   }, [initUrl, reset])
 
-  const onSubmit = (data: { url: string }) => {
+  const onSubmit = (data: {url: string}) => {
     onSaved(data.url)
 
     // reset the form
@@ -89,10 +89,10 @@ const UpdateUrlForm: React.FC<{
           <Input
             id="url"
             placeholder={initUrl}
-            {...register("url", {
-              required: "This is required",
+            {...register('url', {
+              required: 'This is required',
               validate: value =>
-                validateUrl(value) || "Please enter a valid url",
+                validateUrl(value) || 'Please enter a valid url'
             })}
           />
           <FormErrorMessage>
@@ -128,16 +128,16 @@ const CardWithImageBackgroundField: React.FC<
   minW,
   w,
   h,
-  isSmallText = false,
+  isSmallText = false
 }) => {
-  const { onOpen, onClose, isOpen } = useDisclosure()
+  const {onOpen, onClose, isOpen} = useDisclosure()
   const firstFieldRef = React.useRef(null)
 
   const hiddenUrlFieldName = `${name}.url`
-  const hiddenUrlFieldDefaultValue = defaultUrl || "https://example.com"
+  const hiddenUrlFieldDefaultValue = defaultUrl || 'https://example.com'
 
-  const buttonTextField = useField<string>(name, "IMA:TextField")
-  const hiddenUrlField = useField<string>(hiddenUrlFieldName, "IMA:TextField")
+  const buttonTextField = useField<string>(name, 'IMA:TextField')
+  const hiddenUrlField = useField<string>(hiddenUrlFieldName, 'IMA:TextField')
 
   const handleUrlChange = (url: string) => {
     hiddenUrlField.write(url)
@@ -149,37 +149,37 @@ const CardWithImageBackgroundField: React.FC<
 
   const urlValue = React.useMemo(() => {
     const valueWithoutHTML =
-      hiddenUrlField.value?.replace(/<[^>]*>?/gm, "") ||
+      hiddenUrlField.value?.replace(/<[^>]*>?/gm, '') ||
       hiddenUrlFieldDefaultValue ||
-      ""
+      ''
     return valueWithoutHTML
   }, [hiddenUrlField.value])
 
   return (
-    <Box pos={"relative"} h="full" w="full" minW={minW || "20rem"}>
+    <Box pos={'relative'} h="full" w="full" minW={minW || '20rem'}>
       <Stack
         onClick={!buttonTextField.isEditing ? handleButtonClick : undefined}
         position="relative"
-        _hover={{
-          transition: "all 0.3s ease",
-          transform: {
-            md: "scale(1.03) ",
-            lg: "scale(1.03) ",
-          },
-        }}
-        transition="ease-in 0.2s"
+        // _hover={{
+        //   transition: 'all 0.3s ease',
+        //   transform: {
+        //     md: 'scale(1.03) ',
+        //     lg: 'scale(1.03) '
+        //   }
+        // }}
+        // transition="ease-in 0.2s"
         boxShadow="darker"
         color="white"
         justify="end"
-        h={h ?? "full"}
+        h={h ?? 'full'}
         w={w ?? {}}
         borderRadius="xl"
-        overflow={"hidden"}
-        minW={minW || "20rem"}
-      >
+        overflow={'hidden'}
+        minW={minW || '20rem'}>
         {card.imageFieldName && (
           <Field.Image
             name={card.imageFieldName}
+            label="Image"
             defaultValue={card.imageDefaultValue}
           />
         )}
@@ -187,23 +187,24 @@ const CardWithImageBackgroundField: React.FC<
           {displayContent && (
             <Stack p="6" pb="4">
               {card.headingFieldName && (
-                <Heading fontSize={{ base: "lg", xl: "xl" }} fontWeight="700">
+                <Heading fontSize={{base: 'lg', xl: 'xl'}} fontWeight="700">
                   <Field.Text
                     name={card.headingFieldName}
-                    defaultValue={card.headingDefaultValue ?? ""}
+                    label="Heading"
+                    defaultValue={card.headingDefaultValue ?? ''}
                   />
                 </Heading>
               )}
 
               {card.textFieldName && (
                 <Text
-                  fontSize={{ base: "sm", lg: isSmallText ? "sm" : "md" }}
+                  fontSize={{base: 'sm', lg: isSmallText ? 'sm' : 'md'}}
                   maxW="80%"
-                  as="span"
-                >
+                  as="span">
                   <Field.Text
                     name={card.textFieldName}
-                    defaultValue={card.textDefaultValue ?? ""}
+                    label="Text"
+                    defaultValue={card.textDefaultValue ?? ''}
                   />
                 </Text>
               )}
@@ -211,8 +212,8 @@ const CardWithImageBackgroundField: React.FC<
               <HStack
                 cursor="pointer"
                 _hover={{
-                  textDecoration: "underline",
-                  "&>div": { boxShadow: "0 0 5px 1px white" },
+                  textDecoration: 'underline',
+                  '&>div': {boxShadow: '0 0 5px 1px white'}
                 }}
                 // _hover={{
                 //   transform: {
@@ -220,28 +221,25 @@ const CardWithImageBackgroundField: React.FC<
                 //     lg: "scale(1.05) translateX(5px)",
                 //   },
                 // }}
-                transition="ease-in 0.2s"
-              >
+                transition="ease-in 0.2s">
                 <Text
                   onClick={
                     !buttonTextField.isEditing ? handleButtonClick : undefined
                   }
-                  fontSize={{ base: "sm", lg: "md" }}
-                  fontWeight="700"
-                >
+                  fontSize={{base: 'sm', lg: 'md'}}
+                  fontWeight="700">
                   Mehr anzeigen
                 </Text>
                 <Grid
                   placeItems="center"
-                  h={{ base: "4", lg: "6" }}
-                  w={{ base: "4", lg: "6" }}
+                  h={{base: '4', lg: '6'}}
+                  w={{base: '4', lg: '6'}}
                   color="red.500"
                   bg="white"
-                  fontSize={{ lg: "lg" }}
+                  fontSize={{lg: 'lg'}}
                   borderRadius="full"
                   boxShadow="0 0 0px 0px white"
-                  transition="ease-in 0.2s"
-                >
+                  transition="ease-in 0.2s">
                   <BiChevronRight />
                 </Grid>
               </HStack>
@@ -250,20 +248,19 @@ const CardWithImageBackgroundField: React.FC<
         </Box>
       </Stack>
       {buttonTextField.isEditing && (
-        <Box pos={"absolute"} right={0} top={0}>
+        <Box pos={'absolute'} right={0} top={0}>
           <Popover
             isOpen={isOpen}
             initialFocusRef={firstFieldRef}
             onOpen={onOpen}
             onClose={onClose}
             placement="right"
-            closeOnBlur={false}
-          >
+            closeOnBlur={false}>
             <PopoverTrigger>
               <IconButton
                 size="sm"
                 icon={<EditIcon />}
-                aria-label={""}
+                aria-label={''}
                 colorScheme="teal"
               />
             </PopoverTrigger>

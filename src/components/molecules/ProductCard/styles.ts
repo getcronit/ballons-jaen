@@ -1,9 +1,10 @@
 import {css} from '@emotion/react'
 
-const borderColor = (color?: string) => (color ? color : '#ef3340')
+const borderColor = (color?: string) => color || '#ef3340'
 const transformWidth = (width?: string) =>
+  // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
   width ? 'scaleX(1.' + width.split('%')[0] + ')' : 'scaleX(1.3)'
-const borderlinWidth = (width?: string) => (width ? width : '30%')
+const borderlinWidth = (width?: string) => width || '30%'
 
 export const cardStyle = (
   borderline?: boolean,

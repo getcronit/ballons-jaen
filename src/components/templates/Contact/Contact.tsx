@@ -1,44 +1,51 @@
-import { Field, useField } from "@jaenjs/jaen"
-import { FC } from "react"
-import { MdLocalPhone, MdLocationPin, MdMail } from "react-icons/md"
-import ContactBottomSection from "./ContactBottomSection"
-import ContactHero from "./ContactHero"
-import ContactTimings from "./ContactTimings"
+import {Field, useField} from '@snek-at/jaen'
+import {FC} from 'react'
+import {MdLocalPhone, MdLocationPin, MdMail} from 'react-icons/md'
+import ContactBottomSection from './ContactBottomSection'
+import ContactHero from './ContactHero'
+import ContactTimings from './ContactTimings'
 
 interface IContactProps {}
 
 const Contact: FC<IContactProps> = () => {
   const contactDetails = [
     {
-      isEditing: useField<string>("email", "IMA:TextField").isEditing,
+      isEditing: useField<string>('email', 'IMA:TextField').isEditing,
       text: (
         <Field.Text
           name="address"
+          label="Adresse"
           defaultValue="Taborstraße 98, 1020 Wien, Österreich"
         />
       ),
-      icon: <MdLocationPin />,
+      icon: <MdLocationPin />
     },
     {
-      isEditing: useField<string>("email", "IMA:TextField").isEditing,
-      text: <Field.Text name="phone" defaultValue="+43 2 326 34 25" />,
-      icon: <MdLocalPhone />,
-      link: `tel:${useField<string>("phone", "IMA:TextField").value?.replace(
-        /<[^>]*>?/gm,
-        ""
-      )}`,
-    },
-    {
-      isEditing: useField<string>("email", "IMA:TextField").isEditing,
+      isEditing: useField<string>('email', 'IMA:TextField').isEditing,
       text: (
-        <Field.Text name="email" defaultValue="office@ballons-ballons.com" />
+        <Field.Text name="phone" label="Phone" defaultValue="+43 2 326 34 25" />
+      ),
+      icon: <MdLocalPhone />,
+      link: `tel:${useField<string>('phone', 'IMA:TextField').value?.replace(
+        /<[^>]*>?/gm,
+        ''
+      )}`
+    },
+    {
+      isEditing: useField<string>('email', 'IMA:TextField').isEditing,
+      text: (
+        <Field.Text
+          name="email"
+          label="Email"
+          defaultValue="office@ballons-ballons.at"
+        />
       ),
       icon: <MdMail />,
-      link: `mailto:${useField<string>("email", "IMA:TextField").value?.replace(
+      link: `mailto:${useField<string>('email', 'IMA:TextField').value?.replace(
         /<[^>]*>?/gm,
-        ""
-      )}`,
-    },
+        ''
+      )}`
+    }
   ]
 
   return (

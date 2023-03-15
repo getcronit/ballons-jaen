@@ -1,4 +1,4 @@
-import { ChevronDownIcon } from "@chakra-ui/icons"
+import {ChevronDownIcon} from '@chakra-ui/icons'
 import {
   Accordion,
   AccordionButton,
@@ -13,15 +13,10 @@ import {
   DrawerBody,
   DrawerCloseButton,
   DrawerContent,
-  DrawerHeader,
   DrawerOverlay,
   Flex,
   Heading,
   HStack,
-  Icon,
-  Menu,
-  MenuButton,
-  MenuList,
   Select as CSelect,
   Spacer,
   Stack,
@@ -30,15 +25,13 @@ import {
   Text,
   useColorModeValue,
   useDisclosure,
-  VStack,
   Wrap,
-  WrapItem,
-} from "@chakra-ui/react"
-import { FaSort } from "@react-icons/all-files/fa/FaSort"
-import { GroupBase, OptionBase, Select } from "chakra-react-select"
-import { Link } from "gatsby"
-import React, { ReactNode } from "react"
-import { BsFilter, BsFilterCircle, BsFilterCircleFill } from "react-icons/bs"
+  WrapItem
+} from '@chakra-ui/react'
+import {GroupBase, OptionBase, Select} from 'chakra-react-select'
+import {Link} from 'gatsby'
+import React, {ReactNode} from 'react'
+import {BsFilterCircleFill} from 'react-icons/bs'
 
 interface TagFilterOption extends OptionBase {
   label: string
@@ -47,8 +40,8 @@ interface TagFilterOption extends OptionBase {
 }
 
 export interface ProductsPageShellSidebarProps {
-  allTags: Array<string>
-  activeTags?: Array<string>
+  allTags: string[]
+  activeTags?: string[]
   onActiveTagsChange: (tags: string[]) => void
   sortOptions: string[]
   onSortChange: (sort: string) => void
@@ -93,14 +86,13 @@ function CategoryPicker(props: CategoryPickerProps) {
             tag => !tag.startsWith(rubricTag)
           )
 
-          props.updateActiveTags(activeTags, "Kategorie")
+          props.updateActiveTags(activeTags, 'Kategorie')
         }
 
         if (added !== undefined) {
-          props.addOrRemoveTag(rubricTag, "Kategorie")
+          props.addOrRemoveTag(rubricTag, 'Kategorie')
         }
-      }}
-    >
+      }}>
       {allCatArray.map((group, index) => {
         const tags = props.groupedCategories.allTags[group]
 
@@ -109,11 +101,10 @@ function CategoryPicker(props: CategoryPickerProps) {
         const isSelectAll = tagStrings.every(tag =>
           props.activeTags.Kategorie?.includes(tag)
         )
-        false
 
         return (
           <AccordionItem key={index}>
-            {({ isExpanded }) => (
+            {({isExpanded}) => (
               <>
                 <h2>
                   <AccordionButton py="4">
@@ -121,8 +112,7 @@ function CategoryPicker(props: CategoryPickerProps) {
                       flex="1"
                       textAlign="left"
                       fontSize="md"
-                      fontWeight={isExpanded ? "bold" : "normal"}
-                    >
+                      fontWeight={isExpanded ? 'bold' : 'normal'}>
                       {group}
                     </Text>
                     <AccordionIcon />
@@ -144,12 +134,11 @@ function CategoryPicker(props: CategoryPickerProps) {
                             // if (isSelectAll) {
                             //   addOrRemoveTag(`Kategorie:${group}`, 'Kategorie')
                             // }
-                            props.addOrRemoveTag(item.tag, "Kategorie")
+                            props.addOrRemoveTag(item.tag, 'Kategorie')
                           }}
                           cursor="pointer"
-                          fontSize={"sm"}
-                          fontWeight={active ? "semibold" : "normal"}
-                        >
+                          fontSize="sm"
+                          fontWeight={active ? 'semibold' : 'normal'}>
                           {item.label}
                         </Text>
                       )
@@ -157,8 +146,8 @@ function CategoryPicker(props: CategoryPickerProps) {
                     {tags.length > 0 && (
                       <Button
                         variant="link"
-                        fontWeight={"normal"}
-                        size={"xs"}
+                        fontWeight="normal"
+                        size="xs"
                         onClick={() => {
                           if (isSelectAll) {
                             // remove all tags from group
@@ -166,7 +155,7 @@ function CategoryPicker(props: CategoryPickerProps) {
                               props.activeTags.Kategorie?.filter(
                                 tag => !tagStrings.includes(tag)
                               ),
-                              "Kategorie"
+                              'Kategorie'
                             )
                           } else {
                             // add all tags from group without duplicates
@@ -174,18 +163,17 @@ function CategoryPicker(props: CategoryPickerProps) {
                               [
                                 ...new Set([
                                   ...props.activeTags.Kategorie,
-                                  ...tagStrings,
-                                ]),
+                                  ...tagStrings
+                                ])
                               ].filter(
                                 (tag, index, self) =>
                                   self.indexOf(tag) === index
                               ),
-                              "Kategorie"
+                              'Kategorie'
                             )
                           }
-                        }}
-                      >
-                        {!isSelectAll ? "Alle auswählen" : "Zurücksetzen"}
+                        }}>
+                        {!isSelectAll ? 'Alle auswählen' : 'Zurücksetzen'}
                       </Button>
                     )}
                   </Stack>
@@ -199,9 +187,7 @@ function CategoryPicker(props: CategoryPickerProps) {
   )
 }
 
-type ActiveTags = {
-  [key: string]: string[]
-}
+type ActiveTags = Record<string, string[]>
 
 export default function ProductsPageShell(
   props: ProductsPageShellSidebarProps
@@ -215,7 +201,7 @@ export default function ProductsPageShell(
       activeTags: GroupedTags
     } = {
       allTags: {},
-      activeTags: {},
+      activeTags: {}
     }
 
     groupTags(props.allTags, grouped.allTags)
@@ -228,12 +214,10 @@ export default function ProductsPageShell(
     const s = Object.entries(groupedTags.activeTags).reduce(
       (acc, [group, tags]) => ({
         ...acc,
-        [group]: tags.map(tag => tag.tag),
+        [group]: tags.map(tag => tag.tag)
       }),
       {}
-    ) as {
-      [key: string]: string[]
-    }
+    ) as Record<string, string[]>
 
     return s
   })
@@ -244,7 +228,7 @@ export default function ProductsPageShell(
       activeTags: GroupedTags
     } = {
       allTags: {},
-      activeTags: {},
+      activeTags: {}
     }
 
     groupCategoriesTags(
@@ -257,21 +241,21 @@ export default function ProductsPageShell(
   }, [
     groupedTags.allTags.Kategorie,
     groupedTags.activeTags.Kategorie,
-    activeTags,
+    activeTags
   ])
 
   const blacklistedTags = React.useMemo(() => {
     const blacklist = []
-    const categoryTags = activeTags["Kategorie"]
+    const categoryTags = activeTags.Kategorie
 
     if (categoryTags && categoryTags.length > 0) {
       for (const group in groupedTags.allTags) {
-        if (group === "Kategorie") continue
+        if (group === 'Kategorie') continue
 
         const tags = groupedTags.allTags[group]
 
         for (const tag of tags) {
-          const categoryTag = tag.categories.join(":")
+          const categoryTag = tag.categories.join(':')
 
           if (categoryTag) {
             // add to blacklist if no category starts with the same string
@@ -291,7 +275,7 @@ export default function ProductsPageShell(
   }, [groupedTags, activeTags])
 
   const updateActiveTags = (tags: string[], group: string) => {
-    const updatedActiveTags = { ...activeTags, [group]: tags }
+    const updatedActiveTags = {...activeTags, [group]: tags}
 
     setActiveTags(updatedActiveTags)
 
@@ -320,32 +304,35 @@ export default function ProductsPageShell(
 
   const FilterElements = (props: {
     props?: StackProps
-    wrapperAs?: BoxProps["as"]
+    wrapperAs?: BoxProps['as']
     wrapperProps?: BoxProps
     fixedMenuPosition?: boolean
-    size?: "sm" | "md" | "lg"
+    size?: 'sm' | 'md' | 'lg'
   }) => {
-    const { Kategorie, ...rest } = groupedTags.allTags
-    const { Kategorie: activeKategorie, ...activeRest } = activeTags
+    const {Kategorie, ...rest} = groupedTags.allTags
+    const {Kategorie: activeKategorie, ...activeRest} = activeTags
 
     return Object.entries(rest)
       .map(([label, items], index) => {
         // group items by item category
-        const groupedItems = items.reduce<{
-          [category: string]: Array<{
-            tag: string
-            value: string
-          }>
-        }>((acc, item) => {
+        const groupedItems = items.reduce<
+          Record<
+            string,
+            Array<{
+              tag: string
+              value: string
+            }>
+          >
+        >((acc, item) => {
           if (blacklistedTags.includes(item.tag)) return acc
 
-          const { categories } = item
+          const {categories} = item
 
-          const categoryGroup = categories.join(" > ")
+          const categoryGroup = categories.join(' > ')
 
           const reducedItem = {
             tag: item.tag,
-            value: item.label,
+            value: item.label
           }
 
           acc[categoryGroup] = acc[categoryGroup] || []
@@ -359,8 +346,8 @@ export default function ProductsPageShell(
             label: category,
             options: items.map(item => ({
               label: item.value,
-              value: item.tag,
-            })),
+              value: item.tag
+            }))
           })
         )
 
@@ -377,7 +364,7 @@ export default function ProductsPageShell(
                   activeRest[label]
                     ? activeRest[label].includes(option.value)
                     : false
-                ),
+                )
               }.options)
           )
           .flat()
@@ -387,7 +374,7 @@ export default function ProductsPageShell(
         return (
           <Wrapper {...props.wrapperProps} key={index}>
             <Select<TagFilterOption, true, GroupBase<TagFilterOption>>
-              size={props.size || "sm"}
+              size={props.size || 'sm'}
               isMulti
               name={label}
               options={
@@ -396,9 +383,9 @@ export default function ProductsPageShell(
                   : transformedItems[0].options
               }
               value={activeItems}
-              onChange={(value, actionMeta) => {
+              onChange={value => {
                 updateActiveTags(
-                  value.map(v => v.value),
+                  value.map((v: {value: any}) => v.value),
                   label
                 )
               }}
@@ -407,39 +394,39 @@ export default function ProductsPageShell(
               closeMenuOnSelect={false}
               selectedOptionStyle="check"
               chakraStyles={{
-                dropdownIndicator: provided => ({
+                dropdownIndicator: (provided: any) => ({
                   ...provided,
-                  bg: "transparent",
+                  bg: 'transparent',
                   px: 2,
-                  cursor: "inherit",
+                  cursor: 'inherit'
                 }),
-                indicatorSeparator: provided => ({
+                indicatorSeparator: (provided: any) => ({
                   ...provided,
-                  display: "none",
+                  display: 'none'
                 }),
-                menu: provided => ({
+                menu: (provided: any) => ({
                   ...provided,
-                  zIndex: 9999,
+                  zIndex: 9999
                 }),
-                menuList: ({ minW, ...provided }) => ({
+                menuList: ({minW, ...provided}: Record<string, any>) => ({
                   ...provided,
                   position: props.fixedMenuPosition
-                    ? "fixed"
-                    : provided.position,
+                    ? 'fixed'
+                    : provided.position
                 }),
-                container: provided => ({
+                container: (provided: any) => ({
+                  ...provided
+                }),
+                placeholder: (provided: any) => ({
                   ...provided,
+                  position: 'static',
+                  transform: 'none'
                 }),
-                placeholder: provided => ({
+                singleValue: (provided: any) => ({
                   ...provided,
-                  position: "static",
-                  transform: "none",
-                }),
-                singleValue: provided => ({
-                  ...provided,
-                  position: "static",
-                  transform: "none",
-                }),
+                  position: 'static',
+                  transform: 'none'
+                })
               }}
             />
           </Wrapper>
@@ -447,27 +434,25 @@ export default function ProductsPageShell(
       })
       .concat(
         <Button
-          display={Object.keys(activeTags).length > 0 ? "block" : "none"}
+          display={Object.keys(activeTags).length > 0 ? 'block' : 'none'}
           key={`clear-${Object.keys(rest).length}`}
           variant="link"
-          fontWeight={"normal"}
-          size={"xs"}
+          fontWeight="normal"
+          size="xs"
           onClick={() => {
             clearActiveTags()
-          }}
-        >
-          {"Zurücksetzen"}
+          }}>
+          Zurücksetzen
         </Button>
       )
   }
 
   return (
     <Flex
-      h={{ sm: "calc(100vh - 5rem)", md: "calc(100vh - 4rem)" }}
-      bg={"white"}
-      overflow="hidden"
-    >
-      <SidebarContent display={{ base: "none", lg: "block" }}>
+      h={{sm: 'calc(100vh - 5rem)', md: 'calc(100vh - 4rem)'}}
+      bg="white"
+      overflow="hidden">
+      <SidebarContent display={{base: 'none', lg: 'block'}}>
         <CategoryPicker
           groupedCategories={groupedCategories}
           activeTags={activeTags}
@@ -476,25 +461,24 @@ export default function ProductsPageShell(
         />
       </SidebarContent>
 
-      <Flex w="100%" h="100%" flexDirection={"column"}>
+      <Flex w="100%" h="100%" flexDirection="column">
         <Flex
-          px={{ base: "4", md: "6" }}
-          py={{ base: "4", md: "6" }}
+          px={{base: '4', md: '6'}}
+          py={{base: '4', md: '6'}}
           borderBottom="1px"
-          borderBottomColor={useColorModeValue("gray.200", "gray.700")}
-          flexShrink={1}
-        >
-          <Wrap w="80%" display={{ base: "none", lg: "block" }}>
+          borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
+          flexShrink={1}>
+          <Wrap w="80%" display={{base: 'none', lg: 'block'}}>
             {FilterElements({
               wrapperAs: WrapItem,
               wrapperProps: {
-                py: "px",
+                py: 'px'
               },
-              fixedMenuPosition: true,
+              fixedMenuPosition: true
             })}
           </Wrap>
 
-          <FilterDrawer display={{ base: "flex", lg: "none" }}>
+          <FilterDrawer display={{base: 'flex', lg: 'none'}}>
             <Stack spacing="8">
               <Heading size="sm">Kategorien</Heading>
 
@@ -508,7 +492,7 @@ export default function ProductsPageShell(
 
               <Stack>
                 {FilterElements({
-                  size: "md",
+                  size: 'md'
                 })}
               </Stack>
             </Stack>
@@ -522,14 +506,13 @@ export default function ProductsPageShell(
             </Text>
             <CSelect
               size="sm"
-              variant={"unstyled"}
+              variant="unstyled"
               my="2"
               icon={<ChevronDownIcon />}
               cursor="pointer"
               onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                 props.onSortChange(e.target.value)
-              }}
-            >
+              }}>
               {props.sortOptions.map(option => {
                 return (
                   <option key={option} value={option}>
@@ -540,43 +523,40 @@ export default function ProductsPageShell(
             </CSelect>
           </HStack>
         </Flex>
-        <Box flex="1" pos="relative" overflowY={"scroll"} zIndex="0" pb={50}>
+        <Box flex="1" pos="relative" overflowY="scroll" zIndex="0" pb={50}>
           {props.children}
         </Box>
         <HStack
           as="footer"
-          justifyContent={"end"}
+          justifyContent="end"
           my="5"
-          px={{ base: "4", md: "6" }}
+          px={{base: '4', md: '6'}}
           spacing="4"
-          divider={<StackDivider />}
-        >
+          divider={<StackDivider />}>
           {[
             {
-              text: "Kontakt",
-              to: "/kontakt/",
+              text: 'Kontakt',
+              to: '/kontakt/'
             },
 
             {
-              text: "Datenschutz",
-              to: "/datenschutz/",
+              text: 'Datenschutz',
+              to: '/datenschutz/'
             },
             {
-              text: "Impressum",
-              to: "/impressum/",
-            },
+              text: 'Impressum',
+              to: '/impressum/'
+            }
           ].map((item, index) => {
             return (
-              <Link to={item.to}>
+              <Link to={item.to} key={index}>
                 <Text
-                  key={index}
                   fontSize="xs"
                   color="gray.400"
                   _hover={{
-                    color: "gray.500",
-                    textDecoration: "underline",
-                  }}
-                >
+                    color: 'gray.500',
+                    textDecoration: 'underline'
+                  }}>
                   {item.text}
                 </Text>
               </Link>
@@ -592,7 +572,7 @@ const FilterDrawer: React.FC<
   ButtonProps & {
     children: React.ReactNode
   }
-> = ({ children, ...buttonProps }) => {
+> = ({children, ...buttonProps}) => {
   const drawerDisclosure = useDisclosure()
 
   return (
@@ -601,19 +581,17 @@ const FilterDrawer: React.FC<
         leftIcon={<BsFilterCircleFill />}
         size="sm"
         onClick={drawerDisclosure.onOpen}
-        {...buttonProps}
-      >
+        {...buttonProps}>
         Filter
       </Button>
 
       <Drawer
         isOpen={drawerDisclosure.isOpen}
         onClose={drawerDisclosure.onClose}
-        placement="bottom"
-      >
+        placement="bottom">
         <DrawerOverlay />
 
-        <DrawerContent maxHeight="55%" borderTopRadius={"lg"} overflow="hidden">
+        <DrawerContent maxHeight="55%" borderTopRadius="lg" overflow="hidden">
           <DrawerCloseButton />
 
           <DrawerBody pt="16">{children}</DrawerBody>
@@ -625,58 +603,58 @@ const FilterDrawer: React.FC<
 
 interface SidebarProps extends BoxProps {}
 
-const SidebarContent = ({ children, ...rest }: SidebarProps) => {
+const SidebarContent = ({children, ...rest}: SidebarProps) => {
   return (
     <Box
       borderRight="1px"
-      borderRightColor={useColorModeValue("gray.200", "gray.700")}
+      borderRightColor={useColorModeValue('gray.200', 'gray.700')}
       w={60}
       minW={60}
       h="full"
-      overflowY={"scroll"}
+      overflowY="scroll"
       sx={{
-        "&::-webkit-scrollbar": {
-          width: "12px",
+        '&::-webkit-scrollbar': {
+          width: '12px'
         },
-        "&::-webkit-scrollbar-track": {
-          background: "transparent",
+        '&::-webkit-scrollbar-track': {
+          background: 'transparent'
         },
 
-        "&::-webkit-scrollbar-thumb": {
-          borderRadius: "10px",
-          border: "3px solid #ffffff",
-        },
+        '&::-webkit-scrollbar-thumb': {
+          borderRadius: '10px',
+          border: '3px solid #ffffff'
+        }
       }}
-      {...rest}
-    >
+      {...rest}>
       {children}
     </Box>
   )
 }
 
-type GroupedTags = {
-  [group: string]: Array<{
+type GroupedTags = Record<
+  string,
+  Array<{
     categories: string[]
     tag: string
     label: string
   }>
-}
+>
 
 function groupTags(
-  tags: ProductsPageShellSidebarProps["activeTags"],
+  tags: ProductsPageShellSidebarProps['activeTags'],
   groupedTags: GroupedTags
 ) {
   if (!tags) return groupedTags
 
   for (const tag of Object.values(tags)) {
-    const tagParts = tag.split(":")
+    const tagParts = tag.split(':')
 
     // skip if tag is not in the format "group:tag:..."
     if (tagParts.length < 2) continue
 
     // groupTag group is the n-1 part
     const group =
-      tagParts[0] === "Kategorie" ? "Kategorie" : tagParts.slice(-2)[0]
+      tagParts[0] === 'Kategorie' ? 'Kategorie' : tagParts.slice(-2)[0]
     // label is the last part
     const label = tagParts.slice(-1)[0]
 
@@ -687,7 +665,7 @@ function groupTags(
     groupedTags[group].push({
       tag,
       label,
-      categories,
+      categories
     })
   }
 
@@ -701,15 +679,16 @@ const groupCategoriesTags = (
   if (!tags) return groupedTags
 
   for (const tag of Object.values(tags)) {
-    const [_, category, ...rest] = tag.split(":")
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [_, category, ...rest] = tag.split(':')
 
     groupedTags[category] = groupedTags[category] || []
 
     if (rest.length > 0) {
       groupedTags[category].push({
         categories: [],
-        tag: tag,
-        label: rest[0],
+        tag,
+        label: rest[0]
       })
     }
   }

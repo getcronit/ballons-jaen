@@ -1,32 +1,26 @@
 import {
-  Box,
   Button,
   FormControl,
   FormErrorMessage,
   FormLabel,
   Heading,
   HStack,
-  Image,
   Input,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
   ModalFooter,
-  ModalHeader,
   ModalOverlay,
   Stack,
   Text,
-  Textarea,
-  VStack,
-  Wrap,
-  WrapItem,
-} from "@chakra-ui/react"
-import React from "react"
-import { Controller, useForm } from "react-hook-form"
-import { CheckboxStyled } from "../../CheckboxStyled"
+  Textarea
+} from '@chakra-ui/react'
+import React from 'react'
+import {Controller, useForm} from 'react-hook-form'
+import {CheckboxStyled} from '../../CheckboxStyled'
 
-export type ContactFormValues = {
+export interface ContactFormValues {
   name: string
   email: string
   message: string
@@ -44,14 +38,14 @@ export interface ContactModalProps {
 export const ContactModal: React.FC<ContactModalProps> = ({
   isOpen,
   onClose,
-  onSubmit,
+  onSubmit
 }) => {
   const {
     register,
     control,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitting },
+    formState: {errors, isSubmitting}
   } = useForm<ContactFormValues>()
 
   React.useEffect(() => {
@@ -65,7 +59,10 @@ export const ContactModal: React.FC<ContactModalProps> = ({
       <ModalOverlay />
 
       <ModalContent>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form
+          onSubmit={event => {
+            void handleSubmit(onSubmit)(event)
+          }}>
           <ModalCloseButton />
           <ModalBody p="16">
             <Stack spacing="6">
@@ -86,7 +83,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                   <Input
                     id="name"
                     placeholder="Name"
-                    {...register("name", { required: true })}
+                    {...register('name', {required: true})}
                   />
 
                   <FormErrorMessage fontSize="sm">
@@ -101,7 +98,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                     id="email"
                     placeholder="max.mustermann@example.com"
                     type="email"
-                    {...register("email", { required: true })}
+                    {...register('email', {required: true})}
                   />
 
                   <FormErrorMessage fontSize="sm">
@@ -117,7 +114,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                 <Textarea
                   id="message"
                   placeholder="Nachricht"
-                  {...register("message", { required: true })}
+                  {...register('message', {required: true})}
                 />
 
                 <FormErrorMessage fontSize="sm">
@@ -127,14 +124,13 @@ export const ContactModal: React.FC<ContactModalProps> = ({
 
               <FormControl isInvalid={!!errors.agreeToTerms}>
                 <Controller
-                  render={({ field, fieldState, formState }) => (
+                  render={({field, fieldState, formState}) => (
                     <CheckboxStyled
                       ref={field.ref}
                       onBlur={field.onBlur}
                       onChange={field.onChange}
                       checked={field.value}
-                      roundedFull
-                    >
+                      roundedFull>
                       <Text fontSize="sm">
                         Ich bin damit einverstanden, dass meine Angaben zur
                         Kontaktaufnahme und für Rückfragen gespeichert werden.
@@ -145,7 +141,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                   control={control}
                   rules={{
                     required:
-                      "Bitte bestätigen Sie die Bedinungen zur Kontaktaufnahme",
+                      'Bitte bestätigen Sie die Bedinungen zur Kontaktaufnahme'
                   }}
                 />
                 <FormErrorMessage fontSize="sm">
@@ -155,7 +151,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
             </Stack>
           </ModalBody>
 
-          <ModalFooter borderTop={"1px solid"} color="gray.200">
+          <ModalFooter borderTop="1px solid" color="gray.200">
             <Button isLoading={isSubmitting} type="submit">
               Senden
             </Button>

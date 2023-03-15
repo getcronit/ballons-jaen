@@ -1,19 +1,18 @@
-import { useJaenPageIndex } from "@jaenjs/jaen";
-import { useJaenPageContext } from "@jaenjs/jaen/src/internal-plugins/pages/internal/services/page";
+import {useIndexField, usePageContext} from '@snek-at/jaen'
 
 export const useNewsPages = () => {
-  const index = useJaenPageIndex({
-    jaenPageId: "JaenPage /news/",
-  });
+  const index = useIndexField({
+    jaenPageId: 'JaenPage /news/'
+  })
 
   // override index children to exclude a blog page if it is the current page
-  const { jaenPage } = useJaenPageContext();
+  const {jaenPage} = usePageContext()
 
   const children = index.children.filter(
-    (child) => child.id !== jaenPage.id && !child.deleted
-  );
+    child => child.id !== jaenPage.id && !child.deleted
+  )
 
-  index.children = children;
+  index.children = children
 
-  return index;
-};
+  return index
+}

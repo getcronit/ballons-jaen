@@ -6,13 +6,15 @@
 
 // You can delete this file if you're not using it
 
-import { GatsbyBrowser } from "gatsby"
-import { AuthenticationProvider } from "./src/services/authentication"
-import { PageWrapper } from "./src/Wrapper"
+import {GatsbyBrowser} from 'gatsby'
+import {AuthenticationProvider} from './src/services/authentication'
+import {PageWrapper} from './src/Wrapper'
 
-export const wrapPageElement: GatsbyBrowser["wrapPageElement"] = ({
-  element,
+export const wrapPageElement: GatsbyBrowser['wrapPageElement'] = ({
+  element
 }) => {
+  return <PageWrapper>{element}</PageWrapper>
+
   return (
     <PageWrapper>
       <AuthenticationProvider>{element}</AuthenticationProvider>

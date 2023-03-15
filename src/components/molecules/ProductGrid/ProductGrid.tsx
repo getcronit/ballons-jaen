@@ -3,12 +3,11 @@ import {
   Heading,
   SimpleGrid,
   SimpleGridProps,
-  useBreakpointValue,
-} from "@chakra-ui/react"
-import { ShopifyProduct } from "@snek-at/gatsby-theme-shopify"
-import React from "react"
+  useBreakpointValue
+} from '@chakra-ui/react'
+import {ShopifyProduct} from '@snek-at/gatsby-theme-shopify'
 
-import { ProductCard } from "../ProductCard"
+import {ProductCard} from '../ProductCard'
 
 export interface ProductGridProps extends SimpleGridProps {
   heading?: string
@@ -43,7 +42,7 @@ export const ProductGrid = ({
               prefixPath={prefixPath}
               product={item}
               key={index}
-              left={0 === (index + 1) % v}
+              left={(index + 1) % v === 0}
               wholesale={wholesale}
             />
           )

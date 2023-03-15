@@ -1,30 +1,31 @@
-import { Box, HStack, Tag } from "@chakra-ui/react";
-import { connectSection, Field } from "@jaenjs/jaen";
+import {Box, HStack, Tag} from '@chakra-ui/react'
+import {connectBlock, Field} from '@snek-at/jaen'
 
-const BlogTagItem = connectSection(
+const BlogTagItem = connectBlock(
   () => {
     return (
-      <Tag variant='normal'>
-        {<Field.Text name="tagText" defaultValue="Tag" />}
+      <Tag variant="normal">
+        {<Field.Text name="tagText" label="Text" defaultValue="Tag" />}
       </Tag>
-    );
+    )
   },
   {
-    name: "BlogTagItem",
-    displayName: "Tag",
+    name: 'BlogTagItem',
+    label: 'Tag'
   }
-);
+)
 
 export const BlogTags: React.FC<{
-  fieldName: string;
-}> = (props) => {
+  fieldName: string
+}> = props => {
   return (
     <Box minW="24">
       <Field.Section
         as={HStack}
         name={props.fieldName}
-        displayName="Tags"
-        sections={[BlogTagItem]} />
+        label="Tags"
+        blocks={[BlogTagItem]}
+      />
     </Box>
-  );
-};
+  )
+}

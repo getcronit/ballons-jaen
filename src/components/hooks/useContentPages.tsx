@@ -1,16 +1,15 @@
-import { useJaenPageIndex } from "@jaenjs/jaen";
+import {useIndexField} from '@snek-at/jaen'
 
 export const useContentPages = () => {
-  const index = useJaenPageIndex();
-  
-  const templates = ["ContentPage1", "ContentPage2"]
+  const index = useIndexField()
 
+  const templates = ['KategorieA', 'KategorieB']
 
   const children = index.children.filter(
-    (child) => templates.includes(child.template!) && child.deleted !== true
-  );
+    child => templates.includes(child.template!) && child.deleted !== true
+  )
 
-  index.children = children;
+  index.children = children
 
-  return index;
-};
+  return index
+}

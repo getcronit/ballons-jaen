@@ -21,7 +21,6 @@ import {
   Wrap,
   WrapItem,
 } from "@chakra-ui/react"
-import { FaHeart } from "@react-icons/all-files/fa/FaHeart"
 import { FaShare } from "@react-icons/all-files/fa/FaShare"
 import { FaShoppingBasket } from "@react-icons/all-files/fa/FaShoppingBasket"
 import { GiBalloons } from "@react-icons/all-files/gi/GiBalloons"
@@ -35,21 +34,14 @@ import {
 import { navigate } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
+// @ts-expect-error
 import ImagesViewer from "react-images-viewer"
 
-import {
-  replaceHexColorsInHTML,
-  formatPrice,
-  getProductPrices,
-} from "../../../common/utils"
+import { getProductMetafields } from "../../../common/getProductMetafields"
+import { getProductPrices, replaceHexColorsInHTML } from "../../../common/utils"
 import { useBasket } from "../../../services/basket"
 import { ProductSlider } from "../../molecules/ProductSlider"
 import ProductsPageShell from "../ProductsTemplate/ProductsPageShell"
-import {
-  getProductMetafields,
-  ProductFilling,
-  ProductMetafields,
-} from "../../../common/getProductMetafields"
 
 export interface ProductTemplateProps extends ProductPageData {
   path: string
@@ -87,7 +79,7 @@ export const ProductTemplate = ({
       allTags={allTags}
       activeTags={allActiveTags}
       onActiveTagsChange={tags => {
-        navigate("/products", {
+        void navigate("/products", {
           state: {
             activeTags: tags,
           },
@@ -158,18 +150,18 @@ function Price({
           fontSize="md"
           fontWeight="semibold"
           color="gray.600"
-          textDecoration={"line-through"}
+          textDecoration="line-through"
         >
           {compareAtPriceFormatted}
         </Text>
 
         <Heading
-          fontSize={"lg"}
+          fontSize="lg"
           mt={{
             base: 0,
             md: 4,
           }}
-          fontWeight={"semibold"}
+          fontWeight="semibold"
           color="red.500"
         >
           {priceFormatted}
@@ -179,7 +171,7 @@ function Price({
   }
 
   return (
-    <Heading size="lg" fontWeight={"semibold"}>
+    <Heading size="lg" fontWeight="semibold">
       {priceFormatted}
     </Heading>
   )
@@ -257,9 +249,9 @@ const ProductDetail = withStoreContext<{
         m={{ base: 0, md: 1 }}
         position={{ base: "relative", lg: "sticky" }}
         top="15"
-        alignSelf={"flex-start"}
+        alignSelf="flex-start"
       >
-        <VStack align={"left"} spacing="4">
+        <VStack align="left" spacing="4">
           <Button
             justifyContent="flex-start"
             variant="link"
@@ -312,12 +304,12 @@ const ProductDetail = withStoreContext<{
 
           <Divider />
 
-          <Text fontSize="xs" fontWeight={"thin"}>
+          <Text fontSize="xs" fontWeight="thin">
             Artikelnummer: {props.product.variants[0].sku || "-"}
           </Text>
           <Divider />
 
-          {availableForSale === false && (
+          {!availableForSale && (
             <Text color="red.500">Derzeit nicht verfügbar</Text>
           )}
 
@@ -329,7 +321,9 @@ const ProductDetail = withStoreContext<{
               defaultValue={minQuantity}
               min={minQuantity}
               value={quantity}
-              onChange={valueString => setQuantity(parseInt(valueString))}
+              onChange={valueString => {
+                setQuantity(parseInt(valueString))
+              }}
             >
               <NumberInputField />
               <NumberInputStepper>
@@ -339,11 +333,11 @@ const ProductDetail = withStoreContext<{
             </NumberInput>
 
             <Button
-              disabled={availableForSale === false}
-              fontWeight={"semibold"}
+              disabled={!availableForSale}
+              fontWeight="semibold"
               textTransform="uppercase"
               leftIcon={<Icon as={FaShoppingBasket} />}
-              borderRadius={"full"}
+              borderRadius="full"
               size={{
                 base: "sm",
                 md: "md",
@@ -361,7 +355,7 @@ const ProductDetail = withStoreContext<{
             </Button>
           </HStack>
           <Divider />
-          <Flex alignItems={"center"} justifyContent="center" fontSize={"xl"}>
+          <Flex alignItems="center" justifyContent="center" fontSize="xl">
             <Box mx="auto">
               <ShareText />
             </Box>
@@ -388,10 +382,10 @@ function ShareText() {
       cursor="pointer"
     >
       <Icon as={FaShare} mr="2" />
-      <Text fontWeight={"semibold"} onClick={onCopy}>
+      <Text fontWeight="semibold" onClick={onCopy}>
         Teilen
         {hasCopied && (
-          <Text ml="2" fontWeight={"thin"}>
+          <Text ml="2" fontWeight="thin">
             (Kopiert!)
           </Text>
         )}
@@ -428,7 +422,9 @@ const ImageThumbnailWrapItem = (props: {
       transition="ease-out"
     >
       <GatsbyImage
-        onDragStart={e => e.preventDefault()}
+        onDragStart={e => {
+          e.preventDefault()
+        }}
         draggable="false"
         image={gatsbyImageData}
         alt={altText || "Product image "}
@@ -460,23 +456,18 @@ const ImageSlider = (props: {
       <ImagesViewer
         currImg={curMediaIndex}
         isOpen={isPreviewOpen}
-        onClose={() => setIsPreviewOpen(false)}
-        imgs={media.map(
-          ({
-            image: {
-              altText: caption,
-              gatsbyImageData: {
-                images: { fallback },
-              },
-            },
-          }) => ({
-            src: fallback?.src,
-            caption,
-            srcSet: fallback?.srcSet,
-          })
-        )}
+        onClose={() => {
+          setIsPreviewOpen(false)
+        }}
+        imgs={media.map(({ image }) => ({
+          src: image.gatsbyImageData?.images?.fallback?.src,
+          caption: image.altText,
+          srcSet: image.gatsbyImageData?.images?.fallback?.srcSet,
+        }))}
         showThumbnails
-        onClickThumbnail={(index: number) => setCurMediaIndex(index)}
+        onClickThumbnail={(index: number) => {
+          setCurMediaIndex(index)
+        }}
         onClickNext={() => {
           setCurMediaIndex(prevState => {
             return prevState + 1
@@ -499,7 +490,12 @@ const ImageSlider = (props: {
         /* w="100%" */
       >
         <AspectRatio ratio={4 / 3}>
-          <Box onClick={() => setIsPreviewOpen(true)} cursor="zoom-in">
+          <Box
+            onClick={() => {
+              setIsPreviewOpen(true)
+            }}
+            cursor="zoom-in"
+          >
             {curMedia?.image && (
               <GatsbyImage
                 image={curMedia.image.gatsbyImageData}
@@ -509,7 +505,7 @@ const ImageSlider = (props: {
           </Box>
         </AspectRatio>
         <Wrap
-          overflow={"hidden"}
+          overflow="hidden"
           bg={useColorModeValue("gray.50", "gray.700")}
           spacing={0}
           justify="center"
@@ -519,7 +515,9 @@ const ImageSlider = (props: {
               key={index}
               media={media}
               active={curMediaIndex === index}
-              onClick={() => setCurMediaIndex(index)}
+              onClick={() => {
+                setCurMediaIndex(index)
+              }}
             />
           ))}
         </Wrap>

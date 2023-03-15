@@ -1,18 +1,18 @@
-import { useEffect } from "react"
+import {useEffect} from 'react'
 
 export default function ScrollToTop({
   children,
-  pathname,
+  pathname
 }: {
   children: React.ReactNode
   pathname: string
 }) {
   useEffect(() => {
-    const element = document.getElementById("jaen-content-container")
+    const element = document.getElementById('jaen-content-container')
 
-    const canControlScrollRestoration = "scrollRestoration" in window.history
+    const canControlScrollRestoration = 'scrollRestoration' in window.history
     if (canControlScrollRestoration) {
-      window.history.scrollRestoration = "manual"
+      window.history.scrollRestoration = 'manual'
     }
 
     if (element) {
