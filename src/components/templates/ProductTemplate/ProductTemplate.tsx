@@ -1,4 +1,5 @@
-import { ChevronLeftIcon } from "@chakra-ui/icons"
+import {ChevronLeftIcon} from '@chakra-ui/icons'
+
 import {
   AspectRatio,
   Box,
@@ -19,29 +20,29 @@ import {
   useColorModeValue,
   VStack,
   Wrap,
-  WrapItem,
-} from "@chakra-ui/react"
-import { FaShare } from "@react-icons/all-files/fa/FaShare"
-import { FaShoppingBasket } from "@react-icons/all-files/fa/FaShoppingBasket"
-import { GiBalloons } from "@react-icons/all-files/gi/GiBalloons"
+  WrapItem
+} from '@chakra-ui/react'
+import {FaShare} from '@react-icons/all-files/fa/FaShare'
+import {FaShoppingBasket} from '@react-icons/all-files/fa/FaShoppingBasket'
+import {GiBalloons} from '@react-icons/all-files/gi/GiBalloons'
 import {
   getFormattedProductPrices,
   getProductTags,
   ProductPageData,
   ShopifyProduct,
-  withStoreContext,
-} from "@snek-at/gatsby-theme-shopify"
-import { navigate } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
-import React from "react"
+  withStoreContext
+} from '@snek-at/gatsby-theme-shopify'
+import {navigate} from 'gatsby'
+import {GatsbyImage} from 'gatsby-plugin-image'
+import React from 'react'
 // @ts-expect-error
-import ImagesViewer from "react-images-viewer"
+import ImagesViewer from 'react-images-viewer'
 
-import { getProductMetafields } from "../../../common/getProductMetafields"
-import { getProductPrices, replaceHexColorsInHTML } from "../../../common/utils"
-import { useBasket } from "../../../services/basket"
-import { ProductSlider } from "../../molecules/ProductSlider"
-import ProductsPageShell from "../ProductsTemplate/ProductsPageShell"
+import {getProductMetafields} from '../../../common/getProductMetafields'
+import {getProductPrices, replaceHexColorsInHTML} from '../../../common/utils'
+import {useBasket} from '../../../services/basket'
+import {ProductSlider} from '../../molecules/ProductSlider'
+import ProductsPageShell from '../ProductsTemplate/ProductsPageShell'
 
 export interface ProductTemplateProps extends ProductPageData {
   path: string
@@ -60,10 +61,10 @@ export const ProductTemplate = ({
   onGoBack,
   shopifyProduct,
   relatedProducts,
-  isOnWishList = false,
+  isOnWishList = false
 }: ProductTemplateProps) => {
   // remove last part of path
-  const prefixPath = path.split("/").slice(0, -1).join("/")
+  const prefixPath = path.split('/').slice(0, -1).join('/')
 
   const productTags = getProductTags(shopifyProduct)
 
@@ -71,7 +72,7 @@ export const ProductTemplate = ({
     ...productTags.categoryTags,
     ...productTags.otherTags,
     `Typ:${shopifyProduct.productType}`,
-    `Hersteller:${shopifyProduct.vendor}`,
+    `Hersteller:${shopifyProduct.vendor}`
   ]
 
   return (
@@ -79,18 +80,26 @@ export const ProductTemplate = ({
       allTags={allTags}
       activeTags={allActiveTags}
       onActiveTagsChange={tags => {
-        void navigate("/products", {
+        void navigate('/products', {
           state: {
-            activeTags: tags,
-          },
+            activeTags: tags
+          }
         })
       }}
-      sortOptions={["Alphabetisch", "Preis aufsteigend", "Preis absteigend"]}
-      onSortChange={() => {}}
-    >
+      sortOptions={['Alphabetisch', 'Preis aufsteigend', 'Preis absteigend']}
+      onSortChange={() => {}}>
       <VStack dir="column" w="100%" px={2}>
+        <Box w="full" my="4">
+          <Button
+            justifyContent="flex-start"
+            variant="link"
+            leftIcon={<ChevronLeftIcon />}
+            onClick={onGoBack}>
+            Zurück
+          </Button>
+        </Box>
         <VStack spacing={12}>
-          <Flex direction={{ base: "column", lg: "row" }}>
+          <Flex direction={{base: 'column-reverse', lg: 'row'}}>
             <ProductDetail
               wholesale={wholesale}
               product={shopifyProduct}
@@ -104,18 +113,17 @@ export const ProductTemplate = ({
               description={shopifyProduct.descriptionHtml}
             />
           </Flex>
-          <Box display={{ base: "block", md: "none" }}>
+          <Box display={{base: 'block', md: 'none'}}>
             <ProductMoreDetail description={shopifyProduct.descriptionHtml} />
           </Box>
         </VStack>
         <Box
           w={{
-            base: "20rem",
-            md: "30rem",
-            lg: "55rem",
-            xl: "80rem",
-          }}
-        >
+            base: '20rem',
+            md: '30rem',
+            lg: '55rem',
+            xl: '80rem'
+          }}>
           <ProductSlider
             heading="Ähnliche Produkte"
             products={relatedProducts.nodes}
@@ -129,11 +137,11 @@ export const ProductTemplate = ({
 }
 
 function Price({
-  prices,
+  prices
 }: {
   prices: ReturnType<typeof getFormattedProductPrices>
 }) {
-  const { priceFormatted, compareAtPriceFormatted } = prices
+  const {priceFormatted, compareAtPriceFormatted} = prices
 
   if (compareAtPriceFormatted) {
     // strike through price and put discount price on the right side
@@ -142,16 +150,14 @@ function Price({
         direction="row"
         wrap="wrap"
         justifyContent={{
-          base: "center",
-          md: "flex-start",
-        }}
-      >
+          base: 'center',
+          md: 'flex-start'
+        }}>
         <Text
           fontSize="md"
           fontWeight="semibold"
           color="gray.600"
-          textDecoration="line-through"
-        >
+          textDecoration="line-through">
           {compareAtPriceFormatted}
         </Text>
 
@@ -159,11 +165,10 @@ function Price({
           fontSize="lg"
           mt={{
             base: 0,
-            md: 4,
+            md: 4
           }}
           fontWeight="semibold"
-          color="red.500"
-        >
+          color="red.500">
           {priceFormatted}
         </Heading>
       </Flex>
@@ -178,7 +183,7 @@ function Price({
 }
 
 const ProductDetail = withStoreContext<{
-  product: ProductPageData["shopifyProduct"]
+  product: ProductPageData['shopifyProduct']
   isOnWishList?: boolean
 
   wholesale?: boolean
@@ -190,14 +195,14 @@ const ProductDetail = withStoreContext<{
   const productMetatfields = getProductMetafields(props.product)
 
   const stepperStep = props.wholesale
-    ? parseInt(productMetatfields.wholesale?._SU || "1")
-    : parseInt(productMetatfields.details?._SU || "1")
+    ? parseInt(productMetatfields.wholesale?._SU || '1')
+    : parseInt(productMetatfields.details?._SU || '1')
   const minQuantity = stepperStep
 
   const [quantity, setQuantity] = React.useState(minQuantity)
 
   const prices = getProductPrices(props.product, {
-    isWholesale: props.wholesale || false,
+    isWholesale: props.wholesale || false
   })
 
   let taxable = props.product.variants[0]?.taxable
@@ -218,11 +223,11 @@ const ProductDetail = withStoreContext<{
     productTags.push(tags.otherString)
   }
 
-  if (props.product.vendor !== "-") {
+  if (props.product.vendor !== '-') {
     productTags.push(`Hersteller: ${props.product.vendor}`)
   }
 
-  if (props.product.productType && props.product.productType !== "-") {
+  if (props.product.productType && props.product.productType !== '-') {
     productTags.push(`Art: ${props.product.productType}`)
   }
 
@@ -232,7 +237,7 @@ const ProductDetail = withStoreContext<{
     basket.addProduct({
       variantId: props.product.variants[0].shopifyId,
       quantity,
-      stepperQuantity: stepperStep,
+      stepperQuantity: stepperStep
     })
 
     setQuantity(minQuantity)
@@ -244,29 +249,20 @@ const ProductDetail = withStoreContext<{
     <>
       <Box
         overflow="hidden"
-        px={{ base: 0, md: 4 }}
-        py={{ base: 4, md: 8 }}
-        m={{ base: 0, md: 1 }}
-        position={{ base: "relative", lg: "sticky" }}
+        px={{base: 0, md: 4}}
+        py={{base: 4, md: 8}}
+        m={{base: 0, md: 1}}
+        position={{base: 'relative', lg: 'sticky'}}
         top="15"
-        alignSelf="flex-start"
-      >
+        alignSelf="flex-start">
         <VStack align="left" spacing="4">
-          <Button
-            justifyContent="flex-start"
-            variant="link"
-            leftIcon={<ChevronLeftIcon />}
-            onClick={props.onGoBack}
-          >
-            Zurück
-          </Button>
           <Heading as="h1" size="lg">
             {props.product.title}
           </Heading>
           <Price prices={prices} />
 
           <Text fontSize="xs" color="gray.600">
-            {taxable ? "inkl." : "exkl."} MwSt.
+            {taxable ? 'inkl.' : 'exkl.'} MwSt.
           </Text>
 
           {/* <Divider />
@@ -291,11 +287,10 @@ const ProductDetail = withStoreContext<{
                 <Icon as={GiBalloons} boxSize={10} />
                 <Text
                   fontSize={{
-                    base: "xs",
-                    md: "sm",
+                    base: 'xs',
+                    md: 'sm'
                   }}
-                  color="gray.600"
-                >
+                  color="gray.600">
                   {productMetatfields.details.filling}
                 </Text>
               </HStack>
@@ -305,7 +300,7 @@ const ProductDetail = withStoreContext<{
           <Divider />
 
           <Text fontSize="xs" fontWeight="thin">
-            Artikelnummer: {props.product.variants[0].sku || "-"}
+            Artikelnummer: {props.product.variants[0].sku || '-'}
           </Text>
           <Divider />
 
@@ -323,8 +318,7 @@ const ProductDetail = withStoreContext<{
               value={quantity}
               onChange={valueString => {
                 setQuantity(parseInt(valueString))
-              }}
-            >
+              }}>
               <NumberInputField />
               <NumberInputStepper>
                 <NumberIncrementStepper />
@@ -339,17 +333,15 @@ const ProductDetail = withStoreContext<{
               leftIcon={<Icon as={FaShoppingBasket} />}
               borderRadius="full"
               size={{
-                base: "sm",
-                md: "md",
+                base: 'sm',
+                md: 'md'
               }}
-              onClick={addProductToBasket}
-            >
+              onClick={addProductToBasket}>
               <Text
                 fontSize={{
-                  base: "sm",
-                  md: "md",
-                }}
-              >
+                  base: 'sm',
+                  md: 'md'
+                }}>
                 In den Warenkorb
               </Text>
             </Button>
@@ -368,19 +360,18 @@ const ProductDetail = withStoreContext<{
 })
 
 function ShareText() {
-  const value = typeof window !== "undefined" ? window.location.href : ""
+  const value = typeof window !== 'undefined' ? window.location.href : ''
 
-  const { hasCopied, onCopy } = useClipboard(value)
+  const {hasCopied, onCopy} = useClipboard(value)
 
   return (
     <Center
-      color={hasCopied ? "red.500" : undefined}
+      color={hasCopied ? 'red.500' : undefined}
       _hover={{
-        color: hasCopied ? "red.400" : "red.300",
+        color: hasCopied ? 'red.400' : 'red.300'
       }}
       verticalAlign="center"
-      cursor="pointer"
-    >
+      cursor="pointer">
       <Icon as={FaShare} mr="2" />
       <Text fontWeight="semibold" onClick={onCopy}>
         Teilen
@@ -394,7 +385,7 @@ function ShareText() {
   )
 }
 
-type SliderMedia = ShopifyProduct["featuredMedia"]
+type SliderMedia = ShopifyProduct['featuredMedia']
 
 const ImageThumbnailWrapItem = (props: {
   media: SliderMedia
@@ -405,34 +396,33 @@ const ImageThumbnailWrapItem = (props: {
     return null
   }
 
-  const { gatsbyImageData, altText } = props.media.image
+  const {gatsbyImageData, altText} = props.media.image
 
   return (
     <WrapItem
-      boxSize={{ base: "16", md: "20" }}
+      boxSize={{base: '16', md: '20'}}
       onClick={props.onClick}
       cursor="pointer"
-      boxShadow={props.active ? "inset 0px 4px 0px 0px #eb1933" : "none"}
+      boxShadow={props.active ? 'inset 0px 4px 0px 0px #eb1933' : 'none'}
       p={2}
       mr={2}
       mb={2}
       _hover={{
-        bg: useColorModeValue("gray.100", "gray.800"),
+        bg: useColorModeValue('gray.100', 'gray.800')
       }}
-      transition="ease-out"
-    >
+      transition="ease-out">
       <GatsbyImage
         onDragStart={e => {
           e.preventDefault()
         }}
         draggable="false"
         image={gatsbyImageData}
-        alt={altText || "Product image "}
+        alt={altText || 'Product image '}
         style={{
-          height: "100%",
-          width: "100%",
-          objectFit: "contain",
-          objectPosition: "center",
+          height: '100%',
+          width: '100%',
+          objectFit: 'contain',
+          objectPosition: 'center'
         }}
       />
     </WrapItem>
@@ -441,7 +431,7 @@ const ImageThumbnailWrapItem = (props: {
 
 const ImageSlider = (props: {
   featuredMedia: SliderMedia
-  media: ShopifyProduct["media"]
+  media: ShopifyProduct['media']
   description?: string
 }) => {
   const media = props.media
@@ -459,10 +449,10 @@ const ImageSlider = (props: {
         onClose={() => {
           setIsPreviewOpen(false)
         }}
-        imgs={media.map(({ image }) => ({
+        imgs={media.map(({image}) => ({
           src: image.gatsbyImageData?.images?.fallback?.src,
           caption: image.altText,
-          srcSet: image.gatsbyImageData?.images?.fallback?.srcSet,
+          srcSet: image.gatsbyImageData?.images?.fallback?.srcSet
         }))}
         showThumbnails
         onClickThumbnail={(index: number) => {
@@ -482,10 +472,10 @@ const ImageSlider = (props: {
       <Box
         my="4"
         minW={{
-          base: "20rem",
-          md: "30rem",
-          lg: "35rem",
-          xl: "40rem",
+          base: '20rem',
+          md: '30rem',
+          lg: '35rem',
+          xl: '40rem'
         }}
         /* w="100%" */
       >
@@ -494,22 +484,20 @@ const ImageSlider = (props: {
             onClick={() => {
               setIsPreviewOpen(true)
             }}
-            cursor="zoom-in"
-          >
+            cursor="zoom-in">
             {curMedia?.image && (
               <GatsbyImage
                 image={curMedia.image.gatsbyImageData}
-                alt={curMedia.image.altText || "Product Image"}
+                alt={curMedia.image.altText || 'Product Image'}
               />
             )}
           </Box>
         </AspectRatio>
         <Wrap
           overflow="hidden"
-          bg={useColorModeValue("gray.50", "gray.700")}
+          bg={useColorModeValue('gray.50', 'gray.700')}
           spacing={0}
-          justify="center"
-        >
+          justify="center">
           {media.map((media, index) => (
             <ImageThumbnailWrapItem
               key={index}
@@ -522,22 +510,22 @@ const ImageSlider = (props: {
           ))}
         </Wrap>
 
-        <Box display={{ base: "none", md: "block" }}>
-          <ProductMoreDetail description={props.description || ""} />
+        <Box display={{base: 'none', md: 'block'}}>
+          <ProductMoreDetail description={props.description || ''} />
         </Box>
       </Box>
     </>
   )
 }
 
-const ProductMoreDetail = (props: { description: string }) => {
-  const color = useColorModeValue("#000000", "#ffffff")
+const ProductMoreDetail = (props: {description: string}) => {
+  const color = useColorModeValue('#000000', '#ffffff')
 
-  const html = replaceHexColorsInHTML(props.description, "#000000", color)
+  const html = replaceHexColorsInHTML(props.description, '#000000', color)
 
   return (
     <Box py="8">
-      <Box dangerouslySetInnerHTML={{ __html: html }} />
+      <Box dangerouslySetInnerHTML={{__html: html}} />
     </Box>
   )
 }
