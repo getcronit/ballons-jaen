@@ -25,7 +25,13 @@ import {
   useSectionField,
   UseSectionField
 } from '@snek-at/jaen'
-import React, {forwardRef, useCallback, useRef, useState} from 'react'
+import React, {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useRef,
+  useState
+} from 'react'
 import Slider from 'react-slick'
 import CustomImageViewer from '../CustomImageViewer'
 import BallonGas from './BallonGas'
@@ -108,7 +114,7 @@ const Images = React.memo<{
       dots: true,
       infinite: true,
       speed: 500,
-      slidesToShow: 3,
+      slidesToShow: 1,
       slidesToScroll: 1,
       arrows: true,
       autoplay: true,
@@ -295,6 +301,7 @@ const TextSection = connectBlock(
     return (
       <Text
         fontSize={{base: 'sm', lg: 'md'}}
+        maxW={{base: '80%', md: '60%', lg: '50%'}}
         textAlign="center"
         as="span"
         my="4">
@@ -430,13 +437,16 @@ const CategoryContentSection = connectBlock(
             src="/images/decorationen/shapes/shape.svg"
           />
           <VStack pos="relative">
-            <Text variant="cursive" size="120" as="span">
+            <Heading
+              variant="cursive"
+              fontSize={{base: 'xl', md: '2xl', lg: '3xl', xl: '4xl'}}
+              as="span">
               <Field.Text
                 name="title"
                 label="Title"
                 defaultValue="Überschrift"
               />
-            </Text>
+            </Heading>
             <Heading
               textAlign="center"
               fontSize={{base: 'md', md: 'lg', lg: 'xl', xl: '2xl'}}>
@@ -501,6 +511,8 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
       blocks: []
     })
 
+    // add event listener to check which section is active
+
     const Links: React.FC = () => {
       const HeadingLink = ({
         index,
@@ -520,14 +532,48 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
           field.value ?? field.staticValue ?? `Unbekannt (${index})`
         )
 
+        const [isActive, setIsActive] = useState(false)
+
+        useEffect(() => {
+          const handleScroll = () => {
+            const offsetTop = refs.current[index]?.offsetTop
+            const offsetBottom =
+              refs.current[index] &&
+              refs.current[index].offsetTop + refs.current[index].offsetHeight
+
+            console.log('offsetTop', offsetTop)
+            console.log('offsetBottom', offsetBottom)
+
+            if (offsetTop && offsetBottom) {
+              if (
+                window.pageYOffset >= offsetTop &&
+                window.pageYOffset <= offsetBottom
+              ) {
+                setIsActive(true)
+              } else {
+                setIsActive(false)
+              }
+            }
+          }
+
+          window.addEventListener('scroll', handleScroll)
+
+          return () => {
+            window.removeEventListener('scroll', handleScroll)
+          }
+        }, [])
+
         return (
           <Box key={index} mb={{base: 4, md: 8}}>
             <Link
+              color={isActive ? 'red' : 'black'}
               onClick={() => {
                 window?.scrollTo({
                   top: refs.current[index]?.offsetTop,
                   behavior: 'smooth'
                 })
+
+                onClose()
               }}>
               {title}
             </Link>
@@ -565,7 +611,7 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
         />
         <Flex direction={{base: 'column-reverse', md: 'row'}}>
           <Box w={{base: '100%', md: '75%'}} mr={{md: 4}}>
-            <Box mx={{base: 4, md: 'auto'}} maxW="800px">
+            <Box mx={{base: 4, md: 'auto'}} maxW="800px" overflow="hidden">
               {/* Your blog post content goes here */}
               <Field.Section
                 as={Stack}

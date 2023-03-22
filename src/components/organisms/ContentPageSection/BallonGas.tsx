@@ -30,7 +30,7 @@ const BallonGas: FC<IBallonGasProps> = () => {
             <Field.Text
               name="BallonGas.title"
               label="Titel"
-              defaultValue={'Ballongas'}
+              defaultValue="Ballongas"
             />
           </Text>
           <Text
@@ -41,9 +41,7 @@ const BallonGas: FC<IBallonGasProps> = () => {
             <Field.Text
               name="BallonGas.titleText"
               label="Text"
-              defaultValue={
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in libero risus semper.Lo.'
-              }
+              defaultValue=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in libero risus semper.Lo."
             />
           </Text>
           <Box>
@@ -51,8 +49,8 @@ const BallonGas: FC<IBallonGasProps> = () => {
               name="BallonGas.ctaButton"
               size={{base: 'xs', md: 'lg'}}
               mt="4"
-              defaultValue={'Mehr erfahren'}
-              defaultUrl={`/news/helium`}
+              defaultValue="Mehr erfahren"
+              defaultUrl="/news/helium"
             />
           </Box>
         </VStack>
@@ -62,9 +60,7 @@ const BallonGas: FC<IBallonGasProps> = () => {
               name="BallonGas.titleText"
               label="Text"
               rtf
-              defaultValue={
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in libero risus semper.Lo.'
-              }
+              defaultValue=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in libero risus semper.Lo."
             />
           </Text>
         </VStack>
