@@ -8,17 +8,18 @@ interface IRiesgesProps {}
 
 const Riesges: FC<IRiesgesProps> = () => {
   return (
-    <Box mt={{base: '-28', lg: '0'}}>
-      <Image
-        display={{base: 'block', lg: 'none'}}
-        zIndex="-1"
+    <Box>
+      {/* <Image
+        display={{base: 'block'}}
+        zIndex="999"
+        // mt={{base: '-20vh'}}
         w="100%"
         src="/images/home/reisges/top_shape.svg"
         alt="herobackground"
-      />
+      /> */}
       <Stack bg="white" py="20" px={{base: 0, sm: 4, md: 8}}>
         <Container as={Stack} maxW={CONTAINER_MAX_WIDTH}>
-          <RiesgesTopSection />
+          {/* <RiesgesTopSection /> */}
           <RiesgesBottomSection />
         </Container>
       </Stack>

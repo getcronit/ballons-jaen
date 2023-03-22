@@ -8,7 +8,7 @@
     "gatsby"
   ],
   "scripts": {
-    "develop": "gatsby develop",
+    "develop": "gatsby develop -H 0.0.0.0",
     "start": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
@@ -22,7 +22,7 @@
     "@emotion/styled": "^11.10.6",
     "@react-icons/all-files": "^4.1.0",
     "@snek-at/gatsby-theme-shopify": "^1.10.0",
-    "@snek-at/jaen": "^0.0.18",
+    "@snek-at/jaen": "^0.0.20",
     "@snek-at/uikit": "^1.1.0",
     "chakra-react-select": "^4.4.0",
     "chakra-ui-steps": "^1.8.0",
@@ -39,6 +39,7 @@
     "react-images-viewer": "^1.7.1",
     "react-simple-image-viewer": "^1.2.2",
     "react-slick": "^0.29.0",
+    "react-text-loop": "^2.3.0",
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
@@ -46,6 +47,7 @@
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@types/react-slick": "^0.23.10",
+    "commitgpt": "./commitgpt-1.0.5.tgz",
     "typescript": "^4.9.5"
   },
   "resolutions": {
