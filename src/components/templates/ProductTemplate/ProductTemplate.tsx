@@ -14,6 +14,7 @@ import {
   NumberInput,
   NumberInputField,
   NumberInputStepper,
+  Stack,
   Text,
   useClipboard,
   useColorModeValue,
@@ -97,7 +98,7 @@ export const ProductTemplate = ({
           </Button>
         </Box>
         <VStack spacing={12}>
-          <Flex direction={{base: 'column-reverse', lg: 'row'}}>
+          <Stack direction={{base: 'column-reverse', lg: 'row'}}>
             <ProductDetail
               wholesale={wholesale}
               product={shopifyProduct}
@@ -110,7 +111,7 @@ export const ProductTemplate = ({
               media={shopifyProduct.media}
               description={shopifyProduct.descriptionHtml}
             />
-          </Flex>
+          </Stack>
           <Box display={{base: 'block', md: 'none'}}>
             <ProductMoreDetail description={shopifyProduct.descriptionHtml} />
           </Box>
@@ -453,12 +454,24 @@ const ImageSlider = (props: {
         /* w="100%" */
       >
         <PhotoView src={curMedia.image?.src}>
-          <Center cursor="zoom-in">
+          <Center
+            cursor="zoom-in"
+            boxSize={{
+              base: '20rem',
+              md: '30rem',
+              lg: '35rem'
+            }}
+            objectFit="contain">
             {curMedia?.image && (
               <GatsbyImage
                 image={curMedia.image.gatsbyImageData}
                 alt={curMedia.image.altText || 'Product Image'}
-                objectFit="contain"
+                style={{
+                  height: '100%',
+                  width: '100%',
+                  objectFit: 'contain',
+                  objectPosition: 'center'
+                }}
               />
             )}
           </Center>
