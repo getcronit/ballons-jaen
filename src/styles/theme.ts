@@ -180,6 +180,16 @@ const theme = extendTheme(
               '2xl': '6xl'
             }
           }
+        },
+        variants: {
+          cursive: {
+            fontFamily: 'Red Buttery, sans-serif',
+            fontWeight: 'normal',
+            color: 'red.500'
+          },
+          light: {
+            fontWeight: 'light'
+          }
         }
       },
 

@@ -22,6 +22,6 @@ export const FourCardItem = connectBlock(
   },
   {
     name: 'categoryContent',
-    label: 'FourCardItem'
+    label: 'Kategorie'
   }
 )

@@ -2,6 +2,9 @@ import type {GatsbyConfig} from 'gatsby'
 import path from 'path'
 
 const config: GatsbyConfig = {
+  flags: {
+    DEV_SSR: false
+  },
   siteMetadata: {
     title: `ballons-and-ballons`,
     siteUrl: `https://www.yourdomain.tld`
