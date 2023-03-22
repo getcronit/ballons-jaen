@@ -1,7 +1,6 @@
 import {ChevronLeftIcon} from '@chakra-ui/icons'
 
 import {
-  AspectRatio,
   Box,
   Button,
   Center,
@@ -35,8 +34,7 @@ import {
 import {navigate} from 'gatsby'
 import {GatsbyImage} from 'gatsby-plugin-image'
 import React from 'react'
-// @ts-expect-error
-import ImagesViewer from 'react-images-viewer'
+import {PhotoProvider, PhotoView} from 'react-photo-view'
 
 import {getProductMetafields} from '../../../common/getProductMetafields'
 import {getProductPrices, replaceHexColorsInHTML} from '../../../common/utils'
@@ -424,6 +422,7 @@ const ImageThumbnailWrapItem = (props: {
           objectFit: 'contain',
           objectPosition: 'center'
         }}
+        objectFit="contain"
       />
     </WrapItem>
   )
@@ -442,33 +441,7 @@ const ImageSlider = (props: {
   const curMedia = media[curMediaIndex]
 
   return (
-    <>
-      <ImagesViewer
-        currImg={curMediaIndex}
-        isOpen={isPreviewOpen}
-        onClose={() => {
-          setIsPreviewOpen(false)
-        }}
-        imgs={media.map(({image}) => ({
-          src: image.gatsbyImageData?.images?.fallback?.src,
-          caption: image.altText,
-          srcSet: image.gatsbyImageData?.images?.fallback?.srcSet
-        }))}
-        showThumbnails
-        onClickThumbnail={(index: number) => {
-          setCurMediaIndex(index)
-        }}
-        onClickNext={() => {
-          setCurMediaIndex(prevState => {
-            return prevState + 1
-          })
-        }}
-        onClickPrev={() => {
-          setCurMediaIndex(prevState => {
-            return prevState - 1
-          })
-        }}
-      />
+    <PhotoProvider>
       <Box
         my="4"
         minW={{
@@ -479,42 +452,42 @@ const ImageSlider = (props: {
         }}
         /* w="100%" */
       >
-        <AspectRatio ratio={4 / 3}>
-          <Box
-            onClick={() => {
-              setIsPreviewOpen(true)
-            }}
-            cursor="zoom-in">
+        <PhotoView src={curMedia.image?.src}>
+          <Center cursor="zoom-in">
             {curMedia?.image && (
               <GatsbyImage
                 image={curMedia.image.gatsbyImageData}
                 alt={curMedia.image.altText || 'Product Image'}
+                objectFit="contain"
               />
             )}
-          </Box>
-        </AspectRatio>
-        <Wrap
-          overflow="hidden"
-          bg={useColorModeValue('gray.50', 'gray.700')}
-          spacing={0}
-          justify="center">
-          {media.map((media, index) => (
-            <ImageThumbnailWrapItem
-              key={index}
-              media={media}
-              active={curMediaIndex === index}
-              onClick={() => {
-                setCurMediaIndex(index)
-              }}
-            />
-          ))}
-        </Wrap>
+          </Center>
+        </PhotoView>
+
+        {media.length > 1 && (
+          <Wrap
+            overflow="hidden"
+            bg={useColorModeValue('gray.50', 'gray.700')}
+            spacing={0}
+            justify="center">
+            {media.map((media, index) => (
+              <ImageThumbnailWrapItem
+                key={index}
+                media={media}
+                active={curMediaIndex === index}
+                onClick={() => {
+                  setCurMediaIndex(index)
+                }}
+              />
+            ))}
+          </Wrap>
+        )}
 
         <Box display={{base: 'none', md: 'block'}}>
           <ProductMoreDetail description={props.description || ''} />
         </Box>
       </Box>
-    </>
+    </PhotoProvider>
   )
 }
 

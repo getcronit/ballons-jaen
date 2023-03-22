@@ -6,6 +6,8 @@ import {
 
 import {StepsStyleConfig as Steps} from 'chakra-ui-steps'
 
+import 'react-photo-view/dist/react-photo-view.css'
+
 export const colors = {
   gray: {
     100: '#F4F4F4',

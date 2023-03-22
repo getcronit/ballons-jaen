@@ -1,8 +1,9 @@
 import {Box, Grid, GridItem} from '@chakra-ui/react'
 import {Field, useField} from '@snek-at/jaen'
 import React, {FC, useCallback, useState} from 'react'
+import {PhotoProvider, PhotoView} from 'react-photo-view'
+
 import {CONTAINER_MAX_WIDTH} from '../../../../constant/sizes'
-import CustomImageViewer from '../../../organisms/CustomImageViewer'
 interface IImaginationBottomSectionProps {}
 
 const Images = React.memo<{
@@ -13,111 +14,94 @@ const Images = React.memo<{
 }>(
   ({openImageViewer, defaultImages, loadedImages, onLoaded}) => {
     return (
-      <Grid
-        height="110rem"
-        width="100%"
-        px="4"
-        gridGap={{base: '2', md: '4'}}
-        gridTemplateAreas={{
-          base: `
-                "I1 I2"
-                "I3 I3"
-                "I4 I5"
-                "I6 I7"
-              `,
-          md: `
-              "I1 I1 I2 I3"
-              "I1 I1 I2 I4"
-              "I5 I5 I5 I5"
-              "I5 I5 I5 I5"
-              "I6 I6 I7 I7"
-              `
-        }}
-        // w="100%"
-        maxW={CONTAINER_MAX_WIDTH}
-        // h={CONTAINER_MAX_WIDTH}
-      >
-        {new Array(defaultImages.length).fill('').map((_, i) => {
-          const imageFieldName = `imaginationBottomImage${i}`
-          const imageField = useField<{
-            internalImageUrl: string
-          }>(imageFieldName, 'IMA:ImageField')
-          return (
-            <GridItem gridArea={`I${i + 1}`} key={i} cursor="pointer">
-              <Box
-                // _hover={{
-                //   transition: 'all 0.2s ease',
-                //   transform: {
-                //     md: 'scale(1.02) ',
-                //     lg: 'scale(1.02) '
-                //   }
-                // }}
-                transition="ease-in 0.2s"
-                boxShadow="dark"
-                borderRadius="xl"
-                w="full"
-                display={{base: 'block', md: 'none'}}
-                h="full"
-                onClick={() => {
-                  if (!imageField.isEditing) {
-                    openImageViewer(i)
-                  }
-                }}
-                //src={`/images/home/imagination/mobile/mobileG${index + 1}.png`}
-                overflow="hidden">
-                <Field.Image
-                  onLoad={() => {
-                    const imageUrl =
-                      imageField.value?.internalImageUrl || defaultImages[i]
+      <PhotoProvider>
+        <Grid
+          height="110rem"
+          width="100%"
+          px="4"
+          gridGap={{base: '2', md: '4'}}
+          gridTemplateAreas={{
+            base: `
+             "I1 I2"
+             "I3 I3"
+             "I4 I5"
+             "I6 I7"
+           `,
+            md: `
+           "I1 I1 I2 I3"
+           "I1 I1 I2 I4"
+           "I5 I5 I5 I5"
+           "I5 I5 I5 I5"
+           "I6 I6 I7 I7"
+           `
+          }}
+          // w="100%"
+          maxW={CONTAINER_MAX_WIDTH}
+          // h={CONTAINER_MAX_WIDTH}
+        >
+          {new Array(defaultImages.length).fill('').map((_, i) => {
+            const imageFieldName = `imaginationBottomImage${i}`
+            const imageField = useField<{
+              internalImageUrl: string
+            }>(imageFieldName, 'IMA:ImageField')
+            return (
+              <PhotoView
+                src={imageField.value?.internalImageUrl || defaultImages[i]}>
+                <GridItem gridArea={`I${i + 1}`} key={i} cursor="pointer">
+                  <Box
+                    _hover={{
+                      transition: 'all 0.2s ease',
+                      transform: {
+                        md: 'scale(1.02) ',
+                        lg: 'scale(1.02) '
+                      }
+                    }}
+                    transition="ease-in 0.2s"
+                    boxShadow="dark"
+                    borderRadius="xl"
+                    w="full"
+                    display={{base: 'block', md: 'none'}}
+                    h="full"
+                    overflow="hidden">
+                    <Field.Image
+                      name={imageFieldName}
+                      label="Image"
+                      defaultValue={defaultImages[i]}
+                    />
+                  </Box>
+                  <Box
+                    _hover={{
+                      transition: 'all 0.2s ease',
+                      transform: {
+                        md: 'scale(1.02) ',
+                        lg: 'scale(1.02) '
+                      }
+                    }}
+                    transition="ease-in 0.2s"
+                    display={{base: 'none', md: 'block'}}
+                    boxShadow="dark"
+                    borderRadius="xl"
+                    w="full"
+                    h="full"
+                    overflow="hidden">
+                    <Field.Image
+                      onLoad={() => {
+                        const imageUrl =
+                          imageField.value?.internalImageUrl || defaultImages[i]
 
-                    onLoaded(i, imageUrl)
-                  }}
-                  name={imageFieldName}
-                  label="Image"
-                  defaultValue={defaultImages[i]}
-                />
-              </Box>
-              <Box
-                // sx={{
-                //   '-webkit-mask-image': '-webkit-radial-gradient(white, black)'
-                // }}
-                // _hover={{
-                //   transition: 'all 0.2s ease',
-                //   transform: {
-                //     md: 'scale(1.02) ',
-                //     lg: 'scale(1.02) '
-                //   }
-                // }}
-                transition="ease-in 0.2s"
-                display={{base: 'none', md: 'block'}}
-                boxShadow="dark"
-                borderRadius="xl"
-                w="full"
-                h="full"
-                onClick={() => {
-                  if (!imageField.isEditing) {
-                    openImageViewer(i)
-                  }
-                }}
-                // onClick={() => openImageViewer(index)}
-                // src={`/images/home/imagination/gallary${index + 1}.png`}
-                overflow="hidden">
-                <Field.Image
-                  onLoad={() => {
-                    const imageUrl =
-                      imageField.value?.internalImageUrl || defaultImages[i]
-
-                    onLoaded(i, imageUrl)
-                  }}
-                  name={imageFieldName}
-                  label="Image"
-                  defaultValue={defaultImages[i]}
-                />
-              </Box>
-            </GridItem>
-          )
-        })}
-      </Grid>
+                        onLoaded(i, imageUrl)
+                      }}
+                      name={imageFieldName}
+                      label="Image"
+                      defaultValue={defaultImages[i]}
+                    />
+                  </Box>
+                </GridItem>
+              </PhotoView>
+            )
+          })}
+        </Grid>
+      </PhotoProvider>
     )
   },
   () => {
@@ -168,12 +152,6 @@ const ImaginationBottomSection: FC<IImaginationBottomSectionProps> = () => {
           openImageViewer={openImageViewer}
           defaultImages={desktopImages}
           loadedImages={loadedImages}
-        />
-        <CustomImageViewer
-          closeImageViewer={closeImageViewer}
-          currentImage={currentImage}
-          isViewerOpen={isViewerOpen}
-          desktopImages={loadedImages}
         />
       </>
     </>

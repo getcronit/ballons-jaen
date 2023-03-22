@@ -25,17 +25,11 @@ import {
   useSectionField,
   UseSectionField
 } from '@snek-at/jaen'
-import React, {
-  forwardRef,
-  useCallback,
-  useEffect,
-  useRef,
-  useState
-} from 'react'
+import React, {forwardRef, useEffect, useRef, useState} from 'react'
 import Slider from 'react-slick'
-import CustomImageViewer from '../CustomImageViewer'
 import BallonGas from './BallonGas'
 
+import {PhotoProvider, PhotoView} from 'react-photo-view'
 import {removeHtmlFromString} from '../../../common/utils'
 import FourCard from '../FourCard/FourCard'
 import ConvincedSection from './ConvincedSection'
@@ -44,10 +38,7 @@ export interface ContentPageSectionProps {}
 
 const ImagesGallery3x3Section = connectBlock(
   () => {
-    const [currentImage, setCurrentImage] = useState(0)
-    const [isViewerOpen, setIsViewerOpen] = useState(false)
-
-    const desktopImages = [
+    const defaultImages = [
       '/images/decorationen/grid/gridImage1.png',
       '/images/decorationen/grid/gridImage2.png',
       '/images/decorationen/grid/gridImage3.png',
@@ -59,57 +50,6 @@ const ImagesGallery3x3Section = connectBlock(
       '/images/decorationen/grid/gridImage9.png'
     ]
 
-    const [loadedImages, setLoadedImages] = useState<string[]>([])
-
-    const openImageViewer = useCallback((url: number) => {
-      setCurrentImage(url)
-      setIsViewerOpen(true)
-    }, [])
-
-    const closeImageViewer = () => {
-      setCurrentImage(0)
-      setIsViewerOpen(false)
-    }
-
-    return (
-      <>
-        <Images
-          onLoaded={(index, url) => {
-            if (loadedImages[index] !== url) {
-              // set url to specific index
-              setLoadedImages(prev => {
-                const newLoadedImages = [...prev]
-                newLoadedImages[index] = url
-                return newLoadedImages
-              })
-            }
-          }}
-          openImageViewer={openImageViewer}
-          defaultImages={desktopImages}
-          loadedImages={loadedImages}
-        />
-        <CustomImageViewer
-          closeImageViewer={closeImageViewer}
-          currentImage={currentImage}
-          isViewerOpen={isViewerOpen}
-          desktopImages={loadedImages}
-        />
-      </>
-    )
-  },
-  {
-    name: 'ImagesGallery3x3Section',
-    label: 'Bildergalerie (1x9)'
-  }
-)
-
-const Images = React.memo<{
-  openImageViewer: (url: number) => void
-  defaultImages: string[]
-  loadedImages: string[]
-  onLoaded: (index: number, url: string) => void
-}>(
-  ({openImageViewer, defaultImages, onLoaded}) => {
     const mobileSliderSettings = {
       dots: true,
       infinite: true,
@@ -122,7 +62,7 @@ const Images = React.memo<{
     }
 
     return (
-      <>
+      <PhotoProvider>
         <VStack
           display={{base: 'none', md: 'flex'}}
           pos="relative"
@@ -135,49 +75,41 @@ const Images = React.memo<{
             }>(imageFieldName, 'IMA:ImageField')
 
             return (
-              <Box
-                boxSize={{
-                  base: 'xs',
-                  md: 'sm',
-                  lg: 'md',
-                  xl: 'lg'
-                }}
-                justifySelf="center"
-                _hover={{
-                  transition: 'all 0.2s ease',
-                  transform: {
-                    md: 'scale(1.02) ',
-                    lg: 'scale(1.02) '
-                  }
-                }}
-                transition="ease-in 0.2s"
-                cursor="pointer"
-                key={i}>
+              <PhotoView
+                src={imageField.value?.internalImageUrl || defaultImages[i]}>
                 <Box
-                  mx="auto"
-                  boxSize="full"
-                  borderRadius="xl"
-                  boxShadow="light"
-                  overflow="hidden"
-                  onClick={() => {
-                    if (!imageField.isEditing) {
-                      openImageViewer(i)
+                  boxSize={{
+                    base: 'xs',
+                    md: 'sm',
+                    lg: 'md',
+                    xl: 'lg'
+                  }}
+                  justifySelf="center"
+                  _hover={{
+                    transition: 'all 0.2s ease',
+                    transform: {
+                      md: 'scale(1.02) ',
+                      lg: 'scale(1.02) '
                     }
-                  }}>
-                  <Field.Image
-                    onLoad={() => {
-                      const imageUrl =
-                        imageField.value?.internalImageUrl || defaultImages[i]
-
-                      onLoaded(i, imageUrl)
-                    }}
-                    objectFit="cover"
-                    label="Bild"
-                    name={imageFieldName}
-                    defaultValue={defaultImages[i]}
-                  />
+                  }}
+                  transition="ease-in 0.2s"
+                  cursor="pointer"
+                  key={i}>
+                  <Box
+                    mx="auto"
+                    boxSize="full"
+                    borderRadius="xl"
+                    boxShadow="light"
+                    overflow="hidden">
+                    <Field.Image
+                      objectFit="cover"
+                      label="Bild"
+                      name={imageFieldName}
+                      defaultValue={defaultImages[i]}
+                    />
+                  </Box>
                 </Box>
-              </Box>
+              </PhotoView>
             )
           })}
         </VStack>
@@ -201,51 +133,46 @@ const Images = React.memo<{
               }>(imageFieldName, 'IMA:ImageField')
 
               return (
-                <Box
-                  key={i}
-                  _hover={{
-                    transition: 'all 0.2s ease',
-                    transform: {
-                      md: 'scale(1.02) ',
-                      lg: 'scale(1.02) '
-                    }
-                  }}
-                  onClick={() => {
-                    openImageViewer(i)
-                  }}
-                  transition="ease-in 0.2s"
-                  boxShadow="light"
-                  bg="blue"
-                  borderRadius="lg"
-                  overflow="hidden"
-                  boxSize={{
-                    base: 'xs',
-                    md: 'sm',
-                    lg: 'md',
-                    xl: 'lg'
-                  }}>
-                  <Field.Image
-                    onLoad={() => {
-                      const imageUrl =
-                        imageField.value?.internalImageUrl || defaultImages[i]
-
-                      onLoaded(i, imageUrl)
+                <PhotoView
+                  src={imageField.value?.internalImageUrl || defaultImages[i]}>
+                  <Box
+                    key={i}
+                    _hover={{
+                      transition: 'all 0.2s ease',
+                      transform: {
+                        md: 'scale(1.02) ',
+                        lg: 'scale(1.02) '
+                      }
                     }}
-                    label="Bild"
-                    objectFit="cover"
-                    name={imageFieldName}
-                    defaultValue={defaultImages[i]}
-                  />
-                </Box>
+                    transition="ease-in 0.2s"
+                    boxShadow="light"
+                    bg="blue"
+                    borderRadius="lg"
+                    overflow="hidden"
+                    boxSize={{
+                      base: 'xs',
+                      md: 'sm',
+                      lg: 'md',
+                      xl: 'lg'
+                    }}>
+                    <Field.Image
+                      label="Bild"
+                      objectFit="cover"
+                      name={imageFieldName}
+                      defaultValue={defaultImages[i]}
+                    />
+                  </Box>
+                </PhotoView>
               )
             })}
           </Slider>
         </Box>
-      </>
+      </PhotoProvider>
     )
   },
-  () => {
-    return true
+  {
+    name: 'ImagesGallery3x3Section',
+    label: 'Bildergalerie (1x9)'
   }
 )
 
@@ -573,7 +500,7 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
                   refs.current[index]?.getBoundingClientRect().top ?? 0
 
                 window?.scrollTo({
-                  top: window.pageYOffset + top,
+                  top: window.pageYOffset + top + 5,
                   behavior: 'smooth'
                 })
 
@@ -671,7 +598,7 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
                 <DrawerOverlay />
                 <DrawerContent>
                   <DrawerCloseButton />
-                  <DrawerHeader>Table of Contents</DrawerHeader>
+                  <DrawerHeader>Inhaltsverzeichnis</DrawerHeader>
                   <DrawerBody>
                     <Links />
                   </DrawerBody>

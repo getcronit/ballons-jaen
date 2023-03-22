@@ -21,7 +21,7 @@
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@react-icons/all-files": "^4.1.0",
-    "@snek-at/gatsby-theme-shopify": "^1.10.0",
+    "@snek-at/gatsby-theme-shopify": "^1.11.0",
     "@snek-at/jaen": "^0.0.21",
     "@snek-at/uikit": "^1.1.0",
     "chakra-react-select": "^4.4.0",
@@ -36,8 +36,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.4",
     "react-icons": "^4.8.0",
-    "react-images-viewer": "^1.7.1",
-    "react-simple-image-viewer": "^1.2.2",
+    "react-photo-view": "^1.2.3",
     "react-slick": "^0.29.0",
     "react-text-loop": "^2.3.0",
     "slick-carousel": "^1.8.1"

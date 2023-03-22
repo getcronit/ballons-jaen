@@ -9,19 +9,19 @@ import {
   Spacer,
   Text,
   useColorModeValue,
-  VStack,
-} from "@chakra-ui/react"
+  VStack
+} from '@chakra-ui/react'
 import {
   getFormattedProductPrices,
   getProductTags,
-  ShopifyProduct,
-} from "@snek-at/gatsby-theme-shopify"
-import { Link as GatsbyLink } from "gatsby"
-import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image"
-import React from "react"
+  ShopifyProduct
+} from '@snek-at/gatsby-theme-shopify'
+import {Link as GatsbyLink} from 'gatsby'
+import {GatsbyImage, IGatsbyImageData} from 'gatsby-plugin-image'
+import React from 'react'
 
-import { getProductPrices, uuidv1 } from "../../../common/utils"
-import * as styles from "./styles"
+import {getProductPrices, uuidv1} from '../../../common/utils'
+import * as styles from './styles'
 
 export interface ProductCardProps {
   product: ShopifyProduct
@@ -42,7 +42,7 @@ export const ProductCard = ({
   bcolor,
   prefixPath,
   taxable,
-  wholesale,
+  wholesale
 }: ProductCardProps) => {
   const path = prefixPath ? `${prefixPath}/${product.handle}` : product.handle
 
@@ -51,7 +51,7 @@ export const ProductCard = ({
   const tags = getProductTags(product)
 
   const prices = getProductPrices(product, {
-    isWholesale: wholesale || false,
+    isWholesale: wholesale || false
   })
 
   taxable = taxable !== undefined ? taxable : product.variants[0]?.taxable
@@ -66,20 +66,20 @@ export const ProductCard = ({
     borderline = false
   }
 
-  const coloredBadges: Array<{ name: string; color: string; bg: string }> = []
+  const coloredBadges: Array<{name: string; color: string; bg: string}> = []
 
   if (
     new Date(product.createdAt).getTime() >
     Date.now() - 7 * 24 * 60 * 60 * 1000
   ) {
-    coloredBadges.push({ name: "Neu", color: "black", bg: "agt.yellow" })
+    coloredBadges.push({name: 'Neu', color: 'black', bg: 'agt.yellow'})
   }
 
   if (prices.discountFormatted) {
     coloredBadges.push({
       name: prices.discountFormatted,
-      color: "white",
-      bg: "agt.red",
+      color: 'white',
+      bg: 'agt.red'
     })
   }
 
@@ -93,16 +93,15 @@ export const ProductCard = ({
       cursor="pointer"
       // bg="red"
       textAlign={{
-        base: "center",
-        md: "left",
-      }}
-    >
+        base: 'center',
+        md: 'left'
+      }}>
       <Box
         className="pcard"
         position="relative"
         cursor="pointer"
         bg="primary"
-        px={{ base: "1", md: "2", lg: "3" }}
+        px={{base: '1', md: '2', lg: '3'}}
         py="5"
         // h={'full'}
         minH="full"
@@ -118,13 +117,12 @@ export const ProductCard = ({
               <input
                 type="radio"
                 className="radioimg"
-                name={"imgbox-" + cardId}
+                name={'imgbox-' + cardId}
                 id={`imgbox-${cardId}-${0}`}
                 key={0}
                 ref={el => (radioRef.current[0] = el)}
                 readOnly
-                checked
-              ></input>
+                checked></input>
               <ImageBoxWithTags
                 image={product.featuredMedia?.image}
                 tags={coloredBadges}
@@ -140,7 +138,7 @@ export const ProductCard = ({
                   <input
                     type="radio"
                     className="radioimg"
-                    name={"imgbox-" + cardId}
+                    name={'imgbox-' + cardId}
                     id={`imgbox-${cardId}-${index}`}
                     ref={el => (radioRef.current[index] = el)}
                   />
@@ -161,7 +159,7 @@ export const ProductCard = ({
         <Text fontWeight="semibold">{product.title}</Text>
         <ProductPrices prices={prices} />
         <Text fontSize="xs" color="gray.600" textAlign="center">
-          {taxable ? "inkl." : "exkl."} MwSt.
+          {taxable ? 'inkl.' : 'exkl.'} MwSt.
         </Text>
         <Spacer
           position="absolute"
@@ -176,8 +174,8 @@ export const ProductCard = ({
         <Box
           className="borderline"
           cursor="pointer"
-          bg={useColorModeValue("white", "gray.700")}
-          px={{ base: "1", md: "2", lg: "3" }}
+          bg={useColorModeValue('white', 'gray.700')}
+          px={{base: '1', md: '2', lg: '3'}}
           py="5"
           // h={'full'}
           // minH={'full'}
@@ -185,18 +183,16 @@ export const ProductCard = ({
           border="1px"
           borderColor="gray.200"
           _hover={{
-            before: { borderColor: "agt.red" },
-            _after: { borderColor: "agt.red" },
-          }}
-        >
+            before: {borderColor: 'agt.red'},
+            _after: {borderColor: 'agt.red'}
+          }}>
           <VStack
             className="imgline"
             position="absolute"
             opacity="0"
             boxSize="full"
             py="0.5rem"
-            px="1"
-          >
+            px="1">
             {product.media.slice(0, 3).map((m, index) => (
               <label htmlFor={`imgbox-${cardId}-${index}`} key={index}>
                 <Box
@@ -204,19 +200,18 @@ export const ProductCard = ({
                   borderBottom="1px"
                   borderColor="border"
                   py="1"
-                  _hover={{ borderColor: "agt.red" }}
+                  _hover={{borderColor: 'agt.red'}}
                   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                   onMouseOver={() => (radioRef.current[index]!.checked = true)}
                   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                  onMouseLeave={() => (radioRef.current[0]!.checked = true)}
-                >
+                  onMouseLeave={() => (radioRef.current[0]!.checked = true)}>
                   <GatsbyImage
                     onDragStart={e => {
                       e.preventDefault()
                     }}
                     draggable="false"
                     image={m.image.gatsbyImageData}
-                    alt={m.image.altText || ""}
+                    alt={m.image.altText || ''}
                   />
                 </Box>
               </label>
@@ -234,11 +229,11 @@ function ImageBoxWithTags(
       altText: string | null
       gatsbyImageData: IGatsbyImageData
     }
-    tags: Array<{ name: string; color: string; bg: string }>
+    tags: Array<{name: string; color: string; bg: string}>
   } & BoxProps
 ) {
   // Box with image as background and tags on bottom
-  const { image, tags } = props
+  const {image, tags} = props
 
   return (
     <Box overflow="hidden" position="relative" {...props}>
@@ -251,16 +246,16 @@ function ImageBoxWithTags(
           src={image.gatsbyImageData?.images?.fallback?.src}
           sizes={image.gatsbyImageData?.images?.fallback?.sizes}
           srcSet={image.gatsbyImageData?.images?.fallback?.srcSet}
-          alt={image.altText || "-"}
+          alt={image.altText || '-'}
           style={{
-            height: "100%",
-            width: "100%",
-            objectFit: "cover",
-            objectPosition: "center",
+            height: '100%',
+            width: '100%',
+            objectFit: 'contain',
+            objectPosition: 'center'
           }}
         />
       ) : (
-        "no image"
+        'no image'
       )}
       <Flex position="absolute" top="0" left="0" right="0" p={2}>
         {tags.map((tag, index) => (
@@ -274,8 +269,7 @@ function ImageBoxWithTags(
             mr={2}
             color={tag.color}
             bgColor={tag.bg}
-            textTransform="none"
-          >
+            textTransform="none">
             {tag.name}
           </Badge>
         ))}
@@ -285,7 +279,7 @@ function ImageBoxWithTags(
 }
 
 const ProductPrices = ({
-  prices,
+  prices
 }: {
   prices: ReturnType<typeof getFormattedProductPrices>
 }) => {
@@ -294,16 +288,14 @@ const ProductPrices = ({
       <HStack
         wrap="wrap"
         justifyContent={{
-          base: "center",
-          md: "flex-start",
-        }}
-      >
+          base: 'center',
+          md: 'flex-start'
+        }}>
         <Text
           fontSize="sm"
           fontWeight="semibold"
           color="gray.600"
-          textDecoration="line-through !important"
-        >
+          textDecoration="line-through !important">
           {prices.compareAtPriceFormatted}
         </Text>
         <Text fontSize="sm" fontWeight="bold" color="red.500" ml={2}>
