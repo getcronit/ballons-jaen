@@ -453,7 +453,7 @@ const ImageSlider = (props: {
         }}
         /* w="100%" */
       >
-        <PhotoView src={curMedia.image?.src}>
+        <PhotoView src={curMedia?.image?.src}>
           <Center
             cursor="zoom-in"
             boxSize={{
