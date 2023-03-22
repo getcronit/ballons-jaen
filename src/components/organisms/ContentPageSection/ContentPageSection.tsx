@@ -22,7 +22,8 @@ import {
   Field,
   useField,
   useSectionBlockContext,
-  useSectionField
+  useSectionField,
+  UseSectionField
 } from '@snek-at/jaen'
 import React, {forwardRef, useCallback, useRef, useState} from 'react'
 import Slider from 'react-slick'
@@ -495,32 +496,55 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
       displayName: 'Kategorien'
     }
 
+    const section = useSectionField({
+      sectionName: settings.fieldName,
+      blocks: []
+    })
+
     const Links: React.FC = () => {
-      const section = useSectionField({
-        sectionName: settings.fieldName,
-        blocks: []
-      })
+      const HeadingLink = ({
+        index,
+        id,
+        sectionBlockPath
+      }: {
+        index: number
+        id: string
+        sectionBlockPath: UseSectionField['sectionPath']
+      }) => {
+        const field = useField<string>('title', 'IMA:TextField', {
+          path: sectionBlockPath,
+          id
+        })
+
+        const title = removeHtmlFromString(
+          field.value ?? field.staticValue ?? `Unbekannt (${index})`
+        )
+
+        return (
+          <Box key={index} mb={{base: 4, md: 8}}>
+            <Link
+              onClick={() => {
+                window?.scrollTo({
+                  top: refs.current[index]?.offsetTop,
+                  behavior: 'smooth'
+                })
+              }}>
+              {title}
+            </Link>
+          </Box>
+        )
+      }
 
       return (
         <>
           {section.section.items.map((item, i) => {
-            const title = removeHtmlFromString(
-              item.jaenFields?.['IMA:TextField']?.title?.value ??
-                `Unbekannt (${i})`
-            )
-
             return (
-              <Box key={i} mb={{base: 4, md: 8}}>
-                <Link
-                  onClick={() => {
-                    window?.scrollTo({
-                      top: refs.current[i]?.offsetTop,
-                      behavior: 'smooth'
-                    })
-                  }}>
-                  {title}
-                </Link>
-              </Box>
+              <HeadingLink
+                key={i}
+                index={i}
+                id={item.id}
+                sectionBlockPath={section.sectionPath}
+              />
             )
           })}
         </>
@@ -533,7 +557,6 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
           sectionFieldName={settings.fieldName}
           sectionDisplayName={settings.displayName}
           onCardClick={index => {
-            console.log(refs, refs.current[index])
             window?.scrollTo({
               top: refs.current[index]?.offsetTop,
               behavior: 'smooth'
