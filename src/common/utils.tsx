@@ -1,4 +1,6 @@
-import {Box} from '@chakra-ui/react'
+import {Box, useToken} from '@chakra-ui/react'
+import {getColor} from '@chakra-ui/theme-tools'
+import theme from '../styles/theme'
 import {
   getFormattedProductPrices,
   ShopifyProduct
@@ -106,3 +108,7 @@ export const getProductPrices = (
 
   return prices
 }
+
+export const getThemeColor = (color: string) => (
+  getColor(theme, color, useToken('colors', color, "green"))
+)

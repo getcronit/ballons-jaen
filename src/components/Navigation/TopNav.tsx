@@ -25,7 +25,8 @@ const TopNav: FC<ITopNavProps> = ({mode, onSearchClick, onBasketClick}) => {
       justifyContent="center"
       alignItems="center"
       px="8"
-      bg="#f4f4f4">
+      // bg="#f4f4f4"
+      >
       <Button
         position="absolute"
         left={2}

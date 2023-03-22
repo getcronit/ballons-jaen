@@ -20,7 +20,7 @@ const BottomNav: FC<IBottomNavProps> = () => {
     <Flex
       h={{ base: "14", lg: "16" }}
       bg="white"
-      boxShadow="light"
+      boxShadow="lightdown"
       justify="center"
       align="center"
     >

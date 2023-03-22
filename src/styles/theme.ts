@@ -65,6 +65,7 @@ const theme = extendTheme(
     },
 
     shadows: {
+      lightdown: '0px 4px 6px -4px rgba(0, 0, 0, 0.10) !important',
       light: '0px 4px 10px rgba(0, 0, 0, 0.10) !important',
       dark: '0px 4px 10px rgba(0, 0, 0, 0.25) !important',
       darker: '0px 4px 10px rgba(0, 0, 0, 0.50) !important'
