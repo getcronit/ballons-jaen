@@ -430,13 +430,14 @@ const CategoryContentSection = connectBlock(
           }}
           spacing="12">
           <Image
+            zIndex="-1"
             pos="absolute"
             top={{base: '0rem'}}
             w={{base: '40%', md: '60%', lg: '70%', xl: '58%'}}
             left={{base: '0', lg: '-64px', xl: 0}}
             src="/images/decorationen/shapes/shape.svg"
           />
-          <VStack pos="relative">
+          <VStack pos="relative" zIndex="1">
             <Heading
               variant="cursive"
               fontSize={{base: 'xl', md: '2xl', lg: '3xl', xl: '4xl'}}
@@ -536,13 +537,12 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
 
         useEffect(() => {
           const handleScroll = () => {
-            const offsetTop = refs.current[index]?.offsetTop
-            const offsetBottom =
-              refs.current[index] &&
-              refs.current[index].offsetTop + refs.current[index].offsetHeight
+            const rect = refs.current[index]?.getBoundingClientRect()
 
-            console.log('offsetTop', offsetTop)
-            console.log('offsetBottom', offsetBottom)
+            if (!rect) return
+
+            const offsetTop = rect.top + window.pageYOffset
+            const offsetBottom = rect.bottom + window.pageYOffset
 
             if (offsetTop && offsetBottom) {
               if (
@@ -568,8 +568,12 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
             <Link
               color={isActive ? 'red' : 'black'}
               onClick={() => {
+                // calculate top offset
+                const top =
+                  refs.current[index]?.getBoundingClientRect().top ?? 0
+
                 window?.scrollTo({
-                  top: refs.current[index]?.offsetTop,
+                  top: window.pageYOffset + top,
                   behavior: 'smooth'
                 })
 
@@ -615,7 +619,7 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
               {/* Your blog post content goes here */}
               <Field.Section
                 as={Stack}
-                props={{spacing: 20}}
+                props={{spacing: 20, position: 'relative'}}
                 sectionProps={({count}) => ({
                   ref: (el: HTMLDivElement) => {
                     refs.current[count - 1] = el
