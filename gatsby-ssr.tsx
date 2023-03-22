@@ -27,7 +27,7 @@ export const onRenderBody: GatsbySSR['onRenderBody'] = ({
 }
 
 export const wrapPageElement: GatsbySSR['wrapPageElement'] = ({element}) => {
-  return <PageWrapper>{element}</PageWrapper>
+  // return <PageWrapper>{element}</PageWrapper>
 
   return (
     <PageWrapper>

@@ -13,7 +13,7 @@ import {PageWrapper} from './src/Wrapper'
 export const wrapPageElement: GatsbyBrowser['wrapPageElement'] = ({
   element
 }) => {
-  return <PageWrapper>{element}</PageWrapper>
+  // return <PageWrapper>{element}</PageWrapper>
 
   return (
     <PageWrapper>

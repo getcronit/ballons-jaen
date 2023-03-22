@@ -75,7 +75,11 @@ export const LoginModal: React.FC<LoginModalProps> = ({
               base: 'none',
               md: 'flex'
             }}>
-            <Image src="https://ballons.snek.at/images/home/heart/hsection2.png" />
+            <Image
+              boxSize="full"
+              src="https://osg.snek.at/storage/BQACAgQAAxkDAAIVX2QV-BiZ8uUn2PkCS6O50LGgTzGxAAIsDwACDPexUOzYNjlE-ICzLwQ"
+              objectFit="cover"
+            />
           </Flex>
           <Flex w="full">
             <Stack spacing={8} maxW="lg" py={24} px="8" w="full">
