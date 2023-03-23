@@ -421,6 +421,9 @@ const ImageThumbnailWrapItem = (props: {
           objectPosition: 'center'
         }}
         objectFit="contain"
+        imgStyle={{
+          objectFit: 'contain'
+        }}
       />
     </WrapItem>
   )
@@ -467,6 +470,7 @@ const ImageSlider = (props: {
                   objectFit: 'contain',
                   objectPosition: 'center'
                 }}
+                objectFit="contain"
               />
             )}
           </Center>

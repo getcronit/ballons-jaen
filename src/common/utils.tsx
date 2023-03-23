@@ -1,11 +1,11 @@
 import {Box, useToken} from '@chakra-ui/react'
 import {getColor} from '@chakra-ui/theme-tools'
-import theme from '../styles/theme'
 import {
   getFormattedProductPrices,
   ShopifyProduct
 } from '@snek-at/gatsby-theme-shopify'
 import React from 'react'
+import theme from '../styles/theme'
 import {getProductMetafields} from './getProductMetafields'
 
 export function uuidv1() {
@@ -109,6 +109,5 @@ export const getProductPrices = (
   return prices
 }
 
-export const getThemeColor = (color: string) => (
-  getColor(theme, color, useToken('colors', color, "green"))
-)
+export const getThemeColor = (color: string) =>
+  getColor(theme, color, useToken('colors', color, 'green'))
