@@ -1,11 +1,10 @@
-import React from 'react'
-import {Box} from '@chakra-ui/react'
+import {Box, BoxProps} from '@chakra-ui/react'
 
 import {Ballon} from '../../../common/assets/Ballon'
 import {useScrollSync} from '../../hooks/scroll'
 import * as style from './style'
 
-export interface ParallaxBackgroundProps {
+export interface ParallaxBackgroundProps extends BoxProps {
   strokeColor: string
   backgroundColor: string
   offsetTop?: number
@@ -18,16 +17,18 @@ export const ParallaxBackground = ({
   backgroundColor,
   offsetTop,
   offset,
-  noScroll
+  noScroll,
+  ...props
 }: ParallaxBackgroundProps) => {
-  const {ref} = useScrollSync(offsetTop=offsetTop, offset=offset)
+  const {ref} = useScrollSync(offsetTop, offset)
 
   return (
     <Box
       className="parallax"
       css={style.Section(strokeColor, backgroundColor, noScroll)}
       ref={ref}
-      backgroundColor={backgroundColor}>
+      backgroundColor={backgroundColor}
+      {...props}>
       <Box className="parallax__layer parallax__layer__0" pl="10%" pt="20%">
         <Ballon className="background-Ballon" />
       </Box>
