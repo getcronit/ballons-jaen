@@ -62,9 +62,6 @@ export const ProductTemplate = ({
   relatedProducts,
   isOnWishList = false
 }: ProductTemplateProps) => {
-  // remove last part of path
-  const prefixPath = path.split('/').slice(0, -1).join('/')
-
   const productTags = getProductTags(shopifyProduct)
 
   const allActiveTags = [
@@ -126,7 +123,7 @@ export const ProductTemplate = ({
           <ProductSlider
             heading="Ähnliche Produkte"
             products={relatedProducts.nodes}
-            prefixPath={prefixPath}
+            prefixPath="/products"
             wholesale={wholesale}
           />
         </Box>
@@ -436,8 +433,6 @@ const ImageSlider = (props: {
 }) => {
   const media = props.media
   const [curMediaIndex, setCurMediaIndex] = React.useState<number>(0)
-
-  const [isPreviewOpen, setIsPreviewOpen] = React.useState<boolean>(false)
 
   const curMedia = media[curMediaIndex]
 

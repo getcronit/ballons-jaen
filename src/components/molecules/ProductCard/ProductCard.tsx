@@ -17,7 +17,12 @@ import {
   ShopifyProduct
 } from '@snek-at/gatsby-theme-shopify'
 import {Link as GatsbyLink} from 'gatsby'
-import {GatsbyImage, IGatsbyImageData} from 'gatsby-plugin-image'
+import {
+  GatsbyImage,
+  getSrc,
+  getSrcSet,
+  IGatsbyImageData
+} from 'gatsby-plugin-image'
 import React from 'react'
 
 import {getProductPrices, uuidv1} from '../../../common/utils'
@@ -45,6 +50,8 @@ export const ProductCard = ({
   wholesale
 }: ProductCardProps) => {
   const path = prefixPath ? `${prefixPath}/${product.handle}` : product.handle
+
+  console.log('product', product.id, path)
 
   const radioRef = React.useRef<Array<HTMLInputElement | null>>([])
 
@@ -233,7 +240,22 @@ function ImageBoxWithTags(
   } & BoxProps
 ) {
   // Box with image as background and tags on bottom
-  const {image, tags} = props
+  const {tags} = props
+
+  const image: {
+    src: string
+    srcSet: string
+    altText: string
+  } = {
+    src:
+      (props.image?.gatsbyImageData && getSrc(props.image?.gatsbyImageData)) ||
+      '',
+    srcSet:
+      (props.image?.gatsbyImageData &&
+        getSrcSet(props.image?.gatsbyImageData)) ||
+      '',
+    altText: props.image?.altText || ''
+  }
 
   return (
     <Box overflow="hidden" position="relative" {...props}>
@@ -243,10 +265,9 @@ function ImageBoxWithTags(
             e.preventDefault()
           }}
           draggable="false"
-          src={image.gatsbyImageData?.images?.fallback?.src}
-          sizes={image.gatsbyImageData?.images?.fallback?.sizes}
-          srcSet={image.gatsbyImageData?.images?.fallback?.srcSet}
-          alt={image.altText || '-'}
+          src={image.src}
+          srcSet={image.srcSet}
+          alt={image.altText}
           style={{
             height: '100%',
             width: '100%',
