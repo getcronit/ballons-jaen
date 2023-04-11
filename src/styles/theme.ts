@@ -4,7 +4,7 @@ import {
   withDefaultColorScheme
 } from '@chakra-ui/react'
 
-import {StepsStyleConfig as Steps} from 'chakra-ui-steps'
+import {StepsTheme as Steps} from 'chakra-ui-steps'
 
 import 'react-photo-view/dist/react-photo-view.css'
 
