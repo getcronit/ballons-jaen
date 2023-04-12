@@ -35,6 +35,8 @@ import {
 import {navigate} from 'gatsby'
 import {GatsbyImage} from 'gatsby-plugin-image'
 import React from 'react'
+import {BsBalloonHeartFill} from 'react-icons/bs'
+import {FaRuler, FaRulerCombined, FaRulerVertical} from 'react-icons/fa'
 import {PhotoProvider, PhotoView} from 'react-photo-view'
 
 import {getProductMetafields} from '../../../common/getProductMetafields'
@@ -280,7 +282,7 @@ const ProductDetail = withStoreContext<{
               <Divider />
 
               <HStack spacing="4">
-                <Icon as={GiBalloons} boxSize={10} />
+                <Icon as={BsBalloonHeartFill} boxSize={8} />
                 <Text
                   fontSize={{
                     base: 'xs',
@@ -288,6 +290,24 @@ const ProductDetail = withStoreContext<{
                   }}
                   color="gray.600">
                   {productMetatfields.details.filling}
+                </Text>
+              </HStack>
+            </>
+          )}
+
+          {productMetatfields.details?.sizeHelper && (
+            <>
+              <Divider />
+
+              <HStack spacing="4">
+                <Icon as={FaRuler} boxSize={8} />
+                <Text
+                  fontSize={{
+                    base: 'xs',
+                    md: 'sm'
+                  }}
+                  color="gray.600">
+                  {productMetatfields.details.sizeHelper}
                 </Text>
               </HStack>
             </>

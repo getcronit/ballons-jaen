@@ -260,6 +260,12 @@ const ImportProductsFromExcel: React.FC<{
             type: 'single_line_text_field'
           },
           {
+            namespace: 'details',
+            key: 'sizeHelper',
+            value: gvoe('N'),
+            type: 'single_line_text_field'
+          },
+          {
             namespace: 'wholesale',
             key: '_SU',
             value: gvoe('T'),
