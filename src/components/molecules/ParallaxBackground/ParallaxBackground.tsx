@@ -31,13 +31,13 @@ export const ParallaxBackground = ({
       <Box className="parallax__layer parallax__layer__0" pl="80%" pt="20%" display={{ base: 'none', lg: 'none', xl: 'block' }}>
         <Ballon className="background-Ballon" />
       </Box>
-      <Box className="parallax__layer parallax__layer__1" pl="60%" pt="30%" display={{ base: 'none', lg: 'block', xl: 'block' }}>
+      <Box className="parallax__layer parallax__layer__1" pl="60%" pt="50%" display={{ base: 'none', lg: 'block', xl: 'block' }}>
         <Ballon className="background-Ballon" />
       </Box>
       <Box className="parallax__layer parallax__layer__2" pl="30%" pt="90%" display={{ base: 'block', lg: 'block', xl: 'block' }}>
         <Ballon className="background-Ballon" />
       </Box>
-      <Box className="parallax__layer parallax__layer__3" pl="50%" pt="15%" display={{ base: 'none', lg: 'none', xl: 'block' }}>
+      <Box className="parallax__layer parallax__layer__3" pl="80%" pt="1%" display={{ base: 'none', lg: 'none', xl: 'block' }}>
         <Ballon className="background-Ballon" />
       </Box>
       <Box className="parallax__layer parallax__layer__4" pl="40%" pt="30%" display={{ base: 'none', lg: 'none', xl: 'block' }}>

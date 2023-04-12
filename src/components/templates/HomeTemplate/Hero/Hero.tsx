@@ -81,9 +81,10 @@ const Hero: FC<IHeroProps> = props => {
       </Heading>
       <Heading
         // textShadow={'0 0 10px rgba(0,0,0,0.5)'}
-        textShadow="1px 1px 2px black"
+        //textShadow="1px 1px 2px black"
         fontSize={{base: '2xl', md: '8xl', lg: '9xl'}}
-        fontWeight="semibold">
+        fontWeight="semibold"
+        >
         <Box as="span" mb="10">
           <Field.Text
             name="heroHeadingBallons"
