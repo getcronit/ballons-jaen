@@ -29,7 +29,7 @@ jobs:
       # https://classic.yarnpkg.com/lang/en/docs/cli/install/#toc-yarn-install-pure-lockfile
       - name: Install Jaen globally
         # https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstepsrun
-        run: npm i -g "@snek-at/jaen@0.0.30"
+        run: npm i -g "@snek-at/jaen@0.0.31"
 
       - name: Migrate Jaen Data 📝
         # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#
@@ -48,3 +48,6 @@ jobs:
           git add .
           git commit -m "jaen-publish: migrate jaen-data" || echo "Nothing to commit, working tree clean."
           GIT_TRACE=1 git push -f --verbose origin main
+
+  build:
+    uses: ./.github/workflows/gatsby.yaml
