@@ -57,21 +57,33 @@ const DekorationenHero: FC<IDekorationenHeroProps> = () => {
           defaultUrl="/kontakt"
         />
       </VStack>
-      <Stack pos="relative" overflow="hidden" pb={{base: '15px', md: '0'}}>
+      <Stack
+        pos="relative"
+        overflow="hidden"
+        pb={{base: '15px', md: '0'}}
+        h="100vh">
         <Box
           pos="absolute"
           w="full"
           h="full"
-          top={{base: '13vh', md: '23vh', xl: '400px'}}>
+          top={{base: '13vh', md: '23vh', lg: '33vh', xl: '400px'}}>
           <Container
             maxW={CONTAINER_MAX_WIDTH}
             mb={{base: '0', md: '16'}}
-            pos="relative">
+            pos="relative"
+            height={{
+              // rems
+              base: '25.625rem',
+              md: '30.625rem',
+              lg: '35.625rem',
+              xl: '40.625rem'
+            }}>
             <Field.Section
               as={Slider}
               props={{
-                ...settings
+                ...settings,
                 // h: 'unset'
+                minH: 64
               }}
               className="big_slider"
               name="slider"
