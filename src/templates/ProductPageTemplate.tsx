@@ -2,16 +2,16 @@ import {
   ProductPageContext,
   ProductPageData,
   ProductsPageContext,
-  SearchProvider,
-} from "@snek-at/gatsby-theme-shopify"
-import { graphql, navigate, PageProps } from "gatsby"
-import React from "react"
+  SearchProvider
+} from '@snek-at/gatsby-theme-shopify'
+import {graphql, navigate, PageProps} from 'gatsby'
+import React from 'react'
 
-import { buildAllTags } from "../components/templates/ProductsTemplate/ProductsTemplate"
-import { ProductTemplate } from "../components/templates/ProductTemplate"
+import {buildAllTags} from '../components/templates/ProductsTemplate/ProductsTemplate'
+import {ProductTemplate} from '../components/templates/ProductTemplate'
 
-import { Layout } from "../Layout"
-import { useAuthentication } from "../services/authentication"
+import {Layout} from '../Layout'
+import {useAuthentication} from '../services/authentication'
 
 export type ProductPageTemplateProps = PageProps<
   ProductPageData & {
@@ -23,7 +23,7 @@ export type ProductPageTemplateProps = PageProps<
 >
 
 const ProductPageTemplate: React.FC<ProductPageTemplateProps> = props => {
-  const { productsPage } = props.data
+  const {productsPage} = props.data
 
   const handleOnGoBack = () => {
     void navigate(-1)
@@ -32,7 +32,7 @@ const ProductPageTemplate: React.FC<ProductPageTemplateProps> = props => {
   const allTags = buildAllTags({
     tags: productsPage.pageContext.tags,
     vendors: productsPage.pageContext.vendors,
-    productTypes: productsPage.pageContext.productTypes,
+    productTypes: productsPage.pageContext.productTypes
   })
 
   const auth = useAuthentication()
@@ -60,17 +60,15 @@ const ProductPageTemplate: React.FC<ProductPageTemplateProps> = props => {
 
 export const query = graphql`
   query ($productId: String!, $relatedProductIds: [String!]!) {
-    relatedProducts: allShopifyProduct(
-      filter: { id: { in: $relatedProductIds } }
-    ) {
+    relatedProducts: allShopifyProduct(filter: {id: {in: $relatedProductIds}}) {
       nodes {
         ...shopifyProductData
       }
     }
-    shopifyProduct(id: { eq: $productId }) {
+    shopifyProduct(id: {eq: $productId}) {
       ...shopifyProductData
     }
-    productsPage: sitePage(id: { eq: "SitePage /products/" }) {
+    productsPage: sitePage(id: {eq: "SitePage /products/"}) {
       pageContext
     }
   }

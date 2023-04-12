@@ -14,7 +14,7 @@ const config: GatsbyConfig = {
     {
       resolve: `gatsby-plugin-jaen`,
       options: {
-        snekResourceId: `236d377c-cd47-497a-a74c-9101f6fced60`
+        snekResourceId: `63571eee-f41c-4745-9130-d746c2cb97a3`
       }
     },
     {

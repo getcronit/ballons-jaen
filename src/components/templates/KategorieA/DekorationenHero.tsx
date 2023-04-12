@@ -37,7 +37,7 @@ const DekorationenHero: FC<IDekorationenHeroProps> = () => {
           as="h1"
           variant="cursive"
           fontSize={{base: '3xl', md: '4xl', lg: '5xl', xl: '6xl'}}>
-          <Field.Text name="title" label="Text" defaultValue={'Dekorationen'} />
+          <Field.Text name="title" label="Text" defaultValue="Dekorationen" />
         </Text>
         <Text
           pb="4"
@@ -47,32 +47,43 @@ const DekorationenHero: FC<IDekorationenHeroProps> = () => {
           <Field.Text
             name="titleText"
             label="Text"
-            defaultValue={
-              'Wir dekorieren deine nächste Party. <br /> Egal ob Hochzeit, Firmenfeier, Geburtstag <br /> oder dein ganz eigener Anlass.'
-            }
+            defaultValue="Wir dekorieren deine nächste Party. <br /> Egal ob Hochzeit, Firmenfeier, Geburtstag <br /> oder dein ganz eigener Anlass."
           />
         </Text>
         <LinkButtonField
           name="ctaButton"
           size={{base: 'xs', md: 'sm', xl: 'lg'}}
-          defaultValue={'Termin vereinbaren'}
-          defaultUrl={`/kontakt`}
+          defaultValue="Termin vereinbaren"
+          defaultUrl="/kontakt"
         />
       </VStack>
       <Stack
         pos="relative"
-        maxH="93.75rem"
         overflow="hidden"
-        pb={{base: '15px', md: '0'}}>
+        pb={{base: '15px', md: '0'}}
+        h="100vh">
         <Box
           pos="absolute"
           w="full"
-          top={{base: '7vh', md: '23vh', xl: '400px'}}>
-          <Container maxW={CONTAINER_MAX_WIDTH} mb={{base: '0', md: '16'}}>
+          h="full"
+          top={{base: '13vh', md: '23vh', lg: '33vh', xl: '400px'}}>
+          <Container
+            maxW={CONTAINER_MAX_WIDTH}
+            mb={{base: '0', md: '16'}}
+            pos="relative"
+            height={{
+              // rems
+              base: '25.625rem',
+              md: '30.625rem',
+              lg: '35.625rem',
+              xl: '40.625rem'
+            }}>
             <Field.Section
               as={Slider}
               props={{
-                ...settings
+                ...settings,
+                // h: 'unset'
+                minH: 64
               }}
               className="big_slider"
               name="slider"
@@ -94,7 +105,13 @@ const DekorationSliderItem = connectBlock(
   () => {
     return (
       <Box
-        height={{base: '40vh', md: '45vh', lg: '50vh'}}
+        height={{
+          // rems
+          base: '25.625rem',
+          md: '30.625rem',
+          lg: '35.625rem',
+          xl: '40.625rem'
+        }}
         m={{base: 2, md: 4}}
         borderRadius={{base: '8', md: '16', lg: '24'}}
         overflow="hidden"

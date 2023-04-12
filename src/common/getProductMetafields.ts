@@ -12,6 +12,7 @@ type Money = string
 export interface ProductMetafields {
   details?: {
     filling: ProductFilling
+    sizeHelper: string
     bundle: number
     available: string
     _SU: string

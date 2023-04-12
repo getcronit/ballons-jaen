@@ -1,43 +1,27 @@
 import {
   Box,
-  Button,
   Container,
-  Flex,
-  Grid,
   GridItem,
   Heading,
   HStack,
   Image,
   SimpleGrid,
-  Stack,
-  Text
+  Stack
 } from '@chakra-ui/react'
-import { Field } from '@snek-at/jaen'
-import { FC } from 'react'
-import Slider from 'react-slick'
-import { fonts } from '../../../../styles/theme'
-import LinkButtonField from '../../../fields/LinkButtonField'
-import { useContentPages } from '../../../hooks/useContentPages'
-import { ParallaxBackground } from '../../../molecules/ParallaxBackground'
-import CardWithImageBackground from '../../../CardWithImageBackground'
-import { CONTAINER_MAX_WIDTH } from '../../../../constant/sizes'
+import {Field} from '@snek-at/jaen'
+import {FC} from 'react'
 import TextLoop from 'react-text-loop'
+import {CONTAINER_MAX_WIDTH} from '../../../../constant/sizes'
+import CardWithImageBackground from '../../../CardWithImageBackground'
+import {useContentPages} from '../../../hooks/useContentPages'
+import {ParallaxBackground} from '../../../molecules/ParallaxBackground'
 
 export interface IHeroProps {
-
   anchor?: string
 }
 
 const Hero: FC<IHeroProps> = props => {
   const contentPagesIndex = useContentPages()
-
-  var settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1
-  }
 
   const cards = [
     {
@@ -57,51 +41,110 @@ const Hero: FC<IHeroProps> = props => {
     }
   ]
 
+  const switchingHeadline = (
+    <Stack>
+      <Heading
+        fontSize={{base: '2xl', md: '6xl', lg: '8xl'}}
+        mb="8 !important"
+        fontWeight="semibold"
+        as="span">
+        {/* <Box as="span" mb="5">
+    <Field.Text
+      name="heroHeading1"
+      label="Heading"
+      defaultValue="<p>Riesiges</p>"
+      rtf
+    />
+  </Box> */}
+        <Box mb="10" as="span">
+          <TextLoop>
+            {[
+              'Wir verkaufen',
+              'Wir dekorieren mit',
+              'Wir feiern mit',
+              'Wir arbeiten mit',
+              'Wir überraschen mit',
+              'Wir lieben'
+            ].map((text, index) => {
+              return (
+                <Field.Text
+                  key={index}
+                  name={`heroHeading-${index}`}
+                  label={`Heading ${index}`}
+                  defaultValue={`<p>${text}</p>`}
+                  rtf
+                />
+              )
+            })}
+          </TextLoop>
+        </Box>
+      </Heading>
+      <Heading
+        // textShadow={'0 0 10px rgba(0,0,0,0.5)'}
+        textShadow="1px 1px 2px black"
+        fontSize={{base: '2xl', md: '8xl', lg: '9xl'}}
+        fontWeight="semibold">
+        <Box as="span" mb="10">
+          <Field.Text
+            name="heroHeadingBallons"
+            label="Heading"
+            defaultValue="<p><b><i>Ballons</i></b></p>"
+            rtf
+          />
+        </Box>
+      </Heading>
+    </Stack>
+  )
+
   return (
     <>
       {/* For Mobile */}
       <Box
-        display={{ base: 'block', md: 'none' }}
+        display={{base: 'block', md: 'none'}}
         pos="relative"
         pb={{
           base: '43.75rem',
           sm: '50rem'
         }}>
+        <Box mb="10">{switchingHeadline}</Box>
         <Image
-          top={{ base: '34.375rem' }}
+          top={{base: '34.375rem'}}
           pos="absolute"
           left=""
-          h={{ base: 'auto' }}
+          h={{base: 'auto'}}
           src="/images/home/hero_shape.svg"
           alt="herobackground"
-          zIndex={{ base: 'none', md: '50' }}
-          display={{ base: 'none', md: 'block' }}
+          zIndex={{base: 'none', md: '50'}}
+          display={{base: 'none', md: 'block'}}
         />
 
         <Image
           overflow="hidden"
           pos="absolute"
-          top={{ base: '33.75rem' }}
-          left={{ base: '-3.125rem' }}
+          top={{base: '33.75rem'}}
+          left={{base: '-3.125rem'}}
           src="/images/home/hero_line.svg"
           alt="herobackground"
         />
-
       </Box>
       {/* For Big Devices */}
 
       <Box
-        position={"relative"}
-        display={{ base: 'none', md: 'block' }}
-        width={'full'}
-        //overflow={'hidden'}
+        display={{base: 'none', md: 'block'}}
+        position="relative"
+        width="full"
+        // overflow={'hidden'}
         // height={{ md: 'calc(100vh - 7.5rem)', lg: 'calc(100vh - 8rem)' }}
-        //bgImage="url('/images/home/hero_line.svg'),url('/images/home/hero_shape.svg')"
+        // bgImage="url('/images/home/hero_line.svg'),url('/images/home/hero_shape.svg')"
       >
-        <ParallaxBackground strokeColor={"blue"} backgroundColor={"tansperent"} offset={0} />
+        <ParallaxBackground
+          strokeColor="red"
+          backgroundColor="tansperent"
+          offset={0}
+        />
         <Box
-          position={"relative"}
-          zIndex={9999}
+          position="relative"
+          zIndex={51}
           bgImage="url('/images/home/hero_line.svg'),url('/images/home/reisges/top_shape.svg')"
           bgSize="100%,contain"
           bgPos={{
@@ -109,75 +152,18 @@ const Hero: FC<IHeroProps> = props => {
             lg: 'bottom 3rem  left 0,left 0  bottom 0',
             xl: 'bottom 0  left -5rem,left 0  bottom 0'
           }}
-          w={"full"}
-          h={"full"}
+          w="full"
+          h="full"
           bgRepeat="no-repeat"
-          pb={{ md: '8rem', lg: '12rem', xl: '14rem' }}
-        >
-          <Container as={HStack} maxW={CONTAINER_MAX_WIDTH} justifyContent={"space-between"} alignContent={"center"} height={{ md: 'calc(100vh - 7.5rem)', lg: 'calc(100vh - 8rem)' }} minH={"700px"}>
-            <Stack>
-              <Heading
-                fontSize={{ base: '2xl', md: '6xl', lg: '8xl' }}
-                mb="8 !important"
-                fontWeight="semibold"
-                as="span">
-                {/* <Box as="span" mb="5">
-              <Field.Text
-                name="heroHeading1"
-                label="Heading"
-                defaultValue="<p>Riesiges</p>"
-                rtf
-              />
-            </Box> */}
-                <Box as="span" mb="10">
-                  <TextLoop >
-                    <Field.Text
-                      name="heroHeading1"
-                      label="Heading"
-                      defaultValue="<p>Wir verkaufen</p>"
-                      rtf
-                    />
-                    <Field.Text
-                      name="heroHeading2"
-                      label="Heading"
-                      defaultValue="<p>Wir dekorieren mit</p>"
-                      rtf
-                    />
-
-                    <Field.Text
-                      name="heroHeading2"
-                      label="Heading"
-                      defaultValue="<p>Wir feiern mit</p>"
-                      rtf
-                    />
-                    <Field.Text
-                      name="heroHeading2"
-                      label="Heading"
-                      defaultValue="<p>Wir arbeiten mit</p>"
-                      rtf
-                    />
-                    <Field.Text
-                      name="heroHeading2"
-                      label="Heading"
-                      defaultValue="<p>Wir lieben</p>"
-                      rtf
-                    />
-                  </TextLoop>
-                </Box>
-
-              </Heading>
-              <Heading fontSize={{ base: '2xl', md: '6xl', lg: '8xl' }} fontWeight="semibold">
-                <Box as="span" mb="10">
-                  <Field.Text
-                    name="heroHeadingBallons"
-                    label="Heading"
-                    defaultValue="<p><i><b>Ballons</b></i></p>"
-                    rtf
-                  />
-                </Box>
-              </Heading>
-            </Stack>
-
+          pb={{md: '8rem', lg: '12rem', xl: '14rem'}}>
+          <Container
+            as={HStack}
+            maxW={CONTAINER_MAX_WIDTH}
+            justifyContent="space-between"
+            alignContent="center"
+            height={{md: 'calc(100vh - 7.5rem)', lg: 'calc(100vh - 8rem)'}}
+            minH="700px">
+            {switchingHeadline}
 
             {/* <Box
             // flex="1"
@@ -202,22 +188,24 @@ const Hero: FC<IHeroProps> = props => {
               defaultValue={'/images/home/news/news_img.png'}
             />
           </Box> */}
-
-
-
           </Container>
 
-          <Container as={Stack} maxW={CONTAINER_MAX_WIDTH} justifyContent={"center"} h={"40vh"} mt={"300px"}>
+          <Container
+            as={Stack}
+            maxW={CONTAINER_MAX_WIDTH}
+            justifyContent="center"
+            h="40vh"
+            mt="300px">
             <SimpleGrid
-              w={"full"}
+              w="full"
               placeItems="center"
-              mb={{ lg: 10 }}
+              mb={{lg: 10}}
               mt="0"
               minChildWidth="300px"
               spacing="30px"
-            // gridTemplateColumns={{
-            //   md: "repeat(auto-fit, minmax(15rem, auto))",
-            // }}
+              // gridTemplateColumns={{
+              //   md: "repeat(auto-fit, minmax(15rem, auto))",
+              // }}
             >
               {contentPagesIndex.children.map((page, i) =>
                 contentPagesIndex.withJaenPage(

@@ -1,5 +1,6 @@
 import {SearchIcon} from '@chakra-ui/icons'
 import {
+  Image,
   Input,
   InputGroup,
   InputLeftElement,
@@ -188,7 +189,13 @@ export const Searchbar = (props: SearchbarProps) => {
                   <Tr>
                     <Th>Produktbild</Th>
                     <Th>Artikel</Th>
-                    <Th>Eigenschaften</Th>
+                    <Th
+                      display={{
+                        base: 'none',
+                        lg: 'table-cell'
+                      }}>
+                      Eigenschaften
+                    </Th>
                     <Th>Preis</Th>
                   </Tr>
                 </Thead>
@@ -280,17 +287,23 @@ export const Searchbar = (props: SearchbarProps) => {
                           props.onProductClick(index)
                         }}>
                         <Td>
-                          {/* <Image
-                            src={product.featuredMedia?.src}
-                            alt={product.featuredMedia?.altText}
-                            fallback={<p>Kein Bild vorhanden</p>}
-                            boxSize="100px"
+                          <Image
+                            src={product.featuredMedia?.image.src}
+                            alt={product.featuredMedia?.image.altText || ''}
+                            boxSize={{
+                              base: '50px',
+                              lg: '100px'
+                            }}
                             borderRadius="md"
-                            objectFit="cover"
-                          /> */}
+                            objectFit="contain"
+                          />
                         </Td>
                         <Td>{product.title}</Td>
-                        <Td>
+                        <Td
+                          display={{
+                            base: 'none',
+                            lg: 'table-cell'
+                          }}>
                           <TableContainer maxW="sm">
                             <Table
                               size="sm"
