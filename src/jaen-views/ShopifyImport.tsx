@@ -302,84 +302,110 @@ const ImportProductsFromExcel: React.FC<{
 
       const row = worksheet.getRow(i)
 
+      const shouldDeleteRow = getValueOrEmpty(row, 'BC') === '#'
       const productTitle = getValueOrEmpty(row, 'G')
+
+      let action: 'update' | 'delete' | 'create' = 'create'
 
       if (!productTitle) {
         continue
       }
 
-      const product = loadProduct(row)
+      if (shouldDeleteRow) {
+        action = 'delete'
+        try {
+          const productId = getValueOrEmpty(row, 'A')
 
-      try {
-        if (product.id) {
-          await sq.mutate(Mutation => {
-            Mutation.shopifyProductUpdate({
-              resourceId: snekResourceId,
-              input: {
-                ...product,
-                metafields: doNotConvertToString(product.metafields),
-                variants: {
-                  ...product.variants,
-                  taxable: true,
-                  inventoryPolicy: 'CONTINUE',
-                  inventoryItem: {
-                    tracked: false
-                  }
-                }
-              }
+          if (productId) {
+            await sq.mutate(Mutation => {
+              Mutation.shopifyProductDelete({
+                resourceId: snekResourceId,
+                id: productId
+              })
             })
-          })
-        } else {
-          console.log({
-            resourceId: snekResourceId,
-            input: {
-              ...product,
-              metafields: doNotConvertToString(product.metafields),
-              variants: {
-                ...product.variants,
-                taxable: true,
-                inventoryPolicy: 'CONTINUE',
-                inventoryItem: {
-                  tracked: false
+
+            // override all columns in row
+            for (let j = 1; j < row.cellCount; j++) {
+              const cell = row.getCell(j)
+
+              const isFormular = cell.type === ExcelJS.ValueType.Formula
+
+              if (isFormular) {
+                const value = cell.value as ExcelJS.CellFormulaValue
+
+                cell.value = {
+                  ...value,
+                  result: ''
                 }
+              } else {
+                cell.value = ''
               }
             }
-          })
-          const [productId] = await sq.mutate(Mutation => {
-            return Mutation.shopifyProductCreate({
-              resourceId: snekResourceId,
-              input: {
-                ...product,
-                metafields: doNotConvertToString(product.metafields),
-                variants: {
-                  ...product.variants,
-                  taxable: true,
-                  inventoryPolicy: 'CONTINUE',
-                  inventoryItem: {
-                    tracked: false
+          }
+        } catch (e) {
+          console.log(e)
+        }
+      } else {
+        const product = loadProduct(row)
+
+        try {
+          if (product.id) {
+            action = 'update'
+            await sq.mutate(Mutation => {
+              Mutation.shopifyProductUpdate({
+                resourceId: snekResourceId,
+                input: {
+                  ...product,
+                  metafields: doNotConvertToString(product.metafields),
+                  variants: {
+                    ...product.variants,
+                    taxable: true,
+                    inventoryPolicy: 'CONTINUE',
+                    inventoryItem: {
+                      tracked: false
+                    }
                   }
                 }
-              }
+              })
             })
-          })
+          } else {
+            action = 'create'
+            const [productId] = await sq.mutate(Mutation => {
+              return Mutation.shopifyProductCreate({
+                resourceId: snekResourceId,
+                input: {
+                  ...product,
+                  metafields: doNotConvertToString(product.metafields),
+                  variants: {
+                    ...product.variants,
+                    taxable: true,
+                    inventoryPolicy: 'CONTINUE',
+                    inventoryItem: {
+                      tracked: false
+                    }
+                  }
+                }
+              })
+            })
 
-          // Update first column of row with product id
-          row.getCell(1).value = productId
-        }
-      } catch (e) {
-        if (e instanceof Error) {
-          setProgress({
-            currentTask: '',
-            progress,
-            total,
-            current,
-            error: e.message
-          })
+            // Update first column of row with product id
+            row.getCell(1).value = productId
+          }
+        } catch (e) {
+          if (e instanceof Error) {
+            setProgress({
+              currentTask: '',
+              progress,
+              total,
+              current,
+              error: e.message
+            })
+          }
         }
       }
 
       setProgress({
-        currentTask: product.title,
+        currentTask: `${action} ${productTitle}`,
         progress: (i / worksheet.actualRowCount) * 100,
 
         total: worksheet.actualRowCount - 1,
