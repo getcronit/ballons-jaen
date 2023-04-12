@@ -3829,6 +3829,13 @@
   dependencies:
     snek-query "*"
 
+"@snek-functions/origin@^0.2.4":
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/@snek-functions/origin/-/origin-0.2.4.tgz#bac23440bc5e4daf9ba3b687e4412a7fbf75fe0d"
+  integrity sha512-MgjrSzyqZAKkJnFxzp8IjlibdVYV87caJqhS+h2z9PNMMqPbBqjVubO/RD9L09yhuzZwwphzEZtpkmHxnjE4iw==
+  dependencies:
+    snek-query "*"
+
 "@socket.io/component-emitter@~3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@socket.io/component-emitter/-/component-emitter-3.1.0.tgz#96116f2a912e0c02817345b3c10751069920d553"
@@ -12493,9 +12500,9 @@ snake-case@^3.0.4:
     tslib "^2.0.3"
 
 snek-query@*:
-  version "0.0.57"
-  resolved "https://registry.yarnpkg.com/snek-query/-/snek-query-0.0.57.tgz#f4efe84c77def419ac5714225c77e23637797977"
-  integrity sha512-Zn81KX1rQuisWzBKacVucG5ot4Z2kAwFN8/kiBXgazYxfgOqPqG776azE5d6MfEdA0A+s2u2uet8RRV892jsVw==
+  version "0.0.72"
+  resolved "https://registry.yarnpkg.com/snek-query/-/snek-query-0.0.72.tgz#dc1015c444ed02688b6fe699aae55af01a719001"
+  integrity sha512-WHJ9HHr80T0FiT/OnNkhKf2qJTxUVTV+X7MmtTrT6pk4eYvv4RXyDasVFyiDhcdh5ixQ/GfJ+UzkNWifLXDaGQ==
   dependencies:
     commander "^9.4.1"
     graphql "^16.6.0"
