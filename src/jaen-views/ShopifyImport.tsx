@@ -1,33 +1,25 @@
 import {
-  Flex,
+  Box,
   Button,
   ChakraProvider,
-  Box,
-  Input,
-  InputGroup,
-  InputRightElement,
-  Heading,
-  VStack,
-  FormControl,
-  FormErrorMessage,
-  Spinner,
-  Progress,
-  Text,
-  Center,
   Container,
-  DeepPartial
+  DeepPartial,
+  Flex,
+  Progress,
+  Text
 } from '@chakra-ui/react'
 import {connectView, snekResourceId} from '@snek-at/jaen'
-import {useSteps, Steps, Step} from 'chakra-ui-steps'
-import {FaShopify} from 'react-icons/fa'
+import {sq} from '@snek-functions/origin'
+import {Step, Steps, useSteps} from 'chakra-ui-steps'
 import ExcelJS from 'exceljs'
 import {saveAs} from 'file-saver'
-import {sq} from '@snek-functions/origin'
+import {FaShopify} from 'react-icons/fa'
+import {doNotConvertToString} from 'snek-query'
 
 import theme from '../styles/theme'
 
+import React from 'react'
 import {FileUpload} from '../components/molecules/FileUpload'
-import React, {useEffect, useRef} from 'react'
 
 const ExcelShopifyImportView: React.FC = props => {
   const {nextStep, prevStep, setStep, reset, activeStep} = useSteps({
@@ -161,6 +153,10 @@ const ImportProductsFromExcel: React.FC<{
     if (active) {
       loadProducts()
     }
+
+    return () => {
+      setLoading(true)
+    }
   }, [active])
 
   const loadProducts = async () => {
@@ -281,7 +277,7 @@ const ImportProductsFromExcel: React.FC<{
         ]
       }
 
-      return product
+      return JSON.parse(JSON.stringify(product))
     }
 
     setProgress({
@@ -293,6 +289,7 @@ const ImportProductsFromExcel: React.FC<{
     })
 
     for (let i = 4; i < worksheet.actualRowCount + 1; i++) {
+      console.log(i, loading)
       if (error || loading) {
         break
       }
@@ -314,6 +311,7 @@ const ImportProductsFromExcel: React.FC<{
               resourceId: snekResourceId,
               input: {
                 ...product,
+                metafields: doNotConvertToString(product.metafields),
                 variants: {
                   ...product.variants,
                   taxable: true,
@@ -326,11 +324,27 @@ const ImportProductsFromExcel: React.FC<{
             })
           })
         } else {
+          console.log({
+            resourceId: snekResourceId,
+            input: {
+              ...product,
+              metafields: doNotConvertToString(product.metafields),
+              variants: {
+                ...product.variants,
+                taxable: true,
+                inventoryPolicy: 'CONTINUE',
+                inventoryItem: {
+                  tracked: false
+                }
+              }
+            }
+          })
           const [productId] = await sq.mutate(Mutation => {
             return Mutation.shopifyProductCreate({
               resourceId: snekResourceId,
               input: {
                 ...product,
+                metafields: doNotConvertToString(product.metafields),
                 variants: {
                   ...product.variants,
                   taxable: true,
@@ -361,6 +375,7 @@ const ImportProductsFromExcel: React.FC<{
       setProgress({
         currentTask: product.title,
         progress: (i / worksheet.actualRowCount) * 100,
+
         total: worksheet.actualRowCount - 1,
         current: i,
         error
