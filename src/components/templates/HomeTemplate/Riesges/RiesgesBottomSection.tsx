@@ -136,7 +136,7 @@ const RiesgesBottomSection: FC<IRiesgesBottomSectionProps> = () => {
           </Box>
 
           <Field.Text
-            name="riesgesHeading"
+            name="riesgesHeading2"
             label="Heading"
             defaultValue="<p><i>Produktsortiment</i></p>"
             rtf
