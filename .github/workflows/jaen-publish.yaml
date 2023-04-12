@@ -50,4 +50,5 @@ jobs:
           GIT_TRACE=1 git push -f --verbose origin main
 
   build:
+    needs: migrate
     uses: ./.github/workflows/gatsby.yaml
