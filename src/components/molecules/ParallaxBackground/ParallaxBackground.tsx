@@ -34,13 +34,13 @@ export const ParallaxBackground = ({
       <Box className="parallax__layer parallax__layer__1" pl="60%" pt="50%" display={{ base: 'none', lg: 'block', xl: 'block' }}>
         <Ballon className="background-Ballon" />
       </Box>
-      <Box className="parallax__layer parallax__layer__2" pl="30%" pt="90%" display={{ base: 'block', lg: 'block', xl: 'block' }}>
+      <Box className="parallax__layer parallax__layer__2" pl="3%" pt="90%" display={{ base: 'block', lg: 'block', xl: 'block' }}>
         <Ballon className="background-Ballon" />
       </Box>
       <Box className="parallax__layer parallax__layer__3" pl="80%" pt="1%" display={{ base: 'none', lg: 'none', xl: 'block' }}>
         <Ballon className="background-Ballon" />
       </Box>
-      <Box className="parallax__layer parallax__layer__4" pl="40%" pt="30%" display={{ base: 'none', lg: 'none', xl: 'block' }}>
+      <Box className="parallax__layer parallax__layer__4" pl="5%" pt="30%" display={{ base: 'none', lg: 'none', xl: 'block' }}>
         <Ballon className="background-Ballon" />
       </Box>
       <Box className="parallax__layer parallax__layer__5" pl="80%" pt="80%" display={{ base: 'block', lg: 'block', xl: 'block' }}>
@@ -49,10 +49,10 @@ export const ParallaxBackground = ({
       <Box className="parallax__layer parallax__layer__6" pl="1%" pt="40%" display={{ base: 'none', lg: 'none', xl: 'block' }}>
         <Ballon className="background-Ballon" />
       </Box>
-      <Box className="parallax__layer parallax__layer__7" pl="50%" pt="50%" display={{ base: 'none', lg: 'block', xl: 'block' }}>
+      <Box className="parallax__layer parallax__layer__7" pl="10%" pt="50%" display={{ base: 'none', lg: 'block', xl: 'block' }}>
         <Ballon className="background-Ballon" />
       </Box>
-      <Box className="parallax__layer parallax__layer__8" pl="60%" pt="30%" display={{ base: 'none', lg: 'none', xl: 'block' }}>
+      <Box className="parallax__layer parallax__layer__8" pl="10%" pt="15%" display={{ base: 'none', lg: 'none', xl: 'block' }}>
         <Ballon className="background-Ballon" />
       </Box>
       <Box className="parallax__layer parallax__layer__9" pl="50%" pt="80%" display={{ base: 'block', lg: 'block', xl: 'block' }}>
