@@ -25,6 +25,18 @@ jobs:
         with:
           # Relative path under $GITHUB_WORKSPACE to place the repository
           path: '.'
+          
+      # https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstepsid
+      - name: Configure GitHub Authentication 🔧
+        # https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstepsrun
+        run: |
+          # Git: set identity
+          git config user.name "snekmin"
+          git config user.email "noreply.snek.at@gmail.com"
+
+          # Git: set remote  
+          # https://developer.github.com/apps/building-github-apps/authenticating-with-github-apps/#http-based-git-access-by-an-installation
+          git remote set-url origin "https://x-access-token:${{secrets.GITHUB_TOKEN}}@github.com/${GITHUB_REPOSITORY}.git"
 
       # https://classic.yarnpkg.com/lang/en/docs/cli/install/#toc-yarn-install-pure-lockfile
       - name: Install Jaen globally
