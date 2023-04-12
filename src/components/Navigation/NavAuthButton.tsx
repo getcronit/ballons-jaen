@@ -7,7 +7,7 @@ import {
   MenuItem,
   MenuList
 } from '@chakra-ui/react'
-import {Link} from 'gatsby'
+import {Link, navigate} from 'gatsby'
 import {AiOutlineUser} from 'react-icons/ai'
 import {useIsClient} from '../../common/useIsClient'
 import {useAuthentication} from '../../services/authentication'
@@ -55,7 +55,10 @@ export const NavAuthButton: React.FC<NavAuthButtonProps> = () => {
       <MenuButton as="span">{responsiveButton}</MenuButton>
 
       <MenuList>
-        <MenuItem as={Link} to="/products">
+        <MenuItem
+          onClick={() => {
+            navigate('/products')
+          }}>
           Großhandel
         </MenuItem>
         <MenuItem onClick={basket.onOpen}>Mein Warenkorb</MenuItem>

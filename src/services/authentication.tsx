@@ -1,5 +1,7 @@
 import {useDisclosure} from '@chakra-ui/react'
-import React from 'react'
+import {snekResourceId} from '@snek-at/jaen'
+import {getTokenPair, setTokenPair, sq} from '@snek-functions/origin'
+import React, {useEffect} from 'react'
 
 import {LoginModal} from '../components/organisms/LoginModal'
 
@@ -36,34 +38,86 @@ export interface AuthenticationProviderProps {
 export const AuthenticationProvider: React.FC<AuthenticationProviderProps> = ({
   children
 }) => {
-  const [user, setUser] = React.useState<AuthenticationContextProps['user']>({
-    name: 'Nico Schett',
-    email: 'schett@snek.at'
-  })
+  const [user, setUser] =
+    React.useState<AuthenticationContextProps['user']>(undefined)
 
-  const login = React.useCallback(async (email: string, password: string) => {
+  const login = React.useCallback(async (login: string, password: string) => {
     // sleep 3 seconds to simulate a network request
 
     await new Promise(resolve => setTimeout(resolve, 3000))
 
+    const [loginData, errors] = await sq.mutate(Mutation => {
+      const signIn = Mutation.userSignIn({
+        login,
+        password,
+        resourceId: snekResourceId
+      })
+
+      return {
+        tokenPair: {
+          accessToken: signIn.tokenPair.accessToken,
+          refreshToken: signIn.tokenPair.refreshToken
+        },
+        user: {
+          name: signIn.user.username,
+          email: signIn.user.primaryEmailAddress
+        }
+      }
+    })
+
+    setTokenPair(loginData.tokenPair)
+
+    if (errors) {
+      return false
+    }
+
     // assume the login was successful
 
     setUser({
-      name: 'John Doe',
-      email: 'schett@snek.at'
+      name: loginData.user.name,
+      email: loginData.user.email
     })
 
     return true
   }, [])
 
+  const boostrap = React.useCallback(async () => {
+    // check if tokenpair is set
+
+    const tokenPair = getTokenPair()
+
+    if (!tokenPair) {
+      return
+    }
+
+    const [loginData, errors] = await sq.query(Query => {
+      const user = Query.userMe
+
+      return {
+        name: user.username,
+        email: user.primaryEmailAddress
+      }
+    })
+
+    if (errors) {
+      return
+    }
+
+    setUser({
+      name: loginData.name,
+      email: loginData.email
+    })
+  }, [])
+
+  useEffect(() => {
+    boostrap()
+  }, [])
+
   const logout = React.useCallback(async () => {
-    // sleep 3 seconds to simulate a network request
-
-    await new Promise(resolve => setTimeout(resolve, 3000))
-
-    // assume the logout was successful
-
     setUser(undefined)
+    setTokenPair(null)
+
+    localStorage.removeItem('isAuthenticated')
   }, [])
 
   const loginModalDisclosure = useDisclosure()
