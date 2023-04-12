@@ -25,7 +25,7 @@ jobs:
         with:
           # Relative path under $GITHUB_WORKSPACE to place the repository
           path: '.'
-          
+
       # https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstepsid
       - name: Configure GitHub Authentication 🔧
         # https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstepsrun
@@ -64,3 +64,4 @@ jobs:
   build:
     needs: migrate
     uses: ./.github/workflows/gatsby.yaml
+    secrets: inherit
