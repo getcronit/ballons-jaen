@@ -17,34 +17,34 @@ jobs:
         # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#
         working-directory: ${{github.event.client_payload.cwd}}
 
-  steps:
-    # https://github.com/actions/checkout
-    - name: Checkout 🛎️
-      uses: actions/checkout@v3
-      # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepswith
-      with:
-        # Relative path under $GITHUB_WORKSPACE to place the repository
-        path: '.'
+    steps:
+      # https://github.com/actions/checkout
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+        # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepswith
+        with:
+          # Relative path under $GITHUB_WORKSPACE to place the repository
+          path: '.'
 
-    # https://classic.yarnpkg.com/lang/en/docs/cli/install/#toc-yarn-install-pure-lockfile
-    - name: Install Jaen globally
-      # https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstepsrun
-      run: npm i -g @snek-at/jaen
+      # https://classic.yarnpkg.com/lang/en/docs/cli/install/#toc-yarn-install-pure-lockfile
+      - name: Install Jaen globally
+        # https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstepsrun
+        run: npm i -g @snek-at/jaen
 
-    - name: Migrate Jaen Data 📝
-      # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#
-      working-directory: ${{github.event.client_payload.cwd}}
-      # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsif
-      if: ${{github.event.client_payload.migrationURL}}
-      # https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstepsrun
-      run: |
-        # Create gh-pages branch without history
-        #git checkout --orphan gh-pages
-        git checkout main
+      - name: Migrate Jaen Data 📝
+        # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#
+        working-directory: ${{github.event.client_payload.cwd}}
+        # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsif
+        if: ${{github.event.client_payload.migrationURL}}
+        # https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstepsrun
+        run: |
+          # Create gh-pages branch without history
+          #git checkout --orphan gh-pages
+          git checkout main
 
-        yarn jaen migrate -m ${{github.event.client_payload.migrationURL}}
+          yarn jaen migrate -m ${{github.event.client_payload.migrationURL}}
 
-        # Git: add, commit, and push changes
-        git add .
-        git commit -m "jaen-publish: migrate jaen-data" || echo "Nothing to commit, working tree clean."
-        GIT_TRACE=1 git push -f --verbose origin main
+          # Git: add, commit, and push changes
+          git add .
+          git commit -m "jaen-publish: migrate jaen-data" || echo "Nothing to commit, working tree clean."
+          GIT_TRACE=1 git push -f --verbose origin main
