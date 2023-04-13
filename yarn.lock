@@ -3774,10 +3774,10 @@
     shopify-buy "^2.17.0"
     urql "^2.2.0"
 
-"@snek-at/jaen@^0.0.30":
-  version "0.0.30"
-  resolved "https://registry.yarnpkg.com/@snek-at/jaen/-/jaen-0.0.30.tgz#2743b151d024224fb4735997b165b51a889cbb4d"
-  integrity sha512-ILPCJ8yPMDuBrAbG7ifDoYlboiMXl9Sp9KJsVCxCSlkEF126Lb8Eb0nGY3gUCNmFluAtZlyTUC062n2iLzcfTA==
+"@snek-at/jaen@^0.0.33":
+  version "0.0.33"
+  resolved "https://registry.yarnpkg.com/@snek-at/jaen/-/jaen-0.0.33.tgz#4afcce7ec8de46fb34d5076cea7750d1fa54ffbd"
+  integrity sha512-7zZNM+b+2SLkz8F1GZAp2qDv7SpgjsOnDcBbUDBbEE+wLSVc/7S5vRGAz4+o/ftv4HNaLhDG1TxBSLFdF6NGtA==
   dependencies:
     "@chakra-ui/icons" "^2.0.12"
     "@chakra-ui/pro-theme" "^0.0.64"
@@ -3829,10 +3829,10 @@
   dependencies:
     snek-query "*"
 
-"@snek-functions/origin@^0.2.4":
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/@snek-functions/origin/-/origin-0.2.4.tgz#bac23440bc5e4daf9ba3b687e4412a7fbf75fe0d"
-  integrity sha512-MgjrSzyqZAKkJnFxzp8IjlibdVYV87caJqhS+h2z9PNMMqPbBqjVubO/RD9L09yhuzZwwphzEZtpkmHxnjE4iw==
+"@snek-functions/origin@^0.2.8":
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/@snek-functions/origin/-/origin-0.2.8.tgz#091f946e4668843dd83604aecc9fb1af7bb1b2c1"
+  integrity sha512-+msBlaK6qRpBznLrdXqkDVWA4t2HGeeq/Pp5Hm6rdEJ3it92GjHuYv9wPIdhJcMTqKaLWLn3V3qnUMIZLyJOxg==
   dependencies:
     snek-query "*"
 
