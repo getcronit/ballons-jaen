@@ -15,6 +15,7 @@ import { CONTAINER_MAX_WIDTH } from '../../../../constant/sizes'
 import CardWithImageBackground from '../../../CardWithImageBackground'
 import { useContentPages } from '../../../hooks/useContentPages'
 import { ParallaxBackground } from '../../../molecules/ParallaxBackground'
+import { HBallon, Ballon } from '../../../../common/assets/Ballon'
 
 export interface IHeroProps {
   anchor?: string
@@ -93,38 +94,102 @@ const Hero: FC<IHeroProps> = props => {
   return (
     <>
       {/* For Mobile */}
-      {/* <Box
+      <Box
         display={{ base: 'block', md: 'none' }}
-        pos="relative"
-        pb={{
-          base: '43.75rem',
-          sm: '50rem'
-        }}>
-        <Box mb="10">{switchingHeadline}</Box>
-        <Image
-          top={{ base: '34.375rem' }}
-          pos="absolute"
-          left=""
-          h={{ base: 'auto' }}
-          src="/images/home/hero_shape.svg"
-          alt="herobackground"
-          zIndex={{ base: 'none', md: '50' }}
-          display={{ base: 'none', md: 'block' }}
-        />
+        position="relative"
+        width="full"
+      >
+        <Box
+          position="relative"
+          zIndex={51}
+          bgImage="url('/images/home/hero_line.svg'),url('/images/home/reisges/top_shape.svg')"
+          bgSize="100%,contain"
+          bgPos={{
+            base: 'bottom 6rem  left -2rem,left 0  bottom 0',
+            md: 'bottom 6rem  left -2rem,left 0  bottom 0',
+            lg: 'bottom 3rem  left 0,left 0  bottom 0',
+            xl: 'bottom 0  left -5rem,left 0  bottom 0'
+          }}
+          w="full"
+          h="full"
+          bgRepeat="no-repeat"
+          pb={{ md: '8rem', lg: '12rem', xl: '14rem' }}>
+          
+          <Container
+            // display='none'
+            mt={{ base: '5'}}
+            as={HStack}
+            maxW={CONTAINER_MAX_WIDTH}
+            justifyContent="center"
+            alignContent="center"
+          >
+            <HBallon className="background-Ballon" />
+            <Heading
+              fontSize={{ base: '2xl', md: '8xl', lg: '9xl' }}
+              fontWeight="semibold"
+              textAlign="center"
+              pt="12"
+            >
+              <Box as="span">
+                <Field.Text
+                  name="heroHeadingBallons"
+                  label="Heading"
+                  defaultValue="<p><b><i>Ballons</i></b></p>"
+                  rtf
+                />
+              </Box>
+            </Heading>
+          </Container>
 
-        <Image
-          overflow="hidden"
-          pos="absolute"
-          top={{ base: '33.75rem' }}
-          left={{ base: '-3.125rem' }}
-          src="/images/home/hero_line.svg"
-          alt="herobackground"
-        />
-      </Box> */}
+          <Container
+            as={Stack}
+            maxW={CONTAINER_MAX_WIDTH}
+            justifyContent="center"
+            minH="40vh"
+            mt="30px">
+            <SimpleGrid
+              w="full"
+              placeItems="center"
+              mb={{ lg: 10 }}
+              mt="0"
+              minChildWidth="300px"
+              spacing="30px"
+            >
+              {contentPagesIndex.children.map((page, i) =>
+                contentPagesIndex.withJaenPage(
+                  page.id || '',
+                  <GridItem
+                    justifySelf="center"
+                    h={{
+                      base: '11.25rem',
+                      md: '18.75rem',
+                      lg: '25rem',
+                      xl: '31.25rem'
+                    }}
+                    key={i}>
+                    <CardWithImageBackground
+                      card={{
+                        headingFieldName: `riesgesCardheading${i}`,
+                        headingDefaultValue: cards[0].heading,
+                        textFieldName: `riesgesCardText${i}`,
+                        textDefaultValue: cards[0].text,
+                        imageFieldName: `riesgesCardImage${i}`,
+                        imageDefaultValue: cards[0].image,
+                        linkUrl: `/${page.slug}`
+                      }}
+                      key={i}
+                    />
+                  </GridItem>
+                )
+              )}
+            </SimpleGrid>
+          </Container>
+        </Box>
+      </Box>
       {/* For Big Devices */}
 
       <Box
-        //display={{ base: 'none', md: 'block' }}
+        display={{ base: 'none', md: 'block' }}
         position="relative"
         width="full"
       >
@@ -162,7 +227,7 @@ const Hero: FC<IHeroProps> = props => {
             as={Stack}
             maxW={CONTAINER_MAX_WIDTH}
             justifyContent="center"
-            h="40vh"
+            minH="40vh"
             mt="300px">
             <SimpleGrid
               w="full"
