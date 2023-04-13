@@ -10,7 +10,24 @@
     {
       "createdAt": "2023-04-12T12:53:39.676Z",
       "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIVhGQ2qXuhdUDyqJu2QwSrWok4_DrMAALNEAAC3nqxUQLXzOGXd51eLwQ"
+    },
+    {
+      "createdAt": "2023-04-13T01:12:22.342Z",
+      "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIVh2Q3VpRpKjINYsCgr75OaDC58sbzAAJBDQAC3nq5Ucry1SzncvarLwQ"
     }
   ],
-  "widgets": []
+  "widgets": [
+    {
+      "name": "menu",
+      "data": {
+        "items": [
+          {
+            "label": "Home",
+            "url": "/"
+          }
+        ]
+      }
+    }
+  ],
+  "finderUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIVhmQ3VpTngEyizixBWZSO79CeGZGVAAJADQAC3nq5UUNkXiVt37jiLwQ"
 }
