@@ -32,7 +32,7 @@
     "framer-motion": "^10.0.1",
     "gatsby": "^5",
     "gatsby-plugin-image": "^3",
-    "gatsby-plugin-jaen": "^0.0.8",
+    "gatsby-plugin-jaen": "^0.0.9",
     "gatsby-plugin-sharp": "^5",
     "gatsby-transformer-sharp": "^5",
     "react": "^18.2.0",
