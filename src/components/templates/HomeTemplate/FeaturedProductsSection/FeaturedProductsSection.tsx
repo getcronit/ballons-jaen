@@ -1,15 +1,12 @@
-import { Button } from '@chakra-ui/button'
-import { Box, Center, Container, Divider, Heading, HStack } from '@chakra-ui/layout'
-import { ShopifyProduct } from '@snek-at/gatsby-theme-shopify'
-import { Link as GatsbyLink } from 'gatsby'
-import React, { ReactNode } from 'react'
+import {Box, Center, Container, Divider, HStack} from '@chakra-ui/layout'
+import {ShopifyProduct} from '@snek-at/gatsby-theme-shopify'
+import {ReactNode} from 'react'
 
-import { getThemeColor } from '../../../../common/utils'
 //import { Bullet } from '../../../atoms/Bullet'
-import { ProductGrid } from '../../../molecules/ProductGrid'
+import {ProductGrid} from '../../../molecules/ProductGrid'
 //import { StickyStrokeLogo } from '../../../molecules/StickyStrokeLogo'
-import * as style from './style'
 import LinkButtonField from '../../../fields/LinkButtonField'
+import * as style from './style'
 
 export interface FeaturedProductsSectionProps {
   name: string
@@ -23,12 +20,10 @@ export interface FeaturedProductsProps {
   anchor?: string
   featuredProducts: ShopifyProduct[]
   productsPagePath: string
-  heading: ReactNode
 }
 
 export const FeaturedProducts = ({
   anchor,
-  heading,
   featuredProducts,
   productsPagePath
 }: FeaturedProductsProps) => {
@@ -42,7 +37,7 @@ export const FeaturedProducts = ({
         id={anchor}
         position="relative"
         overflow="hidden"
-        bg={"white"}
+        bg={'white'}
         css={style.Section}>
         <Divider
           orientation="vertical"
@@ -54,7 +49,7 @@ export const FeaturedProducts = ({
           left="calc(4em + 2.5vw)"
           // borderLeft="1px"
           borderColor="stroke"
-          display={{ base: 'none', '2xl': 'block' }}
+          display={{base: 'none', '2xl': 'block'}}
         />
         <Container position="relative" py="10" maxW="8xl">
           {/* <Box textAlign="center" my="10">
@@ -65,37 +60,15 @@ export const FeaturedProducts = ({
             prefixPath={productsPagePath}
             products={featuredProducts}
             spacing="5"
-            columns={{ base: 2, md: 3, xl: 4 }}
+            columns={{base: 2, md: 3, xl: 4}}
           />
-          <Center mt="10">
-            {/* <Button
-              as={GatsbyLink}
-              to={productsPagePath}
-              color="white"
-              borderRadius="5px"
-              colorScheme="agt.grayScheme"
-              variant="solid"
-              size="lg">
-              Mehr davon
-            </Button> */}
-            <HStack
-              justify="center"
-              gap="4"
-              flexDir={{ base: 'row-reverse', md: 'row' }}>
-              <LinkButtonField
-                name="littleThingsButton1"
-                defaultValue="Zum Shop"
-                defaultUrl={`/products`}
-                size={{ base: 'sm', md: 'md' }}
-              />
-              <LinkButtonField
-                name="littleThingsButton2"
-                defaultValue="Großhandel"
-                defaultUrl={`/grosshandel`}
-                size={{ base: 'sm', md: 'md' }}
-                variant="outline"
-              />
-            </HStack>
+          <Center mt="10" mb="16">
+            <LinkButtonField
+              name="littleThingsButton1"
+              defaultValue="Mehr davon"
+              defaultUrl={productsPagePath}
+              size={{base: 'sm', md: 'md'}}
+            />
           </Center>
         </Container>
       </Box>

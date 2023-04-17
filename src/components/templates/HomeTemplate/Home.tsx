@@ -23,7 +23,6 @@ const Home: FC<IHomeProps> = props => {
       <FeaturedProducts
         featuredProducts={props.featuredProducts}
         productsPagePath={'/products'}
-        heading={'Sortiment'}
       />
       <HeartSection />
       <LittleThingsSection />
