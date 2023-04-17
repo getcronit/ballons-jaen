@@ -16,6 +16,7 @@ import CardWithImageBackground from '../../../CardWithImageBackground'
 import { useContentPages } from '../../../hooks/useContentPages'
 import { ParallaxBackground } from '../../../molecules/ParallaxBackground'
 import { HBallon, Ballon } from '../../../../common/assets/Ballon'
+import LinkButtonField from '../../../fields/LinkButtonField'
 
 export interface IHeroProps {
   anchor?: string
@@ -79,7 +80,7 @@ const Hero: FC<IHeroProps> = props => {
         fontWeight="semibold"
         textAlign="center"
       >
-        <Box as="span" mb="10">
+        <Box as="span" mt="10">
           <Field.Text
             name="heroHeadingBallons"
             label="Heading"
@@ -87,6 +88,25 @@ const Hero: FC<IHeroProps> = props => {
             rtf
           />
         </Box>
+        <HStack
+          mt="-5ya"
+          justify="center"
+          gap="4"
+          flexDir={{ base: 'row-reverse', md: 'row' }}>
+          <LinkButtonField
+            name="littleThingsButton1"
+            defaultValue="Zum Shop"
+            defaultUrl={`/products`}
+            size={{ base: 'sm', md: 'md' }}
+          />
+          <LinkButtonField
+            name="littleThingsButton2"
+            defaultValue="Großhandel"
+            defaultUrl={`/grosshandel`}
+            size={{ base: 'sm', md: 'md' }}
+            variant="outline"
+          />
+        </HStack>
       </Heading>
     </Stack>
   )
@@ -114,10 +134,10 @@ const Hero: FC<IHeroProps> = props => {
           h="full"
           bgRepeat="no-repeat"
           pb={{ md: '8rem', lg: '12rem', xl: '14rem' }}>
-          
+
           <Container
             // display='none'
-            mt={{ base: '5'}}
+            mt={{ base: '5' }}
             as={HStack}
             maxW={CONTAINER_MAX_WIDTH}
             justifyContent="center"
@@ -187,7 +207,7 @@ const Hero: FC<IHeroProps> = props => {
         </Box>
       </Box>
       {/* For Big Devices */}
-
+      {/* <ParallaxHero /> */}
       <Box
         display={{ base: 'none', md: 'block' }}
         position="relative"
@@ -195,7 +215,7 @@ const Hero: FC<IHeroProps> = props => {
       >
         <ParallaxBackground
           strokeColor="red"
-          backgroundColor="tansperent"
+          backgroundColor="white"
           offset={0}
         />
         <Box

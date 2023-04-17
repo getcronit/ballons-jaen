@@ -27,7 +27,16 @@ export const ParallaxBackground = ({
       className="parallax"
       css={style.Section(strokeColor, backgroundColor, noScroll)}
       ref={ref}
-      backgroundColor={backgroundColor}>
+      backgroundColor={backgroundColor}
+      bgImage="url('/images/home/hero_skyline.svg')"
+      bgSize="100%,contain"
+      bgRepeat="no-repeat"
+      bgPos={{
+        base: 'top 0 left 0',
+        md: 'top 0 left 0 ',
+        lg: 'top 0 left 0',
+        xl: 'top 0 left 0'
+      }}>
       <Box className="parallax__layer parallax__layer__0" pl="90%" pt={{md: 'calc(1% + 17.5rem)', lg: 'calc(1% + 18rem)'}} display={{ base: 'none', md: 'none', lg: 'none', xl: 'block' }}>
         <Ballon className="background-Ballon" />
       </Box>
