@@ -67,7 +67,11 @@ const ContactHero: FC<IContactHeroProps> = ({contactDetails}) => {
                     </Box>{' '}
                     <Text size="b2012" as="span">
                       {!item.isEditing ? (
-                        <Link href={item.link} target="_blank" rel="noreferrer">
+                        <Link
+                          href={item.link}
+                          target="_blank"
+                          rel="noreferrer"
+                          as="span">
                           {item.text}
                         </Link>
                       ) : (
