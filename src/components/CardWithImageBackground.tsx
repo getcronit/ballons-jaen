@@ -57,7 +57,7 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
         <Field.Image
           name={card.imageFieldName}
           label="Image"
-          defaultValue={card.imageDefaultValue}
+          //defaultValue={card.imageDefaultValue}
         />
       )}
       <Box position="absolute">

@@ -49,7 +49,7 @@ const GroßhandelUpperHero: FC<IGroßhandelUpperHeroProps> = () => {
             <Field.Image
               name="image"
               label="Image"
-              defaultValue="/images/großhandel/ballon_box.png"
+              //defaultValue="/images/großhandel/ballon_box.png"
               objectFit="contain"
             />
           </Grid>

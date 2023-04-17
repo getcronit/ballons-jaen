@@ -71,7 +71,7 @@ const WhiteDesktopSlider: FC<IWhiteDesktopSliderProps> = ({
                     <Field.Image
                       name="image"
                       label="Bild"
-                      defaultValue="/images/blog_page/hero_image.png"
+                      //defaultValue="/images/blog_page/hero_image.png"
                     />
                   </Box>
                   <Stack gap={{md: 0, lg: 2, xl: 4}} flex="1">

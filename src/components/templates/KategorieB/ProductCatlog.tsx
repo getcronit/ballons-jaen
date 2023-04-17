@@ -26,7 +26,7 @@ const ProductCatlog: FC<IProductCatlogProps> = () => {
           <Field.Image
             name="stack_cards"
             label="Image"
-            defaultValue="/images/we_design_party/stack_cards.png"
+            //defaultValue="/images/we_design_party/stack_cards.png"
             objectFit="contain"
           />
         </Box>

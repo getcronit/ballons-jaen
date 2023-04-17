@@ -66,7 +66,7 @@ const Images = React.memo<{
                     <Field.Image
                       name={imageFieldName}
                       label="Image"
-                      defaultValue={defaultImages[i]}
+                      //defaultValue={defaultImages[i]}
                     />
                   </Box>
                   <Box
@@ -93,7 +93,7 @@ const Images = React.memo<{
                       }}
                       name={imageFieldName}
                       label="Image"
-                      defaultValue={defaultImages[i]}
+                      //defaultValue={defaultImages[i]}
                     />
                   </Box>
                 </GridItem>

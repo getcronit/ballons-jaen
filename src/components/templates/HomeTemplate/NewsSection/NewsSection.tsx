@@ -39,7 +39,7 @@ const NewsSection: FC<INewsSectionProps> = () => {
           alt="slider_img"
           name={'newsImage2'}
           label="News Image"
-          defaultValue={'/images/home/news/news_img.png'}
+          //defaultValue={'/images/home/news/news_img.png'}
         />
       </Box>
     </Container>

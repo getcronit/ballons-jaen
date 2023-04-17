@@ -43,7 +43,7 @@ const HorizontalImageCard: FC<IHorizontalImageCardProps> = ({
         <Field.Image
           name={card.imageFieldName}
           label="Image"
-          defaultValue={card.imageDefaultValue}
+          //defaultValue={card.imageDefaultValue}
         />
       </Grid>
       <Stack
