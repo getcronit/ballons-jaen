@@ -9,16 +9,22 @@ import NewsSection from './NewsSection/NewsSection'
 import Riesges from './Riesges/Riesges'
 import {FeaturedProducts} from './FeaturedProductsSection/FeaturedProductsSection'
 
-import defaultData from '../ProductsTemplate/stories/data'
+import {ShopifyProduct} from '@snek-at/gatsby-theme-shopify'
 
-interface IHomeProps {}
+interface IHomeProps {
+  featuredProducts: ShopifyProduct[]
+}
 
-const Home: FC<IHomeProps> = () => {
+const Home: FC<IHomeProps> = props => {
   return (
     <>
       <Hero anchor="hero" />
       <Riesges />
-      <FeaturedProducts featuredProducts={defaultData.products} productsPagePath={'/products'} heading={"Sortiment"} />
+      <FeaturedProducts
+        featuredProducts={props.featuredProducts}
+        productsPagePath={'/products'}
+        heading={'Sortiment'}
+      />
       <HeartSection />
       <LittleThingsSection />
       <JoySection />
