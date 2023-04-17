@@ -89,7 +89,7 @@ const Hero: FC<IHeroProps> = props => {
           />
         </Box>
         <HStack
-          mt="-5ya"
+          mt="-5"
           justify="center"
           gap="4"
           flexDir={{ base: 'row-reverse', md: 'row' }}>
