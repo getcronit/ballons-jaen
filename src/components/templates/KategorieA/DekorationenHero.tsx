@@ -119,7 +119,7 @@ const DekorationSliderItem = connectBlock(
         <Field.Image
           name="image"
           label="Image"
-          defaultValue="/images/decorationen/slider/slider_image.png"
+          //defaultValue="/images/decorationen/slider/slider_image.png"
         />
       </Box>
     )

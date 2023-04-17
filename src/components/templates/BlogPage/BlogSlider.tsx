@@ -19,7 +19,7 @@ const SliderItem = connectBlock(
           <Field.Image
             name="image"
             label="Image"
-            defaultValue="/images/blog_page/sliderImg1.png"
+            //defaultValue="/images/blog_page/sliderImg1.png"
           />
         </Box>
       </Box>

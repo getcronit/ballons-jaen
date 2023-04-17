@@ -29,7 +29,7 @@ const BlogPageHero: FC<IBlogPageHeroProps> = () => {
             <Field.Image
               name="image"
               label="Image"
-              defaultValue="/images/blog_page/hero_image.png"
+              //defaultValue="/images/blog_page/hero_image.png"
             />
           </Box>
 

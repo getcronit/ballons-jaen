@@ -180,7 +180,7 @@ const CardWithImageBackgroundField: React.FC<
           <Field.Image
             name={card.imageFieldName}
             label="Image"
-            defaultValue={card.imageDefaultValue}
+            //defaultValue={card.imageDefaultValue}
           />
         )}
         <Box position="absolute">

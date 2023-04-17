@@ -63,7 +63,7 @@ const WhiteMobileSlider: FC<IWhiteMobileSliderProps> = ({index}) => {
                     <Field.Image
                       name="image"
                       label="Image"
-                      defaultValue="/images/blog_page/hero_image.png"
+                      //defaultValue="/images/blog_page/hero_image.png"
                     />
                   </Box>
                 </Grid>

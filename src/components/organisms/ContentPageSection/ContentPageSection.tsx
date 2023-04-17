@@ -105,7 +105,7 @@ const ImagesGallery3x3Section = connectBlock(
                       objectFit="cover"
                       label="Bild"
                       name={imageFieldName}
-                      defaultValue={defaultImages[i]}
+                      //defaultValue={defaultImages[i]}
                     />
                   </Box>
                 </Box>
@@ -159,7 +159,7 @@ const ImagesGallery3x3Section = connectBlock(
                       label="Bild"
                       objectFit="cover"
                       name={imageFieldName}
-                      defaultValue={defaultImages[i]}
+                      //defaultValue={defaultImages[i]}
                     />
                   </Box>
                 </PhotoView>
@@ -210,7 +210,7 @@ const FullWidthImageSection = connectBlock(
           <Field.Image
             name="Bild"
             label="Bild"
-            defaultValue={undefined}
+            //defaultValue={undefined}
             // objectFit="cover"
           />
         </Box>

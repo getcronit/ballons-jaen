@@ -45,7 +45,7 @@ const FeaturedBlog: React.FC<{
             <Field.Image
               name="heroImage"
               label="Image"
-              defaultValue="/images/blog_overview/blogHero.png"
+              //defaultValue="/images/blog_overview/blogHero.png"
             />
           </Box>
           <Stack

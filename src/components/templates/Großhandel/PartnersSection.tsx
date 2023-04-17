@@ -17,7 +17,7 @@ const PartnerSection = connectBlock(
           <Field.Image
             name="partnersImage"
             label="Logo"
-            defaultValue="/images/großhandel/logos3.png"
+            //defaultValue="/images/großhandel/logos3.png"
           />
         </Box>
       </Box>

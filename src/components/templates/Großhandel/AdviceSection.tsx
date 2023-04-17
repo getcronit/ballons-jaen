@@ -53,7 +53,7 @@ const AdviceSection: FC<IAdviceSectionProps> = () => {
         <Field.Image
           name="adviceImage"
           label="Image"
-          defaultValue="/images/großhandel/shape_bg.png"
+          //defaultValue="/images/großhandel/shape_bg.png"
           objectFit="contain"
         />
       </Box>

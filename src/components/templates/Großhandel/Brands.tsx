@@ -129,7 +129,7 @@ const BrandsLogoSection = connectBlock(
           <Field.Image
             name="partnerLogo"
             label="Logo"
-            defaultValue="/images/großhandel/distributors/dist1.png"
+            //defaultValue="/images/großhandel/distributors/dist1.png"
           />
         </Box>
       </Box>

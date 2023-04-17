@@ -85,7 +85,7 @@ const WirGestaltenPartyHero: FC<IWirGestaltenPartyHeroProps> = () => {
               <Field.Image
                 name="heroImage"
                 label="Image"
-                defaultValue="/images/we_design_party/round.png"
+                //defaultValue="/images/we_design_party/round.png"
               />
             </Box>
           </Grid>
