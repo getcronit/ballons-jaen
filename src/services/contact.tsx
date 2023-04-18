@@ -10,7 +10,7 @@ import {
 import {useAuthentication} from './authentication'
 
 export interface ContactModalContextProps {
-  onOpen: ({meta}: {meta: Record<string, any>}) => void
+  onOpen: (args?: {meta?: Record<string, any>}) => void
   onClose: () => void
 }
 
@@ -44,7 +44,7 @@ export const ContactModalProvider: React.FC<ContactModalDrawerProps> = ({
 
   const authentication = useAuthentication()
 
-  const onOpen: ContactModalContextProps['onOpen'] = ({meta}) => {
+  const onOpen: ContactModalContextProps['onOpen'] = args => {
     const updatedMeta = {
       ...meta,
       url: window.location.href

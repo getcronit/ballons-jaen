@@ -33,6 +33,7 @@ import {PhotoProvider, PhotoView} from 'react-photo-view'
 import {removeHtmlFromString} from '../../../common/utils'
 import FourCard from '../FourCard/FourCard'
 import ConvincedSection from './ConvincedSection'
+import {useContactModal} from '../../../services/contact'
 
 export interface ContentPageSectionProps {}
 
@@ -420,6 +421,8 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
   forwardRef<HTMLDivElement>((props, ref) => {
     const refs = useRef<HTMLDivElement[]>([])
 
+    const contactModal = useContactModal()
+
     const [isOpen, setIsOpen] = useState(false)
 
     const onClose = () => {
@@ -567,7 +570,13 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
             <Box position="sticky" top={{base: '80px', md: '20%'}}>
               {/* Anfragen button with divider */}
               <Stack textAlign="center" mb={{base: 4, md: 8}}>
-                <Button variant="solid" size="md" mx="auto">
+                <Button
+                  variant="solid"
+                  size="md"
+                  mx="auto"
+                  onClick={() => {
+                    contactModal.onOpen()
+                  }}>
                   Jetzt anfragen
                 </Button>
 
