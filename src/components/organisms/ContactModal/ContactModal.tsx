@@ -33,12 +33,18 @@ export interface ContactModalProps {
   onClose: () => void
 
   onSubmit: (data: ContactFormValues) => Promise<void>
+
+  fixedValues?: {
+    name?: string
+    email?: string
+  }
 }
 
 export const ContactModal: React.FC<ContactModalProps> = ({
   isOpen,
   onClose,
-  onSubmit
+  onSubmit,
+  fixedValues = {}
 }) => {
   const {
     register,
@@ -46,7 +52,11 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     handleSubmit,
     reset,
     formState: {errors, isSubmitting}
-  } = useForm<ContactFormValues>()
+  } = useForm<ContactFormValues>({})
+
+  React.useEffect(() => {
+    reset(fixedValues)
+  }, [fixedValues])
 
   React.useEffect(() => {
     if (!isOpen) {
@@ -83,7 +93,10 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                   <Input
                     id="name"
                     placeholder="Name"
-                    {...register('name', {required: true})}
+                    {...register('name', {
+                      required: true
+                    })}
+                    isDisabled={!!fixedValues.name}
                   />
 
                   <FormErrorMessage fontSize="sm">
@@ -98,7 +111,10 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                     id="email"
                     placeholder="max.mustermann@example.com"
                     type="email"
-                    {...register('email', {required: true})}
+                    {...register('email', {
+                      required: true
+                    })}
+                    isDisabled={!!fixedValues.email}
                   />
 
                   <FormErrorMessage fontSize="sm">

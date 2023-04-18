@@ -148,13 +148,14 @@ const MobileNav: FC<IMobileNavProps> = ({
                   mt="4">
                   <Button
                     w="full"
+                    variant="outline"
                     leftIcon={<FaPhoneAlt />}
                     onClick={() => {
                       contactModal.onOpen({
                         meta: {}
                       })
                     }}>
-                    Serivce
+                    Anfragen
                   </Button>
                 </Stack>
               </Stack>

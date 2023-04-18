@@ -52,7 +52,7 @@ export const NavAuthButton: React.FC<NavAuthButtonProps> = () => {
 
   return (
     <Menu>
-      <MenuButton as="span">{responsiveButton}</MenuButton>
+      <MenuButton>{responsiveButton}</MenuButton>
 
       <MenuList>
         <MenuItem

@@ -7,6 +7,8 @@ import {
   AiOutlineShop,
   AiOutlineShoppingCart
 } from 'react-icons/ai'
+import {FaPhoneAlt} from 'react-icons/fa'
+import {useContactModal} from '../../services/contact'
 
 import {LayoutMode} from '../../types/commonTypes'
 import {NavAuthButton} from './NavAuthButton'
@@ -18,6 +20,8 @@ interface ITopNavProps {
 }
 
 const TopNav: FC<ITopNavProps> = ({mode, onSearchClick, onBasketClick}) => {
+  const contactModal = useContactModal()
+
   return (
     <Flex
       h={{sm: 20, md: 16}}
@@ -26,7 +30,7 @@ const TopNav: FC<ITopNavProps> = ({mode, onSearchClick, onBasketClick}) => {
       alignItems="center"
       px="8"
       // bg="#f4f4f4"
-      >
+    >
       <Button
         position="absolute"
         left={2}
@@ -52,8 +56,20 @@ const TopNav: FC<ITopNavProps> = ({mode, onSearchClick, onBasketClick}) => {
         />
       </Box>
 
-      <HStack position="absolute" right={2}>
+      <HStack position="absolute" right={2} spacing="1">
+        <Button
+          variant="outline"
+          size="sm"
+          leftIcon={<FaPhoneAlt />}
+          onClick={() => {
+            contactModal.onOpen({
+              meta: {}
+            })
+          }}>
+          Anfragen
+        </Button>
         <NavAuthButton />
+
         {mode === 'website' ? (
           <Button
             display={{
@@ -67,17 +83,15 @@ const TopNav: FC<ITopNavProps> = ({mode, onSearchClick, onBasketClick}) => {
             Unsere Artikel
           </Button>
         ) : (
-          <ButtonGroup>
+          <ButtonGroup isAttached>
             <Button
               size="sm"
-              variant="outline"
               leftIcon={<AiOutlineSearch />}
               onClick={onSearchClick}>
               Nach Artikel suchen
             </Button>
             <Button
               size="sm"
-              variant="outline"
               leftIcon={<AiOutlineShoppingCart />}
               onClick={onBasketClick}>
               Warenkorb
