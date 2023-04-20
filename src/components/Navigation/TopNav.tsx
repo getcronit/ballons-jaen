@@ -57,6 +57,7 @@ const TopNav: FC<ITopNavProps> = ({mode, onSearchClick, onBasketClick}) => {
       </Box>
 
       <HStack position="absolute" right={2} spacing="1">
+        <NavAuthButton />
         <Button
           variant="outline"
           size="sm"
@@ -68,7 +69,6 @@ const TopNav: FC<ITopNavProps> = ({mode, onSearchClick, onBasketClick}) => {
           }}>
           Anfragen
         </Button>
-        <NavAuthButton />
 
         {mode === 'website' ? (
           <Button
