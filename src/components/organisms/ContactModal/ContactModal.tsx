@@ -44,7 +44,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
   isOpen,
   onClose,
   onSubmit,
-  fixedValues = {}
+  fixedValues
 }) => {
   const {
     register,
@@ -96,7 +96,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                     {...register('name', {
                       required: true
                     })}
-                    isDisabled={!!fixedValues.name}
+                    isDisabled={!!fixedValues?.name}
                   />
 
                   <FormErrorMessage fontSize="sm">
@@ -114,7 +114,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                     {...register('email', {
                       required: true
                     })}
-                    isDisabled={!!fixedValues.email}
+                    isDisabled={!!fixedValues?.email}
                   />
 
                   <FormErrorMessage fontSize="sm">
