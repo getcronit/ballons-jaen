@@ -28,6 +28,7 @@ import {
 } from '@snek-at/gatsby-theme-shopify'
 import {navigate} from 'gatsby'
 import React from 'react'
+import {getSrcFromImageData} from '../common/get-src-from-image-data'
 import {getProductPrices} from '../common/utils'
 import {useAuthentication} from './authentication'
 
@@ -288,7 +289,9 @@ export const Searchbar = (props: SearchbarProps) => {
                         }}>
                         <Td>
                           <Image
-                            src={product.featuredMedia?.image.src}
+                            src={getSrcFromImageData(
+                              product.featuredMedia?.image.gatsbyImageData
+                            )}
                             alt={product.featuredMedia?.image.altText || ''}
                             boxSize={{
                               base: '50px',

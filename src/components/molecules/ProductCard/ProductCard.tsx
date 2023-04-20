@@ -17,13 +17,9 @@ import {
   ShopifyProduct
 } from '@snek-at/gatsby-theme-shopify'
 import {Link as GatsbyLink} from 'gatsby'
-import {
-  GatsbyImage,
-  getSrc,
-  getSrcSet,
-  IGatsbyImageData
-} from 'gatsby-plugin-image'
+import {GatsbyImage, getSrcSet, IGatsbyImageData} from 'gatsby-plugin-image'
 import React from 'react'
+import {getSrcFromImageData} from '../../../common/get-src-from-image-data'
 
 import {getProductPrices, uuidv1} from '../../../common/utils'
 import * as styles from './styles'
@@ -233,12 +229,15 @@ export const ProductCard = ({
 function ImageBoxWithTags(
   props: {
     image?: {
+      src: string
       altText: string | null
       gatsbyImageData: IGatsbyImageData
     }
     tags: Array<{name: string; color: string; bg: string}>
   } & BoxProps
 ) {
+  console.log('Image', props.image)
+
   // Box with image as background and tags on bottom
   const {tags} = props
 
@@ -247,9 +246,7 @@ function ImageBoxWithTags(
     srcSet: string
     altText: string
   } = {
-    src:
-      (props.image?.gatsbyImageData && getSrc(props.image?.gatsbyImageData)) ||
-      '',
+    src: getSrcFromImageData(props.image?.gatsbyImageData),
     srcSet:
       (props.image?.gatsbyImageData &&
         getSrcSet(props.image?.gatsbyImageData)) ||

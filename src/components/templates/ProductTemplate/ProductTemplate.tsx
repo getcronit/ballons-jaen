@@ -38,6 +38,7 @@ import React from 'react'
 import {BsBalloonHeartFill} from 'react-icons/bs'
 import {FaRuler, FaRulerCombined, FaRulerVertical} from 'react-icons/fa'
 import {PhotoProvider, PhotoView} from 'react-photo-view'
+import {getSrcFromImageData} from '../../../common/get-src-from-image-data'
 
 import {getProductMetafields} from '../../../common/getProductMetafields'
 import {getProductPrices, replaceHexColorsInHTML} from '../../../common/utils'
@@ -471,7 +472,8 @@ const ImageSlider = (props: {
         }}
         /* w="100%" */
       >
-        <PhotoView src={curMedia?.image?.src}>
+        <PhotoView
+          src={getSrcFromImageData(props.featuredMedia?.image.gatsbyImageData)}>
           <Center
             cursor="zoom-in"
             boxSize={{
