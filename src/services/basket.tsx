@@ -1,9 +1,12 @@
 import {withStoreContext} from '@snek-at/gatsby-theme-shopify'
-import React from 'react'
+import {sq} from '@snek-functions/origin'
+import {doNotConvertToString} from 'snek-query'
+import React, {useCallback} from 'react'
 
 import {BasketDrawer} from '../components/organisms/BasketDrawer'
 
 import {useAuthentication} from './authentication'
+import {useToast} from '@chakra-ui/react'
 
 export interface BaseketContextProps {
   onOpen: () => void
@@ -45,36 +48,35 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
   props => {
     const [open, setOpen] = React.useState(false)
 
-    const [checkout, setCheckout] =
-      React.useState<ShopifyBuy.Checkout | null>(null)
+    const toast = useToast()
+
+    const [checkout, setCheckout] = React.useState<ShopifyBuy.Checkout | null>(
+      null
+    )
 
     const auth = useAuthentication()
 
     const wholesale = !!auth.user
 
     React.useEffect(() => {
-      // get checkout id from local storage if it exists and set it to state
+      void createOrFetchCheckout()
+    }, [])
+
+    const createOrFetchCheckout = useCallback(async () => {
       const checkoutId = localStorage.getItem('checkoutId')
 
       if (checkoutId) {
-        const getCheckout = async () => {
-          const newCheckout = await props.client.checkout.fetch(checkoutId)
-          setCheckout(newCheckout)
-        }
-
-        void getCheckout()
+        const newCheckout = await props.client.checkout.fetch(checkoutId)
+        setCheckout(newCheckout)
+        return newCheckout
       }
 
-      const createCheckout = async () => {
-        const checkout = await props.client.checkout.create()
-        setCheckout(checkout)
-        localStorage.setItem('checkoutId', checkout.id.toString())
-      }
+      const checkout = await props.client.checkout.create()
+      setCheckout(checkout)
 
-      // if checkout id does not exist, create a new checkout
-      if (!checkoutId) {
-        void createCheckout()
-      }
+      localStorage.setItem('checkoutId', checkout.id.toString())
+
+      return checkout
     }, [])
 
     const onOpen = () => {
@@ -93,8 +95,10 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
       quantity: number
       stepperQuantity: number
     }) => {
+      const c = await createOrFetchCheckout()
+
       const newCheckout = await props.client.checkout.addLineItems(
-        checkout?.id as string,
+        c.id as string,
         [
           {
             ...args,
@@ -110,8 +114,10 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
     }
 
     const updateProduct = async (args: {id: string; quantity: number}) => {
+      const c = await createOrFetchCheckout()
+
       const newCheckout = await props.client.checkout.updateLineItems(
-        checkout?.id as string,
+        c.id as string,
         [args]
       )
 
@@ -119,9 +125,11 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
     }
 
     const removeProduct = async (id: string) => {
+      const c = await createOrFetchCheckout()
+
       try {
         const newCheckout = await props.client.checkout.removeLineItems(
-          checkout?.id as string,
+          c.id as string,
           [id]
         )
 
@@ -131,6 +139,78 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
 
         setCheckout(null)
       }
+    }
+
+    const onCheckout = async (): Promise<void> => {
+      if (wholesale) {
+        const emailAddress = auth.user?.email
+
+        if (!emailAddress) {
+          throw new Error('No email address')
+        }
+
+        const c = await createOrFetchCheckout()
+
+        const [_, errors] = await sq.mutate(m =>
+          m.mailpressMailSchedule({
+            envelope: {
+              replyTo: {
+                value: emailAddress,
+                type: doNotConvertToString('EMAIL_ADDRESS') as any
+              }
+            },
+            template: {
+              id: 'BALLOONS_ORDER_EMAIL',
+              values: {
+                cart: checkout?.lineItems.map(lineItem => ({
+                  name: lineItem.title.toString(),
+                  quantity: lineItem.quantity,
+                  sku: lineItem.variant?.sku,
+                  price: lineItem.variant?.price.amount,
+                  imgSrc: lineItem.variant?.image?.src
+                })),
+                order: {
+                  id: c.id,
+                  totalPrice: c.totalPrice.amount,
+                  currency: c.totalPrice.currencyCode
+                },
+                customer: {
+                  fullName: auth.user?.name,
+                  emailAddress
+                }
+              }
+            }
+          })
+        )
+
+        if (errors) {
+          // Deutsch
+          toast({
+            title: 'Fehler',
+            description: 'Es ist ein Fehler aufgetreten.',
+            status: 'error',
+            duration: 5000,
+            isClosable: true
+          })
+        } else {
+          toast({
+            title: 'Erfolg',
+            description: `Ihre Bestellung wurde erfolgreich abgeschickt. Sie erhalten eine Bestätigung per E-Mail.`,
+            status: 'success',
+            duration: 5000,
+            isClosable: true
+          })
+
+          onClose()
+        }
+      } else {
+        if (checkout?.webUrl) {
+          window.open(checkout?.webUrl, '_blank')
+        }
+      }
+
+      setCheckout(null)
+      localStorage.removeItem('checkoutId')
     }
 
     return (
@@ -149,19 +229,7 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
           onProductRemove={id => {
             void removeProduct(id)
           }}
-          onClickCheckout={() => {
-            if (wholesale) {
-              alert(
-                `Email sent to ${auth.user?.email}. Please check your inbox. (mock)`
-              )
-            } else {
-              if (checkout?.webUrl) {
-                window.open(checkout?.webUrl, '_blank')
-              }
-
-              setCheckout(null)
-            }
-          }}
+          onClickCheckout={onCheckout}
         />
         {props.children}
       </BasketContext.Provider>
