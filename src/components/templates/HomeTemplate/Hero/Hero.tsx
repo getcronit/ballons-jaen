@@ -15,8 +15,10 @@ import { CONTAINER_MAX_WIDTH } from '../../../../constant/sizes'
 import CardWithImageBackground from '../../../CardWithImageBackground'
 import { useContentPages } from '../../../hooks/useContentPages'
 import { ParallaxBackground } from '../../../molecules/ParallaxBackground'
+import { ParallaxHero } from '../../../molecules/ParallaxHero'
 import { HBallon, Ballon } from '../../../../common/assets/Ballon'
 import LinkButtonField from '../../../fields/LinkButtonField'
+import * as style from './style'
 
 export interface IHeroProps {
   anchor?: string
@@ -88,32 +90,39 @@ const Hero: FC<IHeroProps> = props => {
             rtf
           />
         </Box>
-        <HStack
-          mt="-5"
-          justify="center"
-          gap="4"
-          flexDir={{ base: 'row-reverse', md: 'row' }}>
-          <LinkButtonField
-            name="littleThingsButton1"
-            defaultValue="Zum Shop"
-            defaultUrl={`/products`}
-            size={{ base: 'sm', md: 'md' }}
-          />
-          <LinkButtonField
-            name="littleThingsButton2"
-            defaultValue="Großhandel"
-            defaultUrl={`/grosshandel`}
-            size={{ base: 'sm', md: 'md' }}
-            variant="outline"
-          />
-        </HStack>
       </Heading>
+      <HStack
+        css={style.Section}
+        mt="-5"
+        justify="center"
+        gap="4"
+        flexDir={{ base: 'row-reverse', md: 'row' }}>
+        <LinkButtonField
+          name="littleThingsButton1"
+          defaultValue="Zum Shop"
+          defaultUrl={`/products`}
+          size={{ base: 'sm', md: 'md' }}
+          ml="3"
+        />
+        <Box id="section07" class="demo">
+          <a><span></span><span></span><span></span></a>
+        </Box>
+        <LinkButtonField
+          name="littleThingsButton2"
+          defaultValue="Großhandel"
+          defaultUrl={`/grosshandel`}
+          size={{ base: 'sm', md: 'md' }}
+          variant="outline"
+          ml="3"
+        />
+      </HStack>
     </Stack>
   )
 
   return (
     <>
       {/* For Mobile */}
+      <ParallaxHero noScroll={false} />
       <Box
         display={{ base: 'block', md: 'none' }}
         position="relative"
@@ -215,7 +224,7 @@ const Hero: FC<IHeroProps> = props => {
       >
         <ParallaxBackground
           strokeColor="red"
-          backgroundColor="white"
+          backgroundColor="transperent"
           offset={0}
         />
         <Box
@@ -247,7 +256,7 @@ const Hero: FC<IHeroProps> = props => {
             as={Stack}
             maxW={CONTAINER_MAX_WIDTH}
             justifyContent="center"
-            minH="40vh"
+            minH="100vh"
             mt="300px">
             <SimpleGrid
               w="full"
