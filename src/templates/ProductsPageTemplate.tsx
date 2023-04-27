@@ -123,7 +123,8 @@ export const Head = (props: ProductsPageTemplateProps) => {
     <JaenHead {...(props as any)}>
       <title id="title">Ballons & Ballons - Artikel</title>
       <meta
-        name="meta-description"
+        id="meta-description"
+        name="description"
         content="Alle Artikel von Ballons & Ballons auf einen Blick"
       />
     </JaenHead>

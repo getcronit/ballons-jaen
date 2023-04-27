@@ -34,6 +34,7 @@
     "gatsby-plugin-image": "^3",
     "gatsby-plugin-jaen": "^0.0.9",
     "gatsby-plugin-sharp": "^5",
+    "gatsby-plugin-sitemap": "^6.9.0",
     "gatsby-transformer-sharp": "^5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

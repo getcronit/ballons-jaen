@@ -44,63 +44,45 @@ const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
         justifyContent="space-between"
         as={Flex}
         gap={{base: 32, xl: 8}}
-        spacing={{base: 20, md: 32, xl: 40}}
         flexDirection={{base: 'column', xl: 'row'}}
-        py={{base: 44, md: 20}}
         maxW={CONTAINER_MAX_WIDTH}>
-        <Flex display={{base: 'none', md: 'flex'}} gap="4">
-          <Stack flex="1" justify="center" display={{base: 'none', xl: 'flex'}}>
+        <Flex gap="4" justify="center" alignSelf="center">
+          <Stack flex="1" justify="center">
             <CardWithImageBackground
               h={cardHeight}
               w={cardWidth}
               minW={'none'}
               displayContent={false}
               card={{
-                headingFieldName: 'littleThingsCardheading1',
+                headingFieldName: 'Cardheading1',
                 headingDefaultValue: '   ',
-                textFieldName: 'littleThingsCardText1',
+                textFieldName: 'CardText1',
                 textDefaultValue: '   ',
-                imageFieldName: 'littleThingsCardImage1',
-                imageDefaultValue: cards[0].image
+                imageFieldName: 'CardImage1',
+                imageDefaultValue: undefined
               }}
             />
           </Stack>
+
           <Stack
             gap="4"
             spacing="0"
             h="full"
             w="full"
             align="center"
-            justify="center"
-            flexDirection={{base: 'row', xl: 'column'}}>
-            <Box display={{xl: 'none'}}>
-              <CardWithImageBackground
-                h={cardHeight}
-                w={cardWidth}
-                minW={'none'}
-                displayContent={false}
-                card={{
-                  headingFieldName: 'littleThingsCardheading1',
-                  headingDefaultValue: '   ',
-                  textFieldName: 'littleThingsCardText1',
-                  textDefaultValue: '   ',
-                  imageFieldName: 'littleThingsCardImage1',
-                  imageDefaultValue: cards[0].image
-                }}
-              />
-            </Box>
+            justify="center">
             <CardWithImageBackground
               h={cardHeight}
               w={cardWidth}
               minW={'none'}
               displayContent={false}
               card={{
-                headingFieldName: 'littleThingsCardheading2',
+                headingFieldName: 'Cardheading2',
                 headingDefaultValue: '   ',
-                textFieldName: 'littleThingsCardText2',
+                textFieldName: 'CardText2',
                 textDefaultValue: '   ',
-                imageFieldName: 'littleThingsCardImage2',
-                imageDefaultValue: cards[1].image
+                imageFieldName: 'CardImage2',
+                imageDefaultValue: undefined
               }}
             />
 
@@ -110,75 +92,39 @@ const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
               minW={'none'}
               displayContent={false}
               card={{
-                headingFieldName: 'littleThingsCardheading3',
+                headingFieldName: 'Cardheading3',
                 headingDefaultValue: '   ',
-                textFieldName: 'littleThingsCardText3',
+                textFieldName: 'CardText3',
                 textDefaultValue: '   ',
-                imageFieldName: 'littleThingsCardImage3',
-                imageDefaultValue: cards[2].image
+                imageFieldName: 'CardImage3',
+                imageDefaultValue: undefined
               }}
             />
           </Stack>
         </Flex>
 
-        <Grid
-          display={{base: 'grid', md: 'none'}}
-          pos="relative"
-          bg="red"
-          top="-15rem"
-          placeItems="center">
-          <Image
-            //zIndex={"-1"}
-            pos="absolute"
-            src="/images/home/little/shape_round.png"
-            w="80%"
-          />
-          <Image
-            //zIndex={"-1"}
-            right={{base: '.625rem', sm: 20}}
-            top="10rem"
-            src="/images/home/little/shape.png"
-            pos="absolute"
-            boxSize="5.625rem"
-          />
-        </Grid>
-
-        <Stack zIndex={'999'} maxW={{xl: '50%'}} spacing="8" justify="center">
+        <Stack
+          // zIndex={'999'}
+          maxW={{
+            xl: '50%'
+          }}
+          spacing="8"
+          justify="center">
           <Heading
             fontSize={{base: 'md', md: 'xl', xl: '2xl'}}
             lineHeight={{base: '1.25rem', md: '2rem', xl: '2.5rem'}}
             mb="-2"
             whiteSpace="nowrap">
             <Field.Text
-              name="littleThingsHeading1"
+              name="Heading1"
               label="Heading"
               defaultValue="<p>Auch die <i>kleinsten</i><br/> Dinge machen viel <i>Freude</i></p>"
               rtf
             />
-            <Text
-              ml="2"
-              pos="relative"
-              as="span"
-              fontSize={{base: 'xl', md: '2.75rem', xl: '4xl'}}
-              variant="cursive"
-              pr="8">
-              <Image
-                //zIndex={"-1"}
-                pointerEvents={'none'}
-                display={{base: 'none', md: 'block'}}
-                right={{md: '1.625rem', xl: '2.25rem'}}
-                top={{
-                  md: '-5rem',
-                  xl: '-6.125rem'
-                }}
-                src="/images/home/little/shape.png"
-                pos="absolute"
-              />
-            </Text>
           </Heading>
           <Heading fontSize={{base: 'sm', md: 'md'}} fontWeight="semibold">
             <Field.Text
-              name="littleThingssubtitle"
+              name="subtitle"
               label="Subtitle"
               defaultValue="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
             />

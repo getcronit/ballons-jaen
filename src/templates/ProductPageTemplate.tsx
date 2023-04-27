@@ -4,6 +4,7 @@ import {
   ProductsPageContext,
   SearchProvider
 } from '@snek-at/gatsby-theme-shopify'
+import {Head as JaenHead} from '@snek-at/jaen'
 import {graphql, navigate, PageProps} from 'gatsby'
 import React from 'react'
 
@@ -112,3 +113,48 @@ export default (props: ProductPageTemplateProps) => (
 //     </JaenHead>
 //   )
 // }
+
+// export const Head = (props: ProductPageTemplateProps) => {
+//   return (
+//     <JaenHead {...(props as any)}>
+//       <title id="title">AGT GunTrade - Artikel</title>
+//       <meta
+//         id="meta-description"
+//         name="description"
+//         content="Alle Artikel von AGT GunTrade im Überblick"
+//       />
+//     </JaenHead>
+//   )
+// }
+
+export const Head = (props: ProductPageTemplateProps) => {
+  const shopifyProduct = props.data.shopifyProduct
+
+  return (
+    <JaenHead {...(props as any)}>
+      <title id="title">{shopifyProduct.title} | Ballons & Ballons</title>
+      <meta
+        id="meta-description"
+        name="description"
+        content={
+          shopifyProduct.description +
+          ` | Produkttyp: ${shopifyProduct.productType}` +
+          ` | Hersteller: ${shopifyProduct.vendor}`
+        }
+      />
+      <meta
+        id="meta-date"
+        name="date"
+        content={new Date(shopifyProduct.createdAt).toISOString()}
+      />
+      <meta
+        id="meta-image"
+        name="image"
+        content={
+          shopifyProduct.featuredMedia?.image.gatsbyImageData.images.fallback
+            ?.src
+        }
+      />
+    </JaenHead>
+  )
+}
