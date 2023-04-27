@@ -1,6 +1,8 @@
 {
   "site": {
-    "siteMetadata": {}
+    "siteMetadata": {
+      "siteUrl": "https://www.ballons-ballons.at"
+    }
   },
   "migrationHistory": [
     {
