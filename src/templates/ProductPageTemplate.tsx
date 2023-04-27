@@ -151,7 +151,7 @@ export const Head = (props: ProductPageTemplateProps) => {
         id="meta-image"
         name="image"
         content={
-          shopifyProduct.featuredMedia?.image.gatsbyImageData.images.fallback
+          shopifyProduct.featuredMedia?.image?.gatsbyImageData?.images?.fallback
             ?.src
         }
       />
