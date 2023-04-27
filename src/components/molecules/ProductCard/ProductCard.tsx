@@ -47,8 +47,6 @@ export const ProductCard = ({
 }: ProductCardProps) => {
   const path = prefixPath ? `${prefixPath}/${product.handle}` : product.handle
 
-  console.log('product', product.id, path)
-
   const radioRef = React.useRef<Array<HTMLInputElement | null>>([])
 
   const tags = getProductTags(product)
@@ -236,8 +234,6 @@ function ImageBoxWithTags(
     tags: Array<{name: string; color: string; bg: string}>
   } & BoxProps
 ) {
-  console.log('Image', props.image)
-
   // Box with image as background and tags on bottom
   const {tags} = props
 
