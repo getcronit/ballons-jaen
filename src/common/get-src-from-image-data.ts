@@ -56,7 +56,7 @@ export function getSrcFromImageData(imageData?: IGatsbyImageData): string {
     // Return the extracted image URL
     return src
   } catch (error: any) {
-    console.error(`Error in getSrcFromImageData: ${error.message}`, imageData)
+    console.warn(`Error in getSrcFromImageData: ${error.message}`, imageData)
     // Return a default source URL if an error occurs
     return '/default-image.png'
   }
