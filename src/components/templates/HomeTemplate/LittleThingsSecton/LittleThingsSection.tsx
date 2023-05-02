@@ -30,8 +30,20 @@ const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
     }
   ]
 
-  const cardHeight = {base: '15rem', lg: '15rem', xl: '20rem'}
-  const cardWidth = {base: '12.5rem', lg: '15.5rem', xl: '17.5rem'}
+  const cardHeight = {
+    base: '12.5rem',
+    sm: '15rem',
+    md: '17.5rem',
+    lg: '20rem',
+    xl: '22.5rem'
+  }
+
+  const cardWidth = {
+    base: '10rem',
+    sm: '12.5rem',
+    md: '15rem',
+    xl: '17.5rem'
+  }
 
   return (
     <Stack
