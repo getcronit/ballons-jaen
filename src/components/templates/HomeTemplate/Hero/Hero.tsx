@@ -5,6 +5,7 @@ import {
   Heading,
   HStack,
   Image,
+  Text,
   SimpleGrid,
   Stack
 } from '@chakra-ui/react'
@@ -15,8 +16,11 @@ import { CONTAINER_MAX_WIDTH } from '../../../../constant/sizes'
 import CardWithImageBackground from '../../../CardWithImageBackground'
 import { useContentPages } from '../../../hooks/useContentPages'
 import { ParallaxBackground } from '../../../molecules/ParallaxBackground'
+import { ParallaxHero } from '../../../molecules/ParallaxHero'
 import { HBallon, Ballon } from '../../../../common/assets/Ballon'
 import LinkButtonField from '../../../fields/LinkButtonField'
+import * as style from './style'
+import { useScrollSync } from '../../../hooks/scroll'
 
 export interface IHeroProps {
   anchor?: string
@@ -24,24 +28,7 @@ export interface IHeroProps {
 
 const Hero: FC<IHeroProps> = props => {
   const contentPagesIndex = useContentPages()
-
-  const cards = [
-    {
-      heading: 'Großhandel',
-      text: 'Lorem ipsum dolor sit amet, consetetur sadipscing',
-      image: '/images/home/reisges/Großhandel.png'
-    },
-    {
-      heading: 'Party',
-      text: 'Lorem ipsum dolor sit amet, consetetur sadipscing',
-      image: '/images/home/reisges/Party.png'
-    },
-    {
-      heading: 'Design',
-      text: 'Lorem ipsum dolor sit amet, consetetur sadipscing',
-      image: '/images/home/reisges/Design.png'
-    }
-  ]
+  const { scrollTop } = useScrollSync()
 
   const switchingHeadline = (
     <Stack>
@@ -88,32 +75,41 @@ const Hero: FC<IHeroProps> = props => {
             rtf
           />
         </Box>
-        <HStack
-          mt="-5"
-          justify="center"
-          gap="4"
-          flexDir={{ base: 'row-reverse', md: 'row' }}>
-          <LinkButtonField
-            name="littleThingsButton1"
-            defaultValue="Zum Shop"
-            defaultUrl={`/products`}
-            size={{ base: 'sm', md: 'md' }}
-          />
-          <LinkButtonField
-            name="littleThingsButton2"
-            defaultValue="Großhandel"
-            defaultUrl={`/grosshandel`}
-            size={{ base: 'sm', md: 'md' }}
-            variant="outline"
-          />
-        </HStack>
       </Heading>
+      <HStack
+        css={style.Section}
+        mt="-5"
+        justify="center"
+        h={"calc(50vh - 15rem)"}
+        align="flex-start"
+        gap="4"
+        flexDir={{ base: 'row-reverse', md: 'row' }}>
+        <LinkButtonField
+          name="littleThingsButton1"
+          defaultValue="Zum Shop"
+          defaultUrl={`/products`}
+          size={{ base: 'sm', md: 'md' }}
+          ml="3"
+        />
+        <Box id="section07" className="demo" alignSelf="flex-end" h="100px" visibility={scrollTop < 100 ? "visible" : "hidden"}>
+          <a><span></span><span></span><span></span></a>
+        </Box>
+        <LinkButtonField
+          name="littleThingsButton2"
+          defaultValue="Großhandel"
+          defaultUrl={`/grosshandel`}
+          size={{ base: 'sm', md: 'md' }}
+          variant="outline"
+          ml="3"
+        />
+      </HStack>
     </Stack>
   )
 
   return (
     <>
       {/* For Mobile */}
+      <ParallaxHero noScroll={false} />
       <Box
         display={{ base: 'block', md: 'none' }}
         position="relative"
@@ -160,50 +156,6 @@ const Hero: FC<IHeroProps> = props => {
               </Box>
             </Heading>
           </Container>
-
-          <Container
-            as={Stack}
-            maxW={CONTAINER_MAX_WIDTH}
-            justifyContent="center"
-            minH="40vh"
-            mt="30px">
-            <SimpleGrid
-              w="full"
-              placeItems="center"
-              mb={{ lg: 10 }}
-              mt="0"
-              minChildWidth="300px"
-              spacing="30px"
-            >
-              {contentPagesIndex.children.map((page, i) =>
-                contentPagesIndex.withJaenPage(
-                  page.id || '',
-                  <GridItem
-                    justifySelf="center"
-                    h={{
-                      base: '11.25rem',
-                      md: '18.75rem',
-                      lg: '25rem',
-                      xl: '31.25rem'
-                    }}
-                    key={i}>
-                    <CardWithImageBackground
-                      card={{
-                        headingFieldName: `riesgesCardheading${i}`,
-                        headingDefaultValue: cards[0].heading,
-                        textFieldName: `riesgesCardText${i}`,
-                        textDefaultValue: cards[0].text,
-                        imageFieldName: `riesgesCardImage${i}`,
-                        imageDefaultValue: cards[0].image,
-                        linkUrl: `/${page.slug}`
-                      }}
-                      key={i}
-                    />
-                  </GridItem>
-                )
-              )}
-            </SimpleGrid>
-          </Container>
         </Box>
       </Box>
       {/* For Big Devices */}
@@ -213,11 +165,11 @@ const Hero: FC<IHeroProps> = props => {
         position="relative"
         width="full"
       >
-        <ParallaxBackground
+        {/* <ParallaxBackground
           strokeColor="red"
-          backgroundColor="white"
+          backgroundColor="transperent"
           offset={0}
-        />
+        /> */}
         <Box
           position="relative"
           zIndex={51}
@@ -231,61 +183,18 @@ const Hero: FC<IHeroProps> = props => {
           }}
           w="full"
           h="full"
-          bgRepeat="no-repeat"
-          pb={{ md: '8rem', lg: '12rem', xl: '14rem' }}>
-          <Container
-            as={HStack}
-            maxW={CONTAINER_MAX_WIDTH}
-            justifyContent="center"
-            alignContent="center"
-            height={{ md: 'calc(100vh - 7.5rem)', lg: 'calc(100vh - 8rem)' }}
-            minH="700px">
-            {switchingHeadline}
-          </Container>
-
-          <Container
-            as={Stack}
-            maxW={CONTAINER_MAX_WIDTH}
-            justifyContent="center"
-            minH="40vh"
-            mt="300px">
-            <SimpleGrid
-              w="full"
-              placeItems="center"
-              mb={{ lg: 10 }}
-              mt="0"
-              minChildWidth="300px"
-              spacing="30px"
-            >
-              {contentPagesIndex.children.map((page, i) =>
-                contentPagesIndex.withJaenPage(
-                  page.id || '',
-                  <GridItem
-                    justifySelf="center"
-                    h={{
-                      base: '11.25rem',
-                      md: '18.75rem',
-                      lg: '25rem',
-                      xl: '31.25rem'
-                    }}
-                    key={i}>
-                    <CardWithImageBackground
-                      card={{
-                        headingFieldName: `riesgesCardheading${i}`,
-                        headingDefaultValue: cards[0].heading,
-                        textFieldName: `riesgesCardText${i}`,
-                        textDefaultValue: cards[0].text,
-                        imageFieldName: `riesgesCardImage${i}`,
-                        imageDefaultValue: cards[0].image,
-                        linkUrl: `/${page.slug}`
-                      }}
-                      key={i}
-                    />
-                  </GridItem>
-                )
-              )}
-            </SimpleGrid>
-          </Container>
+          bgRepeat="no-repeat">
+          <Box top='0' position={'relative'} minH={'100vh'} mb={"110vh"}>
+            <Container
+              as={HStack}
+              maxW={CONTAINER_MAX_WIDTH}
+              justifyContent="center"
+              alignContent="center"
+              height={{ md: 'calc(100vh - 7.5rem)', lg: 'calc(100vh - 8rem)' }}
+              minH="700px">
+              {switchingHeadline}
+            </Container>
+          </Box> 
         </Box>
       </Box>
     </>
