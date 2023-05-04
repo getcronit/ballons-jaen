@@ -47,6 +47,7 @@ const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
 
   return (
     <Stack
+      minH={'100vh'}
       bg="white"
       py="20"
       px={{base: 0, sm: 4, md: 8}}

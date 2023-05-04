@@ -9,7 +9,7 @@ interface IJoySectionProps {}
 
 const JoySection: FC<IJoySectionProps> = () => {
   return (
-    <Grid h={{base: '43.125rem', md: '60rem'}}>
+    <Grid minH={'100vh'} h={{base: '43.125rem', md: '60rem'}}>
       <StaticImage
         style={{
           gridArea: '1/1'

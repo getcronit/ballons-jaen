@@ -11,7 +11,7 @@ interface IHeartSectionProps {}
 
 const HeartSection: FC<IHeartSectionProps> = () => {
   return (
-    <Grid h={{base: '33.75rem', sm: 'auto'}}>
+    <Grid minH={'100vh'} h={{base: '33.75rem', sm: 'auto'}}>
       <StaticImage
         objectPosition={'top left'}
         style={{

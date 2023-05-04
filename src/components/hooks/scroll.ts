@@ -16,10 +16,12 @@ export const useScrollSync = (
 
       setScrollTop(target.documentElement.scrollTop)
 
-      ref.current!.scrollTop =
+      if (ref.current) {
+        ref.current!.scrollTop =
         target.documentElement.scrollTop / 2 -
         (offsetTop ? offsetTop : ref.current!.offsetTop) -
         (noScroll ? 999999999 : offset)
+      }
     }
 
     window.addEventListener('scroll', onScrollHandler)
