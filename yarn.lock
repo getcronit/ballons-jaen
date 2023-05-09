@@ -8210,10 +8210,10 @@ gatsby-plugin-image@^2.12.1, gatsby-plugin-image@^3:
     objectFitPolyfill "^2.3.5"
     prop-types "^15.8.1"
 
-gatsby-plugin-jaen@^0.0.15:
-  version "0.0.15"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-jaen/-/gatsby-plugin-jaen-0.0.15.tgz#1204ff6abd9c905229fa71ad2fc926db4e87e142"
-  integrity sha512-wDYoGva/tvmFkVBZr6iPe3h09QCg3qZo1RnBN8Ua4sOdyU6N8O5vgRfM0Cyl6xOV9U9t7aYbo8UdoeVxsLWMXg==
+gatsby-plugin-jaen@^0.0.17:
+  version "0.0.17"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-jaen/-/gatsby-plugin-jaen-0.0.17.tgz#4b8505f3f6e220eb7016d973e0a670df2827c3ed"
+  integrity sha512-8ttEknfAG8q0qMisFHN3Ikx18gTFDj1ne74jGw0+asI52XXdPdsAp55lqgam+X3zoukB0Nrf/8KHv8gK3b3cXg==
   dependencies:
     "@chakra-ui/gatsby-plugin" "^3.1.1"
     gatsby-plugin-compile-es6-packages "^2.1.1"
@@ -10018,9 +10018,9 @@ its-fine@^1.0.6:
     "@types/react-reconciler" "^0.28.0"
 
 jaen-utils@*:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/jaen-utils/-/jaen-utils-0.0.4.tgz#f4130b2b601dd89b9959b8de38a8a307381dad60"
-  integrity sha512-9sNGGM/gv80fC5bw2cdp+fTpLffN096IGV4T+jUByhFBFlbNE3hTb7QaLKqVwLFedsIZzAscqwUfKZT0i3pcSg==
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/jaen-utils/-/jaen-utils-0.0.5.tgz#b4599af24847a4f633d649769e08da30f7863271"
+  integrity sha512-vERAooXBTCYXrvrvo+Pmu6z5WRBal5GUqUb98yev9dedYDSORhpUUdOWAYJJuNL8nq+fbNMCz2z+KTxcgocIgg==
 
 javascript-stringify@^2.0.1:
   version "2.1.0"
