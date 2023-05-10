@@ -11,8 +11,7 @@ const Riesges: FC<IRiesgesProps> = () => {
     <Box>
       <Image
         display={{base: 'block'}}
-        zIndex="999"
-        // mt={{base: '-20vh'}}
+        //mt={{base: '-20vh'}}
         w="100%"
         src="/images/home/reisges/top_shape.svg"
         alt="herobackground"
