@@ -38,15 +38,15 @@ export const Section = (noScroll?: boolean) => css`
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    //height: 90vh;
   }
 
   ${parallaxMake(3)}
 
-  #section07 a {
+  #scrollarrows a {
     position: relative;
   }
-  #section07 a span {
+  #scrollarrows a span {
     position: absolute;
     top: 0;
     left: 50%;
@@ -62,16 +62,16 @@ export const Section = (noScroll?: boolean) => css`
     opacity: 0;
     box-sizing: border-box;
   }
-  #section07 a span:nth-of-type(1) {
+  #scrollarrows a span:nth-of-type(1) {
     -webkit-animation-delay: 0s;
     animation-delay: 0s;
   }
-  #section07 a span:nth-of-type(2) {
+  #scrollarrows a span:nth-of-type(2) {
     top: 16px;
     -webkit-animation-delay: .15s;
     animation-delay: .15s;
   }
-  #section07 a span:nth-of-type(3) {
+  #scrollarrows a span:nth-of-type(3) {
     top: 32px;
     -webkit-animation-delay: .3s;
     animation-delay: .3s;
