@@ -25,7 +25,7 @@ const TopNav: FC<ITopNavProps> = ({mode, onSearchClick, onBasketClick}) => {
   return (
     <Flex
       h={{sm: 20, md: 16}}
-      py={2}
+      py={0}
       justifyContent="center"
       alignItems="center"
       px="8"
