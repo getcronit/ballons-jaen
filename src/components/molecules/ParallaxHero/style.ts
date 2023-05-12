@@ -37,7 +37,7 @@ export const Section = (noScroll?: boolean) => css`
     //position: absolute;
     bottom: 0;
     left: 0;
-    width: 100%;
+    width: 98%;
     //height: 90vh;
   }
 

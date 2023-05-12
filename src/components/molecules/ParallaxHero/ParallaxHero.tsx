@@ -78,6 +78,7 @@ export const ParallaxHero = ({ noScroll }: ParallaxHeroProps) => {
         placeItems="center"
         mb={{ lg: 10 }}
         mt="0"
+        mx={{ base: "0", xl: "5vw" }}
         minChildWidth={{ base: "100%", lg: "300px" }}
         spacing="30px"
     >
@@ -88,7 +89,8 @@ export const ParallaxHero = ({ noScroll }: ParallaxHeroProps) => {
                     justifySelf="center"
                     minH={'300px'}
                     h={{ base: "30vw", lg: "60vh" }}
-                    w={{ base: "90%", lg: `calc(90vw / ${contentPagesIndex.children.length})` }}>
+                    minW={'300px'}
+                    w={{ base: "80vw", lg: `calc(70vw / ${contentPagesIndex.children.length})` }}>
                     <CardWithImageBackground
                         card={{
                             headingFieldName: `riesgesCardheading${i}`,
