@@ -17,14 +17,15 @@ const GroßhandelBottomHero: FC<IGroßhandelBottomHeroProps> = () => {
         '2xl': '65rem'
       }}
       zIndex="0"
-      top={{base: '-20rem', md: '-30rem'}}
-      mb={{base: '-20rem', md: '-30rem'}}
-      bgImage="url('/images/großhandel/großhandel_bg.svg')"
-      bgRepeat="no-repeat"
-      bgPosition="center"
-      bgSize="cover">
+      //top={{base: '-20rem', md: '-30rem'}}
+      bgColor={"white"}
+      // mb={{base: '-20rem', md: '-30rem'}}
+      // bgImage="url('/images/großhandel/großhandel_bg.svg')"
+      // bgRepeat="no-repeat"
+      // bgPosition="center"
+      // bgSize="cover"
+      >
       <Flex
-        align="end"
         w="full"
         pb={{base: '8', md: 20}}
         mx="auto"
