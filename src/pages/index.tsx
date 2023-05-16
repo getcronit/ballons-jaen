@@ -1,6 +1,6 @@
 import {ShopifyProduct} from '@snek-at/gatsby-theme-shopify'
-import {connectPage} from '@snek-at/jaen'
-import {graphql, PageProps} from 'gatsby'
+import {connectPage, PageProps} from '@snek-at/jaen'
+import {graphql} from 'gatsby'
 
 import HomePage from '../components/templates/HomeTemplate/Home'
 import {Layout} from '../Layout'
@@ -49,3 +49,5 @@ export const query = graphql`
     }
   }
 `
+
+export {Head} from '@snek-at/jaen'
