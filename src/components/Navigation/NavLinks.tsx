@@ -16,14 +16,14 @@ import {Link, navigate} from 'gatsby'
 import React from 'react'
 
 import {MarkdownLinksForm} from './BottomNav'
-import {useJaenNavigation} from './useJaenNavigation'
+import {useJaenNavTop, useJaenNavBottom} from './useJaenNavigation'
 
-export const NavLinks: React.FC<
+export const TopNavLinks: React.FC<
   StackProps & {
     childrenTextAlign?: 'left' | 'center' | 'right'
   }
 > = ({childrenTextAlign, ...props}) => {
-  const {isEditing, navLinks, markdown, updateNavigation} = useJaenNavigation()
+  const {isEditing, navLinks, markdown, updateNavigation} = useJaenNavTop()
 
   const {onOpen, onClose, isOpen} = useDisclosure()
   const firstFieldRef = React.useRef(null)
@@ -52,12 +52,99 @@ export const NavLinks: React.FC<
               }}
               key={index}
               textAlign={childrenTextAlign || 'center'}
+              // _hover={{
+              //   fontWeight: 'bold',
+              //   transform: 'scale(1.05)',
+              //   transition: '0.2s ease-in'
+              // }}
               _hover={{
-                fontWeight: 'bold',
-                transform: 'scale(1.05)',
-                transition: '0.2s ease-in'
+                textDecoration: 'underline'
               }}
               fontSize={{md: 'sm', lg: '1rem', xl: '1.125rem', '2xl': 'md'}}
+              transition="0.2s ease-in"
+              color="brand.dark_gray">
+              {link.label}
+            </CLink>
+          )
+        })}
+      </Stack>
+
+      {isEditing && (
+        <Box m={2}>
+          <Popover
+            isOpen={isOpen}
+            initialFocusRef={firstFieldRef}
+            onOpen={onOpen}
+            onClose={onClose}
+            placement="bottom"
+            closeOnBlur={false}>
+            <PopoverTrigger>
+              <IconButton
+                size="sm"
+                icon={<EditIcon />}
+                aria-label=""
+                colorScheme="teal"
+              />
+            </PopoverTrigger>
+            <PopoverContent p={5}>
+              <PopoverArrow />
+              <PopoverCloseButton />
+              <MarkdownLinksForm
+                onSaved={updateNavigation}
+                onCancle={onClose}
+                markdownUrls={markdown}
+              />
+            </PopoverContent>
+          </Popover>
+        </Box>
+      )}
+    </>
+  )
+}
+
+export const BottomNavLinks: React.FC<
+  StackProps & {
+    childrenTextAlign?: 'left' | 'center' | 'right'
+  }
+> = ({childrenTextAlign, ...props}) => {
+  const {isEditing, navLinks, markdown, updateNavigation} = useJaenNavBottom()
+
+  const {onOpen, onClose, isOpen} = useDisclosure()
+  const firstFieldRef = React.useRef(null)
+
+  return (
+    <>
+      <Stack {...props}>
+        {navLinks.map((link, index) => {
+          return (
+            <CLink
+              _before={{
+                display: 'block',
+                content: `"${link.label}"`,
+                fontWeight: 'bold',
+                height: '0',
+                overflow: 'hidden',
+                visibility: 'hidden'
+              }}
+              as={Link}
+              to={link.to}
+              onClick={e => {
+                e.preventDefault()
+                void navigate(link.to)
+
+                return false
+              }}
+              key={index}
+              textAlign={childrenTextAlign || 'center'}
+              // _hover={{
+              //   fontWeight: 'bold',
+              //   transform: 'scale(1.05)',
+              //   transition: '0.2s ease-in'
+              // }}
+              _hover={{
+                textDecoration: 'underline'
+              }}
+              fontSize={{md: 'md', lg: '1.375rem', xl: '1.4rem', '2xl': 'lg'}}
               transition="0.2s ease-in"
               color="brand.dark_gray">
               {link.label}

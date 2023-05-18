@@ -3,11 +3,12 @@ import {FC} from 'react'
 
 import BottomNav from './BottomNav'
 import MobileNav from './MobileNav/MobileNav'
-import TopNav from './TopNav'
+import DesktopNav from './DesktopNav'
 
 import {useBasket} from '../../services/basket'
 import {useSearch} from '../../services/search'
 import {LayoutMode} from '../../types/commonTypes'
+import TopNav from './TopNav'
 
 interface INavigationProps {
   mode: LayoutMode
@@ -33,7 +34,8 @@ const Navigation: FC<INavigationProps> = ({mode}) => {
       top="0"
       bg="white">
       <Stack display={{base: 'none', lg: 'flex'}} spacing="0">
-        <TopNav
+        <TopNav />
+        <DesktopNav
           mode={mode}
           onSearchClick={handleOnSearchClick}
           onBasketClick={handleOnBasketClick}

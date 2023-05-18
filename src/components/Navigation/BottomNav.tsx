@@ -11,7 +11,7 @@ import {
 import React, { FC } from "react"
 import { useForm } from "react-hook-form"
 import { CONTAINER_MAX_WIDTH } from "../../constant/sizes"
-import { NavLinks } from "./NavLinks"
+import { BottomNavLinks } from "./NavLinks"
 
 interface IBottomNavProps {}
 
@@ -25,7 +25,7 @@ const BottomNav: FC<IBottomNavProps> = () => {
       justify="center"
       align="center"
     >
-      <NavLinks
+      <BottomNavLinks
         gap={{ md: 6, lg: 8, "2xl": 10 }}
         maxW={CONTAINER_MAX_WIDTH}
         marginX="auto"
