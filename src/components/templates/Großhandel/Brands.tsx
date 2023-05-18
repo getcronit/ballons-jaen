@@ -23,15 +23,17 @@ const Brands: FC<IBrandsProps> = () => {
       justify="center"
       align="end"
       h={{base: '800px', md: '1100px', lg: '1400px', '2xl': '1500px'}}
-      overflow="hidden">
-      <Image
+      overflow="hidden"
+      bg={"white"}
+    >
+      {/* <Image
         pos="absolute"
         src="/images/großhandel/logo2_bg.svg"
         w="full"
         objectFit="cover"
         top="0"
         h="full"
-      />
+      /> */}
       <VStack
         maxW={CONTAINER_MAX_WIDTH}
         mx="auto"

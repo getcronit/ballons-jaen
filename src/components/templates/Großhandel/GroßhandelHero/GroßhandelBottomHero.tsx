@@ -9,13 +9,13 @@ const GroßhandelBottomHero: FC<IGroßhandelBottomHeroProps> = () => {
   return (
     <Flex
       pos="relative"
-      h={{
-        base: '50rem',
-        sm: '45rem',
-        md: '55rem',
-        xl: '60rem',
-        '2xl': '65rem'
-      }}
+      // h={{
+      //   base: '50rem',
+      //   sm: '45rem',
+      //   md: '55rem',
+      //   xl: '60rem',
+      //   '2xl': '65rem'
+      // }}
       zIndex="0"
       //top={{base: '-20rem', md: '-30rem'}}
       bgColor={"white"}
