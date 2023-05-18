@@ -21,3 +21,5 @@ export const query = graphql`
     ...JaenPageQuery
   }
 `
+
+export {Head} from '@snek-at/jaen'
