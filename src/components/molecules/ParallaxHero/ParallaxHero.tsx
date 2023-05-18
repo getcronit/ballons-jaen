@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react'
+import React, { useMemo } from 'react'
 import {
   Box,
   SimpleGrid,
@@ -10,43 +10,42 @@ import {
   Image
 } from '@chakra-ui/react'
 
-import {useScrollSync} from '../../hooks/scroll'
-import {useContentPages} from '../../hooks/useContentPages'
+import { useScrollSync } from '../../hooks/scroll'
+import { useContentPages } from '../../hooks/useContentPages'
 import CardWithImageBackground from '../../CardWithImageBackground'
 import * as style from './style'
-import {ParallaxBackground} from '../ParallaxBackground'
+import { ParallaxBackground } from '../ParallaxBackground'
 import TextLoop from 'react-text-loop'
-import {Field} from '@snek-at/jaen'
+import { Field } from '@snek-at/jaen'
 import LinkButtonField from '../../fields/LinkButtonField'
-import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
-import {HBallon} from '../../../common/assets/Ballon'
+import { CONTAINER_MAX_WIDTH } from '../../../constant/sizes'
+import { HBallon } from '../../../common/assets/Ballon'
 
 export interface ParallaxHeroProps {
   noScroll?: boolean
 }
 
-export const ParallaxHero = ({noScroll}: ParallaxHeroProps) => {
-  const {ref, scrollTop} = useScrollSync()
+export const ParallaxHero = ({ noScroll }: ParallaxHeroProps) => {
+  const { ref, scrollTop } = useScrollSync()
   const contentPagesIndex = useContentPages()
 
   const switchingHeadline = (
     <HStack mb="10" display="flex" justifyContent="center">
       <TextLoop>
         {[
-          'Beeindrucke mit',
-          'Verführe mit',
-          'Überrasche mit',
-          'Verzaubere mit',
-          'Verwöhne mit',
-          "Verlieb' dich mit",
-          "Verlob' dich mit",
-          'Heirate mit',
-          'Feier mit'
+          "Teile Glück und Freude mit 🎈",
+          "Schaffe Atmosphäre mit",
+          "Heirate mit",
+          "Feiere deinen Anlass mit",
+          "Überrasche mit",
+          "Erlebe unvergessliche Momente mit",
+          "Beeindrucke mit",
+          "Gemeinsam abheben mit"
         ].map((text, index) => {
           return (
             <Heading
               key={index}
-              fontSize={{base: '2xl', md: '4xl', lg: '6xl'}}
+              fontSize={{ base: '2xl', md: '4xl', lg: '6xl' }}
               mb="8 !important"
               fontWeight="semibold"
               textAlign="center">
@@ -87,34 +86,34 @@ export const ParallaxHero = ({noScroll}: ParallaxHeroProps) => {
       <SimpleGrid
         w="full"
         placeItems="center"
-        mb={{lg: 10}}
+        mb={{ lg: 10 }}
         mt="0"
         mx={{ base: "0", xl: "5vw" }}
         minChildWidth={{ base: "100%", lg: "300px" }}
         spacing="30px"
-    >
+      >
         {contentPagesIndex.children.map((page, i) =>
-            contentPagesIndex.withJaenPage(
-                page.id || '',
-                <GridItem
-                    justifySelf="center"
-                    minH={'300px'}
-                    h={{ base: "30vw", lg: "60vh" }}
-                    minW={'300px'}
-                    w={{ base: "80vw", lg: `calc(70vw / ${contentPagesIndex.children.length})` }}>
-                    <CardWithImageBackground
-                        card={{
-                            headingFieldName: `riesgesCardheading${i}`,
-                            headingDefaultValue: cards[i].heading,
-                            textFieldName: `riesgesCardText${i}`,
-                            textDefaultValue: cards[i].text,
-                            imageFieldName: `riesgesCardImage${i}`,
-                            imageDefaultValue: cards[i].image,
-                            linkUrl: `/${page.slug}`
-                        }}
-                    />
-                </GridItem>
-            )
+          contentPagesIndex.withJaenPage(
+            page.id || '',
+            <GridItem
+              justifySelf="center"
+              minH={'300px'}
+              h={{ base: "30vw", lg: "60vh" }}
+              minW={'300px'}
+              w={{ base: "80vw", lg: `calc(70vw / ${contentPagesIndex.children.length})` }}>
+              <CardWithImageBackground
+                card={{
+                  headingFieldName: `riesgesCardheading${i}`,
+                  headingDefaultValue: cards[i].heading,
+                  textFieldName: `riesgesCardText${i}`,
+                  textDefaultValue: cards[i].text,
+                  imageFieldName: `riesgesCardImage${i}`,
+                  imageDefaultValue: cards[i].image,
+                  linkUrl: `/${page.slug}`
+                }}
+              />
+            </GridItem>
+          )
         )}
       </SimpleGrid>
     ),
@@ -128,7 +127,7 @@ export const ParallaxHero = ({noScroll}: ParallaxHeroProps) => {
         css={style.Section(noScroll)}
         ref={ref}
         //mt={{ base: '3.5rem', md: '4rem', lg: '8rem' }}
-        pt={{base: 'calc(150vh - 7.5rem)', lg: 'calc(150vh - 8rem)'}}>
+        pt={{ base: 'calc(150vh - 7.5rem)', lg: 'calc(150vh - 8rem)' }}>
         <Box className="parallax__layer parallax__layer__0">
           <Image
             position={'absolute'}
@@ -191,11 +190,11 @@ export const ParallaxHero = ({noScroll}: ParallaxHeroProps) => {
           position={'absolute'}
           justifyContent="center"
           alignItems={'center'}
-          display={{base: 'flex', md: 'none'}}>
+          display={{ base: 'flex', md: 'none' }}>
           <HStack>
             <HBallon className="background-Ballon" />
             <Heading
-              fontSize={{base: '2xl', md: '8xl', lg: '9xl'}}
+              fontSize={{ base: '2xl', md: '8xl', lg: '9xl' }}
               fontWeight="semibold"
               textAlign="center"
               pt="12">
@@ -214,7 +213,7 @@ export const ParallaxHero = ({noScroll}: ParallaxHeroProps) => {
               name="littleThingsButton2"
               defaultValue="Großhandel"
               defaultUrl={`/grosshandel`}
-              size={{base: 'sm', md: 'md'}}
+              size={{ base: 'sm', md: 'md' }}
               variant="outline"
               ml="3"
             />
@@ -222,7 +221,7 @@ export const ParallaxHero = ({noScroll}: ParallaxHeroProps) => {
               name="littleThingsButton1"
               defaultValue="Zum Shop"
               defaultUrl={`/products`}
-              size={{base: 'sm', md: 'md'}}
+              size={{ base: 'sm', md: 'md' }}
               ml="3"
               mt="3"
             />
@@ -247,11 +246,11 @@ export const ParallaxHero = ({noScroll}: ParallaxHeroProps) => {
           position={'absolute'}
           justifyContent="center"
           alignContent="center"
-          height={{md: 'calc(100vh - 7.5rem)', lg: 'calc(100vh - 8rem)'}}
-          display={{base: 'none', md: 'flex'}}>
+          height={{ md: 'calc(100vh - 7.5rem)', lg: 'calc(100vh - 8rem)' }}
+          display={{ base: 'none', md: 'flex' }}>
           {switchingHeadline}
           <Heading
-            fontSize={{base: '2xl', md: '8xl', lg: '9xl'}}
+            fontSize={{ base: '2xl', md: '8xl', lg: '9xl' }}
             fontWeight="semibold"
             textAlign="center">
             <Box as="span" mt="10">
@@ -273,7 +272,7 @@ export const ParallaxHero = ({noScroll}: ParallaxHeroProps) => {
               name="littleThingsButton1"
               defaultValue="Zum Shop"
               defaultUrl={`/products`}
-              size={{base: 'sm', md: 'md'}}
+              size={{ base: 'sm', md: 'md' }}
               ml="3"
             />
             <Box
@@ -291,7 +290,7 @@ export const ParallaxHero = ({noScroll}: ParallaxHeroProps) => {
               name="littleThingsButton2"
               defaultValue="Großhandel"
               defaultUrl={`/grosshandel`}
-              size={{base: 'sm', md: 'md'}}
+              size={{ base: 'sm', md: 'md' }}
               variant="outline"
               ml="3"
             />
