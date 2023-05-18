@@ -120,13 +120,12 @@ export default (props: ProductsPageTemplateProps) => (
 
 export const Head = (props: ProductsPageTemplateProps) => {
   return (
-    <JaenHead {...(props as any)}>
-      <title id="title">Ballons & Ballons - Artikel</title>
-      <meta
-        id="meta-description"
-        name="description"
-        content="Alle Artikel von Ballons & Ballons auf einen Blick"
-      />
-    </JaenHead>
+    <JaenHead
+      {...(props as any)}
+      jaenPageMetadata={{
+        title: `Ballons & Ballons - Artikel`,
+        description: `Alle Artikel von Ballons & Ballons auf einen Blick`
+      }}
+    />
   )
 }

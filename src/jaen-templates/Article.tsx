@@ -32,3 +32,5 @@ export const query = graphql`
     }
   }
 `
+
+export {Head} from '@snek-at/jaen'

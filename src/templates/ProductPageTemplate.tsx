@@ -4,8 +4,8 @@ import {
   ProductsPageContext,
   SearchProvider
 } from '@snek-at/gatsby-theme-shopify'
-import {Head as JaenHead} from '@snek-at/jaen'
-import {graphql, navigate, PageProps} from 'gatsby'
+import {Head as JaenHead, PageProps} from '@snek-at/jaen'
+import {graphql, navigate} from 'gatsby'
 import React from 'react'
 
 import {buildAllTags} from '../components/templates/ProductsTemplate/ProductsTemplate'
@@ -131,30 +131,19 @@ export const Head = (props: ProductPageTemplateProps) => {
   const shopifyProduct = props.data.shopifyProduct
 
   return (
-    <JaenHead {...(props as any)}>
-      <title id="title">{shopifyProduct.title} | Ballons & Ballons</title>
-      <meta
-        id="meta-description"
-        name="description"
-        content={
+    <JaenHead
+      {...(props as any)}
+      jaenPageMetadata={{
+        title: `${shopifyProduct.title} | Ballons & Ballons`,
+        description:
           shopifyProduct.description +
           ` | Produkttyp: ${shopifyProduct.productType}` +
-          ` | Hersteller: ${shopifyProduct.vendor}`
-        }
-      />
-      <meta
-        id="meta-date"
-        name="date"
-        content={new Date(shopifyProduct.createdAt).toISOString()}
-      />
-      <meta
-        id="meta-image"
-        name="image"
-        content={
+          ` | Hersteller: ${shopifyProduct.vendor}`,
+        datePublished: new Date(shopifyProduct.createdAt).toISOString(),
+        image:
           shopifyProduct.featuredMedia?.image?.gatsbyImageData?.images?.fallback
             ?.src
-        }
-      />
-    </JaenHead>
+      }}
+    />
   )
 }
