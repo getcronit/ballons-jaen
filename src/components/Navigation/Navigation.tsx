@@ -1,20 +1,21 @@
-import {Box, Stack, Text} from '@chakra-ui/react'
-import {FC} from 'react'
+import { Box, Stack, Text } from '@chakra-ui/react'
+import { FC } from 'react'
 
 import BottomNav from './BottomNav'
 import MobileNav from './MobileNav/MobileNav'
 import TopNav from './TopNav'
 
-import {useBasket} from '../../services/basket'
-import {useSearch} from '../../services/search'
-import {LayoutMode} from '../../types/commonTypes'
-import Simple from './Navbar'
+import { useBasket } from '../../services/basket'
+import { useSearch } from '../../services/search'
+import { LayoutMode } from '../../types/commonTypes'
+//import Simple from './Navbar'
+import DesktopNav from './DesktopNav'
 
 interface INavigationProps {
   mode: LayoutMode
 }
 
-const Navigation: FC<INavigationProps> = ({mode}) => {
+const Navigation: FC<INavigationProps> = ({ mode }) => {
   const basket = useBasket()
   const search = useSearch()
 
@@ -43,9 +44,14 @@ const Navigation: FC<INavigationProps> = ({mode}) => {
         top="0"
         bg='rgba(255,255,255,.9)'
         backdropFilter={"blur(7px)"}
-        >
+      >
         <Box>
-          <Simple />
+          {/* <Simple /> */}
+          <DesktopNav
+            mode={mode}
+            onSearchClick={handleOnSearchClick}
+            onBasketClick={handleOnBasketClick}
+          />
         </Box>
         {/* <Stack display={{base: 'none', lg: 'flex'}} spacing="0">
         <TopNav

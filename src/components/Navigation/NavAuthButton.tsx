@@ -31,7 +31,7 @@ export const NavAuthButton: React.FC<NavAuthButtonProps> = () => {
       <Button
         display={{base: 'none', lg: 'flex'}}
         size="sm"
-        variant="outline"
+        variant="link"
         leftIcon={<AiOutlineUser />}
         onClick={openLoginModal}>
         {user ? user.name : 'Login'}
