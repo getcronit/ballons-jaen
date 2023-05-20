@@ -1,4 +1,5 @@
 import {
+    BoxProps,
     Button,
     ButtonGroup,
     Flex,
@@ -13,18 +14,20 @@ import {
   import { CONTAINER_MAX_WIDTH } from "../../constant/sizes"
   import { TopNavLinks } from "./NavLinks"
   
-  interface ITopNavProps {}
+  interface ITopNavProps extends BoxProps {}
   
-  const TopNav: FC<ITopNavProps> = () => {
+  const TopNav: FC<ITopNavProps> = (props) => {
     return (
       <Flex
-        //h={{ base: "14", lg: "16" }}
-        py={"2"}
+        pos="relative"
+        //h={{ base: "10"}}
+        py={"1"}
         bg={"black.500"}
         boxShadow="lightdown"
         justify="center"
         align="center"
         color={"white"}
+        {...props}
       >
         <TopNavLinks
           gap={{ md: 6, lg: 8, "2xl": 10 }}

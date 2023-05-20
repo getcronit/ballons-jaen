@@ -60,7 +60,7 @@ export const TopNavLinks: React.FC<
               _hover={{
                 textDecoration: 'underline'
               }}
-              fontSize={{md: 'sm', lg: '1rem', xl: '1.125rem', '2xl': 'md'}}
+              fontSize={{base: 'sm', lg: '1rem'}}
               transition="0.2s ease-in"
               color="brand.dark_gray">
               {link.label}
