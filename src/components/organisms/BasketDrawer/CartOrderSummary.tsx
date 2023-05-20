@@ -45,7 +45,6 @@ export const CartOrderSummary = ({
         <>{infoText}</>
       </Stack>
       <Button
-        colorScheme="blue"
         size={{
           base: 'sm',
           md: 'md'
