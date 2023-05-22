@@ -21,7 +21,7 @@ const BottomNav: FC<IBottomNavProps> = () => {
       //h={{ base: "14", lg: "16" }}
       py={"2"}
       bg="white"
-      boxShadow="lightdown"
+      //boxShadow="lightdown"
       justify="center"
       align="center"
     >

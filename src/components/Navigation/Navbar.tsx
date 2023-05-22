@@ -1,5 +1,6 @@
 import {
   Box,
+  VStack,
   Flex,
   Text,
   IconButton,
@@ -17,7 +18,8 @@ import {
   Wrap,
   Link,
   WrapItem,
-  ButtonGroup
+  ButtonGroup,
+  Container
 } from '@chakra-ui/react'
 import { Link as GatsbyLink, navigate } from 'gatsby'
 import {
@@ -31,6 +33,9 @@ import { AiOutlineArrowLeft, AiOutlineShop, AiOutlineShoppingCart } from 'react-
 import { FC } from 'react'
 import { LayoutMode } from '../../types/commonTypes'
 import { NavAuthButton } from './NavAuthButton'
+import { SearchbarButton } from '../molecules/Searchbar'
+import BottomNav from './BottomNav'
+import { CONTAINER_MAX_WIDTH } from '../../constant/sizes'
 
 interface INavbarProps {
   mode: LayoutMode
@@ -65,7 +70,8 @@ export const Navbar: FC<INavbarProps> = ({ mode, onSearchClick, onBasketClick, o
         minH={'60px'}
         py={{ base: 2 }}
         px={{ base: 4 }}
-        align={'center'}>
+        align={'center'}
+      >
         <Flex
           flex={{ base: 1, md: 'auto' }}
           ml={{ base: -2 }}
@@ -136,6 +142,7 @@ export const Navbar: FC<INavbarProps> = ({ mode, onSearchClick, onBasketClick, o
             <ButtonGroup isAttached>
               <Button
                 size="sm"
+                variant={'outline'}
                 leftIcon={<AiOutlineShoppingCart />}
                 onClick={onBasketClick}>
                 Warenkorb
@@ -159,8 +166,20 @@ export const Navbar: FC<INavbarProps> = ({ mode, onSearchClick, onBasketClick, o
       <Flex
         display={{ base: 'none', md: 'flex' }}
         justifyContent="center"
+        alignItems={'center'}
       >
-        <DesktopNav />
+        {/* <DesktopNav /> */}
+        <Container maxW={CONTAINER_MAX_WIDTH} display={mode === 'website' ? 'none' : 'block'}>
+          <SearchbarButton onClick={onSearchClick} />
+        </Container>
+      </Flex>
+
+      <Flex
+        display={{ base: 'none', md: mode === 'website' ? 'flex' : 'none' }}
+        justifyContent="center"
+      >
+        {/* <DesktopNav /> */}
+        <BottomNav />
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
