@@ -19,7 +19,7 @@ const BottomNav: FC<IBottomNavProps> = () => {
   return (
     <Flex
       //h={{ base: "14", lg: "16" }}
-      py={"2"}
+      py={"1"}
       //bg="white"
       //boxShadow="lightdown"
       justify="center"
@@ -28,6 +28,7 @@ const BottomNav: FC<IBottomNavProps> = () => {
       <BottomNavLinks
         gap={{ md: 6, lg: 8, "2xl": 10 }}
         maxW={CONTAINER_MAX_WIDTH}
+        fontSize={'md'}
         marginX="auto"
         justify="center"
         direction="row"
