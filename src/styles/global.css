@@ -78,6 +78,10 @@
   }
 }
 
+.chakra-popover__popper {
+  z-index: 9999;
+}
+
 @keyframes shadowShine {
   from {
     box-shadow: 0 0 0 0 rgba(255 ,255 , 255, .5)
