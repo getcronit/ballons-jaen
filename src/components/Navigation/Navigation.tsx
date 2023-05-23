@@ -39,7 +39,7 @@ const Navigation: FC<INavigationProps> = ({ mode }) => {
 
   return (
     <>
-      <TopNav display={mode === 'website' ? 'block' : 'none'} />
+      {/* <TopNav display={mode === 'website' ? 'block' : 'none'} /> */}
       <Box
         as="nav"
         zIndex="sticky"
