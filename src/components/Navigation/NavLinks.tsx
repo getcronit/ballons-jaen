@@ -26,7 +26,7 @@ const findBestMatch = (path: string, paths: Array<string>) => {
   // if it is the best match, save it
   paths.forEach(pathToMatch => {
 
-    if (pathToMatch !== "/") {
+    if (path !== "/") {
       // iterate over all path parts and check how many of them match
       let score = 0
       const pathParts = path.replace(/\/$/, '').split('/').filter(Boolean)
@@ -34,6 +34,7 @@ const findBestMatch = (path: string, paths: Array<string>) => {
         .replace(/\/$/, '')
         .split('/')
         .filter(Boolean)
+
       for (let i = 0; i < pathParts.length; i++) {
         if (pathParts[i] !== pathToMatchParts[i]) {
           // if the path part does not match, exit the loop
@@ -49,7 +50,7 @@ const findBestMatch = (path: string, paths: Array<string>) => {
         bestMatchScore = score
       }
     } else {
-      bestMatch = pathToMatch
+      bestMatch = "/"
       bestMatchScore = 1
     }
   })
