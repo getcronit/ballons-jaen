@@ -11,7 +11,7 @@ import {
 import React, { FC } from "react"
 import { useForm } from "react-hook-form"
 import { CONTAINER_MAX_WIDTH } from "../../constant/sizes"
-import { NavLinks } from "./NavLinks"
+import { BottomNavLinks } from "./NavLinks"
 
 interface IBottomNavProps {}
 
@@ -19,15 +19,16 @@ const BottomNav: FC<IBottomNavProps> = () => {
   return (
     <Flex
       //h={{ base: "14", lg: "16" }}
-      py={"2"}
-      bg="white"
-      boxShadow="lightdown"
+      py={"1"}
+      //bg="white"
+      //boxShadow="lightdown"
       justify="center"
       align="center"
     >
-      <NavLinks
+      <BottomNavLinks
         gap={{ md: 6, lg: 8, "2xl": 10 }}
         maxW={CONTAINER_MAX_WIDTH}
+        fontSize={'md'}
         marginX="auto"
         justify="center"
         direction="row"
@@ -108,7 +109,7 @@ export const MarkdownLinksForm: React.FC<{
           <Button variant="outline" onClick={onCancle}>
             Cancel
           </Button>
-          <Button colorScheme="teal" isLoading={isSubmitting} type="submit">
+          <Button colorScheme="jaen" isLoading={isSubmitting} type="submit">
             Save
           </Button>
         </ButtonGroup>

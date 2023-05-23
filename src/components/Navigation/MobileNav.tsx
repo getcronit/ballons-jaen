@@ -16,21 +16,21 @@ import {
   Stack,
   useDisclosure
 } from '@chakra-ui/react'
-import {Link, navigate} from 'gatsby'
-import {FC} from 'react'
+import { Link, navigate } from 'gatsby'
+import { FC } from 'react'
 import {
   AiOutlineArrowLeft,
   AiOutlineSearch,
   AiOutlineShop,
   AiOutlineShoppingCart
 } from 'react-icons/ai'
-import {FaPhoneAlt} from 'react-icons/fa'
+import { FaPhoneAlt } from 'react-icons/fa'
 
-import {IoCloseOutline, IoMenuOutline} from 'react-icons/io5'
-import {useContactModal} from '../../../services/contact'
-import {LayoutMode} from '../../../types/commonTypes'
-import {NavAuthButton} from '../NavAuthButton'
-import {NavLinks} from '../NavLinks'
+import { IoCloseOutline, IoMenuOutline } from 'react-icons/io5'
+import { useContactModal } from '../../services/contact'
+import { LayoutMode } from '../../types/commonTypes'
+import { NavAuthButton } from './NavAuthButton'
+import { BottomNavLinks } from './NavLinks'
 
 interface IMobileNavProps {
   mode?: LayoutMode
@@ -38,7 +38,7 @@ interface IMobileNavProps {
   onBasketClick: () => void
 }
 
-const MobileNav: FC<IMobileNavProps> = ({
+export const MobileNav: FC<IMobileNavProps> = ({
   mode,
   onSearchClick,
   onBasketClick
@@ -130,7 +130,7 @@ const MobileNav: FC<IMobileNavProps> = ({
             <Divider />
             <DrawerBody>
               <Stack spacing="8" pt="4">
-                <NavLinks
+                <BottomNavLinks
                   childrenTextAlign="left"
                   w="full"
                   px="2"

@@ -104,7 +104,7 @@ const UpdateUrlForm: React.FC<{
           <Button variant="outline" onClick={onCancle}>
             Cancel
           </Button>
-          <Button colorScheme="teal" isLoading={isSubmitting} type="submit">
+          <Button colorScheme="jaen" isLoading={isSubmitting} type="submit">
             Save
           </Button>
         </ButtonGroup>
@@ -261,7 +261,7 @@ const CardWithImageBackgroundField: React.FC<
                 size="sm"
                 icon={<EditIcon />}
                 aria-label={''}
-                colorScheme="teal"
+                colorScheme="jaen"
               />
             </PopoverTrigger>
             <PopoverContent p={5}>

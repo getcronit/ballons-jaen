@@ -1,105 +1,125 @@
-import {Box, Button, ButtonGroup, Flex, HStack, Image} from '@chakra-ui/react'
-import {Link, navigate} from 'gatsby'
-import {FC} from 'react'
 import {
-  AiOutlineArrowLeft,
-  AiOutlineSearch,
-  AiOutlineShop,
-  AiOutlineShoppingCart
-} from 'react-icons/ai'
-import {FaPhoneAlt} from 'react-icons/fa'
-import {useContactModal} from '../../services/contact'
-
-import {LayoutMode} from '../../types/commonTypes'
-import {NavAuthButton} from './NavAuthButton'
-
-interface ITopNavProps {
-  mode: LayoutMode
-  onBasketClick?: () => void
-  onSearchClick?: () => void
-}
-
-const TopNav: FC<ITopNavProps> = ({mode, onSearchClick, onBasketClick}) => {
-  const contactModal = useContactModal()
-
-  return (
-    <Flex
-      h={{sm: 20, md: 16}}
-      py={0}
-      justifyContent="center"
-      alignItems="center"
-      px="8"
-      // bg="#f4f4f4"
-    >
-      <Button
-        position="absolute"
-        left={2}
-        size="sm"
-        as={Link}
-        to="/"
-        display={mode === 'website' ? 'none' : undefined}
-        leftIcon={<AiOutlineArrowLeft />}>
-        <Image h=".875rem" w="10rem" src="/images/white_logo.png" />
-      </Button>
-
-      <Box>
-        <Image
-          display={mode === 'website' ? 'block' : 'none'}
-          cursor="pointer"
-          onClick={() => {
-            void navigate('/')
-          }}
-          w={{base: '20rem', '2xl': '26.25rem'}}
-          h={{base: '1.875rem', '2xl': '2.125rem'}}
-          src="/images/red_logo.png"
-          alt="logo"
+    BoxProps,
+    Button,
+    ButtonGroup,
+    Flex,
+    FormControl,
+    FormErrorMessage,
+    FormLabel,
+    Stack,
+    Textarea,
+  } from "@chakra-ui/react"
+  import React, { FC } from "react"
+  import { useForm } from "react-hook-form"
+  import { CONTAINER_MAX_WIDTH } from "../../constant/sizes"
+  import { TopNavLinks } from "./NavLinks"
+  
+  interface ITopNavProps extends BoxProps {}
+  
+  const TopNav: FC<ITopNavProps> = (props) => {
+    return (
+      <Flex
+        pos="relative"
+        //h={{ base: "10"}}
+        py={"1"}
+        bg={"black.500"}
+        boxShadow="lightdown"
+        justify="center"
+        align="center"
+        color={"white"}
+        {...props}
+      >
+        <TopNavLinks
+          gap={{ md: 6, lg: 8, "2xl": 10 }}
+          maxW={CONTAINER_MAX_WIDTH}
+          marginX="auto"
+          justify="center"
+          direction="row"
         />
-      </Box>
-
-      <HStack position="absolute" right={2} spacing="1">
-        <NavAuthButton />
-        <Button
-          variant="outline"
-          size="sm"
-          leftIcon={<FaPhoneAlt />}
-          onClick={() => {
-            contactModal.onOpen({
-              meta: {}
-            })
-          }}>
-          Anfragen
-        </Button>
-
-        {mode === 'website' ? (
-          <Button
-            display={{
-              base: 'none',
-              md: 'flex'
-            }}
-            size="sm"
-            as={Link}
-            to="/products"
-            leftIcon={<AiOutlineShop />}>
-            Unsere Artikel
-          </Button>
-        ) : (
-          <ButtonGroup isAttached>
-            <Button
-              size="sm"
-              leftIcon={<AiOutlineSearch />}
-              onClick={onSearchClick}>
-              Nach Artikel suchen
+      </Flex>
+    )
+  }
+  
+  export const extractUrlsFromMarkdown = (
+    markdown: string
+  ): Array<{
+    label: string
+    to: string
+  }> => {
+    const urls = []
+    const regex = /\[(.*?)\]\((.*?)\)/g
+    let match
+    while ((match = regex.exec(markdown))) {
+      urls.push({
+        label: match[1],
+        to: match[2],
+      })
+    }
+  
+    return urls
+  }
+  
+  export const MarkdownLinksForm: React.FC<{
+    onSaved: (markdownUrls: string) => void
+    onCancle: () => void
+    markdownUrls: string
+  }> = ({ onSaved, onCancle, markdownUrls }) => {
+    const {
+      handleSubmit,
+      register,
+      reset,
+      formState: { errors, isSubmitting },
+    } = useForm<{
+      markdownUrls: string
+    }>({
+      defaultValues: {
+        markdownUrls,
+      },
+    })
+  
+    // Update default values when initUrl changes
+    React.useEffect(() => {
+      reset({
+        markdownUrls,
+      })
+    }, [markdownUrls, reset])
+  
+    const onSubmit = (data: { markdownUrls: string }) => {
+      onSaved(data.markdownUrls)
+  
+      // reset the form
+      onCancle()
+    }
+  
+    return (
+      <form
+        onSubmit={event => {
+          void handleSubmit(onSubmit)(event)
+        }}
+      >
+        <Stack color="chakra-body-text">
+          <FormControl isInvalid={!!errors.markdownUrls}>
+            <FormLabel htmlFor="markdownUrls">Markdown URLs</FormLabel>
+  
+            <Textarea minH="md" {...register("markdownUrls", {})} />
+  
+            <FormErrorMessage>
+              {errors.markdownUrls?.message?.toString()}
+            </FormErrorMessage>
+          </FormControl>
+  
+          <ButtonGroup display="flex" justifyContent="flex-end">
+            <Button variant="outline" onClick={onCancle}>
+              Cancel
             </Button>
-            <Button
-              size="sm"
-              leftIcon={<AiOutlineShoppingCart />}
-              onClick={onBasketClick}>
-              Warenkorb
+            <Button colorScheme="jaen" isLoading={isSubmitting} type="submit">
+              Save
             </Button>
           </ButtonGroup>
-        )}
-      </HStack>
-    </Flex>
-  )
-}
-export default TopNav
+        </Stack>
+      </form>
+    )
+  }
+  
+  export default TopNav
+  

@@ -9,22 +9,23 @@ const GroßhandelBottomHero: FC<IGroßhandelBottomHeroProps> = () => {
   return (
     <Flex
       pos="relative"
-      h={{
-        base: '50rem',
-        sm: '45rem',
-        md: '55rem',
-        xl: '60rem',
-        '2xl': '65rem'
-      }}
+      // h={{
+      //   base: '50rem',
+      //   sm: '45rem',
+      //   md: '55rem',
+      //   xl: '60rem',
+      //   '2xl': '65rem'
+      // }}
       zIndex="0"
-      top={{base: '-20rem', md: '-30rem'}}
-      mb={{base: '-20rem', md: '-30rem'}}
-      bgImage="url('/images/großhandel/großhandel_bg.svg')"
-      bgRepeat="no-repeat"
-      bgPosition="center"
-      bgSize="cover">
+      //top={{base: '-20rem', md: '-30rem'}}
+      bgColor={"white"}
+      // mb={{base: '-20rem', md: '-30rem'}}
+      // bgImage="url('/images/großhandel/großhandel_bg.svg')"
+      // bgRepeat="no-repeat"
+      // bgPosition="center"
+      // bgSize="cover"
+      >
       <Flex
-        align="end"
         w="full"
         pb={{base: '8', md: 20}}
         mx="auto"
