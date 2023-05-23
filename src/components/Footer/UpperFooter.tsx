@@ -154,7 +154,7 @@ const UpperFooter: FC<IUpperFooterProps> = () => {
                     size="sm"
                     icon={<EditIcon />}
                     aria-label=""
-                    colorScheme="teal"
+                    colorScheme="jaen"
                   />
                 </PopoverTrigger>
                 <PopoverContent p={5}>
@@ -234,7 +234,7 @@ const UpperFooter: FC<IUpperFooterProps> = () => {
                     size="sm"
                     icon={<EditIcon />}
                     aria-label=""
-                    colorScheme="teal"
+                    colorScheme="jaen"
                   />
                 </PopoverTrigger>
                 <PopoverContent p={5}>
@@ -314,7 +314,7 @@ const UpperFooter: FC<IUpperFooterProps> = () => {
                       size="sm"
                       icon={<EditIcon />}
                       aria-label=""
-                      colorScheme="teal"
+                      colorScheme="jaen"
                     />
                   </PopoverTrigger>
                   <PopoverContent p={5}>
@@ -395,7 +395,7 @@ const UpperFooter: FC<IUpperFooterProps> = () => {
                       size="sm"
                       icon={<EditIcon />}
                       aria-label=""
-                      colorScheme="teal"
+                      colorScheme="jaen"
                     />
                   </PopoverTrigger>
                   <PopoverContent p={5}>

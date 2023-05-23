@@ -110,7 +110,7 @@ export const TopNavLinks: React.FC<
       </Stack>
 
       {isEditing && (
-        <Box m={2}>
+        <Box mx={2} position={"absolute"} right={0} top={0}>
           <Popover
             isOpen={isOpen}
             initialFocusRef={firstFieldRef}
@@ -123,7 +123,7 @@ export const TopNavLinks: React.FC<
                 size="sm"
                 icon={<EditIcon />}
                 aria-label=""
-                colorScheme="teal"
+                colorScheme="jaen"
               />
             </PopoverTrigger>
             <PopoverContent p={5}>
@@ -218,7 +218,7 @@ export const BottomNavLinks: React.FC<
                 size="sm"
                 icon={<EditIcon />}
                 aria-label=""
-                colorScheme="teal"
+                colorScheme="jaen"
               />
             </PopoverTrigger>
             <PopoverContent p={5}>

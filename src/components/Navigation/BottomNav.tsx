@@ -109,7 +109,7 @@ export const MarkdownLinksForm: React.FC<{
           <Button variant="outline" onClick={onCancle}>
             Cancel
           </Button>
-          <Button colorScheme="teal" isLoading={isSubmitting} type="submit">
+          <Button colorScheme="jaen" isLoading={isSubmitting} type="submit">
             Save
           </Button>
         </ButtonGroup>
