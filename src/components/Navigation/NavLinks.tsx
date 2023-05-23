@@ -192,11 +192,12 @@ export const BottomNavLinks: React.FC<
               //   transition: '0.2s ease-in'
               // }}
               _hover={{
-                textDecoration: 'underline'
+                textDecoration: 'underline',
+                color: 'black'
               }}
-              fontSize={{ md: 'md', lg: '1.375rem', xl: '1.4rem', '2xl': 'lg' }}
+              //fontSize={{ md: 'md', lg: '1.375rem', xl: '1.4rem', '2xl': 'lg' }}
               transition="0.2s ease-in"
-              color="brand.dark_gray">
+              color="gray.700">
               {link.label}
             </CLink>
           )
