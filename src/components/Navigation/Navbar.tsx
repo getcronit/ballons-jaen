@@ -19,7 +19,8 @@ import {
   Link,
   WrapItem,
   ButtonGroup,
-  Container
+  Container,
+  HStack
 } from '@chakra-ui/react'
 import { Link as GatsbyLink, navigate } from 'gatsby'
 import {
@@ -49,6 +50,7 @@ export const Navbar: FC<INavbarProps> = ({ mode, onSearchClick, onBasketClick, o
 
   return (
     <Box
+      pb={"3"}
       animation="shadowShine 5s infinite linear alternate-reverse"
       _after={
         {
@@ -118,6 +120,7 @@ export const Navbar: FC<INavbarProps> = ({ mode, onSearchClick, onBasketClick, o
         </Flex>
 
         <Stack flex={1} justify={'flex-end'} direction={'row'} spacing={6}>
+        
           <Button
             variant="link"
             size="sm"
@@ -139,7 +142,9 @@ export const Navbar: FC<INavbarProps> = ({ mode, onSearchClick, onBasketClick, o
               Onlineshop
             </Button>
           ) : (
-            <ButtonGroup isAttached>
+            <ButtonGroup >
+              <SearchbarButton onClick={onSearchClick} maxW="sm" w={"10vw"} />
+
               <Button
                 size="sm"
                 variant={'outline'}
@@ -169,9 +174,9 @@ export const Navbar: FC<INavbarProps> = ({ mode, onSearchClick, onBasketClick, o
         alignItems={'center'}
       >
         {/* <DesktopNav /> */}
-        <Container maxW={CONTAINER_MAX_WIDTH} display={mode === 'website' ? 'none' : 'block'}>
+        {/* <Container maxW={CONTAINER_MAX_WIDTH} display={mode === 'website' ? 'none' : 'block'} mx="8">
           <SearchbarButton onClick={onSearchClick} />
-        </Container>
+        </Container> */}
       </Flex>
 
       <Flex
