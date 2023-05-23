@@ -2,7 +2,7 @@ import { Box, Stack, Text } from '@chakra-ui/react'
 import { FC } from 'react'
 
 import BottomNav from './BottomNav'
-import MobileNav from './MobileNav/MobileNav'
+import { MobileNav } from './MobileNav'
 import DesktopNav from './DesktopNav'
 
 import { Navbar } from './Navbar'

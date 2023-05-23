@@ -181,10 +181,10 @@ export const Navbar: FC<INavbarProps> = ({ mode, onSearchClick, onBasketClick, o
         {/* <DesktopNav /> */}
         <BottomNav />
       </Flex>
-
+{/* 
       <Collapse in={isOpen} animateOpacity>
         <MobileNav />
-      </Collapse>
+      </Collapse> */}
     </Box>
   )
 }
@@ -277,7 +277,7 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
   )
 }
 
-const MobileNav = () => {
+export const MobileNav = () => {
   return (
     <Stack
       //bg={useColorModeValue('white', 'gray.800')}
