@@ -4410,10 +4410,10 @@
     shopify-buy "^2.17.0"
     urql "^2.2.0"
 
-"@snek-at/jaen@^0.0.47":
-  version "0.0.47"
-  resolved "https://registry.yarnpkg.com/@snek-at/jaen/-/jaen-0.0.47.tgz#06a97d7a93d562a93232f058e1c0fb020ff63c92"
-  integrity sha512-9iTjY86glyOvjbYFc2vnpOuiAYff05IT6aDq+jbPf31E5n7cF21V2awCNnTrRdZ0EvH5bOf4w38wL9aLvfpxhQ==
+"@snek-at/jaen@^0.0.50":
+  version "0.0.50"
+  resolved "https://registry.yarnpkg.com/@snek-at/jaen/-/jaen-0.0.50.tgz#d99637c737ef10f3d69e65336fd29fad7c20a463"
+  integrity sha512-jb381FxpMdWxr0IS7imnJ6luqUe9zT2ou+Vk5RMVZ0UxAiACpNOAjnTmujzeJp1JPOaChbDWklnemxrPAaXMDQ==
   dependencies:
     "@chakra-ui/icons" "^2.0.18"
     "@chakra-ui/pro-theme" "^0.0.64"
@@ -4439,6 +4439,7 @@
     highlight.js "^11.8.0"
     jaen-utils "*"
     lowlight "^2.8.1"
+    mdast-util-to-markdown "^1.5.0"
     node-fetch "^3.2.10"
     pino "^8.6.1"
     pino-pretty "^9.1.1"
@@ -4453,6 +4454,9 @@
     redux "^4.2.0"
     rehype-highlight "^6.0.0"
     rehype-mermaidjs "^1.0.1"
+    rehype-sanitize "^5.0.1"
+    rehype-slug "^5.1.0"
+    rehype-slug-custom-id "^1.1.0"
     remark-directive "^2.0.1"
     remark-frontmatter "^4.0.1"
     remark-gfm "^3.0.1"
@@ -9260,10 +9264,10 @@ gatsby-plugin-image@^2.12.1, gatsby-plugin-image@^3:
     objectFitPolyfill "^2.3.5"
     prop-types "^15.8.1"
 
-gatsby-plugin-jaen@^0.0.19:
-  version "0.0.19"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-jaen/-/gatsby-plugin-jaen-0.0.19.tgz#62e2c21897e522950db3247330ab55f815bc6e1b"
-  integrity sha512-7AGQLKhqA9bAKqhXBukLujIGdy2DtwZNV03KltYG+b9blkZyf3b0WRx3xY3QTAgDPR+VJ+6/eVLspwniuqo/lQ==
+gatsby-plugin-jaen@^0.0.21:
+  version "0.0.21"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-jaen/-/gatsby-plugin-jaen-0.0.21.tgz#2e13be645035dd0cd01ee68ef6ea1002875c835d"
+  integrity sha512-OxkNJ8SHvpAQUaAtAvc8DtkzBLaNbhh2PUj4V9aaiLR52/Z8u2BzuTizhYgQoRLYaHsnTuQb1bbgz+XY6RbTGg==
   dependencies:
     "@chakra-ui/gatsby-plugin" "^3.1.1"
     gatsby-plugin-compile-es6-packages "^2.1.1"
@@ -9972,6 +9976,16 @@ github-from-package@0.0.0:
   resolved "https://registry.yarnpkg.com/github-from-package/-/github-from-package-0.0.0.tgz#97fb5d96bfde8973313f20e8288ef9a167fa64ce"
   integrity sha512-SyHy3T1v2NUXn29OsWdxmK6RwHD+vkj3v8en8AOBZ1wBQ/hCAQ5bAQTD02kW4W9tUp/3Qh6J8r9EvntiyCmOOw==
 
+github-slugger@^1.1.1:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/github-slugger/-/github-slugger-1.5.0.tgz#17891bbc73232051474d68bd867a34625c955f7d"
+  integrity sha512-wIh+gKBI9Nshz2o46B0B3f5k/W+WI9ZAv6y5Dn5WJ5SK1t0TnDimB4WE5rmTD05ZAIn8HALCZVmCsvj0w0v0lw==
+
+github-slugger@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/github-slugger/-/github-slugger-2.0.0.tgz#52cf2f9279a21eb6c59dd385b410f0c0adda8f1a"
+  integrity sha512-IaOQ9puYtjrkq7Y0Ygl9KDZnrf/aiUJYUpVf89y8kyaxbRG7Y1SrX/jaumrv81vc61+kiMempujsM3Yw7w5qcw==
+
 glob-parent@^5.1.2, glob-parent@~5.1.2:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-5.1.2.tgz#869832c58034fe68a4093c17dc15e8340d8401c4"
@@ -10295,6 +10309,18 @@ hast-util-from-parse5@^7.0.0:
     vfile-location "^4.0.0"
     web-namespaces "^2.0.0"
 
+hast-util-has-property@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/hast-util-has-property/-/hast-util-has-property-2.0.1.tgz#8ec99c3e8f02626304ee438cdb9f0528b017e083"
+  integrity sha512-X2+RwZIMTMKpXUzlotatPzWj8bspCymtXH3cfG3iQKV+wPF53Vgaqxi/eLqGck0wKq1kS9nvoB1wchbCPEL8sg==
+
+hast-util-heading-rank@^2.0.0:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/hast-util-heading-rank/-/hast-util-heading-rank-2.1.1.tgz#063b43b9cfb56a1a8ded84dd68d8af69e8864545"
+  integrity sha512-iAuRp+ESgJoRFJbSyaqsfvJDY6zzmFoEnL1gtz1+U8gKtGGj1p0CVlysuUAUjq95qlZESHINLThwJzNGmgGZxA==
+  dependencies:
+    "@types/hast" "^2.0.0"
+
 hast-util-is-element@^2.0.0:
   version "2.1.3"
   resolved "https://registry.yarnpkg.com/hast-util-is-element/-/hast-util-is-element-2.1.3.tgz#cd3279cfefb70da6d45496068f020742256fc471"
@@ -10312,6 +10338,13 @@ hast-util-parse-selector@^3.0.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/hast-util-parse-selector/-/hast-util-parse-selector-3.1.1.tgz#25ab00ae9e75cbc62cf7a901f68a247eade659e2"
   integrity sha512-jdlwBjEexy1oGz0aJ2f4GKMaVKkA9jwjr4MjAAI22E5fM/TXVZHuS5OpONtdeIkRKqAaryQ2E9xNQxijoThSZA==
+  dependencies:
+    "@types/hast" "^2.0.0"
+
+hast-util-sanitize@^4.0.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/hast-util-sanitize/-/hast-util-sanitize-4.1.0.tgz#d90f8521f5083547095c5c63a7e03150303e0286"
+  integrity sha512-Hd9tU0ltknMGRDv+d6Ro/4XKzBqQnP/EZrpiTbpFYfXv/uOhWeKc+2uajcbEvAEH98VZd7eII2PiXm13RihnLw==
   dependencies:
     "@types/hast" "^2.0.0"
 
@@ -10335,6 +10368,13 @@ hast-util-to-estree@^2.0.0:
     style-to-object "^0.4.1"
     unist-util-position "^4.0.0"
     zwitch "^2.0.0"
+
+hast-util-to-string@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/hast-util-to-string/-/hast-util-to-string-2.0.0.tgz#b008b0a4ea472bf34dd390b7eea1018726ae152a"
+  integrity sha512-02AQ3vLhuH3FisaMM+i/9sm4OXGSq1UhOOCpTLLQtHdL3tZt7qil69r8M8iDkZYyC0HCFylcYoP+8IO7ddta1A==
+  dependencies:
+    "@types/hast" "^2.0.0"
 
 hast-util-to-text@^3.0.0:
   version "3.1.2"
@@ -14804,6 +14844,42 @@ rehype-mermaidjs@^1.0.1:
     unified "^10.0.0"
     unist-util-visit-parents "^5.0.0"
     vfile "^5.0.0"
+
+rehype-sanitize@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/rehype-sanitize/-/rehype-sanitize-5.0.1.tgz#dac01a7417bdd329260c74c74449697b4be5eb56"
+  integrity sha512-da/jIOjq8eYt/1r9GN6GwxIR3gde7OZ+WV8pheu1tL8K0D9KxM2AyMh+UEfke+FfdM3PvGHeYJU0Td5OWa7L5A==
+  dependencies:
+    "@types/hast" "^2.0.0"
+    hast-util-sanitize "^4.0.0"
+    unified "^10.0.0"
+
+rehype-slug-custom-id@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/rehype-slug-custom-id/-/rehype-slug-custom-id-1.1.0.tgz#56fe346244da033cbf33efa764b1351c993b6960"
+  integrity sha512-lLdTHGd7u5bOXRDnD78/VHrVZsG63nN6lZUuQgcuupGt1+v+uDW7pCeQS0cvptRcZPYzg8B+0bf8sUiMBKsjZw==
+  dependencies:
+    "@types/hast" "^2.0.0"
+    github-slugger "^1.1.1"
+    hast-util-has-property "^2.0.0"
+    hast-util-heading-rank "^2.0.0"
+    hast-util-to-string "^2.0.0"
+    lodash "^4.17.21"
+    unified "^10.0.0"
+    unist-util-visit "^4.0.0"
+
+rehype-slug@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/rehype-slug/-/rehype-slug-5.1.0.tgz#1f7e69be7ea1a2067bcc4cfe58e74c881d5c047e"
+  integrity sha512-Gf91dJoXneiorNEnn+Phx97CO7oRMrpi+6r155tTxzGuLtm+QrI4cTwCa9e1rtePdL4i9tSO58PeSS6HWfgsiw==
+  dependencies:
+    "@types/hast" "^2.0.0"
+    github-slugger "^2.0.0"
+    hast-util-has-property "^2.0.0"
+    hast-util-heading-rank "^2.0.0"
+    hast-util-to-string "^2.0.0"
+    unified "^10.0.0"
+    unist-util-visit "^4.0.0"
 
 relay-runtime@12.0.0:
   version "12.0.0"
