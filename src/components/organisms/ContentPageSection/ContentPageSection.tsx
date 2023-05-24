@@ -23,13 +23,13 @@ import {
   useField,
   useSectionBlockContext,
   useSectionField,
-  UseSectionField
+  UseSectionField,
+  PhotoProvider
 } from '@snek-at/jaen'
 import React, {forwardRef, useEffect, useRef, useState} from 'react'
 import Slider from 'react-slick'
 import BallonGas from './BallonGas'
 
-import {PhotoProvider, PhotoView} from 'react-photo-view'
 import {removeHtmlFromString} from '../../../common/utils'
 import FourCard from '../FourCard/FourCard'
 import ConvincedSection from './ConvincedSection'
@@ -63,21 +63,20 @@ const ImagesGallery3x3Section = connectBlock(
     }
 
     return (
-      <PhotoProvider>
+      <>
         <VStack
           display={{base: 'none', md: 'flex'}}
           pos="relative"
           gap={{base: '4', md: '8', lg: '10', xl: '14'}}
           w="full">
-          {new Array(9).fill('').map((_, i) => {
-            const imageFieldName = `images.${i}`
-            const imageField = useField<{
-              internalImageUrl: string
-            }>(imageFieldName, 'IMA:ImageField')
+          <PhotoProvider>
+            {new Array(9).fill('').map((_, i) => {
+              const imageFieldName = `images.${i}`
+              const imageField = useField<{
+                internalImageUrl: string
+              }>(imageFieldName, 'IMA:ImageField')
 
-            return (
-              <PhotoView
-                src={imageField.value?.internalImageUrl || defaultImages[i]}>
+              return (
                 <Box
                   boxSize={{
                     base: 'xs',
@@ -106,13 +105,15 @@ const ImagesGallery3x3Section = connectBlock(
                       objectFit="cover"
                       label="Bild"
                       name={imageFieldName}
+                      lightbox
+                      lighboxGroup
                       //defaultValue={defaultImages[i]}
                     />
                   </Box>
                 </Box>
-              </PhotoView>
-            )
-          })}
+              )
+            })}
+          </PhotoProvider>
         </VStack>
         {/* for Mobile */}
         <Box
@@ -126,16 +127,12 @@ const ImagesGallery3x3Section = connectBlock(
               px: 2
             }
           }}>
-          <Slider {...mobileSliderSettings}>
-            {new Array(9).fill('').map((_, i) => {
-              const imageFieldName = `images.${i}`
-              const imageField = useField<{
-                internalImageUrl: string
-              }>(imageFieldName, 'IMA:ImageField')
+          <PhotoProvider>
+            <Slider {...mobileSliderSettings}>
+              {new Array(9).fill('').map((_, i) => {
+                const imageFieldName = `images.${i}`
 
-              return (
-                <PhotoView
-                  src={imageField.value?.internalImageUrl || defaultImages[i]}>
+                return (
                   <Box
                     key={i}
                     _hover={{
@@ -160,15 +157,17 @@ const ImagesGallery3x3Section = connectBlock(
                       label="Bild"
                       objectFit="cover"
                       name={imageFieldName}
+                      lighboxGroup
+                      lightbox
                       //defaultValue={defaultImages[i]}
                     />
                   </Box>
-                </PhotoView>
-              )
-            })}
-          </Slider>
+                )
+              })}
+            </Slider>
+          </PhotoProvider>
         </Box>
-      </PhotoProvider>
+      </>
     )
   },
   {
@@ -211,6 +210,7 @@ const FullWidthImageSection = connectBlock(
           <Field.Image
             name="Bild"
             label="Bild"
+            lightbox
             //defaultValue={undefined}
             // objectFit="cover"
           />
