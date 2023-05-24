@@ -63,24 +63,6 @@ export const ParallaxHero = ({ noScroll }: ParallaxHeroProps) => {
     </HStack>
   )
 
-  const cards = [
-    {
-      heading: 'Großhandel',
-      text: 'Lorem ipsum dolor sit amet, consetetur sadipscing',
-      image: '/images/home/reisges/Großhandel.png'
-    },
-    {
-      heading: 'Party',
-      text: 'Lorem ipsum dolor sit amet, consetetur sadipscing',
-      image: '/images/home/reisges/Party.png'
-    },
-    {
-      heading: 'Design',
-      text: 'Lorem ipsum dolor sit amet, consetetur sadipscing',
-      image: '/images/home/reisges/Design.png'
-    }
-  ]
-
   const grid = useMemo(
     () => (
       <SimpleGrid
@@ -104,11 +86,11 @@ export const ParallaxHero = ({ noScroll }: ParallaxHeroProps) => {
               <CardWithImageBackground
                 card={{
                   headingFieldName: `riesgesCardheading${i}`,
-                  headingDefaultValue: cards[i].heading,
+                  headingDefaultValue: 'Title',
                   textFieldName: `riesgesCardText${i}`,
-                  textDefaultValue: cards[i].text,
+                  textDefaultValue: 'Text',
                   imageFieldName: `riesgesCardImage${i}`,
-                  imageDefaultValue: cards[i].image,
+                  imageDefaultValue: undefined,
                   linkUrl: `/${page.slug}`
                 }}
               />
