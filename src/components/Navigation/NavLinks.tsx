@@ -1,4 +1,4 @@
-import { EditIcon } from '@chakra-ui/icons'
+import {EditIcon} from '@chakra-ui/icons'
 import {
   Box,
   IconButton,
@@ -12,11 +12,11 @@ import {
   StackProps,
   useDisclosure
 } from '@chakra-ui/react'
-import { Link, navigate } from 'gatsby'
+import {Link, navigate} from 'gatsby'
 import React from 'react'
 
-import { MarkdownLinksForm } from './BottomNav'
-import { useJaenNavTop, useJaenNavBottom } from './useJaenNavigation'
+import {MarkdownLinksForm} from './BottomNav'
+import {useJaenNavTop, useJaenNavBottom} from './useJaenNavigation'
 
 const findBestMatch = (path: string, paths: Array<string>) => {
   let bestMatch: string | undefined
@@ -25,8 +25,7 @@ const findBestMatch = (path: string, paths: Array<string>) => {
   // check how many a path matches the current path
   // if it is the best match, save it
   paths.forEach(pathToMatch => {
-
-    if (path !== "/") {
+    if (path !== '/') {
       // iterate over all path parts and check how many of them match
       let score = 0
       const pathParts = path.replace(/\/$/, '').split('/').filter(Boolean)
@@ -50,7 +49,7 @@ const findBestMatch = (path: string, paths: Array<string>) => {
         bestMatchScore = score
       }
     } else {
-      bestMatch = "/"
+      bestMatch = '/'
       bestMatchScore = 1
     }
   })
@@ -62,10 +61,10 @@ export const TopNavLinks: React.FC<
   StackProps & {
     childrenTextAlign?: 'left' | 'center' | 'right'
   }
-> = ({ childrenTextAlign, ...props }) => {
-  const { isEditing, navLinks, markdown, updateNavigation } = useJaenNavTop()
+> = ({childrenTextAlign, ...props}) => {
+  const {isEditing, navLinks, markdown, updateNavigation} = useJaenNavTop()
 
-  const { onOpen, onClose, isOpen } = useDisclosure()
+  const {onOpen, onClose, isOpen} = useDisclosure()
   const firstFieldRef = React.useRef(null)
 
   return (
@@ -100,7 +99,7 @@ export const TopNavLinks: React.FC<
               _hover={{
                 textDecoration: 'underline'
               }}
-              fontSize={{ base: 'sm', lg: '1rem' }}
+              fontSize={{base: 'sm', lg: '1rem'}}
               transition="0.2s ease-in"
               color="brand.dark_gray">
               {link.label}
@@ -110,7 +109,7 @@ export const TopNavLinks: React.FC<
       </Stack>
 
       {isEditing && (
-        <Box mx={2} position={"absolute"} right={0} top={0}>
+        <Box mx={2} position={'absolute'} right={0} top={0}>
           <Popover
             isOpen={isOpen}
             initialFocusRef={firstFieldRef}
@@ -146,18 +145,15 @@ export const BottomNavLinks: React.FC<
   StackProps & {
     childrenTextAlign?: 'left' | 'center' | 'right'
   }
-> = ({ childrenTextAlign, ...props }) => {
-  const { isEditing, navLinks, markdown, updateNavigation } = useJaenNavBottom()
+> = ({childrenTextAlign, ...props}) => {
+  const {isEditing, navLinks, markdown, updateNavigation} = useJaenNavBottom()
 
-  const { onOpen, onClose, isOpen } = useDisclosure()
+  const {onOpen, onClose, isOpen} = useDisclosure()
   const firstFieldRef = React.useRef(null)
   const bestMatch = findBestMatch(
-    window.location.pathname,
+    typeof window !== 'undefined' ? window.location.pathname : '/',
     navLinks.map(l => l.to)
   )
-  console.log(bestMatch)
-  console.log(window.location.pathname)
-  console.log(navLinks.map(l => l.to))
 
   return (
     <>
@@ -165,9 +161,7 @@ export const BottomNavLinks: React.FC<
         {navLinks.map((link, index) => {
           return (
             <CLink
-              textDecoration={link.to === bestMatch
-                ? 'underline'
-                : 'none'}
+              textDecoration={link.to === bestMatch ? 'underline' : 'none'}
               _before={{
                 display: 'block',
                 content: `"${link.label}"`,
