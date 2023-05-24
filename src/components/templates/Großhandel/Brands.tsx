@@ -24,8 +24,7 @@ const Brands: FC<IBrandsProps> = () => {
       align="end"
       h={{base: '800px', md: '1100px', lg: '1400px', '2xl': '1500px'}}
       overflow="hidden"
-      bg={"white"}
-    >
+      bg={'white'}>
       {/* <Image
         pos="absolute"
         src="/images/großhandel/logo2_bg.svg"
@@ -128,11 +127,7 @@ const BrandsLogoSection = connectBlock(
           boxSize={{base: '10rem', sm: '12rem', lg: '15rem'}}
           borderRadius="xl"
           overflow="hidden">
-          <Field.Image
-            name="partnerLogo"
-            label="Logo"
-            //defaultValue="/images/großhandel/distributors/dist1.png"
-          />
+          <Field.Image name="partnerLogo" />
         </Box>
       </Box>
     )

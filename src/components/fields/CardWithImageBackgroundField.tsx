@@ -176,13 +176,7 @@ const CardWithImageBackgroundField: React.FC<
         borderRadius="xl"
         overflow={'hidden'}
         minW={minW || '20rem'}>
-        {card.imageFieldName && (
-          <Field.Image
-            name={card.imageFieldName}
-            label="Image"
-            //defaultValue={card.imageDefaultValue}
-          />
-        )}
+        {card.imageFieldName && <Field.Image name={card.imageFieldName} />}
         <Box position="absolute">
           {displayContent && (
             <Stack p="6" pb="4">

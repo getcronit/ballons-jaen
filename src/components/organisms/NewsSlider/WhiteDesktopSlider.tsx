@@ -68,11 +68,7 @@ const WhiteDesktopSlider: FC<IWhiteDesktopSliderProps> = ({
                     boxSize={{md: '8rem', lg: '12rem', xl: '14.375rem'}}
                     bg="gray.800"
                     borderRadius="full">
-                    <Field.Image
-                      name="image"
-                      label="Bild"
-                      //defaultValue="/images/blog_page/hero_image.png"
-                    />
+                    <Field.Image name="image" />
                   </Box>
                   <Stack gap={{md: 0, lg: 2, xl: 4}} flex="1">
                     <Text fontSize={'md'} as="span">

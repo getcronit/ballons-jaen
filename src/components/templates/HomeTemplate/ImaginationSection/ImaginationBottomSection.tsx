@@ -63,11 +63,7 @@ const Images = React.memo<{
                     display={{base: 'block', md: 'none'}}
                     h="full"
                     overflow="hidden">
-                    <Field.Image
-                      name={imageFieldName}
-                      label="Image"
-                      //defaultValue={defaultImages[i]}
-                    />
+                    <Field.Image name={imageFieldName} />
                   </Box>
                   <Box
                     _hover={{
@@ -92,8 +88,6 @@ const Images = React.memo<{
                         onLoaded(i, imageUrl)
                       }}
                       name={imageFieldName}
-                      label="Image"
-                      //defaultValue={defaultImages[i]}
                     />
                   </Box>
                 </GridItem>

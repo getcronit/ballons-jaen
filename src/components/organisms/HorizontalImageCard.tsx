@@ -1,7 +1,7 @@
-import { Box, Flex, Grid, Heading, Stack, Text } from '@chakra-ui/react'
-import { Field } from '@snek-at/jaen'
-import { FC } from 'react'
-import { CONTAINER_MAX_WIDTH } from '../../constant/sizes'
+import {Box, Flex, Grid, Heading, Stack, Text} from '@chakra-ui/react'
+import {Field} from '@snek-at/jaen'
+import {FC} from 'react'
+import {CONTAINER_MAX_WIDTH} from '../../constant/sizes'
 import LinkButtonField from '../fields/LinkButtonField'
 
 interface IHorizontalImageCardProps {
@@ -38,27 +38,24 @@ const HorizontalImageCard: FC<IHorizontalImageCardProps> = ({
         borderRadius="xl"
         overflow="hidden"
         flex="1"
-        maxH={{ base: '120px', sm: '240px', md: '400px' }}
+        maxH={{base: '120px', sm: '240px', md: '400px'}}
         h="30vh">
-        <Field.Image
-          name={card.imageFieldName}
-        //defaultValue={card.imageDefaultValue}
-        />
+        <Field.Image name={card.imageFieldName} />
       </Grid>
       <Stack
         flex="1"
-        gap={{ base: 2, md: 0 }}
+        gap={{base: 2, md: 0}}
         spacing="0"
         px="10"
         justify="center"
         py="6"
-        align={{ base: 'center', md: 'start' }}>
+        align={{base: 'center', md: 'start'}}>
         <Field.Text
           as={Heading}
           fontSize="md"
           fontWeight="semibold"
           textTransform="uppercase"
-          display={{ base: 'none', md: 'block' }}
+          display={{base: 'none', md: 'block'}}
           name={card.tagFieldName}
           defaultValue={card.tagDefaultValue}
         />
@@ -77,7 +74,7 @@ const HorizontalImageCard: FC<IHorizontalImageCardProps> = ({
         <Field.Text
           variant="light"
           size="b2012"
-          textAlign={{ base: 'center', md: 'start' }}
+          textAlign={{base: 'center', md: 'start'}}
           name={card.descriptionFieldName}
           defaultValue={card.descriptionDefaultValue}
         />
@@ -85,8 +82,8 @@ const HorizontalImageCard: FC<IHorizontalImageCardProps> = ({
           <LinkButtonField
             name={card.buttonTextFieldName}
             defaultValue={card.buttonTextFieldDefaultValue}
-            mt={{ base: '0', md: '4' }}
-            size={{ base: 'sm', lg: 'md' }}
+            mt={{base: '0', md: '4'}}
+            size={{base: 'sm', lg: 'md'}}
             variant="outline"
           />
         </Box>

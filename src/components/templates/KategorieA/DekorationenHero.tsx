@@ -116,11 +116,7 @@ const DekorationSliderItem = connectBlock(
         borderRadius={{base: '8', md: '16', lg: '24'}}
         overflow="hidden"
         boxShadow={{base: 'light', md: 'dark'}}>
-        <Field.Image
-          name="image"
-          label="Image"
-          //defaultValue="/images/decorationen/slider/slider_image.png"
-        />
+        <Field.Image name="image" />
       </Box>
     )
   },

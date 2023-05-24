@@ -42,11 +42,7 @@ const FeaturedBlog: React.FC<{
               sm: '300px',
               md: '600px'
             }}>
-            <Field.Image
-              name="heroImage"
-              label="Image"
-              //defaultValue="/images/blog_overview/blogHero.png"
-            />
+            <Field.Image name="heroImage" />
           </Box>
           <Stack
             flex="1"

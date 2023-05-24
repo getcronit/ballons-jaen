@@ -35,12 +35,7 @@ const NewsSection: FC<INewsSectionProps> = () => {
         //   lg: "60vh",
         // }}
         h={'full'}>
-        <Field.Image
-          alt="slider_img"
-          name={'newsImage2'}
-          label="News Image"
-          //defaultValue={'/images/home/news/news_img.png'}
-        />
+        <Field.Image alt="slider_img" name={'newsImage2'} />
       </Box>
     </Container>
   )
