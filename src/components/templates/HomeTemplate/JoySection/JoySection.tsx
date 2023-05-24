@@ -1,15 +1,15 @@
-import {Grid, Heading, Stack, Text, VStack} from '@chakra-ui/react'
-import {Field} from '@snek-at/jaen'
-import {StaticImage} from 'gatsby-plugin-image'
-import {FC} from 'react'
+import { Grid, Heading, Stack, Text, VStack } from '@chakra-ui/react'
+import { Field } from '@snek-at/jaen'
+import { StaticImage } from 'gatsby-plugin-image'
+import { FC } from 'react'
 import LinkButtonField from '../../../fields/LinkButtonField'
-import {TransparentCard} from '../../../TransparentCard'
+import { TransparentCard } from '../../../TransparentCard'
 
-interface IJoySectionProps {}
+interface IJoySectionProps { }
 
 const JoySection: FC<IJoySectionProps> = () => {
   return (
-    <Grid minH={'100vh'} h={{base: '43.125rem', md: '60rem'}}>
+    <Grid minH={'100vh'} h={{ base: '43.125rem', md: '60rem' }}>
       <StaticImage
         style={{
           gridArea: '1/1'
@@ -31,50 +31,41 @@ const JoySection: FC<IJoySectionProps> = () => {
           justify="center"
           color="white"
           align="center"
-          w={{base: '90%', md: '37.5rem'}}
-          h={{base: '30rem', md: '37.5rem'}}
+          w={{ base: '90%', md: '37.5rem' }}
+          h={{ base: '30rem', md: '37.5rem' }}
           as={TransparentCard}>
           <VStack>
-            <Heading
-              lineHeight={{base: '2.5rem', md: '5rem'}}
+            <Field.Text
+              as={Heading}
+              lineHeight={{ base: '2.5rem', md: '5rem' }}
               fontWeight="semibold"
-              fontSize={{base: '4xl', md: '8xl'}}>
-              <Field.Text
-                name="joyHeading"
-                label="Heading"
-                defaultValue="Freude"
-              />
-            </Heading>
-            <Heading
+              fontSize={{ base: '4xl', md: '8xl' }}
+              name="joyHeading"
+              defaultValue="Freude"
+            />
+            <Field.Text
+              as={Heading}
               fontWeight="semibold"
-              fontSize={{base: 'lg', md: '3xl'}}
-              as="span">
-              <Field.Text
-                name="joysubtitle"
-                label="Text"
-                defaultValue="liegt in der Luft"
-              />
-            </Heading>
+              fontSize={{ base: 'lg', md: '3xl' }}
+              name="joysubtitle"
+              defaultValue="liegt in der Luft"
+            />
           </VStack>
-          <Text
-            fontSize={{base: 'sm', md: 'md'}}
+          <Field.Text
+            fontSize={{ base: 'sm', md: 'md' }}
             fontWeight="medium"
             textAlign="center"
-            as="span">
-            <Field.Text
-              name="joyText"
-              label="Text"
-              defaultValue="Selbst die kleinsten Dinge können viel Freude machen. Mit mehr als 30
+            name="joyText"
+            defaultValue="Selbst die kleinsten Dinge können viel Freude machen. Mit mehr als 30
         Jahre Erfahrung sind wir der richtige Ansprechpartner, wenn es um
         wirkungsvolle Ballons, eindrucksvolle Event-Dekorationen, Partyzubehör
         uvm."
-            />
-          </Text>
+          />
           <LinkButtonField
             name="joyButton"
             defaultValue="Erfahre mehr über uns"
             defaultUrl={`/ueber-uns`}
-            size={{base: 'sm', md: 'md'}}
+            size={{ base: 'sm', md: 'md' }}
           />
         </Stack>
       </div>

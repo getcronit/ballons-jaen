@@ -43,20 +43,15 @@ export const ParallaxHero = ({ noScroll }: ParallaxHeroProps) => {
           "Gemeinsam abheben mit"
         ].map((text, index) => {
           return (
-            <Heading
+            <Field.Text
               key={index}
               fontSize={{ base: '2xl', md: '4xl', lg: '6xl' }}
               mb="8 !important"
               fontWeight="semibold"
-              textAlign="center">
-              <Field.Text
-                key={index}
-                name={`heroHeading-${index}`}
-                label={`Heading ${index}`}
-                defaultValue={`<p>${text}</p>`}
-                rtf
-              />
-            </Heading>
+              textAlign="center"
+              name={`heroHeading-${index}`}
+              defaultValue={text}
+            />
           )
         })}
       </TextLoop>
@@ -175,20 +170,15 @@ export const ParallaxHero = ({ noScroll }: ParallaxHeroProps) => {
           display={{ base: 'flex', md: 'none' }}>
           <HStack>
             <HBallon className="background-Ballon" />
-            <Heading
+            <Field.RichText
+              as={Heading}
+              name="heroTextBallons"
+              defaultValue="<i>Ballons</i>"
               fontSize={{ base: '2xl', md: '8xl', lg: '9xl' }}
               fontWeight="semibold"
               textAlign="center"
-              pt="12">
-              <Box as="span">
-                <Field.Text
-                  name="heroHeadingBallons"
-                  label="Heading"
-                  defaultValue="<p><b><i>Ballons</i></b></p>"
-                  rtf
-                />
-              </Box>
-            </Heading>
+              pt="12"
+            />
           </HStack>
           <Stack alignItems={'center'}>
             <LinkButtonField
@@ -231,19 +221,14 @@ export const ParallaxHero = ({ noScroll }: ParallaxHeroProps) => {
           height={{ md: 'calc(100vh - 7.5rem)', lg: 'calc(100vh - 8rem)' }}
           display={{ base: 'none', md: 'flex' }}>
           {switchingHeadline}
-          <Heading
+          <Field.RichText
+            as={Heading}
+            name="heroTextBallons"
+            defaultValue="<p><i>Ballons</i></p>"
             fontSize={{ base: '2xl', md: '8xl', lg: '9xl' }}
             fontWeight="semibold"
-            textAlign="center">
-            <Box as="span" mt="10">
-              <Field.Text
-                name="heroHeadingBallons"
-                label="Heading"
-                defaultValue="<p><b><i>Ballons</i></b></p>"
-                rtf
-              />
-            </Box>
-          </Heading>
+            textAlign="center"
+          />
           <HStack
             mt="-5"
             justify="center"

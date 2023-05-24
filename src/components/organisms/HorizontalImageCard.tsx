@@ -1,7 +1,7 @@
-import {Box, Flex, Grid, Heading, Stack, Text} from '@chakra-ui/react'
-import {Field} from '@snek-at/jaen'
-import {FC} from 'react'
-import {CONTAINER_MAX_WIDTH} from '../../constant/sizes'
+import { Box, Flex, Grid, Heading, Stack, Text } from '@chakra-ui/react'
+import { Field } from '@snek-at/jaen'
+import { FC } from 'react'
+import { CONTAINER_MAX_WIDTH } from '../../constant/sizes'
 import LinkButtonField from '../fields/LinkButtonField'
 
 interface IHorizontalImageCardProps {
@@ -38,76 +38,55 @@ const HorizontalImageCard: FC<IHorizontalImageCardProps> = ({
         borderRadius="xl"
         overflow="hidden"
         flex="1"
-        maxH={{base: '120px', sm: '240px', md: '400px'}}
+        maxH={{ base: '120px', sm: '240px', md: '400px' }}
         h="30vh">
         <Field.Image
           name={card.imageFieldName}
-          label="Image"
-          //defaultValue={card.imageDefaultValue}
+        //defaultValue={card.imageDefaultValue}
         />
       </Grid>
       <Stack
         flex="1"
-        gap={{base: 2, md: 0}}
+        gap={{ base: 2, md: 0 }}
         spacing="0"
         px="10"
         justify="center"
         py="6"
-        align={{base: 'center', md: 'start'}}>
-        <Heading
+        align={{ base: 'center', md: 'start' }}>
+        <Field.Text
+          as={Heading}
           fontSize="md"
           fontWeight="semibold"
           textTransform="uppercase"
-          display={{base: 'none', md: 'block'}}>
-          <Field.Text
-            name={card.tagFieldName}
-            label="Text"
-            defaultValue={card.tagDefaultValue}
-          />
-        </Heading>
-        <Heading
+          display={{ base: 'none', md: 'block' }}
+          name={card.tagFieldName}
+          defaultValue={card.tagDefaultValue}
+        />
+        <Field.RichText
+          as={Heading}
           fontSize={{
             base: 'md',
             md: 'xl',
             lg: '2xl',
             xl: '3xl'
           }}
-          as="span"
           fontWeight="semibold"
-          // sx={
-          //   {
-          //     "i, em": {
-          //       fontSize: { md: "3xl", lg: "4xl", xl: "5xl" },
-
-          //     },
-          //   }
-          // }
-        >
-          <Field.Text
-            rtf
-            name={card.titleFieldName}
-            label="Text"
-            defaultValue={card.titleDefaultValue}
-          />
-        </Heading>
-
-        <Text
+          name={card.titleFieldName}
+          defaultValue={card.titleDefaultValue}
+        />
+        <Field.Text
           variant="light"
           size="b2012"
-          textAlign={{base: 'center', md: 'start'}}
-          as="span">
-          <Field.Text
-            name={card.descriptionFieldName}
-            label="Text"
-            defaultValue={card.descriptionDefaultValue}
-          />
-        </Text>
+          textAlign={{ base: 'center', md: 'start' }}
+          name={card.descriptionFieldName}
+          defaultValue={card.descriptionDefaultValue}
+        />
         <Box>
           <LinkButtonField
             name={card.buttonTextFieldName}
             defaultValue={card.buttonTextFieldDefaultValue}
-            mt={{base: '0', md: '4'}}
-            size={{base: 'sm', lg: 'md'}}
+            mt={{ base: '0', md: '4' }}
+            size={{ base: 'sm', lg: 'md' }}
             variant="outline"
           />
         </Box>

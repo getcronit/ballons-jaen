@@ -9,13 +9,13 @@ import {
   Stack,
   Text
 } from '@chakra-ui/react'
-import {Field} from '@snek-at/jaen'
-import {FC} from 'react'
-import {CONTAINER_MAX_WIDTH} from '../../../../constant/sizes'
+import { Field } from '@snek-at/jaen'
+import { FC } from 'react'
+import { CONTAINER_MAX_WIDTH } from '../../../../constant/sizes'
 import CardWithImageBackground from '../../../CardWithImageBackground'
 import LinkButtonField from '../../../fields/LinkButtonField'
 
-interface ILittleThingsSectionProps {}
+interface ILittleThingsSectionProps { }
 
 const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
   const cards = [
@@ -50,14 +50,14 @@ const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
       minH={'100vh'}
       bg="white"
       py="20"
-      px={{base: 0, sm: 4, md: 8}}
+      px={{ base: 0, sm: 4, md: 8 }}
       align="center"
       justify="center">
       <Container
         justifyContent="space-between"
         as={Flex}
-        gap={{base: 32, xl: 8}}
-        flexDirection={{base: 'column', xl: 'row'}}
+        gap={{ base: 32, xl: 8 }}
+        flexDirection={{ base: 'column', xl: 'row' }}
         maxW={CONTAINER_MAX_WIDTH}>
         <Flex gap="4" justify="center" alignSelf="center">
           <Stack flex="1" justify="center">
@@ -123,47 +123,44 @@ const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
           }}
           spacing="8"
           justify="center">
-          <Heading
-            fontSize={{base: 'md', md: 'xl', xl: '2xl'}}
-            lineHeight={{base: '1.25rem', md: '2rem', xl: '2.5rem'}}
+
+          <Field.RichText
+            as={Heading}
+            fontSize={{ base: 'md', md: 'xl', xl: '2xl' }}
+            lineHeight={{ base: '1.25rem', md: '2rem', xl: '2.5rem' }}
             mb="-2"
-            whiteSpace="nowrap">
-            <Field.Text
-              name="Heading1"
-              label="Heading"
-              defaultValue="<p>Auch die <i>kleinsten</i><br/> Dinge machen viel <i>Freude</i></p>"
-              rtf
-            />
-          </Heading>
-          <Heading fontSize={{base: 'sm', md: 'md'}} fontWeight="semibold">
-            <Field.Text
-              name="subtitle"
-              label="Subtitle"
-              defaultValue="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
-            />
-          </Heading>
-          <Text fontSize={{base: 'sm', md: 'md'}} fontWeight="light" as="span">
-            <Field.Text
-              name="text"
-              label="Text"
-              defaultValue="At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
-            />
-          </Text>
+            whiteSpace="nowrap"
+            name="Heading1"
+            defaultValue="<p>Auch die <i>kleinsten</i><br/> Dinge machen viel <i>Freude</i></p>"
+          />
+          <Field.Text
+            //as={Heading}
+            name="subtitle"
+            fontSize={{ base: 'sm', md: 'md' }}
+            fontWeight="semibold"
+            defaultValue="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
+          />
+          <Field.Text
+            name="text"
+            fontSize={{ base: 'sm', md: 'md' }}
+            fontWeight="light"
+            defaultValue="At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+          />
           <HStack
             justify="center"
             gap="4"
-            flexDir={{base: 'row-reverse', md: 'row'}}>
+            flexDir={{ base: 'row-reverse', md: 'row' }}>
             <LinkButtonField
               name="littleThingsButton1"
               defaultValue="Zum Shop"
               defaultUrl={`/products`}
-              size={{base: 'sm', md: 'md'}}
+              size={{ base: 'sm', md: 'md' }}
             />
             <LinkButtonField
               name="littleThingsButton2"
               defaultValue="Großhandel"
               defaultUrl={`/grosshandel`}
-              size={{base: 'sm', md: 'md'}}
+              size={{ base: 'sm', md: 'md' }}
               variant="outline"
             />
           </HStack>
