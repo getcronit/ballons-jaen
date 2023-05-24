@@ -21,25 +21,23 @@ const AdviceSection: FC<IAdviceSectionProps> = () => {
         <Box flex="3">
           <Stack>
             <Flex gap={{ base: 2, md: 4 }}>
-              <Heading size="h5020" as="span" fontWeight="semibold">
-                <Field.Text
-                  name="adviceTitle"
-                  label="Titel"
-                  defaultValue="<p>Lass dich von uns <i>beraten</i></p>"
-                />
-              </Heading>
-            </Flex>
-
-            <Text size="b2012" variant="light" maxW="90%" as="span">
-              <Field.Text
-                name="adviceText"
-                label="Text"
-                defaultValue={
-                  '<p>Wir sind für dich da und beraten dich gerne bei der Planung deiner Party. Wir haben viele Ideen und Tipps für dich parat.</p>'
-                }
+              <Field.RichText
+                as={Heading}
+                size="h5020"
+                fontWeight="semibold"
+                name="adviceTitle"
+                defaultValue="<p>Lass dich von uns <i>beraten</i></p>"
               />
-            </Text>
-
+            </Flex>
+            <Field.RichText
+              size="b2012"
+              variant="light"
+              maxW="90%"
+              name="adviceText"
+              defaultValue={
+                '<p>Wir sind für dich da und beraten dich gerne bei der Planung deiner Party. Wir haben viele Ideen und Tipps für dich parat.</p>'
+              }
+            />
             <Box pt="5">
               <LinkButtonField
                 name="adviceButton"
@@ -51,12 +49,7 @@ const AdviceSection: FC<IAdviceSectionProps> = () => {
           </Stack>
         </Box>
         <Box flex="2" h="40vh">
-          <Field.Image
-            name="adviceImage"
-            label="Image"
-            //defaultValue="/images/großhandel/shape_bg.png"
-            objectFit="contain"
-          />
+          <Field.Image name="adviceImage" objectFit="contain" />
         </Box>
       </Container>
     </Box>

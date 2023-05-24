@@ -16,11 +16,7 @@ const SliderItem = connectBlock(
           borderRadius="xl"
           overflow="hidden"
           boxShadow="dark">
-          <Field.Image
-            name="image"
-            label="Image"
-            //defaultValue="/images/blog_page/sliderImg1.png"
-          />
+          <Field.Image name="image" />
         </Box>
       </Box>
     )

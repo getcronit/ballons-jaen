@@ -82,11 +82,7 @@ const WirGestaltenPartyHero: FC<IWirGestaltenPartyHeroProps> = () => {
               // w={{ base: "17.5rem", sm: "auto " }}
               w={{base: '30vh', md: '40vh'}}
               h={{base: '30vh', md: '40vh'}}>
-              <Field.Image
-                name="heroImage"
-                label="Image"
-                //defaultValue="/images/we_design_party/round.png"
-              />
+              <Field.Image name="heroImage" />
             </Box>
           </Grid>
         </Flex>

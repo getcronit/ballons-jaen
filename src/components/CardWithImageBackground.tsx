@@ -29,39 +29,31 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
   h,
   isSmallText = false
 }) => {
-
   const {isEditing} = useStatus()
 
-  console.log('card', "card rerendered")
+  console.log('card', 'card rerendered')
 
   return (
     <Stack
       onClick={() => !isEditing && card.linkUrl && navigate(card.linkUrl)}
       position="relative"
       _hover={{
-        transition: "all 0.3s ease",
+        transition: 'all 0.3s ease',
         transform: {
-          md: "scale(1.03) ",
-          lg: "scale(1.03) ",
-        },
+          md: 'scale(1.03) ',
+          lg: 'scale(1.03) '
+        }
       }}
       transition="ease-in 0.2s"
       boxShadow="darker"
       color="white"
       justify="end"
-      h={h ?? "full"}
+      h={h ?? 'full'}
       w={w ?? {}}
       borderRadius="xl"
-      overflow={"hidden"}
-      minW={minW || "20rem"}
-    >
-      {card.imageFieldName && (
-        <Field.Image
-          name={card.imageFieldName}
-          label="Image"
-          //defaultValue={card.imageDefaultValue}
-        />
-      )}
+      overflow={'hidden'}
+      minW={minW || '20rem'}>
+      {card.imageFieldName && <Field.Image name={card.imageFieldName} />}
       <Box position="absolute">
         {displayContent && (
           <Stack p="6" pb="4">

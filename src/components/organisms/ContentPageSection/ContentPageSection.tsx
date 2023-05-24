@@ -103,11 +103,9 @@ const ImagesGallery3x3Section = connectBlock(
                     overflow="hidden">
                     <Field.Image
                       objectFit="cover"
-                      label="Bild"
                       name={imageFieldName}
                       lightbox
-                      lighboxGroup
-                      //defaultValue={defaultImages[i]}
+                      lightboxGroup
                     />
                   </Box>
                 </Box>
@@ -154,10 +152,9 @@ const ImagesGallery3x3Section = connectBlock(
                       xl: 'lg'
                     }}>
                     <Field.Image
-                      label="Bild"
                       objectFit="cover"
                       name={imageFieldName}
-                      lighboxGroup
+                      lightboxGroup
                       lightbox
                       //defaultValue={defaultImages[i]}
                     />
@@ -207,13 +204,7 @@ const FullWidthImageSection = connectBlock(
             md: '50vh',
             lg: '60vh'
           }}>
-          <Field.Image
-            name="Bild"
-            label="Bild"
-            lightbox
-            //defaultValue={undefined}
-            // objectFit="cover"
-          />
+          <Field.Image name="Bild" lightbox />
         </Box>
       </Box>
     )

@@ -20,7 +20,6 @@ interface IWhiteMobileSliderProps {
 }
 
 const WhiteMobileSlider: FC<IWhiteMobileSliderProps> = ({index}) => {
-
   const slidesToShow = 1
 
   var settings = {
@@ -60,11 +59,7 @@ const WhiteMobileSlider: FC<IWhiteMobileSliderProps> = ({index}) => {
                     boxSize={{base: '9.375rem'}}
                     bg="gray.800"
                     borderRadius="full">
-                    <Field.Image
-                      name="image"
-                      label="Image"
-                      //defaultValue="/images/blog_page/hero_image.png"
-                    />
+                    <Field.Image name="image" />
                   </Box>
                 </Grid>
                 <VStack gap="0" flex="1" textAlign="center">

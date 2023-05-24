@@ -14,11 +14,7 @@ const PartnerSection = connectBlock(
           borderRadius="xl"
           overflow="hidden"
           boxShadow="dark">
-          <Field.Image
-            name="partnersImage"
-            label="Logo"
-          //defaultValue="/images/großhandel/logos3.png"
-          />
+          <Field.Image name="partnersImage" />
         </Box>
       </Box>
     )
@@ -35,14 +31,13 @@ const PartnersSection: FC<IPartnersSectionProps> = () => {
   return (
     <>
       <VStack gap={{ base: 4, md: '8' }} py="20" bg="white">
-        <Heading size="h5020" as="span" fontWeight="semibold">
-          <Field.Text
-            name="partnersTitle"
-            label="Titel"
-            defaultValue="<p>Werde <i>Ballon-Partner</i></p>"
-          />
-        </Heading>
-
+        <Field.RichText
+          as={Heading}
+          size="h5020"
+          fontWeight="semibold"
+          name="partnersTitle"
+          defaultValue="<p>Werde <i>Ballon-Partner</i></p>"
+        />
         <Box w="full">
           <Container maxW={CONTAINER_MAX_WIDTH}>
             <Field.Section
@@ -62,7 +57,7 @@ const PartnersSection: FC<IPartnersSectionProps> = () => {
         </Box>
       </VStack>
       <Image
-        zIndex={"-1"}
+        zIndex={'-1'}
         mb="-10rem"
         position="relative"
         // bottom={"0"}

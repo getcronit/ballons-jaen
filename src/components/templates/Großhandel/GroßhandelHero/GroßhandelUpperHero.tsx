@@ -12,6 +12,7 @@ import { Field } from '@snek-at/jaen'
 import { FC } from 'react'
 import { CONTAINER_MAX_WIDTH } from '../../../../constant/sizes'
 import { StaticImage } from 'gatsby-plugin-image'
+import LinkButtonField from '../../../fields/LinkButtonField'
 
 interface IGroßhandelUpperHeroProps { }
 
@@ -39,26 +40,37 @@ const GroßhandelUpperHero: FC<IGroßhandelUpperHeroProps> = () => {
           <VStack
             pos="relative"
             zIndex="1"
-            py={{ base: '16', md: '44', lg: '52', xl: '56' }}>
-            <Heading fontWeight="semibold" size="h5030">
-              <Field.Text name="title" label="Titel" defaultValue="Großhandel" />
-            </Heading>
-            <Heading
+            py={{ base: '16', md: '44', lg: '52', xl: '56' }}
+          >
+            <Field.Text
+              as={Heading}
+              fontWeight="semibold"
+              size="h5030"
+              name="title"
+              defaultValue="Großhandel"
+            />
+            <Field.RichText
+              as={Heading}
               mb="-4 !important"
               fontWeight="semibold"
               size="h5020"
-              as="span">
-              <Field.Text
-                name="subtitle"
-                label="Subtitle"
-                defaultValue="<p>Werde <i>Ballon-Partner</i></p>"
-              />
-            </Heading>
+              name="subtitle"
+              defaultValue="<p>Werde <i>Ballon-Partner</i></p>"
+            />
             <HStack>
-              <Button size={{ base: 'sm', md: 'md' }} variant="outline">
-                Anmelden
-              </Button>
-              <Button size={{ base: 'sm', md: 'md' }}>Registrieren</Button>
+              <LinkButtonField
+                size={{ base: 'sm', md: 'md' }}
+                variant="outline"
+                name="HeroButton1"
+                defaultValue="Anmelden"
+                defaultUrl={`/grosshandel`}
+              />
+              <LinkButtonField
+                size={{ base: 'sm', md: 'md' }}
+                name="HeroButton2"
+                defaultValue="Registrieren"
+                defaultUrl={`/grosshandel`}
+              />
             </HStack>
             <Grid
               right="0"

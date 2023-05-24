@@ -8,9 +8,6 @@
 // import "@fontsource/poppins/800.css"
 // import "@fontsource/poppins/900.css"
 
-import 'slick-carousel/slick/slick-theme.css'
-import 'slick-carousel/slick/slick.css'
-
 import './styles/global.css'
 
 import Fonts from './styles/fonts'

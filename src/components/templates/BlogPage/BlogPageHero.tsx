@@ -26,11 +26,7 @@ const BlogPageHero: FC<IBlogPageHeroProps> = () => {
             boxShadow="dark"
             overflow={'hidden'}
             h={{base: '30vh', xl: '50vh'}}>
-            <Field.Image
-              name="image"
-              label="Image"
-              //defaultValue="/images/blog_page/hero_image.png"
-            />
+            <Field.Image name="image" />
           </Box>
 
           <Flex justify="space-between" mt="8">
