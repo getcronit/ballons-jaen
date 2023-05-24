@@ -132,7 +132,8 @@ const LinkButtonField: React.FC<
     <Box pos={'relative'}>
       <Button
         {...buttonProps}
-        onClick={handleButtonClick}
+        // onClick only if not editing
+        onClick={buttonTextField.isEditing ? undefined : handleButtonClick}
         mr={3}
         disabled={buttonTextField.isEditing}
         cursor={
