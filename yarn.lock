@@ -4410,10 +4410,10 @@
     shopify-buy "^2.17.0"
     urql "^2.2.0"
 
-"@snek-at/jaen@^0.0.52":
-  version "0.0.52"
-  resolved "https://registry.yarnpkg.com/@snek-at/jaen/-/jaen-0.0.52.tgz#4a43144a572fa7473a136090fb0d78bb4319354e"
-  integrity sha512-JjhzPg4kqKiMewwUsSAlNmGz6NAfJezvTpPKT4jgBRwNT+0VfrxPT8A3fk8TtEGVrzN//vSCtAggc2FtKLdlTA==
+"@snek-at/jaen@^0.0.54":
+  version "0.0.54"
+  resolved "https://registry.yarnpkg.com/@snek-at/jaen/-/jaen-0.0.54.tgz#0f6f9ba496ec40199247281c9a3105cd73c0799d"
+  integrity sha512-pSEtirCIrE1eJg/X9XoTelxYstAplIY1uGpeaGKtEBUT+ajDcBaJmZPoXMK6OMdt9v7KDjB3+Vd2UBYDgHUH/Q==
   dependencies:
     "@chakra-ui/icons" "^2.0.18"
     "@chakra-ui/pro-theme" "^0.0.64"
@@ -15483,11 +15483,6 @@ slice-ansi@^4.0.0:
     ansi-styles "^4.0.0"
     astral-regex "^2.0.0"
     is-fullwidth-code-point "^3.0.0"
-
-slick-carousel@^1.8.1:
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/slick-carousel/-/slick-carousel-1.8.1.tgz#a4bfb29014887bb66ce528b90bd0cda262cc8f8d"
-  integrity sha512-XB9Ftrf2EEKfzoQXt3Nitrt/IPbT+f1fgqBdoxO3W/+JYvtEOW6EgxnWfr9GH6nmULv7Y2tPmEX3koxThVmebA==
 
 slugify@^1.6.1, slugify@^1.6.5:
   version "1.6.6"
