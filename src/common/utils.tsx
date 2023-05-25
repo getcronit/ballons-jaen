@@ -111,3 +111,11 @@ export const getProductPrices = (
 
 export const getThemeColor = (color: string) =>
   getColor(theme, color, useToken('colors', color, 'green'))
+
+export const today = () => {
+  return new Date().toLocaleDateString('de-DE', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  })
+}

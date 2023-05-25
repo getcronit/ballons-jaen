@@ -25,7 +25,7 @@ const FaqBallons: FC<IFaqBallonsProps> = () => {
         <Container maxW={CONTAINER_MAX_WIDTH}>
           <WhiteBoxWithDashBorder
             titleFieldName="faqTitle"
-            titleDefaultValue="<p>Brauchst du <i>Hilfe?</i></p>"
+            titleDefaultValue="Brauchst du Hilfe?"
             button={{
               textFieldName: 'faqBallonsButton',
               textDefaultValue: 'Mehr dazu',

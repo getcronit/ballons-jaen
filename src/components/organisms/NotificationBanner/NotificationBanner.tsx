@@ -39,49 +39,40 @@ export const NotificationBanner = (props: NotificationBannerProps) => {
             />
           </Box>
           <Stack flex="2" align={{base: 'center', md: 'start'}}>
-            <Heading
+            <Field.Text
+              as={Heading}
               lineHeight="1rem"
               fontWeight="semibold"
               size="h2418"
-              display={{base: 'none', md: 'block'}}>
-              <Field.Text
-                name="timespan"
-                label="Zeitraum"
-                defaultValue="27.07 - 05.08 2022"
-              />
-            </Heading>
+              display={{base: 'none', md: 'block'}}
+              name="timespan"
+              defaultValue="27.07 - 05.08 2022"
+            />
             <Flex>
-              <Heading fontWeight="semibold" size="h6020">
-                <Field.Text
-                  name="heading"
-                  label="Überschrift"
-                  defaultValue="<p>Wir sind auf <i>Urlaub</i></p>"
-                  rtf
-                />
-              </Heading>
+              <Field.RichText
+                as={Heading}
+                fontWeight="semibold"
+                size="h6020"
+                name="heading"
+                defaultValue="<p>Wir sind auf <i>Urlaub</i></p>"
+              />
             </Flex>
-            <Heading
+            <Field.Text
+              as={Heading}
               lineHeight="1rem"
               fontWeight="semibold"
               size="h2418"
-              display={{base: 'block', md: 'none'}}>
-              <Field.Text
-                name="timespan"
-                label="Zeitraum"
-                defaultValue="27.07 - 05.08 2022"
-              />
-            </Heading>
-            <Text
+              display={{base: 'block', md: 'none'}}
+              name="timespan"
+              defaultValue="27.07 - 05.08 2022"
+            />
+            <Field.RichText
               size="b2015"
               maxW={{md: '70%'}}
-              textAlign={{base: 'center', md: 'start'}}>
-              <Field.Text
-                name="message"
-                label="Nachricht"
-                defaultValue="Wir sind momentan auf Betriebsurlaub, unser Büro ist deshalb nicht besetzt. Wir bearbeiten deine Anfragen und Bestellungen natürlich wieder wie gewohnt ab 06.08.2022."
-                rtf
-              />
-            </Text>
+              textAlign={{base: 'center', md: 'start'}}
+              name="message"
+              defaultValue="Wir sind momentan auf Betriebsurlaub, unser Büro ist deshalb nicht besetzt. Wir bearbeiten deine Anfragen und Bestellungen natürlich wieder wie gewohnt ab 06.08.2022."
+            />
             <Box>
               <Button
                 size={{base: 'sm', md: 'md'}}

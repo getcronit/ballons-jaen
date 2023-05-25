@@ -1,11 +1,11 @@
-import {Field, useField} from '@snek-at/jaen'
-import {FC} from 'react'
-import {MdLocalPhone, MdLocationPin, MdMail} from 'react-icons/md'
+import { Field, useField } from '@snek-at/jaen'
+import { FC } from 'react'
+import { MdLocalPhone, MdLocationPin, MdMail } from 'react-icons/md'
 import ContactBottomSection from './ContactBottomSection'
 import ContactHero from './ContactHero'
 import ContactTimings from './ContactTimings'
 
-interface IContactProps {}
+interface IContactProps { }
 
 const Contact: FC<IContactProps> = () => {
   const contactDetails = [
@@ -14,7 +14,6 @@ const Contact: FC<IContactProps> = () => {
       text: (
         <Field.Text
           name="address"
-          label="Adresse"
           defaultValue="Taborstraße 98, 1020 Wien, Österreich"
         />
       ),
@@ -23,7 +22,10 @@ const Contact: FC<IContactProps> = () => {
     {
       isEditing: useField<string>('email', 'IMA:TextField').isEditing,
       text: (
-        <Field.Text name="phone" label="Phone" defaultValue="+43 2 326 34 25" />
+        <Field.Text
+          name="phone"
+          defaultValue="+43 2 326 34 25"
+        />
       ),
       icon: <MdLocalPhone />,
       link: `tel:${useField<string>('phone', 'IMA:TextField').value?.replace(
@@ -36,7 +38,6 @@ const Contact: FC<IContactProps> = () => {
       text: (
         <Field.Text
           name="email"
-          label="Email"
           defaultValue="office@ballons-ballons.at"
         />
       ),

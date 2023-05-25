@@ -43,7 +43,7 @@ const ContactBottomSection: FC<IContactBottomSectionProps> = () => {
           />
           <WhiteBoxWithDashBorder
             titleFieldName="justaskTitle"
-            titleDefaultValue="<p>Noch <i>Fragen?<i/></p>"
+            titleDefaultValue="Noch Fragen?"
             textFieldName="justaskText"
             textDefaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc auctor, nisl eget ultricies lacinia, nisl nunc aliquet nisl, eget aliquet nisl lorem eget lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc auctor."
             button={{

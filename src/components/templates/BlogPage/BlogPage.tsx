@@ -10,7 +10,6 @@ const BlogPage: FC<IBlogPageProps> = () => {
     <>
       <BlogPageHero />
       <BlogPageSection />
-
       <BlogFooter />
     </>
   )

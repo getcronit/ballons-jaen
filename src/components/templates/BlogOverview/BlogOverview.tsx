@@ -34,13 +34,28 @@ const BlogOverview: FC<IBlogOverviewProps> = () => {
     return latestBlog
   }, [index.children])
 
+  const moreBlogs = React.useMemo(() => {
+    // remove featured blog
+    const blogs = index.children.filter(blog => blog !== featuredBlog)
+
+    // sort by date
+    blogs.sort((a, b) => {
+      const aDate = new Date(a.jaenPageMetadata?.datePublished || '')
+      const bDate = new Date(b.jaenPageMetadata?.datePublished || '')
+
+      return bDate.getTime() - aDate.getTime()
+    })
+
+    return blogs
+  }, [featuredBlog, index.children])
+
   return (
     <>
       <BlogOverviewHero
         featuredBlog={featuredBlog}
         withJaenPage={index.withJaenPage}
       />
-      <BlogsSection blogs={index.children} withJaenPage={index.withJaenPage} />
+      <BlogsSection blogs={moreBlogs} withJaenPage={index.withJaenPage} />
       <Box
         pos="relative"
         overflow="hidden"

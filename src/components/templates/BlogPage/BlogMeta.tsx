@@ -6,13 +6,25 @@ export const BlogMeta: React.FC = () => {
     <Box>
       <Text size="b2012" textAlign="end">
         Von{' '}
-        <Text as="span" size="b2012" fontWeight="bold" color="gray.700">
-          <Field.Text name="author" label="Author" defaultValue="Nik Doe" />
-        </Text>
+        <Field.Text
+          asAs={'span'}
+          size="b2012"
+          fontWeight="bold"
+          color="gray.700"
+          name="author"
+          defaultValue="Nik Doe"
+        />
       </Text>
-      <Text size="b2012" textAlign="end" as="span">
-        <Field.Text name="date" label="Datum" defaultValue="12.12.2020" />
-      </Text>
+      <Field.Text
+        size="b2012"
+        textAlign="end"
+        name="date"
+        defaultValue={new Date().toLocaleDateString('de-DE', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        })}
+      />
     </Box>
   )
 }

@@ -35,30 +35,26 @@ const ContactHero: FC<IContactHeroProps> = ({contactDetails}) => {
         <Container maxW={CONTAINER_MAX_WIDTH} mt="20" pb="10">
           <VStack spacing={{base: 8, md: 20}}>
             <Flex gap={{base: 2, md: 4}}>
-              <Heading
+              <Field.RichText
+                as={Heading}
                 size="h5020"
-                as="span"
                 fontWeight="semibold"
-                whiteSpace="nowrap">
-                <Field.Text
-                  name="heading1"
-                  label="Standort"
-                  defaultValue="<p>Mitten in <i>Wien</i></p>"
-                  rtf
-                />
-              </Heading>
+                whiteSpace="nowrap"
+                name="heading1"
+                defaultValue="<p>Mitten in <i>Wien</i></p>"
+              />
             </Flex>
             <Stack
               spacing={{base: 4, lg: 8}}
               flex="1"
               display={{base: 'flex', md: 'none'}}>
-              <Heading size="h2415" fontWeight="semibold">
-                <Field.Text
-                  name="heading2"
-                  label="Text"
-                  defaultValue="Partyshop, Lager, Werkstatt & Büro"
-                />
-              </Heading>
+              <Field.Text
+                as={Heading}
+                size="h2415"
+                fontWeight="semibold"
+                name="heading2"
+                defaultValue="Partyshop, Lager, Werkstatt & Büro"
+              />
               <Stack spacing={{base: 4, lg: 8}}>
                 {contactDetails.map((item, index) => (
                   <HStack key={index}>

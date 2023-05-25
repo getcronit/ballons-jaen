@@ -24,7 +24,7 @@ const BlogCard: FC<IBlogCardProps> = ({slug}) => {
         overflow="hidden"
         flex="1"
         maxH={{base: '8.125rem', sm: '13.75rem', md: '37.5rem'}}>
-        <Image src="/images/blog_overview/blogBanner.png" h="full" w="full" />
+        <Field.Image name="image" />
       </Grid>
       <Stack
         flex="1"
@@ -34,20 +34,20 @@ const BlogCard: FC<IBlogCardProps> = ({slug}) => {
         justify="center"
         py={{base: 2, md: 0}}>
         <BlogTags fieldName="tags" />
-        <Heading size="h2418" noOfLines={1}>
-          <Field.Text
-            name="title"
-            label="Title"
-            rtf
-            defaultValue="<p>Ballons & Ballons: Die Geschichte</p>"
-          />{' '}
-        </Heading>
-        <Text variant="light" size="b2012" noOfLines={3} as="span">
-          <Field.Text
-            name="description"
-            label="Description"
-            rtf
-            defaultValue={`
+        <Field.RichText
+          as={Heading}
+          size="h2418"
+          noOfLines={1}
+          name="title"
+          defaultValue="<p>Ballons & Ballons: Die Geschichte</p>"
+        />{' '}
+        <Field.RichText
+          as={Heading}
+          variant="light"
+          size="b2012"
+          noOfLines={3}
+          name="description"
+          defaultValue={`
             <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
             libero risus semper Lorem ipsum dolor sit amet, consectetur
@@ -71,9 +71,7 @@ const BlogCard: FC<IBlogCardProps> = ({slug}) => {
             Faucibus in libero risus semper
             </p>
             `}
-          />
-        </Text>
-
+        />
         <Flex justify="space-between" w="full" mt="4 !important">
           <Button
             as={Link}

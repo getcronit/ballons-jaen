@@ -4,9 +4,7 @@ import {connectBlock, Field} from '@snek-at/jaen'
 const BlogTagItem = connectBlock(
   () => {
     return (
-      <Tag variant="normal">
-        <Field.Text name="tagText" label="Text" defaultValue="Tag" />
-      </Tag>
+      <Field.Text as={Tag} variant="normal" name="tagText" defaultValue="Tag" />
     )
   },
   {
@@ -24,7 +22,8 @@ export const BlogTags: React.FC<{
         as={HStack}
         props={{
           minH: '24px',
-          spacing: '2'
+          spacing: '2',
+          pt: '4'
         }}
         name={props.fieldName}
         label="Tags"

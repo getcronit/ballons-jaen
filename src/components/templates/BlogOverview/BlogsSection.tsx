@@ -5,10 +5,11 @@ import {
   Divider,
   Grid,
   Heading,
+  Text,
   VStack
 } from '@chakra-ui/react'
 import {Field} from '@snek-at/jaen'
-import React, {FC} from 'react'
+import React, {FC, useEffect} from 'react'
 import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
 import {JaenPageIndexType} from '../../../types/commonTypes'
 import BlogCard from './BlogCard'
@@ -26,6 +27,14 @@ const BlogsSection: FC<IBlogsSectionProps> = props => {
       ? MAX_LOADED_BLOGS
       : props.blogs.length
   )
+
+  useEffect(() => {
+    if (props.blogs.length < MAX_LOADED_BLOGS) {
+      setMaxLoadedBlogs(props.blogs.length)
+    }
+  }, [props.blogs.length])
+
+  console.log('props.blogs', props.blogs)
 
   const loadMoreBlogs = () => {
     const newMaxLoadedBlogs = maxLoadedBlogs + MAX_LOADED_BLOGS
@@ -51,13 +60,13 @@ const BlogsSection: FC<IBlogsSectionProps> = props => {
   return (
     <>
       <Container maxW={CONTAINER_MAX_WIDTH} mt={{base: '-16', md: '16'}}>
-        <Heading fontWeight="semibold" size="h4020">
-          <Field.Text
-            name="title"
-            label="Titel"
-            defaultValue="Weitere Beiträge"
-          />
-        </Heading>
+        <Field.Text
+          as={Heading}
+          fontWeight="semibold"
+          size="h4020"
+          name="title"
+          defaultValue="Weitere Beiträge"
+        />
         <Divider mb="8" mt="4" bg="red.500" h="1px" border="0" />
       </Container>
       <Box
