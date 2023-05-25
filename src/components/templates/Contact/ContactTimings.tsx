@@ -9,8 +9,8 @@ import {
   Stack,
   Text
 } from '@chakra-ui/react'
-import {Field} from '@snek-at/jaen'
-import {FC, ReactNode} from 'react'
+import { Field } from '@snek-at/jaen'
+import { FC, ReactNode } from 'react'
 
 interface IContactTimingsProps {
   contactDetails: {
@@ -21,7 +21,7 @@ interface IContactTimingsProps {
   }[]
 }
 
-const ContactTimings: FC<IContactTimingsProps> = ({contactDetails}) => {
+const ContactTimings: FC<IContactTimingsProps> = ({ contactDetails }) => {
   const timings = [
     {
       day: 'Montag',
@@ -56,20 +56,20 @@ const ContactTimings: FC<IContactTimingsProps> = ({contactDetails}) => {
     <>
       {' '}
       <Container maxW="80rem">
-        <Flex align="center" pos="relative" top={{base: '-5rem', md: '-10rem'}}>
+        <Flex align="center" pos="relative" top={{ base: '-5rem', md: '-10rem' }}>
           <Stack
-            spacing={{md: 2, lg: 8}}
+            spacing={{ md: 2, lg: 8 }}
             flex="1"
-            display={{base: 'none', md: 'flex'}}>
-            <Heading size="h2418" fontWeight="semibold">
-              <Field.Text
-                name="timingHeading1"
-                label="Text"
-                defaultValue="Partyshop, Lager, Werkstatt & Büro"
-                rtf
-              />
-            </Heading>
-            <Stack spacing={{md: 2, lg: 8}}>
+            display={{ base: 'none', md: 'flex' }}>
+
+            <Field.Text
+              as={Heading}
+              size="h2418"
+              fontWeight="semibold"
+              name="timingHeading1"
+              defaultValue="Partyshop, Lager, Werkstatt & Büro"
+            />
+            <Stack spacing={{ md: 2, lg: 8 }}>
               {contactDetails.map((item, index) => (
                 <HStack key={index}>
                   <Box fontSize="xl" color="red.500">
@@ -98,41 +98,37 @@ const ContactTimings: FC<IContactTimingsProps> = ({contactDetails}) => {
             flex="1"
             boxShadow="dark"
             borderRadius="xl"
-            mx={{base: 4, md: '0'}}>
-            <Text
+            mx={{ base: 4, md: '0' }}>
+
+            <Field.Text
               variant="cursive"
               size="50"
               mb="8"
               textAlign="center"
-              as="span">
-              <Field.Text
-                name="timingHeading2"
-                label="Text"
-                defaultValue="Öffnungszeiten"
-              />
-            </Text>
-            <Stack spacing={{base: 2, md: 6, lg: 8}}>
+              name="timingHeading2"
+              defaultValue="Öffnungszeiten"
+            />
+
+            <Stack spacing={{ base: 2, md: 6, lg: 8 }}>
               {timings.map((item, index) => (
                 <Flex key={item.day} justify="space-between" align="flex-end">
-                  <Text w={{base: '5rem', lg: '7.5rem'}} size="b2012" as="span">
-                    <Field.Text
-                      name={`timingsDay${index}`}
-                      label="Tag"
-                      defaultValue={item.day}
-                    />
-                  </Text>
+                  <Field.Text
+                    w={{ base: '5rem', lg: '7.5rem' }}
+                    size="b2012"
+                    name={`timingsDay${index}`}
+                    defaultValue={item.day}
+                  />
                   <Divider
                     h="1px"
                     bg="black"
-                    maxW={{base: '4rem', md: '6rem', lg: '8.2rem'}}
+                    maxW={{ base: '4rem', md: '6rem', lg: '8.2rem' }}
                   />
-                  <Text w={{base: '5rem', lg: '8.2rem'}} size="b2012" as="span">
-                    <Field.Text
-                      name={`timingsTime${index}`}
-                      label="Zeit"
-                      defaultValue={item.time}
-                    />
-                  </Text>
+                  <Field.Text
+                    w={{ base: '5rem', lg: '8.2rem' }}
+                    size="b2012"
+                    name={`timingsTime${index}`}
+                    defaultValue={item.time}
+                  />
                 </Flex>
               ))}
             </Stack>
