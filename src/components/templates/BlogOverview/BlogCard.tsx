@@ -1,17 +1,17 @@
-import { Button, Flex, Grid, Heading, Image, Stack, Text } from '@chakra-ui/react'
-import { Field } from '@snek-at/jaen'
-import { Link } from 'gatsby'
-import { FC } from 'react'
-import { BiChevronRight } from 'react-icons/bi'
-import { CONTAINER_MAX_WIDTH } from '../../../constant/sizes'
-import { BlogMeta } from '../BlogPage/BlogMeta'
-import { BlogTags } from '../BlogPage/BlogTags'
+import {Button, Flex, Grid, Heading, Image, Stack, Text} from '@chakra-ui/react'
+import {Field} from '@snek-at/jaen'
+import {Link} from 'gatsby'
+import {FC} from 'react'
+import {BiChevronRight} from 'react-icons/bi'
+import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
+import {BlogMeta} from '../BlogPage/BlogMeta'
+import {BlogTags} from '../BlogPage/BlogTags'
 
 interface IBlogCardProps {
   slug: string
 }
 
-const BlogCard: FC<IBlogCardProps> = ({ slug }) => {
+const BlogCard: FC<IBlogCardProps> = ({slug}) => {
   return (
     <Flex
       maxW={CONTAINER_MAX_WIDTH}
@@ -23,16 +23,16 @@ const BlogCard: FC<IBlogCardProps> = ({ slug }) => {
         borderRadius="1.875rem"
         overflow="hidden"
         flex="1"
-        maxH={{ base: '8.125rem', sm: '13.75rem', md: '37.5rem' }}>
-        <Image src="/images/blog_overview/blogBanner.png" h="full" w="full" />
+        maxH={{base: '8.125rem', sm: '13.75rem', md: '37.5rem'}}>
+        <Field.Image name="image" />
       </Grid>
       <Stack
         flex="1"
-        gap={{ base: 2, md: 0 }}
+        gap={{base: 2, md: 0}}
         spacing="0"
-        px={{ base: 4, md: 6 }}
+        px={{base: 4, md: 6}}
         justify="center"
-        py={{ base: 2, md: 0 }}>
+        py={{base: 2, md: 0}}>
         <BlogTags fieldName="tags" />
         <Field.RichText
           as={Heading}
@@ -80,11 +80,11 @@ const BlogCard: FC<IBlogCardProps> = ({ slug }) => {
             rightIcon={
               <Grid
                 placeItems="center"
-                h={{ base: '4', lg: '6' }}
-                w={{ base: '4', lg: '6' }}
+                h={{base: '4', lg: '6'}}
+                w={{base: '4', lg: '6'}}
                 color="white"
                 bg="red.500"
-                fontSize={{ lg: 'lg' }}
+                fontSize={{lg: 'lg'}}
                 borderRadius="full">
                 <BiChevronRight />
               </Grid>

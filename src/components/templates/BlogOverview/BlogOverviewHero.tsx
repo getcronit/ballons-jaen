@@ -7,13 +7,13 @@ import {
   Stack,
   VStack
 } from '@chakra-ui/react'
-import { Field } from '@snek-at/jaen'
-import { Link } from 'gatsby'
-import { FC } from 'react'
-import { CONTAINER_MAX_WIDTH } from '../../../constant/sizes'
-import { JaenPageIndexType } from '../../../types/commonTypes'
-import { BlogMeta } from '../BlogPage/BlogMeta'
-import { BlogTags } from '../BlogPage/BlogTags'
+import {Field} from '@snek-at/jaen'
+import {Link} from 'gatsby'
+import {FC} from 'react'
+import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
+import {JaenPageIndexType} from '../../../types/commonTypes'
+import {BlogMeta} from '../BlogPage/BlogMeta'
+import {BlogTags} from '../BlogPage/BlogTags'
 
 const FeaturedBlog: React.FC<{
   featuredBlog: JaenPageIndexType['children'][number]
@@ -41,7 +41,7 @@ const FeaturedBlog: React.FC<{
               sm: '300px',
               md: '600px'
             }}>
-            <Field.Image name="heroImage" />
+            <Field.Image name="image" />
           </Box>
           <Stack
             flex="1"
@@ -128,16 +128,16 @@ const BlogOverviewHero: FC<IBlogOverviewHeroProps> = props => {
         base: '/images/blog_overview/mobile_hero_bg.svg',
         md: '/images/blog_overview/hero_bg.svg'
       }}
-      pt={{ base: 4, md: 32 }}
+      pt={{base: 4, md: 32}}
       pb="32"
-      bgPos={{ base: 'top 2rem left 0' }}
+      bgPos={{base: 'top 2rem left 0'}}
       bgRepeat="no-repeat"
-      bgSize={{ base: 'contain', md: 'cover' }}>
+      bgSize={{base: 'contain', md: 'cover'}}>
       <Container maxW={CONTAINER_MAX_WIDTH}>
         <VStack>
           <Field.RichText
             as={Heading}
-            mb={{ base: '25%', md: '5%' }}
+            mb={{base: '25%', md: '5%'}}
             size="h6020"
             fontWeight="semibold"
             whiteSpace="nowrap"
