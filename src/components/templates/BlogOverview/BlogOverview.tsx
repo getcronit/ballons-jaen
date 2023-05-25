@@ -40,7 +40,10 @@ const BlogOverview: FC<IBlogOverviewProps> = () => {
         featuredBlog={featuredBlog}
         withJaenPage={index.withJaenPage}
       />
-      <BlogsSection blogs={index.children} withJaenPage={index.withJaenPage} />
+      <BlogsSection
+        blogs={index.children}
+        withJaenPage={index.withJaenPage}
+      />
       <Box
         pos="relative"
         overflow="hidden"

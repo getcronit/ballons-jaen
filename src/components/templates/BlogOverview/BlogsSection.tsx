@@ -51,13 +51,13 @@ const BlogsSection: FC<IBlogsSectionProps> = props => {
   return (
     <>
       <Container maxW={CONTAINER_MAX_WIDTH} mt={{base: '-16', md: '16'}}>
-        <Heading fontWeight="semibold" size="h4020">
           <Field.Text
+            as={Heading}
+            fontWeight="semibold"
+            size="h4020"
             name="title"
-            label="Titel"
             defaultValue="Weitere Beiträge"
           />
-        </Heading>
         <Divider mb="8" mt="4" bg="red.500" h="1px" border="0" />
       </Container>
       <Box

@@ -5,16 +5,15 @@ import {
   Flex,
   Heading,
   Stack,
-  Text,
   VStack
 } from '@chakra-ui/react'
-import {Field} from '@snek-at/jaen'
-import {Link} from 'gatsby'
-import {FC} from 'react'
-import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
-import {JaenPageIndexType} from '../../../types/commonTypes'
-import {BlogMeta} from '../BlogPage/BlogMeta'
-import {BlogTags} from '../BlogPage/BlogTags'
+import { Field } from '@snek-at/jaen'
+import { Link } from 'gatsby'
+import { FC } from 'react'
+import { CONTAINER_MAX_WIDTH } from '../../../constant/sizes'
+import { JaenPageIndexType } from '../../../types/commonTypes'
+import { BlogMeta } from '../BlogPage/BlogMeta'
+import { BlogTags } from '../BlogPage/BlogTags'
 
 const FeaturedBlog: React.FC<{
   featuredBlog: JaenPageIndexType['children'][number]
@@ -59,21 +58,18 @@ const FeaturedBlog: React.FC<{
             justify="center"
             py="6">
             <BlogTags fieldName="tags" />
-
-            <Heading size="h3015">
-              <Field.Text
-                name="title"
-                rtf
-                label="Title"
-                defaultValue="<p>Ballons & Ballons: Die Geschichte</p>"
-              />
-            </Heading>
-            <Text variant="light" size="b2012" as="span" noOfLines={6}>
-              <Field.Text
-                name="description"
-                label="Description"
-                rtf
-                defaultValue={`
+            <Field.Text
+              as={Heading}
+              size="h3015"
+              name="title"
+              defaultValue="Ballons & Ballons: Die Geschichte"
+            />
+            <Field.RichText
+              variant="light"
+              size="b2012"
+              noOfLines={6}
+              name="description"
+              defaultValue={`
                 <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
                 libero risus semper Lorem ipsum dolor sit amet, consectetur
@@ -97,8 +93,7 @@ const FeaturedBlog: React.FC<{
                 Faucibus in libero risus semper
                 </p>
               `}
-              />
-            </Text>
+            />
             <Flex justify="space-between" w="full" mt="4 !important">
               <Box>
                 <Button
@@ -133,26 +128,22 @@ const BlogOverviewHero: FC<IBlogOverviewHeroProps> = props => {
         base: '/images/blog_overview/mobile_hero_bg.svg',
         md: '/images/blog_overview/hero_bg.svg'
       }}
-      pt={{base: 4, md: 32}}
+      pt={{ base: 4, md: 32 }}
       pb="32"
-      bgPos={{base: 'top 2rem left 0'}}
+      bgPos={{ base: 'top 2rem left 0' }}
       bgRepeat="no-repeat"
-      bgSize={{base: 'contain', md: 'cover'}}>
+      bgSize={{ base: 'contain', md: 'cover' }}>
       <Container maxW={CONTAINER_MAX_WIDTH}>
         <VStack>
-          <Heading
-            mb={{base: '25%', md: '5%'}}
+          <Field.RichText
+            as={Heading}
+            mb={{ base: '25%', md: '5%' }}
             size="h6020"
-            as="span"
             fontWeight="semibold"
-            whiteSpace="nowrap">
-            <Field.Text
-              rtf
-              name="heroTitle"
-              label="Title"
-              defaultValue="<p><i>Wissenswertes</i> über Ballons & Ballons</p>"
-            />
-          </Heading>
+            whiteSpace="nowrap"
+            name="heroTitle"
+            defaultValue="<p><i>Wissenswertes</i> über Ballons & Ballons</p>"
+          />
         </VStack>
         {props.featuredBlog ? (
           <FeaturedBlog
