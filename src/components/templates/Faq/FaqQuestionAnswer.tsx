@@ -10,19 +10,19 @@ import {
   Stack,
   Text
 } from '@chakra-ui/react'
-import {connectBlock, Field} from '@snek-at/jaen'
-import {FC} from 'react'
-import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
+import { connectBlock, Field } from '@snek-at/jaen'
+import { FC } from 'react'
+import { CONTAINER_MAX_WIDTH } from '../../../constant/sizes'
 
 const FaqQuestionAnswerItemSection = connectBlock(
   () => {
     return (
       <AccordionItem border="none">
-        {({isExpanded}) => (
+        {({ isExpanded }) => (
           <Stack
             spacing="0"
-            p={{base: 4, md: 6, xl: 8}}
-            mb={{base: 4, md: 6, xl: 8}}
+            p={{ base: 4, md: 6, xl: 8 }}
+            mb={{ base: 4, md: 6, xl: 8 }}
             borderRadius={{
               base: '.625rem',
               md: '1.25rem',
@@ -32,31 +32,25 @@ const FaqQuestionAnswerItemSection = connectBlock(
             borderWidth="1px"
             bg="white"
             borderColor={isExpanded ? 'red.500' : 'gray.200'}>
-            <AccordionButton _hover={{bg: 'none'}}>
+            <AccordionButton _hover={{ bg: 'none' }}>
               <HStack w="full">
-                <Text
+                <Field.Text
                   ml="1"
                   size="b2415"
                   fontWeight="semibold"
                   textAlign="start"
-                  as="span">
-                  <Field.Text
-                    name="question"
-                    label="Frage"
-                    defaultValue="Frage?"
-                  />
-                </Text>
+                  name="question"
+                  defaultValue="Frage?"
+                />
               </HStack>
               <AccordionIcon />
             </AccordionButton>
             <AccordionPanel pr="4rem">
-              <Text size="b2012" as="span">
-                <Field.Text
-                  name="antwort"
-                  label="Antwort"
-                  defaultValue="Antwort"
-                />
-              </Text>
+              <Field.Text
+                size="b2012"
+                name="antwort"
+                defaultValue="Antwort"
+              />
             </AccordionPanel>
           </Stack>
         )}
@@ -69,7 +63,7 @@ const FaqQuestionAnswerItemSection = connectBlock(
   }
 )
 
-interface IFaqQuestionAnswerProps {}
+interface IFaqQuestionAnswerProps { }
 
 const FaqQuestionAnswer: FC<IFaqQuestionAnswerProps> = () => {
   const faqData = [
@@ -100,7 +94,7 @@ const FaqQuestionAnswer: FC<IFaqQuestionAnswerProps> = () => {
   ]
   return (
     <Box
-      pb={{base: '16rem', md: '10rem', lg: '20rem', xl: '30rem'}}
+      pb={{ base: '16rem', md: '10rem', lg: '20rem', xl: '30rem' }}
       bgImage="/images/faq/right_bg.svg"
       bgRepeat="no-repeat"
       bgPos={{
@@ -108,7 +102,7 @@ const FaqQuestionAnswer: FC<IFaqQuestionAnswerProps> = () => {
         md: 'right -15rem bottom 0',
         '2xl': 'right -20rem bottom 0'
       }}
-      bgSize={{base: '55%', sm: '40%', md: '50%'}}>
+      bgSize={{ base: '55%', sm: '40%', md: '50%' }}>
       <Container maxW={CONTAINER_MAX_WIDTH}>
         <Field.Section
           as={Accordion}
