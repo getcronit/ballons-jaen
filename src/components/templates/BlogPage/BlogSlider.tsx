@@ -52,19 +52,18 @@ const BlogSlider: FC<IBlogSliderProps> = () => {
         />
 
         <Box pt="12"></Box>
-          <Field.Text
-            size="b2012"
-            textAlign="center"
-            py={{base: 16, md: 8, xl: 16}}
-            name="text"
-            defaultValue={`<p>
+        <Field.Text
+          size="b2012"
+          textAlign="center"
+          py={{base: 16, md: 8, xl: 16}}
+          name="text"
+          defaultValue={`
            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
            libero risus semper Lorem ipsum dolor sit amet, consectetur adipiscing
            elit. Faucibus in libero risus semper Lorem ipsum dolor sit amet,
            consectetur adipiscing elit. Faucibus in libero risus semper Lorem
-           ipsum dolor sit amet, cipiscing elit. Faucibus in liber
-           </p>`}
-          />
+           ipsum dolor sit amet, cipiscing elit. Faucibus in liber`}
+        />
       </Container>
     </Box>
   )
