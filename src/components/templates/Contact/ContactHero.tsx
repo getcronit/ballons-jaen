@@ -9,10 +9,10 @@ import {
   Text,
   VStack
 } from '@chakra-ui/react'
-import { Field } from '@snek-at/jaen'
-import { FC, ReactNode } from 'react'
-import { CONTAINER_MAX_WIDTH } from '../../../constant/sizes'
-import { GoogleMaps } from '../../molecules/GoogleMaps'
+import {Field} from '@snek-at/jaen'
+import {FC, ReactNode} from 'react'
+import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
+import {GoogleMaps} from '../../molecules/GoogleMaps'
 
 interface IContactHeroProps {
   contactDetails: {
@@ -23,40 +23,39 @@ interface IContactHeroProps {
   }[]
 }
 
-const ContactHero: FC<IContactHeroProps> = ({ contactDetails }) => {
+const ContactHero: FC<IContactHeroProps> = ({contactDetails}) => {
   return (
     <>
       {' '}
       <Box
         bgImage="/images/contact/bg.svg"
         bgRepeat="no-repeat"
-        bgSize={{ base: '70%', md: 'auto' }}
-        bgPos={{ base: 'left -6rem top 0', md: 'left -10rem top 0' }}>
+        bgSize={{base: '70%', md: 'auto'}}
+        bgPos={{base: 'left -6rem top 0', md: 'left -10rem top 0'}}>
         <Container maxW={CONTAINER_MAX_WIDTH} mt="20" pb="10">
-          <VStack spacing={{ base: 8, md: 20 }}>
-            <Flex gap={{ base: 2, md: 4 }}>
+          <VStack spacing={{base: 8, md: 20}}>
+            <Flex gap={{base: 2, md: 4}}>
               <Field.RichText
                 as={Heading}
                 size="h5020"
                 fontWeight="semibold"
                 whiteSpace="nowrap"
                 name="heading1"
-                label="Standort"
                 defaultValue="<p>Mitten in <i>Wien</i></p>"
               />
             </Flex>
             <Stack
-              spacing={{ base: 4, lg: 8 }}
+              spacing={{base: 4, lg: 8}}
               flex="1"
-              display={{ base: 'flex', md: 'none' }}>
-                <Field.Text
-                  as={Heading}
-                  size="h2415"
-                  fontWeight="semibold"
-                  name="heading2"
-                  defaultValue="Partyshop, Lager, Werkstatt & Büro"
-                />
-              <Stack spacing={{ base: 4, lg: 8 }}>
+              display={{base: 'flex', md: 'none'}}>
+              <Field.Text
+                as={Heading}
+                size="h2415"
+                fontWeight="semibold"
+                name="heading2"
+                defaultValue="Partyshop, Lager, Werkstatt & Büro"
+              />
+              <Stack spacing={{base: 4, lg: 8}}>
                 {contactDetails.map((item, index) => (
                   <HStack key={index}>
                     <Box fontSize="xl" color="red.500">
@@ -80,7 +79,7 @@ const ContactHero: FC<IContactHeroProps> = ({ contactDetails }) => {
               </Stack>
             </Stack>
             <Box
-              mt={{ base: '20 !important', md: '0' }}
+              mt={{base: '20 !important', md: '0'}}
               mb="8"
               bg="red"
               w="full"

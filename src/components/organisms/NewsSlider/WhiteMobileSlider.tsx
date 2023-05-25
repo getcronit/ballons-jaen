@@ -12,6 +12,7 @@ import {Field} from '@snek-at/jaen'
 import {Link} from 'gatsby'
 import {FC} from 'react'
 import Slider from 'react-slick'
+import {today} from '../../../common/utils'
 import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
 import {JaenPageIndexType} from '../../../types/commonTypes'
 
@@ -63,29 +64,27 @@ const WhiteMobileSlider: FC<IWhiteMobileSliderProps> = ({index}) => {
                   </Box>
                 </Grid>
                 <VStack gap="0" flex="1" textAlign="center">
-                  <Text fontSize="sm" color="gray.700" as="span">
-                    <Field.Text
-                      name="date"
-                      label="Datum"
-                      defaultValue={today()}
-                    />
-                  </Text>
-                  <Heading
+                  <Field.Text
+                    fontSize="sm"
+                    color="gray.700"
+                    name="date"
+                    defaultValue={today()}
+                  />
+                  <Field.Text
+                    as={Heading}
                     color="black.500"
                     fontSize="md"
                     fontWeight="semibold"
-                    noOfLines={2}>
-                    <Field.Text
-                      name="title"
-                      label="Titel"
-                      defaultValue="Ballons & Ballons: Die Geschichte"
-                    />
-                  </Heading>
-                  <Text color="black.500" fontSize="sm" as="span" noOfLines={4}>
-                    <Field.Text
-                      name="description"
-                      label="Beschreibung"
-                      defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
+                    noOfLines={2}
+                    name="title"
+                    defaultValue="Ballons & Ballons: Die Geschichte"
+                  />
+                  <Field.Text
+                    color="black.500"
+                    fontSize="sm"
+                    noOfLines={4}
+                    name="description"
+                    defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
                         libero risus semper Lorem ipsum dolor sit amet, consectetur
                         adipiscing elit. Faucibus in libero risus semper Lorem ipsum dolor
                         sit amet, consectetur adipiscing elit. Faucibus in libero risus
@@ -93,8 +92,7 @@ const WhiteMobileSlider: FC<IWhiteMobileSliderProps> = ({index}) => {
                         libero risus semper Lorem ipsum dolor sit amet, consectetur
                         adipiscing elit. Faucibus in libero risus semper Lorem ipsum dolor
                         sit amet, consectetur adipiscing "
-                    />
-                  </Text>
+                  />
                   <Button
                     as={Link}
                     to={`/news/${page.slug}`}

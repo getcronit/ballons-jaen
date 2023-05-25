@@ -58,26 +58,22 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
         {displayContent && (
           <Stack p="6" pb="4">
             {card.headingFieldName && (
-              <Heading fontSize={{base: 'lg', xl: 'xl'}} fontWeight="700">
-                <Field.Text
-                  name={card.headingFieldName}
-                  label="Heading"
-                  defaultValue={card.headingDefaultValue ?? ''}
-                />
-              </Heading>
+              <Field.Text
+                as={Heading}
+                fontSize={{base: 'lg', xl: 'xl'}}
+                fontWeight="700"
+                name={card.headingFieldName}
+                defaultValue={card.headingDefaultValue ?? ''}
+              />
             )}
 
             {card.textFieldName && (
-              <Text
+              <Field.Text
                 fontSize={{base: 'sm', lg: isSmallText ? 'sm' : 'md'}}
                 maxW="80%"
-                as="span">
-                <Field.Text
-                  name={card.textFieldName}
-                  label="Text"
-                  defaultValue={card.textDefaultValue ?? ''}
-                />
-              </Text>
+                name={card.textFieldName}
+                defaultValue={card.textDefaultValue ?? ''}
+              />
             )}
 
             <HStack

@@ -22,28 +22,20 @@ const BallonGas: FC<IBallonGasProps> = () => {
         maxW={CONTAINER_MAX_WIDTH}
         pos="relative">
         <VStack flex="1" pos={{base: 'unset', md: 'relative'}} top="-5rem">
-          <Text
+          <Field.Text
             lineHeight="4rem"
             fontSize={{base: 'xl', md: '4xl', lg: '5xl', xl: '6xl'}}
             variant="cursive"
-            as="span">
-            <Field.Text
-              name="BallonGas.title"
-              label="Titel"
-              defaultValue="Ballongas"
-            />
-          </Text>
-          <Text
+            name="BallonGas.title"
+            defaultValue="Ballongas"
+          />
+          <Field.Text
             maxW="80%"
             textAlign="center"
             fontSize={{base: 'sm', lg: 'md'}}
-            as="span">
-            <Field.Text
-              name="BallonGas.titleText"
-              label="Text"
-              defaultValue=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in libero risus semper.Lo."
-            />
-          </Text>
+            name="BallonGas.titleText"
+            defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in libero risus semper.Lo."
+          />
           <Box>
             <LinkButtonField
               name="BallonGas.ctaButton"
@@ -55,14 +47,12 @@ const BallonGas: FC<IBallonGasProps> = () => {
           </Box>
         </VStack>
         <VStack flex="1" display={{base: 'none', md: 'block'}}>
-          <Text maxW="90%" fontSize={{base: 'sm', lg: 'md'}} as="span">
-            <Field.Text
-              name="BallonGas.titleText"
-              label="Text"
-              rtf
-              defaultValue=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in libero risus semper.Lo."
-            />
-          </Text>
+          <Field.RichText
+            maxW="90%"
+            fontSize={{base: 'sm', lg: 'md'}}
+            name="BallonGas.titleText"
+            defaultValue=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in libero risus semper.Lo."
+          />
         </VStack>
       </Flex>
     </Flex>
