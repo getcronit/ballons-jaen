@@ -132,6 +132,7 @@ const LinkButtonField: React.FC<
     <Box pos={'relative'} maxW={"fit-content"}>
       <Field.Text
         as={Button}
+        {...buttonProps}
         // onClick only if not editing
         onClick={buttonTextField.isEditing ? undefined : handleButtonClick}
         mr={3}
@@ -141,7 +142,6 @@ const LinkButtonField: React.FC<
         }
         name={name}
         defaultValue={defaultValue || 'Button Text'}
-        //{...buttonProps}
       />
       {buttonTextField.isEditing && (
         <Box pos={'absolute'} right={0} top={0}>
