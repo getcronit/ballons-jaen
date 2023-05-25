@@ -26,16 +26,16 @@ import {
   UseSectionField,
   PhotoProvider
 } from '@snek-at/jaen'
-import React, {forwardRef, useEffect, useRef, useState} from 'react'
+import React, { forwardRef, useEffect, useRef, useState } from 'react'
 import Slider from 'react-slick'
 import BallonGas from './BallonGas'
 
-import {removeHtmlFromString} from '../../../common/utils'
+import { removeHtmlFromString } from '../../../common/utils'
 import FourCard from '../FourCard/FourCard'
 import ConvincedSection from './ConvincedSection'
-import {useContactModal} from '../../../services/contact'
+import { useContactModal } from '../../../services/contact'
 
-export interface ContentPageSectionProps {}
+export interface ContentPageSectionProps { }
 
 const ImagesGallery3x3Section = connectBlock(
   () => {
@@ -65,9 +65,9 @@ const ImagesGallery3x3Section = connectBlock(
     return (
       <>
         <VStack
-          display={{base: 'none', md: 'flex'}}
+          display={{ base: 'none', md: 'flex' }}
           pos="relative"
-          gap={{base: '4', md: '8', lg: '10', xl: '14'}}
+          gap={{ base: '4', md: '8', lg: '10', xl: '14' }}
           w="full">
           <PhotoProvider>
             {new Array(9).fill('').map((_, i) => {
@@ -116,7 +116,7 @@ const ImagesGallery3x3Section = connectBlock(
         {/* for Mobile */}
         <Box
           // overflow="hidden"
-          display={{base: 'block', md: 'none'}}
+          display={{ base: 'block', md: 'none' }}
           sx={{
             'ul.slick-dots': {
               top: 'auto'
@@ -156,7 +156,7 @@ const ImagesGallery3x3Section = connectBlock(
                       name={imageFieldName}
                       lightboxGroup
                       lightbox
-                      //defaultValue={defaultImages[i]}
+                    //defaultValue={defaultImages[i]}
                     />
                   </Box>
                 )
@@ -177,20 +177,18 @@ const FullWidthImageSection = connectBlock(
   () => {
     return (
       <Box py="4">
-        <Heading
+        <Field.Text
+          as={Heading}
           textAlign="center"
-          fontSize={{base: 'md', md: '2xl', lg: '3xl', xl: '4xl'}}
-          fontWeight="semibold">
-          <Field.Text
-            name="title"
-            label="Titel"
-            defaultValue="In Erinnerung behalten"
-            rtf
-          />
-        </Heading>
+          fontSize={{ base: 'md', md: '2xl', lg: '3xl', xl: '4xl' }}
+          fontWeight="semibold"
+          name="title"
+          defaultValue="In Erinnerung behalten"
+        //variant="cursive"
+        />
         <Box
-          my={{base: '4 !important', md: '12 !important'}}
-          borderRadius={{base: '.625rem', md: '2rem'}}
+          my={{ base: '4 !important', md: '12 !important' }}
+          borderRadius={{ base: '.625rem', md: '2rem' }}
           // minH={{
           //   base: "11.25rem",
           //   md: "18.75rem",
@@ -219,15 +217,14 @@ const TextSection = connectBlock(
   () => {
     return (
       <Text
-        fontSize={{base: 'sm', lg: 'md'}}
-        maxW={{base: '80%', md: '60%', lg: '50%'}}
+        fontSize={{ base: 'sm', lg: 'md' }}
+        maxW={{ base: '80%', md: '60%', lg: '50%' }}
         textAlign="center"
         as="span"
         my="4">
         <Box h="4" />
-        <Field.Text
+        <Field.RichText
           name="text"
-          label="Text"
           defaultValue={`
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
@@ -278,34 +275,27 @@ const SubCategoryContentSection = connectBlock(
 
         <Stack spacing={20}>
           <VStack spacing={12}>
-            <Heading
-              fontSize={{base: 'md', md: '2xl', lg: '3xl', xl: '4xl'}}
-              fontWeight="semibold">
-              <Field.Text
-                name="heading"
-                label="Heading"
-                defaultValue="Überschrift"
-                rtf
-              />
-            </Heading>
-            <Text
-              fontSize={{base: 'sm', lg: 'md'}}
+            <Field.Text
+              as={Heading}
+              name="heading"
+              fontSize={{ base: 'md', md: '2xl', lg: '3xl', xl: '4xl' }}
+              fontWeight="semibold"
+              defaultValue="Überschrift"
+            />
+            <Field.Text
+              fontSize={{ base: 'sm', lg: 'md' }}
               textAlign="center"
-              as="span">
-              <Field.Text
-                name="Text"
-                label="Text"
-                defaultValue={`Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius quibusdam, atque iusto culpa libero nostrum sit fuga cumque sunt tenetur! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae ea praesentium, enim alias a nihil et aperiam
+              name="Text"
+              defaultValue={`Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius quibusdam, atque iusto culpa libero nostrum sit fuga cumque sunt tenetur! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae ea praesentium, enim alias a nihil et aperiam
 
 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora necessitatibus cupiditate explicabo facere, eligendi molestias Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, accusamus.
 `}
-              />
-            </Text>
+            />
           </VStack>
 
           <Field.Section
             as={Stack}
-            props={{spacing: 20, py: 8}}
+            props={{ spacing: 20, py: 8 }}
             sectionProps={{
               py: {
                 base: '4',
@@ -351,43 +341,39 @@ const CategoryContentSection = connectBlock(
           <Image
             zIndex="-1"
             pos="absolute"
-            top={{base: '0rem'}}
-            w={{base: '40%', md: '60%', lg: '70%', xl: '58%'}}
-            left={{base: '0', lg: '-64px', xl: 0}}
+            top={{ base: '0rem' }}
+            w={{ base: '40%', md: '60%', lg: '70%', xl: '58%' }}
+            left={{ base: '0', lg: '-64px', xl: 0 }}
             src="/images/decorationen/shapes/shape.svg"
           />
           <VStack pos="relative" zIndex="1">
-            <Heading
+            <Field.Text
+              as={Heading}
               variant="cursive"
-              fontSize={{base: 'xl', md: '2xl', lg: '3xl', xl: '4xl'}}
-              as="span">
-              <Field.Text
-                name="title"
-                label="Title"
-                defaultValue="Überschrift"
-              />
-            </Heading>
-            <Heading
+              fontSize={{ base: 'xl', md: '2xl', lg: '3xl', xl: '4xl' }}
+              name="title"
+              defaultValue="Überschrift"
+            />
+            <Field.Text
+              as={Heading}
               textAlign="center"
-              fontSize={{base: 'md', md: 'lg', lg: 'xl', xl: '2xl'}}>
-              <Field.Text
-                name="subtitle"
-                label="Untertitel"
-                defaultValue="Unterüberschrift"
-              />
-            </Heading>
-            <Text
-              fontSize={{base: 'sm', lg: 'md'}}
+              fontSize={{ base: 'md', md: 'lg', lg: 'xl', xl: '2xl' }}
+              name="subtitle"
+              defaultValue="Unterüberschrift"
+            />
+
+            <Field.Text
+              fontSize={{ base: 'sm', lg: 'md' }}
               textAlign="center"
-              as="span">
-              <Field.Text name="text" label="Text" defaultValue="Text" />
-            </Text>
+              name="text"
+              defaultValue="Text"
+            />
           </VStack>
         </VStack>
 
         <Field.Section
           as={Stack}
-          props={{spacing: 20}}
+          props={{ spacing: 20 }}
           sectionProps={{
             py: {
               base: '4',
@@ -485,7 +471,7 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
         }, [])
 
         return (
-          <Box key={index} mb={{base: 4, md: 8}}>
+          <Box key={index} mb={{ base: 4, md: 8 }}>
             <Link
               color={isActive ? 'red' : 'black'}
               onClick={() => {
@@ -523,7 +509,7 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
     }
 
     return (
-      <Stack padding={{base: 4, md: 8}} spacing="24">
+      <Stack padding={{ base: 4, md: 8 }} spacing="24">
         <FourCard
           sectionFieldName={settings.fieldName}
           sectionDisplayName={settings.displayName}
@@ -534,14 +520,14 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
             })
           }}
         />
-        <Flex direction={{base: 'column-reverse', md: 'row'}}>
-          <Box w={{base: '100%', md: '75%'}} mr={{md: 4}}>
-            <Box mx={{base: 4, md: 'auto'}} maxW="800px" overflow="hidden">
+        <Flex direction={{ base: 'column-reverse', md: 'row' }}>
+          <Box w={{ base: '100%', md: '75%' }} mr={{ md: 4 }}>
+            <Box mx={{ base: 4, md: 'auto' }} maxW="800px" overflow="hidden">
               {/* Your blog post content goes here */}
               <Field.Section
                 as={Stack}
-                props={{spacing: 20, position: 'relative'}}
-                sectionProps={({count}) => ({
+                props={{ spacing: 20, position: 'relative' }}
+                sectionProps={({ count }) => ({
                   ref: (el: HTMLDivElement) => {
                     refs.current[count - 1] = el
                   },
@@ -557,10 +543,10 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
               />
             </Box>
           </Box>
-          <Box w={{base: '100%', md: '25%'}}>
-            <Box position="sticky" top={{base: '80px', md: '20%'}}>
+          <Box w={{ base: '100%', md: '25%' }}>
+            <Box position="sticky" top={{ base: '80px', md: '20%' }}>
               {/* Anfragen button with divider */}
-              <Stack textAlign="center" mb={{base: 4, md: 8}}>
+              <Stack textAlign="center" mb={{ base: 4, md: 8 }}>
                 <Button
                   variant="solid"
                   size="md"
@@ -575,7 +561,7 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
                   <Divider />
                   <Link
                     fontSize="sm"
-                    display={{base: 'block', md: 'none'}}
+                    display={{ base: 'block', md: 'none' }}
                     padding="2"
                     aria-label="Table of Contents"
                     onClick={onOpen}>
@@ -606,9 +592,9 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
               </Drawer>
               {/* Table of contents on desktop */}
               <Box
-                display={{base: 'none', md: 'block'}}
+                display={{ base: 'none', md: 'block' }}
                 position="sticky"
-                top={{base: 'unset', md: '10%'}}>
+                top={{ base: 'unset', md: '10%' }}>
                 <Links />
               </Box>
             </Box>
