@@ -67,7 +67,7 @@ const WhiteMobileSlider: FC<IWhiteMobileSliderProps> = ({index}) => {
                     <Field.Text
                       name="date"
                       label="Datum"
-                      defaultValue="12.12.2020"
+                      defaultValue={today()}
                     />
                   </Text>
                   <Heading

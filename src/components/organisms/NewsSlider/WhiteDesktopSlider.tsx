@@ -11,6 +11,7 @@ import {Field} from '@snek-at/jaen'
 import {Link} from 'gatsby'
 import {FC} from 'react'
 import Slider from 'react-slick'
+import {today} from '../../../common/utils'
 import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
 import {JaenPageIndexType} from '../../../types/commonTypes'
 
@@ -75,7 +76,7 @@ const WhiteDesktopSlider: FC<IWhiteDesktopSliderProps> = ({
                       <Field.Text
                         name="date"
                         label="Datum"
-                        defaultValue="12.12.2020"
+                        defaultValue={today()}
                       />
                     </Text>
                     <Heading
