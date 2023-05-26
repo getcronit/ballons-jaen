@@ -13,7 +13,7 @@ export const Logo = (props: any) => {
       <path
         id="logo"
         stroke="currentColor"
-        stroke-width={isChrome ? "20" : "0"}
+        strokeWidth={isChrome ? "20" : "0"}
         //fill="#e3000f"
         //text-shadow: rgba(0,0,0,.01) 0 0 1px;
         //filter="drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4))"

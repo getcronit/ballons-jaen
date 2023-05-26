@@ -10,7 +10,7 @@ export const Ballon = (props: any) => {
       height={148}
       viewBox="0 0 250 400"
       stroke="#E3000F"
-      stroke-width={isChrome ? "1" : "0"}
+      strokeWidth={isChrome ? "1" : "0"}
       {...props}>
       <path
         id="balloon"
@@ -83,7 +83,7 @@ export const HBallon = (props: any) => {
         id="balloon"
         fill="#E3000F"
         stroke="#E3000F"
-        stroke-width={isChrome ? "1" : "0"}
+        strokeWidth={isChrome ? "1" : "0"}
         d="M 175.85,206.42
            C 198.05,186.12 208.59,171.32 221.58,148.76
              238.99,118.52 245.58,89.96 240.92,64.74
