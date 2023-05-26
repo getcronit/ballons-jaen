@@ -1,4 +1,4 @@
-import {Box, Flex, Grid, Heading, Stack, Text} from '@chakra-ui/react'
+import {Box, Flex, Grid, GridItem, Heading, Stack, Text} from '@chakra-ui/react'
 import {Field} from '@snek-at/jaen'
 import {FC} from 'react'
 import {CONTAINER_MAX_WIDTH} from '../../constant/sizes'
@@ -34,14 +34,15 @@ const HorizontalImageCard: FC<IHorizontalImageCardProps> = ({
         base: 'column',
         md: orientation === 'left' ? 'row' : 'row-reverse'
       }}>
-      <Grid
+      <Box
         borderRadius="xl"
         overflow="hidden"
-        flex="1"
-        maxH={{base: '120px', sm: '240px', md: '400px'}}
-        h="30vh">
-        <Field.Image name={card.imageFieldName} />
-      </Grid>
+        flex={{
+          md: '1'
+        }}
+        h={'xs'}>
+        <Field.Image name={card.imageFieldName} lightbox />
+      </Box>
       <Stack
         flex="1"
         gap={{base: 2, md: 0}}

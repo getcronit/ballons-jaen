@@ -8,6 +8,9 @@ import {StepsTheme as Steps} from 'chakra-ui-steps'
 
 import 'react-photo-view/dist/react-photo-view.css'
 
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+
 export const colors = {
   gray: {
     100: '#F4F4F4',

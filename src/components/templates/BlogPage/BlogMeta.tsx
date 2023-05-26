@@ -1,5 +1,6 @@
 import {Box, Text} from '@chakra-ui/react'
 import {Field} from '@snek-at/jaen'
+import {today} from '../../../common/utils'
 
 export const BlogMeta: React.FC = () => {
   return (
@@ -19,11 +20,7 @@ export const BlogMeta: React.FC = () => {
         size="b2012"
         textAlign="end"
         name="date"
-        defaultValue={new Date().toLocaleDateString('de-DE', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric'
-        })}
+        defaultValue={today()}
       />
     </Box>
   )

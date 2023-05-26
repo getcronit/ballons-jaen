@@ -1,22 +1,30 @@
-import { Image, Box, Button, Container, Heading, VStack } from '@chakra-ui/react'
-import { connectBlock, Field } from '@snek-at/jaen'
-import { FC } from 'react'
+import {
+  Image,
+  Box,
+  Button,
+  Container,
+  Heading,
+  VStack,
+  Flex
+} from '@chakra-ui/react'
+import {connectBlock, Field, PhotoProvider} from '@snek-at/jaen'
+import {FC} from 'react'
 import Slider from 'react-slick'
-import { CONTAINER_MAX_WIDTH } from '../../../constant/sizes'
-import { partnerSliderSettings } from '../../../constant/slider'
+import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
+import {partnerSliderSettings} from '../../../constant/slider'
 
 const PartnerSection = connectBlock(
   () => {
     return (
-      <Box boxSize={'full'} display={'flex'} justifyContent="center">
+      <Flex boxSize={'full'} display={'flex'} justifyContent="center" my="8">
         <Box
-          boxSize={{ base: '10rem', sm: '12rem', lg: '15rem' }}
+          boxSize={{base: '10rem', sm: '12rem', lg: '15rem'}}
           borderRadius="xl"
           overflow="hidden"
           boxShadow="dark">
-          <Field.Image name="partnersImage" />
+          <Field.Image name="partnersImage" lightbox lightboxGroup />
         </Box>
-      </Box>
+      </Flex>
     )
   },
   {
@@ -25,12 +33,12 @@ const PartnerSection = connectBlock(
   }
 )
 
-interface IPartnersSectionProps { }
+interface IPartnersSectionProps {}
 
 const PartnersSection: FC<IPartnersSectionProps> = () => {
   return (
     <>
-      <VStack gap={{ base: 4, md: '8' }} py="20" bg="white">
+      <VStack gap={{base: 4, md: '8'}} py="20" bg="white">
         <Field.RichText
           as={Heading}
           size="h5020"
@@ -39,22 +47,22 @@ const PartnersSection: FC<IPartnersSectionProps> = () => {
           defaultValue="<p>Werde <i>Ballon-Partner</i></p>"
         />
         <Box w="full">
-          <Container maxW={CONTAINER_MAX_WIDTH}>
-            <Field.Section
-              as={Slider}
-              props={{ ...partnerSliderSettings }}
-              name="PartnerSection"
-              label="Partner Slider"
-              blocks={[PartnerSection]}
-            />
+          <Container maxW={CONTAINER_MAX_WIDTH} h="sm">
+            <PhotoProvider maskOpacity={0.8}>
+              <Field.Section
+                as={Slider}
+                props={{...partnerSliderSettings}}
+                name="PartnerSection"
+                label="Partner Slider"
+                blocks={[PartnerSection]}
+              />
+            </PhotoProvider>
           </Container>
         </Box>
 
-        <Box>
-          <Button mt={{ base: 2, md: '4' }} size={{ base: 'sm', md: 'md' }}>
-            Jetzt registrieren
-          </Button>
-        </Box>
+        <Button mt={{base: 2, md: '4'}} size={{base: 'sm', md: 'md'}}>
+          Jetzt registrieren
+        </Button>
       </VStack>
       <Image
         zIndex={'-1'}

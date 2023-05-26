@@ -1,7 +1,9 @@
-import {Image, Text, VStack} from '@chakra-ui/react'
-import {FC} from 'react'
+import { Image, Text, VStack } from '@chakra-ui/react'
+import { FC } from 'react'
+import { Logo } from '../../common/assets/Logo'
+import { navigate } from 'gatsby'
 
-interface IBottomFooterProps {}
+interface IBottomFooterProps { }
 
 const BottomFooter: FC<IBottomFooterProps> = () => {
   return (
@@ -21,7 +23,27 @@ const BottomFooter: FC<IBottomFooterProps> = () => {
         </Text>{' '}
         ins Gesicht zu zaubern.
       </Text>
-      <Image src="/images/white_logo.png" />
+      {/* <Image
+        src="/images/white_logo.svg"
+        maxW={{
+          base: '15rem'
+        }}
+      /> */}
+      <Logo
+        //maxWidth='20rem'
+        //height="auto"
+        //height=".875rem"
+        width="15rem"
+        //transform="scale(0.5)"
+        objectFit="contain"
+        // display={mode === 'website' ? 'block' : 'none'}
+        cursor="pointer"
+        onClick={() => {
+          void navigate('/')
+        }}
+        color="#FFFFFF"
+        alt="logo"
+      />
     </VStack>
   )
 }

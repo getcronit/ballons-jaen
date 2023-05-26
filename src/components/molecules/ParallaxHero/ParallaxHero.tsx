@@ -20,6 +20,7 @@ import { Field } from '@snek-at/jaen'
 import LinkButtonField from '../../fields/LinkButtonField'
 import { CONTAINER_MAX_WIDTH } from '../../../constant/sizes'
 import { HBallon } from '../../../common/assets/Ballon'
+import { SkylineL1, SkylineL2, SkylineL3 } from '../../../common/assets/Skyline'
 
 export interface ParallaxHeroProps {
   noScroll?: boolean
@@ -33,7 +34,7 @@ export const ParallaxHero = ({ noScroll }: ParallaxHeroProps) => {
     <HStack mb="10" display="flex" justifyContent="center">
       <TextLoop>
         {[
-          "Teile Glück und Freude mit 🎈",
+          "Teile Glück und Freude mit",
           "Schaffe Atmosphäre mit",
           "Heirate mit",
           "Feiere deinen Anlass mit",
@@ -106,34 +107,55 @@ export const ParallaxHero = ({ noScroll }: ParallaxHeroProps) => {
         //mt={{ base: '3.5rem', md: '4rem', lg: '8rem' }}
         pt={{ base: 'calc(150vh - 7.5rem)', lg: 'calc(150vh - 8rem)' }}>
         <Box className="parallax__layer parallax__layer__0">
-          <Image
+          <SkylineL1
+            position={'absolute'}
+            top={'0'}
+            left={'0'}
+            width={'100%'}
+            minWidth={'2500px'}
+          />
+          {/* <Image
             position={'absolute'}
             top={'0'}
             left={'0'}
             w={'100%'}
             minW={'2500px'}
             src="/images/home/hero_skyline_1.svg"
-          />
+          /> */}
         </Box>
         <Box className="parallax__layer parallax__layer__1">
-          <Image
+          <SkylineL2
+            position={'absolute'}
+            top={'0'}
+            left={'0'}
+            width={'100%'}
+            minWidth={'2500px'}
+          />
+          {/* <Image
             position={'absolute'}
             top={'0'}
             left={'0'}
             w={'100%'}
             minW={'2500px'}
             src="/images/home/hero_skyline_2.svg"
-          />
+          /> */}
         </Box>
         <Box className="parallax__layer parallax__layer__2">
-          <Image
+          <SkylineL3
+            position={'absolute'}
+            top={'0'}
+            left={'0'}
+            width={'100%'}
+            minWidth={'2500px'}
+          />
+          {/* <Image
             position={'absolute'}
             top={'0'}
             left={'0'}
             w={'100%'}
             minW={'2500px'}
             src="/images/home/hero_skyline_3.svg"
-          />
+          /> */}
           {/* <Image position={"absolute"} top={"160vh"} left={"0"} w={"100%"} src="/images/home/freude.svg" /> */}
           {/* <Box
                 position="relative"

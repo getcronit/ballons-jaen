@@ -1,9 +1,9 @@
-import { Box, Container, Image } from '@chakra-ui/react'
-import { FC } from 'react'
-import { CONTAINER_MAX_WIDTH } from '../../../constant/sizes'
+import {Box, Container, Image} from '@chakra-ui/react'
+import {FC} from 'react'
+import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
 import HorizontalImageCard from '../../organisms/HorizontalImageCard'
 
-interface ITwoCardsProps { }
+interface ITwoCardsProps {}
 
 const TwoCards: FC<ITwoCardsProps> = () => {
   return (
@@ -11,19 +11,19 @@ const TwoCards: FC<ITwoCardsProps> = () => {
       <Box
         pos="relative"
         //overflow="hidden"
-        pb={{ md: '10', xl: 8 }}
-        pt={{ base: '16', lg: 48 }}>
+        pb={{md: '10', xl: 8}}
+        pt={{base: '16', lg: 48}}>
         <Image
           position="absolute"
-          top={"0"}
-          left={"0"}
+          top={'0'}
+          left={'0'}
           transform={'scaley(-1)'}
           w="100%"
           src="/images/home/reisges/top_shape.svg"
           alt="bottom_shape_white"
         />
         <Image
-          display={{ base: 'none', md: 'block' }}
+          display={{base: 'none', md: 'block'}}
           src="/images/großhandel/card_line.svg"
           pos="absolute"
           top="0"
@@ -32,7 +32,7 @@ const TwoCards: FC<ITwoCardsProps> = () => {
         <Container
           maxW={CONTAINER_MAX_WIDTH}
           pos="relative"
-          mb={{ base: '16 !important', md: '0' }}>
+          mb={{base: '16 !important', md: '0'}}>
           <HorizontalImageCard
             card={{
               tagFieldName: 'wholeSaleCardTag1',
@@ -51,9 +51,9 @@ const TwoCards: FC<ITwoCardsProps> = () => {
           />
         </Container>
       </Box>
-      <Box pt={{ '2xl': 16 }} pb="10" pos="relative" overflow="hidden">
+      <Box pt={{'2xl': 16}} pb="10" pos="relative" overflow="hidden">
         <Image
-          display={{ base: 'none', md: 'block' }}
+          display={{base: 'none', md: 'block'}}
           src="/images/großhandel/shape2.svg"
           pos="absolute"
           top="0"
@@ -63,8 +63,8 @@ const TwoCards: FC<ITwoCardsProps> = () => {
         />
         <Image
           position="absolute"
-          bottom={"0"}
-          left={"0"}
+          bottom={'0'}
+          left={'0'}
           transform={'scalex(-1)'}
           w="100%"
           src="/images/home/reisges/top_shape.svg"

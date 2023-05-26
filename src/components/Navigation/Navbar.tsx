@@ -22,21 +22,27 @@ import {
   Container,
   HStack
 } from '@chakra-ui/react'
-import { Link as GatsbyLink, navigate } from 'gatsby'
+import {Link as GatsbyLink, navigate} from 'gatsby'
 import {
   HamburgerIcon,
   CloseIcon,
   ChevronDownIcon,
   ChevronRightIcon
 } from '@chakra-ui/icons'
-import { FaPhoneAlt, FaShopify, FaShoppingBag, FaUser } from 'react-icons/fa'
-import { AiOutlineArrowLeft, AiOutlineShop, AiOutlineShoppingCart } from 'react-icons/ai'
-import { FC } from 'react'
-import { LayoutMode } from '../../types/commonTypes'
-import { NavAuthButton } from './NavAuthButton'
-import { SearchbarButton } from '../molecules/Searchbar'
+import {FaPhoneAlt, FaShopify, FaShoppingBag, FaUser} from 'react-icons/fa'
+import {
+  AiOutlineArrowLeft,
+  AiOutlineShop,
+  AiOutlineShoppingCart
+} from 'react-icons/ai'
+import {FC} from 'react'
+import {LayoutMode} from '../../types/commonTypes'
+import {NavAuthButton} from './NavAuthButton'
+import {SearchbarButton} from '../molecules/Searchbar'
 import BottomNav from './BottomNav'
-import { CONTAINER_MAX_WIDTH } from '../../constant/sizes'
+import {CONTAINER_MAX_WIDTH} from '../../constant/sizes'
+
+import { Logo } from '../../common/assets/Logo'
 
 interface INavbarProps {
   mode: LayoutMode
@@ -45,39 +51,41 @@ interface INavbarProps {
   onContactClick?: () => void
 }
 
-export const Navbar: FC<INavbarProps> = ({ mode, onSearchClick, onBasketClick, onContactClick }) => {
-  const { isOpen, onToggle } = useDisclosure()
+export const Navbar: FC<INavbarProps> = ({
+  mode,
+  onSearchClick,
+  onBasketClick,
+  onContactClick
+}) => {
+  const {isOpen, onToggle} = useDisclosure()
 
   return (
     <Box
-      pb={"3"}
+      pb={'3'}
+      willChange={'transform'}
       animation="shadowShine 5s infinite linear alternate-reverse"
-      _after={
-        {
-          content: '""',
-          position: 'absolute',
-          top: '0',
-          left: '0',
-          width: '100%',
-          height: '100%',
-          //background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%)',
-          zIndex: '-1',
-          animation: ' 5s shadowShine 5s infinite linear alternate-reverse'
-        }
-      }
-    >
+      _after={{
+        content: '""',
+        position: 'absolute',
+        top: '0',
+        left: '0',
+        width: '100%',
+        height: '100%',
+        //background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%)',
+        zIndex: '-1',
+        animation: ' 5s shadowShine 5s infinite linear alternate-reverse'
+      }}>
       <Flex
         //bg={useColorModeValue('white', 'gray.800')}
         //color={useColorModeValue('gray.600', 'white')}
         minH={'60px'}
-        py={{ base: 2 }}
-        px={{ base: 4 }}
-        align={'center'}
-      >
+        py={{base: 2}}
+        px={{base: 4}}
+        align={'center'}>
         <Flex
-          flex={{ base: 1, md: 'auto' }}
-          ml={{ base: -2 }}
-          display={{ base: 'flex', md: 'none' }}>
+          flex={{base: 1, md: 'auto'}}
+          ml={{base: -2}}
+          display={{base: 'flex', md: 'none'}}>
           <IconButton
             onClick={onToggle}
             icon={
@@ -95,12 +103,27 @@ export const Navbar: FC<INavbarProps> = ({ mode, onSearchClick, onBasketClick, o
             to="/"
             visibility={mode === 'website' ? 'hidden' : 'visible'}
             leftIcon={<AiOutlineArrowLeft />}>
-            <Image h=".875rem" w="10rem" src="/images/white_logo.png" />
+            {/* <Image h=".875rem" w="10rem" src="/images/white_logo.svg" /> */}
+            <Logo
+            //maxWidth='20rem'
+            //height="auto"
+            height=".875rem"
+            width="10rem"
+            //transform="scale(0.5)"
+            objectFit="contain"
+            // display={mode === 'website' ? 'block' : 'none'}
+            cursor="pointer"
+            onClick={() => {
+              void navigate('/')
+            }}
+            color="#FFFFFF"
+            alt="logo"
+          />
           </Button>
         </Flex>
 
         <Flex>
-          <Image
+          {/* <Image
             display="flex"
             maxW={{
               base: '20rem'
@@ -114,13 +137,40 @@ export const Navbar: FC<INavbarProps> = ({ mode, onSearchClick, onBasketClick, o
             // w={{base: '20rem', '2xl': '26.25rem'}}
             // h={{base: '1.875rem', '2xl': '2.125rem'}}
 
-            src="/images/red_logo.png"
+            src="/images/red_logo.svg"
+            alt="logo"
+          /> */}
+          {/* <Box
+            display="flex"
+            maxW={{
+              base: '20rem'
+            }}
+            objectFit="contain"
+            // display={mode === 'website' ? 'block' : 'none'}
+            cursor="pointer"
+            onClick={() => {
+              void navigate('/')
+            }}
+          >
+            <object width={"100%"} type="image/svg+xml" data="/images/red_logo.svg">svg-image</object>
+          </Box> */}
+          
+          <Logo
+            //maxWidth='20rem'
+            //height="auto"
+            //transform="scale(0.5)"
+            objectFit="contain"
+            // display={mode === 'website' ? 'block' : 'none'}
+            cursor="pointer"
+            onClick={() => {
+              void navigate('/')
+            }}
+            color="#E3000F"
             alt="logo"
           />
         </Flex>
 
         <Stack flex={1} justify={'flex-end'} direction={'row'} spacing={6}>
-        
           <Button
             variant="link"
             size="sm"
@@ -142,8 +192,8 @@ export const Navbar: FC<INavbarProps> = ({ mode, onSearchClick, onBasketClick, o
               Onlineshop
             </Button>
           ) : (
-            <ButtonGroup >
-              <SearchbarButton onClick={onSearchClick} maxW="sm" w={"10vw"} />
+            <ButtonGroup>
+              <SearchbarButton onClick={onSearchClick} maxW="sm" w={'10vw'} />
 
               <Button
                 size="sm"
@@ -169,10 +219,9 @@ export const Navbar: FC<INavbarProps> = ({ mode, onSearchClick, onBasketClick, o
       </Flex>
 
       <Flex
-        display={{ base: 'none', md: 'flex' }}
+        display={{base: 'none', md: 'flex'}}
         justifyContent="center"
-        alignItems={'center'}
-      >
+        alignItems={'center'}>
         {/* <DesktopNav /> */}
         {/* <Container maxW={CONTAINER_MAX_WIDTH} display={mode === 'website' ? 'none' : 'block'} mx="8">
           <SearchbarButton onClick={onSearchClick} />
@@ -180,13 +229,12 @@ export const Navbar: FC<INavbarProps> = ({ mode, onSearchClick, onBasketClick, o
       </Flex>
 
       <Flex
-        display={{ base: 'none', md: mode === 'website' ? 'flex' : 'none' }}
-        justifyContent="center"
-      >
+        display={{base: 'none', md: mode === 'website' ? 'flex' : 'none'}}
+        justifyContent="center">
         {/* <DesktopNav /> */}
         <BottomNav />
       </Flex>
-{/* 
+      {/* 
       <Collapse in={isOpen} animateOpacity>
         <MobileNav />
       </Collapse> */}
@@ -247,7 +295,7 @@ const DesktopNav = () => {
   )
 }
 
-const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
+const DesktopSubNav = ({label, href, subLabel}: NavItem) => {
   return (
     <Link
       as={GatsbyLink}
@@ -256,12 +304,12 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
       display={'block'}
       p={2}
       rounded={'md'}
-      _hover={{ bg: 'pink.50' }}>
+      _hover={{bg: 'pink.50'}}>
       <Stack direction={'row'} align={'center'}>
         <Box>
           <Text
             transition={'all .3s ease'}
-            _groupHover={{ color: 'pink.400' }}
+            _groupHover={{color: 'pink.400'}}
             fontWeight={500}>
             {label}
           </Text>
@@ -271,7 +319,7 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
           transition={'all .3s ease'}
           transform={'translateX(-10px)'}
           opacity={0}
-          _groupHover={{ opacity: '100%', transform: 'translateX(0)' }}
+          _groupHover={{opacity: '100%', transform: 'translateX(0)'}}
           justify={'flex-end'}
           align={'center'}
           flex={1}>
@@ -287,7 +335,7 @@ export const MobileNav = () => {
     <Stack
       //bg={useColorModeValue('white', 'gray.800')}
       p={4}
-      display={{ md: 'none' }}>
+      display={{md: 'none'}}>
       {NAV_ITEMS.map(navItem => (
         <MobileNavItem key={navItem.label} {...navItem} />
       ))}
@@ -295,8 +343,8 @@ export const MobileNav = () => {
   )
 }
 
-const MobileNavItem = ({ label, children, href }: NavItem) => {
-  const { isOpen, onToggle } = useDisclosure()
+const MobileNavItem = ({label, children, href}: NavItem) => {
+  const {isOpen, onToggle} = useDisclosure()
 
   return (
     <Stack spacing={4} onClick={children && onToggle}>
@@ -311,7 +359,7 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
         }}>
         <Text
           fontWeight={600}
-        //color={useColorModeValue('gray.600', 'gray.200')}
+          //color={useColorModeValue('gray.600', 'gray.200')}
         >
           {label}
         </Text>
@@ -326,7 +374,7 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
         )}
       </Flex>
 
-      <Collapse in={isOpen} animateOpacity style={{ marginTop: '0!important' }}>
+      <Collapse in={isOpen} animateOpacity style={{marginTop: '0!important'}}>
         <Stack
           mt={2}
           pl={4}

@@ -31,10 +31,11 @@ const HeartRightSection: FC<IHeartRightSectionProps> = () => {
       columns={{base: 1}}>
       {cards.map((card, i) => (
         <GridItem
-          w={{base: '19.375rem', sm: '80%', md: '100%'}}
-          justifySelf="center"
-          h={{base: '15rem', md: '22.1875rem'}}
-          key={i}>
+          key={i}
+          boxSize={{
+            base: 'xs',
+            md: 'sm'
+          }}>
           <CardWithImageBackgroundField
             name={`heartCardLink${i}`}
             card={{
