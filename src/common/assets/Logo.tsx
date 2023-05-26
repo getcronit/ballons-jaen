@@ -1,13 +1,16 @@
 import React from 'react'
 import { isChrome } from '../utils'
+import { Box } from '@chakra-ui/react'
 
 export const Logo = (props: any) => {
   return (
-    <svg
+    <Box
+      as="svg"
       xmlns="http://www.w3.org/2000/svg"
       width='24rem'
       viewBox="0 0 16356 1380"
-      {...props}>
+      {...props}
+    >
       <path
         id="logo"
         stroke="currentColor"
@@ -818,6 +821,6 @@ export const Logo = (props: any) => {
              7988.87,857.00 7941.42,795.00 7941.42,795.00
              7937.23,789.61 7927.44,774.28 7921.91,772.09 Z"
       />
-    </svg>
+    </Box>
   )
 }
