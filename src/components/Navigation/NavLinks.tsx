@@ -1,6 +1,7 @@
 import {EditIcon} from '@chakra-ui/icons'
 import {
   Box,
+  Flex,
   IconButton,
   Link as CLink,
   Popover,
@@ -68,7 +69,7 @@ export const TopNavLinks: React.FC<
   const firstFieldRef = React.useRef(null)
 
   return (
-    <>
+    <Flex>
       <Stack {...props}>
         {navLinks.map((link, index) => {
           return (
@@ -99,7 +100,7 @@ export const TopNavLinks: React.FC<
               _hover={{
                 textDecoration: 'underline'
               }}
-              fontSize={{base: 'sm', lg: '1rem'}}
+              fontSize={'sm'}
               transition="0.2s ease-in"
               color="brand.dark_gray">
               {link.label}
@@ -137,7 +138,7 @@ export const TopNavLinks: React.FC<
           </Popover>
         </Box>
       )}
-    </>
+    </Flex>
   )
 }
 
