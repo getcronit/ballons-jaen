@@ -42,6 +42,8 @@ import {SearchbarButton} from '../molecules/Searchbar'
 import BottomNav from './BottomNav'
 import {CONTAINER_MAX_WIDTH} from '../../constant/sizes'
 
+import { Logo } from '../../common/assets/Logo'
+
 interface INavbarProps {
   mode: LayoutMode
   onBasketClick?: () => void
@@ -101,12 +103,27 @@ export const Navbar: FC<INavbarProps> = ({
             to="/"
             visibility={mode === 'website' ? 'hidden' : 'visible'}
             leftIcon={<AiOutlineArrowLeft />}>
-            <Image h=".875rem" w="10rem" src="/images/white_logo.png" />
+            {/* <Image h=".875rem" w="10rem" src="/images/white_logo.svg" /> */}
+            <Logo
+            //maxWidth='20rem'
+            //height="auto"
+            height=".875rem"
+            width="10rem"
+            //transform="scale(0.5)"
+            objectFit="contain"
+            // display={mode === 'website' ? 'block' : 'none'}
+            cursor="pointer"
+            onClick={() => {
+              void navigate('/')
+            }}
+            color="#FFFFFF"
+            alt="logo"
+          />
           </Button>
         </Flex>
 
         <Flex>
-          <Image
+          {/* <Image
             display="flex"
             maxW={{
               base: '20rem'
@@ -120,7 +137,35 @@ export const Navbar: FC<INavbarProps> = ({
             // w={{base: '20rem', '2xl': '26.25rem'}}
             // h={{base: '1.875rem', '2xl': '2.125rem'}}
 
-            src="/images/red_logo.png"
+            src="/images/red_logo.svg"
+            alt="logo"
+          /> */}
+          {/* <Box
+            display="flex"
+            maxW={{
+              base: '20rem'
+            }}
+            objectFit="contain"
+            // display={mode === 'website' ? 'block' : 'none'}
+            cursor="pointer"
+            onClick={() => {
+              void navigate('/')
+            }}
+          >
+            <object width={"100%"} type="image/svg+xml" data="/images/red_logo.svg">svg-image</object>
+          </Box> */}
+          
+          <Logo
+            //maxWidth='20rem'
+            //height="auto"
+            //transform="scale(0.5)"
+            objectFit="contain"
+            // display={mode === 'website' ? 'block' : 'none'}
+            cursor="pointer"
+            onClick={() => {
+              void navigate('/')
+            }}
+            color="#E3000F"
             alt="logo"
           />
         </Flex>

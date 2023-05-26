@@ -31,6 +31,7 @@ import { useContactModal } from '../../services/contact'
 import { LayoutMode } from '../../types/commonTypes'
 import { NavAuthButton } from './NavAuthButton'
 import { BottomNavLinks } from './NavLinks'
+import { Logo } from '../../common/assets/Logo'
 
 interface IMobileNavProps {
   mode?: LayoutMode
@@ -43,7 +44,7 @@ export const MobileNav: FC<IMobileNavProps> = ({
   onSearchClick,
   onBasketClick
 }) => {
-  const {isOpen, onToggle} = useDisclosure()
+  const { isOpen, onToggle } = useDisclosure()
 
   const contactModal = useContactModal()
 
@@ -76,13 +77,28 @@ export const MobileNav: FC<IMobileNavProps> = ({
           )}
 
           <Box>
-            <Image
+            {/* <Image
               onClick={() => {
                 void navigate('/')
               }}
               h=".875rem"
               w="10rem"
-              src="/images/red_logo.png"
+              src="/images/red_logo.svg"
+            /> */}
+            <Logo
+              //maxWidth='20rem'
+              //height="auto"
+              height=".875rem"
+              width="10rem"
+              //transform="scale(0.5)"
+              objectFit="contain"
+              // display={mode === 'website' ? 'block' : 'none'}
+              cursor="pointer"
+              onClick={() => {
+                void navigate('/')
+              }}
+              color="#E3000F"
+              alt="logo"
             />
           </Box>
           <HStack gap="0" justifySelf="end" spacing="0">
@@ -118,13 +134,28 @@ export const MobileNav: FC<IMobileNavProps> = ({
           <DrawerContent>
             <DrawerCloseButton />
             <DrawerHeader>
-              <Image
+              {/* <Image
                 onClick={() => {
                   void navigate('/')
                 }}
                 h=".875rem"
                 w="10rem"
-                src="/images/red_logo.png"
+                src="/images/red_logo.svg"
+              /> */}
+              <Logo
+                //maxWidth='20rem'
+                //height="auto"
+                height=".875rem"
+                width="10rem"
+                //transform="scale(0.5)"
+                objectFit="contain"
+                // display={mode === 'website' ? 'block' : 'none'}
+                cursor="pointer"
+                onClick={() => {
+                  void navigate('/')
+                }}
+                color="#E3000F"
+                alt="logo"
               />
             </DrawerHeader>
             <Divider />
