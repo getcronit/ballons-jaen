@@ -2,7 +2,7 @@ import React from 'react'
 
 export const Logo = (props: any) => {
   // check if chrome not safari
-  const isChrome = /Chrome/.test(window.navigator.userAgent)
+  const isChrome = typeof window !== 'undefined' ? /Chrome/.test(window.navigator.userAgent) : false
 
   return (
     <svg

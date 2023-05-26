@@ -2,7 +2,7 @@ import React from 'react'
 
 export const Ballon = (props: any) => {
   // check if chrome not safari
-  const isChrome = /Chrome/.test(window.navigator.userAgent)
+  const isChrome = typeof window !== 'undefined' ? /Chrome/.test(window.navigator.userAgent) : false
 
   return (
     <svg
@@ -71,7 +71,7 @@ export const Ballon = (props: any) => {
 
 export const HBallon = (props: any) => {
   // check if chrome not safari
-  const isChrome = /Chrome/.test(window.navigator.userAgent)
+  const isChrome = typeof window !== 'undefined' ? /Chrome/.test(window.navigator.userAgent) : false
   
   return (
     <svg
