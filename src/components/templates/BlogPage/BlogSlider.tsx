@@ -1,5 +1,5 @@
 import {Box, Container, Text} from '@chakra-ui/react'
-import {connectBlock, Field} from '@snek-at/jaen'
+import {connectBlock, Field, PhotoProvider} from '@snek-at/jaen'
 import {FC} from 'react'
 import Slider from 'react-slick'
 import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
@@ -16,7 +16,7 @@ const SliderItem = connectBlock(
           borderRadius="xl"
           overflow="hidden"
           boxShadow="dark">
-          <Field.Image name="image" />
+          <Field.Image name="image" lightbox lightboxGroup />
         </Box>
       </Box>
     )
@@ -42,14 +42,18 @@ const BlogSlider: FC<IBlogSliderProps> = () => {
         md: '/images/blog_page/sliderBg.svg'
       }}>
       <Container maxW={CONTAINER_MAX_WIDTH}>
-        <Field.Section
-          //@ts-expect-error
-          as={Slider}
-          props={{...blogSliderSettings}}
-          name="SliderItem"
-          label="Blog Slider"
-          blocks={[SliderItem]}
-        />
+        <Box h="xs">
+          <PhotoProvider maskOpacity={0.8}>
+            <Field.Section
+              //@ts-expect-error
+              as={Slider}
+              props={{...blogSliderSettings}}
+              name="SliderItem"
+              label="Blog Slider"
+              blocks={[SliderItem]}
+            />
+          </PhotoProvider>
+        </Box>
 
         <Box pt="12"></Box>
         <Field.Text

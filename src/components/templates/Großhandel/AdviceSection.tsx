@@ -1,26 +1,38 @@
-import { Box, Container, Flex, Heading, Stack, Text } from '@chakra-ui/react'
-import { Field } from '@snek-at/jaen'
-import { FC } from 'react'
-import { CONTAINER_MAX_WIDTH } from '../../../constant/sizes'
+import {
+  Box,
+  Circle,
+  Container,
+  Flex,
+  Heading,
+  Stack,
+  Text
+} from '@chakra-ui/react'
+import {Field} from '@snek-at/jaen'
+import {FC} from 'react'
+import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
 import LinkButtonField from '../../fields/LinkButtonField'
 
-interface IAdviceSectionProps { }
+interface IAdviceSectionProps {}
 
 const AdviceSection: FC<IAdviceSectionProps> = () => {
   return (
     <Box bg="white">
       <Container
-        h={{ base: 'auto', lg: '50rem' }}
-        alignItems={{ base: 'center', lg: 'center' }}
+        h={{base: 'auto', lg: '50rem'}}
+        alignItems={{base: 'center', lg: 'center'}}
         justifyContent="space-between"
         py="8"
-        flexDirection={{ base: 'column-reverse', md: 'column', lg: 'row' }}
+        flexDirection={{
+          base: 'column-reverse',
+          md: 'column-reverse',
+          lg: 'row'
+        }}
         as={Flex}
         gap="4"
         maxW={CONTAINER_MAX_WIDTH}>
         <Box flex="3">
           <Stack>
-            <Flex gap={{ base: 2, md: 4 }}>
+            <Flex gap={{base: 2, md: 4}}>
               <Field.RichText
                 as={Heading}
                 size="h5020"
@@ -48,8 +60,17 @@ const AdviceSection: FC<IAdviceSectionProps> = () => {
             </Box>
           </Stack>
         </Box>
-        <Box flex="2" h="40vh">
-          <Field.Image name="adviceImage" objectFit="contain" />
+        <Box
+          borderRadius={'50%'}
+          boxSize={{
+            base: 'xs',
+            md: 'xs',
+            lg: 'md',
+            xl: 'lg'
+          }}
+          bg="red"
+          overflow="hidden">
+          <Field.Image name="adviceImage" objectFit="cover" />
         </Box>
       </Container>
     </Box>
