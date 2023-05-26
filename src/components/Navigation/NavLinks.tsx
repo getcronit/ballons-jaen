@@ -19,43 +19,13 @@ import React from 'react'
 import {MarkdownLinksForm} from './BottomNav'
 import {useJaenNavTop, useJaenNavBottom} from './useJaenNavigation'
 
-const findBestMatch = (path: string, paths: Array<string>) => {
-  let bestMatch: string | undefined
-  let bestMatchScore = 0
+const findActivePath = (path: string, paths: Array<string>) => {
+  // Find path and take care of trailing slash if it exists
+  const activePath = paths.find(
+    p => p === path || p === path.slice(0, path.length - 1)
+  )
 
-  // check how many a path matches the current path
-  // if it is the best match, save it
-  paths.forEach(pathToMatch => {
-    if (path !== '/') {
-      // iterate over all path parts and check how many of them match
-      let score = 0
-      const pathParts = path.replace(/\/$/, '').split('/').filter(Boolean)
-      const pathToMatchParts = pathToMatch
-        .replace(/\/$/, '')
-        .split('/')
-        .filter(Boolean)
-
-      for (let i = 0; i < pathParts.length; i++) {
-        if (pathParts[i] !== pathToMatchParts[i]) {
-          // if the path part does not match, exit the loop
-          break
-        }
-
-        score++
-      }
-
-      // if the score is better than the current best match, save it
-      if (score > bestMatchScore) {
-        bestMatch = pathToMatch
-        bestMatchScore = score
-      }
-    } else {
-      bestMatch = '/'
-      bestMatchScore = 1
-    }
-  })
-
-  return bestMatch
+  return activePath
 }
 
 export const TopNavLinks: React.FC<
@@ -151,7 +121,7 @@ export const BottomNavLinks: React.FC<
 
   const {onOpen, onClose, isOpen} = useDisclosure()
   const firstFieldRef = React.useRef(null)
-  const bestMatch = findBestMatch(
+  const bestMatch = findActivePath(
     typeof window !== 'undefined' ? window.location.pathname : '/',
     navLinks.map(l => l.to)
   )
