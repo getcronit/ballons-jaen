@@ -461,7 +461,7 @@ const ImageSlider = (props: {
   const curMedia = media[curMediaIndex]
 
   return (
-    <PhotoProvider>
+    <PhotoProvider maskOpacity={0.8}>
       <Box
         my="4"
         minW={{

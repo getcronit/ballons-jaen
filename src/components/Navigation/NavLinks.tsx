@@ -69,7 +69,7 @@ export const TopNavLinks: React.FC<
   const firstFieldRef = React.useRef(null)
 
   return (
-    <Flex>
+    <Flex pos={'relative'}>
       <Stack {...props}>
         {navLinks.map((link, index) => {
           return (
@@ -116,17 +116,17 @@ export const TopNavLinks: React.FC<
             initialFocusRef={firstFieldRef}
             onOpen={onOpen}
             onClose={onClose}
-            placement="bottom"
+            placement="bottom-start"
             closeOnBlur={false}>
             <PopoverTrigger>
               <IconButton
-                size="sm"
+                size="xs"
                 icon={<EditIcon />}
                 aria-label=""
                 colorScheme="jaen"
               />
             </PopoverTrigger>
-            <PopoverContent p={5}>
+            <PopoverContent p={5} display={isOpen ? 'block' : 'none'}>
               <PopoverArrow />
               <PopoverCloseButton />
               <MarkdownLinksForm

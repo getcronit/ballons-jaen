@@ -19,6 +19,8 @@ interface ICardWithImageBackgroundProps {
   w?: {} | string
   h?: {} | string
   isSmallText?: boolean
+  lightboxGroup?: boolean
+  lightbox?: boolean
 }
 
 const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
@@ -27,7 +29,9 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
   minW,
   w,
   h,
-  isSmallText = false
+  isSmallText = false,
+  lightboxGroup = false,
+  lightbox = false
 }) => {
   const {isEditing} = useStatus()
 
@@ -53,7 +57,13 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
       borderRadius="xl"
       overflow={'hidden'}
       minW={minW || '20rem'}>
-      {card.imageFieldName && <Field.Image name={card.imageFieldName} />}
+      {card.imageFieldName && (
+        <Field.Image
+          name={card.imageFieldName}
+          lightbox={lightbox}
+          lightboxGroup={lightboxGroup}
+        />
+      )}
       <Box position="absolute">
         {displayContent && (
           <Stack p="6" pb="4">

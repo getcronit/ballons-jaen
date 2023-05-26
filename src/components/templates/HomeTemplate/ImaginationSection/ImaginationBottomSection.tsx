@@ -1,22 +1,17 @@
 import {Box, Grid, GridItem} from '@chakra-ui/react'
-import {Field, useField} from '@snek-at/jaen'
+import {Field, PhotoProvider} from '@snek-at/jaen'
 import React, {FC, useCallback, useState} from 'react'
-import {PhotoProvider, PhotoView} from 'react-photo-view'
 
 import {CONTAINER_MAX_WIDTH} from '../../../../constant/sizes'
 interface IImaginationBottomSectionProps {}
 
 const Images = React.memo<{
-  openImageViewer: (url: number) => void
   defaultImages: string[]
-  loadedImages: string[]
-  onLoaded: (index: number, url: string) => void
 }>(
-  ({openImageViewer, defaultImages, loadedImages, onLoaded}) => {
+  ({defaultImages}) => {
     return (
-      <PhotoProvider>
+      <PhotoProvider maskOpacity={0.8}>
         <Grid
-          height="110rem"
           width="100%"
           px="4"
           gridGap={{base: '2', md: '4'}}
@@ -41,57 +36,26 @@ const Images = React.memo<{
         >
           {new Array(defaultImages.length).fill('').map((_, i) => {
             const imageFieldName = `imaginationBottomImage${i}`
-            const imageField = useField<{
-              internalImageUrl: string
-            }>(imageFieldName, 'IMA:ImageField')
-            return (
-              <PhotoView
-                src={imageField.value?.internalImageUrl || defaultImages[i]}>
-                <GridItem gridArea={`I${i + 1}`} key={i} cursor="pointer">
-                  <Box
-                    _hover={{
-                      transition: 'all 0.2s ease',
-                      transform: {
-                        md: 'scale(1.02) ',
-                        lg: 'scale(1.02) '
-                      }
-                    }}
-                    transition="ease-in 0.2s"
-                    boxShadow="dark"
-                    borderRadius="xl"
-                    w="full"
-                    display={{base: 'block', md: 'none'}}
-                    h="full"
-                    overflow="hidden">
-                    <Field.Image name={imageFieldName} />
-                  </Box>
-                  <Box
-                    _hover={{
-                      transition: 'all 0.2s ease',
-                      transform: {
-                        md: 'scale(1.02) ',
-                        lg: 'scale(1.02) '
-                      }
-                    }}
-                    transition="ease-in 0.2s"
-                    display={{base: 'none', md: 'block'}}
-                    boxShadow="dark"
-                    borderRadius="xl"
-                    w="full"
-                    h="full"
-                    overflow="hidden">
-                    <Field.Image
-                      onLoad={() => {
-                        const imageUrl =
-                          imageField.value?.internalImageUrl || defaultImages[i]
 
-                        onLoaded(i, imageUrl)
-                      }}
-                      name={imageFieldName}
-                    />
-                  </Box>
-                </GridItem>
-              </PhotoView>
+            return (
+              <GridItem gridArea={`I${i + 1}`} key={i} cursor="pointer">
+                <Box
+                  _hover={{
+                    transition: 'all 0.2s ease',
+                    transform: {
+                      md: 'scale(1.02) ',
+                      lg: 'scale(1.02) '
+                    }
+                  }}
+                  transition="ease-in 0.2s"
+                  boxShadow="dark"
+                  borderRadius="xl"
+                  w="full"
+                  h="full"
+                  overflow="hidden">
+                  <Field.Image name={imageFieldName} lightbox lightboxGroup />
+                </Box>
+              </GridItem>
             )
           })}
         </Grid>
@@ -132,21 +96,7 @@ const ImaginationBottomSection: FC<IImaginationBottomSectionProps> = () => {
     <>
       {' '}
       <>
-        <Images
-          onLoaded={(index, url) => {
-            if (loadedImages[index] !== url) {
-              // set url to specific index
-              setLoadedImages(prev => {
-                const newLoadedImages = [...prev]
-                newLoadedImages[index] = url
-                return newLoadedImages
-              })
-            }
-          }}
-          openImageViewer={openImageViewer}
-          defaultImages={desktopImages}
-          loadedImages={loadedImages}
-        />
+        <Images defaultImages={desktopImages} />
       </>
     </>
   )
