@@ -34,7 +34,7 @@ export const ParallaxHero = ({ noScroll }: ParallaxHeroProps) => {
     <HStack mb="10" display="flex" justifyContent="center">
       <TextLoop>
         {[
-          "Teile Glück und Freude mit 🎈",
+          "Teile Glück und Freude mit",
           "Schaffe Atmosphäre mit",
           "Heirate mit",
           "Feiere deinen Anlass mit",
