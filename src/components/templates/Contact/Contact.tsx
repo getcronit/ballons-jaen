@@ -53,7 +53,7 @@ const Contact: FC<IContactProps> = () => {
     <>
       <ContactHero contactDetails={contactDetails} />
       <ContactTimings contactDetails={contactDetails} />
-      <ContactBottomSection />
+      {/* <ContactBottomSection /> */}
     </>
   )
 }
