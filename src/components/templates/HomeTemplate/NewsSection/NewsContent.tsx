@@ -35,7 +35,7 @@ const NewsContent: FC<INewsContentProps> = () => {
         fontSize={{ base: 'sm', md: 'md' }}
         maxW={{ sm: '60%', md: '50%' }}
         mb="4 !important"
-        name="newsText"
+        name="description"
         defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in libero risus semper"
       />
       <LinkButtonField
