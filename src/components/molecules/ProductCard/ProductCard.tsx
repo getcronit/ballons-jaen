@@ -167,7 +167,7 @@ export const ProductCard = ({
           <Text fontSize="xs" color="gray.600" textAlign="center">
             {taxable ? 'inkl.' : 'exkl.'} MwSt.
           </Text>
-          <Spacer
+          {/* <Spacer
             position="absolute"
             className="bspacer"
             w="0"
@@ -176,7 +176,7 @@ export const ProductCard = ({
             borderLeft="1px"
             borderColor="gray.200"
             transform="scale(0.97)"
-          />
+          /> */}
           <Box
             className="borderline"
             cursor="pointer"
