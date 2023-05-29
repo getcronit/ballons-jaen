@@ -16,22 +16,22 @@ import {
   Stack,
   useDisclosure
 } from '@chakra-ui/react'
-import { Link, navigate } from 'gatsby'
-import { FC } from 'react'
+import {Link, navigate} from 'gatsby'
+import {FC} from 'react'
 import {
   AiOutlineArrowLeft,
   AiOutlineSearch,
   AiOutlineShop,
   AiOutlineShoppingCart
 } from 'react-icons/ai'
-import { FaPhoneAlt } from 'react-icons/fa'
+import {FaPhoneAlt} from 'react-icons/fa'
 
-import { IoCloseOutline, IoMenuOutline } from 'react-icons/io5'
-import { useContactModal } from '../../services/contact'
-import { LayoutMode } from '../../types/commonTypes'
-import { NavAuthButton } from './NavAuthButton'
-import { BottomNavLinks } from './NavLinks'
-import { Logo } from '../../common/assets/Logo'
+import {IoCloseOutline, IoMenuOutline} from 'react-icons/io5'
+import {useContactModal} from '../../services/contact'
+import {LayoutMode} from '../../types/commonTypes'
+import {NavAuthButton} from './NavAuthButton'
+import {BottomNavLinks} from './NavLinks'
+import {Logo} from '../../common/assets/Logo'
 
 interface IMobileNavProps {
   mode?: LayoutMode
@@ -44,7 +44,7 @@ export const MobileNav: FC<IMobileNavProps> = ({
   onSearchClick,
   onBasketClick
 }) => {
-  const { isOpen, onToggle } = useDisclosure()
+  const {isOpen, onToggle} = useDisclosure()
 
   const contactModal = useContactModal()
 
@@ -66,14 +66,15 @@ export const MobileNav: FC<IMobileNavProps> = ({
               onClick={onToggle}
             />
           ) : (
-            <IconButton
+            <Button
               as={Link}
               to="/"
-              icon={<AiOutlineArrowLeft />}
+              leftIcon={<AiOutlineArrowLeft />}
               aria-label="Zur Website"
               variant="link"
-              size="xs"
-            />
+              size="xs">
+              Zurück
+            </Button>
           )}
 
           <Box>
@@ -86,10 +87,14 @@ export const MobileNav: FC<IMobileNavProps> = ({
               src="/images/red_logo.svg"
             /> */}
             <Logo
-              //maxWidth='20rem'
-              //height="auto"
-              height=".875rem"
-              width="10rem"
+              maxWidth={{
+                base: '10rem',
+                sm: '12rem',
+                md: '15rem'
+              }}
+              height="auto"
+              // height=".875rem"
+              //width="10rem"
               //transform="scale(0.5)"
               objectFit="contain"
               // display={mode === 'website' ? 'block' : 'none'}
@@ -101,7 +106,16 @@ export const MobileNav: FC<IMobileNavProps> = ({
               alt="logo"
             />
           </Box>
-          <HStack gap="0" justifySelf="end" spacing="0">
+          <HStack justifySelf="end">
+            <IconButton
+              aria-label="Kontakt"
+              size="md"
+              variant="ghost"
+              icon={<FaPhoneAlt />}
+              onClick={() => {
+                contactModal.onOpen()
+              }}
+            />
             <NavAuthButton />
             {mode === 'website' ? (
               <IconButton

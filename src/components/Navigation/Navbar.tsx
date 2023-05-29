@@ -42,7 +42,7 @@ import {SearchbarButton} from '../molecules/Searchbar'
 import BottomNav from './BottomNav'
 import {CONTAINER_MAX_WIDTH} from '../../constant/sizes'
 
-import { Logo } from '../../common/assets/Logo'
+import {Logo} from '../../common/assets/Logo'
 
 interface INavbarProps {
   mode: LayoutMode
@@ -61,7 +61,6 @@ export const Navbar: FC<INavbarProps> = ({
 
   return (
     <Box
-      pb={'3'}
       willChange={'transform'}
       animation="shadowShine 5s infinite linear alternate-reverse"
       _after={{
@@ -75,7 +74,9 @@ export const Navbar: FC<INavbarProps> = ({
         zIndex: '-1',
         animation: ' 5s shadowShine 5s infinite linear alternate-reverse'
       }}>
-      <Flex
+      <Stack
+        direction="row"
+        spacing="4"
         //bg={useColorModeValue('white', 'gray.800')}
         //color={useColorModeValue('gray.600', 'white')}
         minH={'60px'}
@@ -100,25 +101,12 @@ export const Navbar: FC<INavbarProps> = ({
           <Button
             size="sm"
             as={GatsbyLink}
+            variant="link"
             to="/"
             visibility={mode === 'website' ? 'hidden' : 'visible'}
             leftIcon={<AiOutlineArrowLeft />}>
             {/* <Image h=".875rem" w="10rem" src="/images/white_logo.svg" /> */}
-            <Logo
-            //maxWidth='20rem'
-            //height="auto"
-            height=".875rem"
-            width="10rem"
-            //transform="scale(0.5)"
-            objectFit="contain"
-            // display={mode === 'website' ? 'block' : 'none'}
-            cursor="pointer"
-            onClick={() => {
-              void navigate('/')
-            }}
-            color="#FFFFFF"
-            alt="logo"
-          />
+            Zurück zur Website
           </Button>
         </Flex>
 
@@ -154,7 +142,7 @@ export const Navbar: FC<INavbarProps> = ({
           >
             <object width={"100%"} type="image/svg+xml" data="/images/red_logo.svg">svg-image</object>
           </Box> */}
-          
+
           <Logo
             //maxWidth='20rem'
             //height="auto"
@@ -170,15 +158,17 @@ export const Navbar: FC<INavbarProps> = ({
           />
         </Flex>
 
-        <Stack flex={1} justify={'flex-end'} direction={'row'} spacing={6}>
-          <Button
-            variant="link"
-            size="sm"
-            leftIcon={<FaPhoneAlt />}
-            onClick={onContactClick}>
-            Anfragen
-          </Button>
+        <Stack flex={1} justify={'flex-end'} direction={'row'} spacing="4">
+          <IconButton
+            aria-label="Kontakt"
+            size="md"
+            variant="ghost"
+            icon={<FaPhoneAlt />}
+            onClick={onContactClick}
+          />
+
           <NavAuthButton />
+
           {mode === 'website' ? (
             <Button
               display={{
@@ -192,17 +182,17 @@ export const Navbar: FC<INavbarProps> = ({
               Onlineshop
             </Button>
           ) : (
-            <ButtonGroup>
-              <SearchbarButton onClick={onSearchClick} maxW="sm" w={'10vw'} />
+            <>
+              <IconButton
+                aria-label="Warenkorb"
+                size="md"
+                variant={'ghost'}
+                icon={<AiOutlineShoppingCart />}
+                onClick={onBasketClick}
+              />
 
-              <Button
-                size="sm"
-                variant={'outline'}
-                leftIcon={<AiOutlineShoppingCart />}
-                onClick={onBasketClick}>
-                Warenkorb
-              </Button>
-            </ButtonGroup>
+              <SearchbarButton onClick={onSearchClick} />
+            </>
           )}
           {/* <Button
               as="a"
@@ -216,7 +206,7 @@ export const Navbar: FC<INavbarProps> = ({
               Onlineshop
             </Button> */}
         </Stack>
-      </Flex>
+      </Stack>
 
       <Flex
         display={{base: 'none', md: 'flex'}}

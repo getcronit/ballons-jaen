@@ -28,17 +28,9 @@ export const NavAuthButton: React.FC<NavAuthButtonProps> = () => {
 
   const responsiveButton = (
     <>
-      <Button
-        display={{base: 'none', lg: 'flex'}}
-        size="sm"
-        variant="link"
-        leftIcon={<AiOutlineUser />}
-        onClick={openLoginModal}>
-        {user ? user.name : 'Login'}
-      </Button>
       <IconButton
-        display={{base: 'flex', lg: 'none'}}
         variant="ghost"
+        size="md"
         icon={<AiOutlineUser />}
         aria-label="Login"
         onClick={openLoginModal}
