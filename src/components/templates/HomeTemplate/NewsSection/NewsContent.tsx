@@ -31,7 +31,7 @@ const NewsContent: FC<INewsContentProps> = () => {
         name="newssubtitle"
         defaultValue="Gute Dekoration ist kein Zufall"
       />
-      <Field.Text
+      <Field.RichText
         fontSize={{ base: 'sm', md: 'md' }}
         maxW={{ sm: '60%', md: '50%' }}
         mb="4 !important"

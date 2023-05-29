@@ -282,7 +282,7 @@ const SubCategoryContentSection = connectBlock(
               fontWeight="semibold"
               defaultValue="Überschrift"
             />
-            <Field.Text
+            <Field.RichText
               fontSize={{base: 'sm', lg: 'md'}}
               textAlign="center"
               name="Text"
@@ -362,7 +362,7 @@ const CategoryContentSection = connectBlock(
               defaultValue="Unterüberschrift"
             />
 
-            <Field.Text
+            <Field.RichText
               fontSize={{base: 'sm', lg: 'md'}}
               textAlign="center"
               name="text"

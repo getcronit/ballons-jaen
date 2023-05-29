@@ -51,7 +51,7 @@ const JoySection: FC<IJoySectionProps> = () => {
               defaultValue="liegt in der Luft"
             />
           </VStack>
-          <Field.Text
+          <Field.RichText
             fontSize={{ base: 'sm', md: 'md' }}
             fontWeight="medium"
             textAlign="center"

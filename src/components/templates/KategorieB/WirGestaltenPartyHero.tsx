@@ -51,7 +51,7 @@ const WirGestaltenPartyHero: FC<IWirGestaltenPartyHeroProps> = () => {
               defaultValue="<p>Wir gestalten </br> <i>Ihre Party</i></p>"
             />
 
-            <Field.Text
+            <Field.RichText
               display={{ base: 'none', sm: 'block' }}
               fontSize={{ base: 'sm', lg: 'md' }}
               maxW={{ md: '70%' }}
