@@ -57,7 +57,7 @@ const ProductCatlog: FC<IProductCatlogProps> = () => {
             name="catalogueTitle"
             defaultValue="<p>Unsere <i>Kataloge</i></p>"
           />
-          <Field.Text
+          <Field.RichText
             fontSize={{ base: 'sm', lg: 'md' }}
             name="catalogueText"
 
