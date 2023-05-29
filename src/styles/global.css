@@ -85,7 +85,7 @@
 }
 
 .chakra-popover__popper {
-  z-index: 9999;
+  z-index: 9999 !important;
 }
 
 @keyframes shadowShine {
