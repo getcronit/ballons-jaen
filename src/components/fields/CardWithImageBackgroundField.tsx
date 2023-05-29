@@ -22,6 +22,7 @@ import {useForm} from 'react-hook-form'
 
 import {navigate} from 'gatsby'
 import React from 'react'
+import {validateUrl} from '../../common/utils'
 
 interface ICardWithImageBackgroundProps {
   card: {
@@ -38,15 +39,6 @@ interface ICardWithImageBackgroundProps {
   w?: {} | string
   h?: {} | string
   isSmallText?: boolean
-}
-
-const validateUrl = (value: string): boolean => {
-  try {
-    new URL(value)
-    return true
-  } catch (_) {
-    return false
-  }
 }
 
 const UpdateUrlForm: React.FC<{
