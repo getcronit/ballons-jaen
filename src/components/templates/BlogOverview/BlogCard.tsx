@@ -34,18 +34,17 @@ const BlogCard: FC<IBlogCardProps> = ({slug}) => {
         justify="center"
         py={{base: 2, md: 0}}>
         <BlogTags fieldName="tags" />
-        <Field.RichText
+        <Field.Text
           as={Heading}
           size="h2418"
-          noOfLines={1}
+          //noOfLines={1}
           name="title"
-          defaultValue="<p>Ballons & Ballons: Die Geschichte</p>"
+          defaultValue="Ballons & Ballons: Die Geschichte"
         />{' '}
         <Field.RichText
-          as={Heading}
-          variant="light"
-          size="b2012"
-          noOfLines={3}
+          //as={Heading}
+          fontSize={{md: 'xs', lg: 'sm', xl: 'md'}}
+          noOfLines={4}
           name="description"
           defaultValue={`
             <p>

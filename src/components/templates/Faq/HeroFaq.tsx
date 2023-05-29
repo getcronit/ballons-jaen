@@ -25,7 +25,7 @@ const HeroFaq: FC<IHeroFaqProps> = () => {
             defaultValue="<p>Häufig gestellte <i>Fragen</i></p>"
           />
         </Flex>
-        <Field.Text
+        <Field.RichText
           size="b2415"
           fontWeight="light"
           maxW="800px"

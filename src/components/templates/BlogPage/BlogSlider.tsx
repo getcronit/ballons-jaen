@@ -56,7 +56,7 @@ const BlogSlider: FC<IBlogSliderProps> = () => {
         </Box>
 
         <Box pt="12"></Box>
-        <Field.Text
+        <Field.RichText
           size="b2012"
           textAlign="center"
           py={{base: 16, md: 8, xl: 16}}
