@@ -1,11 +1,12 @@
-import { Box, Container, Flex, Heading, Text, VStack } from '@chakra-ui/react';
+import { Box, Container, Flex, Heading, Stack, Text, VStack } from '@chakra-ui/react';
 
 import { FC } from 'react';
 import OurBoss from './OurBoss';
-import TeamMember from './TeamMember';
+import { TeamMemberSection } from './TeamMember';
 import { CONTAINER_MAX_WIDTH } from '../../../../constant/sizes';
+import { Field } from '@snek-at/jaen';
 
-interface IOurTeamProps {}
+interface IOurTeamProps { }
 
 const OurTeam: FC<IOurTeamProps> = () => {
   const teamMembers = [
@@ -116,7 +117,23 @@ const OurTeam: FC<IOurTeamProps> = () => {
             <Heading size="h3015">Steckbrief</Heading>
           </VStack>
         </Container>
-        <Box
+          <Field.Section
+            as={Stack}
+            props={{ spacing: 20, py: 8 }}
+            // sectionProps={{
+            //   py: {
+            //     base: '12',
+            //     md: '20'
+            //   }
+            // }}
+            name="content"
+            label="Content"
+            blocks={[
+              TeamMemberSection({ members: teamMembers }),
+            ]}
+          />
+
+        {/* <Box
           bgImage={{ md: '/images/about_us/thread1.svg' }}
           bgRepeat="no-repeat"
           bgPos="0"
@@ -144,7 +161,7 @@ const OurTeam: FC<IOurTeamProps> = () => {
             <TeamMember member={teamMembers[3]} />
             <TeamMember member={teamMembers[4]} />
           </Container>
-        </Box>
+        </Box> */}
       </Box>
       <OurBoss member={bossData} />
     </>
