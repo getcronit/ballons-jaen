@@ -4410,10 +4410,10 @@
     shopify-buy "^2.17.0"
     urql "^2.2.0"
 
-"@snek-at/jaen@^0.0.57":
-  version "0.0.57"
-  resolved "https://registry.yarnpkg.com/@snek-at/jaen/-/jaen-0.0.57.tgz#370611096de0b8ee361f22cc8fa77eef7f9d7781"
-  integrity sha512-+G1YAtbkirT8B7HVeBexcw7oiB0dYx14Lh+3jtW4qqHRrJtsLCi/NMCgHU3wh5RB+O65web0INKLrG2131RCzA==
+"@snek-at/jaen@^0.0.62":
+  version "0.0.62"
+  resolved "https://registry.yarnpkg.com/@snek-at/jaen/-/jaen-0.0.62.tgz#a798cbd40f30e88b701cda6287823481d0adbfb8"
+  integrity sha512-k4R9yk/6WsT1346Kh1qBaf62EhbANuay6Tv8X6c56AzXG6/ZOX8N7mA5uz33+GabaVrzcw7Y1b7Tz66aXPVhAw==
   dependencies:
     "@chakra-ui/icons" "^2.0.18"
     "@chakra-ui/pro-theme" "^0.0.64"
@@ -4472,9 +4472,9 @@
     vfile-statistics "^2.0.1"
 
 "@snek-at/snek-finder@^1.0.0-beta.23":
-  version "1.0.0-beta.23"
-  resolved "https://registry.yarnpkg.com/@snek-at/snek-finder/-/snek-finder-1.0.0-beta.23.tgz#95264e14094c18139b805b9cf5fb4807bcb13205"
-  integrity sha512-nbDdDOc0WJUyCGVzZTwNuudWsofFNs3pdz/EvyJytw4HBXcHNp1abUbz3yPtZ+rXWS4px4kevf/0M+pABXaziw==
+  version "1.0.0-beta.24"
+  resolved "https://registry.yarnpkg.com/@snek-at/snek-finder/-/snek-finder-1.0.0-beta.24.tgz#cbe6c5c0bb15742d6a7e1d31fe377a8eeb7f6b07"
+  integrity sha512-Znhr8Au1cjolm+Pu6CeNKz7wjhTtYzGE2WtbmHneSvd1qTCbSJiXhqSbLABWC8ZiCeZk2PgFrnGyuqfuetNTRA==
   dependencies:
     "@chakra-ui/icons" "^2"
     "@chakra-ui/react" "^2.5.5"
@@ -9265,10 +9265,10 @@ gatsby-plugin-image@^2.12.1, gatsby-plugin-image@^3:
     objectFitPolyfill "^2.3.5"
     prop-types "^15.8.1"
 
-gatsby-plugin-jaen@^0.0.21:
-  version "0.0.21"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-jaen/-/gatsby-plugin-jaen-0.0.21.tgz#2e13be645035dd0cd01ee68ef6ea1002875c835d"
-  integrity sha512-OxkNJ8SHvpAQUaAtAvc8DtkzBLaNbhh2PUj4V9aaiLR52/Z8u2BzuTizhYgQoRLYaHsnTuQb1bbgz+XY6RbTGg==
+gatsby-plugin-jaen@^0.0.22:
+  version "0.0.22"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-jaen/-/gatsby-plugin-jaen-0.0.22.tgz#6b12184c607f72bb25ee05423167463e566a7782"
+  integrity sha512-BGWSge5u5E7v6rDVW2hAb6AizBE9/PAnkExsFjMyyADNwKybCxRIl+cxUw0VsiUH8vr4DehJNHdch4SVthbU7Q==
   dependencies:
     "@chakra-ui/gatsby-plugin" "^3.1.1"
     gatsby-plugin-compile-es6-packages "^2.1.1"

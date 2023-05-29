@@ -414,10 +414,7 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
       displayName: 'Kategorien'
     }
 
-    const section = useSectionField({
-      sectionName: settings.fieldName,
-      blocks: []
-    })
+    const section = useSectionField(settings.fieldName, [])
 
     // add event listener to check which section is active
 
