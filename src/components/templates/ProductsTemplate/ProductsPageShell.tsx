@@ -48,6 +48,7 @@ import {GroupBase, OptionBase, Select} from 'chakra-react-select'
 import {Link} from 'gatsby'
 import React, {Fragment, ReactNode} from 'react'
 import {BsFilterCircleFill} from 'react-icons/bs'
+import {OverflownText} from '../../OverflownText'
 
 interface TagFilterOption extends OptionBase {
   label: string
@@ -537,7 +538,10 @@ const Filter: React.FC<{
                     {
                       // Format tag string to label -> "Kategorie:Bubbels:Test" -> "Kategorie Bubbels > Test"
                       // This formatting is for every group
-                      tag
+
+                      <OverflownText maxW="24" isTruncated fontSize={'xs'}>
+                        {tag}
+                      </OverflownText>
                     }
                   </Button>
                 )
@@ -548,6 +552,7 @@ const Filter: React.FC<{
         {activeTagsArray.length > ACTIVE_LIMIT && (
           <Button
             size="sm"
+            fontSize={'xs'}
             variant="ghost"
             fontWeight="normal"
             color="black"
