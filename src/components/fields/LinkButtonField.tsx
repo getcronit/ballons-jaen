@@ -1,4 +1,4 @@
-import { EditIcon } from '@chakra-ui/icons'
+import {EditIcon} from '@chakra-ui/icons'
 import {
   Box,
   Button,
@@ -17,31 +17,23 @@ import {
   Stack,
   useDisclosure
 } from '@chakra-ui/react'
-import { useForm } from 'react-hook-form'
+import {useForm} from 'react-hook-form'
 
-import { Field, useField } from '@snek-at/jaen'
-import { navigate } from 'gatsby'
+import {Field, useField} from '@snek-at/jaen'
+import {navigate} from 'gatsby'
 import React from 'react'
-
-const validateUrl = (value: string): boolean => {
-  try {
-    new URL(value)
-    return true
-  } catch (_) {
-    return false
-  }
-}
+import {validateUrl} from '../../common/utils'
 
 const UpdateUrlForm: React.FC<{
   onSaved: (url: string) => void
   onCancle: () => void
   initUrl: string
-}> = ({ onSaved, onCancle, initUrl }) => {
+}> = ({onSaved, onCancle, initUrl}) => {
   const {
     handleSubmit,
     register,
     reset,
-    formState: { errors, isSubmitting }
+    formState: {errors, isSubmitting}
   } = useForm<{
     url: string
   }>({
@@ -57,7 +49,7 @@ const UpdateUrlForm: React.FC<{
     })
   }, [initUrl, reset])
 
-  const onSubmit = (data: { url: string }) => {
+  const onSubmit = (data: {url: string}) => {
     onSaved(data.url)
 
     // reset the form
@@ -102,8 +94,8 @@ const LinkButtonField: React.FC<
     defaultValue?: string
     defaultUrl?: string
   } & ButtonProps
-> = ({ name, defaultValue, defaultUrl, ...buttonProps }) => {
-  const { onOpen, onClose, isOpen } = useDisclosure()
+> = ({name, defaultValue, defaultUrl, ...buttonProps}) => {
+  const {onOpen, onClose, isOpen} = useDisclosure()
   const firstFieldRef = React.useRef(null)
 
   const hiddenUrlFieldName = `${name}.url`
@@ -129,7 +121,7 @@ const LinkButtonField: React.FC<
   }, [hiddenUrlField.value])
 
   return (
-    <Box pos={'relative'} maxW={"fit-content"}>
+    <Box pos={'relative'} maxW={'fit-content'}>
       <Field.Text
         as={Button}
         {...buttonProps}

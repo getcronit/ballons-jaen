@@ -8,7 +8,10 @@ import React from 'react'
 import theme from '../styles/theme'
 import {getProductMetafields} from './getProductMetafields'
 
-export const isChrome = typeof window !== 'undefined' ? /Chrome/.test(window.navigator.userAgent) : false
+export const isChrome =
+  typeof window !== 'undefined'
+    ? /Chrome/.test(window.navigator.userAgent)
+    : false
 
 export function uuidv1() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -120,4 +123,9 @@ export const today = () => {
     month: 'long',
     day: 'numeric'
   })
+}
+
+export const validateUrl = (value: string): boolean => {
+  const urlPattern = /^(https?:\/\/)?([^\s./]+\.[^\s]{2,}|\/[^/\s]+)+$/i
+  return urlPattern.test(value)
 }

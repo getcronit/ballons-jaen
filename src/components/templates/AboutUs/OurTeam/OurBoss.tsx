@@ -1,4 +1,5 @@
 import {
+  AspectRatio,
   Box,
   Container,
   Flex,
@@ -14,6 +15,7 @@ import {
 
 import { FC } from 'react';
 import { CONTAINER_MAX_WIDTH } from '../../../../constant/sizes';
+import { Field } from '@snek-at/jaen';
 
 interface IOurBossProps {
   member: {
@@ -47,7 +49,17 @@ const OurBoss: FC<IOurBossProps> = ({
           <VStack gap="4" flex="1">
             <Grid placeItems="center" pos="relative">
               <Image src="/images/about_us/boss_bg.svg" />
-              <Image src={image} pos="absolute" boxShadow="dark" w="70%" borderRadius="full" />
+              {/* <Image src={image} pos="absolute" boxShadow="dark" w="70%" borderRadius="full" /> */}
+              <AspectRatio
+                ratio={1}
+                pos="absolute"
+                boxShadow="dark"
+                overflow="hidden"
+                w="70%"
+                borderRadius="full"
+              >
+                <Field.Image name="image" />
+              </AspectRatio>
             </Grid>
             <Heading size="h3015" fontWeight="semibold">
               {name}
@@ -83,7 +95,16 @@ const OurBoss: FC<IOurBossProps> = ({
           </Box>
           <Grid placeItems="center" pos="relative" w="38%">
             <Image src="/images/about_us/boss_bg.svg" />
-            <Image src={image} pos="absolute" boxShadow="dark" w="80%" borderRadius="full" />
+            <AspectRatio
+              ratio={1}
+              pos="absolute"
+              boxShadow="dark"
+              overflow="hidden"
+              w="80%"
+              borderRadius="full"
+            >
+              <Field.Image name="image" />
+            </AspectRatio>
           </Grid>
         </Flex>
         <Text fontSize="xs" textAlign={{ base: isLeft ? 'start' : 'end' }}>
