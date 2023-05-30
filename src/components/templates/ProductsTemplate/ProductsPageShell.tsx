@@ -521,31 +521,36 @@ const Filter: React.FC<{
           // All tags as buttons with a close icon left
 
           Object.entries(activeTags)
+            .reduce(
+              (result: {tag: string; group: string}[], [group, tagArray]) => [
+                ...result,
+                ...tagArray.map(tag => ({tag, group}))
+              ],
+              []
+            )
             .slice(0, ACTIVE_LIMIT)
-            .map(([group, tags]) => {
-              return tags.map((tag, index) => {
-                return (
-                  <Button
-                    key={index}
-                    size="sm"
-                    variant="ghost"
-                    fontWeight="normal"
-                    color="black"
-                    leftIcon={<SmallCloseIcon />}
-                    onClick={() => {
-                      addOrRemoveTag(tag, group)
-                    }}>
-                    {
-                      // Format tag string to label -> "Kategorie:Bubbels:Test" -> "Kategorie Bubbels > Test"
-                      // This formatting is for every group
+            .map(({tag, group}, index) => {
+              return (
+                <Button
+                  key={index}
+                  size="sm"
+                  variant="ghost"
+                  fontWeight="normal"
+                  color="black"
+                  leftIcon={<SmallCloseIcon />}
+                  onClick={() => {
+                    addOrRemoveTag(tag, group)
+                  }}>
+                  {
+                    // Format tag string to label -> "Kategorie:Bubbels:Test" -> "Kategorie Bubbels > Test"
+                    // This formatting is for every group
 
-                      <OverflownText maxW="24" isTruncated fontSize={'xs'}>
-                        {tag}
-                      </OverflownText>
-                    }
-                  </Button>
-                )
-              })
+                    <OverflownText maxW="24" isTruncated fontSize={'xs'}>
+                      {tag}
+                    </OverflownText>
+                  }
+                </Button>
+              )
             })
         }
 
