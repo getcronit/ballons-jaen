@@ -1,16 +1,12 @@
-import {Box, Stack, Text} from '@chakra-ui/react'
+import {Box, Stack} from '@chakra-ui/react'
 import {FC} from 'react'
-
-import BottomNav from './BottomNav'
-import {MobileNav} from './MobileNav'
-import DesktopNav from './DesktopNav'
 
 import {Navbar} from './Navbar'
 
 import {useBasket} from '../../services/basket'
+import {useContactModal} from '../../services/contact'
 import {useSearch} from '../../services/search'
 import {LayoutMode} from '../../types/commonTypes'
-import {useContactModal} from '../../services/contact'
 import TopNav from './TopNav'
 
 interface INavigationProps {
@@ -55,31 +51,14 @@ const Navigation: FC<INavigationProps> = ({mode}) => {
         top="0"
         bg="rgba(255,255,255,.9)"
         backdropFilter={'blur(7px)'}>
-        <Stack
-          display={{base: 'none', lg: 'flex'}}
-          spacing="0"
-          clipPath={'inset( 0 0 -100vw 0 )'}>
-          {/* <DesktopNav
-            mode={mode}
-            onSearchClick={handleOnSearchClick}
-            onBasketClick={handleOnBasketClick}
-          /> */}
+        <Stack spacing="0" clipPath={'inset( 0 0 -100vw 0 )'}>
           <Navbar
             mode={mode}
             onSearchClick={handleOnSearchClick}
             onBasketClick={handleOnBasketClick}
             onContactClick={handleOnContactClick}
           />
-          {/*mode === 'website' && <BottomNav />*/}
         </Stack>
-        <Box as="nav" display={{base: 'block', lg: 'none'}}>
-          <MobileNav
-            mode={mode}
-            onSearchClick={handleOnSearchClick}
-            onBasketClick={handleOnBasketClick}
-            //onContactClick={handleOnContactClick}
-          />
-        </Box>
       </Box>
     </>
   )

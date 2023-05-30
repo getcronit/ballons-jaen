@@ -5,10 +5,11 @@ import {
   MenuButton,
   MenuDivider,
   MenuItem,
-  MenuList
+  MenuList,
+  Tooltip
 } from '@chakra-ui/react'
 import {Link, navigate} from 'gatsby'
-import {AiOutlineUser} from 'react-icons/ai'
+import {FaUser} from 'react-icons/fa'
 import {useIsClient} from '../../common/useIsClient'
 import {useAuthentication} from '../../services/authentication'
 import {useBasket} from '../../services/basket'
@@ -27,24 +28,24 @@ export const NavAuthButton: React.FC<NavAuthButtonProps> = () => {
   }
 
   const responsiveButton = (
-    <>
-      <IconButton
-        variant="ghost"
-        size="md"
-        icon={<AiOutlineUser />}
-        aria-label="Login"
-        onClick={openLoginModal}
-      />
-    </>
+    <IconButton
+      variant="ghost"
+      size="md"
+      icon={<FaUser />}
+      aria-label="Login"
+      onClick={openLoginModal}
+    />
   )
 
   if (!user) {
-    return responsiveButton
+    return <Tooltip label="Login">{responsiveButton}</Tooltip>
   }
 
   return (
     <Menu>
-      <MenuButton>{responsiveButton}</MenuButton>
+      <Tooltip label="Mein Konto">
+        <MenuButton>{responsiveButton}</MenuButton>
+      </Tooltip>
 
       <MenuList>
         <MenuItem

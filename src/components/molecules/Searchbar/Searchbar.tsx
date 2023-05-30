@@ -1,14 +1,16 @@
-import {SearchIcon} from '@chakra-ui/icons'
-import {Button, ButtonProps, IconButton, Text} from '@chakra-ui/react'
+import {ButtonProps, IconButton, Tooltip} from '@chakra-ui/react'
+import {FaSearch} from 'react-icons/fa'
 
 export const SearchbarButton = (props: ButtonProps) => {
   return (
-    <IconButton
-      aria-label="Search"
-      variant="ghost"
-      size="md"
-      icon={<SearchIcon />}
-      {...props}
-    />
+    <Tooltip label="Suche">
+      <IconButton
+        aria-label="Search"
+        variant="ghost"
+        size="md"
+        icon={<FaSearch />}
+        {...props}
+      />
+    </Tooltip>
   )
 }
