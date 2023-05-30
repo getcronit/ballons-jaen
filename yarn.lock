@@ -4410,10 +4410,10 @@
     shopify-buy "^2.17.0"
     urql "^2.2.0"
 
-"@snek-at/jaen@^0.0.62":
-  version "0.0.62"
-  resolved "https://registry.yarnpkg.com/@snek-at/jaen/-/jaen-0.0.62.tgz#a798cbd40f30e88b701cda6287823481d0adbfb8"
-  integrity sha512-k4R9yk/6WsT1346Kh1qBaf62EhbANuay6Tv8X6c56AzXG6/ZOX8N7mA5uz33+GabaVrzcw7Y1b7Tz66aXPVhAw==
+"@snek-at/jaen@^0.0.63":
+  version "0.0.63"
+  resolved "https://registry.yarnpkg.com/@snek-at/jaen/-/jaen-0.0.63.tgz#6010521db5237cf2c14c2ac91d733ad02e7fe88f"
+  integrity sha512-UW4Qh4fCzGA2+2MrK8+Yfsvl8+TrirLWF3QDfCOHoPoc3DXuVPFigiks+Z+yz4IoVdKpjQtspvYx/GEwaVD2+A==
   dependencies:
     "@chakra-ui/icons" "^2.0.18"
     "@chakra-ui/pro-theme" "^0.0.64"
@@ -4428,7 +4428,7 @@
     "@mdx-js/mdx" "^2.3.0"
     "@reach/router" "^1.3.4"
     "@reduxjs/toolkit" "^1.8.6"
-    "@snek-at/snek-finder" "^1.0.0-beta.23"
+    "@snek-at/snek-finder" "^1.0.0-beta.25"
     "@snek-functions/origin" "^0.2.3"
     ahooks "^3.7.7"
     codemirror "^6.0.1"
@@ -4471,10 +4471,10 @@
     vfile-reporter "^7.0.5"
     vfile-statistics "^2.0.1"
 
-"@snek-at/snek-finder@^1.0.0-beta.23":
-  version "1.0.0-beta.24"
-  resolved "https://registry.yarnpkg.com/@snek-at/snek-finder/-/snek-finder-1.0.0-beta.24.tgz#cbe6c5c0bb15742d6a7e1d31fe377a8eeb7f6b07"
-  integrity sha512-Znhr8Au1cjolm+Pu6CeNKz7wjhTtYzGE2WtbmHneSvd1qTCbSJiXhqSbLABWC8ZiCeZk2PgFrnGyuqfuetNTRA==
+"@snek-at/snek-finder@^1.0.0-beta.25":
+  version "1.0.0-beta.25"
+  resolved "https://registry.yarnpkg.com/@snek-at/snek-finder/-/snek-finder-1.0.0-beta.25.tgz#edd0082f7026297ac8f4b56e4252617968ebc389"
+  integrity sha512-xSOAB+z5AHOzdNc+LElxMUH7kw9eSJ3v+EYuUoVXlIpDwdXIYq0jDg26KAfWie1UFRLfa2l+nZYl7qCLil3jwg==
   dependencies:
     "@chakra-ui/icons" "^2"
     "@chakra-ui/react" "^2.5.5"
