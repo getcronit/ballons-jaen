@@ -106,7 +106,6 @@ export const ProductTemplate = ({
               <ImageSlider
                 featuredMedia={shopifyProduct.featuredMedia}
                 media={shopifyProduct.media}
-                description={shopifyProduct.descriptionHtml}
               />
             </Box>
 
@@ -130,7 +129,7 @@ export const ProductTemplate = ({
               />
             </Box>
           </Stack>
-          <Box display={{base: 'block', md: 'none'}}>
+          <Box>
             <ProductMoreDetail description={shopifyProduct.descriptionHtml} />
           </Box>
         </Stack>
@@ -466,7 +465,6 @@ const ImageThumbnailWrapItem = (props: {
 const ImageSlider = (props: {
   featuredMedia: SliderMedia
   media: ShopifyProduct['media']
-  description?: string
 }) => {
   const media = props.media
   const [curMediaIndex, setCurMediaIndex] = React.useState<number>(0)
@@ -520,10 +518,6 @@ const ImageSlider = (props: {
             ))}
           </Wrap>
         )}
-
-        <Box display={{base: 'none', md: 'block'}}>
-          <ProductMoreDetail description={props.description || ''} />
-        </Box>
       </Flex>
     </PhotoProvider>
   )
