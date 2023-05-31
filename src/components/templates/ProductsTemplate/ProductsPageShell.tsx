@@ -495,7 +495,7 @@ const Filter: React.FC<{
             fontWeight="normal"
             leftIcon={<SmallAddIcon />}
             onClick={drawerDisclosure.onOpen}>
-            Filter hinzufügen
+            Filter
           </Button>
         </HStack>
         <HStack direction="row" align="center">
@@ -576,21 +576,37 @@ const Filter: React.FC<{
                 )
               })
           }
+
+          {activeTagsArray.length > ACTIVE_LIMIT && (
+            <Button
+              size="sm"
+              fontSize={'xs'}
+              variant="ghost"
+              fontWeight="normal"
+              color="black"
+              onClick={drawerDisclosure.onOpen}>
+              {activeTagsArray.length - ACTIVE_LIMIT}{' '}
+              {activeTagsArray.length - ACTIVE_LIMIT === 1
+                ? 'weiterer'
+                : 'weitere'}
+              {' Aktiv'}
+            </Button>
+          )}
         </Wrap>
 
-        {activeTagsArray.length > ACTIVE_LIMIT && (
+        {activeTagsArray.length > 0 && (
           <Button
+            display={{
+              base: 'flex',
+              lg: 'none'
+            }}
             size="sm"
             fontSize={'xs'}
             variant="ghost"
             fontWeight="normal"
             color="black"
             onClick={drawerDisclosure.onOpen}>
-            {activeTagsArray.length - ACTIVE_LIMIT}{' '}
-            {activeTagsArray.length - ACTIVE_LIMIT === 1
-              ? 'weiterer'
-              : 'weitere'}
-            {' Aktiv'}
+            {activeTagsArray.length} Aktiv
           </Button>
         )}
       </Flex>
