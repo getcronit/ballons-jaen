@@ -20,16 +20,9 @@ export const ProductSlider = ({
   return (
     <>
       {heading && (
-        <Box textAlign="center" my="10">
-          <Heading size="xl">{heading}</Heading>
-          {/* <BulletIcon
-            color="agt.yellow"
-            w="unset"
-            fontSize="xl"
-            mt="5"
-            mb="10"
-          /> */}
-        </Box>
+        <Heading size="xl" textAlign="center">
+          {heading}
+        </Heading>
       )}
 
       <Slider
