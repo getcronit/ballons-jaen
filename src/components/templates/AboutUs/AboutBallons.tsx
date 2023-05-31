@@ -1,9 +1,11 @@
-import { Box, Container, Flex, Image, Stack } from '@chakra-ui/react';
+import { Box, Container, Flex, HStack, Heading, Image, Stack } from '@chakra-ui/react';
 
 import { FC, Fragment } from 'react';
 import { CONTAINER_MAX_WIDTH } from '../../../constant/sizes';
+import LinkButtonField from '../../fields/LinkButtonField';
+import { Field } from '@snek-at/jaen';
 
-interface IAboutBallonsProps {}
+interface IAboutBallonsProps { }
 
 const AboutBallons: FC<IAboutBallonsProps> = () => {
   const cards = [
@@ -50,6 +52,54 @@ const AboutBallons: FC<IAboutBallonsProps> = () => {
                 </Fragment>
               ))}
             </Stack> */}
+            <Stack
+              // zIndex={'999'}
+              maxW={{
+                xl: '50%'
+              }}
+              spacing="8"
+              justify="center">
+              <Field.RichText
+                as={Heading}
+                fontSize={{ base: 'md', md: 'xl', xl: '2xl' }}
+                lineHeight={{ base: '1.25rem', md: '2rem', xl: '2.5rem' }}
+                mb="-2"
+                whiteSpace="nowrap"
+                name="AboutBallonsHeading1"
+                defaultValue="<p>Auch die <i>kleinsten</i><br/> Dinge machen viel <i>Freude</i></p>"
+              />
+              <Field.RichText
+                //as={Heading}
+                name="AboutBallonsSubtitle"
+                fontSize={{ base: 'sm', md: 'md' }}
+                fontWeight="semibold"
+                defaultValue="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
+              />
+              <Field.RichText
+                name="AboutBallonsText"
+                fontSize={{ base: 'sm', md: 'md' }}
+                fontWeight="light"
+                defaultValue="At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+              />
+              <HStack
+                justify="center"
+                gap="4"
+                flexDir={{ base: 'row-reverse', md: 'row' }}>
+                <LinkButtonField
+                  name="littleThingsButton1"
+                  defaultValue="Zum Shop"
+                  defaultUrl={`/products`}
+                  size={{ base: 'sm', md: 'md' }}
+                />
+                <LinkButtonField
+                  name="littleThingsButton2"
+                  defaultValue="Großhandel"
+                  defaultUrl={`/grosshandel`}
+                  size={{ base: 'sm', md: 'md' }}
+                  variant="outline"
+                />
+              </HStack>
+            </Stack>
           </Flex>
         </Container>
       </Box>

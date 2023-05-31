@@ -13,7 +13,7 @@ const ContactAboutUs: FC<IAboutUsProps> = ({}) => {
     <>
       {/* <AboutHeroSection /> */}
       <Contact />
-      {/* <AboutBallons /> */}
+      <AboutBallons />
       {/* <OurCustomers /> */}
       <OurTeam />
       <ContactBottomSection />
