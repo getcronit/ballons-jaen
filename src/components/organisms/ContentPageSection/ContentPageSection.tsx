@@ -9,6 +9,7 @@ import {
   DrawerHeader,
   DrawerOverlay,
   Flex,
+  Grid,
   Heading,
   Image,
   Link,
@@ -26,16 +27,16 @@ import {
   UseSectionField,
   PhotoProvider
 } from '@snek-at/jaen'
-import React, {forwardRef, useEffect, useRef, useState} from 'react'
+import React, { forwardRef, useEffect, useRef, useState } from 'react'
 import Slider from 'react-slick'
 import BallonGas from './BallonGas'
 
-import {removeHtmlFromString} from '../../../common/utils'
+import { removeHtmlFromString } from '../../../common/utils'
 import FourCard from '../FourCard/FourCard'
 import ConvincedSection from './ConvincedSection'
-import {useContactModal} from '../../../services/contact'
+import { useContactModal } from '../../../services/contact'
 
-export interface ContentPageSectionProps {}
+export interface ContentPageSectionProps { }
 
 const ImagesGallery3x3Section = connectBlock(
   () => {
@@ -65,58 +66,48 @@ const ImagesGallery3x3Section = connectBlock(
     return (
       <>
         <VStack
-          display={{base: 'none', md: 'flex'}}
+          display={{ base: 'none', md: 'flex' }}
           pos="relative"
-          gap={{base: '4', md: '8', lg: '10', xl: '14'}}
+          gap={{ base: '4', md: '8', lg: '10', xl: '14' }}
           w="full">
           <PhotoProvider maskOpacity={0.8}>
-            {new Array(9).fill('').map((_, i) => {
-              const imageFieldName = `images.${i}`
-              const imageField = useField<{
-                internalImageUrl: string
-              }>(imageFieldName, 'IMA:ImageField')
-
-              return (
-                <Box
-                  boxSize={{
-                    base: 'xs',
-                    md: 'sm',
-                    lg: 'md',
-                    xl: 'lg'
-                  }}
-                  justifySelf="center"
-                  _hover={{
-                    transition: 'all 0.2s ease',
-                    transform: {
-                      md: 'scale(1.02) ',
-                      lg: 'scale(1.02) '
-                    }
-                  }}
-                  transition="ease-in 0.2s"
-                  cursor="pointer"
-                  key={i}>
-                  <Box
-                    mx="auto"
-                    boxSize="full"
-                    borderRadius="xl"
-                    boxShadow="light"
-                    overflow="hidden">
-                    <Field.Image
-                      objectFit="cover"
-                      name={imageFieldName}
-                      lightbox
-                      lightboxGroup
-                    />
+            <Grid templateColumns="repeat(3, 1fr)" gap={2} boxSize="full">
+              {new Array(9).fill('').map((_, i) => {
+                const imageFieldName = `images.${i}`
+                return (
+                  <Box key={i} p={0} borderWidth="2px" borderRadius="lg" position="relative">
+                    <Box
+                      width="100%"
+                      paddingBottom="100%" // Creates a square based on width #Image Hack!!!
+                      position="relative"
+                    >
+                      <Box
+                        objectFit="cover"
+                        position="absolute"
+                        top={0}
+                        left={0}
+                        width="100%"
+                        height="100%"
+                        borderRadius="lg"
+                        overflow="hidden"
+                      >
+                        <Field.Image
+                          objectFit="cover"
+                          name={imageFieldName}
+                          lightboxGroup
+                          lightbox />
+                      </Box>
+                    </Box>
                   </Box>
-                </Box>
-              )
-            })}
+                )
+              })}
+            </Grid>
           </PhotoProvider>
         </VStack>
         {/* for Mobile */}
         <Box
           // overflow="hidden"
-          display={{base: 'block', md: 'none'}}
+          display={{ base: 'block', md: 'none' }}
           sx={{
             'ul.slick-dots': {
               top: 'auto'
@@ -156,7 +147,7 @@ const ImagesGallery3x3Section = connectBlock(
                       name={imageFieldName}
                       lightboxGroup
                       lightbox
-                      //defaultValue={defaultImages[i]}
+                    //defaultValue={defaultImages[i]}
                     />
                   </Box>
                 )
@@ -180,15 +171,15 @@ const FullWidthImageSection = connectBlock(
         <Field.Text
           as={Heading}
           textAlign="center"
-          fontSize={{base: 'md', md: '2xl', lg: '3xl', xl: '4xl'}}
+          fontSize={{ base: 'md', md: '2xl', lg: '3xl', xl: '4xl' }}
           fontWeight="semibold"
           name="title"
           defaultValue="In Erinnerung behalten"
-          //variant="cursive"
+        //variant="cursive"
         />
         <Box
-          my={{base: '4 !important', md: '12 !important'}}
-          borderRadius={{base: '.625rem', md: '2rem'}}
+          my={{ base: '4 !important', md: '12 !important' }}
+          borderRadius={{ base: '.625rem', md: '2rem' }}
           // minH={{
           //   base: "11.25rem",
           //   md: "18.75rem",
@@ -217,8 +208,8 @@ const TextSection = connectBlock(
   () => {
     return (
       <Text
-        fontSize={{base: 'sm', lg: 'md'}}
-        maxW={{base: '80%', md: '60%', lg: '50%'}}
+        fontSize={{ base: 'sm', lg: 'md' }}
+        maxW={{ base: '80%', md: '60%', lg: '50%' }}
         textAlign="center"
         as="span"
         my="4">
@@ -278,12 +269,12 @@ const SubCategoryContentSection = connectBlock(
             <Field.Text
               as={Heading}
               name="heading"
-              fontSize={{base: 'md', md: '2xl', lg: '3xl', xl: '4xl'}}
+              fontSize={{ base: 'md', md: '2xl', lg: '3xl', xl: '4xl' }}
               fontWeight="semibold"
               defaultValue="Überschrift"
             />
             <Field.RichText
-              fontSize={{base: 'sm', lg: 'md'}}
+              fontSize={{ base: 'sm', lg: 'md' }}
               textAlign="center"
               name="Text"
               defaultValue={`Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius quibusdam, atque iusto culpa libero nostrum sit fuga cumque sunt tenetur! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae ea praesentium, enim alias a nihil et aperiam
@@ -295,7 +286,7 @@ Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora necessitatibus
 
           <Field.Section
             as={Stack}
-            props={{spacing: 20, py: 8}}
+            props={{ spacing: 20, py: 8 }}
             sectionProps={{
               py: {
                 base: '4',
@@ -341,29 +332,29 @@ const CategoryContentSection = connectBlock(
           <Image
             zIndex="-1"
             pos="absolute"
-            top={{base: '0rem'}}
-            w={{base: '40%', md: '60%', lg: '70%', xl: '58%'}}
-            left={{base: '0', lg: '-64px', xl: 0}}
+            top={{ base: '0rem' }}
+            w={{ base: '40%', md: '60%', lg: '70%', xl: '58%' }}
+            left={{ base: '0', lg: '-64px', xl: 0 }}
             src="/images/decorationen/shapes/shape.svg"
           />
           <VStack pos="relative" zIndex="1">
             <Field.Text
               as={Heading}
               variant="cursive"
-              fontSize={{base: 'xl', md: '2xl', lg: '3xl', xl: '4xl'}}
+              fontSize={{ base: 'xl', md: '2xl', lg: '3xl', xl: '4xl' }}
               name="title"
               defaultValue="Überschrift"
             />
             <Field.Text
               as={Heading}
               textAlign="center"
-              fontSize={{base: 'md', md: 'lg', lg: 'xl', xl: '2xl'}}
+              fontSize={{ base: 'md', md: 'lg', lg: 'xl', xl: '2xl' }}
               name="subtitle"
               defaultValue="Unterüberschrift"
             />
 
             <Field.RichText
-              fontSize={{base: 'sm', lg: 'md'}}
+              fontSize={{ base: 'sm', lg: 'md' }}
               textAlign="center"
               name="text"
               defaultValue="Text"
@@ -373,7 +364,7 @@ const CategoryContentSection = connectBlock(
 
         <Field.Section
           as={Stack}
-          props={{spacing: 20}}
+          props={{ spacing: 20 }}
           sectionProps={{
             py: {
               base: '4',
@@ -468,7 +459,7 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
         }, [])
 
         return (
-          <Box key={index} mb={{base: 4, md: 8}}>
+          <Box key={index} mb={{ base: 4, md: 8 }}>
             <Link
               color={isActive ? 'red' : 'black'}
               onClick={() => {
@@ -506,7 +497,7 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
     }
 
     return (
-      <Stack padding={{base: 4, md: 8}} spacing="24">
+      <Stack padding={{ base: 4, md: 8 }} spacing="24">
         <FourCard
           sectionFieldName={settings.fieldName}
           sectionDisplayName={settings.displayName}
@@ -517,14 +508,14 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
             })
           }}
         />
-        <Flex direction={{base: 'column-reverse', md: 'row'}}>
-          <Box w={{base: '100%', md: '75%'}} mr={{md: 4}}>
-            <Box mx={{base: 4, md: 'auto'}} maxW="800px" overflow="hidden">
+        <Flex direction={{ base: 'column-reverse', md: 'row' }}>
+          <Box w={{ base: '100%', md: '75%' }} mr={{ md: 4 }}>
+            <Box mx={{ base: 4, md: 'auto' }} maxW="800px" overflow="hidden">
               {/* Your blog post content goes here */}
               <Field.Section
                 as={Stack}
-                props={{spacing: 20, position: 'relative'}}
-                sectionProps={({count}) => ({
+                props={{ spacing: 20, position: 'relative' }}
+                sectionProps={({ count }) => ({
                   ref: (el: HTMLDivElement) => {
                     refs.current[count - 1] = el
                   },
@@ -540,10 +531,10 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
               />
             </Box>
           </Box>
-          <Box w={{base: '100%', md: '25%'}}>
-            <Box position="sticky" top={{base: '80px', md: '20%'}}>
+          <Box w={{ base: '100%', md: '25%' }}>
+            <Box position="sticky" top={{ base: '80px', md: '20%' }}>
               {/* Anfragen button with divider */}
-              <Stack textAlign="center" mb={{base: 4, md: 8}}>
+              <Stack textAlign="center" mb={{ base: 4, md: 8 }}>
                 <Button
                   variant="solid"
                   size="md"
@@ -558,7 +549,7 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
                   <Divider />
                   <Link
                     fontSize="sm"
-                    display={{base: 'block', md: 'none'}}
+                    display={{ base: 'block', md: 'none' }}
                     padding="2"
                     aria-label="Table of Contents"
                     onClick={onOpen}>
@@ -589,9 +580,9 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
               </Drawer>
               {/* Table of contents on desktop */}
               <Box
-                display={{base: 'none', md: 'block'}}
+                display={{ base: 'none', md: 'block' }}
                 position="sticky"
-                top={{base: 'unset', md: '10%'}}>
+                top={{ base: 'unset', md: '10%' }}>
                 <Links />
               </Box>
             </Box>
