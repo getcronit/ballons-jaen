@@ -14,6 +14,7 @@ const TextBlockSection = connectBlock(
         <Field.RichText
           size="b2012"
           name="text"
+          textAlign="center"
           defaultValue={`
             <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
