@@ -1,5 +1,3 @@
-import {ChevronLeftIcon} from '@chakra-ui/icons'
-
 import {
   Box,
   Button,
@@ -24,7 +22,6 @@ import {
 } from '@chakra-ui/react'
 import {FaShare} from '@react-icons/all-files/fa/FaShare'
 import {FaShoppingBasket} from '@react-icons/all-files/fa/FaShoppingBasket'
-import {GiBalloons} from '@react-icons/all-files/gi/GiBalloons'
 import {
   getFormattedProductPrices,
   getProductTags,
@@ -36,7 +33,7 @@ import {navigate} from 'gatsby'
 import {GatsbyImage} from 'gatsby-plugin-image'
 import React from 'react'
 import {BsBalloonHeartFill} from 'react-icons/bs'
-import {FaRuler, FaRulerCombined, FaRulerVertical} from 'react-icons/fa'
+import {FaRuler} from 'react-icons/fa'
 import {PhotoProvider, PhotoView} from 'react-photo-view'
 import {getSrcFromImageData} from '../../../common/get-src-from-image-data'
 
@@ -87,50 +84,61 @@ export const ProductTemplate = ({
       }}
       sortOptions={['Alphabetisch', 'Preis aufsteigend', 'Preis absteigend']}
       onSortChange={() => {}}>
-      <VStack dir="column" w="100%" px={2}>
-        <Box w="full" my="4">
-          <Button
-            justifyContent="flex-start"
-            variant="link"
-            leftIcon={<ChevronLeftIcon />}
-            onClick={onGoBack}>
-            Zurück
-          </Button>
-        </Box>
-        <VStack spacing={12}>
-          <Stack direction={{base: 'column-reverse', lg: 'row'}}>
-            <ProductDetail
-              wholesale={wholesale}
-              product={shopifyProduct}
-              onWishlistAdd={onWishlistAdd}
-              isOnWishList={isOnWishList}
-              onGoBack={onGoBack}
-            />
-            <ImageSlider
-              featuredMedia={shopifyProduct.featuredMedia}
-              media={shopifyProduct.media}
-              description={shopifyProduct.descriptionHtml}
-            />
+      <Stack
+        dir="column"
+        w="100%"
+        my="8"
+        spacing={{
+          base: 8,
+          md: 12,
+          lg: 16
+        }}>
+        <Stack spacing={12}>
+          <Stack direction={{base: 'column', lg: 'row'}} mx={8}>
+            <Box
+              w={{
+                base: '100%',
+                lg: '50%'
+              }}
+              pos="relative">
+              <ImageSlider
+                featuredMedia={shopifyProduct.featuredMedia}
+                media={shopifyProduct.media}
+                description={shopifyProduct.descriptionHtml}
+              />
+            </Box>
+
+            <Box
+              w={{
+                base: '100%',
+                lg: '50%'
+              }}
+              position={{base: 'relative', lg: 'sticky'}}
+              top={{
+                base: '0',
+                lg: 44
+              }}
+              h="fit-content">
+              <ProductDetail
+                wholesale={wholesale}
+                product={shopifyProduct}
+                onWishlistAdd={onWishlistAdd}
+                isOnWishList={isOnWishList}
+                onGoBack={onGoBack}
+              />
+            </Box>
           </Stack>
           <Box display={{base: 'block', md: 'none'}}>
             <ProductMoreDetail description={shopifyProduct.descriptionHtml} />
           </Box>
-        </VStack>
-        <Box
-          w={{
-            base: '20rem',
-            md: '30rem',
-            lg: '55rem',
-            xl: '80rem'
-          }}>
-          <ProductSlider
-            heading="Ähnliche Produkte"
-            products={relatedProducts.nodes}
-            prefixPath="/products"
-            wholesale={wholesale}
-          />
-        </Box>
-      </VStack>
+        </Stack>
+        <ProductSlider
+          heading="Ähnliche Produkte"
+          products={relatedProducts.nodes}
+          prefixPath="/products"
+          wholesale={wholesale}
+        />
+      </Stack>
     </ProductsPageShell>
   )
 }
@@ -245,26 +253,23 @@ const ProductDetail = withStoreContext<{
   const availableForSale = props.product.variants[0].availableForSale
 
   return (
-    <>
-      <Box
-        overflow="hidden"
-        px={{base: 0, md: 4}}
-        py={{base: 4, md: 8}}
-        m={{base: 0, md: 1}}
-        position={{base: 'relative', lg: 'sticky'}}
-        top="15"
-        alignSelf="flex-start">
-        <VStack align="left" spacing="4">
-          <Heading as="h1" size="lg">
-            {props.product.title}
-          </Heading>
-          <Price prices={prices} />
+    <Box
+      overflow="hidden"
+      px={{base: 0, md: 4}}
+      py={{base: 4, md: 8}}
+      m={{base: 0, md: 1}}
+      alignSelf="flex-start">
+      <VStack align="left" spacing="4">
+        <Heading as="h1" size="lg">
+          {props.product.title}
+        </Heading>
+        <Price prices={prices} />
 
-          <Text fontSize="xs" color="gray.600">
-            {taxable ? 'inkl.' : 'exkl.'} MwSt.
-          </Text>
+        <Text fontSize="xs" color="gray.600">
+          {taxable ? 'inkl.' : 'exkl.'} MwSt.
+        </Text>
 
-          {/* <Divider />
+        {/* <Divider />
 
           {productTags.map((tag, index) => (
             <Box
@@ -278,101 +283,100 @@ const ProductDetail = withStoreContext<{
             </Box>
           ))} */}
 
-          {productMetatfields.details?.filling && (
-            <>
-              <Divider />
+        {productMetatfields.details?.filling && (
+          <>
+            <Divider />
 
-              <HStack spacing="4">
-                <Icon as={BsBalloonHeartFill} boxSize={8} />
-                <Text
-                  fontSize={{
-                    base: 'xs',
-                    md: 'sm'
-                  }}
-                  color="gray.600">
-                  {productMetatfields.details.filling}
-                </Text>
-              </HStack>
-            </>
-          )}
-
-          {productMetatfields.details?.sizeHelper && (
-            <>
-              <Divider />
-
-              <HStack spacing="4">
-                <Icon as={FaRuler} boxSize={8} />
-                <Text
-                  fontSize={{
-                    base: 'xs',
-                    md: 'sm'
-                  }}
-                  color="gray.600">
-                  {productMetatfields.details.sizeHelper}
-                </Text>
-              </HStack>
-            </>
-          )}
-
-          <Divider />
-
-          <Text fontSize="xs" fontWeight="thin">
-            Artikelnummer: {props.product.variants[0].sku || '-'}
-          </Text>
-          <Divider />
-
-          {!availableForSale && (
-            <Text color="red.500">Derzeit nicht verfügbar</Text>
-          )}
-
-          <HStack>
-            <NumberInput
-              size="md"
-              maxW={24}
-              step={stepperStep}
-              defaultValue={minQuantity}
-              min={minQuantity}
-              value={quantity}
-              onChange={valueString => {
-                setQuantity(parseInt(valueString))
-              }}>
-              <NumberInputField />
-              <NumberInputStepper>
-                <NumberIncrementStepper />
-                <NumberDecrementStepper />
-              </NumberInputStepper>
-            </NumberInput>
-
-            <Button
-              disabled={!availableForSale}
-              fontWeight="semibold"
-              textTransform="uppercase"
-              leftIcon={<Icon as={FaShoppingBasket} />}
-              borderRadius="full"
-              size={{
-                base: 'sm',
-                md: 'md'
-              }}
-              onClick={addProductToBasket}>
+            <HStack spacing="4">
+              <Icon as={BsBalloonHeartFill} boxSize={8} />
               <Text
                 fontSize={{
-                  base: 'sm',
-                  md: 'md'
-                }}>
-                In den Warenkorb
+                  base: 'xs',
+                  md: 'sm'
+                }}
+                color="gray.600">
+                {productMetatfields.details.filling}
               </Text>
-            </Button>
-          </HStack>
-          <Divider />
-          <Flex alignItems="center" justifyContent="center" fontSize="xl">
-            <Box mx="auto">
-              <ShareText />
-            </Box>
-          </Flex>
-          <Divider />
-        </VStack>
-      </Box>
-    </>
+            </HStack>
+          </>
+        )}
+
+        {productMetatfields.details?.sizeHelper && (
+          <>
+            <Divider />
+
+            <HStack spacing="4">
+              <Icon as={FaRuler} boxSize={8} />
+              <Text
+                fontSize={{
+                  base: 'xs',
+                  md: 'sm'
+                }}
+                color="gray.600">
+                {productMetatfields.details.sizeHelper}
+              </Text>
+            </HStack>
+          </>
+        )}
+
+        <Divider />
+
+        <Text fontSize="xs" fontWeight="thin">
+          Artikelnummer: {props.product.variants[0].sku || '-'}
+        </Text>
+        <Divider />
+
+        {!availableForSale && (
+          <Text color="red.500">Derzeit nicht verfügbar</Text>
+        )}
+
+        <HStack>
+          <NumberInput
+            size="md"
+            maxW={24}
+            step={stepperStep}
+            defaultValue={minQuantity}
+            min={minQuantity}
+            value={quantity}
+            onChange={valueString => {
+              setQuantity(parseInt(valueString))
+            }}>
+            <NumberInputField />
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInput>
+
+          <Button
+            disabled={!availableForSale}
+            fontWeight="semibold"
+            textTransform="uppercase"
+            leftIcon={<Icon as={FaShoppingBasket} />}
+            borderRadius="full"
+            size={{
+              base: 'sm',
+              md: 'md'
+            }}
+            onClick={addProductToBasket}>
+            <Text
+              fontSize={{
+                base: 'sm',
+                md: 'md'
+              }}>
+              In den Warenkorb
+            </Text>
+          </Button>
+        </HStack>
+        <Divider />
+        <Flex alignItems="center" justifyContent="center" fontSize="xl">
+          <Box mx="auto">
+            <ShareText />
+          </Box>
+        </Flex>
+        <Divider />
+      </VStack>
+    </Box>
   )
 })
 
@@ -462,16 +466,7 @@ const ImageSlider = (props: {
 
   return (
     <PhotoProvider maskOpacity={0.8}>
-      <Box
-        my="4"
-        minW={{
-          base: '20rem',
-          md: '30rem',
-          lg: '35rem',
-          xl: '40rem'
-        }}
-        /* w="100%" */
-      >
+      <Flex justifyContent="center">
         <PhotoView
           src={getSrcFromImageData(props.featuredMedia?.image.gatsbyImageData)}>
           <Center
@@ -520,7 +515,7 @@ const ImageSlider = (props: {
         <Box display={{base: 'none', md: 'block'}}>
           <ProductMoreDetail description={props.description || ''} />
         </Box>
-      </Box>
+      </Flex>
     </PhotoProvider>
   )
 }
