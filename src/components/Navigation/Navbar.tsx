@@ -38,12 +38,13 @@ export const Navbar: FC<INavbarProps> = ({
   onBasketClick,
   onContactClick
 }) => {
-  const {isOpen, onToggle} = useDisclosure()
-
   return (
     <Box
       willChange={'transform'}
-      animation="shadowShine 5s infinite linear alternate-reverse"
+      animation={{
+        base: 'none',
+        md: 'shadowShine 5s infinite linear alternate-reverse'
+      }}
       _after={{
         content: '""',
         position: 'absolute',
@@ -52,7 +53,10 @@ export const Navbar: FC<INavbarProps> = ({
         width: '100%',
         height: '100%',
         zIndex: '-1',
-        animation: ' 5s shadowShine 5s infinite linear alternate-reverse'
+        animation: {
+          base: 'none',
+          md: '5s shadowShine 5s infinite linear alternate-reverse'
+        }
       }}>
       <Stack
         direction="row"
