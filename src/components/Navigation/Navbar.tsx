@@ -38,12 +38,13 @@ export const Navbar: FC<INavbarProps> = ({
   onBasketClick,
   onContactClick
 }) => {
-  const {isOpen, onToggle} = useDisclosure()
-
   return (
     <Box
       willChange={'transform'}
-      animation="shadowShine 5s infinite linear alternate-reverse"
+      animation={{
+        base: 'none',
+        md: 'shadowShine 5s infinite linear alternate-reverse'
+      }}
       _after={{
         content: '""',
         position: 'absolute',
@@ -52,7 +53,10 @@ export const Navbar: FC<INavbarProps> = ({
         width: '100%',
         height: '100%',
         zIndex: '-1',
-        animation: ' 5s shadowShine 5s infinite linear alternate-reverse'
+        animation: {
+          base: 'none',
+          md: '5s shadowShine 5s infinite linear alternate-reverse'
+        }
       }}>
       <Stack
         direction="row"
@@ -66,25 +70,32 @@ export const Navbar: FC<INavbarProps> = ({
           {mode === 'website' ? (
             <MobileHambuger />
           ) : (
-            <Button
-              size="sm"
-              as={GatsbyLink}
-              variant="link"
-              to="/"
-              leftIcon={<AiOutlineArrowLeft />}>
-              <Text fontSize={'sm'}>
-                Zurück{' '}
-                <Text
-                  as={'span'}
-                  fontSize={'sm'}
-                  display={{
-                    base: 'none',
-                    md: 'inline'
-                  }}>
-                  zur Startseite
-                </Text>
-              </Text>
-            </Button>
+            <>
+              <Button
+                display={{
+                  base: 'none',
+                  md: 'flex'
+                }}
+                size="sm"
+                as={GatsbyLink}
+                variant="link"
+                to="/"
+                leftIcon={<AiOutlineArrowLeft />}>
+                Zurück zur Startseite
+              </Button>
+
+              <IconButton
+                display={{
+                  base: 'flex',
+                  md: 'none'
+                }}
+                aria-label="Zurück zur Startseite"
+                as={GatsbyLink}
+                to="/"
+                size="sm"
+                icon={<AiOutlineArrowLeft />}
+              />
+            </>
           )}
         </Flex>
 
@@ -108,7 +119,11 @@ export const Navbar: FC<INavbarProps> = ({
         </Flex>
 
         <Flex flex="1" justifyContent="end">
-          <ButtonGroup>
+          <ButtonGroup
+            spacing={{
+              base: 0,
+              md: 2
+            }}>
             <SearchbarButton
               onClick={onSearchClick}
               // defaultIsOpen={mode === 'store'}
@@ -116,6 +131,10 @@ export const Navbar: FC<INavbarProps> = ({
 
             <Tooltip label="Kontakt" aria-label="Kontakt">
               <IconButton
+                display={{
+                  base: 'none',
+                  md: 'flex'
+                }}
                 aria-label="Kontakt"
                 variant="ghost"
                 icon={<FaPhoneAlt />}

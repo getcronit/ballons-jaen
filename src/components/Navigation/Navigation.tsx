@@ -51,7 +51,16 @@ const Navigation: FC<INavigationProps> = ({mode}) => {
         top="0"
         bg="rgba(255,255,255,.9)"
         backdropFilter={'blur(7px)'}>
-        <Stack spacing="0" clipPath={'inset( 0 0 -100vw 0 )'}>
+        <Stack
+          spacing="0"
+          clipPath={
+            mode === 'website'
+              ? {
+                  base: 'none',
+                  lg: 'inset( 0 0 -100vw 0 )'
+                }
+              : 'none'
+          }>
           <Navbar
             mode={mode}
             onSearchClick={handleOnSearchClick}
