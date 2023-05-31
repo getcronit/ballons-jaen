@@ -246,6 +246,7 @@ export const TeamMemberSection = ({
             bgRepeat="no-repeat"
             bgPos={"0 -20px"}
             bgSize="contain"
+            pointerEvents="none"
           >
           </Box>
           <Container maxW={CONTAINER_MAX_WIDTH}>
