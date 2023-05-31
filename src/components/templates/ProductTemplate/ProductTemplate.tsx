@@ -41,6 +41,7 @@ import {getProductMetafields} from '../../../common/getProductMetafields'
 import {getProductPrices, replaceHexColorsInHTML} from '../../../common/utils'
 import {useBasket} from '../../../services/basket'
 import {ProductSlider} from '../../molecules/ProductSlider'
+import NewsSlider from '../../organisms/NewsSlider/NewsSlider'
 import ProductsPageShell from '../ProductsTemplate/ProductsPageShell'
 
 export interface ProductTemplateProps extends ProductPageData {
@@ -91,7 +92,8 @@ export const ProductTemplate = ({
         spacing={{
           base: 8,
           md: 12,
-          lg: 16
+          lg: 16,
+          xl: 20
         }}>
         <Stack spacing={12}>
           <Stack direction={{base: 'column', lg: 'row'}} mx={8}>
@@ -138,6 +140,13 @@ export const ProductTemplate = ({
           prefixPath="/products"
           wholesale={wholesale}
         />
+
+        <Stack spacing="8">
+          <Heading size="xl" textAlign="center" my="8">
+            Neuigkeiten
+          </Heading>
+          <NewsSlider />
+        </Stack>
       </Stack>
     </ProductsPageShell>
   )

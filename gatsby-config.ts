@@ -17,6 +17,17 @@ const config: GatsbyConfig = {
   jsxRuntime: 'automatic',
   plugins: [
     {
+      resolve: '@snek-at/gatsby-theme-shopify',
+      options: {
+        productPageTemplate: path.resolve(
+          'src/templates/ProductPageTemplate.tsx'
+        ),
+        productsPageTemplate: path.resolve(
+          'src/templates/ProductsPageTemplate.tsx'
+        )
+      }
+    },
+    {
       resolve: `gatsby-plugin-jaen`,
       options: {
         snekResourceId: `63571eee-f41c-4745-9130-d746c2cb97a3`
@@ -50,17 +61,6 @@ const config: GatsbyConfig = {
             lastmod: modifiedGmt
           }
         }
-      }
-    },
-    {
-      resolve: '@snek-at/gatsby-theme-shopify',
-      options: {
-        productPageTemplate: path.resolve(
-          'src/templates/ProductPageTemplate.tsx'
-        ),
-        productsPageTemplate: path.resolve(
-          'src/templates/ProductsPageTemplate.tsx'
-        )
       }
     }
   ]
