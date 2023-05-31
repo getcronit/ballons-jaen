@@ -22,19 +22,19 @@ const NewsSection: FC<INewsSectionProps> = () => {
 
       <Box
         flex="1"
-        // overflow="hidden"
+        overflow="hidden"
         // w={{ base: "100%", sm: "80%", md: "25rem", lg: "auto" }}
-        //borderRadius="full"
+        borderRadius="lg"
         //my={{ base: "4 !important", md: "12 !important" }}
-        px="1%"
-        py="5%"
+        // px="1%"
+        // py="5%"
         mx="auto"
         // w={{
         //   base: "30vh",
         //   md: "50vh",
         //   lg: "60vh",
         // }}
-        h={'full'}>
+        h={'80%'}>
         <Field.Image alt="slider_img" name={'newsImage2'} />
       </Box>
     </Container>
