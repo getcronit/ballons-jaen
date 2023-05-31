@@ -46,24 +46,24 @@ const HeartSection: FC<IHeartSectionProps> = () => {
             as={TransparentCard}
             h={{base: '21.25rem', md: 'auto', lg: 'auto'}}
             w={{base: '19.375rem', sm: '100%', lg: '38.125rem'}}>
-              <Field.Text
-                fontSize={{base: 'sm', lg: 'xl'}}
-                name="tag"
-                defaultValue="Inspiration"
-              />
-              <Field.Text
-                as={Heading}
-                fontSize={{base: 'md', lg: '4xl'}}
-                fontWeight="800"
-                name="heading"
-                defaultValue="Lass dich von uns inspirieren"
-              />
-              <Field.RichText
-                fontSize={{base: 'xs', lg: 'md'}}
-                mb="2 !important"
-                name="text"
-                defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus imperdiet sed id elementum. Quam vel aliquam sit vulputate."
-              />
+            <Field.Text
+              fontSize={{base: 'sm', lg: 'xl'}}
+              name="heartTagline"
+              defaultValue="Inspiration"
+            />
+            <Field.Text
+              as={Heading}
+              fontSize={{base: 'md', lg: '4xl'}}
+              fontWeight="800"
+              name="heartHeading"
+              defaultValue="Lass dich von uns inspirieren"
+            />
+            <Field.RichText
+              fontSize={{base: 'xs', lg: 'md'}}
+              mb="2 !important"
+              name="heartText"
+              defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus imperdiet sed id elementum. Quam vel aliquam sit vulputate."
+            />
             <Box display="flex">
               <LinkButtonField
                 name="heartButton"

@@ -4,7 +4,7 @@ import {
   ProductsPageContext,
   SearchProvider
 } from '@snek-at/gatsby-theme-shopify'
-import {Head as JaenHead, PageProps} from '@snek-at/jaen'
+import {connectTemplate, Head as JaenHead, PageProps} from '@snek-at/jaen'
 import {graphql, navigate} from 'gatsby'
 import React from 'react'
 
@@ -23,41 +23,47 @@ export type ProductPageTemplateProps = PageProps<
   ProductPageContext
 >
 
-const ProductPageTemplate: React.FC<ProductPageTemplateProps> = props => {
-  const {productsPage} = props.data
+const ProductPageTemplate = connectTemplate<ProductPageTemplateProps>(
+  props => {
+    const {productsPage} = props.data
 
-  const handleOnGoBack = () => {
-    void navigate(-1)
+    const handleOnGoBack = () => {
+      void navigate(-1)
+    }
+
+    const allTags = buildAllTags({
+      tags: productsPage.pageContext.tags,
+      vendors: productsPage.pageContext.vendors,
+      productTypes: productsPage.pageContext.productTypes
+    })
+
+    const auth = useAuthentication()
+
+    const wholesale = !!auth.user
+
+    return (
+      <>
+        {/* <SEO pagePath={props.path} pageMeta={buildProductPageMeta()} /> */}
+        <Layout pathname={props.path} mode="store">
+          <ProductTemplate
+            path={props.path}
+            wholesale={wholesale}
+            allTags={allTags}
+            shopifyProduct={props.data.shopifyProduct}
+            relatedProducts={props.data.relatedProducts}
+            onWishlistAdd={() => {}}
+            isOnWishList={false}
+            onGoBack={handleOnGoBack}
+          />
+        </Layout>
+      </>
+    )
+  },
+  {
+    label: 'ProductPageTemplate',
+    children: []
   }
-
-  const allTags = buildAllTags({
-    tags: productsPage.pageContext.tags,
-    vendors: productsPage.pageContext.vendors,
-    productTypes: productsPage.pageContext.productTypes
-  })
-
-  const auth = useAuthentication()
-
-  const wholesale = !!auth.user
-
-  return (
-    <>
-      {/* <SEO pagePath={props.path} pageMeta={buildProductPageMeta()} /> */}
-      <Layout pathname={props.path} mode="store">
-        <ProductTemplate
-          path={props.path}
-          wholesale={wholesale}
-          allTags={allTags}
-          shopifyProduct={props.data.shopifyProduct}
-          relatedProducts={props.data.relatedProducts}
-          onWishlistAdd={() => {}}
-          isOnWishList={false}
-          onGoBack={handleOnGoBack}
-        />
-      </Layout>
-    </>
-  )
-}
+)
 
 export const query = graphql`
   query ($productId: String!, $relatedProductIds: [String!]!) {
@@ -71,6 +77,14 @@ export const query = graphql`
     }
     productsPage: sitePage(id: {eq: "SitePage /products/"}) {
       pageContext
+    }
+    allJaenPage {
+      nodes {
+        ...JaenPageData
+        children {
+          ...JaenPageData
+        }
+      }
     }
   }
 `

@@ -46,7 +46,7 @@ export const cardStyle = (
         border-color: rgba(255, 255, 255, 0);
         border-style: solid;
         border-width: 0 2px;
-        border-radius: 5px;
+        border-radius: var(--chakra-radii-xl);
       }
 
       &:after {
@@ -61,7 +61,7 @@ export const cardStyle = (
         border-color: rgba(255, 255, 255, 0);
         border-style: solid;
         border-width: 2px 0;
-        border-radius: 5px;
+        border-radius: var(--chakra-radii-xl);
       }
     }
 
