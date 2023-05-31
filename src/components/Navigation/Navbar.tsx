@@ -70,25 +70,32 @@ export const Navbar: FC<INavbarProps> = ({
           {mode === 'website' ? (
             <MobileHambuger />
           ) : (
-            <Button
-              size="sm"
-              as={GatsbyLink}
-              variant="link"
-              to="/"
-              leftIcon={<AiOutlineArrowLeft />}>
-              <Text fontSize={'sm'}>
-                Zurück{' '}
-                <Text
-                  as={'span'}
-                  fontSize={'sm'}
-                  display={{
-                    base: 'none',
-                    md: 'inline'
-                  }}>
-                  zur Startseite
-                </Text>
-              </Text>
-            </Button>
+            <>
+              <Button
+                display={{
+                  base: 'none',
+                  md: 'flex'
+                }}
+                size="sm"
+                as={GatsbyLink}
+                variant="link"
+                to="/"
+                leftIcon={<AiOutlineArrowLeft />}>
+                Zurück zur Startseite
+              </Button>
+
+              <IconButton
+                display={{
+                  base: 'flex',
+                  md: 'none'
+                }}
+                aria-label="Zurück zur Startseite"
+                as={GatsbyLink}
+                to="/"
+                size="sm"
+                icon={<AiOutlineArrowLeft />}
+              />
+            </>
           )}
         </Flex>
 
@@ -112,7 +119,11 @@ export const Navbar: FC<INavbarProps> = ({
         </Flex>
 
         <Flex flex="1" justifyContent="end">
-          <ButtonGroup>
+          <ButtonGroup
+            spacing={{
+              base: 0,
+              md: 2
+            }}>
             <SearchbarButton
               onClick={onSearchClick}
               // defaultIsOpen={mode === 'store'}
@@ -120,6 +131,10 @@ export const Navbar: FC<INavbarProps> = ({
 
             <Tooltip label="Kontakt" aria-label="Kontakt">
               <IconButton
+                display={{
+                  base: 'none',
+                  md: 'flex'
+                }}
                 aria-label="Kontakt"
                 variant="ghost"
                 icon={<FaPhoneAlt />}
