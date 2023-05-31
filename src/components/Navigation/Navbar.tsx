@@ -109,6 +109,11 @@ export const Navbar: FC<INavbarProps> = ({
 
         <Flex flex="1" justifyContent="end">
           <ButtonGroup>
+            <SearchbarButton
+              onClick={onSearchClick}
+              // defaultIsOpen={mode === 'store'}
+            />
+
             <Tooltip label="Kontakt" aria-label="Kontakt">
               <IconButton
                 aria-label="Kontakt"
@@ -161,8 +166,6 @@ export const Navbar: FC<INavbarProps> = ({
                     onClick={onBasketClick}
                   />
                 </Tooltip>
-
-                <SearchbarButton onClick={onSearchClick} />
               </>
             )}
           </ButtonGroup>
