@@ -124,6 +124,7 @@ const LinkButtonField: React.FC<
     <Box pos={'relative'} maxW={'fit-content'}>
       <Field.Text
         as={Button}
+        asAs={'span'}
         {...buttonProps}
         // onClick only if not editing
         onClick={buttonTextField.isEditing ? undefined : handleButtonClick}
