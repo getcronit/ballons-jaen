@@ -323,6 +323,7 @@ const CategoryContentSection = connectBlock(
     return (
       <VStack spacing="20">
         <VStack
+          pos={"relative"}
           w="full"
           py={{
             base: '4',
@@ -330,7 +331,7 @@ const CategoryContentSection = connectBlock(
           }}
           spacing="12">
           <Image
-            zIndex="-1"
+            zIndex="-999"
             pos="absolute"
             top={{ base: '0rem' }}
             w={{ base: '40%', md: '60%', lg: '70%', xl: '58%' }}
