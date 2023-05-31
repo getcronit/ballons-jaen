@@ -64,18 +64,18 @@ const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
             lineHeight={{base: '1.25rem', md: '2rem', xl: '2.5rem'}}
             mb="-2"
             whiteSpace="nowrap"
-            name="Heading1"
+            name="littleThingsHeading"
             defaultValue="<p>Auch die <i>kleinsten</i><br/> Dinge machen viel <i>Freude</i></p>"
           />
           <Field.RichText
             //as={Heading}
-            name="subtitle"
+            name="littleThingsSubheading"
             fontSize={{base: 'sm', md: 'md'}}
             fontWeight="semibold"
             defaultValue="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
           />
           <Field.RichText
-            name="text"
+            name="littleThingsText"
             fontSize={{base: 'sm', md: 'md'}}
             fontWeight="light"
             defaultValue="At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
