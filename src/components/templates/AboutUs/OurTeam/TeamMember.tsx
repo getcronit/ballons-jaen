@@ -66,21 +66,57 @@ const TeamMember: FC<ITeamMemberProps> = ({
                 <Field.Image name="image" />
               </AspectRatio>
             </Grid>
-            <Heading size="h3015" fontWeight="semibold">
+            {/* <Heading size="h3015" fontWeight="semibold">
               {name}
-            </Heading>
+            </Heading> */}
+            <Field.Text
+              name="name"
+              as={Heading}
+              size="h3015"
+              fontWeight="semibold"
+              //textAlign={{ base: isLeft ? 'start' : 'end' }}
+              //fontWeight="semibold"
+              defaultValue={name}
+            />
           </VStack>
           <Stack>
-            <Heading color="red.500" size="h4015" fontWeight="semibold">
+            {/* <Heading color="red.500" size="h4015" fontWeight="semibold">
               {qoute}
-            </Heading>
-            {
+            </Heading> */}
+            <Field.Text
+              name="qoute"
+              as={Heading}
+              color="red.500"
+              size="h4015"
+              fontWeight="semibold"
+              textAlign={{ base: isLeft ? 'start' : 'end' }}
+              //fontWeight="semibold"
+              defaultValue={qoute}
+            />
+            {/* <Text fontSize="sm" fontWeight="semibold">
+              {role}
+            </Text> */}
+            <Field.Text
+              name="role"
+              fontWeight="semibold"
+              textAlign={{ base: isLeft ? 'start' : 'end' }}
+              //fontWeight="semibold"
+              defaultValue={role}
+            />
+            {/* {
               <UnorderedList ml="8 !important">
                 {qualities.map((quality) => (
                   <ListItem>{quality}</ListItem>
                 ))}
               </UnorderedList>
-            }
+            } */}
+            <Field.RichText
+              name="about"
+              //fontSize="xs"
+              textAlign={{ base: isLeft ? 'start' : 'end' }}
+              //fontWeight="semibold"
+              defaultValue={about}
+            />
           </Stack>
         </Flex>
       </Flex>
@@ -91,12 +127,30 @@ const TeamMember: FC<ITeamMemberProps> = ({
           flexDir={{ base: isLeft ? 'row' : 'row-reverse' }}
           textAlign={{ base: isLeft ? 'start' : 'end' }}>
           <Box flex="1">
-            <Heading fontSize="md" fontWeight="semibold" color="red.600">
+            {/* <Heading fontSize="md" fontWeight="semibold" color="red.600">
               {name}
-            </Heading>
-            <Text fontSize="sm" fontWeight="semibold">
+            </Heading> */}
+            <Field.Text
+              name="name"
+              as={Heading}
+              fontSize="md"
+              color="red.600"
+              fontWeight="semibold"
+              //textAlign={{ base: isLeft ? 'start' : 'end' }}
+              //fontWeight="semibold"
+              defaultValue={name}
+            />
+            {/* <Text fontSize="sm" fontWeight="semibold">
               {role}
-            </Text>
+            </Text> */}
+            <Field.Text
+              name="role"
+              fontSize="sm"
+              fontWeight="semibold"
+              //textAlign={{ base: isLeft ? 'start' : 'end' }}
+              //fontWeight="semibold"
+              defaultValue={role}
+            />
           </Box>
           <Grid placeItems="center" pos="relative" w="38%">
             <Image src="/images/about_us/profile_bg.svg" />
@@ -113,9 +167,13 @@ const TeamMember: FC<ITeamMemberProps> = ({
             </AspectRatio>
           </Grid>
         </Flex>
-        <Text fontSize="xs" textAlign={{ base: isLeft ? 'start' : 'end' }}>
-          {about}
-        </Text>
+        <Field.RichText
+          name="about"
+          fontSize="xs"
+          textAlign={{ base: isLeft ? 'start' : 'end' }}
+          //fontWeight="semibold"
+          defaultValue={about}
+        />
       </Stack>
     </>
   );

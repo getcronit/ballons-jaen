@@ -35,6 +35,7 @@ const OurBoss: FC<IOurBossProps> = ({
   return (
     <>
       <Container
+        pt="40"
         pb="40"
         display={{ base: 'none', md: 'flex' }}
         justifyContent="end"
@@ -61,21 +62,41 @@ const OurBoss: FC<IOurBossProps> = ({
                 <Field.Image name="image" />
               </AspectRatio>
             </Grid>
-            <Heading size="h3015" fontWeight="semibold">
-              {name}
-            </Heading>
+            <Field.Text
+              name="BossName"
+              as={Heading}
+              size="h3015"
+              fontWeight="semibold"
+              //textAlign={{ base: isLeft ? 'start' : 'end' }}
+              //fontWeight="semibold"
+              defaultValue={name}
+            />
           </VStack>
           <Stack flex="1">
-            <Heading color="red.500" size="h4015" fontWeight="semibold">
-              {qoute}
-            </Heading>
-            {
+            <Field.Text
+              name="BossQute"
+              as={Heading}
+              color="red.500"
+              size="h4015"
+              fontWeight="semibold"
+              //textAlign={{ base: isLeft ? 'start' : 'end' }}
+              //fontWeight="semibold"
+              defaultValue={qoute}
+            />
+            {/* {
               <UnorderedList ml="8 !important">
                 {qualities.map((quality) => (
                   <ListItem>{quality}</ListItem>
                 ))}
               </UnorderedList>
-            }
+            } */}
+            <Field.RichText
+              name="BossAbout"
+              //fontSize="xs"
+              //textAlign={{ base: isLeft ? 'start' : 'end' }}
+              //fontWeight="semibold"
+              defaultValue={about}
+            />
           </Stack>
         </Flex>
       </Container>
@@ -86,12 +107,30 @@ const OurBoss: FC<IOurBossProps> = ({
           flexDir={{ base: isLeft ? 'row' : 'row-reverse' }}
           textAlign={{ base: isLeft ? 'start' : 'end' }}>
           <Box flex="1">
-            <Heading fontSize="md" fontWeight="semibold" color="red.600">
+            {/* <Heading fontSize="md" fontWeight="semibold" color="red.600">
               {name}
-            </Heading>
-            <Text fontSize="sm" fontWeight="semibold">
+              </Heading> */}
+            <Field.Text
+              name="BossName"
+              fontSize="md"
+              fontWeight="semibold"
+              color="red.600"
+              //textAlign={{ base: isLeft ? 'start' : 'end' }}
+              //fontWeight="semibold"
+              defaultValue={name}
+            />
+            {/* <Text fontSize="sm" fontWeight="semibold">
               {role}
-            </Text>
+             </Text> */}
+            <Field.RichText
+              name="BossRole"
+              fontSize="sm"
+              fontWeight="semibold"
+              //fontSize="xs"
+              //textAlign={{ base: isLeft ? 'start' : 'end' }}
+              //fontWeight="semibold"
+              defaultValue={role}
+            />
           </Box>
           <Grid placeItems="center" pos="relative" w="38%">
             <Image src="/images/about_us/boss_bg.svg" />
@@ -107,9 +146,14 @@ const OurBoss: FC<IOurBossProps> = ({
             </AspectRatio>
           </Grid>
         </Flex>
-        <Text fontSize="xs" textAlign={{ base: isLeft ? 'start' : 'end' }}>
-          {about}
-        </Text>
+        <Field.RichText
+          name="BossAbout"
+          fontSize="xs"
+          //fontSize="xs"
+          //textAlign={{ base: isLeft ? 'start' : 'end' }}
+          //fontWeight="semibold"
+          defaultValue={about}
+        />
       </Stack>
     </>
   );

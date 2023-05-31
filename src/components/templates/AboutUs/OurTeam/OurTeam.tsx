@@ -20,7 +20,7 @@ const OurTeam: FC<IOurTeamProps> = () => {
         'die beste Mischung aus Erfahrung und Routine',
       ],
       isLeft: true,
-      role: 'Unser Fels in der Brandung',
+      role: 'Ballon Meister',
       about:
         'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
     },
@@ -33,7 +33,7 @@ const OurTeam: FC<IOurTeamProps> = () => {
         'Perfektionistin',
         'liebt Checklisten',
       ],
-      role: 'Unser Fels in der Brandungr',
+      role: 'Ballon Meister',
       isLeft: false,
       about:
         'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
@@ -97,41 +97,50 @@ const OurTeam: FC<IOurTeamProps> = () => {
     <>
       <Box
         pos="relative"
-        top={{ base: '-10rem', xl: '-25rem' }}
-        mb={{ base: '-10rem', xl: '-25rem' }}
+        //top={{ base: '-10rem', xl: '-25rem' }}
+        //mb={{ base: '-10rem', xl: '-25rem' }}
         bgImage="/images/about_us/ballon_bg_big.svg"
         bgRepeat="no-repeat"
-        pt={{ base: '10rem', md: '16rem', lg: '24rem', xl: '32rem', '2xl': '40rem' }}
+        bgColor={'white'}
+        //bgPos="0 -15rem"
+        //pt={{ base: '10rem', md: '16rem', lg: '24rem', xl: '32rem', '2xl': '40rem' }}
         pb="6.25rem"
         bgSize="cover">
         <Container maxW={CONTAINER_MAX_WIDTH}>
           <VStack>
             <Flex gap={{ base: 2, md: 4 }}>
-              <Heading size="h6020" as="span" fontWeight="semibold" whiteSpace="nowrap">
-                Unser
-              </Heading>
-              <Text mb="-20 !important" as="span" variant="cursive" size="80">
-                Team
-              </Text>
+              <Field.RichText
+                as={Heading}
+                name="TeamTitle"
+                size="h6020"
+                fontWeight="semibold"
+                defaultValue="<p>Unser <i>Team</i></p>"
+              />
             </Flex>
-            <Heading size="h3015">Steckbrief</Heading>
+            <Field.Text
+              as={Heading}
+              name="TeamSubtitle"
+              size="h3015"
+              fontWeight="semibold"
+              defaultValue="Steckbrief"
+            />
           </VStack>
         </Container>
-          <Field.Section
-            as={Stack}
-            props={{ spacing: 20, py: 8 }}
-            // sectionProps={{
-            //   py: {
-            //     base: '12',
-            //     md: '20'
-            //   }
-            // }}
-            name="content"
-            label="Content"
-            blocks={[
-              TeamMemberSection({ members: teamMembers }),
-            ]}
-          />
+        <Field.Section
+          as={Stack}
+          //props={{ spacing: 20, py: 8 }}
+          // sectionProps={{
+          //   py: {
+          //     base: '12',
+          //     md: '20'
+          //   }
+          // }}
+          name="content"
+          label="Content"
+          blocks={[
+            TeamMemberSection({ members: teamMembers }),
+          ]}
+        />
 
         {/* <Box
           bgImage={{ md: '/images/about_us/thread1.svg' }}
