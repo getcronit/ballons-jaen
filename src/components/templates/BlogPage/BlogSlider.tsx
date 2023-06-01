@@ -11,7 +11,7 @@ const SliderItem = connectBlock(
       <Box boxSize={'full'} display={'flex'} justifyContent="center">
         <Box
           m={{base: 2, lg: 4}}
-          boxSize={{base: '10rem', sm: '12rem', lg: '15rem'}}
+          boxSize={{base: '20rem', sm: '24rem', lg: '30rem'}}
           mb="8 !important"
           borderRadius="xl"
           overflow="hidden"
@@ -42,7 +42,7 @@ const BlogSlider: FC<IBlogSliderProps> = () => {
         md: '/images/blog_page/sliderBg.svg'
       }}>
       <Container maxW={CONTAINER_MAX_WIDTH}>
-        <Box h="xs">
+        <Box>
           <PhotoProvider maskOpacity={0.8}>
             <Field.Section
               //@ts-expect-error

@@ -71,12 +71,13 @@ const WirGestaltenPartyHero: FC<IWirGestaltenPartyHeroProps> = () => {
             pos="relative"
             top={{ base: '1.25rem', md: 'unset' }}>
             <Box
+              overflow="hidden"
               borderRadius="full"
               boxShadow="light"
               // w={{ base: "17.5rem", sm: "auto " }}
               w={{ base: '30vh', md: '40vh' }}
               h={{ base: '30vh', md: '40vh' }}>
-              <Field.Image name="heroImage" />
+              <Field.Image name="heroImage" lightbox />
             </Box>
           </Grid>
         </Flex>

@@ -15,6 +15,8 @@ const ProductCatlog: FC<IProductCatlogProps> = () => {
       mb={{ base: '1rem', md: '-4.25rem', lg: '-10.5rem' }}>
       <Flex gap="12" align="center" flexDir={{ base: 'column', lg: 'row' }}>
         <Box
+          borderRadius="lg"
+          overflow="hidden"
           flex="1"
           w={{ base: '70%' }}
           h={{
@@ -23,7 +25,7 @@ const ProductCatlog: FC<IProductCatlogProps> = () => {
             md: '35rem',
             lg: '40rem'
           }}>
-          <Field.Image name="stack_cards" objectFit="contain" />
+          <Field.Image name="stack_cards" lightbox/>
         </Box>
         <Box display={{ base: 'block', md: 'none' }}>
           <LinkButtonField
