@@ -63,8 +63,7 @@ const AdviceSection: FC<IAdviceSectionProps> = () => {
         <Box
           borderRadius={'50%'}
           boxSize={{
-            base: 'xs',
-            md: 'xs',
+            md: 'sm',
             lg: 'md',
             xl: 'lg'
           }}

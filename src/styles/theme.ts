@@ -214,10 +214,10 @@ const theme = extendTheme(
             fontSize: {base: 'sm', lg: 'md'}
           },
           b2012: {
-            fontSize: {base: 'xs', lg: 'md'}
+            fontSize: {base: 'sm', lg: 'md'}
           },
           b2412: {
-            fontSize: {base: 'xs', lg: 'lg'}
+            fontSize: {base: 'sm', lg: 'lg'}
           },
           b2415: {
             fontSize: {base: 'sm', lg: 'lg'}

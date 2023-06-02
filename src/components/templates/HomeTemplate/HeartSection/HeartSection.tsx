@@ -59,7 +59,7 @@ const HeartSection: FC<IHeartSectionProps> = () => {
               defaultValue="Lass dich von uns inspirieren"
             />
             <Field.RichText
-              fontSize={{base: 'xs', lg: 'md'}}
+              fontSize={{base: 'sm', lg: 'md'}}
               mb="2 !important"
               name="heartText"
               defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus imperdiet sed id elementum. Quam vel aliquam sit vulputate."
