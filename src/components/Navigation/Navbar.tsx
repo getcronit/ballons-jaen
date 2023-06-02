@@ -176,7 +176,10 @@ export const Navbar: FC<INavbarProps> = ({
               </>
             ) : (
               <>
-                <Tooltip label="Warenkorb" aria-label="Warenkorb">
+                <Tooltip
+                  label="Warenkorb"
+                  aria-label="Warenkorb"
+                  placement="bottom-start">
                   <IconButton
                     aria-label="Warenkorb"
                     size="md"
