@@ -74,13 +74,24 @@ export const ContactModal: React.FC<ContactModalProps> = ({
             void handleSubmit(onSubmit)(event)
           }}>
           <ModalCloseButton />
-          <ModalBody p="16">
+          <ModalBody
+            p={{
+              base: 4,
+              md: 8,
+              lg: 12,
+              xl: 16
+            }}>
             <Stack spacing="6">
-              <Heading as="h2" size="lg">
+              <Heading
+                as="h2"
+                size={{
+                  base: 'md',
+                  md: 'lg'
+                }}>
                 Kontaktieren Sie uns
               </Heading>
 
-              <Text>
+              <Text size="b2015">
                 Wir freuen uns über Ihre Nachricht und werden uns
                 schnellstmöglich bei Ihnen melden.
               </Text>
@@ -88,11 +99,11 @@ export const ContactModal: React.FC<ContactModalProps> = ({
               <HStack>
                 <FormControl isInvalid={!!errors.name}>
                   <FormLabel htmlFor="name" fontSize="sm">
-                    Wie lautet Ihr voller Name?
+                    Name
                   </FormLabel>
                   <Input
                     id="name"
-                    placeholder="Name"
+                    placeholder="Max Mustermann"
                     {...register('name', {
                       required: true
                     })}
@@ -105,7 +116,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                 </FormControl>
                 <FormControl isInvalid={!!errors.email}>
                   <FormLabel htmlFor="email" fontSize="sm">
-                    Wie lautet Ihre E-Mail Adresse?
+                    E-Mail
                   </FormLabel>
                   <Input
                     id="email"
@@ -147,7 +158,11 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                       onChange={field.onChange}
                       checked={field.value}
                       roundedFull>
-                      <Text fontSize="sm">
+                      <Text
+                        fontSize={{
+                          base: 'xs',
+                          md: 'sm'
+                        }}>
                         Ich bin damit einverstanden, dass meine Angaben zur
                         Kontaktaufnahme und für Rückfragen gespeichert werden.
                       </Text>
