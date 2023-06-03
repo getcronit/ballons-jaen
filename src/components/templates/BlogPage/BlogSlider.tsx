@@ -1,21 +1,15 @@
-import {Box, Container, Text} from '@chakra-ui/react'
+import {Box, Container, Stack, Text} from '@chakra-ui/react'
 import {connectBlock, Field, PhotoProvider} from '@snek-at/jaen'
 import {FC} from 'react'
 import Slider from 'react-slick'
 import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
-import {blogSliderSettings} from '../../../constant/slider'
+import {blogSliderSettings, settings} from '../../../constant/slider'
 
 const SliderItem = connectBlock(
   () => {
     return (
-      <Box boxSize={'full'} display={'flex'} justifyContent="center">
-        <Box
-          m={{base: 2, lg: 4}}
-          boxSize={{base: '20rem', sm: '24rem', lg: '30rem'}}
-          mb="8 !important"
-          borderRadius="xl"
-          overflow="hidden"
-          boxShadow="dark">
+      <Box display={'flex'} justifyContent="center">
+        <Box m="2" boxSize="sm" borderRadius="xl" overflow="hidden">
           <Field.Image name="image" lightbox lightboxGroup />
         </Box>
       </Box>
@@ -41,13 +35,13 @@ const BlogSlider: FC<IBlogSliderProps> = () => {
         base: '/images/blog_page/slider_mobile_bg.svg',
         md: '/images/blog_page/sliderBg.svg'
       }}>
-      <Container maxW={CONTAINER_MAX_WIDTH}>
-        <Box>
+      <Stack maxW={CONTAINER_MAX_WIDTH} mx="auto" spacing="4">
+        <Box h="sm">
           <PhotoProvider maskOpacity={0.8}>
             <Field.Section
               //@ts-expect-error
               as={Slider}
-              props={{...blogSliderSettings}}
+              props={{...blogSliderSettings, overflow: 'hidden'}}
               name="SliderItem"
               label="Blog Slider"
               blocks={[SliderItem]}
@@ -55,7 +49,6 @@ const BlogSlider: FC<IBlogSliderProps> = () => {
           </PhotoProvider>
         </Box>
 
-        <Box pt="12"></Box>
         <Field.RichText
           size="b2012"
           textAlign="center"
@@ -68,7 +61,7 @@ const BlogSlider: FC<IBlogSliderProps> = () => {
            consectetur adipiscing elit. Faucibus in libero risus semper Lorem
            ipsum dolor sit amet, cipiscing elit. Faucibus in liber`}
         />
-      </Container>
+      </Stack>
     </Box>
   )
 }

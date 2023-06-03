@@ -14,7 +14,7 @@ export const settings: Settings = {
     {
       breakpoint: 4000,
       settings: {
-        slidesToShow: 2,
+        slidesToShow: 3,
         slidesToScroll: 2,
         infinite: true,
         dots: true
@@ -35,7 +35,8 @@ export const blogSliderSettings: Settings = {
   speed: 500,
   slidesToShow: 4,
   slidesToScroll: 1,
-  arrows: true,
+  arrows: false,
+  dots: true,
   nextArrow: <NextArrow out isBlack />,
   prevArrow: <PrevArrow out isBlack />,
 
@@ -47,8 +48,8 @@ export const blogSliderSettings: Settings = {
         rows: 1,
         slidesToScroll: 1,
         infinite: false,
-        dots: false,
-        arrows: true,
+        dots: true,
+        arrows: false,
         nextArrow: <NextArrow out isBlack />,
         prevArrow: <PrevArrow out isBlack />
       }
