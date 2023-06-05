@@ -287,7 +287,7 @@ Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora necessitatibus
               }
             }}
             name="content"
-            label="Content"
+            label="Unterkategorie Inhalt"
             blocks={[
               ImagesGallery3x3Section,
               FullWidthImageSection,
@@ -366,8 +366,13 @@ const CategoryContentSection = connectBlock(
             }
           }}
           name="subContentCategories"
-          label="Unterkategorie"
-          blocks={[SubCategoryContentSection]}
+          label="Kategorie Inhalt"
+          blocks={[
+            SubCategoryContentSection,
+            ImagesGallery3x3Section,
+            FullWidthImageSection,
+            TextSection
+          ]}
         />
         {self.position % 2 === 0 ? <ConvincedSection /> : <BallonGas />}
       </VStack>
