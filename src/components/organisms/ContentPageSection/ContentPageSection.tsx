@@ -27,7 +27,13 @@ import {
   UseSectionField,
   PhotoProvider
 } from '@snek-at/jaen'
-import React, {forwardRef, useEffect, useRef, useState} from 'react'
+import React, {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useRef,
+  useState
+} from 'react'
 import Slider from 'react-slick'
 import BallonGas from './BallonGas'
 
@@ -388,6 +394,18 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
   forwardRef<HTMLDivElement>((props, ref) => {
     const refs = useRef<HTMLDivElement[]>([])
 
+    const scrollToIndex = useCallback(
+      (index: number) => {
+        const top = refs.current[index]?.getBoundingClientRect().top ?? 0
+
+        window?.scrollTo({
+          top: window.pageYOffset + top + 5,
+          behavior: 'smooth'
+        })
+      },
+      [refs]
+    )
+
     const contactModal = useContactModal()
 
     const [isOpen, setIsOpen] = useState(false)
@@ -462,14 +480,7 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
             <Link
               color={isActive ? 'red' : 'black'}
               onClick={() => {
-                // calculate top offset
-                const top =
-                  refs.current[index]?.getBoundingClientRect().top ?? 0
-
-                window?.scrollTo({
-                  top: window.pageYOffset + top + 5,
-                  behavior: 'smooth'
-                })
+                scrollToIndex(index)
 
                 onClose()
               }}>
@@ -500,12 +511,7 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
         <FourCard
           sectionFieldName={settings.fieldName}
           sectionDisplayName={settings.displayName}
-          onCardClick={index => {
-            window?.scrollTo({
-              top: refs.current[index]?.offsetTop,
-              behavior: 'smooth'
-            })
-          }}
+          onCardClick={scrollToIndex}
         />
         <Flex direction={{base: 'column-reverse', md: 'row'}}>
           <Box w={{base: '100%', md: '75%'}} mr={{md: 4}}>
