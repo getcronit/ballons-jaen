@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  ButtonGroup,
   Divider,
   Drawer,
   DrawerBody,
@@ -43,6 +44,75 @@ import ConvincedSection from './ConvincedSection'
 import {useContactModal} from '../../../services/contact'
 
 export interface ContentPageSectionProps {}
+
+const CompareSection = connectBlock(
+  () => {
+    const [isCompareAToggled, setisCompareAToggled] = useState(true)
+
+    return (
+      <Stack divider={<Divider />} spacing="4">
+        <VStack justifyContent="center" spacing="8">
+          <Field.Text as={Heading} name="title" defaultValue="Titel" />
+
+          <ButtonGroup isAttached>
+            <Field.Text
+              as={Button}
+              asAs="span"
+              name="compare-button-a"
+              defaultValue="Skizze"
+              variant={!isCompareAToggled ? 'outline' : undefined}
+              onClick={() => setisCompareAToggled(true)}
+            />
+
+            <Field.Text
+              as={Button}
+              asAs="span"
+              name="compare-button-b"
+              defaultValue="Umsetzung"
+              variant={isCompareAToggled ? 'outline' : undefined}
+              onClick={() => setisCompareAToggled(false)}
+            />
+          </ButtonGroup>
+
+          <Field.RichText
+            style={{textAlign: 'center'}}
+            display={isCompareAToggled ? 'block' : 'none'}
+            name="description-a"
+            defaultValue="Text"
+          />
+
+          <Field.RichText
+            style={{textAlign: 'center'}}
+            display={!isCompareAToggled ? 'block' : 'none'}
+            name="description-b"
+            defaultValue="Text"
+          />
+        </VStack>
+
+        <Box borderRadius={'lg'} overflow="hidden">
+          <Field.Image
+            name="compare-image-a"
+            style={{
+              display: isCompareAToggled ? 'block' : 'none'
+            }}
+          />
+
+          <Field.Image
+            name="compare-image-b"
+            lightbox
+            style={{
+              display: !isCompareAToggled ? 'block' : 'none'
+            }}
+          />
+        </Box>
+      </Stack>
+    )
+  },
+  {
+    name: 'CompareSection',
+    label: 'Vergleich'
+  }
+)
 
 export const ImagesGallery3x3Section = connectBlock(
   () => {
@@ -297,7 +367,8 @@ Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora necessitatibus
             blocks={[
               ImagesGallery3x3Section,
               FullWidthImageSection,
-              TextSection
+              TextSection,
+              CompareSection
             ]}
           />
         </Stack>
@@ -377,7 +448,8 @@ const CategoryContentSection = connectBlock(
             SubCategoryContentSection,
             ImagesGallery3x3Section,
             FullWidthImageSection,
-            TextSection
+            TextSection,
+            CompareSection
           ]}
         />
         {self.position % 2 === 0 ? <ConvincedSection /> : <BallonGas />}
