@@ -146,6 +146,7 @@ const theme = extendTheme(
           outline: {
             // borderWidth: { base: '2px', md: '3px' },
             outline: 'none',
+            border: 'none',
             boxShadow: {
               base: '0px 0px 0px 2px #E3000F inset'
               // md: '0px 0px 0px 3px #E3000F inset',
