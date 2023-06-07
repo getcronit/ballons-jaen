@@ -8,12 +8,14 @@ export default function ScrollToTop({
   pathname: string
 }) {
   useEffect(() => {
-    const canControlScrollRestoration = 'scrollRestoration' in window.history
-    if (canControlScrollRestoration) {
-      window.history.scrollRestoration = 'manual'
-    }
+    if (window.location.hash === '') {
+      const canControlScrollRestoration = 'scrollRestoration' in window.history
+      if (canControlScrollRestoration) {
+        window.history.scrollRestoration = 'manual'
+      }
 
-    window.scrollTo(0, 0)
+      window.scrollTo(0, 0)
+    }
   }, [pathname])
 
   return <>{children}</>
