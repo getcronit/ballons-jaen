@@ -11,6 +11,7 @@ import {
   DrawerOverlay,
   Flex,
   Grid,
+  GridItem,
   Heading,
   Image,
   Link,
@@ -111,6 +112,31 @@ const CompareSection = connectBlock(
   {
     name: 'CompareSection',
     label: 'Vergleich'
+  }
+)
+
+const ImageSideBySideSection = connectBlock(
+  () => {
+    return (
+      <PhotoProvider>
+        <VStack spacing="8">
+          <Field.Text as={Heading} name="title" defaultValue="Titel" />
+
+          <Grid templateColumns="repeat(2, 1fr)" gap={4} w="full" minH="lg">
+            <GridItem colSpan={1} borderRadius={'lg'} overflow="hidden">
+              <Field.Image name="image1" lightbox lightboxGroup />
+            </GridItem>
+            <GridItem colSpan={1} borderRadius={'lg'} overflow="hidden">
+              <Field.Image name="image2" lightbox lightboxGroup />
+            </GridItem>
+          </Grid>
+        </VStack>
+      </PhotoProvider>
+    )
+  },
+  {
+    name: 'ImageSideBySideSection',
+    label: 'Bilder nebeneinander'
   }
 )
 
@@ -449,7 +475,8 @@ const CategoryContentSection = connectBlock(
             ImagesGallery3x3Section,
             FullWidthImageSection,
             TextSection,
-            CompareSection
+            CompareSection,
+            ImageSideBySideSection
           ]}
         />
         {self.position % 2 === 0 ? <ConvincedSection /> : <BallonGas />}
