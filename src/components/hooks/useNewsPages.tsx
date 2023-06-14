@@ -2,7 +2,7 @@ import {useIndexField, usePageContext} from '@snek-at/jaen'
 
 export const useNewsPages = () => {
   const index = useIndexField({
-    jaenPageId: 'JaenPage /news/'
+    jaenPageId: 'JaenPage /wissen/'
   })
 
   // override index children to exclude a blog page if it is the current page

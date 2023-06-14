@@ -27,7 +27,7 @@ const NewsSlider: FC<INewsSlidesProps> = ({showNewsTitle}) => {
       <Box my="16" display={{base: 'block', md: 'none'}}>
         {showNewsTitle && (
           <Text pl="8" variant="cursive" fontSize="xl">
-            News
+            Wissen
           </Text>
         )}
         <WhiteMobileSlider index={index} />

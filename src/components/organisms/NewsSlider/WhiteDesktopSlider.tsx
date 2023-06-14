@@ -7,7 +7,7 @@ import {
   Stack,
   Text
 } from '@chakra-ui/react'
-import {Field} from '@snek-at/jaen'
+import {Field, useStatus} from '@snek-at/jaen'
 import {Link} from 'gatsby'
 import {FC} from 'react'
 import Slider from 'react-slick'
@@ -34,13 +34,15 @@ const WhiteDesktopSlider: FC<IWhiteDesktopSliderProps> = ({
     slidesToScroll: 1
   }
 
+  const {isEditing} = useStatus()
+
   return (
     <Container maxW={CONTAINER_MAX_WIDTH} display={{base: 'none', md: 'block'}}>
       {showTitle && (
         <Text
           variant="cursive"
           fontSize={{base: '2xl', md: '4xl', lg: '5xl', xl: '6xl'}}>
-          News
+          Wissen
         </Text>
       )}
 
@@ -89,6 +91,7 @@ const WhiteDesktopSlider: FC<IWhiteDesktopSliderProps> = ({
                     <Field.Text
                       fontSize={{md: 'xs', lg: 'sm', xl: 'md'}}
                       noOfLines={4}
+                      pointerEvents={isEditing ? 'none' : 'auto'}
                       name="description"
                       defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
                         libero risus semper Lorem ipsum dolor sit amet, consectetur
@@ -103,7 +106,7 @@ const WhiteDesktopSlider: FC<IWhiteDesktopSliderProps> = ({
                       <Button
                         variant="outline"
                         as={Link}
-                        to={`/news/${page.slug}`}
+                        to={`/wissen/${page.slug}`}
                         size={{md: 'sm', lg: 'sm', xl: 'md'}}>
                         Mehr anzeigen
                       </Button>

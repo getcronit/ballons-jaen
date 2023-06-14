@@ -42,7 +42,7 @@ const BallonGas: FC<IBallonGasProps> = () => {
               size={{base: 'xs', md: 'lg'}}
               mt="4"
               defaultValue="Mehr erfahren"
-              defaultUrl="/news/helium"
+              defaultUrl="/wissen/helium"
             />
           </Box>
         </VStack>

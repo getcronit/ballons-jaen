@@ -12,6 +12,7 @@ import {FC} from 'react'
 import Slider from 'react-slick'
 import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
 import {partnerSliderSettings} from '../../../constant/slider'
+import {SliderBox} from '../../organisms/SliderBox'
 
 const PartnerSection = connectBlock(
   () => {
@@ -50,9 +51,7 @@ const PartnersSection: FC<IPartnersSectionProps> = () => {
           <Container maxW={CONTAINER_MAX_WIDTH} h="sm">
             <PhotoProvider maskOpacity={0.8}>
               <Field.Section
-                as={() => {
-                  return <Slider {...partnerSliderSettings} />
-                }}
+                as={SliderBox(partnerSliderSettings)}
                 name="PartnerSection"
                 label="Partner Slider"
                 blocks={[PartnerSection]}

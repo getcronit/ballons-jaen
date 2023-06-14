@@ -8,7 +8,7 @@ import {
   Text,
   VStack
 } from '@chakra-ui/react'
-import {Field} from '@snek-at/jaen'
+import {Field, useStatus} from '@snek-at/jaen'
 import {Link} from 'gatsby'
 import {FC} from 'react'
 import Slider from 'react-slick'
@@ -30,6 +30,8 @@ const WhiteMobileSlider: FC<IWhiteMobileSliderProps> = ({index}) => {
     slidesToShow,
     slidesToScroll: 1
   }
+
+  const {isEditing} = useStatus()
 
   return (
     <Container maxW={CONTAINER_MAX_WIDTH}>
@@ -82,6 +84,7 @@ const WhiteMobileSlider: FC<IWhiteMobileSliderProps> = ({index}) => {
                   <Field.Text
                     color="black.500"
                     fontSize="sm"
+                    pointerEvents={isEditing ? 'none' : 'auto'}
                     noOfLines={4}
                     name="description"
                     defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
@@ -95,7 +98,7 @@ const WhiteMobileSlider: FC<IWhiteMobileSliderProps> = ({index}) => {
                   />
                   <Button
                     as={Link}
-                    to={`/news/${page.slug}`}
+                    to={`/wissen/${page.slug}`}
                     size={{base: 'sm', md: 'md'}}
                     variant="outline">
                     Mehr anzeigen

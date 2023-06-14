@@ -4,6 +4,7 @@ import {FC} from 'react'
 import Slider from 'react-slick'
 import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
 import {blogSliderSettings, settings} from '../../../constant/slider'
+import {SliderBox} from '../../organisms/SliderBox'
 
 const SliderItem = connectBlock(
   () => {
@@ -39,9 +40,7 @@ const BlogSlider: FC<IBlogSliderProps> = () => {
         <Box h="sm">
           <PhotoProvider maskOpacity={0.8}>
             <Field.Section
-              as={() => {
-                return <Slider {...blogSliderSettings} />
-              }}
+              as={SliderBox(blogSliderSettings)}
               props={{overflow: 'hidden'}}
               name="SliderItem"
               label="Blog Slider"
