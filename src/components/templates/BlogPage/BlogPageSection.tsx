@@ -21,7 +21,7 @@ const TextBlockSection = connectBlock(
   () => {
     return (
       <Container maxW={CONTAINER_MAX_WIDTH}>
-        <Field.RichText
+        <Field.Text
           size="b2012"
           name="text"
           textAlign="center"
@@ -118,7 +118,7 @@ const ThreeCardBlogSection = connectBlock(
             }}
             spacing="8"
             justify="center">
-            <Field.RichText
+            <Field.Text
               name="text"
               fontSize={{base: 'sm', md: 'md'}}
               fontWeight="light"

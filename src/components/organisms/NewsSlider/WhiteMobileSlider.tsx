@@ -79,7 +79,7 @@ const WhiteMobileSlider: FC<IWhiteMobileSliderProps> = ({index}) => {
                     name="title"
                     defaultValue="Ballons & Ballons: Die Geschichte"
                   />
-                  <Field.RichText
+                  <Field.Text
                     color="black.500"
                     fontSize="sm"
                     noOfLines={4}

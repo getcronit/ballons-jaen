@@ -64,7 +64,7 @@ const FeaturedBlog: React.FC<{
               name="title"
               defaultValue="Ballons & Ballons: Die Geschichte"
             />
-            <Field.RichText
+            <Field.Text
               variant="light"
               size="b2012"
               noOfLines={6}
@@ -135,7 +135,7 @@ const BlogOverviewHero: FC<IBlogOverviewHeroProps> = props => {
       bgSize={{base: 'contain', md: 'cover'}}>
       <Container maxW={CONTAINER_MAX_WIDTH}>
         <VStack>
-          <Field.RichText
+          <Field.Text
             as={Heading}
             mb={{base: '25%', md: '5%'}}
             size="h6020"

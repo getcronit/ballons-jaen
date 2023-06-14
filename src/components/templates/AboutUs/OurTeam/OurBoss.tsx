@@ -10,34 +10,34 @@ import {
   Stack,
   Text,
   UnorderedList,
-  VStack,
-} from '@chakra-ui/react';
+  VStack
+} from '@chakra-ui/react'
 
-import { FC } from 'react';
-import { CONTAINER_MAX_WIDTH } from '../../../../constant/sizes';
-import { Field } from '@snek-at/jaen';
+import {FC} from 'react'
+import {CONTAINER_MAX_WIDTH} from '../../../../constant/sizes'
+import {Field} from '@snek-at/jaen'
 
 interface IOurBossProps {
   member: {
-    image: string;
-    name: string;
-    qoute: string;
-    qualities: string[];
-    isLeft: boolean;
-    role: string;
-    about: string;
-  };
+    image: string
+    name: string
+    qoute: string
+    qualities: string[]
+    isLeft: boolean
+    role: string
+    about: string
+  }
 }
 
 const OurBoss: FC<IOurBossProps> = ({
-  member: { image, name, qoute, qualities, isLeft, about, role },
+  member: {image, name, qoute, qualities, isLeft, about, role}
 }) => {
   return (
     <>
       <Container
         pt="40"
         pb="40"
-        display={{ base: 'none', md: 'flex' }}
+        display={{base: 'none', md: 'flex'}}
         justifyContent="end"
         maxW={CONTAINER_MAX_WIDTH}>
         <Flex
@@ -57,8 +57,7 @@ const OurBoss: FC<IOurBossProps> = ({
                 boxShadow="dark"
                 overflow="hidden"
                 w="70%"
-                borderRadius="full"
-              >
+                borderRadius="full">
                 <Field.Image name="image" />
               </AspectRatio>
             </Grid>
@@ -90,7 +89,7 @@ const OurBoss: FC<IOurBossProps> = ({
                 ))}
               </UnorderedList>
             } */}
-            <Field.RichText
+            <Field.Text
               name="BossAbout"
               //fontSize="xs"
               //textAlign={{ base: isLeft ? 'start' : 'end' }}
@@ -101,11 +100,11 @@ const OurBoss: FC<IOurBossProps> = ({
         </Flex>
       </Container>
 
-      <Stack pb="16" pt="4" display={{ base: 'flex', md: 'none' }} px="4" gap="2">
+      <Stack pb="16" pt="4" display={{base: 'flex', md: 'none'}} px="4" gap="2">
         <Flex
           align="end"
-          flexDir={{ base: isLeft ? 'row' : 'row-reverse' }}
-          textAlign={{ base: isLeft ? 'start' : 'end' }}>
+          flexDir={{base: isLeft ? 'row' : 'row-reverse'}}
+          textAlign={{base: isLeft ? 'start' : 'end'}}>
           <Box flex="1">
             {/* <Heading fontSize="md" fontWeight="semibold" color="red.600">
               {name}
@@ -122,7 +121,7 @@ const OurBoss: FC<IOurBossProps> = ({
             {/* <Text fontSize="sm" fontWeight="semibold">
               {role}
              </Text> */}
-            <Field.RichText
+            <Field.Text
               name="BossRole"
               fontSize="sm"
               fontWeight="semibold"
@@ -140,13 +139,12 @@ const OurBoss: FC<IOurBossProps> = ({
               boxShadow="dark"
               overflow="hidden"
               w="80%"
-              borderRadius="full"
-            >
+              borderRadius="full">
               <Field.Image name="image" />
             </AspectRatio>
           </Grid>
         </Flex>
-        <Field.RichText
+        <Field.Text
           name="BossAbout"
           fontSize="xs"
           //fontSize="xs"
@@ -156,6 +154,6 @@ const OurBoss: FC<IOurBossProps> = ({
         />
       </Stack>
     </>
-  );
-};
-export default OurBoss;
+  )
+}
+export default OurBoss

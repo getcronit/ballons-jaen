@@ -1,22 +1,20 @@
-import { FC } from "react"
-import { Field } from '@snek-at/jaen'
-import { Container } from '@chakra-ui/react'
-import { CONTAINER_MAX_WIDTH } from '../../../constant/sizes'
+import {FC} from 'react'
+import {Field} from '@snek-at/jaen'
+import {Container} from '@chakra-ui/react'
+import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
 
-interface IImprintProps { }
+interface IImprintProps {}
 
 const Imprint: FC<IImprintProps> = () => {
   return (
     <>
       <Container
         maxW={CONTAINER_MAX_WIDTH}
-        mt={{ base: '10', md: '20' }}
-        mb={{ base: '10', md: '20' }}
-        pt={{ base: '5', md: '10' }}
-        pb={{ base: '5', md: '10' }}
-      >
-
-        <Field.RichText
+        mt={{base: '10', md: '20'}}
+        mb={{base: '10', md: '20'}}
+        pt={{base: '5', md: '10'}}
+        pb={{base: '5', md: '10'}}>
+        <Field.Text
           name="heroHeadingBallons"
           defaultValue="
         <h1>Ballons & Ballons e.U.</h1>

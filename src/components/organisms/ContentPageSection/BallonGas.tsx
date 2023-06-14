@@ -47,10 +47,10 @@ const BallonGas: FC<IBallonGasProps> = () => {
           </Box>
         </VStack>
         <VStack flex="1" display={{base: 'none', md: 'block'}}>
-          <Field.RichText
+          <Field.Text
             maxW="90%"
             fontSize={{base: 'sm', lg: 'md'}}
-            name="BallonGas.titleText"
+            name="BallonGas.titleText_rich"
             defaultValue=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in libero risus semper.Lo."
           />
         </VStack>

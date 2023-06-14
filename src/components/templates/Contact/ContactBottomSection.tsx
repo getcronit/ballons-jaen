@@ -41,7 +41,7 @@ const ContactBottomSection: FC<IContactBottomSectionProps> = () => {
             transform="rotate(180deg)"
             src="/images/decorationen/shapes/shape2.svg"
           />
-          <WhiteBoxWithDashBorder
+          {/* <WhiteBoxWithDashBorder
             titleFieldName="justaskTitle"
             titleDefaultValue="Noch Fragen?"
             textFieldName="justaskText"
@@ -51,7 +51,7 @@ const ContactBottomSection: FC<IContactBottomSectionProps> = () => {
               textDefaultValue: 'Zur Beratung',
               outline: true
             }}
-          />
+          /> */}
         </Box>
       </Box>
     </>

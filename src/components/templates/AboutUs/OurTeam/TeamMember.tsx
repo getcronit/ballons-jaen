@@ -11,42 +11,42 @@ import {
   VStack,
   AspectRatio,
   Container
-} from '@chakra-ui/react';
-import { Field, connectBlock, useSectionBlockContext } from '@snek-at/jaen';
-import { FC } from 'react';
-import { Interface } from 'readline';
-import { CONTAINER_MAX_WIDTH } from '../../../../constant/sizes';
+} from '@chakra-ui/react'
+import {Field, connectBlock, useSectionBlockContext} from '@snek-at/jaen'
+import {FC} from 'react'
+import {Interface} from 'readline'
+import {CONTAINER_MAX_WIDTH} from '../../../../constant/sizes'
 
 interface ITeamMemberProps {
-  member: IMember;
+  member: IMember
 }
 
 interface ITeamMemberSectionProps {
-  members: IMember[];
+  members: IMember[]
 }
 
 interface IMember {
-  image: string;
-  name: string;
-  qoute: string;
-  qualities: string[];
-  isLeft: boolean;
-  role: string;
-  about: string;
+  image: string
+  name: string
+  qoute: string
+  qualities: string[]
+  isLeft: boolean
+  role: string
+  about: string
 }
 
 const TeamMember: FC<ITeamMemberProps> = ({
-  member: { image, name, qoute, qualities, isLeft, about, role },
+  member: {image, name, qoute, qualities, isLeft, about, role}
 }) => {
   return (
     <>
       <Flex
-        justify={{ md: isLeft ? 'start' : 'end' }}
+        justify={{md: isLeft ? 'start' : 'end'}}
         py="8"
-        display={{ base: 'none', md: 'flex' }}>
+        display={{base: 'none', md: 'flex'}}>
         <Flex
           align="center"
-          flexDir={{ md: isLeft ? 'row' : 'row-reverse' }}
+          flexDir={{md: isLeft ? 'row' : 'row-reverse'}}
           flexGrow="1"
           gap="8"
           maxW="71.875rem"
@@ -61,8 +61,7 @@ const TeamMember: FC<ITeamMemberProps> = ({
                 boxShadow="dark"
                 overflow="hidden"
                 w="80%"
-                borderRadius="full"
-              >
+                borderRadius="full">
                 <Field.Image name="image" />
               </AspectRatio>
             </Grid>
@@ -89,7 +88,7 @@ const TeamMember: FC<ITeamMemberProps> = ({
               color="red.500"
               size="h4015"
               fontWeight="semibold"
-              textAlign={{ base: isLeft ? 'start' : 'end' }}
+              textAlign={{base: isLeft ? 'start' : 'end'}}
               //fontWeight="semibold"
               defaultValue={qoute}
             />
@@ -99,7 +98,7 @@ const TeamMember: FC<ITeamMemberProps> = ({
             <Field.Text
               name="role"
               fontWeight="semibold"
-              textAlign={{ base: isLeft ? 'start' : 'end' }}
+              textAlign={{base: isLeft ? 'start' : 'end'}}
               //fontWeight="semibold"
               defaultValue={role}
             />
@@ -110,10 +109,10 @@ const TeamMember: FC<ITeamMemberProps> = ({
                 ))}
               </UnorderedList>
             } */}
-            <Field.RichText
+            <Field.Text
               name="about"
               //fontSize="xs"
-              textAlign={{ base: isLeft ? 'start' : 'end' }}
+              textAlign={{base: isLeft ? 'start' : 'end'}}
               //fontWeight="semibold"
               defaultValue={about}
             />
@@ -121,11 +120,11 @@ const TeamMember: FC<ITeamMemberProps> = ({
         </Flex>
       </Flex>
 
-      <Stack py="4" display={{ base: 'flex', md: 'none' }} gap="2">
+      <Stack py="4" display={{base: 'flex', md: 'none'}} gap="2">
         <Flex
           align="end"
-          flexDir={{ base: isLeft ? 'row' : 'row-reverse' }}
-          textAlign={{ base: isLeft ? 'start' : 'end' }}>
+          flexDir={{base: isLeft ? 'row' : 'row-reverse'}}
+          textAlign={{base: isLeft ? 'start' : 'end'}}>
           <Box flex="1">
             {/* <Heading fontSize="md" fontWeight="semibold" color="red.600">
               {name}
@@ -161,29 +160,26 @@ const TeamMember: FC<ITeamMemberProps> = ({
               boxShadow="dark"
               overflow="hidden"
               w="80%"
-              borderRadius="full"
-            >
+              borderRadius="full">
               <Field.Image name="image" />
             </AspectRatio>
           </Grid>
         </Flex>
-        <Field.RichText
+        <Field.Text
           name="about"
           fontSize="xs"
-          textAlign={{ base: isLeft ? 'start' : 'end' }}
+          textAlign={{base: isLeft ? 'start' : 'end'}}
           //fontWeight="semibold"
           defaultValue={about}
         />
       </Stack>
     </>
-  );
-};
+  )
+}
 
-export default TeamMember;
+export default TeamMember
 
-export const TeamMemberSection = ({
-  members
-}: ITeamMemberSectionProps) =>
+export const TeamMemberSection = ({members}: ITeamMemberSectionProps) =>
   connectBlock(
     () => {
       const blockContext = useSectionBlockContext()
@@ -192,14 +188,18 @@ export const TeamMemberSection = ({
       console.log('position', position)
       return (
         <Box
-          pos={"relative"}
-          pt={position % 2 === 0 ? {
-            base: '20',
-            md: '32'
-          } : {
-            base: '8',
-            md: '12'
-          }}
+          pos={'relative'}
+          pt={
+            position % 2 === 0
+              ? {
+                  base: '20',
+                  md: '32'
+                }
+              : {
+                  base: '8',
+                  md: '12'
+                }
+          }
           pb={{
             base: '12',
             md: '20'
@@ -207,14 +207,11 @@ export const TeamMemberSection = ({
           //bgImage={blockContext!.position % 2 !== 0 ? '/images/about_us/thread1.svg' : undefined}
           bgImage={{
             md:
-              position % 3 === 0
-                ? '/images/about_us/side_shape.svg'
-                : undefined
+              position % 3 === 0 ? '/images/about_us/side_shape.svg' : undefined
           }}
           bgRepeat="no-repeat"
           bgPos="right -8rem bottom 0"
-          bgSize="20rem"
-        >
+          bgSize="20rem">
           {/* <Box
             top={position % 5 !== 0 ? { base: '-20', md: '-32' } : '0'}
             right={"0"}
@@ -233,24 +230,27 @@ export const TeamMemberSection = ({
             bgSize="contain"
           > */}
           <Box
-            top={{ base: '-20', md: '-32' }}
-            right={"0"}
-            h={"100%"}
-            w={"100%"}
+            top={{base: '-20', md: '-32'}}
+            right={'0'}
+            h={'100%'}
+            w={'100%'}
             pos="absolute"
             bgImage={
-              position % 2 === 0
-                ? '/images/about_us/thread1.svg'
-                : undefined
+              position % 2 === 0 ? '/images/about_us/thread1.svg' : undefined
             }
             bgRepeat="no-repeat"
-            bgPos={"0 -20px"}
+            bgPos={'0 -20px'}
             bgSize="contain"
-            pointerEvents="none"
-          >
-          </Box>
+            pointerEvents="none"></Box>
           <Container maxW={CONTAINER_MAX_WIDTH}>
-            <TeamMember member={{ ...members[blockContext!.position <= 4 ? blockContext!.position : 0], isLeft: blockContext!.position % 2 === 0 }} />
+            <TeamMember
+              member={{
+                ...members[
+                  blockContext!.position <= 4 ? blockContext!.position : 0
+                ],
+                isLeft: blockContext!.position % 2 === 0
+              }}
+            />
           </Container>
         </Box>
       )

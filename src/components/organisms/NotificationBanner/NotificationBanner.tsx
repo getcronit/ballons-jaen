@@ -49,7 +49,7 @@ export const NotificationBanner = (props: NotificationBannerProps) => {
               defaultValue="27.07 - 05.08 2022"
             />
             <Flex>
-              <Field.RichText
+              <Field.Text
                 as={Heading}
                 fontWeight="semibold"
                 size="h6020"
@@ -66,7 +66,7 @@ export const NotificationBanner = (props: NotificationBannerProps) => {
               name="timespan"
               defaultValue="27.07 - 05.08 2022"
             />
-            <Field.RichText
+            <Field.Text
               size="b2015"
               maxW={{md: '70%'}}
               textAlign={{base: 'center', md: 'start'}}

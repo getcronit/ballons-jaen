@@ -33,7 +33,7 @@ const AdviceSection: FC<IAdviceSectionProps> = () => {
         <Box flex="3">
           <Stack>
             <Flex gap={{base: 2, md: 4}}>
-              <Field.RichText
+              <Field.Text
                 as={Heading}
                 size="h5020"
                 fontWeight="semibold"
@@ -41,7 +41,7 @@ const AdviceSection: FC<IAdviceSectionProps> = () => {
                 defaultValue="<p>Lass dich von uns <i>beraten</i></p>"
               />
             </Flex>
-            <Field.RichText
+            <Field.Text
               size="b2012"
               variant="light"
               maxW="90%"

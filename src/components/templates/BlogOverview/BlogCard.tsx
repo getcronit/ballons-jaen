@@ -41,7 +41,7 @@ const BlogCard: FC<IBlogCardProps> = ({slug}) => {
           name="title"
           defaultValue="Ballons & Ballons: Die Geschichte"
         />{' '}
-        <Field.RichText
+        <Field.Text
           //as={Heading}
           fontSize={{md: 'xs', lg: 'sm', xl: 'md'}}
           noOfLines={4}

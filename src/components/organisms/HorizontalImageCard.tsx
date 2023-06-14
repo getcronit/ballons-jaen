@@ -60,7 +60,7 @@ const HorizontalImageCard: FC<IHorizontalImageCardProps> = ({
           name={card.tagFieldName}
           defaultValue={card.tagDefaultValue}
         />
-        <Field.RichText
+        <Field.Text
           as={Heading}
           fontSize={{
             base: 'md',

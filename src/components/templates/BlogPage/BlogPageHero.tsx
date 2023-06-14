@@ -45,7 +45,7 @@ const BlogPageHero: FC<IBlogPageHeroProps> = () => {
           pos="relative"
           top={{base: '40px', md: 0}}
           gap={{base: 4, lg: '8'}}>
-          <Field.RichText
+          <Field.Text
             size="b2012"
             name="description"
             defaultValue={`

@@ -86,7 +86,7 @@ const WhiteDesktopSlider: FC<IWhiteDesktopSliderProps> = ({
                       name="title"
                       defaultValue="Ballons & Ballons: Die Geschichte"
                     />
-                    <Field.RichText
+                    <Field.Text
                       fontSize={{md: 'xs', lg: 'sm', xl: 'md'}}
                       noOfLines={4}
                       name="description"

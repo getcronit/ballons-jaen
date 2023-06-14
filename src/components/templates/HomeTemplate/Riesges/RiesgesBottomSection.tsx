@@ -90,14 +90,14 @@ const RiesgesBottomSection: FC<IRiesgesBottomSectionProps> = () => {
   return (
     <Flex flexDir={{base: 'column', xl: 'row'}} gap="10" pb="10">
       <Stack flex="1">
-        <Field.RichText
+        <Field.Text
           as={Heading}
           fontSize={{base: 'xl', md: '3xl', lg: '4xl'}}
           fontWeight="semibold"
           name="riesgesHeading"
           defaultValue="<p>Riesiges</p>"
         />
-        <Field.RichText
+        <Field.Text
           as={Heading}
           fontSize={{base: 'xl', md: '3xl', lg: '4xl'}}
           mt={'0 !important'}

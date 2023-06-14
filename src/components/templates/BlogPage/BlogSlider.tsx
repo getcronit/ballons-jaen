@@ -39,9 +39,10 @@ const BlogSlider: FC<IBlogSliderProps> = () => {
         <Box h="sm">
           <PhotoProvider maskOpacity={0.8}>
             <Field.Section
-              //@ts-expect-error
-              as={Slider}
-              props={{...blogSliderSettings, overflow: 'hidden'}}
+              as={() => {
+                return <Slider {...blogSliderSettings} />
+              }}
+              props={{overflow: 'hidden'}}
               name="SliderItem"
               label="Blog Slider"
               blocks={[SliderItem]}
@@ -49,7 +50,7 @@ const BlogSlider: FC<IBlogSliderProps> = () => {
           </PhotoProvider>
         </Box>
 
-        <Field.RichText
+        <Field.Text
           size="b2012"
           textAlign="center"
           py={{base: 16, md: 8, xl: 16}}

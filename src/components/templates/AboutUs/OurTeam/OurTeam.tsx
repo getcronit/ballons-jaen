@@ -1,12 +1,20 @@
-import { Box, Container, Flex, Heading, Stack, Text, VStack } from '@chakra-ui/react';
+import {
+  Box,
+  Container,
+  Flex,
+  Heading,
+  Stack,
+  Text,
+  VStack
+} from '@chakra-ui/react'
 
-import { FC } from 'react';
-import OurBoss from './OurBoss';
-import { TeamMemberSection } from './TeamMember';
-import { CONTAINER_MAX_WIDTH } from '../../../../constant/sizes';
-import { Field } from '@snek-at/jaen';
+import {FC} from 'react'
+import OurBoss from './OurBoss'
+import {TeamMemberSection} from './TeamMember'
+import {CONTAINER_MAX_WIDTH} from '../../../../constant/sizes'
+import {Field} from '@snek-at/jaen'
 
-interface IOurTeamProps { }
+interface IOurTeamProps {}
 
 const OurTeam: FC<IOurTeamProps> = () => {
   const teamMembers = [
@@ -17,12 +25,12 @@ const OurTeam: FC<IOurTeamProps> = () => {
       qualities: [
         'flexibel und hoch energetisch',
         'hilft immer mit wo’s brennt',
-        'die beste Mischung aus Erfahrung und Routine',
+        'die beste Mischung aus Erfahrung und Routine'
       ],
       isLeft: true,
       role: 'Ballon Meister',
       about:
-        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
+        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam'
     },
     {
       image: '/images/about_us/sectionProfile.png',
@@ -31,22 +39,26 @@ const OurTeam: FC<IOurTeamProps> = () => {
       qualities: [
         'erst zufrieden, wenn der Kunde zufrieden ist',
         'Perfektionistin',
-        'liebt Checklisten',
+        'liebt Checklisten'
       ],
       role: 'Ballon Meister',
       isLeft: false,
       about:
-        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
+        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam'
     },
     {
       image: '/images/about_us/sectionProfile.png',
       name: 'Monika K.',
       qoute: '“Die Vorausschauende”',
-      qualities: ['überschaut', 'während der Chef noch', 'wieder alles im Griff'],
+      qualities: [
+        'überschaut',
+        'während der Chef noch',
+        'wieder alles im Griff'
+      ],
       role: 'Ballon Meister',
       isLeft: true,
       about:
-        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
+        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam'
     },
     {
       image: '/images/about_us/sectionProfile.png',
@@ -55,12 +67,12 @@ const OurTeam: FC<IOurTeamProps> = () => {
       qualities: [
         'erst zufrieden, wenn der Kunde zufrieden ist',
         'Perfektionistin',
-        'liebt Checklisten',
+        'liebt Checklisten'
       ],
       role: 'Ballon Meister',
       isLeft: false,
       about:
-        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
+        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam'
     },
     {
       image: '/images/about_us/sectionProfile.png',
@@ -69,14 +81,14 @@ const OurTeam: FC<IOurTeamProps> = () => {
       qualities: [
         'rettet regelmäßig die Welt',
         'bekannt für ihre schnelle Lösungen',
-        'jeden Tag eine neue',
+        'jeden Tag eine neue'
       ],
       role: 'Ballon Meister',
       isLeft: true,
       about:
-        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
-    },
-  ];
+        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam'
+    }
+  ]
 
   const bossData = {
     image: '/images/about_us/bossProfile.png',
@@ -85,13 +97,13 @@ const OurTeam: FC<IOurTeamProps> = () => {
     qualities: [
       'geht erst heim, wenn wirklich alles passt',
       'wechselt zwischen Kopf- und Bauchgefühl',
-      'kreativ und analytisch',
+      'kreativ und analytisch'
     ],
     role: 'BOSS',
     isLeft: false,
     about:
-      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam',
-  };
+      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam'
+  }
 
   return (
     <>
@@ -108,8 +120,8 @@ const OurTeam: FC<IOurTeamProps> = () => {
         bgSize="cover">
         <Container maxW={CONTAINER_MAX_WIDTH}>
           <VStack>
-            <Flex gap={{ base: 2, md: 4 }}>
-              <Field.RichText
+            <Flex gap={{base: 2, md: 4}}>
+              <Field.Text
                 as={Heading}
                 name="TeamTitle"
                 size="h6020"
@@ -137,9 +149,7 @@ const OurTeam: FC<IOurTeamProps> = () => {
           // }}
           name="content"
           label="Content"
-          blocks={[
-            TeamMemberSection({ members: teamMembers }),
-          ]}
+          blocks={[TeamMemberSection({members: teamMembers})]}
         />
 
         {/* <Box
@@ -174,6 +184,6 @@ const OurTeam: FC<IOurTeamProps> = () => {
       </Box>
       <OurBoss member={bossData} />
     </>
-  );
-};
-export default OurTeam;
+  )
+}
+export default OurTeam

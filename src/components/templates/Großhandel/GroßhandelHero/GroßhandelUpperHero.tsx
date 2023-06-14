@@ -8,13 +8,13 @@ import {
   Flex,
   Image
 } from '@chakra-ui/react'
-import { Field } from '@snek-at/jaen'
-import { FC } from 'react'
-import { CONTAINER_MAX_WIDTH } from '../../../../constant/sizes'
-import { StaticImage } from 'gatsby-plugin-image'
+import {Field} from '@snek-at/jaen'
+import {FC} from 'react'
+import {CONTAINER_MAX_WIDTH} from '../../../../constant/sizes'
+import {StaticImage} from 'gatsby-plugin-image'
 import LinkButtonField from '../../../fields/LinkButtonField'
 
-interface IGroßhandelUpperHeroProps { }
+interface IGroßhandelUpperHeroProps {}
 
 const GroßhandelUpperHero: FC<IGroßhandelUpperHeroProps> = () => {
   return (
@@ -34,14 +34,13 @@ const GroßhandelUpperHero: FC<IGroßhandelUpperHeroProps> = () => {
         bgRepeat="no-repeat"
         bgPos={{
           base: 'bottom 0 left 0',
-          md: 'bottom 0 left 0',
+          md: 'bottom 0 left 0'
         }}>
         <Container maxW={CONTAINER_MAX_WIDTH}>
           <VStack
             pos="relative"
             zIndex="1"
-            py={{ base: '16', md: '44', lg: '52', xl: '56' }}
-          >
+            py={{base: '16', md: '44', lg: '52', xl: '56'}}>
             <Field.Text
               as={Heading}
               fontWeight="semibold"
@@ -49,7 +48,7 @@ const GroßhandelUpperHero: FC<IGroßhandelUpperHeroProps> = () => {
               name="title"
               defaultValue="Großhandel"
             />
-            <Field.RichText
+            <Field.Text
               as={Heading}
               mb="-4 !important"
               fontWeight="semibold"
@@ -59,14 +58,14 @@ const GroßhandelUpperHero: FC<IGroßhandelUpperHeroProps> = () => {
             />
             <HStack>
               <LinkButtonField
-                size={{ base: 'sm', md: 'md' }}
+                size={{base: 'sm', md: 'md'}}
                 variant="outline"
                 name="HeroButton1"
                 defaultValue="Anmelden"
                 defaultUrl={`/grosshandel`}
               />
               <LinkButtonField
-                size={{ base: 'sm', md: 'md' }}
+                size={{base: 'sm', md: 'md'}}
                 name="HeroButton2"
                 defaultValue="Registrieren"
                 defaultUrl={`/grosshandel`}
@@ -76,11 +75,11 @@ const GroßhandelUpperHero: FC<IGroßhandelUpperHeroProps> = () => {
               right="0"
               pos="absolute"
               top="6.25rem"
-              w={{ md: '12.5rem', lg: '16.875rem', xl: '20rem' }}
+              w={{md: '12.5rem', lg: '16.875rem', xl: '20rem'}}
               h="40vh">
               <Image
                 alt="Herzballons gebunden an ein Paket"
-                src={"/images/großhandel/ballon_box.png"}
+                src={'/images/großhandel/ballon_box.png'}
               />
             </Grid>
           </VStack>

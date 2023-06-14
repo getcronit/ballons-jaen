@@ -58,7 +58,7 @@ const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
           }}
           spacing="8"
           justify="center">
-          <Field.RichText
+          <Field.Text
             as={Heading}
             fontSize={{base: 'md', md: 'xl', xl: '2xl'}}
             lineHeight={{base: '1.25rem', md: '2rem', xl: '2.5rem'}}
@@ -67,14 +67,14 @@ const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
             name="littleThingsHeading"
             defaultValue="<p>Auch die <i>kleinsten</i><br/> Dinge machen viel <i>Freude</i></p>"
           />
-          <Field.RichText
+          <Field.Text
             //as={Heading}
             name="littleThingsSubheading"
             fontSize={{base: 'sm', md: 'md'}}
             fontWeight="semibold"
             defaultValue="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
           />
-          <Field.RichText
+          <Field.Text
             name="littleThingsText"
             fontSize={{base: 'sm', md: 'md'}}
             fontWeight="light"

@@ -39,7 +39,7 @@ const PartnersSection: FC<IPartnersSectionProps> = () => {
   return (
     <>
       <VStack gap={{base: 4, md: '8'}} py="20" bg="white">
-        <Field.RichText
+        <Field.Text
           as={Heading}
           size="h5020"
           fontWeight="semibold"
@@ -50,8 +50,9 @@ const PartnersSection: FC<IPartnersSectionProps> = () => {
           <Container maxW={CONTAINER_MAX_WIDTH} h="sm">
             <PhotoProvider maskOpacity={0.8}>
               <Field.Section
-                as={Slider}
-                props={{...partnerSliderSettings}}
+                as={() => {
+                  return <Slider {...partnerSliderSettings} />
+                }}
                 name="PartnerSection"
                 label="Partner Slider"
                 blocks={[PartnerSection]}

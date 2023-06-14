@@ -35,7 +35,7 @@ const ContactHero: FC<IContactHeroProps> = ({contactDetails}) => {
         <Container maxW={CONTAINER_MAX_WIDTH} mt="20" pb="10">
           <VStack spacing={{base: 8, md: 20}}>
             <Flex gap={{base: 2, md: 4}}>
-              <Field.RichText
+              <Field.Text
                 as={Heading}
                 size="h5020"
                 fontWeight="semibold"

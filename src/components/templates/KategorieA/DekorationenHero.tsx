@@ -48,7 +48,7 @@ const DekorationenHero: FC<IDekorationenHeroProps> = () => {
           name="title"
           defaultValue="Dekorationen"
         />
-        <Field.RichText
+        <Field.Text
           pb="4"
           textAlign="center"
           fontSize={{base: 'sm', md: 'md', '2xl': 'lg'}}

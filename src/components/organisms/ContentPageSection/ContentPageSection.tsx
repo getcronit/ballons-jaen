@@ -75,14 +75,14 @@ const CompareSection = connectBlock(
             />
           </ButtonGroup>
 
-          <Field.RichText
+          <Field.Text
             style={{textAlign: 'center'}}
             display={isCompareAToggled ? 'block' : 'none'}
             name="description-a"
             defaultValue="Text"
           />
 
-          <Field.RichText
+          <Field.Text
             style={{textAlign: 'center'}}
             display={!isCompareAToggled ? 'block' : 'none'}
             name="description-b"
@@ -309,7 +309,7 @@ const TextSection = connectBlock(
         as="span"
         my="4">
         <Box h="4" />
-        <Field.RichText
+        <Field.Text
           name="text"
           defaultValue={`
     <p>
@@ -368,7 +368,7 @@ const SubCategoryContentSection = connectBlock(
               fontWeight="semibold"
               defaultValue="Überschrift"
             />
-            <Field.RichText
+            <Field.Text
               fontSize={{base: 'sm', lg: 'md'}}
               textAlign="center"
               name="Text"
@@ -450,7 +450,7 @@ const CategoryContentSection = connectBlock(
               defaultValue="Unterüberschrift"
             />
 
-            <Field.RichText
+            <Field.Text
               fontSize={{base: 'sm', lg: 'md'}}
               textAlign="center"
               name="text"
@@ -618,7 +618,7 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
               {/* Your blog post content goes here */}
               <Field.Section
                 as={Stack}
-                props={{spacing: 20, position: 'relative'}}
+                props={{spacing: 20, position: 'relative', width: '100%'}}
                 sectionProps={({count}) => ({
                   ref: (el: HTMLDivElement) => {
                     refs.current[count - 1] = el

@@ -1,8 +1,8 @@
-import { Container, Flex, Heading, Text, VStack } from '@chakra-ui/react'
-import { Field } from '@snek-at/jaen'
-import { FC } from 'react'
+import {Container, Flex, Heading, Text, VStack} from '@chakra-ui/react'
+import {Field} from '@snek-at/jaen'
+import {FC} from 'react'
 
-interface IHeroFaqProps { }
+interface IHeroFaqProps {}
 
 const HeroFaq: FC<IHeroFaqProps> = () => {
   return (
@@ -10,13 +10,13 @@ const HeroFaq: FC<IHeroFaqProps> = () => {
       maxW="87.5rem"
       bgImage="/images/faq/top_bg.svg"
       bgRepeat="no-repeat"
-      bgPos={{ base: 'left 4% top 20%', xl: 'left 11rem top 0' }}
-      bgSize={{ base: '25%', xl: 'auto' }}
+      bgPos={{base: 'left 4% top 20%', xl: 'left 11rem top 0'}}
+      bgSize={{base: '25%', xl: 'auto'}}
       py="5rem"
       my="5%">
       <VStack>
-        <Flex gap={{ base: 2, md: 4 }}>
-          <Field.RichText
+        <Flex gap={{base: 2, md: 4}}>
+          <Field.Text
             as={Heading}
             size="h5030"
             fontWeight="semibold"
@@ -25,7 +25,7 @@ const HeroFaq: FC<IHeroFaqProps> = () => {
             defaultValue="<p>Häufig gestellte <i>Fragen</i></p>"
           />
         </Flex>
-        <Field.RichText
+        <Field.Text
           size="b2415"
           fontWeight="light"
           maxW="800px"
