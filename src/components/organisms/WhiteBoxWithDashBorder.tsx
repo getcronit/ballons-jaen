@@ -46,13 +46,13 @@ const WhiteBoxWithDashBorder: FC<IWhiteBoxWithDashBorderProps> = props => {
         />
       )}
       <Box mt={{base: '4 !important', md: '8 !important'}}>
-        {/* <LinkButtonField
+        <LinkButtonField
           name={props.button.textFieldName}
           defaultValue={props.button.textDefaultValue}
           defaultUrl={`/kontakt`}
           variant={props.button.outline ? 'outline' : 'solid'}
-          size={{ base: 'sm', md: 'md' }}
-        /> */}
+          size={{base: 'sm', md: 'md'}}
+        />
       </Box>
     </VStack>
   )
