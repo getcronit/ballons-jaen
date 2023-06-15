@@ -461,7 +461,7 @@ const CategoryContentSection = connectBlock(
 
         <Field.Section
           as={Stack}
-          props={{spacing: 20}}
+          props={{spacing: 20, width: '100%'}}
           sectionProps={{
             py: {
               base: '4',
