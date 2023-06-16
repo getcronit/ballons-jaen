@@ -31,14 +31,12 @@ export const settings: Settings = {
   ]
 }
 export const blogSliderSettings: Settings = {
-  infinite: false,
+  infinite: true,
   speed: 500,
   slidesToShow: 4,
   slidesToScroll: 1,
-  arrows: false,
+  arrows: true,
   dots: true,
-  nextArrow: <NextArrow out isBlack />,
-  prevArrow: <PrevArrow out isBlack />,
 
   responsive: [
     {
@@ -47,11 +45,9 @@ export const blogSliderSettings: Settings = {
         slidesToShow: 4,
         rows: 1,
         slidesToScroll: 1,
-        infinite: false,
+        infinite: true,
         dots: true,
-        arrows: false,
-        nextArrow: <NextArrow out isBlack />,
-        prevArrow: <PrevArrow out isBlack />
+        arrows: true
       }
     },
 

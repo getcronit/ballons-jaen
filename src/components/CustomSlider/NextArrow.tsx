@@ -1,35 +1,37 @@
-import {Button} from '@chakra-ui/react'
+import {Button, Icon, IconButton} from '@chakra-ui/react'
 import {FC} from 'react'
-import {GoChevronLeft} from 'react-icons/go'
+import {FaChevronCircleLeft, FaChevronCircleRight} from 'react-icons/fa'
+import {GoChevronLeft, GoChevronRight} from 'react-icons/go'
 
 interface INextArrowProps {
   onClick?: () => void
   out?: boolean
-  isBlack?: boolean
+  isRed?: boolean
 }
 
 const NextArrow: FC<INextArrowProps> = ({
   onClick,
   out = false,
-  isBlack = false
+  isRed = false
 }) => {
   return (
-    <Button
+    <IconButton
+      aria-label="Next"
+      icon={<Icon as={FaChevronCircleRight} />}
+      right={'0'}
       onClick={onClick}
+      transform="translate(0, -50%)"
       position="absolute"
-      left={out ? {md: '-8%', lg: '-5%'} : '0'}
-      color={isBlack ? 'black' : 'white'}
       top="50%"
-      transform="translateY(-50%)"
+      color={isRed ? 'red.500' : 'white'}
       zIndex="1"
       bg="transparent"
+      display={'block'}
       fontSize={{md: '2xl', xl: '4xl'}}
-      display={{base: 'none', md: 'block'}}
       _hover={{bg: 'transparent'}}
       _active={{bg: 'transparent'}}
-      _focus={{bg: 'transparent'}}>
-      <GoChevronLeft />
-    </Button>
+      _focus={{bg: 'transparent'}}
+    />
   )
 }
 
