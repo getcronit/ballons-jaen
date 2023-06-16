@@ -28,8 +28,6 @@ export const SliderBlock = connectBlock(
         bgSize="cover"
         bgRepeat="no-repeat"
         bgPos="start"
-        mt="24"
-        py="8"
         bgImage={{
           base: '/images/blog_page/slider_mobile_bg.svg',
           md: '/images/blog_page/sliderBg.svg'
