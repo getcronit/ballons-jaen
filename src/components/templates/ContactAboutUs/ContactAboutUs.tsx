@@ -15,8 +15,8 @@ const ContactAboutUs: FC<IAboutUsProps> = ({}) => {
       <Contact />
       <AboutBallons />
       {/* <OurCustomers /> */}
-      {/* <OurTeam />
-      <ContactBottomSection /> */}
+      <OurTeam />
+      <ContactBottomSection />
     </>
   )
 }

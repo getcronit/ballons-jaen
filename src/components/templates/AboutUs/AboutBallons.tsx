@@ -81,18 +81,40 @@ const AboutBallons: FC<IAboutBallonsProps> = () => {
                 lineHeight={{base: '1.25rem', md: '2rem', xl: '2.5rem'}}
                 mb="-2"
                 whiteSpace="nowrap"
-                name="aaaa"
+                name="AboutBallonsHeading1"
                 defaultValue="Test"
               />
               <Field.Text
                 //as={Heading}
-                name="bbb"
+                name="AboutBallonsSubtitle"
+                fontSize={{base: 'sm', md: 'md'}}
+                fontWeight="semibold"
+                defaultValue="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
               />
-              <Field.Text name="cccc" />
+              <Field.Text
+                name="AboutBallonsText"
+                fontSize={{base: 'sm', md: 'md'}}
+                fontWeight="light"
+                defaultValue="At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+              />
               <HStack
                 justify="center"
                 gap="4"
-                flexDir={{base: 'row-reverse', md: 'row'}}></HStack>
+                flexDir={{base: 'row-reverse', md: 'row'}}>
+                <LinkButtonField
+                  name="littleThingsButton1"
+                  defaultValue="Zum Shop"
+                  defaultUrl={`/products`}
+                  size={{base: 'sm', md: 'md'}}
+                />
+                <LinkButtonField
+                  name="littleThingsButton2"
+                  defaultValue="Großhandel"
+                  defaultUrl={`/grosshandel`}
+                  size={{base: 'sm', md: 'md'}}
+                  variant="outline"
+                />
+              </HStack>
             </Stack>
           </Flex>
         </Container>
