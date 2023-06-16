@@ -25,9 +25,9 @@ const BallonGas: FC<IBallonGasProps> = () => {
           <Field.Text
             lineHeight="4rem"
             fontSize={{base: 'xl', md: '4xl', lg: '5xl', xl: '6xl'}}
-            variant="cursive"
+            //variant="cursive"
             name="BallonGas.title"
-            defaultValue="Ballongas"
+            defaultValue={`<i>Ballongas</i>`}
           />
           <Field.Text
             maxW="80%"
