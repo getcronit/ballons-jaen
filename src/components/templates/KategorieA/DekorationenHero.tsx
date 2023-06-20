@@ -44,9 +44,9 @@ const DekorationenHero: FC<IDekorationenHeroProps> = () => {
           as={Heading}
           asAs={'h1'}
           lineHeight={{md: '50px', lg: '70px'}}
-          variant="cursive"
+          //variant="cursive"
           name="title"
-          defaultValue="Dekorationen"
+          defaultValue={`<i>Dekorationen</i>`}
         />
         <Field.Text
           pb="4"

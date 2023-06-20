@@ -22,10 +22,10 @@ const ImaginationUpperSection: FC<IImaginationUpperSectionProps> = () => {
         <Field.Text
           as={Heading}
           lineHeight={{base: '3.75rem', lg: '6.25rem'}}
-          variant="cursive"
+          //variant="cursive"
           fontSize={{base: '4xl', md: '6xl', lg: '8xl'}}
           name="imaginationText"
-          defaultValue="<p><i>Alles</i></p>"
+          defaultValue="<i>Alles</i>"
         />
         <Image
           pos="absolute"

@@ -440,7 +440,7 @@ const CategoryContentSection = connectBlock(
               variant="cursive"
               fontSize={{base: 'xl', md: '2xl', lg: '3xl', xl: '4xl'}}
               name="title"
-              defaultValue="Überschrift"
+              defaultValue={`<i>Überschrift</i>`}
             />
             <Field.Text
               as={Heading}

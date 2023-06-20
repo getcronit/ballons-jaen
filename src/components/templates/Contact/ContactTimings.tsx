@@ -106,7 +106,7 @@ const ContactTimings: FC<IContactTimingsProps> = ({ contactDetails }) => {
               mb="8"
               textAlign="center"
               name="timingHeading2"
-              defaultValue="Öffnungszeiten"
+              defaultValue={`<i>Öffnungszeiten</i>`}
             />
 
             <Stack spacing={{ base: 2, md: 6, lg: 8 }}>
