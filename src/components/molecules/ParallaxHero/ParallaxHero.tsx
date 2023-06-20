@@ -83,11 +83,11 @@ export const ParallaxHero = ({noScroll}: ParallaxHeroProps) => {
               }}>
               <CardWithImageBackground
                 card={{
-                  headingFieldName: `riesgesCardheading${i}`,
+                  headingFieldName: `homeHeroHeading`,
                   headingDefaultValue: 'Title',
-                  textFieldName: `riesgesCardText${i}`,
+                  textFieldName: `homeHeroText`,
                   textDefaultValue: 'Text',
-                  imageFieldName: `riesgesCardImage${i}`,
+                  imageFieldName: `homeHeroImage`,
                   imageDefaultValue: undefined,
                   linkUrl: `/${page.slug}`
                 }}

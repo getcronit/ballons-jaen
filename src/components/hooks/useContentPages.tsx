@@ -1,4 +1,5 @@
 import {useIndexField} from '@snek-at/jaen'
+import {useMemo} from 'react'
 
 export const useContentPages = () => {
   const index = useIndexField()
@@ -9,7 +10,18 @@ export const useContentPages = () => {
     child => templates.includes(child.template!) && child.deleted !== true
   )
 
-  index.children = children
+  const memoedIndex = useMemo(() => {
+    return {
+      ...index,
+      children: [
+        ...children,
+        {
+          id: 'JaenPage /grosshandel/',
+          slug: 'grosshandel'
+        }
+      ]
+    }
+  }, [index, children])
 
-  return index
+  return memoedIndex
 }
