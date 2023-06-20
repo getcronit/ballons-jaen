@@ -15,7 +15,7 @@ export const SliderBox = (sliderSettings: Settings = {}) =>
       React.Children.count(props.children) > (sliderSettings.slidesToShow || 3)
 
     return (
-      <Box ref={ref} {...props}>
+      <Box ref={ref} {...props} pb={'8'}>
         <Slider
           {...sliderSettings}
           infinite={isInfinite}
