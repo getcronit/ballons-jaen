@@ -4,7 +4,6 @@ import PrevArrow from '../components/CustomSlider/PrevArrow'
 
 export const settings: Settings = {
   dots: true,
-  infinite: true,
   speed: 500,
   slidesToShow: 1,
   slidesToScroll: 1,
@@ -16,7 +15,6 @@ export const settings: Settings = {
       settings: {
         slidesToShow: 3,
         slidesToScroll: 2,
-        infinite: true,
         dots: true
       }
     },
@@ -31,7 +29,6 @@ export const settings: Settings = {
   ]
 }
 export const blogSliderSettings: Settings = {
-  infinite: true,
   speed: 500,
   slidesToShow: 4,
   slidesToScroll: 1,
@@ -45,7 +42,6 @@ export const blogSliderSettings: Settings = {
         slidesToShow: 4,
         rows: 1,
         slidesToScroll: 1,
-        infinite: true,
         dots: true,
         arrows: true
       }
@@ -113,7 +109,6 @@ export const sliderDummyData = [
 
 export const customerSliderSettings: Settings = {
   dots: true,
-  infinite: false,
   speed: 500,
   slidesToShow: 1,
   slidesToScroll: 1,
@@ -125,7 +120,6 @@ export const customerSliderSettings: Settings = {
       settings: {
         slidesToShow: 2,
         slidesToScroll: 2,
-        infinite: false,
         dots: true
       }
     },
