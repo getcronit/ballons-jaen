@@ -14,9 +14,9 @@ const NewsContent: FC<INewsContentProps> = () => {
       <Field.Text
         mb={{base: '-8', md: '-12', lg: '-16 !important'}}
         fontSize={{base: 'xl', md: '4xl', lg: '7xl'}}
-        variant="cursive"
+        //variant="cursive"
         name="newsHeading"
-        defaultValue="News"
+        defaultValue={`<i>News</i>`}
       />
       <Field.Text
         as={Heading}
