@@ -32,7 +32,15 @@ export const SliderBlock = connectBlock(
           base: '/images/blog_page/slider_mobile_bg.svg',
           md: '/images/blog_page/sliderBg.svg'
         }}>
-        <Stack maxW={CONTAINER_MAX_WIDTH} mx="auto" spacing="4">
+        <Stack
+          maxW={CONTAINER_MAX_WIDTH}
+          mx="auto"
+          spacing="4"
+          pb={{
+            base: 2,
+            md: 4,
+            lg: 8
+          }}>
           <PhotoProvider maskOpacity={0.8}>
             <Field.Section
               as={SliderBox(blogSliderSettings)}

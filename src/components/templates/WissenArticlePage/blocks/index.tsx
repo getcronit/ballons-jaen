@@ -1,10 +1,38 @@
 import {VStack, Grid, Box} from '@chakra-ui/react'
-import {connectBlock, Field, PhotoProvider} from '@snek-at/jaen'
+import {connectBlock, Field, PhotoProvider, useField} from '@snek-at/jaen'
 import React from 'react'
 import Slider from 'react-slick'
 import {ImagesWithText} from '../../../organisms/ImagesWithText'
 
 export {SliderBlock} from './SliderBlock'
+
+export const ImageBlock = connectBlock(
+  () => {
+    return (
+      <Box
+        borderRadius={'lg'}
+        overflow="hidden"
+        maxW="80%"
+        mx="auto"
+        h={{
+          base: '30vh',
+          md: '50vh',
+          lg: '60vh'
+        }}>
+        <Field.Image
+          name="image"
+          objectFit="cover"
+          lightbox
+          backgroundColor="var(--chakra-colors-red-50)"
+        />
+      </Box>
+    )
+  },
+  {
+    name: 'ImageBlock',
+    label: 'Bild'
+  }
+)
 
 export const ImagesWithTextLeftBlock = connectBlock(
   () => {

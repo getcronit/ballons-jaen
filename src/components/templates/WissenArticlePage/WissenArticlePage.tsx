@@ -1,7 +1,9 @@
-import {Box, Container, Divider, Heading, Stack} from '@chakra-ui/react'
+import {Box, Container, Divider, Heading, Icon, Stack} from '@chakra-ui/react'
 import {Editor, Field} from '@snek-at/jaen'
+import {FaAd, FaGripLines} from 'react-icons/fa'
 import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
 import {
+  ImageBlock,
   ImagesBlock,
   ImagesWithTextLeftBlock,
   ImagesWithTextRightBlock,
@@ -21,7 +23,8 @@ const WissenArticlePage: React.FC<WissenPageProps> = () => {
         <Container as={Stack} maxW={CONTAINER_MAX_WIDTH} spacing="8">
           <Field.Text
             as={Heading}
-            fontSize="4xl"
+            asAs="h1"
+            fontSize="6xl"
             textAlign="center"
             name="title"
             defaultValue="Ballons & Ballons: Die Geschichte"
@@ -55,7 +58,8 @@ const WissenArticlePage: React.FC<WissenPageProps> = () => {
               ImagesBlock,
               ImagesWithTextLeftBlock,
               ImagesWithTextRightBlock,
-              SliderBlock
+              SliderBlock,
+              ImageBlock
             ]}
           />
         </Container>
