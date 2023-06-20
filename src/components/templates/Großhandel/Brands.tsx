@@ -76,9 +76,10 @@ const BrandCarousel: React.FC<{
             }}
             filter={shouldGrayOut ? 'grayscale(100%)' : 'none'}
             onClick={() => selectBrandIndex(brandIndex)}
-            cursor="pointer">
+            cursor="pointer"
+            p="4">
             <Field.Image
-              objectFit="cover"
+              objectFit="contain"
               name={`brands.${brandIndex}.logo`}
               key={`brands.${brandIndex}.logo`}
             />
