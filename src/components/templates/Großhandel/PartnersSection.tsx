@@ -61,9 +61,6 @@ const PartnersSection: FC<IPartnersSectionProps> = () => {
           </Container>
         </Box>
 
-        <Button mt={{ base: 2, md: '4' }} size={{ base: 'sm', md: 'md' }}>
-          Jetzt registrieren
-        </Button>
         <LinkButtonField
           size={{ base: 'sm', md: 'md' }}
           name="PartnerButton"
