@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 export const useQueryRouter = (
-  paramKey: string,
+    paramKey: string,
 ) => {
     const [isCalled, setIsCalled] = useState(false);
     const [paramValue, setParamValue] = useState('');
@@ -26,7 +26,7 @@ export const useQueryRouter = (
             window.removeEventListener('popstate', checkQueryKey);
             window.removeEventListener('hashchange', checkQueryKey);
         };
-    });
+    }, []);
 
     // Return isCalled and kthe value of the param in the URL
     return {

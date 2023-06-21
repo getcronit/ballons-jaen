@@ -8,7 +8,7 @@ import {
   ContactModal
 } from '../components/organisms/ContactModal'
 import {useAuthentication} from './authentication'
-import { useQueryRouter } from '../components/hooks/useContactModal'
+import { useQueryRouter } from '../components/hooks/useQueryRouter'
 
 export interface ContactModalContextProps {
   onOpen: (args?: {meta?: Record<string, any>}) => void
@@ -134,7 +134,7 @@ export const ContactModalProvider: React.FC<ContactModalDrawerProps> = ({
     return {
       message: paramValue
     }
-  }, [isCalled])
+  }, [isCalled, paramValue])
 
   return (
     <ContactModalContext.Provider value={{onOpen, onClose}}>
