@@ -36,7 +36,7 @@ export const ProductSlider = ({
         }}>
         {products.map((product, index) => (
           <ProductCard
-            key={index}
+            key={product.id}
             product={product}
             prefixPath={prefixPath}
             // borderline

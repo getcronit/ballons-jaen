@@ -23,7 +23,7 @@ import {GatsbyImage, getSrcSet, IGatsbyImageData} from 'gatsby-plugin-image'
 import React from 'react'
 import {getSrcFromImageData} from '../../../common/get-src-from-image-data'
 
-import {getProductPrices, uuidv1} from '../../../common/utils'
+import {getProductPrices} from '../../../common/utils'
 import * as styles from './styles'
 
 export interface ProductCardProps {
@@ -63,7 +63,7 @@ export const ProductCard = ({
     taxable = false
   }
 
-  const cardId = uuidv1()
+  const cardId = product.id
 
   if (product.media.length === 0) {
     borderline = false
