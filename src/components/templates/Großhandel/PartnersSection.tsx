@@ -7,19 +7,20 @@ import {
   VStack,
   Flex
 } from '@chakra-ui/react'
-import {connectBlock, Field, PhotoProvider} from '@snek-at/jaen'
-import {FC} from 'react'
+import { connectBlock, Field, PhotoProvider } from '@snek-at/jaen'
+import { FC } from 'react'
 import Slider from 'react-slick'
-import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
-import {partnerSliderSettings} from '../../../constant/slider'
-import {SliderBox} from '../../organisms/SliderBox'
+import { CONTAINER_MAX_WIDTH } from '../../../constant/sizes'
+import { partnerSliderSettings } from '../../../constant/slider'
+import { SliderBox } from '../../organisms/SliderBox'
+import LinkButtonField from '../../fields/LinkButtonField'
 
 const PartnerSection = connectBlock(
   () => {
     return (
       <Flex boxSize={'full'} display={'flex'} justifyContent="center" my="8">
         <Box
-          boxSize={{base: '10rem', sm: '12rem', lg: '15rem'}}
+          boxSize={{ base: '10rem', sm: '12rem', lg: '15rem' }}
           borderRadius="xl"
           overflow="hidden"
           boxShadow="dark">
@@ -34,12 +35,12 @@ const PartnerSection = connectBlock(
   }
 )
 
-interface IPartnersSectionProps {}
+interface IPartnersSectionProps { }
 
 const PartnersSection: FC<IPartnersSectionProps> = () => {
   return (
     <>
-      <VStack gap={{base: 4, md: '8'}} py="20" bg="white">
+      <VStack gap={{ base: 4, md: '8' }} py="20" bg="white">
         <Field.Text
           as={Heading}
           size="h5020"
@@ -60,9 +61,15 @@ const PartnersSection: FC<IPartnersSectionProps> = () => {
           </Container>
         </Box>
 
-        <Button mt={{base: 2, md: '4'}} size={{base: 'sm', md: 'md'}}>
+        <Button mt={{ base: 2, md: '4' }} size={{ base: 'sm', md: 'md' }}>
           Jetzt registrieren
         </Button>
+        <LinkButtonField
+          size={{ base: 'sm', md: 'md' }}
+          name="PartnerButton"
+          defaultValue="Jetzt registrieren"
+          defaultUrl={`/grosshandel/?contact=Ich%20repr%C3%A4sentiere%20[Ihr%20Unternehmen].%20Wir%20sind%20ein%20etabliertes%20Unternehmen%20in%20der%20[Ihr%20Gesch%C3%A4ftsbereich],%20das%20daran%20interessiert%20ist,%20Ihre%20Auswahl%20an%20Ballonprodukten%20in%20unser%20Sortiment%20aufzunehmen.`}
+        />
       </VStack>
       <Image
         zIndex={'-1'}
