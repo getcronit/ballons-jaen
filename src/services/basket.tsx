@@ -56,7 +56,9 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
 
     const auth = useAuthentication()
 
-    const wholesale = !!auth.user
+    // Override wholesale to true for now until shopify checkout is implemented and tested
+    const isRealWholesale = !!auth.user
+    const wholesale = true || isRealWholesale
 
     React.useEffect(() => {
       void createOrFetchCheckout()
@@ -220,7 +222,8 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
           isOpen={open}
           onClose={onClose}
           products={cleanLineItems(checkout?.lineItems) as any}
-          wholesale={wholesale}
+          wholesale={isRealWholesale}
+          requestCheckout={wholesale}
           // @ts-expect-error
           subtotal={parseFloat(checkout?.lineItemsSubtotalPrice?.amount || '0')}
           onProductQuantityChange={(id, quantity) => {

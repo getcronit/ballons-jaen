@@ -1,4 +1,5 @@
 import {
+  Alert,
   Divider,
   Drawer,
   DrawerBody,
@@ -10,8 +11,11 @@ import {
   Heading,
   HStack,
   Stack,
-  Text
+  Text,
+  Link as CLink,
+  AlertDescription
 } from '@chakra-ui/react'
+import {Link} from 'gatsby'
 import {FaBox} from 'react-icons/fa'
 
 import {CartItem} from './CartItem'
@@ -22,6 +26,7 @@ export interface BasketDrawerProps {
   isOpen: boolean
   products: CheckoutLineItem[]
   wholesale: boolean
+  requestCheckout: boolean
   subtotal: number
   onClickCheckout: () => void
   onProductQuantityChange: (id: string, quantity: number) => void
@@ -36,16 +41,46 @@ export const BasketDrawer = ({
   onProductRemove,
   products,
   wholesale,
+  requestCheckout,
   subtotal
 }: BasketDrawerProps) => {
   const currency = 'EUR'
+
+  const temporaryProductRequestAlert = (
+    <Alert status="warning" mt="4">
+      <AlertDescription>
+        <Stack>
+          <Text>
+            <strong>Achtung:</strong> Beim Absenden der Bestellung handelt es
+            sich um eine <u>unverbindliche Anfrage</u>. Wir werden uns mit dir
+            in Verbindung setzen, um die Bestellung zu bestätigen.
+          </Text>
+
+          {!wholesale && (
+            <Text fontSize={'sm'}>
+              Sind Sie ein Reseller?{' '}
+              <CLink
+                as={Link}
+                to="/grosshandel"
+                _hover={{
+                  textDecoration: 'none'
+                }}
+                color="blue.500">
+                Hier geht's zum Großhandel.
+              </CLink>
+            </Text>
+          )}
+        </Stack>
+      </AlertDescription>
+    </Alert>
+  )
 
   return (
     <Drawer isOpen={isOpen} placement="right" size="md" onClose={onClose}>
       <DrawerOverlay />
       <DrawerContent>
         <DrawerCloseButton size="lg" />
-        <DrawerHeader>
+        <DrawerHeader fontWeight="normal">
           <Heading fontSize="lg" as="h2" fontWeight="normal">
             Warenkorb ({products.length} Artikel)
           </Heading>
@@ -96,20 +131,25 @@ export const BasketDrawer = ({
             currency={currency}
             onClickCheckout={onClickCheckout}
             infoText={
-              wholesale ? (
-                <Text fontSize="sm" mt="0 !important">
-                  Alle Preise exkl. 19% MwSt.
-                </Text>
-              ) : (
-                <HStack color="gray.600" mt="0 !important">
-                  <FaBox />
-                  <Text fontSize="sm">
-                    Versand + Steuern werden im nächsten Schritt berechnet.
+              <>
+                {wholesale ? (
+                  <Text fontSize="sm" mt="0 !important">
+                    Alle Preise exkl. 19% MwSt.
                   </Text>
-                </HStack>
-              )
+                ) : (
+                  <HStack color="gray.600" mt="0 !important">
+                    <FaBox />
+                    <Text fontSize="sm">
+                      Versand + Steuern werden im nächsten Schritt berechnet.
+                    </Text>
+                  </HStack>
+                )}
+                {requestCheckout && temporaryProductRequestAlert}
+              </>
             }
-            checkoutButtonText={wholesale ? 'jetzt bestellen' : 'zur Kassa'}
+            checkoutButtonText={
+              wholesale || requestCheckout ? 'jetzt bestellen' : 'zur Kassa'
+            }
           />
         </DrawerFooter>
       </DrawerContent>
