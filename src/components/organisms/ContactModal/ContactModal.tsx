@@ -38,13 +38,18 @@ export interface ContactModalProps {
     name?: string
     email?: string
   }
+
+  defaultValues?: {
+    message?: string
+  }
 }
 
 export const ContactModal: React.FC<ContactModalProps> = ({
   isOpen,
   onClose,
   onSubmit,
-  fixedValues
+  fixedValues,
+  defaultValues
 }) => {
   const {
     register,
@@ -141,6 +146,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                 <Textarea
                   id="message"
                   placeholder="Nachricht"
+                  defaultValue={defaultValues?.message}
                   {...register('message', {required: true})}
                 />
 

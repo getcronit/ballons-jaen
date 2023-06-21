@@ -8,6 +8,7 @@ import {
   ContactModal
 } from '../components/organisms/ContactModal'
 import {useAuthentication} from './authentication'
+import { useQueryRouter } from '../components/hooks/useContactModal'
 
 export interface ContactModalContextProps {
   onOpen: (args?: {meta?: Record<string, any>}) => void
@@ -37,8 +38,17 @@ export interface ContactModalDrawerProps {
 export const ContactModalProvider: React.FC<ContactModalDrawerProps> = ({
   children
 }) => {
+  const {isCalled, paramValue} = useQueryRouter('contact')
+
   const [meta, setMeta] = React.useState<Record<string, any> | null>(null)
   const [isOpen, setIsOpen] = React.useState(false)
+
+  React.useEffect(() => {
+    if (isCalled) {
+      setIsOpen(true)
+      //alert(paramValue)
+    }
+  }, [isCalled]);
 
   const toast = useToast()
 
@@ -54,6 +64,7 @@ export const ContactModalProvider: React.FC<ContactModalDrawerProps> = ({
     setIsOpen(true)
   }
   const onClose = () => {
+    history.pushState('Ballons & Ballons', '', '/')
     setIsOpen(false)
   }
 
@@ -115,6 +126,16 @@ export const ContactModalProvider: React.FC<ContactModalDrawerProps> = ({
     }
   }, [authentication.user])
 
+  const defaultValues = useMemo(() => {
+    if (!isCalled) {
+      return undefined
+    }
+
+    return {
+      message: paramValue
+    }
+  }, [isCalled])
+
   return (
     <ContactModalContext.Provider value={{onOpen, onClose}}>
       {children}
@@ -123,6 +144,7 @@ export const ContactModalProvider: React.FC<ContactModalDrawerProps> = ({
         onClose={onClose}
         onSubmit={onSubmit}
         fixedValues={fixedValues}
+        defaultValues={defaultValues}
       />
     </ContactModalContext.Provider>
   )
