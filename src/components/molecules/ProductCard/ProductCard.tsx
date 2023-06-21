@@ -87,87 +87,84 @@ export const ProductCard = ({
   }
 
   return (
-    <LinkBox>
-      <VStack
-        as={GatsbyLink}
-        to={path}
-        display="block"
-        css={styles.cardStyle(borderline, bwidth, bcolor, left)}
-        boxSize="full"
+    <LinkBox
+      display="block"
+      css={styles.cardStyle(borderline, bwidth, bcolor, left)}
+      boxSize="full"
+      cursor="pointer"
+      // bg="red"
+      textAlign={{
+        base: 'center',
+        md: 'left'
+      }}>
+      <Box
+        className="pcard"
+        position="relative"
         cursor="pointer"
-        // bg="red"
-        textAlign={{
-          base: 'center',
-          md: 'left'
-        }}>
-        <Box
-          className="pcard"
-          position="relative"
-          cursor="pointer"
-          bg="primary"
-          px={{base: '1', md: '2', lg: '3'}}
-          py="5"
-          // h={'full'}
-          minH="full"
-          borderRadius="xl"
-          // boxShadow="lg"
-          // border="1px"
-          // borderColor="border"
-          // mt="3"
-        >
-          <Box position="relative">
-            <AspectRatio ratio={10 / 9}>
-              <>
-                <input
-                  type="radio"
-                  className="radioimg"
-                  name={'imgbox-' + cardId}
-                  id={`imgbox-${cardId}-${0}`}
-                  key={0}
-                  ref={el => (radioRef.current[0] = el)}
-                  readOnly
-                  checked></input>
-                <ImageBoxWithTags
-                  image={product.featuredMedia?.image}
-                  tags={coloredBadges}
-                  className="main"
-                />
-              </>
-            </AspectRatio>
+        bg="primary"
+        px={{base: '1', md: '2', lg: '3'}}
+        py="5"
+        // h={'full'}
+        minH="full"
+        borderRadius="xl"
+        // boxShadow="lg"
+        // border="1px"
+        // borderColor="border"
+        // mt="3"
+      >
+        <Box position="relative">
+          <AspectRatio ratio={10 / 9}>
+            <>
+              <input
+                type="radio"
+                className="radioimg"
+                name={'imgbox-' + cardId}
+                id={`imgbox-${cardId}-${0}`}
+                key={0}
+                ref={el => (radioRef.current[0] = el)}
+                readOnly
+                checked></input>
+              <ImageBoxWithTags
+                image={product.featuredMedia?.image}
+                tags={coloredBadges}
+                className="main"
+              />
+            </>
+          </AspectRatio>
 
-            {product.media.slice(0, 3).map((media, index) => (
-              <Box key={index}>
-                {index !== 0 && (
-                  <Box>
-                    <input
-                      type="radio"
-                      className="radioimg"
-                      name={'imgbox-' + cardId}
-                      id={`imgbox-${cardId}-${index}`}
-                      ref={el => (radioRef.current[index] = el)}
-                    />
-                    <ImageBoxWithTags
-                      image={media.image}
-                      tags={coloredBadges}
-                      className="preview"
-                    />
-                  </Box>
-                )}
-              </Box>
-            ))}
-          </Box>
+          {product.media.slice(0, 3).map((media, index) => (
+            <Box key={index}>
+              {index !== 0 && (
+                <Box>
+                  <input
+                    type="radio"
+                    className="radioimg"
+                    name={'imgbox-' + cardId}
+                    id={`imgbox-${cardId}-${index}`}
+                    ref={el => (radioRef.current[index] = el)}
+                  />
+                  <ImageBoxWithTags
+                    image={media.image}
+                    tags={coloredBadges}
+                    className="preview"
+                  />
+                </Box>
+              )}
+            </Box>
+          ))}
+        </Box>
 
-          <Text fontSize="sm" noOfLines={1}>
-            {tags.otherString}
-          </Text>
-          <LinkOverlay as={GatsbyLink} to={path} fontWeight={'semibold'}>
-            {product.title}
-          </LinkOverlay>
-          <ProductPrices prices={prices} />
-          <Text fontSize="xs" color="gray.600" textAlign="center">
-            {taxable ? 'inkl.' : 'exkl.'} USt.
-          </Text>
-          {/* <Spacer
+        <Text fontSize="sm" noOfLines={1}>
+          {tags.otherString}
+        </Text>
+        <LinkOverlay as={GatsbyLink} to={path} fontWeight={'semibold'}>
+          {product.title}
+        </LinkOverlay>
+        <ProductPrices prices={prices} />
+        <Text fontSize="xs" color="gray.600" textAlign="center">
+          {taxable ? 'inkl.' : 'exkl.'} USt.
+        </Text>
+        {/* <Spacer
             position="absolute"
             className="bspacer"
             w="0"
@@ -177,62 +174,59 @@ export const ProductCard = ({
             borderColor="gray.200"
             transform="scale(0.97)"
           /> */}
-          <Box
-            className="borderline"
-            cursor="pointer"
-            bg={useColorModeValue('white', 'gray.700')}
-            px={{base: '1', md: '2', lg: '3'}}
-            py="5"
-            // h={'full'}
-            // minH={'full'}
-            borderRadius="xl"
-            border="1px"
-            borderColor="gray.200"
-            _hover={{
-              before: {borderColor: 'agt.red'},
-              _after: {borderColor: 'agt.red'}
-            }}>
-            <VStack
-              className="imgline"
-              position="absolute"
-              opacity="0"
-              boxSize="full"
-              py="0.5rem"
-              px="1">
-              {product.media.slice(0, 3).map((m, index) => (
-                <label htmlFor={`imgbox-${cardId}-${index}`} key={index}>
-                  <Box
-                    transform="scale(0.97)"
-                    borderBottom="1px"
-                    borderColor="border"
-                    py="1"
-                    _hover={{borderColor: 'agt.red'}}
-                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                    onMouseOver={() =>
-                      (radioRef.current[index]!.checked = true)
-                    }
-                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                    onMouseLeave={() => (radioRef.current[0]!.checked = true)}>
-                    <GatsbyImage
-                      onDragStart={e => {
-                        e.preventDefault()
-                      }}
-                      draggable="false"
-                      image={m.image.gatsbyImageData}
-                      alt={m.image.altText || ''}
-                      objectFit="contain"
-                      style={{
-                        height: '100%',
-                        width: '100%'
-                      }}
-                    />
-                  </Box>
-                </label>
-              ))}
-            </VStack>
-          </Box>
+        <Box
+          className="borderline"
+          cursor="pointer"
+          bg={useColorModeValue('white', 'gray.700')}
+          px={{base: '1', md: '2', lg: '3'}}
+          py="5"
+          // h={'full'}
+          // minH={'full'}
+          borderRadius="xl"
+          border="1px"
+          borderColor="gray.200"
+          _hover={{
+            before: {borderColor: 'agt.red'},
+            _after: {borderColor: 'agt.red'}
+          }}>
+          <VStack
+            className="imgline"
+            position="absolute"
+            opacity="0"
+            boxSize="full"
+            py="0.5rem"
+            px="1">
+            {product.media.slice(0, 3).map((m, index) => (
+              <label htmlFor={`imgbox-${cardId}-${index}`} key={index}>
+                <Box
+                  transform="scale(0.97)"
+                  borderBottom="1px"
+                  borderColor="border"
+                  py="1"
+                  _hover={{borderColor: 'agt.red'}}
+                  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                  onMouseOver={() => (radioRef.current[index]!.checked = true)}
+                  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                  onMouseLeave={() => (radioRef.current[0]!.checked = true)}>
+                  <GatsbyImage
+                    onDragStart={e => {
+                      e.preventDefault()
+                    }}
+                    draggable="false"
+                    image={m.image.gatsbyImageData}
+                    alt={m.image.altText || ''}
+                    objectFit="contain"
+                    style={{
+                      height: '100%',
+                      width: '100%'
+                    }}
+                  />
+                </Box>
+              </label>
+            ))}
+          </VStack>
         </Box>
-      </VStack>
+      </Box>
     </LinkBox>
   )
 }
