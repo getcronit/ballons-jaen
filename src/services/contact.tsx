@@ -1,6 +1,7 @@
 import {useToast} from '@chakra-ui/react'
 import {getTokenPair, sq} from '@snek-functions/origin'
 import React, {useMemo} from 'react'
+import {RouteComponentProps} from '@reach/router'
 import {asEnumKey, doNotConvertToString} from 'snek-query'
 
 import {
@@ -8,7 +9,8 @@ import {
   ContactModal
 } from '../components/organisms/ContactModal'
 import {useAuthentication} from './authentication'
-import { useQueryRouter } from '../components/hooks/useQueryRouter'
+import {useQueryRouter} from '../components/hooks/useQueryRouter'
+import {navigate} from 'gatsby'
 
 export interface ContactModalContextProps {
   onOpen: (args?: {meta?: Record<string, any>}) => void
@@ -33,12 +35,17 @@ export const useContactModal = () => {
 
 export interface ContactModalDrawerProps {
   children: React.ReactNode
+  location: {
+    pathname: string
+    search: string
+  }
 }
 
 export const ContactModalProvider: React.FC<ContactModalDrawerProps> = ({
+  location,
   children
 }) => {
-  const {isCalled, paramValue} = useQueryRouter('contact')
+  const {isCalled, paramValue} = useQueryRouter(location, 'contact')
 
   const [meta, setMeta] = React.useState<Record<string, any> | null>(null)
   const [isOpen, setIsOpen] = React.useState(false)
@@ -48,7 +55,7 @@ export const ContactModalProvider: React.FC<ContactModalDrawerProps> = ({
       setIsOpen(true)
       //alert(paramValue)
     }
-  }, [isCalled]);
+  }, [isCalled])
 
   const toast = useToast()
 
@@ -64,7 +71,8 @@ export const ContactModalProvider: React.FC<ContactModalDrawerProps> = ({
     setIsOpen(true)
   }
   const onClose = () => {
-    history.pushState('Ballons & Ballons', '', '/')
+    navigate(location.pathname)
+
     setIsOpen(false)
   }
 
