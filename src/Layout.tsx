@@ -12,19 +12,22 @@ import {SearchModalProvider} from './services/search'
 import {LayoutMode} from './types/commonTypes'
 
 export interface LayoutProps {
-  pathname: string
+  location: {
+    pathname: string
+    search: string
+  }
   mode?: LayoutMode
   children: React.ReactElement | React.ReactElement[]
 }
 
 export const Layout: React.FC<LayoutProps> = ({
   children,
-  pathname,
+  location,
   mode = 'website'
 }) => {
   return (
-    <ScrollToTop pathname={pathname}>
-      <ContactModalProvider>
+    <ScrollToTop pathname={location.pathname}>
+      <ContactModalProvider location={location}>
         <BasketDrawerProvider>
           <SearchProvider>
             <SearchModalProvider>

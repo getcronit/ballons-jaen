@@ -6,7 +6,11 @@ import {Layout} from '../Layout'
 
 const Page = (props: PageProps) => {
   return (
-    <Layout pathname={props.path}>
+    <Layout
+      location={{
+        pathname: props.location.pathname,
+        search: props.location.search
+      }}>
       <WissenPage />
     </Layout>
   )

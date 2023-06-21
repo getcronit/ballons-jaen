@@ -44,7 +44,12 @@ const ProductPageTemplate = connectTemplate<ProductPageTemplateProps>(
     return (
       <>
         {/* <SEO pagePath={props.path} pageMeta={buildProductPageMeta()} /> */}
-        <Layout pathname={props.path} mode="store">
+        <Layout
+          location={{
+            pathname: props.location.pathname,
+            search: props.location.search
+          }}
+          mode="store">
           <ProductTemplate
             path={props.path}
             wholesale={wholesale}
