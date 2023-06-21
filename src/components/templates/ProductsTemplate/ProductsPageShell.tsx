@@ -421,10 +421,9 @@ const Filter: React.FC<{
                   console.log('menuStructure', menuStructure)
 
                   return (
-                    <Menu>
+                    <Menu key={`${group}-${index}`}>
                       <MenuButton
                         as={Button}
-                        key={index}
                         size="sm"
                         variant="ghost"
                         fontWeight="normal"
@@ -464,9 +463,9 @@ const Filter: React.FC<{
 
                           Object.entries(menuStructure)
                             .sort(([a], [b]) => a.localeCompare(b))
-                            .map(([cat, items]) => {
+                            .map(([cat, items], index) => {
                               return (
-                                <MenuGroup title={cat}>
+                                <MenuGroup key={index} title={cat}>
                                   {items.map((item, index) => {
                                     const active = activeTagsArray.includes(
                                       item.tag
@@ -504,6 +503,7 @@ const Filter: React.FC<{
             }
             {shouldShowDrawerButton && (
               <Button
+                key={'more'}
                 size="sm"
                 variant="ghost"
                 fontWeight="normal"
@@ -609,6 +609,7 @@ const Filter: React.FC<{
 
           {activeTagsArray.length > ACTIVE_LIMIT && (
             <Button
+              key="more"
               size="sm"
               fontSize={'xs'}
               variant="ghost"
