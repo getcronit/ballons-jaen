@@ -473,7 +473,7 @@ const ImageSlider = (props: {
 
   return (
     <PhotoProvider maskOpacity={0.8}>
-      <Flex justifyContent="center">
+      <VStack>
         <PhotoView
           src={getSrcFromImageData(props.featuredMedia?.image.gatsbyImageData)}>
           <Center
@@ -483,19 +483,23 @@ const ImageSlider = (props: {
               md: '30rem',
               lg: '35rem'
             }}
-            objectFit="contain">
-            {curMedia?.image && (
+            p="2"
+            borderRadius="xl"
+            border="1px"
+            borderColor="gray.200"
+            bg="white">
+            {curMedia?.image ? (
               <GatsbyImage
                 image={curMedia.image.gatsbyImageData}
                 alt={curMedia.image.altText || 'Product Image'}
                 style={{
                   height: '100%',
-                  width: '100%',
-                  objectFit: 'contain',
-                  objectPosition: 'center'
+                  width: '100%'
                 }}
                 objectFit="contain"
               />
+            ) : (
+              <Text>Kein Bild vorhanden</Text>
             )}
           </Center>
         </PhotoView>
@@ -503,7 +507,10 @@ const ImageSlider = (props: {
         {media.length > 1 && (
           <Wrap
             overflow="hidden"
-            bg={useColorModeValue('gray.50', 'gray.700')}
+            bg={'white'}
+            borderRadius="lg"
+            border="1px"
+            borderColor="gray.100"
             spacing={0}
             justify="center">
             {media.map((media, index) => (
@@ -518,7 +525,7 @@ const ImageSlider = (props: {
             ))}
           </Wrap>
         )}
-      </Flex>
+      </VStack>
     </PhotoProvider>
   )
 }

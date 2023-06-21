@@ -23,7 +23,7 @@ import {GatsbyImage, getSrcSet, IGatsbyImageData} from 'gatsby-plugin-image'
 import React from 'react'
 import {getSrcFromImageData} from '../../../common/get-src-from-image-data'
 
-import {getProductPrices, uuidv1} from '../../../common/utils'
+import {getProductPrices} from '../../../common/utils'
 import * as styles from './styles'
 
 export interface ProductCardProps {
@@ -63,7 +63,7 @@ export const ProductCard = ({
     taxable = false
   }
 
-  const cardId = uuidv1()
+  const cardId = product.id
 
   if (product.media.length === 0) {
     borderline = false
@@ -220,6 +220,11 @@ export const ProductCard = ({
                       draggable="false"
                       image={m.image.gatsbyImageData}
                       alt={m.image.altText || ''}
+                      objectFit="contain"
+                      style={{
+                        height: '100%',
+                        width: '100%'
+                      }}
                     />
                   </Box>
                 </label>
@@ -232,8 +237,8 @@ export const ProductCard = ({
   )
 }
 
-function ImageBoxWithTags(
-  props: {
+const ImageBoxWithTags: React.FC<
+  {
     image?: {
       src: string
       altText: string | null
@@ -241,34 +246,20 @@ function ImageBoxWithTags(
     }
     tags: Array<{name: string; color: string; bg: string}>
   } & BoxProps
-) {
+> = ({tags, image: propImage, ...rest}) => {
   // Box with image as background and tags on bottom
-  const {tags} = props
-
-  const image: {
-    src: string
-    srcSet: string
-    altText: string
-  } = {
-    src: getSrcFromImageData(props.image?.gatsbyImageData),
-    srcSet:
-      (props.image?.gatsbyImageData &&
-        getSrcSet(props.image?.gatsbyImageData)) ||
-      '',
-    altText: props.image?.altText || ''
-  }
 
   return (
-    <Box overflow="hidden" position="relative" {...props}>
-      {image ? (
-        <Image
+    <Box overflow="hidden" position="relative" {...rest}>
+      {propImage?.gatsbyImageData ? (
+        <GatsbyImage
           onDragStart={e => {
             e.preventDefault()
           }}
           draggable="false"
-          src={image.src}
-          srcSet={image.srcSet}
-          alt={image.altText}
+          image={propImage?.gatsbyImageData}
+          alt={propImage?.altText || ''}
+          objectFit="contain"
           style={{
             height: '100%',
             width: '100%',
@@ -277,7 +268,7 @@ function ImageBoxWithTags(
           }}
         />
       ) : (
-        'no image'
+        'Kein Bild vorhanden'
       )}
       <Flex position="absolute" top="0" left="0" right="0" p={2}>
         {tags.map((tag, index) => (

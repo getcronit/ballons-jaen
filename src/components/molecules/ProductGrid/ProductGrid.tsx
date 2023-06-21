@@ -41,7 +41,7 @@ export const ProductGrid = ({
             <ProductCard
               prefixPath={prefixPath}
               product={item}
-              key={index}
+              key={item.id}
               left={(index + 1) % v === 0}
               wholesale={wholesale}
             />

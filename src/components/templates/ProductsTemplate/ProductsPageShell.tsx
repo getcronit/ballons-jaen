@@ -23,6 +23,7 @@ import {
   GridItem,
   Heading,
   HStack,
+  Icon,
   Input,
   Menu,
   MenuButton,
@@ -48,6 +49,7 @@ import {GroupBase, OptionBase, Select} from 'chakra-react-select'
 import {Link} from 'gatsby'
 import React, {Fragment, ReactNode} from 'react'
 import {BsFilterCircleFill} from 'react-icons/bs'
+import {InfoOutlineIcon} from '@chakra-ui/icons'
 import {OverflownText} from '../../OverflownText'
 
 interface TagFilterOption extends OptionBase {
@@ -155,7 +157,10 @@ function CategoryPicker(props: CategoryPickerProps) {
                           }}
                           cursor="pointer"
                           fontSize="sm"
-                          fontWeight={active ? 'semibold' : 'normal'}>
+                          fontWeight={active ? 'semibold' : 'normal'}
+                          _hover={{
+                            textDecoration: 'underline'
+                          }}>
                           {item.label}
                         </Text>
                       )
@@ -236,7 +241,7 @@ function TagsPicker(props: TagsPickerProps) {
                     <Text
                       flex="1"
                       textAlign="left"
-                      fontSize="md"
+                      fontSize="lg"
                       fontWeight={isExpanded ? 'bold' : 'normal'}>
                       {group}{' '}
                       <Text as="span" fontSize={'sm'}>
@@ -260,22 +265,47 @@ function TagsPicker(props: TagsPickerProps) {
                           item.tag
                         )
 
+                        const [_, ...rest] = item.tag.split(':')
+                        const label = `${group}: ${rest
+                          .slice(0, -1)
+                          .join(' > ')} -> ${item.label}`
+
                         return (
-                          <Text
+                          <HStack
+                            py="1"
                             key={index}
                             onClick={e => {
                               props.addOrRemoveTag(item.tag, group)
                             }}
-                            cursor="pointer"
-                            fontSize="sm"
-                            fontWeight={active ? 'semibold' : 'normal'}>
-                            {item.categories.length > 0 && (
-                              <Text as="span" fontSize={'sm'} fontWeight="bold">
-                                {item.categories.join(' > ')}{' '}
+                            cursor="pointer">
+                            {group === 'Kategorie' &&
+                              item.categories.length > 0 && <Box>-</Box>}
+
+                            <Tooltip
+                              isOpen={
+                                item.categories.length === 0 ? false : undefined
+                              }
+                              label={label}
+                              hasArrow
+                              placement="bottom-start">
+                              <Text
+                                fontSize="md"
+                                fontWeight={active ? 'semibold' : 'normal'}
+                                _hover={{
+                                  textDecoration: 'underline'
+                                }}>
+                                {item.label}
+                                {group !== 'Kategorie' &&
+                                  item.categories.length > 0 && (
+                                    <InfoOutlineIcon
+                                      as="span"
+                                      ml="2"
+                                      fontSize="xs"
+                                    />
+                                  )}
                               </Text>
-                            )}
-                            {item.label}
-                          </Text>
+                            </Tooltip>
+                          </HStack>
                         )
                       })}
                   </Stack>
@@ -627,7 +657,7 @@ const Filter: React.FC<{
             <Button
               visibility={activeTagsArray.length > 0 ? 'visible' : 'hidden'}
               maxW="fit-content"
-              size="sm"
+              size="md"
               onClick={() => {
                 clearActiveTags()
               }}>

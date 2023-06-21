@@ -65,10 +65,7 @@
     width: 0.75rem;
   }
 
-  ul.slick-dots {
-    top: -5.375rem;
-    position: relative;
-  }
+
 
   .slick-dots .slick-active,
   .slick-dots li {
