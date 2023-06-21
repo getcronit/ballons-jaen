@@ -6,7 +6,11 @@ import ContactAboutUs from '../components/templates/ContactAboutUs/ContactAboutU
 
 const Page = (props: PageProps) => {
   return (
-    <Layout pathname={props.path}>
+    <Layout
+      location={{
+        pathname: props.location.pathname,
+        search: props.location.search
+      }}>
       <ContactAboutUs />
     </Layout>
   )

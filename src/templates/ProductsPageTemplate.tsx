@@ -6,6 +6,8 @@ import {
 } from '@snek-at/gatsby-theme-shopify'
 import {Head as JaenHead} from '@snek-at/jaen'
 import {PageProps} from 'gatsby'
+import {getImageData, getLowResolutionImageURL} from 'gatsby-plugin-image'
+import {getShopifyImage} from 'gatsby-source-shopify'
 
 import {ProductsTemplate} from '../components/templates/ProductsTemplate'
 import {
@@ -83,7 +85,12 @@ const ProductsPageTemplate: React.FC<ProductsPageTemplateProps> = props => {
 
   return (
     <>
-      <Layout pathname={props.path} mode="store">
+      <Layout
+        location={{
+          pathname: props.location.pathname,
+          search: props.location.search
+        }}
+        mode="store">
         <ProductsTemplate
           wholesale={wholesale}
           path={props.path}

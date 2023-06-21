@@ -13,7 +13,11 @@ const Page = (
   }>
 ) => {
   return (
-    <Layout pathname={props.path}>
+    <Layout
+      location={{
+        pathname: props.location.pathname,
+        search: props.location.search
+      }}>
       <HomePage featuredProducts={props.data.featuredProducts.nodes} />
     </Layout>
   )

@@ -1,36 +1,30 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react'
 
 export const useQueryRouter = (
-    paramKey: string,
+  location: {
+    pathname: string
+    search: string
+  },
+  paramKey: string
 ) => {
-    const [isCalled, setIsCalled] = useState(false);
-    const [paramValue, setParamValue] = useState('');
+  const [isCalled, setIsCalled] = useState(false)
+  const [paramValue, setParamValue] = useState('')
 
-    useEffect(() => {
-        // Function to check the URL query string for the provided key
-        function checkQueryKey() {
-            const params = new URLSearchParams(window.location.search);
-            setIsCalled(params.has(paramKey));
-            setParamValue(params.get(paramKey) as string);
-        }
+  useEffect(() => {
+    // Function to check the URL query string for the provided key
+    function checkQueryKey() {
+      const params = new URLSearchParams(location?.search)
+      setIsCalled(params.has(paramKey))
+      setParamValue(params.get(paramKey) as string)
+    }
 
-        // Check the query key on initial render
-        checkQueryKey();
+    // Check the query key on initial render
+    checkQueryKey()
+  }, [location?.pathname, location?.search])
 
-        // Add event listeners for URL change
-        window.addEventListener('popstate', checkQueryKey);
-        window.addEventListener('hashchange', checkQueryKey);
-
-        // Cleanup function to remove event listeners on unmount
-        return () => {
-            window.removeEventListener('popstate', checkQueryKey);
-            window.removeEventListener('hashchange', checkQueryKey);
-        };
-    }, []);
-
-    // Return isCalled and kthe value of the param in the URL
-    return {
-        isCalled,
-        paramValue,
-    };
+  // Return isCalled and kthe value of the param in the URL
+  return {
+    isCalled,
+    paramValue
+  }
 }
