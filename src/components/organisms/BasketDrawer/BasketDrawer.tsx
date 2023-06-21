@@ -52,7 +52,7 @@ export const BasketDrawer = ({
         <Stack>
           <Text>
             <strong>Achtung:</strong> Beim Absenden der Bestellung handelt es
-            sich um eine <u>unverbindliche Anfrage</u>. Wir werden uns mit dir
+            sich um eine <u>unverbindliche Anfrage</u>. Wir werden uns mit Ihnen
             in Verbindung setzen, um die Bestellung zu bestätigen.
           </Text>
 
