@@ -165,7 +165,7 @@ export const ProductCard = ({
           </LinkOverlay>
           <ProductPrices prices={prices} />
           <Text fontSize="xs" color="gray.600" textAlign="center">
-            {taxable ? 'inkl.' : 'exkl.'} MwSt.
+            {taxable ? 'inkl.' : 'exkl.'} USt.
           </Text>
           {/* <Spacer
             position="absolute"

@@ -274,7 +274,7 @@ const ProductDetail = withStoreContext<{
         <Price prices={prices} />
 
         <Text fontSize="xs" color="gray.600">
-          {taxable ? 'inkl.' : 'exkl.'} MwSt.
+          {taxable ? 'inkl.' : 'exkl.'} USt.
         </Text>
 
         {/* <Divider />
