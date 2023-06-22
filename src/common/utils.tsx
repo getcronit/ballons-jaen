@@ -65,13 +65,34 @@ export function useIsInViewport(ref: React.RefObject<HTMLElement>) {
 }
 
 export function removeHtmlFromString(htmlString: string) {
-  // remove sourounding <p></p> tags of htmlString
-  const htmlStringWithoutP = htmlString.replace(/^<p>|<\/p>$/g, '')
+  // Remove HTML tags
+  const htmlStringWithoutTags = htmlString.replace(/(<([^>]+)>)/gi, '');
 
-  // decode all html entities
-  const decodedHtmlString = htmlStringWithoutP.replace(/&amp;/g, '&')
+  // Decode HTML entities
+  const decodedHtmlString = htmlStringWithoutTags.replace(/&([a-z\d]+|#\d+);/gi, (match, entity) => {
+    switch (entity) {
+      case 'amp':
+        return '&';
+      case 'lt':
+        return '<';
+      case 'gt':
+        return '>';
+      case 'quot':
+        return '"';
+      case 'apos':
+        return "'";
+      default:
+        if (entity.charAt(0) === '#') {
+          const code = parseInt(entity.substr(1), entity.charAt(1) === 'x' ? 16 : 10);
+          if (!isNaN(code)) {
+            return String.fromCharCode(code);
+          }
+        }
+        return match;
+    }
+  });
 
-  return decodedHtmlString
+  return decodedHtmlString;
 }
 
 export function formatPrice(

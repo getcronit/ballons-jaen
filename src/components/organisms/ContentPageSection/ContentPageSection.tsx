@@ -437,7 +437,7 @@ const CategoryContentSection = connectBlock(
           <VStack pos="relative" zIndex="1">
             <Field.Text
               as={Heading}
-              variant="cursive"
+              //variant="cursive"
               fontSize={{base: 'xl', md: '2xl', lg: '3xl', xl: '4xl'}}
               name="title"
               defaultValue={`<i>Überschrift</i>`}
