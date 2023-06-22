@@ -11,9 +11,10 @@ import TopNav from './TopNav'
 
 interface INavigationProps {
   mode: LayoutMode
+  pathname: string
 }
 
-const Navigation: FC<INavigationProps> = ({mode}) => {
+const Navigation: FC<INavigationProps> = ({mode, pathname}) => {
   const basket = useBasket()
   const search = useSearch()
   const contactModal = useContactModal()
@@ -62,6 +63,7 @@ const Navigation: FC<INavigationProps> = ({mode}) => {
               : 'none'
           }>
           <Navbar
+            pathname={pathname}
             mode={mode}
             onSearchClick={handleOnSearchClick}
             onBasketClick={handleOnBasketClick}

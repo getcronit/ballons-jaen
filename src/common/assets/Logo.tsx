@@ -1,20 +1,18 @@
 import React from 'react'
-import { isChrome } from '../utils'
-import { Box } from '@chakra-ui/react'
+import {isChrome} from '../utils'
+import {Box} from '@chakra-ui/react'
 
 export const Logo = (props: any) => {
   return (
     <Box
       as="svg"
       xmlns="http://www.w3.org/2000/svg"
-      width='24rem'
+      width="24rem"
       viewBox="0 0 16356 1380"
-      {...props}
-    >
+      {...props}>
       <path
         id="logo"
         stroke="currentColor"
-        strokeWidth={isChrome ? "20" : "0"}
         //fill="#e3000f"
         //text-shadow: rgba(0,0,0,.01) 0 0 1px;
         //filter="drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4))"

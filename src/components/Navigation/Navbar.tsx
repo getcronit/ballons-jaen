@@ -27,6 +27,7 @@ import {MobileHambuger} from './MobileHamburger'
 
 interface INavbarProps {
   mode: LayoutMode
+  pathname: string
   onBasketClick?: () => void
   onSearchClick?: () => void
   onContactClick?: () => void
@@ -34,6 +35,7 @@ interface INavbarProps {
 
 export const Navbar: FC<INavbarProps> = ({
   mode,
+  pathname,
   onSearchClick,
   onBasketClick,
   onContactClick
@@ -197,7 +199,7 @@ export const Navbar: FC<INavbarProps> = ({
       <Flex
         display={{base: 'none', md: mode === 'website' ? 'flex' : 'none'}}
         justifyContent="center">
-        <BottomNav />
+        <BottomNav pathname={pathname} />
       </Flex>
     </Box>
   )

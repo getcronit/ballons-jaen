@@ -6,27 +6,29 @@ import {
   FormErrorMessage,
   FormLabel,
   Stack,
-  Textarea,
-} from "@chakra-ui/react"
-import React, { FC } from "react"
-import { useForm } from "react-hook-form"
-import { CONTAINER_MAX_WIDTH } from "../../constant/sizes"
-import { BottomNavLinks } from "./NavLinks"
+  Textarea
+} from '@chakra-ui/react'
+import React, {FC} from 'react'
+import {useForm} from 'react-hook-form'
+import {CONTAINER_MAX_WIDTH} from '../../constant/sizes'
+import {BottomNavLinks} from './NavLinks'
 
-interface IBottomNavProps {}
+interface IBottomNavProps {
+  pathname: string
+}
 
-const BottomNav: FC<IBottomNavProps> = () => {
+const BottomNav: FC<IBottomNavProps> = ({pathname}) => {
   return (
     <Flex
       //h={{ base: "14", lg: "16" }}
-      py={"1"}
+      py={'1'}
       //bg="white"
       //boxShadow="lightdown"
       justify="center"
-      align="center"
-    >
+      align="center">
       <BottomNavLinks
-        gap={{ md: 6, lg: 8, "2xl": 10 }}
+        pathname={pathname}
+        gap={{md: 6, lg: 8, '2xl': 10}}
         maxW={CONTAINER_MAX_WIDTH}
         fontSize={'md'}
         marginX="auto"
@@ -49,7 +51,7 @@ export const extractUrlsFromMarkdown = (
   while ((match = regex.exec(markdown))) {
     urls.push({
       label: match[1],
-      to: match[2],
+      to: match[2]
     })
   }
 
@@ -60,28 +62,28 @@ export const MarkdownLinksForm: React.FC<{
   onSaved: (markdownUrls: string) => void
   onCancle: () => void
   markdownUrls: string
-}> = ({ onSaved, onCancle, markdownUrls }) => {
+}> = ({onSaved, onCancle, markdownUrls}) => {
   const {
     handleSubmit,
     register,
     reset,
-    formState: { errors, isSubmitting },
+    formState: {errors, isSubmitting}
   } = useForm<{
     markdownUrls: string
   }>({
     defaultValues: {
-      markdownUrls,
-    },
+      markdownUrls
+    }
   })
 
   // Update default values when initUrl changes
   React.useEffect(() => {
     reset({
-      markdownUrls,
+      markdownUrls
     })
   }, [markdownUrls, reset])
 
-  const onSubmit = (data: { markdownUrls: string }) => {
+  const onSubmit = (data: {markdownUrls: string}) => {
     onSaved(data.markdownUrls)
 
     // reset the form
@@ -92,13 +94,12 @@ export const MarkdownLinksForm: React.FC<{
     <form
       onSubmit={event => {
         void handleSubmit(onSubmit)(event)
-      }}
-    >
+      }}>
       <Stack color="chakra-body-text">
         <FormControl isInvalid={!!errors.markdownUrls}>
           <FormLabel htmlFor="markdownUrls">Markdown URLs</FormLabel>
 
-          <Textarea minH="md" {...register("markdownUrls", {})} />
+          <Textarea minH="md" {...register('markdownUrls', {})} />
 
           <FormErrorMessage>
             {errors.markdownUrls?.message?.toString()}

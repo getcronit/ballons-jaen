@@ -31,7 +31,7 @@ export const Layout: React.FC<LayoutProps> = ({
         <BasketDrawerProvider>
           <SearchProvider>
             <SearchModalProvider>
-              <Navigation mode={mode} />
+              <Navigation mode={mode} pathname={location.pathname} />
             </SearchModalProvider>
           </SearchProvider>
 

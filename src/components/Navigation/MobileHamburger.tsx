@@ -68,7 +68,7 @@ export const MobileHambuger: React.FC = () => {
           <Divider />
           <DrawerBody>
             <Stack spacing="8" pt="4">
-              <BottomNavLinks
+              {/* <BottomNavLinks
                 childrenTextAlign="left"
                 w="full"
                 px="2"
@@ -76,7 +76,7 @@ export const MobileHambuger: React.FC = () => {
                 spacing="6"
                 fontSize="md"
                 onClick={onToggle}
-              />
+              /> */}
 
               <Stack
                 direction="row"
