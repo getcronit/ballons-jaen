@@ -101,7 +101,7 @@ const ContactTimings: FC<IContactTimingsProps> = ({ contactDetails }) => {
             mx={{ base: 4, md: '0' }}>
 
             <Field.Text
-              variant="cursive"
+              //variant="cursive"
               size="50"
               mb="8"
               textAlign="center"
