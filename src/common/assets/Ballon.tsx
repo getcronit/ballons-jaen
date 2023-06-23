@@ -1,5 +1,5 @@
 import React from 'react'
-import { isChrome } from '../utils'
+import {isChrome} from '../utils'
 
 export const Ballon = (props: any) => {
   return (
@@ -7,8 +7,6 @@ export const Ballon = (props: any) => {
       xmlns="http://www.w3.org/2000/svg"
       height={148}
       viewBox="0 0 250 400"
-      stroke="#E3000F"
-      strokeWidth={isChrome ? "1" : "0"}
       {...props}>
       <path
         id="balloon"
@@ -62,12 +60,13 @@ export const Ballon = (props: any) => {
              46.90,204.60 20.00,167.50 14.75,130.45
              13.80,123.60 13.80,110.50 14.80,103.45
              20.15,64.90 46.75,33.65 80.25,26.40
-             85.50,25.25 99.20,24.80 104.75,25.55 Z" />
-  </svg>
+             85.50,25.25 99.20,24.80 104.75,25.55 Z"
+      />
+    </svg>
   )
 }
 
-export const HBallon = (props: any) => {  
+export const HBallon = (props: any) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -77,8 +76,6 @@ export const HBallon = (props: any) => {
       <path
         id="balloon"
         fill="#E3000F"
-        stroke="#E3000F"
-        strokeWidth={isChrome ? "1" : "0"}
         d="M 175.85,206.42
            C 198.05,186.12 208.59,171.32 221.58,148.76
              238.99,118.52 245.58,89.96 240.92,64.74
@@ -128,7 +125,8 @@ export const HBallon = (props: any) => {
              189.08,208.53 190.29,207.93 188.32,206.72
              187.11,205.96 180.39,206.19 177.13,207.10
              177.13,207.10 174.48,207.85 174.48,207.85
-             174.48,207.85 175.85,206.42 175.85,206.42 Z" />
+             174.48,207.85 175.85,206.42 175.85,206.42 Z"
+      />
     </svg>
   )
 }

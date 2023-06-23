@@ -1,4 +1,4 @@
-import { ChevronDownIcon, SmallCloseIcon, SmallAddIcon } from '@chakra-ui/icons'
+import {ChevronDownIcon, SmallCloseIcon, SmallAddIcon} from '@chakra-ui/icons'
 import {
   Accordion,
   AccordionButton,
@@ -30,7 +30,9 @@ import {
   MenuDivider,
   MenuGroup,
   MenuItem,
+  MenuItemOption,
   MenuList,
+  MenuOptionGroup,
   Radio,
   Select as CSelect,
   Spacer,
@@ -45,13 +47,20 @@ import {
   Wrap,
   WrapItem
 } from '@chakra-ui/react'
-import { BallonButton } from '../../molecules/BallonButton'
-import { GroupBase, OptionBase, Select } from 'chakra-react-select'
-import { Link } from 'gatsby'
-import React, { Fragment, ReactNode } from 'react'
-import { BsFilterCircleFill } from 'react-icons/bs'
-import { InfoOutlineIcon } from '@chakra-ui/icons'
-import { OverflownText } from '../../OverflownText'
+import {GroupBase, OptionBase, Select} from 'chakra-react-select'
+import {Link} from 'gatsby'
+import React, {
+  Fragment,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useMemo
+} from 'react'
+import {BsFilterCircleFill} from 'react-icons/bs'
+import {InfoOutlineIcon} from '@chakra-ui/icons'
+import {OverflownText} from '../../OverflownText'
+import {Ballon} from '../../../common/assets/Ballon'
+import {BallonButton} from '../../molecules/BallonButton'
 
 interface TagFilterOption extends OptionBase {
   label: string
@@ -80,16 +89,32 @@ export interface CategoryPickerProps {
 }
 
 function CategoryPicker(props: CategoryPickerProps) {
-  const allCatArray = Object.keys(props.groupedCategories.allTags)
-  const activeCatArray = Object.keys(props.groupedCategories.activeTags).map(
-    cat => allCatArray.indexOf(cat)
-  )
+  const [activeGroupTags, setActiveGroupTags] = React.useState<GroupedTags>({})
+  const [activeTags, setActiveTags] = React.useState<ActiveTags>({})
+
+  console.log('active props', props)
+
+  useEffect(() => {
+    setActiveGroupTags(props.groupedCategories.activeTags)
+  }, [props.groupedCategories.activeTags])
+
+  useEffect(() => {
+    setActiveTags(props.activeTags)
+  }, [props.activeTags])
+
+  const allCatArray = useMemo(() => {
+    return Object.keys(props.groupedCategories.allTags)
+  }, [props.groupedCategories.allTags])
+
+  const activeCatArray = useMemo(() => {
+    return Object.keys(activeGroupTags).map(cat => allCatArray.indexOf(cat))
+  }, [activeGroupTags, allCatArray])
 
   // const index = Object.keys(activeCatArray).map(Number)
 
   return (
     <Accordion
-      reduceMotion
+      id={`category-accordion`}
       allowMultiple
       index={activeCatArray}
       onChange={(expanded: number[]) => {
@@ -123,8 +148,8 @@ function CategoryPicker(props: CategoryPickerProps) {
         )
 
         return (
-          <AccordionItem key={index}>
-            {({ isExpanded }) => (
+          <AccordionItem key={index} id={`category-accordion-item-${index}`}>
+            {({isExpanded}) => (
               <>
                 <h2>
                   <AccordionButton py="4">
@@ -143,9 +168,8 @@ function CategoryPicker(props: CategoryPickerProps) {
                     {tags.map((item, index) => {
                       const active =
                         isSelectAll ||
-                        props.activeTags.Kategorie?.some(
-                          tag => tag === item.tag
-                        )
+                        activeTags.Kategorie?.some(tag => tag === item.tag)
+
                       return (
                         <Text
                           key={index}
@@ -235,7 +259,7 @@ function TagsPicker(props: TagsPickerProps) {
 
         return (
           <AccordionItem key={index}>
-            {({ isExpanded }) => (
+            {({isExpanded}) => (
               <>
                 <h2>
                   <AccordionButton py="4">
@@ -332,100 +356,99 @@ const Filter: React.FC<{
   updateActiveTags: (tags: ActiveTags[string], group: string) => void
   onSortChange: (sort: string) => void
   sortOptions: string[]
-}> = ({
-  groupedTags,
-  activeTags,
-  sortOptions,
-  addOrRemoveTag,
-  clearActiveTags,
-  updateActiveTags,
-  onSortChange
-}) => {
-    const drawerDisclosure = useDisclosure()
+}> = ({groupedTags, ...props}) => {
+  const drawerDisclosure = useDisclosure()
 
-    const { Kategorie, ...tags } = groupedTags.allTags
+  const {Kategorie, ...tags} = groupedTags.allTags
 
-    const activeTagsArray = Object.values(activeTags).flat()
+  const LIMIT = 6 // limit of tags to show before showing the drawer button
+  const ACTIVE_LIMIT = 3 // limit of tags to show before showing the drawer button
 
-    const LIMIT = 6 // limit of tags to show before showing the drawer button
-    const ACTIVE_LIMIT = 3 // limit of tags to show before showing the drawer button
+  const tagsLength = Object.keys(tags).length
 
-    const tagsLength = Object.keys(tags).length
+  const shouldShowDrawerButton = tagsLength > LIMIT
 
-    const shouldShowDrawerButton = tagsLength > LIMIT
+  const remainingTags = tagsLength - LIMIT
 
-    const remainingTags = tagsLength - LIMIT
+  const [activeTags, setActiveTags] = React.useState<ActiveTags>({})
+  const activeTagsArray = React.useMemo(() => {
+    return Object.values(activeTags).flat()
+  }, [activeTags])
 
-    const blacklistedTags = React.useMemo(() => {
-      const blacklist = []
-      const categoryTags = activeTags.Kategorie
+  useEffect(() => {
+    setActiveTags(props.activeTags)
+  }, [props.activeTags])
 
-      if (categoryTags && categoryTags.length > 0) {
-        for (const group in groupedTags.allTags) {
-          if (group === 'Kategorie') continue
+  const blacklistedTags = React.useMemo(() => {
+    const blacklist = []
+    const categoryTags = activeTags.Kategorie
 
-          const tags = groupedTags.allTags[group]
+    if (categoryTags && categoryTags.length > 0) {
+      for (const group in groupedTags.allTags) {
+        if (group === 'Kategorie') continue
 
-          for (const tag of tags) {
-            const categoryTag = tag.categories.join(':')
+        const tags = groupedTags.allTags[group]
 
-            if (categoryTag) {
-              // add to blacklist if no category starts with the same string
-              if (
-                !categoryTags.find(ct =>
-                  ct.startsWith(`Kategorie:${categoryTag}`)
-                )
-              ) {
-                blacklist.push(tag.tag)
-              }
+        for (const tag of tags) {
+          const categoryTag = tag.categories.join(':')
+
+          if (categoryTag) {
+            // add to blacklist if no category starts with the same string
+            if (
+              !categoryTags.find(ct =>
+                ct.startsWith(`Kategorie:${categoryTag}`)
+              )
+            ) {
+              blacklist.push(tag.tag)
             }
           }
         }
       }
+    }
 
-      return blacklist
-    }, [groupedTags, activeTags])
+    return blacklist
+  }, [groupedTags, activeTags])
 
-    return (
-      <>
-        <HStack justifyContent="space-between">
-          <HStack>
-            <Wrap
-              display={{
-                base: 'none',
-                lg: 'flex'
-              }}>
-              {
-                // Tags keys as menu buttons with a dropdown icon
-                Object.keys(tags)
-                  .slice(0, LIMIT)
-                  .map((group, index) => {
-                    const menuStructure: {
-                      [key: string]: Array<{
-                        tag: string
-                        label: string
-                      }>
-                    } = {}
+  return (
+    <>
+      <HStack justifyContent="space-between">
+        <HStack>
+          <Wrap
+            display={{
+              base: 'none',
+              lg: 'flex'
+            }}>
+            {
+              // Tags keys as menu buttons with a dropdown icon
+              Object.keys(tags)
+                .slice(0, LIMIT)
+                .map((group, index) => {
+                  const menuStructure: {
+                    [key: string]: Array<{
+                      tag: string
+                      label: string
+                    }>
+                  } = {}
 
-                    for (const { categories, tag, label } of tags[group]) {
-                      if (blacklistedTags.includes(tag)) continue
+                  for (const {categories, tag, label} of tags[group]) {
+                    if (blacklistedTags.includes(tag)) continue
 
-                      const catStr = categories.join(' > ')
+                    const catStr = categories.join(' > ')
 
-                      if (menuStructure[catStr]) {
-                        menuStructure[catStr].push({ tag, label })
-                      } else {
-                        menuStructure[catStr] = [{ tag, label }]
-                      }
+                    if (menuStructure[catStr]) {
+                      menuStructure[catStr].push({tag, label})
+                    } else {
+                      menuStructure[catStr] = [{tag, label}]
                     }
+                  }
 
-                    console.log('menuStructure', menuStructure)
+                  console.log('menuStructure', menuStructure)
 
-                    return (
-                      <Menu>
+                  return (
+                    <WrapItem key={index}>
+                      <Menu id={`filter-${group}-${index}`} isLazy>
                         <MenuButton
                           as={Button}
-                          key={index}
                           size="sm"
                           variant="ghost"
                           fontWeight="normal"
@@ -465,135 +488,139 @@ const Filter: React.FC<{
 
                             Object.entries(menuStructure)
                               .sort(([a], [b]) => a.localeCompare(b))
-                              .map(([cat, items]) => {
+                              .map(([cat, items], index) => {
                                 return (
-                                  <MenuGroup title={cat}>
+                                  <MenuOptionGroup
+                                    key={index}
+                                    title={cat}
+                                    defaultValue={activeTagsArray}
+                                    type="checkbox">
                                     {items.map((item, index) => {
                                       const active = activeTagsArray.includes(
                                         item.tag
                                       )
 
                                       return (
-                                        <Fragment key={index}>
-                                          <MenuItem
-                                            closeOnSelect={false}
-                                            py="4"
-                                            onClick={() => {
-                                              addOrRemoveTag(item.tag, group)
-                                            }}
-                                            justifyContent={'space-between'}>
-                                            <Text
-                                              fontSize="sm"
-                                              fontWeight={
-                                                active ? 'semibold' : 'normal'
-                                              }>
-                                              {item.label}
-                                            </Text>
-                                          </MenuItem>
-                                          <MenuDivider />
-                                        </Fragment>
+                                        <MenuItemOption
+                                          key={index}
+                                          value={item.tag}
+                                          closeOnSelect={false}
+                                          py="4"
+                                          isChecked={active}
+                                          onClick={() => {
+                                            props.addOrRemoveTag(
+                                              item.tag,
+                                              group
+                                            )
+                                          }}
+                                          justifyContent={'space-between'}>
+                                          {item.label}
+                                        </MenuItemOption>
                                       )
                                     })}
-                                  </MenuGroup>
+                                  </MenuOptionGroup>
                                 )
                               })
                           }
                         </MenuList>
                       </Menu>
-                    )
-                  })
-              }
-              {shouldShowDrawerButton && (
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  fontWeight="normal"
-                  leftIcon={<SmallAddIcon />}
-                  onClick={drawerDisclosure.onOpen}>
-                  {remainingTags} {remainingTags === 1 ? 'weiterer' : 'weitere'}{' '}
-                  Filter
-                </Button>
-              )}
-            </Wrap>
+                    </WrapItem>
+                  )
+                })
+            }
 
-            <Button
-              display={{
-                base: 'flex',
-                lg: 'none'
-              }}
-              size="sm"
-              variant="ghost"
-              fontWeight="normal"
-              leftIcon={<SmallAddIcon />}
-              onClick={drawerDisclosure.onOpen}>
-              Filter
-            </Button>
-          </HStack>
-          <HStack direction="row" align="center">
-            <Text fontSize="sm" color="red.500" whiteSpace="nowrap">
-              Sortieren:
-            </Text>
-            <CSelect
-              size="sm"
-              variant="unstyled"
-              my="2"
-              icon={<ChevronDownIcon />}
-              cursor="pointer"
-              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-                onSortChange(e.target.value)
-              }}>
-              {sortOptions.map(option => {
-                return (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                )
-              })}
-            </CSelect>
-          </HStack>
-        </HStack>
-        <Divider />
+            {shouldShowDrawerButton && (
+              <Button
+                key={'more'}
+                size="sm"
+                variant="ghost"
+                fontWeight="normal"
+                leftIcon={<SmallAddIcon />}
+                onClick={drawerDisclosure.onOpen}>
+                {remainingTags} {remainingTags === 1 ? 'weiterer' : 'weitere'}{' '}
+                Filter
+              </Button>
+            )}
+          </Wrap>
 
-        <Flex>
-          {activeTagsArray.length > 0 && (
-            <BallonButton
-              maxW="fit-content"
-              size="sm"
-              onClick={() => {
-                clearActiveTags()
-              }}>
-              Alle Filter aufheben
-            </BallonButton>
-          )}
-
-          <Wrap
+          <Button
             display={{
-              base: 'none',
-              lg: 'flex'
+              base: 'flex',
+              lg: 'none'
+            }}
+            size="sm"
+            variant="ghost"
+            fontWeight="normal"
+            leftIcon={<SmallAddIcon />}
+            onClick={drawerDisclosure.onOpen}>
+            Filter
+          </Button>
+        </HStack>
+        <HStack direction="row" align="center">
+          <Text fontSize="sm" color="red.500" whiteSpace="nowrap">
+            Sortieren:
+          </Text>
+          <CSelect
+            size="sm"
+            variant="unstyled"
+            my="2"
+            icon={<ChevronDownIcon />}
+            cursor="pointer"
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+              props.onSortChange(e.target.value)
             }}>
-            {
-              // All tags as buttons with a close icon left
+            {props.sortOptions.map(option => {
+              return (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              )
+            })}
+          </CSelect>
+        </HStack>
+      </HStack>
+      <Divider />
 
-              Object.entries(activeTags)
-                .reduce(
-                  (result: { tag: string; group: string }[], [group, tagArray]) => [
-                    ...result,
-                    ...tagArray.map(tag => ({ tag, group }))
-                  ],
-                  []
-                )
-                .slice(0, ACTIVE_LIMIT)
-                .map(({ tag, group }, index) => {
-                  return (
+      <Flex>
+        {activeTagsArray.length > 0 && (
+          <BallonButton
+            maxW="fit-content"
+            size="sm"
+            onClick={() => {
+              props.clearActiveTags()
+            }}>
+            Alle Filter aufheben
+          </BallonButton>
+        )}
+
+        <Wrap
+          display={{
+            base: 'none',
+            lg: 'flex'
+          }}>
+          {
+            // All tags as buttons with a close icon left
+
+            Object.entries(activeTags)
+              .reduce(
+                (result: {tag: string; group: string}[], [group, tagArray]) => [
+                  ...result,
+                  ...tagArray.map(tag => ({tag, group}))
+                ],
+                []
+              )
+              .slice(0, ACTIVE_LIMIT)
+              .map(({tag, group}, index) => {
+                return (
+                  <WrapItem key={index}>
                     <Button
-                      key={index}
                       size="sm"
                       variant="ghost"
                       fontWeight="normal"
                       color="black"
                       leftIcon={<SmallCloseIcon />}
                       onClick={() => {
-                        addOrRemoveTag(tag, group)
+                        props.addOrRemoveTag(tag, group)
                       }}>
                       {
                         // Format tag string to label -> "Kategorie:Bubbels:Test" -> "Kategorie Bubbels > Test"
@@ -604,11 +631,12 @@ const Filter: React.FC<{
                         </OverflownText>
                       }
                     </Button>
-                  )
-                })
-            }
-
-            {activeTagsArray.length > ACTIVE_LIMIT && (
+                  </WrapItem>
+                )
+              })
+          }
+          {activeTagsArray.length > ACTIVE_LIMIT && (
+            <WrapItem key="more">
               <Button
                 size="sm"
                 fontSize={'xs'}
@@ -622,64 +650,64 @@ const Filter: React.FC<{
                   : 'weitere'}
                 {' Aktiv'}
               </Button>
-            )}
-          </Wrap>
-
-          {activeTagsArray.length > 0 && (
-            <Button
-              display={{
-                base: 'flex',
-                lg: 'none'
-              }}
-              size="sm"
-              fontSize={'xs'}
-              variant="ghost"
-              fontWeight="normal"
-              color="black"
-              onClick={drawerDisclosure.onOpen}>
-              {activeTagsArray.length} Aktiv
-            </Button>
+            </WrapItem>
           )}
-        </Flex>
+        </Wrap>
+        {activeTagsArray.length > 0 && (
+          <Button
+            display={{
+              base: 'flex',
+              lg: 'none'
+            }}
+            size="sm"
+            fontSize={'xs'}
+            variant="ghost"
+            fontWeight="normal"
+            color="black"
+            onClick={drawerDisclosure.onOpen}>
+            {activeTagsArray.length} Aktiv
+          </Button>
+        )}
+      </Flex>
 
-        <Drawer
-          size={{
-            base: 'xs',
-            sm: 'xs',
-            md: 'sm',
-            lg: 'md'
-          }}
-          isOpen={drawerDisclosure.isOpen}
-          onClose={drawerDisclosure.onClose}>
-          <DrawerOverlay />
+      <Drawer
+        size={{
+          base: 'xs',
+          sm: 'xs',
+          md: 'sm',
+          lg: 'md'
+        }}
+        isOpen={drawerDisclosure.isOpen}
+        onClose={drawerDisclosure.onClose}>
+        <DrawerOverlay />
 
-          <DrawerContent borderLeftRadius="lg" overflow="hidden">
-            <DrawerHeader>
-              <BallonButton
-                visibility={activeTagsArray.length > 0 ? 'visible' : 'hidden'}
-                maxW="fit-content"
-                size="md"
-                onClick={() => {
-                  clearActiveTags()
-                }}>
-                Alle Filter aufheben
-              </BallonButton>
-              <DrawerCloseButton />
-            </DrawerHeader>
+        <DrawerContent borderLeftRadius="lg" overflow="hidden">
+          <DrawerHeader>
+            <BallonButton
+              visibility={activeTagsArray.length > 0 ? 'visible' : 'hidden'}
+              maxW="fit-content"
+              size="md"
+              onClick={() => {
+                props.clearActiveTags()
+              }}>
+              Alle Filter aufheben
+            </BallonButton>
+            <DrawerCloseButton />
+          </DrawerHeader>
 
-            <DrawerBody>
-              <TagsPicker
-                groupedTags={groupedTags}
-                activeTags={activeTags}
-                updateActiveTags={updateActiveTags}
-                addOrRemoveTag={addOrRemoveTag}
-              />
-            </DrawerBody>
-          </DrawerContent>
-        </Drawer>
-      </>
-    )
-  }
+          <DrawerBody>
+            <TagsPicker
+              groupedTags={groupedTags}
+              activeTags={activeTags}
+              updateActiveTags={props.updateActiveTags}
+              addOrRemoveTag={props.addOrRemoveTag}
+            />
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
+    </>
+  )
+}
 
 export default function ProductsPageShell(
   props: ProductsPageShellSidebarProps
@@ -737,7 +765,7 @@ export default function ProductsPageShell(
   ])
 
   const updateActiveTags = (tags: string[], group: string) => {
-    const updatedActiveTags = { ...activeTags, [group]: tags }
+    const updatedActiveTags = {...activeTags, [group]: tags}
 
     setActiveTags(updatedActiveTags)
 
@@ -769,7 +797,7 @@ export default function ProductsPageShell(
       <Stack h="100%" flexDirection="column">
         <Flex h="full" py="4">
           <Box
-            display={{ base: 'none', xl: 'block' }}
+            display={{base: 'none', xl: 'block'}}
             h="100%"
             w="15%"
             mx="4"
@@ -938,7 +966,7 @@ const FilterDrawer: React.FC<
   ButtonProps & {
     children: React.ReactNode
   }
-> = ({ children, ...buttonProps }) => {
+> = ({children, ...buttonProps}) => {
   const drawerDisclosure = useDisclosure()
 
   return (
@@ -967,9 +995,9 @@ const FilterDrawer: React.FC<
   )
 }
 
-interface SidebarProps extends BoxProps { }
+interface SidebarProps extends BoxProps {}
 
-const SidebarContent = ({ children, ...rest }: SidebarProps) => {
+const SidebarContent = ({children, ...rest}: SidebarProps) => {
   return (
     <Box
       borderRight="1px"

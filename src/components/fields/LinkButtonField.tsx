@@ -101,7 +101,6 @@ const LinkButtonField: React.FC<
   const firstFieldRef = React.useRef(null)
 
   const hiddenUrlFieldName = `${name}.url`
-  const hiddenUrlFieldDefaultValue = defaultUrl || 'https://example.com'
 
   const buttonTextField = useField<string>(name, 'IMA:TextField')
   const hiddenUrlField = useField<string>(hiddenUrlFieldName, 'IMA:TextField')
@@ -110,17 +109,27 @@ const LinkButtonField: React.FC<
     hiddenUrlField.write(url)
   }
 
+  const [urlValue, setUrlValue] = React.useState<string>('/')
+
+  React.useEffect(() => {
+    const hiddenUrlFieldDefaultValue = defaultUrl || 'https://example.com'
+
+    const valueWithoutHTML =
+      (hiddenUrlField.value || hiddenUrlField.staticValue)?.replace(
+        /<[^>]*>?/gm,
+        ''
+      ) ||
+      hiddenUrlFieldDefaultValue ||
+      ''
+
+    setUrlValue(valueWithoutHTML)
+
+    setUrlValue(hiddenUrlFieldDefaultValue)
+  }, [defaultUrl, hiddenUrlField])
+
   const handleButtonClick = () => {
     navigate(urlValue)
   }
-
-  const urlValue = React.useMemo(() => {
-    const valueWithoutHTML =
-      hiddenUrlField.value?.replace(/<[^>]*>?/gm, '') ||
-      hiddenUrlFieldDefaultValue ||
-      ''
-    return valueWithoutHTML
-  }, [hiddenUrlField.value])
 
   return (
     <Box pos={'relative'} maxW={'fit-content'}>
@@ -142,6 +151,7 @@ const LinkButtonField: React.FC<
       {buttonTextField.isEditing && (
         <Box pos={'absolute'} right={0} top={0}>
           <Popover
+            isLazy
             isOpen={isOpen}
             initialFocusRef={firstFieldRef}
             onOpen={onOpen}
