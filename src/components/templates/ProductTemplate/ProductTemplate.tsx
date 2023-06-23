@@ -371,6 +371,7 @@ const ProductDetail = withStoreContext<{
               disabled={!availableForSale}
               fontWeight="semibold"
               textTransform="uppercase"
+              onClick={addProductToBasket}
               fontSize={{
                 base: 'sm',
                 md: 'md'
