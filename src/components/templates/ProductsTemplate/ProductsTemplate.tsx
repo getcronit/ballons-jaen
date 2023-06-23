@@ -1,12 +1,13 @@
-import {Box, Button, Center, Heading} from '@chakra-ui/react'
+import { Box, Button, Center, Heading } from '@chakra-ui/react'
+import { BallonButton } from '../../molecules/BallonButton'
 import {
   ProductsPageContext,
   ShopifyProduct
 } from '@snek-at/gatsby-theme-shopify'
 import React from 'react'
-import {useIsInViewport} from '../../../common/utils'
+import { useIsInViewport } from '../../../common/utils'
 
-import {ProductGrid} from '../../molecules/ProductGrid'
+import { ProductGrid } from '../../molecules/ProductGrid'
 import SimpleCategorySidebar from './ProductsPageShell'
 
 enum SpecialTagOptions {
@@ -48,7 +49,7 @@ export function splitAllTags(tags: string[]) {
       if (tag) otherTags.push(tag)
     }
   }
-  return {otherTags, productTypeTags, vendorTags}
+  return { otherTags, productTypeTags, vendorTags }
 }
 
 export interface ProductsTemplateProps {
@@ -83,7 +84,7 @@ export const ProductsTemplate = (props: ProductsTemplateProps) => {
   }, [isButtonInViewport])
 
   const updateTags = (tags: string[]) => {
-    const {otherTags, productTypeTags, vendorTags} = splitAllTags(tags)
+    const { otherTags, productTypeTags, vendorTags } = splitAllTags(tags)
 
     props.updateFilter({
       tags: otherTags,
@@ -107,7 +108,7 @@ export const ProductsTemplate = (props: ProductsTemplateProps) => {
         <ProductGrid
           wholesale={props.wholesale}
           products={props.products}
-          columns={{base: 2, sm: 2, md: 3, lg: 3, xl: 4, '2xl': 5}}
+          columns={{ base: 2, sm: 2, md: 3, lg: 3, xl: 4, '2xl': 5 }}
           spacing={4}
         />
 
@@ -117,7 +118,7 @@ export const ProductsTemplate = (props: ProductsTemplateProps) => {
               Keine Artikel gefunden
             </Heading>
           ) : (
-            <Button
+            <BallonButton
               ref={loadMoreButtonRef}
               variant="outline"
               onClick={() => {
@@ -129,7 +130,7 @@ export const ProductsTemplate = (props: ProductsTemplateProps) => {
               }
               isLoading={props.isFetching}>
               Mehr Artikel laden
-            </Button>
+            </BallonButton>
           )}
         </Center>
       </Box>

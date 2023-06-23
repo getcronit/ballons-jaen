@@ -60,6 +60,7 @@ import {BsFilterCircleFill} from 'react-icons/bs'
 import {InfoOutlineIcon} from '@chakra-ui/icons'
 import {OverflownText} from '../../OverflownText'
 import {Ballon} from '../../../common/assets/Ballon'
+import {BallonButton} from '../../molecules/BallonButton'
 
 interface TagFilterOption extends OptionBase {
   label: string
@@ -527,6 +528,7 @@ const Filter: React.FC<{
                   )
                 })
             }
+
             {shouldShowDrawerButton && (
               <Button
                 key={'more'}
@@ -581,14 +583,14 @@ const Filter: React.FC<{
 
       <Flex>
         {activeTagsArray.length > 0 && (
-          <Button
+          <BallonButton
             maxW="fit-content"
             size="sm"
             onClick={() => {
               props.clearActiveTags()
             }}>
             Alle Filter aufheben
-          </Button>
+          </BallonButton>
         )}
 
         <Wrap
@@ -651,7 +653,6 @@ const Filter: React.FC<{
             </WrapItem>
           )}
         </Wrap>
-
         {activeTagsArray.length > 0 && (
           <Button
             display={{
@@ -682,7 +683,7 @@ const Filter: React.FC<{
 
         <DrawerContent borderLeftRadius="lg" overflow="hidden">
           <DrawerHeader>
-            <Button
+            <BallonButton
               visibility={activeTagsArray.length > 0 ? 'visible' : 'hidden'}
               maxW="fit-content"
               size="md"
@@ -690,7 +691,7 @@ const Filter: React.FC<{
                 props.clearActiveTags()
               }}>
               Alle Filter aufheben
-            </Button>
+            </BallonButton>
             <DrawerCloseButton />
           </DrawerHeader>
 
