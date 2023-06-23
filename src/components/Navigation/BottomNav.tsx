@@ -49,9 +49,13 @@ export const extractUrlsFromMarkdown = (
   const regex = /\[(.*?)\]\((.*?)\)/g
   let match
   while ((match = regex.exec(markdown))) {
+    let to = match[2]
+    if (!to.endsWith('/')) {
+      to += '/'
+    }
     urls.push({
       label: match[1],
-      to: match[2]
+      to: to
     })
   }
 
