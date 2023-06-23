@@ -12,7 +12,6 @@ export const Logo = (props: any) => {
       {...props}>
       <path
         id="logo"
-        stroke="currentColor"
         //fill="#e3000f"
         //text-shadow: rgba(0,0,0,.01) 0 0 1px;
         //filter="drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4))"
