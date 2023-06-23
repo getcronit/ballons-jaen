@@ -14,14 +14,16 @@ import {
   NumberInputStepper,
   Stack,
   Text,
+  Tooltip,
   useClipboard,
   useColorModeValue,
   VStack,
   Wrap,
   WrapItem
 } from '@chakra-ui/react'
-import {FaShare} from '@react-icons/all-files/fa/FaShare'
-import {FaShoppingBasket} from '@react-icons/all-files/fa/FaShoppingBasket'
+import { BallonButton } from '../../molecules/BallonButton'
+import { FaShare } from '@react-icons/all-files/fa/FaShare'
+import { FaShoppingBasket } from '@react-icons/all-files/fa/FaShoppingBasket'
 import {
   getFormattedProductPrices,
   getProductTags,
@@ -29,18 +31,18 @@ import {
   ShopifyProduct,
   withStoreContext
 } from '@snek-at/gatsby-theme-shopify'
-import {navigate} from 'gatsby'
-import {GatsbyImage} from 'gatsby-plugin-image'
+import { navigate } from 'gatsby'
+import { GatsbyImage } from 'gatsby-plugin-image'
 import React from 'react'
-import {BsBalloonHeartFill} from 'react-icons/bs'
-import {FaRuler} from 'react-icons/fa'
-import {PhotoProvider, PhotoView} from 'react-photo-view'
-import {getSrcFromImageData} from '../../../common/get-src-from-image-data'
+import { BsBalloonHeartFill } from 'react-icons/bs'
+import { FaRuler } from 'react-icons/fa'
+import { PhotoProvider, PhotoView } from 'react-photo-view'
+import { getSrcFromImageData } from '../../../common/get-src-from-image-data'
 
-import {getProductMetafields} from '../../../common/getProductMetafields'
-import {getProductPrices, replaceHexColorsInHTML} from '../../../common/utils'
-import {useBasket} from '../../../services/basket'
-import {ProductSlider} from '../../molecules/ProductSlider'
+import { getProductMetafields } from '../../../common/getProductMetafields'
+import { getProductPrices, replaceHexColorsInHTML } from '../../../common/utils'
+import { useBasket } from '../../../services/basket'
+import { ProductSlider } from '../../molecules/ProductSlider'
 import NewsSlider from '../../organisms/NewsSlider/NewsSlider'
 import ProductsPageShell from '../ProductsTemplate/ProductsPageShell'
 
@@ -84,7 +86,7 @@ export const ProductTemplate = ({
         })
       }}
       sortOptions={['Alphabetisch', 'Preis aufsteigend', 'Preis absteigend']}
-      onSortChange={() => {}}>
+      onSortChange={() => { }}>
       <Stack
         dir="column"
         w="100%"
@@ -96,7 +98,7 @@ export const ProductTemplate = ({
           xl: 20
         }}>
         <Stack spacing={12}>
-          <Stack direction={{base: 'column', lg: 'row'}} mx={8}>
+          <Stack direction={{ base: 'column', lg: 'row' }} mx={8}>
             <Box
               w={{
                 base: '100%',
@@ -114,7 +116,7 @@ export const ProductTemplate = ({
                 base: '100%',
                 lg: '50%'
               }}
-              position={{base: 'relative', lg: 'sticky'}}
+              position={{ base: 'relative', lg: 'sticky' }}
               top={{
                 base: '0',
                 lg: 44
@@ -156,7 +158,7 @@ function Price({
 }: {
   prices: ReturnType<typeof getFormattedProductPrices>
 }) {
-  const {priceFormatted, compareAtPriceFormatted} = prices
+  const { priceFormatted, compareAtPriceFormatted } = prices
 
   if (compareAtPriceFormatted) {
     // strike through price and put discount price on the right side
@@ -263,9 +265,9 @@ const ProductDetail = withStoreContext<{
   return (
     <Box
       overflow="hidden"
-      px={{base: 0, md: 4}}
-      py={{base: 4, md: 8}}
-      m={{base: 0, md: 1}}
+      px={{ base: 0, md: 4 }}
+      py={{ base: 4, md: 8 }}
+      m={{ base: 0, md: 1 }}
       alignSelf="flex-start">
       <VStack align="left" spacing="4">
         <Heading as="h1" size="lg">
@@ -355,26 +357,28 @@ const ProductDetail = withStoreContext<{
               <NumberDecrementStepper />
             </NumberInputStepper>
           </NumberInput>
+          <Tooltip label="Zum Onlineshop" aria-label="Zum Onlineshop">
 
-          <Button
-            disabled={!availableForSale}
-            fontWeight="semibold"
-            textTransform="uppercase"
-            leftIcon={<Icon as={FaShoppingBasket} />}
-            borderRadius="full"
-            size={{
-              base: 'sm',
-              md: 'md'
-            }}
-            onClick={addProductToBasket}>
-            <Text
+            <BallonButton
+              display={{
+                base: 'none',
+                md: 'flex'
+              }}
+              size={{
+                base: 'sm',
+                md: 'md'
+              }}
+              disabled={!availableForSale}
+              fontWeight="semibold"
+              textTransform="uppercase"
               fontSize={{
                 base: 'sm',
                 md: 'md'
-              }}>
+              }}
+              leftIcon={<FaShoppingBasket />}>
               In den Warenkorb
-            </Text>
-          </Button>
+            </BallonButton>
+          </Tooltip>
         </HStack>
         <Divider />
         <Flex alignItems="center" justifyContent="center" fontSize="xl">
@@ -391,7 +395,7 @@ const ProductDetail = withStoreContext<{
 function ShareText() {
   const value = typeof window !== 'undefined' ? window.location.href : ''
 
-  const {hasCopied, onCopy} = useClipboard(value)
+  const { hasCopied, onCopy } = useClipboard(value)
 
   return (
     <Center
@@ -425,11 +429,11 @@ const ImageThumbnailWrapItem = (props: {
     return null
   }
 
-  const {gatsbyImageData, altText} = props.media.image
+  const { gatsbyImageData, altText } = props.media.image
 
   return (
     <WrapItem
-      boxSize={{base: '16', md: '20'}}
+      boxSize={{ base: '16', md: '20' }}
       onClick={props.onClick}
       cursor="pointer"
       boxShadow={props.active ? 'inset 0px 4px 0px 0px #eb1933' : 'none'}
@@ -530,14 +534,14 @@ const ImageSlider = (props: {
   )
 }
 
-const ProductMoreDetail = (props: {description: string}) => {
+const ProductMoreDetail = (props: { description: string }) => {
   const color = useColorModeValue('#000000', '#ffffff')
 
   const html = replaceHexColorsInHTML(props.description, '#000000', color)
 
   return (
     <Box py="8">
-      <Box dangerouslySetInnerHTML={{__html: html}} />
+      <Box dangerouslySetInnerHTML={{ __html: html }} />
     </Box>
   )
 }

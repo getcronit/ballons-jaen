@@ -1,4 +1,4 @@
-import {ChevronDownIcon, CloseIcon, HamburgerIcon} from '@chakra-ui/icons'
+import { ChevronDownIcon, CloseIcon, HamburgerIcon } from '@chakra-ui/icons'
 import {
   Box,
   Button,
@@ -13,17 +13,18 @@ import {
   Tooltip,
   useDisclosure
 } from '@chakra-ui/react'
-import {Link as GatsbyLink, navigate} from 'gatsby'
-import {FC} from 'react'
-import {AiOutlineArrowLeft, AiOutlineShop} from 'react-icons/ai'
-import {FaPhoneAlt, FaShopify, FaShoppingCart} from 'react-icons/fa'
-import {LayoutMode} from '../../types/commonTypes'
-import {SearchbarButton} from '../molecules/Searchbar'
+import { BallonButton } from '../molecules/BallonButton'
+import { Link as GatsbyLink, navigate } from 'gatsby'
+import { FC } from 'react'
+import { AiOutlineArrowLeft, AiOutlineShop } from 'react-icons/ai'
+import { FaPhoneAlt, FaShopify, FaShoppingCart } from 'react-icons/fa'
+import { LayoutMode } from '../../types/commonTypes'
+import { SearchbarButton } from '../molecules/Searchbar'
 import BottomNav from './BottomNav'
-import {NavAuthButton} from './NavAuthButton'
+import { NavAuthButton } from './NavAuthButton'
 
-import {Logo} from '../../common/assets/Logo'
-import {MobileHambuger} from './MobileHamburger'
+import { Logo } from '../../common/assets/Logo'
+import { MobileHambuger } from './MobileHamburger'
 
 interface INavbarProps {
   mode: LayoutMode
@@ -62,8 +63,8 @@ export const Navbar: FC<INavbarProps> = ({
         direction="row"
         spacing="4"
         h={'60px'}
-        py={{base: 2}}
-        px={{base: 4}}
+        py={{ base: 2 }}
+        px={{ base: 4 }}
         justifyContent="space-between"
         alignItems={'center'}>
         <Flex flex="1" textAlign="center">
@@ -71,7 +72,7 @@ export const Navbar: FC<INavbarProps> = ({
             <MobileHambuger />
           ) : (
             <>
-              <Button
+              {/* <Button
                 display={{
                   base: 'none',
                   md: 'flex'
@@ -82,7 +83,21 @@ export const Navbar: FC<INavbarProps> = ({
                 to="/"
                 leftIcon={<AiOutlineArrowLeft />}>
                 Zurück zur Startseite
-              </Button>
+              </Button> */}
+              <Tooltip label="Zur Startseite" aria-label="Zur Startseite">
+                <Button
+                  display={{
+                    base: 'none',
+                    md: 'flex'
+                  }}
+                  size="sm"
+                  as={GatsbyLink}
+                  variant="link"
+                  to="/"
+                  leftIcon={<AiOutlineArrowLeft />}>
+                  Zurück zur Startseite
+                </Button>
+              </Tooltip>
 
               <IconButton
                 display={{
@@ -99,25 +114,27 @@ export const Navbar: FC<INavbarProps> = ({
           )}
         </Flex>
 
-        <Flex flex="1" textAlign="center" justifyContent="center">
-          <Logo
-            maxWidth={{
-              base: '10rem',
-              sm: '12rem',
-              md: '15rem',
-              lg: '20rem'
-            }}
-            height="auto"
-            objectFit="contain"
-            cursor="pointer"
-            onClick={() => {
-              void navigate('/')
-            }}
-            color="#E3000F"
-            alt="logo"
-          />
-        </Flex>
+        <Tooltip label="Zur Startseite" aria-label="Zur Startseite" placement='top'>
+          <Flex flex="1" textAlign="center" justifyContent="center">
+            <Logo
+              maxWidth={{
+                base: '10rem',
+                sm: '12rem',
+                md: '15rem',
+                lg: '20rem'
+              }}
+              height="auto"
+              objectFit="contain"
+              cursor="pointer"
+              onClick={() => {
+                void navigate('/')
+              }}
+              color="#E3000F"
+              alt="logo"
+            />
 
+          </Flex>
+        </Tooltip>
         <Flex flex="1" justifyContent="end">
           <ButtonGroup
             spacing={{
@@ -126,7 +143,7 @@ export const Navbar: FC<INavbarProps> = ({
             }}>
             <SearchbarButton
               onClick={onSearchClick}
-              // defaultIsOpen={mode === 'store'}
+            // defaultIsOpen={mode === 'store'}
             />
 
             <Tooltip label="Kontakt" aria-label="Kontakt">
@@ -147,7 +164,7 @@ export const Navbar: FC<INavbarProps> = ({
             {mode === 'website' ? (
               <>
                 <Tooltip label="Zum Onlineshop" aria-label="Zum Onlineshop">
-                  <Button
+                  <BallonButton
                     display={{
                       base: 'none',
                       md: 'flex'
@@ -157,7 +174,7 @@ export const Navbar: FC<INavbarProps> = ({
                     to="/products"
                     leftIcon={<FaShopify />}>
                     Onlineshop
-                  </Button>
+                  </BallonButton>
                 </Tooltip>
 
                 <Tooltip label="Zum Onlineshop" aria-label="Zum Onlineshop">
@@ -195,7 +212,7 @@ export const Navbar: FC<INavbarProps> = ({
       </Stack>
 
       <Flex
-        display={{base: 'none', md: mode === 'website' ? 'flex' : 'none'}}
+        display={{ base: 'none', md: mode === 'website' ? 'flex' : 'none' }}
         justifyContent="center">
         <BottomNav />
       </Flex>

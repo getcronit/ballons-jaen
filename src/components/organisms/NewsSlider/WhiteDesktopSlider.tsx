@@ -7,13 +7,14 @@ import {
   Stack,
   Text
 } from '@chakra-ui/react'
-import {Field, useStatus} from '@snek-at/jaen'
-import {Link} from 'gatsby'
-import {FC} from 'react'
+import { BallonButton } from '../../molecules/BallonButton'
+import { Field, useStatus } from '@snek-at/jaen'
+import { Link } from 'gatsby'
+import { FC } from 'react'
 import Slider from 'react-slick'
-import {today} from '../../../common/utils'
-import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
-import {JaenPageIndexType} from '../../../types/commonTypes'
+import { today } from '../../../common/utils'
+import { CONTAINER_MAX_WIDTH } from '../../../constant/sizes'
+import { JaenPageIndexType } from '../../../types/commonTypes'
 
 interface IWhiteDesktopSliderProps {
   showTitle?: boolean
@@ -34,20 +35,20 @@ const WhiteDesktopSlider: FC<IWhiteDesktopSliderProps> = ({
     slidesToScroll: 1
   }
 
-  const {isEditing} = useStatus()
+  const { isEditing } = useStatus()
 
   return (
-    <Container maxW={CONTAINER_MAX_WIDTH} display={{base: 'none', md: 'block'}}>
+    <Container maxW={CONTAINER_MAX_WIDTH} display={{ base: 'none', md: 'block' }}>
       {showTitle && (
         <Text
           variant="cursive"
-          fontSize={{base: '2xl', md: '4xl', lg: '5xl', xl: '6xl'}}>
+          fontSize={{ base: '2xl', md: '4xl', lg: '5xl', xl: '6xl' }}>
           Wissen
         </Text>
       )}
 
       <Box
-        borderRadius={{base: 'md', md: 'lg', lg: 'xl'}}
+        borderRadius={{ base: 'md', md: 'lg', lg: 'xl' }}
         boxShadow="dark"
         py="8"
         bg="white">
@@ -57,23 +58,23 @@ const WhiteDesktopSlider: FC<IWhiteDesktopSliderProps> = ({
               page.id,
               <Box key={i} py="8">
                 <Flex
-                  h={{xl: '22.5rem'}}
+                  h={{ xl: '22.5rem' }}
                   pb="8"
                   flex="1"
-                  px={{base: 0, lg: '4'}}
+                  px={{ base: 0, lg: '4' }}
                   align="center"
                   gap="6"
                   justify="center"
-                  flexDir={{base: 'column', md: 'row'}}>
+                  flexDir={{ base: 'column', md: 'row' }}>
                   <Box
                     boxShadow="light"
                     overflow="hidden"
-                    boxSize={{md: '8rem', lg: '12rem', xl: '14.375rem'}}
+                    boxSize={{ md: '8rem', lg: '12rem', xl: '14.375rem' }}
                     bg="gray.800"
                     borderRadius="full">
                     <Field.Image name="image" />
                   </Box>
-                  <Stack gap={{md: 0, lg: 2, xl: 4}} flex="1">
+                  <Stack gap={{ md: 0, lg: 2, xl: 4 }} flex="1">
                     <Field.Text
                       fontSize={'md'}
                       name="date"
@@ -82,14 +83,14 @@ const WhiteDesktopSlider: FC<IWhiteDesktopSliderProps> = ({
                     <Field.Text
                       as={Heading}
                       color="black.500"
-                      fontSize={{md: 'sm', lg: 'md', xl: 'xl'}}
+                      fontSize={{ md: 'sm', lg: 'md', xl: 'xl' }}
                       fontWeight="semibold"
                       noOfLines={2}
                       name="title"
                       defaultValue="Ballons & Ballons: Die Geschichte"
                     />
                     <Field.Text
-                      fontSize={{md: 'xs', lg: 'sm', xl: 'md'}}
+                      fontSize={{ md: 'xs', lg: 'sm', xl: 'md' }}
                       noOfLines={4}
                       pointerEvents={isEditing ? 'none' : 'auto'}
                       name="description"
@@ -103,13 +104,13 @@ const WhiteDesktopSlider: FC<IWhiteDesktopSliderProps> = ({
                         sit amet, consectetur adipiscing "
                     />
                     <Box>
-                      <Button
+                      <BallonButton
                         variant="outline"
                         as={Link}
                         to={`/wissen/${page.slug}`}
-                        size={{md: 'sm', lg: 'sm', xl: 'md'}}>
+                        size={{ md: 'sm', lg: 'sm', xl: 'md' }}>
                         Mehr anzeigen
-                      </Button>
+                      </BallonButton>
                     </Box>
                   </Stack>
                 </Flex>

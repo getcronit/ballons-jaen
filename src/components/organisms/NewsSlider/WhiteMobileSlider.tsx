@@ -8,19 +8,20 @@ import {
   Text,
   VStack
 } from '@chakra-ui/react'
-import {Field, useStatus} from '@snek-at/jaen'
-import {Link} from 'gatsby'
-import {FC} from 'react'
+import { BallonButton } from '../../molecules/BallonButton'
+import { Field, useStatus } from '@snek-at/jaen'
+import { Link } from 'gatsby'
+import { FC } from 'react'
 import Slider from 'react-slick'
-import {today} from '../../../common/utils'
-import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
-import {JaenPageIndexType} from '../../../types/commonTypes'
+import { today } from '../../../common/utils'
+import { CONTAINER_MAX_WIDTH } from '../../../constant/sizes'
+import { JaenPageIndexType } from '../../../types/commonTypes'
 
 interface IWhiteMobileSliderProps {
   index: JaenPageIndexType
 }
 
-const WhiteMobileSlider: FC<IWhiteMobileSliderProps> = ({index}) => {
+const WhiteMobileSlider: FC<IWhiteMobileSliderProps> = ({ index }) => {
   const slidesToShow = 1
 
   var settings = {
@@ -31,7 +32,7 @@ const WhiteMobileSlider: FC<IWhiteMobileSliderProps> = ({index}) => {
     slidesToScroll: 1
   }
 
-  const {isEditing} = useStatus()
+  const { isEditing } = useStatus()
 
   return (
     <Container maxW={CONTAINER_MAX_WIDTH}>
@@ -59,7 +60,7 @@ const WhiteMobileSlider: FC<IWhiteMobileSliderProps> = ({index}) => {
                     pos="absolute"
                     top="-40"
                     overflow="hidden"
-                    boxSize={{base: '9.375rem'}}
+                    boxSize={{ base: '9.375rem' }}
                     bg="gray.800"
                     borderRadius="full">
                     <Field.Image name="image" />
@@ -96,13 +97,13 @@ const WhiteMobileSlider: FC<IWhiteMobileSliderProps> = ({index}) => {
                         adipiscing elit. Faucibus in libero risus semper Lorem ipsum dolor
                         sit amet, consectetur adipiscing "
                   />
-                  <Button
+                  <BallonButton
                     as={Link}
                     to={`/wissen/${page.slug}`}
-                    size={{base: 'sm', md: 'md'}}
+                    size={{ base: 'sm', md: 'md' }}
                     variant="outline">
                     Mehr anzeigen
-                  </Button>
+                  </BallonButton>
                 </VStack>
               </Stack>
             </Box>
