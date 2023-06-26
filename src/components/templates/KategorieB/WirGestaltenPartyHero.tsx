@@ -48,7 +48,7 @@ const WirGestaltenPartyHero: FC<IWirGestaltenPartyHeroProps> = () => {
                 }
               }}
               name="title"
-              defaultValue="<p>Wir gestalten </br> <i>Ihre Party</i></p>"
+              defaultValue="Wir gestalten </br> <i>Ihre Party</i>"
             />
 
             <Field.Text

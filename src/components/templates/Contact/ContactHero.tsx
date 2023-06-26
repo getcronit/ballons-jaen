@@ -36,7 +36,7 @@ const ContactHero: FC<IContactHeroProps> = ({}) => {
                 fontWeight="semibold"
                 whiteSpace="nowrap"
                 name="heading1"
-                defaultValue="<p>Mitten in <i>Wien</i></p>"
+                defaultValue="Mitten in <i>Wien</i>"
               />
             </Flex>
             <Stack

@@ -78,7 +78,7 @@ const WissenPage: React.FC<WissenPageProps> = () => {
               tagFieldName: 'blogOverviewCard1Tag',
               tagDefaultValue: 'PRODUKTE',
               titleFieldName: 'blogOverviewCard1Title',
-              titleDefaultValue: '<p>Unsere <i>Kataloge</i></p>',
+              titleDefaultValue: 'Unsere <i>Kataloge</i>',
               descriptionFieldName: 'blogOverviewCard1Description',
               descriptionDefaultValue:
                 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et do',

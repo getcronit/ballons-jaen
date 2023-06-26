@@ -1,6 +1,6 @@
-import { FC } from "react"
-import GroßhandelBottomHero from "./GroßhandelBottomHero"
-import GroßhandelUpperHero from "./GroßhandelUpperHero"
+import {FC} from 'react'
+import GroßhandelBottomHero from './GroßhandelBottomHero'
+import GroßhandelUpperHero from './GroßhandelUpperHero'
 
 interface IGroßhandelHeroProps {}
 

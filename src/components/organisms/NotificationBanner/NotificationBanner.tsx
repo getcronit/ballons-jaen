@@ -54,7 +54,7 @@ export const NotificationBanner = (props: NotificationBannerProps) => {
                 fontWeight="semibold"
                 size="h6020"
                 name="heading"
-                defaultValue="<p>Wir sind auf <i>Urlaub</i></p>"
+                defaultValue="Wir sind auf <i>Urlaub</i>"
               />
             </Flex>
             <Field.Text

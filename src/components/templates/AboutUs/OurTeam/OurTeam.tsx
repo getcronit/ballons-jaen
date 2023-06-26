@@ -126,7 +126,7 @@ const OurTeam: FC<IOurTeamProps> = () => {
                 name="TeamTitle"
                 size="h6020"
                 fontWeight="semibold"
-                defaultValue="<p>Unser <i>Team</i></p>"
+                defaultValue="Unser <i>Team</i>"
               />
             </Flex>
             <Field.Text

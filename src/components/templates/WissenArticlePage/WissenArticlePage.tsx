@@ -33,7 +33,6 @@ const WissenArticlePage: React.FC<WissenPageProps> = () => {
           <Field.Text
             name="description"
             defaultValue={`
-              <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
               libero risus semper Lorem ipsum dolor sit amet, consectetur
               adipiscing elit. Faucibus in libero risus semper Lorem ipsum dolor
@@ -47,7 +46,6 @@ const WissenArticlePage: React.FC<WissenPageProps> = () => {
               consectetur adipiscing elit. Faucibus in libero risus semper Lorem
               ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
               libero risus semper.
-              </p>
             `}
           />
 

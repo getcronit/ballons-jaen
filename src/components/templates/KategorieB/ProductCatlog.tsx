@@ -57,7 +57,7 @@ const ProductCatlog: FC<IProductCatlogProps> = () => {
             fontSize={{base: 'md', md: 'xl', lg: '2xl', xl: '3xl'}}
             fontWeight="semibold"
             name="catalogueTitle"
-            defaultValue="<p>Unsere <i>Kataloge</i></p>"
+            defaultValue="Unsere <i>Kataloge</i>"
           />
           <Field.Text
             fontSize={{base: 'sm', lg: 'md'}}

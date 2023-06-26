@@ -71,7 +71,6 @@ const FeaturedBlog: React.FC<{
               pointerEvents={isEditing ? 'none' : 'auto'}
               name="description"
               defaultValue={`
-                <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
                 libero risus semper Lorem ipsum dolor sit amet, consectetur
                 adipiscing elit. Faucibus in libero risus semper Lorem ipsum dolor
@@ -92,7 +91,6 @@ const FeaturedBlog: React.FC<{
                 sit amet, consectetur adipiscing elit. Faucibus in libero risus
                 semper Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Faucibus in libero risus semper
-                </p>
               `}
             />
             <Flex justify="space-between" w="full" mt="4 !important">
@@ -143,7 +141,7 @@ const BlogOverviewHero: FC<IBlogOverviewHeroProps> = props => {
             fontWeight="semibold"
             whiteSpace="nowrap"
             name="heroTitle"
-            defaultValue="<p><i>Wissenswertes</i> über Ballons & Ballons</p>"
+            defaultValue="<i>Wissenswertes</i> über Ballons & Ballons"
           />
         </VStack>
         {props.featuredBlog ? (

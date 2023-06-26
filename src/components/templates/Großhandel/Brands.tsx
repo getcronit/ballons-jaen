@@ -235,7 +235,7 @@ export const BrandsSection = connectBlock(
               size="h5020"
               fontWeight="semibold"
               name="partnerTitle"
-              defaultValue="<p>Ein <i>Partner</i></p>"
+              defaultValue="Ein <i>Partner</i>"
             />
           </Flex>
           <Field.Text
@@ -245,7 +245,7 @@ export const BrandsSection = connectBlock(
             textAlign="center"
             name="partnerText"
             defaultValue={
-              '<p>Profitieren Sie von einer unglaublichen Auswahl an Ideen, Produkten und Business-Boostern in unserem Netzwerk.</p>'
+              'Profitieren Sie von einer unglaublichen Auswahl an Ideen, Produkten und Business-Boostern in unserem Netzwerk.'
             }
           />
           <Box w="full">

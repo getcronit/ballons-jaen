@@ -54,7 +54,7 @@ const GroßhandelUpperHero: FC<IGroßhandelUpperHeroProps> = () => {
               fontWeight="semibold"
               size="h5020"
               name="subtitle"
-              defaultValue="<p>Werde <i>Ballon-Partner</i></p>"
+              defaultValue="Werde <i>Ballon-Partner</i>"
             />
             <HStack>
               <LinkButtonField
@@ -72,7 +72,7 @@ const GroßhandelUpperHero: FC<IGroßhandelUpperHeroProps> = () => {
               />
             </HStack>
             <Grid
-              display={{base: 'none', md: 'grid'}} 
+              display={{base: 'none', md: 'grid'}}
               right="0"
               pos="absolute"
               top="6.25rem"

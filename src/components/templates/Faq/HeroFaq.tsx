@@ -22,7 +22,7 @@ const HeroFaq: FC<IHeroFaqProps> = () => {
             fontWeight="semibold"
             whiteSpace="nowrap"
             name="faqTitle"
-            defaultValue="<p>Häufig gestellte <i>Fragen</i></p>"
+            defaultValue="Häufig gestellte <i>Fragen</i>"
           />
         </Flex>
         <Field.Text
@@ -31,9 +31,9 @@ const HeroFaq: FC<IHeroFaqProps> = () => {
           maxW="800px"
           textAlign="center"
           name="faqSubtitle"
-          defaultValue={`<p>Wir beantworten hier Fragen, welche wir häufig von unseren Kunden
+          defaultValue={`Wir beantworten hier Fragen, welche wir häufig von unseren Kunden
           hören. Lies dich gerne ein! Falls du weitere Fragen hast, stehen wir
-          dir natürlich gerne zur Verfügung. <b>+43 2 326 34 25.</b></p>`}
+          dir natürlich gerne zur Verfügung. <b>+43 2 326 34 25.</b>`}
         />
       </VStack>
     </Container>

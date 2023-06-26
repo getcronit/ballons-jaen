@@ -38,7 +38,7 @@ const TwoCards: FC<ITwoCardsProps> = () => {
               tagFieldName: 'wholeSaleCardTag1',
               tagDefaultValue: 'PRODUKTE',
               titleFieldName: 'wholeSaleCardTitle1',
-              titleDefaultValue: '<p>Unsere <i>Kataloge</i></p>',
+              titleDefaultValue: 'Unsere <i>Kataloge</i>',
               descriptionFieldName: 'wholeSaleCardDescription1',
               descriptionDefaultValue:
                 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et do',
@@ -76,7 +76,7 @@ const TwoCards: FC<ITwoCardsProps> = () => {
               tagFieldName: 'wholeSaleCardTag2',
               tagDefaultValue: 'PRODUKTE',
               titleFieldName: 'wholeSaleCardTitle2',
-              titleDefaultValue: '<p><i>Rund</i> umsteigen</p>',
+              titleDefaultValue: '<i>Rund</i> umsteigen',
               descriptionFieldName: 'wholeSaleCardDescription2',
               descriptionDefaultValue:
                 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et do',

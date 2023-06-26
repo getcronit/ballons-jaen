@@ -248,7 +248,7 @@ export const ParallaxHero = ({noScroll}: ParallaxHeroProps) => {
           <Field.Text
             as={Heading}
             name="heroTextBallons"
-            defaultValue="<p><i>Ballons</i></p>"
+            defaultValue="<i>Ballons</i>"
             fontSize={{base: '2xl', md: '8xl', lg: '9xl'}}
             fontWeight="semibold"
             textAlign="center"

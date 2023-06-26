@@ -38,7 +38,7 @@ const AdviceSection: FC<IAdviceSectionProps> = () => {
                 size="h5020"
                 fontWeight="semibold"
                 name="adviceTitle"
-                defaultValue="<p>Lass dich von uns <i>beraten</i></p>"
+                defaultValue="Lass dich von uns <i>beraten</i>"
               />
             </Flex>
             <Field.Text
@@ -47,7 +47,7 @@ const AdviceSection: FC<IAdviceSectionProps> = () => {
               maxW="90%"
               name="adviceText"
               defaultValue={
-                '<p>Wir sind für dich da und beraten dich gerne bei der Planung deiner Party. Wir haben viele Ideen und Tipps für dich parat.</p>'
+                'Wir sind für dich da und beraten dich gerne bei der Planung deiner Party. Wir haben viele Ideen und Tipps für dich parat.'
               }
             />
             <Box pt="5">

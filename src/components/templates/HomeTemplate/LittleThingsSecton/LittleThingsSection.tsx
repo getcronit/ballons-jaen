@@ -65,7 +65,7 @@ const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
             mb="-2"
             whiteSpace="nowrap"
             name="littleThingsHeading"
-            defaultValue="<p>Auch die <i>kleinsten</i><br/> Dinge machen viel <i>Freude</i></p>"
+            defaultValue="Auch die <i>kleinsten</i><br/> Dinge machen viel <i>Freude</i>"
           />
           <Field.Text
             //as={Heading}

@@ -26,7 +26,6 @@ const TextBlockSection = connectBlock(
           name="text"
           textAlign="center"
           defaultValue={`
-            <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
             libero risus semper Lorem ipsum dolor sit amet, consectetur
             adipiscing elit. Faucibus in libero risus semper Lorem ipsum dolor
@@ -38,7 +37,6 @@ const TextBlockSection = connectBlock(
             semper Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Faucibus in libero risus semper Lorem ipsum dolor sit amet,
             consectetur adipiscing elit. Faucibus in libero risus semper Lorem
-            </p>
         `}
         />
       </Container>

@@ -49,7 +49,6 @@ const BlogCard: FC<IBlogCardProps> = ({slug}) => {
           pointerEvents={isEditing ? 'none' : 'auto'}
           name="description"
           defaultValue={`
-            <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
             libero risus semper Lorem ipsum dolor sit amet, consectetur
             adipiscing elit. Faucibus in libero risus semper Lorem ipsum dolor
@@ -70,7 +69,6 @@ const BlogCard: FC<IBlogCardProps> = ({slug}) => {
             sit amet, consectetur adipiscing elit. Faucibus in libero risus
             semper Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Faucibus in libero risus semper
-            </p>
             `}
         />
         <Flex justify="space-between" w="full" my="4 !important">

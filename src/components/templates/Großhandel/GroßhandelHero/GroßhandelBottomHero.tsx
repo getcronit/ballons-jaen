@@ -53,10 +53,9 @@ const GroßhandelBottomHero: FC<IGroßhandelBottomHeroProps> = () => {
 
           <Field.Text
             size="b2015"
-            maxW="37.5rem"
             flex="1"
             name="rightDescription"
-            defaultValue="<p>Ob Sie einen Ballonshop starten möchten, einen Teil Ihres Geschäftes
+            defaultValue="Ob Sie einen Ballonshop starten möchten, einen Teil Ihres Geschäftes
             einer neuen Branche widmen oder nur eine bisher unbespielte Wand
             ausstatten möchten – wir sind Ihre Partner dafür. Suchen Sie als
             Dekorateur für Hochzeiten, Kinderparties oder Corporate Events die
@@ -67,7 +66,7 @@ const GroßhandelBottomHero: FC<IGroßhandelBottomHeroProps> = () => {
             Als Marktfahrer suchen Sie nach Motiven, die Kinder magisch
               anziehen und die im Augenblick im Trend liegen.
           </Text>
-          </p>"
+          "
           />
         </Flex>
       </Flex>

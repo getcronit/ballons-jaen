@@ -95,7 +95,7 @@ const RiesgesBottomSection: FC<IRiesgesBottomSectionProps> = () => {
           fontSize={{base: 'xl', md: '3xl', lg: '4xl'}}
           fontWeight="semibold"
           name="riesgesHeading"
-          defaultValue="<p>Riesiges</p>"
+          defaultValue="Riesiges"
         />
         <Field.Text
           as={Heading}
@@ -104,7 +104,7 @@ const RiesgesBottomSection: FC<IRiesgesBottomSectionProps> = () => {
           mb="4 !important"
           fontWeight="semibold"
           name="riesgesHeading2"
-          defaultValue="<p><i>Produktsortiment</i></p>"
+          defaultValue="<i>Produktsortiment</i>"
         />
         <Field.Text
           maxW={{base: '90%', md: '75%'}}

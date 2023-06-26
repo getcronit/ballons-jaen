@@ -49,7 +49,6 @@ const BlogPageHero: FC<IBlogPageHeroProps> = () => {
             size="b2012"
             name="description"
             defaultValue={`
-              <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
               libero risus semper Lorem ipsum dolor sit amet, consectetur
               adipiscing elit. Faucibus in libero risus semper Lorem ipsum dolor
@@ -70,7 +69,6 @@ const BlogPageHero: FC<IBlogPageHeroProps> = () => {
               sit amet, consectetur adipiscing elit. Faucibus in libero risus
               semper Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Faucibus in libero risus semper
-              </p>
             `}
           />
         </Stack>
