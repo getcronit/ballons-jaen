@@ -659,6 +659,7 @@ const Filter: React.FC<{
                 visibility={activeTagsArray.length > 0 ? 'visible' : 'hidden'}
                 maxW="fit-content"
                 size="md"
+                py="7 !important"
                 onClick={() => {
                   clearActiveTags()
                 }}>

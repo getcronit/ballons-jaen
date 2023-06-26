@@ -1,4 +1,4 @@
-import {ChevronRightIcon} from '@chakra-ui/icons'
+import { ChevronRightIcon } from '@chakra-ui/icons'
 import {
   Box,
   Button,
@@ -11,15 +11,17 @@ import {
   Link,
   Modal,
   ModalBody,
+  ModalCloseButton,
   ModalContent,
   ModalOverlay,
   Stack,
   Text,
   Tooltip
 } from '@chakra-ui/react'
+import { BallonButton } from '../../molecules/BallonButton'
 import React from 'react'
-import {useForm} from 'react-hook-form'
-import {Link as GatsbyLink} from 'gatsby'
+import { useForm } from 'react-hook-form'
+import { Link as GatsbyLink } from 'gatsby'
 
 export interface LoginFormValues {
   email: string
@@ -42,7 +44,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
     register,
     handleSubmit,
     reset,
-    formState: {errors, isSubmitting}
+    formState: { errors, isSubmitting }
   } = useForm<LoginFormValues>()
 
   const [loginFailedMessage, setLoginFailedMessage] = React.useState('')
@@ -69,6 +71,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
       <ModalOverlay />
 
       <ModalContent maxW="56rem" h="32rem" overflow="hidden">
+        <ModalCloseButton />
         <ModalBody display="flex" p={0}>
           <Flex
             w="full"
@@ -131,12 +134,15 @@ export const LoginModal: React.FC<LoginModalProps> = ({
                     </FormControl>
                   </Stack>
 
-                  <Button
+                  <BallonButton
                     rightIcon={<ChevronRightIcon />}
                     type="submit"
-                    isLoading={isSubmitting}>
+                    isLoading={isSubmitting}
+                    py="7 !important"
+                    mx="16 !important"
+                  >
                     Anmelden
-                  </Button>
+                  </BallonButton>
 
                   <Text fontSize="sm" color="red">
                     {loginFailedMessage}

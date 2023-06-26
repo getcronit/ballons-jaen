@@ -16,9 +16,10 @@ import {
   Text,
   Textarea
 } from '@chakra-ui/react'
+import { BallonButton } from '../../molecules/BallonButton'
 import React from 'react'
-import {Controller, useForm} from 'react-hook-form'
-import {CheckboxStyled} from '../../CheckboxStyled'
+import { Controller, useForm } from 'react-hook-form'
+import { CheckboxStyled } from '../../CheckboxStyled'
 
 export interface ContactFormValues {
   name: string
@@ -56,7 +57,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     control,
     handleSubmit,
     reset,
-    formState: {errors, isSubmitting}
+    formState: { errors, isSubmitting }
   } = useForm<ContactFormValues>({})
 
   React.useEffect(() => {
@@ -147,7 +148,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                   id="message"
                   placeholder="Nachricht"
                   defaultValue={defaultValues?.message}
-                  {...register('message', {required: true})}
+                  {...register('message', { required: true })}
                 />
 
                 <FormErrorMessage fontSize="sm">
@@ -157,7 +158,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
 
               <FormControl isInvalid={!!errors.agreeToTerms}>
                 <Controller
-                  render={({field, fieldState, formState}) => (
+                  render={({ field, fieldState, formState }) => (
                     <CheckboxStyled
                       ref={field.ref}
                       onBlur={field.onBlur}
@@ -189,9 +190,13 @@ export const ContactModal: React.FC<ContactModalProps> = ({
           </ModalBody>
 
           <ModalFooter borderTop="1px solid" color="gray.200">
-            <Button isLoading={isSubmitting} type="submit">
+            <BallonButton
+              isLoading={isSubmitting}
+              type="submit"
+              py="7 !important"
+            >
               Senden
-            </Button>
+            </BallonButton>
           </ModalFooter>
         </form>
       </ModalContent>

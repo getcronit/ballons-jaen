@@ -126,6 +126,7 @@ const LinkButtonField: React.FC<
     <Box pos={'relative'} maxW={'fit-content'}>
       <Field.Text
         as={BallonButton}
+        py="7 !important"
         asAs={'span'}
         bgColor={'blue'}
         {...buttonProps}

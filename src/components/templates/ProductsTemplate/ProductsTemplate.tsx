@@ -121,6 +121,7 @@ export const ProductsTemplate = (props: ProductsTemplateProps) => {
             <BallonButton
               ref={loadMoreButtonRef}
               variant="outline"
+              py="7 !important"
               onClick={() => {
                 if (props.isFetching) return
                 props.fetchNextPage()

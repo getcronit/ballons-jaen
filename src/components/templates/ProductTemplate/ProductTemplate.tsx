@@ -360,21 +360,19 @@ const ProductDetail = withStoreContext<{
           <Tooltip label="Zum Onlineshop" aria-label="Zum Onlineshop">
 
             <BallonButton
-              display={{
-                base: 'none',
-                md: 'flex'
-              }}
+              // display={{
+              //   base: 'none',
+              //   md: 'flex'
+              // }}
               size={{
                 base: 'sm',
                 md: 'md'
               }}
+              py="7 !important"
               disabled={!availableForSale}
               fontWeight="semibold"
               textTransform="uppercase"
-              fontSize={{
-                base: 'sm',
-                md: 'md'
-              }}
+              fontSize='md'
               leftIcon={<FaShoppingBasket />}>
               In den Warenkorb
             </BallonButton>

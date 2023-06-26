@@ -108,7 +108,9 @@ const WhiteDesktopSlider: FC<IWhiteDesktopSliderProps> = ({
                         variant="outline"
                         as={Link}
                         to={`/wissen/${page.slug}`}
-                        size={{ md: 'sm', lg: 'sm', xl: 'md' }}>
+                        size='md'
+                        py="7 !important"
+                      >
                         Mehr anzeigen
                       </BallonButton>
                     </Box>
