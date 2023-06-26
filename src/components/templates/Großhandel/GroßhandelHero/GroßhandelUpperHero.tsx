@@ -72,6 +72,7 @@ const GroßhandelUpperHero: FC<IGroßhandelUpperHeroProps> = () => {
               />
             </HStack>
             <Grid
+              display={{base: 'none', md: 'grid'}} 
               right="0"
               pos="absolute"
               top="6.25rem"
