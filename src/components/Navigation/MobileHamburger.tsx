@@ -18,6 +18,7 @@ import {FaPhoneAlt} from 'react-icons/fa'
 import {Logo} from '../../common/assets/Logo'
 import {useContactModal} from '../../services/contact'
 import {BottomNavLinks} from './NavLinks'
+import { BallonButton } from '../molecules/BallonButton'
 
 export const MobileHambuger: React.FC = () => {
   const {isOpen, onToggle} = useDisclosure()
@@ -84,9 +85,10 @@ export const MobileHambuger: React.FC = () => {
                 align="center"
                 spacing="4"
                 mt="4">
-                <Button
+                <BallonButton
                   w="full"
                   variant="outline"
+                  py="7 !important"
                   leftIcon={<FaPhoneAlt />}
                   onClick={() => {
                     contactModal.onOpen({
@@ -94,7 +96,7 @@ export const MobileHambuger: React.FC = () => {
                     })
                   }}>
                   Anfragen
-                </Button>
+                </BallonButton>
               </Stack>
             </Stack>
           </DrawerBody>
