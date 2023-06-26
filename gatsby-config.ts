@@ -8,7 +8,7 @@ const siteUrl = JaenSource.jaenData.internal.siteMetadata.siteUrl
 
 const config: GatsbyConfig = {
   flags: {
-    DEV_SSR: false
+    DEV_SSR: true
   },
   siteMetadata: {
     title: `ballons-and-ballons`,

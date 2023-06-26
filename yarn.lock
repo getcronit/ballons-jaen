@@ -4131,10 +4131,10 @@
     shopify-buy "^2.17.0"
     urql "^2.2.0"
 
-"@snek-at/jaen@^0.0.86":
-  version "0.0.86"
-  resolved "https://registry.yarnpkg.com/@snek-at/jaen/-/jaen-0.0.86.tgz#a8d8dce510ecfa50e7d9dd1806673abfc90a7862"
-  integrity sha512-HrnRflojh8ArtFaJSm44teK+atoIszZDfPId++jUvdze1P604jOpHOqUDI53CbYoM0BS3XCs30c1By1Ljr9e0w==
+"@snek-at/jaen@^0.0.91":
+  version "0.0.91"
+  resolved "https://registry.yarnpkg.com/@snek-at/jaen/-/jaen-0.0.91.tgz#057f6e6b55ced3e3fccddb26be5abd54de7cb374"
+  integrity sha512-3awjQkby+/fHmgWLfaxvK6Rmavy1OfD+MBRCv4NQL9JP8L6zbXm3uwhpc3OUWT+VRdsmpchnEn3ITK9h6aH6MA==
   dependencies:
     "@chakra-ui/icons" "^2.0.18"
     "@chakra-ui/pro-theme" "^0.0.64"

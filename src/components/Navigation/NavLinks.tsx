@@ -15,6 +15,7 @@ import {
 } from '@chakra-ui/react'
 import {Link, navigate} from 'gatsby'
 import React from 'react'
+import {useLocation} from '@reach/router'
 
 import {MarkdownLinksForm} from './BottomNav'
 import {useJaenNavTop, useJaenNavBottom} from './useJaenNavigation'
@@ -41,7 +42,7 @@ export const TopNavLinks: React.FC<
   return (
     <Flex pos={'relative'}>
       <Stack {...props}>
-        {navLinks.map((link, index) => {
+        {/* {navLinks.map((link, index) => {
           return (
             <CLink
               _before={{
@@ -76,7 +77,7 @@ export const TopNavLinks: React.FC<
               {link.label}
             </CLink>
           )
-        })}
+        })} */}
       </Stack>
 
       {isEditing && (
@@ -115,24 +116,34 @@ export const TopNavLinks: React.FC<
 export const BottomNavLinks: React.FC<
   StackProps & {
     childrenTextAlign?: 'left' | 'center' | 'right'
+    pathname: string
   }
-> = ({childrenTextAlign, ...props}) => {
+> = ({childrenTextAlign, pathname, ...props}) => {
   const {isEditing, navLinks, markdown, updateNavigation} = useJaenNavBottom()
 
   const {onOpen, onClose, isOpen} = useDisclosure()
   const firstFieldRef = React.useRef(null)
-  const bestMatch = findActivePath(
-    typeof window !== 'undefined' ? window.location.pathname : '/',
-    navLinks.map(l => l.to)
-  )
+
+  // const [activePath, setActivePath] = React.useState('/')
+
+  // const location = useLocation()
+
+  // React.useEffect(() => {
+  //   setActivePath(
+  //     findActivePath(
+  //       location.pathname,
+  //       navLinks.map(l => l.to)
+  //     ) || '/'
+  //   )
+  // }, [location.pathname, navLinks])
 
   return (
     <>
-      <Stack {...props}>
+      <Stack {...props} key="nav-links">
         {navLinks.map((link, index) => {
           return (
             <CLink
-              textDecoration={link.to === bestMatch ? 'underline' : 'none'}
+              textDecoration={link.to === pathname ? 'underline' : 'none'}
               _before={{
                 display: 'block',
                 content: `"${link.label}"`,

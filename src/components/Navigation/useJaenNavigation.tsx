@@ -1,13 +1,13 @@
 import {useStatus, useWidget} from '@snek-at/jaen'
+import {useEffect, useMemo, useState} from 'react'
 import {extractUrlsFromMarkdown} from './BottomNav'
 
 export const useJaenNavTop = () => {
   const {isEditing} = useStatus()
 
-  const menuWidget =
-    useWidget<{
-      markdown: string
-    }>('topnav')
+  const menuWidget = useWidget<{
+    markdown: string
+  }>('topnav')
 
   const markdown =
     menuWidget?.data?.markdown ||
@@ -31,10 +31,9 @@ export const useJaenNavTop = () => {
 export const useJaenNavBottom = () => {
   const {isEditing} = useStatus()
 
-  const menuWidget =
-    useWidget<{
-      markdown: string
-    }>('bottomnav')
+  const menuWidget = useWidget<{
+    markdown: string
+  }>('bottomnav')
 
   const markdown =
     menuWidget?.data?.markdown ||
@@ -42,10 +41,16 @@ export const useJaenNavBottom = () => {
   [Home](/)
   `
 
-  const navLinks: Array<{
-    label: string
-    to: string
-  }> = extractUrlsFromMarkdown(markdown)
+  const [navLinks, setNavLinks] = useState<
+    Array<{
+      label: string
+      to: string
+    }>
+  >([])
+
+  useEffect(() => {
+    setNavLinks(extractUrlsFromMarkdown(markdown))
+  }, [markdown])
 
   return {
     isEditing,

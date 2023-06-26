@@ -146,7 +146,7 @@ const RiesgesBottomSection: FC<IRiesgesBottomSectionProps> = () => {
               src="/images/home/reisges/pink_blob.svg"
               alt="pink blob"
             />
-            <Stack spacing="0" key={index}>
+            <Stack spacing="0">
               <Field.Text
                 name={`items-heading-${index}`}
                 fontSize={{base: 'md', lg: 'lg'}}

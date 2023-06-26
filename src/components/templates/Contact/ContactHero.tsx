@@ -11,19 +11,14 @@ import {
 } from '@chakra-ui/react'
 import {Field} from '@snek-at/jaen'
 import {FC, ReactNode} from 'react'
+import {MdLocalPhone, MdLocationPin, MdMail} from 'react-icons/md'
+
 import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
 import {GoogleMaps} from '../../molecules/GoogleMaps'
 
-interface IContactHeroProps {
-  contactDetails: {
-    isEditing: boolean
-    text: ReactNode
-    icon: JSX.Element
-    link?: string
-  }[]
-}
+interface IContactHeroProps {}
 
-const ContactHero: FC<IContactHeroProps> = ({contactDetails}) => {
+const ContactHero: FC<IContactHeroProps> = ({}) => {
   return (
     <>
       {' '}
@@ -56,26 +51,38 @@ const ContactHero: FC<IContactHeroProps> = ({contactDetails}) => {
                 defaultValue="Partyshop, Lager, Werkstatt & Büro"
               />
               <Stack spacing={{base: 4, lg: 8}}>
-                {contactDetails.map((item, index) => (
-                  <HStack key={index}>
-                    <Box fontSize="xl" color="red.500">
-                      {item.icon}
-                    </Box>{' '}
-                    <Text size="b2012" as="span">
-                      {!item.isEditing ? (
-                        <Link
-                          href={item.link}
-                          target="_blank"
-                          rel="noreferrer"
-                          as="span">
-                          {item.text}
-                        </Link>
-                      ) : (
-                        item.text
-                      )}
-                    </Text>
-                  </HStack>
-                ))}
+                <HStack>
+                  <Box fontSize="xl" color="red.500">
+                    <MdLocationPin />
+                  </Box>
+                  <Field.Text
+                    name="address"
+                    defaultValue="Taborstraße 98, 1020 Wien, Österreich"
+                    size="b2012"
+                  />
+                </HStack>
+
+                <HStack>
+                  <Box fontSize="xl" color="red.500">
+                    <MdLocalPhone />
+                  </Box>
+                  <Field.Text
+                    name="phone"
+                    defaultValue="+43 2 326 34 25"
+                    size="b2012"
+                  />
+                </HStack>
+
+                <HStack>
+                  <Box fontSize="xl" color="red.500">
+                    <MdMail />
+                  </Box>
+                  <Field.Text
+                    name="email"
+                    defaultValue="office@ballons-ballons.at"
+                    size="b2012"
+                  />
+                </HStack>
               </Stack>
             </Stack>
             <Box

@@ -53,12 +53,12 @@ export const BasketDrawer = ({
           <Text>
             <strong>Achtung:</strong> Beim Absenden der Bestellung handelt es
             sich um eine <u>unverbindliche Anfrage</u>. Wir werden uns mit Ihnen
-            in Verbindung setzen, um die Bestellung zu bestätigen.
+            in Verbindung setzen, um die Anfrage zu bestätigen.
           </Text>
 
           {!wholesale && (
             <Text fontSize={'sm'}>
-              Sind Sie ein Reseller?{' '}
+              Sind Sie ein Wiederverkäufer?{' '}
               <CLink
                 as={Link}
                 to="/grosshandel"
@@ -134,13 +134,13 @@ export const BasketDrawer = ({
               <>
                 {wholesale ? (
                   <Text fontSize="sm" mt="0 !important">
-                    Alle Preise exkl. 19% MwSt.
+                    Alle Preise exkl. 20% USt und zzgl. Versandkosten.
                   </Text>
                 ) : (
                   <HStack color="gray.600" mt="0 !important">
                     <FaBox />
                     <Text fontSize="sm">
-                      Versand + Steuern werden im nächsten Schritt berechnet.
+                      Alle Preise inkl. 20% USt und zzgl. Versandkosten.
                     </Text>
                   </HStack>
                 )}

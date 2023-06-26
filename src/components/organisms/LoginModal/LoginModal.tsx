@@ -95,7 +95,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
                   <Box>
                     <Text fontSize="md">Willkommen zurück!</Text>
                     <Text fontSize="sm">
-                      Hunderte von Ballone warten auf Sie.
+                      Hunderte von Ballons warten auf Sie.
                     </Text>
                   </Box>
 
@@ -151,7 +151,12 @@ export const LoginModal: React.FC<LoginModalProps> = ({
                   <Text fontSize="sm">
                     Neu bei Ballons & Ballons?{' '}
                     <Tooltip label="Derzeit nicht verfügbar">
-                      <Link as={GatsbyLink} to="/grosshandel/?contact=Ich%20repr%C3%A4sentiere%20[Ihr%20Unternehmen].%20Wir%20sind%20ein%20etabliertes%20Unternehmen%20in%20der%20[Ihr%20Gesch%C3%A4ftsbereich],%20das%20daran%20interessiert%20ist,%20Ihre%20Auswahl%20an%20Ballonprodukten%20in%20unser%20Sortiment%20aufzunehmen." textDecoration="underline">Jetzt registrieren</Link>
+                      <Link
+                        as={GatsbyLink}
+                        to="/grosshandel/?contact=Ich%20repr%C3%A4sentiere%20[Ihr%20Unternehmen].%20Wir%20sind%20ein%20etabliertes%20Unternehmen%20in%20der%20[Ihr%20Gesch%C3%A4ftsbereich],%20das%20daran%20interessiert%20ist,%20Ihre%20Auswahl%20an%20Ballonprodukten%20in%20unser%20Sortiment%20aufzunehmen."
+                        textDecoration="underline">
+                        Jetzt registrieren
+                      </Link>
                     </Tooltip>
                   </Text>
                 </Stack>
