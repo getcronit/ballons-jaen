@@ -1024,6 +1024,13 @@
   dependencies:
     regenerator-runtime "^0.13.11"
 
+"@babel/runtime@^7.18.6":
+  version "7.22.5"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.22.5.tgz#8564dd588182ce0047d55d7a75e93921107b57ec"
+  integrity sha512-ecjvYlnAaZ/KVneE/OdKYBYfgXV3Ptu6zQWmgEF7vwKhQnvVS6bjMD2XYgj+SNvQ1GfK/pjgokfPkC/2CO8CuA==
+  dependencies:
+    regenerator-runtime "^0.13.11"
+
 "@babel/template@^7.16.7", "@babel/template@^7.18.10", "@babel/template@^7.20.7":
   version "7.20.7"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.20.7.tgz#a15090c2839a83b02aa996c0b4994005841fd5a8"
@@ -1942,7 +1949,7 @@
     "@codemirror/view" "^6.6.0"
     "@lezer/common" "^1.0.0"
 
-"@codemirror/commands@^6.0.0":
+"@codemirror/commands@^6.0.0", "@codemirror/commands@^6.1.0":
   version "6.2.4"
   resolved "https://registry.yarnpkg.com/@codemirror/commands/-/commands-6.2.4.tgz#b8a0e5ce72448c092ba4c4b1d902e6f183948aec"
   integrity sha512-42lmDqVH0ttfilLShReLXsDfASKLXzfyC36bzwcqzox9PlHulMcsUOfHXNo2X2aFMVNUoQ7j+d4q5bnfseYoOA==
@@ -2197,7 +2204,12 @@
   resolved "https://registry.yarnpkg.com/@codemirror/state/-/state-6.2.0.tgz#a0fb08403ced8c2a68d1d0acee926bd20be922f2"
   integrity sha512-69QXtcrsc3RYtOtd+GsvczJ319udtBf1PTrr2KbLWM/e2CXUPnh0Nz9AUo8WfhSQ7GeL8dPVNUmhQVgpmuaNGA==
 
-"@codemirror/theme-one-dark@^6.1.2":
+"@codemirror/state@^6.1.1":
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/@codemirror/state/-/state-6.2.1.tgz#6dc8d8e5abb26b875e3164191872d69a5e85bd73"
+  integrity sha512-RupHSZ8+OjNT38zU9fKH2sv+Dnlr8Eb8sl4NOnnqz95mCFTZUaiRP8Xv5MeeaG0px2b8Bnfe7YGwCV3nsBhbuw==
+
+"@codemirror/theme-one-dark@^6.0.0":
   version "6.1.2"
   resolved "https://registry.yarnpkg.com/@codemirror/theme-one-dark/-/theme-one-dark-6.1.2.tgz#fcef9f9cfc17a07836cb7da17c9f6d7231064df8"
   integrity sha512-F+sH0X16j/qFLMAfbciKTxVOwkdAS336b7AXTKOZhy8BR3eH/RelsnLgLFINrpST63mmN2OuwUt0W2ndUgYwUA==
@@ -4131,17 +4143,16 @@
     shopify-buy "^2.17.0"
     urql "^2.2.0"
 
-"@snek-at/jaen@^0.0.91":
-  version "0.0.91"
-  resolved "https://registry.yarnpkg.com/@snek-at/jaen/-/jaen-0.0.91.tgz#057f6e6b55ced3e3fccddb26be5abd54de7cb374"
-  integrity sha512-3awjQkby+/fHmgWLfaxvK6Rmavy1OfD+MBRCv4NQL9JP8L6zbXm3uwhpc3OUWT+VRdsmpchnEn3ITK9h6aH6MA==
+"@snek-at/jaen@^0.0.96":
+  version "0.0.96"
+  resolved "https://registry.yarnpkg.com/@snek-at/jaen/-/jaen-0.0.96.tgz#800ba1523b217c70959e3b1cf6fe328e30743428"
+  integrity sha512-Nm5vBEWFfVDF9LirxpuEJ5U7Wua+IbbQNcuWMGl3+9fma8LEYA8AelTH+ZcmANdejvo+HGpH9Yvr/iNDn2pL7w==
   dependencies:
     "@chakra-ui/icons" "^2.0.18"
     "@chakra-ui/pro-theme" "^0.0.64"
     "@chakra-ui/react" "^2.5.5"
     "@codemirror/lang-markdown" "^6.1.1"
     "@codemirror/language-data" "^6.3.1"
-    "@codemirror/theme-one-dark" "^6.1.2"
     "@emotion/react" "^11.10.4"
     "@emotion/styled" "^11.10.4"
     "@mdx-js/mdx" "^2.3.0"
@@ -4149,16 +4160,14 @@
     "@reduxjs/toolkit" "^1.8.6"
     "@snek-at/snek-finder" "^1.0.0-beta.29"
     "@snek-functions/origin" "^0.2.3"
+    "@uiw/react-codemirror" "^4.21.4"
     ahooks "^3.7.7"
-    codemirror "^6.0.1"
     commander "^9.4.1"
     deepmerge "^4.2.2"
     dompurify "^3.0.3"
     form-data "^4.0.0"
     framer-motion "^7.6.1"
-    highlight.js "^11.8.0"
     jaen-utils "*"
-    lowlight "^2.8.1"
     mdast-util-directive "^2.2.4"
     mdast-util-frontmatter "^1.0.1"
     mdast-util-gfm "^2.0.2"
@@ -4177,6 +4186,7 @@
     react-syntax-highlighter "^15.5.0"
     redux "^4.2.0"
     rehype-highlight "^6.0.0"
+    rehype-mdx-code-props "^1.0.0"
     rehype-mermaidjs "^1.0.1"
     rehype-sanitize "^5.0.1"
     rehype-slug "^5.1.0"
@@ -4185,8 +4195,6 @@
     remark-frontmatter "^4.0.1"
     remark-gfm "^3.0.1"
     remark-math "^5.1.1"
-    remark-unwrap-images "^3.0.1"
-    rodemirror "^2.0.0"
     snek-query "*"
     use-debounce "^9.0.4"
     uuid "^9.0.0"
@@ -4834,6 +4842,31 @@
   dependencies:
     "@typescript-eslint/types" "5.59.1"
     eslint-visitor-keys "^3.3.0"
+
+"@uiw/codemirror-extensions-basic-setup@4.21.7":
+  version "4.21.7"
+  resolved "https://registry.yarnpkg.com/@uiw/codemirror-extensions-basic-setup/-/codemirror-extensions-basic-setup-4.21.7.tgz#59bcaea0e9075f733a6331fb0c4d2e9ef2e965e0"
+  integrity sha512-T5JvfGcocytnIOxTMvHxzcBn1PDAqZS1wnPblGnvOLRW0pUnXoqaOeBC+QI7h+3PGM5uCzPnzvaY+jqYwFDiZg==
+  dependencies:
+    "@codemirror/autocomplete" "^6.0.0"
+    "@codemirror/commands" "^6.0.0"
+    "@codemirror/language" "^6.0.0"
+    "@codemirror/lint" "^6.0.0"
+    "@codemirror/search" "^6.0.0"
+    "@codemirror/state" "^6.0.0"
+    "@codemirror/view" "^6.0.0"
+
+"@uiw/react-codemirror@^4.21.4":
+  version "4.21.7"
+  resolved "https://registry.yarnpkg.com/@uiw/react-codemirror/-/react-codemirror-4.21.7.tgz#4f04d3d60f530633ab6aff79991d366313f165bf"
+  integrity sha512-nrWlH0PZyfew+5gj6o5vp5imJYO8jgkxjqO+tfLovo7T/6AlKJaZIlU1nAobxqKn3mSbgjSZ9GCEDybvrbF6DA==
+  dependencies:
+    "@babel/runtime" "^7.18.6"
+    "@codemirror/commands" "^6.1.0"
+    "@codemirror/state" "^6.1.1"
+    "@codemirror/theme-one-dark" "^6.0.0"
+    "@uiw/codemirror-extensions-basic-setup" "4.21.7"
+    codemirror "^6.0.0"
 
 "@urql/core@^2.6.1":
   version "2.6.1"
@@ -6207,7 +6240,7 @@ clsx@^1.2.1:
   resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.2.1.tgz#0ddc4a20a549b59c93a4116bb26f5294ca17dc12"
   integrity sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==
 
-codemirror@^6.0.1:
+codemirror@^6.0.0:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/codemirror/-/codemirror-6.0.1.tgz#62b91142d45904547ee3e0e0e4c1a79158035a29"
   integrity sha512-J8j+nZ+CdWmIeFIGXEFbFPtpiYacFMDR8GlHK3IyHQJMCaVRfGx9NT+Hxivv1ckLWPvNdZqndbr/7lVhrf/Svg==
@@ -9000,10 +9033,10 @@ gatsby-plugin-image@^2.12.1, gatsby-plugin-image@^3:
     objectFitPolyfill "^2.3.5"
     prop-types "^15.8.1"
 
-gatsby-plugin-jaen@^0.0.22:
-  version "0.0.22"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-jaen/-/gatsby-plugin-jaen-0.0.22.tgz#6b12184c607f72bb25ee05423167463e566a7782"
-  integrity sha512-BGWSge5u5E7v6rDVW2hAb6AizBE9/PAnkExsFjMyyADNwKybCxRIl+cxUw0VsiUH8vr4DehJNHdch4SVthbU7Q==
+gatsby-plugin-jaen@^0.0.26:
+  version "0.0.26"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-jaen/-/gatsby-plugin-jaen-0.0.26.tgz#92bdd7ed59ba734ac5aeef5b8228d6769f6a7522"
+  integrity sha512-m4UEP870rMZ2q6BM2F4VL/IjbkiZXYSL7AqQ/3dfLCoJrrV6X8JN2RyIuKddans0cVg/I/nbJ2fBtraj/bsa8A==
   dependencies:
     "@chakra-ui/gatsby-plugin" "^3.1.1"
     gatsby-plugin-compile-es6-packages "^2.1.1"
@@ -10206,7 +10239,7 @@ highlight.js@^10.4.1, highlight.js@~10.7.0:
   resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-10.7.3.tgz#697272e3991356e40c3cac566a74eef681756531"
   integrity sha512-tzcUFauisWKNHaRkN4Wjl/ZA07gENAjFl3J/c480dprkGTg5EQstgaNFqBfUqCq54kZRIEcreTsAgF/m2quD7A==
 
-highlight.js@^11.8.0, highlight.js@~11.8.0:
+highlight.js@~11.8.0:
   version "11.8.0"
   resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-11.8.0.tgz#966518ea83257bae2e7c9a48596231856555bb65"
   integrity sha512-MedQhoqVdr0U6SSnWPzfiadUcDHfN/Wzq25AkXiQv9oiOO/sG0S7XkvpFIqWBl9Yq1UYyYOOVORs5UW2XlPyzg==
@@ -11630,7 +11663,7 @@ lowlight@^1.17.0:
     fault "^1.0.0"
     highlight.js "~10.7.0"
 
-lowlight@^2.0.0, lowlight@^2.8.1:
+lowlight@^2.0.0:
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/lowlight/-/lowlight-2.9.0.tgz#70da647a4319c7bfd8e97721a679b13ef5621496"
   integrity sha512-OpcaUTCLmHuVuBcyNckKfH5B0oA4JUavb/M/8n9iAvanJYNQkrVm4pvyX0SUaqkBG4dnWHKt7p50B3ngAG2Rfw==
@@ -14607,6 +14640,18 @@ rehype-highlight@^6.0.0:
     unified "^10.0.0"
     unist-util-visit "^4.0.0"
 
+rehype-mdx-code-props@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/rehype-mdx-code-props/-/rehype-mdx-code-props-1.0.0.tgz#c929d4a0910f11a9e3c641489481f0e2779726ed"
+  integrity sha512-NvHm7pTqIIfhpKmjNNizIIJzOcaRDvsAI2katLLylxX5DdhTw/sYKTKnvVZTungykXQglcYnlyVglsEuZ/jZxA==
+  dependencies:
+    "@types/hast" "^2.0.0"
+    acorn "^8.0.0"
+    acorn-jsx "^5.0.0"
+    hast-util-to-estree "^2.0.0"
+    unified "^10.0.0"
+    unist-util-visit-parents "^5.0.0"
+
 rehype-mermaidjs@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/rehype-mermaidjs/-/rehype-mermaidjs-1.0.1.tgz#d48b6c961bead4cc237c01e90f286719d444e9e4"
@@ -14733,16 +14778,6 @@ remark-rehype@^10.0.0:
     "@types/mdast" "^3.0.0"
     mdast-util-to-hast "^12.1.0"
     unified "^10.0.0"
-
-remark-unwrap-images@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/remark-unwrap-images/-/remark-unwrap-images-3.0.1.tgz#22a547baa8fa1e2c66c7d087ebd9cf829a74a255"
-  integrity sha512-5VUY0n+J9lPTPfkct5S3/SbutryBjp8J/4mbgtlkDrOk3h8jde0hyqdYUJOoJKherZezS08tjd6i4+nnQ+wl5w==
-  dependencies:
-    "@types/mdast" "^3.0.0"
-    hast-util-whitespace "^2.0.0"
-    unified "^10.0.0"
-    unist-util-visit "^4.0.0"
 
 remove-trailing-separator@^1.0.1:
   version "1.1.0"
@@ -14892,11 +14927,6 @@ robust-predicates@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/robust-predicates/-/robust-predicates-3.0.1.tgz#ecde075044f7f30118682bd9fb3f123109577f9a"
   integrity sha512-ndEIpszUHiG4HtDsQLeIuMvRsDnn8c8rYStabochtUeCvfuvNptb5TUbVD68LRAILPX7p9nqQGh4xJgn3EHS/g==
-
-rodemirror@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/rodemirror/-/rodemirror-2.0.0.tgz#a14524490062d2f0ef7a79177533c5a0deff9a06"
-  integrity sha512-IgcFDb9TI8VFJZ4P9joc5/9QyAKsBn/ML/fDoqEss++GP0F5+uH4bKcmHhrYS6EHOHLo5Was6SIYuledKOrh2A==
 
 run-async@^2.4.0:
   version "2.4.1"
