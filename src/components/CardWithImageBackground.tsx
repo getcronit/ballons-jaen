@@ -13,6 +13,7 @@ interface ICardWithImageBackgroundProps {
     imageFieldName?: string
     imageDefaultValue?: string
     linkUrl?: string
+    isDisabled?: boolean
   }
   displayContent?: boolean
   minW?: {} | string
@@ -74,6 +75,8 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
                 fontWeight="700"
                 name={card.headingFieldName}
                 defaultValue={card.headingDefaultValue ?? ''}
+                isDisabled={card.isDisabled}
+                isRTF={false}
               />
             )}
 
@@ -83,6 +86,8 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
                 maxW="80%"
                 name={card.textFieldName}
                 defaultValue={card.textDefaultValue ?? ''}
+                isDisabled={card.isDisabled}
+                isRTF={false}
               />
             )}
 

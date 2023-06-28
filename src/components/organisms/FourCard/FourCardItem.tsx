@@ -14,7 +14,8 @@ export const FourCardItem = connectBlock(
           minW="none"
           card={{
             headingFieldName: 'title',
-            imageFieldName: 'fourCardItemImage'
+            imageFieldName: 'fourCardItemImage',
+            isDisabled: true
           }}
         />
       </GridItem>
