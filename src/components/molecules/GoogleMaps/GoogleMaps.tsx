@@ -1,4 +1,16 @@
-import {Box, BoxProps, Heading, Link, Text} from '@chakra-ui/react'
+import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  AlertTitle,
+  Box,
+  BoxProps,
+  Center,
+  Heading,
+  Link,
+  Spinner,
+  Text
+} from '@chakra-ui/react'
 import {getCookieConsentApi} from '@snek-at/jaen'
 import {useEffect, useState} from 'react'
 // import {useCookieConsent} from '@jaenjs/jaen'
@@ -8,6 +20,12 @@ export interface GoogleMapsProps extends BoxProps {
 }
 
 export const GoogleMaps = ({src, ...props}: GoogleMapsProps) => {
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
   const handleAccept = () => {
     const CookieConsentApi = getCookieConsentApi()
 
@@ -26,25 +44,40 @@ export const GoogleMaps = ({src, ...props}: GoogleMapsProps) => {
     setMapsEnabled(analyticsEnabled)
   }, [])
 
-  if (!mapsEnabled) {
+  if (!isMounted) {
     return (
-      <Box bg="gray.200">
-        <Heading as="h1" size="xl">
+      <Center boxSize="full" bg="gray.200">
+        <Spinner />
+      </Center>
+    )
+  }
+
+  if (mapsEnabled === false) {
+    return (
+      <Alert
+        h="full"
+        status="warning"
+        variant="subtle"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        textAlign="center">
+        <Spinner />
+        <AlertTitle mt={4} mb={1} fontSize="lg">
           Google Maps is nicht verfügbar
-        </Heading>
-        <Text as="h2" size="lg">
-          Durch Ihre Cookie Einstellungen können wir Google Maps nicht anzeigen.
-        </Text>
-        <Text as="h2" size="lg">
+        </AlertTitle>
+        <AlertDescription maxWidth="sm">
           Bitte aktivieren Sie Cookies, um Google Maps anzuzeigen.{' '}
-          <Link onClick={handleAccept}>Analytics Cookie aktivieren</Link>
-        </Text>
-      </Box>
+          <Link onClick={handleAccept} variant="link">
+            Analyse Cookies aktivieren
+          </Link>
+        </AlertDescription>
+      </Alert>
     )
   }
 
   return (
-    <Box {...props}>
+    <Box {...props} bg="gray.200">
       <iframe
         src={src}
         width="100%"
@@ -52,7 +85,6 @@ export const GoogleMaps = ({src, ...props}: GoogleMapsProps) => {
         style={{
           border: 1
         }}
-        loading="lazy"
       />
     </Box>
   )

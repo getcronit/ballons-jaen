@@ -88,13 +88,12 @@ const ContactHero: FC<IContactHeroProps> = ({}) => {
             <Box
               mt={{base: '20 !important', md: '0'}}
               mb="8"
-              bg="red"
+              h="xl"
               w="full"
               borderRadius="xl"
               overflow="hidden"
               boxShadow="dark">
               <GoogleMaps
-                minH="12.5rem"
                 objectFit="cover"
                 h="full"
                 w="100%"
