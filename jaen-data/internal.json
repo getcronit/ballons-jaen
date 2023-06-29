@@ -18,6 +18,14 @@
     {
       "createdAt": "2023-04-25T09:11:48.753Z",
       "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIVumRHmPkAAS7tV446dW1Ij0s2qwXZhgACYw4AAgtvQVIHEu6mFCzcFy8E"
+    },
+    {
+      "createdAt": "2023-06-29T19:19:05.659Z",
+      "fileUrl": "https://gist.githubusercontent.com/schettn/85969dbfc3ea5a2711d6cd7baba5d69c/raw/620cb450f39e266716c83ea19a1c80d8cd94ab39/migration.json"
+    },
+    {
+      "createdAt": "2023-06-29T19:21:14.043Z",
+      "fileUrl": "https://gist.githubusercontent.com/schettn/85969dbfc3ea5a2711d6cd7baba5d69c/raw/a20881fd8fdde7da9029b31a7245cc2c121ad3c0/migration.json"
     }
   ],
   "widgets": [
@@ -29,9 +37,46 @@
             "label": "Home",
             "url": "/"
           }
-        ]
+        ],
+        "markdown": "\n[Partyshop](/partyshop)\n[Deko & Design](/deko-design)\n[Grosshandel](/grosshandel)\n[Ballongas](ballongas)\n[Wissen](/wissen)\n[Kontakt](/kontakt)\n  "
+      }
+    },
+    {
+      "name": "footerCategory",
+      "data": {
+        "markdown": "\n[Partyshop](/partyshop)\n[Deko & Design](/deko-design)\n[Grosshandel](/grosshandel)\n[Ballongas](ballongas)\n[Wissen](/news)\n[Kontakt](/kontakt)"
+      }
+    },
+    {
+      "name": "imprint",
+      "data": {
+        "items": {
+          "imprint": {
+            "address": "Taborstraße 98",
+            "postalCode": "1020",
+            "city": "Wien",
+            "country": "Austria",
+            "telephone": "+43 1 216 34 25",
+            "email": "office@ballons-ballons.at"
+          }
+        }
+      }
+    },
+    {
+      "name": "bottomnav",
+      "data": {
+        "markdown": "[Partyshop](/partyshop)\n[Deko & Design](/deko-design)\n[Grosshandel](/grosshandel)\n[Ballongas](/wissen/ballongas)\n[Wissen](/wissen)\n[Kontakt](/kontakt)"
+      }
+    },
+    {
+      "name": "topnav",
+      "data": {
+        "markdown": "\n  [“If you can dream it, you can do it\" - Walt Disney](/kontakt)\n  "
       }
     }
   ],
-  "finderUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIVuWRHmPiE3b_MZq-CyfDUQOFEztfjAAJiDgACC29BUhlLM4Au7AplLwQ"
+  "finderUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIVuWRHmPiE3b_MZq-CyfDUQOFEztfjAAJiDgACC29BUhlLM4Au7AplLwQ",
+  "site": {
+    "siteMetadata": {}
+  }
 }
