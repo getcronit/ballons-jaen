@@ -32,6 +32,8 @@ const Images = React.memo<{
           }}
           // w="100%"
           maxW={CONTAINER_MAX_WIDTH}
+          gridAutoRows="minmax(200px, 350px)"
+          gridAutoColumns="1fr"
           // h={CONTAINER_MAX_WIDTH}
         >
           {new Array(defaultImages.length).fill('').map((_, i) => {
