@@ -1,1 +1,146 @@
-{}
+{
+  "JaenPage /": {
+    "context": {
+      "createdAt": "2023-06-30T12:42:14.092Z",
+      "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIg_WSezaV5xd32zPSfrUbmlOV1nWlcAALPDwACIkf5UNx2FkAXniiXLwQ"
+    },
+    "migrations": [
+      {
+        "createdAt": "2023-06-30T12:42:14.092Z",
+        "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIg_WSezaV5xd32zPSfrUbmlOV1nWlcAALPDwACIkf5UNx2FkAXniiXLwQ"
+      }
+    ]
+  },
+  "JaenPage 4eed699c-19cf-428f-b2e1-7a89c35d0a60": {
+    "context": {
+      "createdAt": "2023-06-30T12:42:14.327Z",
+      "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIg_mSezaaHkoLzqRRPbj_ws5V4y57dAALQDwACIkf5UNvzMoTEJS73LwQ"
+    },
+    "migrations": [
+      {
+        "createdAt": "2023-06-30T12:42:14.327Z",
+        "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIg_mSezaaHkoLzqRRPbj_ws5V4y57dAALQDwACIkf5UNvzMoTEJS73LwQ"
+      }
+    ]
+  },
+  "JaenPage 54a985e0-c35f-4de7-8d85-60705b83c0f0": {
+    "context": {
+      "createdAt": "2023-06-30T12:42:14.617Z",
+      "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIg_2SezaaMU77EeMOTJl4owIpG5bXCAALRDwACIkf5UE6_4w1EdR9qLwQ"
+    },
+    "migrations": [
+      {
+        "createdAt": "2023-06-30T12:42:14.617Z",
+        "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIg_2SezaaMU77EeMOTJl4owIpG5bXCAALRDwACIkf5UE6_4w1EdR9qLwQ"
+      }
+    ]
+  },
+  "JaenPage /grosshandel/": {
+    "context": {
+      "createdAt": "2023-06-30T12:42:14.833Z",
+      "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIhAAFkns2mXSknNbPLeFwp9mQRr3Mc8QAC0g8AAiJH-VBJFTMwo2M_My8E"
+    },
+    "migrations": [
+      {
+        "createdAt": "2023-06-30T12:42:14.833Z",
+        "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIhAAFkns2mXSknNbPLeFwp9mQRr3Mc8QAC0g8AAiJH-VBJFTMwo2M_My8E"
+      }
+    ]
+  },
+  "JaenPage /news/": {
+    "context": {
+      "createdAt": "2023-06-30T12:42:15.033Z",
+      "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIhAWSezacHZ6Ayf7-Wm14r7dgDc-0qAALTDwACIkf5UP5ipX7xbD_YLwQ"
+    },
+    "migrations": [
+      {
+        "createdAt": "2023-06-30T12:42:15.033Z",
+        "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIhAWSezacHZ6Ayf7-Wm14r7dgDc-0qAALTDwACIkf5UP5ipX7xbD_YLwQ"
+      }
+    ]
+  },
+  "JaenPage /kontakt/": {
+    "context": {
+      "createdAt": "2023-06-30T12:42:21.344Z",
+      "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIhAmSeza3xSewr6OEEDi0RL_P4sx7sAALUDwACIkf5UAXi-HjZB8EVLwQ"
+    },
+    "migrations": [
+      {
+        "createdAt": "2023-06-30T12:42:21.344Z",
+        "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIhAmSeza3xSewr6OEEDi0RL_P4sx7sAALUDwACIkf5UAXi-HjZB8EVLwQ"
+      }
+    ]
+  },
+  "JaenPage 99307162-b8ef-42d9-99df-84aa643582e5": {
+    "context": {
+      "createdAt": "2023-06-30T12:42:21.761Z",
+      "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIhA2Seza1Jxqs74VCrW7s4Zk9x-omIAALVDwACIkf5UAPgMjsk3O3QLwQ"
+    },
+    "migrations": [
+      {
+        "createdAt": "2023-06-30T12:42:21.761Z",
+        "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIhA2Seza1Jxqs74VCrW7s4Zk9x-omIAALVDwACIkf5UAPgMjsk3O3QLwQ"
+      }
+    ]
+  },
+  "JaenPage b476d74b-2e3a-40fc-a62f-33d7e0f9f21d": {
+    "context": {
+      "createdAt": "2023-06-30T12:42:22.101Z",
+      "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIhBGSeza58KhhfKMISPcAOmOoQvM6YAALWDwACIkf5UI4CqOspFTbKLwQ"
+    },
+    "migrations": [
+      {
+        "createdAt": "2023-06-30T12:42:22.101Z",
+        "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIhBGSeza58KhhfKMISPcAOmOoQvM6YAALWDwACIkf5UI4CqOspFTbKLwQ"
+      }
+    ]
+  },
+  "JaenPage ee54d135-b372-4a82-80ef-ee51c3d601b8": {
+    "context": {
+      "createdAt": "2023-06-30T12:42:22.290Z",
+      "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIhBWSeza70WdEBo2ZNBUBc7G3To00TAALXDwACIkf5ULXZhzwVo8ciLwQ"
+    },
+    "migrations": [
+      {
+        "createdAt": "2023-06-30T12:42:22.290Z",
+        "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIhBWSeza70WdEBo2ZNBUBc7G3To00TAALXDwACIkf5ULXZhzwVo8ciLwQ"
+      }
+    ]
+  },
+  "JaenPage 7d39843d-e6d4-43e8-a6f6-1447285c869b": {
+    "context": {
+      "createdAt": "2023-06-30T12:42:22.490Z",
+      "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIhBmSeza75xkwuP-Wxn_xjPyV4RvdAAALYDwACIkf5ULRe8J9JxQfULwQ"
+    },
+    "migrations": [
+      {
+        "createdAt": "2023-06-30T12:42:22.490Z",
+        "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIhBmSeza75xkwuP-Wxn_xjPyV4RvdAAALYDwACIkf5ULRe8J9JxQfULwQ"
+      }
+    ]
+  },
+  "JaenPage fe3deb85-5ea2-4ae0-9dec-853e8d5293b0": {
+    "context": {
+      "createdAt": "2023-06-30T12:42:26.789Z",
+      "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIhB2SezbL2DZQrO0dt3DzFRj1VclCZAALZDwACIkf5UIiQ1iBzSo_mLwQ"
+    },
+    "migrations": [
+      {
+        "createdAt": "2023-06-30T12:42:26.789Z",
+        "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIhB2SezbL2DZQrO0dt3DzFRj1VclCZAALZDwACIkf5UIiQ1iBzSo_mLwQ"
+      }
+    ]
+  },
+  "JaenPage /wissen/": {
+    "context": {
+      "createdAt": "2023-06-30T12:42:27.005Z",
+      "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIhCGSezbJOx8uFS7C3dR04X3l3TlMrAALaDwACIkf5UKZqeXOZ9eF_LwQ"
+    },
+    "migrations": [
+      {
+        "createdAt": "2023-06-30T12:42:27.005Z",
+        "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIhCGSezbJOx8uFS7C3dR04X3l3TlMrAALaDwACIkf5UKZqeXOZ9eF_LwQ"
+      }
+    ]
+  }
+}
