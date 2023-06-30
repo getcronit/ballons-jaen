@@ -36,11 +36,14 @@ export const query = graphql`
         ...JaenPageData
       }
     }
-    allJaenPage {
+    allJaenPage(filter: {id: {in: ["JaenPage /", "JaenPage /news/"]}}) {
       nodes {
         ...JaenPageData
         children {
           ...JaenPageData
+          ... on JaenPage {
+            template
+          }
         }
       }
     }

@@ -23,6 +23,14 @@ export default connectPage(Page, {
 export const query = graphql`
   query ($jaenPageId: String!) {
     ...JaenPageQuery
+    allJaenPage(filter: {id: {eq: "JaenPage /wissen/"}}) {
+      nodes {
+        ...JaenPageData
+        children {
+          ...JaenPageData
+        }
+      }
+    }
   }
 `
 

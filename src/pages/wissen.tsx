@@ -29,14 +29,6 @@ export const query = graphql`
         ...JaenPageData
       }
     }
-    allJaenPage {
-      nodes {
-        ...JaenPageData
-        children {
-          ...JaenPageData
-        }
-      }
-    }
   }
 `
 

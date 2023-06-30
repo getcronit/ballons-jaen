@@ -29,7 +29,7 @@ export const query = graphql`
         ...JaenPageData
       }
     }
-    allJaenPage {
+    allJaenPage(filter: {id: {eq: "JaenPage /wissen/"}}) {
       nodes {
         ...JaenPageData
         children {
