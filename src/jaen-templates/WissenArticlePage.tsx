@@ -31,7 +31,11 @@ export const query = graphql`
       nodes {
         ...JaenPageData
         children {
-          ...JaenPageData
+          ...JaenPageDataStructure
+          ... on JaenPage {
+            jaenFields
+            template
+          }
         }
       }
     }
