@@ -4130,10 +4130,10 @@
     escape-string-regexp "^2.0.0"
     lodash.deburr "^4.1.0"
 
-"@snek-at/gatsby-theme-shopify@^1.13.0":
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/@snek-at/gatsby-theme-shopify/-/gatsby-theme-shopify-1.13.0.tgz#f14e922cce6a57a2ba19c62b36fadb0da1a4308d"
-  integrity sha512-jhVeNSvbCS+lN4r8LN0ZDHAxP/YH+5JhEqA5mRRo4TAvQwAbUZMt/eTunAXaNEORMJaXJYJKeebI3nw1msj0Vg==
+"@snek-at/gatsby-theme-shopify@^1.14.1":
+  version "1.14.1"
+  resolved "https://registry.yarnpkg.com/@snek-at/gatsby-theme-shopify/-/gatsby-theme-shopify-1.14.1.tgz#b08392a5d3500fb80e688c269445ccee8f5a9ee9"
+  integrity sha512-/bHFok0apSpqmwYOhPveR8xd2PcfATb+FVjfOfu2mhKbm/eTZxK5D2DexgwwDLTnxmx2jL+Enh82m3S3BEViyQ==
   dependencies:
     "@types/shopify-buy" "^2.10.10"
     gatsby "^4.12.1"
