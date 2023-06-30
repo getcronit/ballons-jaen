@@ -470,7 +470,6 @@ export default connectView(
   {
     path: '/shopify-import',
     label: 'Shopify Import',
-    description: 'Import products from Excel file to Shopify',
     Icon: FaShopify,
     controls: []
   }
