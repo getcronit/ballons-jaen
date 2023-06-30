@@ -83,14 +83,6 @@ export const query = graphql`
     productsPage: sitePage(id: {eq: "SitePage /products/"}) {
       pageContext
     }
-    allJaenPage(filter: {id: {eq: "JaenPage /wissen/"}}) {
-      nodes {
-        ...JaenPageData
-        children {
-          ...JaenPageData
-        }
-      }
-    }
   }
 `
 
