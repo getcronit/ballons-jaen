@@ -92,8 +92,10 @@ export const ContactModalProvider: React.FC<ContactModalDrawerProps> = ({
         template: {
           id: 'BALLOONS_CONTACT_EMAIL',
           values: {
-            name: data.name,
+            firstName: data.firstName,
+            lastName: data.lastName,
             email: data.email,
+            phone: data.phone,
             message: data.message,
             invokedOnUrl: meta?.url
           }
@@ -129,7 +131,8 @@ export const ContactModalProvider: React.FC<ContactModalDrawerProps> = ({
     }
 
     return {
-      name: authentication.user.name,
+      firstName: authentication.user.firstName,
+      lastName: authentication.user.lastName,
       email: authentication.user.email
     }
   }, [authentication.user])

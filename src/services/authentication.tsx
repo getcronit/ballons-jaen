@@ -7,7 +7,8 @@ import {LoginModal} from '../components/organisms/LoginModal'
 
 export interface AuthenticationContextProps {
   user?: {
-    name: string
+    firstName?: string
+    lastName?: string
     email: string
   }
   openLoginModal: () => void
@@ -59,7 +60,8 @@ export const AuthenticationProvider: React.FC<AuthenticationProviderProps> = ({
           refreshToken: signIn.tokenPair.refreshToken
         },
         user: {
-          name: signIn.user.username,
+          firstName: signIn.user.details.firstName,
+          lastName: signIn.user.details.lastName,
           email: signIn.user.primaryEmailAddress
         }
       }
@@ -74,7 +76,8 @@ export const AuthenticationProvider: React.FC<AuthenticationProviderProps> = ({
     // assume the login was successful
 
     setUser({
-      name: loginData.user.name,
+      firstName: loginData.user.firstName || undefined,
+      lastName: loginData.user.lastName || undefined,
       email: loginData.user.email
     })
 
@@ -94,7 +97,8 @@ export const AuthenticationProvider: React.FC<AuthenticationProviderProps> = ({
       const user = Query.userMe
 
       return {
-        name: user.username,
+        firstName: user.details.firstName,
+        lastName: user.details.lastName,
         email: user.primaryEmailAddress
       }
     })
@@ -104,7 +108,8 @@ export const AuthenticationProvider: React.FC<AuthenticationProviderProps> = ({
     }
 
     setUser({
-      name: loginData.name,
+      firstName: loginData.firstName || undefined,
+      lastName: loginData.lastName || undefined,
       email: loginData.email
     })
   }, [])

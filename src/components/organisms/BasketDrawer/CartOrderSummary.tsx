@@ -3,6 +3,7 @@ import {FaArrowRight} from '@react-icons/all-files/fa/FaArrowRight'
 import * as React from 'react'
 
 import {formatPrice} from '../../../common/utils'
+import { BallonButton } from '../../molecules/BallonButton'
 
 export interface CartOrderSummaryProps {
   subtotal: number
@@ -44,16 +45,13 @@ export const CartOrderSummary = ({
 
         <>{infoText}</>
       </Stack>
-      <Button
-        size={{
-          base: 'sm',
-          md: 'md'
-        }}
-        fontSize="md"
+      <BallonButton
+        size="md"
+        py="9 !important"
         rightIcon={<FaArrowRight />}
         onClick={onClickCheckout}>
         {checkoutButtonText}
-      </Button>
+      </BallonButton>
     </Stack>
   )
 }

@@ -373,6 +373,7 @@ const ProductDetail = withStoreContext<{
               fontWeight="semibold"
               textTransform="uppercase"
               fontSize='md'
+              onClick={addProductToBasket}
               leftIcon={<FaShoppingBasket />}>
               In den Warenkorb
             </BallonButton>

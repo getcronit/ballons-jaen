@@ -20,22 +20,23 @@ import { BallonButton } from '../../molecules/BallonButton'
 import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { CheckboxStyled } from '../../CheckboxStyled'
+import { CheckoutLineItem } from '../BasketDrawer/stories/data'
 
-export interface ContactFormValues {
+export interface OrderFormValues {
   firstName: string
   lastName: string
   email: string
   phone: string
-  message: string
 
+  message: string
   agreeToTerms: boolean
 }
 
-export interface ContactModalProps {
+export interface OrderModalProps {
   isOpen: boolean
   onClose: () => void
 
-  onSubmit: (data: ContactFormValues) => Promise<void>
+  onSubmit: (data: OrderFormValues) => Promise<void>
 
   fixedValues?: {
     firstName?: string
@@ -49,7 +50,7 @@ export interface ContactModalProps {
   }
 }
 
-export const ContactModal: React.FC<ContactModalProps> = ({
+export const OrderModal: React.FC<OrderModalProps> = ({
   isOpen,
   onClose,
   onSubmit,
@@ -62,7 +63,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     handleSubmit,
     reset,
     formState: { errors, isSubmitting }
-  } = useForm<ContactFormValues>({})
+  } = useForm<OrderFormValues>({})
 
   React.useEffect(() => {
     reset(fixedValues)
@@ -98,11 +99,11 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                   base: 'md',
                   md: 'lg'
                 }}>
-                Kontaktieren Sie uns
+                Kaufanfrage
               </Heading>
 
               <Text size="b2015">
-                Wir freuen uns über Ihre Nachricht und werden uns
+                Wir freuen uns über Ihre Kaufanfrage und werden uns
                 schnellstmöglich bei Ihnen melden.
               </Text>
 
@@ -182,7 +183,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
               </HStack>
               <FormControl isInvalid={!!errors.message}>
                 <FormLabel htmlFor="message" fontSize="sm">
-                  Wie können wir Ihnen helfen?
+                  Haben Sie noch weitere Anmerkungen oder Informationen, die Sie uns mitteilen möchten?
                 </FormLabel>
                 <Textarea
                   id="message"
@@ -235,7 +236,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
               type="submit"
               py="7 !important"
             >
-              Senden
+              Anfragen
             </BallonButton>
           </ModalFooter>
         </form>

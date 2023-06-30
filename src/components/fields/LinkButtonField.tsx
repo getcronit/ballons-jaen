@@ -124,7 +124,6 @@ const LinkButtonField: React.FC<
 
     setUrlValue(valueWithoutHTML)
 
-    setUrlValue(hiddenUrlFieldDefaultValue)
   }, [defaultUrl, hiddenUrlField])
 
   const handleButtonClick = () => {
