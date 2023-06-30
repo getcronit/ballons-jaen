@@ -33,22 +33,14 @@ export const query = graphql`
     jaenPage(id: {eq: $jaenPageId}) {
       ...JaenPageData
       children {
-        ...JaenPageDataStructure
-        ... on JaenPage {
-          jaenFields
-          template
-        }
+        ...JaenPageChildrenData
       }
     }
-    allJaenPage(filter: {id: {in: ["JaenPage /", "JaenPage /news/"]}}) {
+    allJaenPage(filter: {id: {in: ["JaenPage /news/"]}}) {
       nodes {
-        ...JaenPageData
+        id
         children {
-          ...JaenPageDataStructure
-          ... on JaenPage {
-            jaenFields
-            template
-          }
+          ...JaenPageChildrenData
         }
       }
     }
