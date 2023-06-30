@@ -4,7 +4,9 @@ import {JaenSource} from 'jaen-utils'
 import {IJaenPage} from '@snek-at/jaen'
 
 JaenSource.jaenData.read()
-const siteUrl = JaenSource.jaenData.internal.siteMetadata.siteUrl
+
+const siteUrl =
+  JaenSource.jaenData.internal.siteMetadata.siteUrl || 'https://ballons.snek.at'
 
 const config: GatsbyConfig = {
   flags: {
@@ -36,7 +38,7 @@ const config: GatsbyConfig = {
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
-        excludes: [`/jaen/admin`, `/_`],
+        excludes: [`/admin`, `/admin/login`],
         query: `
           {
             allSitePage {
