@@ -11,16 +11,19 @@ import {
   ModalCloseButton,
   ModalContent,
   ModalFooter,
+  ModalHeader,
   ModalOverlay,
   Stack,
+  StackDivider,
   Text,
   Textarea
 } from '@chakra-ui/react'
-import { BallonButton } from '../../molecules/BallonButton'
+import {BallonButton} from '../../molecules/BallonButton'
 import React from 'react'
-import { Controller, useForm } from 'react-hook-form'
-import { CheckboxStyled } from '../../CheckboxStyled'
-import { CheckoutLineItem } from '../BasketDrawer/stories/data'
+import {Controller, useForm} from 'react-hook-form'
+import {CheckboxStyled} from '../../CheckboxStyled'
+import {CheckoutLineItem} from '../BasketDrawer/stories/data'
+import {CartItem} from '../../molecules/CartItem'
 
 export interface OrderFormValues {
   firstName: string
@@ -31,6 +34,8 @@ export interface OrderFormValues {
   message: string
   agreeToTerms: boolean
 }
+
+const currency = 'EUR'
 
 export interface OrderModalProps {
   isOpen: boolean
@@ -48,6 +53,8 @@ export interface OrderModalProps {
   defaultValues?: {
     message?: string
   }
+
+  products: CheckoutLineItem[]
 }
 
 export const OrderModal: React.FC<OrderModalProps> = ({
@@ -55,14 +62,15 @@ export const OrderModal: React.FC<OrderModalProps> = ({
   onClose,
   onSubmit,
   fixedValues,
-  defaultValues
+  defaultValues,
+  products
 }) => {
   const {
     register,
     control,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitting }
+    formState: {errors, isSubmitting}
   } = useForm<OrderFormValues>({})
 
   React.useEffect(() => {
@@ -76,120 +84,154 @@ export const OrderModal: React.FC<OrderModalProps> = ({
   }, [isOpen])
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="2xl">
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      size="2xl"
+      scrollBehavior="inside"
+      blockScrollOnMount={false}>
       <ModalOverlay />
 
-      <ModalContent>
+      <ModalContent
+        px={{
+          base: 0,
+          md: 4
+        }}>
         <form
           onSubmit={event => {
             void handleSubmit(onSubmit)(event)
           }}>
-          <ModalCloseButton />
-          <ModalBody
-            p={{
-              base: 4,
-              md: 8,
-              lg: 12,
-              xl: 16
-            }}>
-            <Stack spacing="6">
-              <Heading
-                as="h2"
-                size={{
-                  base: 'md',
-                  md: 'lg'
-                }}>
-                Kaufanfrage
-              </Heading>
-
+          <ModalHeader>
+            <Heading
+              as="h2"
+              size={{
+                base: 'md',
+                md: 'lg'
+              }}>
+              Kaufanfrage
+            </Heading>
+            <ModalCloseButton />
+          </ModalHeader>
+          <ModalBody>
+            <Stack spacing="6" divider={<StackDivider />}>
               <Text size="b2015">
                 Wir freuen uns über Ihre Kaufanfrage und werden uns
                 schnellstmöglich bei Ihnen melden.
               </Text>
+              <Stack>
+                <HStack>
+                  <FormControl isInvalid={!!errors.firstName}>
+                    <FormLabel htmlFor="firstName" fontSize="sm">
+                      Vorname
+                    </FormLabel>
+                    <Input
+                      id="firstName"
+                      placeholder="Max"
+                      {...register('firstName', {
+                        required: true
+                      })}
+                      isDisabled={!!fixedValues?.firstName}
+                    />
 
-              <HStack>
-                <FormControl isInvalid={!!errors.firstName}>
-                  <FormLabel htmlFor="firstName" fontSize="sm">
-                    Vorname
-                  </FormLabel>
-                  <Input
-                    id="firstName"
-                    placeholder="Max"
-                    {...register('firstName', {
-                      required: true
-                    })}
-                    isDisabled={!!fixedValues?.firstName}
-                  />
+                    <FormErrorMessage fontSize="sm">
+                      {errors.firstName?.message}
+                    </FormErrorMessage>
+                  </FormControl>
+                  <FormControl isInvalid={!!errors.lastName}>
+                    <FormLabel htmlFor="lastName" fontSize="sm">
+                      Nachname
+                    </FormLabel>
+                    <Input
+                      id="lastName"
+                      placeholder="Mustermann"
+                      {...register('lastName', {
+                        required: true
+                      })}
+                      isDisabled={!!fixedValues?.lastName}
+                    />
 
-                  <FormErrorMessage fontSize="sm">
-                    {errors.firstName?.message}
-                  </FormErrorMessage>
-                </FormControl>
-                <FormControl isInvalid={!!errors.lastName}>
-                  <FormLabel htmlFor="lastName" fontSize="sm">
-                    Nachname
-                  </FormLabel>
-                  <Input
-                    id="lastName"
-                    placeholder="Mustermann"
-                    {...register('lastName', {
-                      required: true
-                    })}
-                    isDisabled={!!fixedValues?.lastName}
-                  />
+                    <FormErrorMessage fontSize="sm">
+                      {errors.lastName?.message}
+                    </FormErrorMessage>
+                  </FormControl>
+                </HStack>
+                <HStack>
+                  <FormControl isInvalid={!!errors.email}>
+                    <FormLabel htmlFor="email" fontSize="sm">
+                      E-Mail
+                    </FormLabel>
+                    <Input
+                      id="email"
+                      placeholder="max.mustermann@example.com"
+                      type="email"
+                      {...register('email', {
+                        required: true
+                      })}
+                      isDisabled={!!fixedValues?.email}
+                    />
 
-                  <FormErrorMessage fontSize="sm">
-                    {errors.lastName?.message}
-                  </FormErrorMessage>
-                </FormControl>
-              </HStack>
-              <HStack>
-              <FormControl isInvalid={!!errors.email}>
-                <FormLabel htmlFor="email" fontSize="sm">
-                  E-Mail
-                </FormLabel>
-                <Input
-                  id="email"
-                  placeholder="max.mustermann@example.com"
-                  type="email"
-                  {...register('email', {
-                    required: true
-                  })}
-                  isDisabled={!!fixedValues?.email}
-                />
+                    <FormErrorMessage fontSize="sm">
+                      {errors.email?.message}
+                    </FormErrorMessage>
+                  </FormControl>
+                  <FormControl isInvalid={!!errors.email}>
+                    <FormLabel htmlFor="phone" fontSize="sm">
+                      Telefonnummer
+                    </FormLabel>
+                    <Input
+                      id="phone"
+                      placeholder="+43 123 456 789"
+                      type="phone"
+                      {...register('phone', {
+                        required: true
+                      })}
+                      isDisabled={!!fixedValues?.phone}
+                    />
 
-                <FormErrorMessage fontSize="sm">
-                  {errors.email?.message}
-                </FormErrorMessage>
-              </FormControl>
-              <FormControl isInvalid={!!errors.email}>
-                <FormLabel htmlFor="phone" fontSize="sm">
-                  Telefonnummer
-                </FormLabel>
-                <Input
-                  id="phone"
-                  placeholder="+43 123 456 789"
-                  type="phone"
-                  {...register('phone', {
-                    required: true
-                  })}
-                  isDisabled={!!fixedValues?.phone}
-                />
+                    <FormErrorMessage fontSize="sm">
+                      {errors.email?.message}
+                    </FormErrorMessage>
+                  </FormControl>
+                </HStack>
+              </Stack>
 
-                <FormErrorMessage fontSize="sm">
-                  {errors.email?.message}
-                </FormErrorMessage>
-              </FormControl>
-              </HStack>
+              <Stack spacing="4">
+                <Heading
+                  as="h3"
+                  size={{
+                    base: 'sm',
+                    md: 'md'
+                  }}>
+                  Artikel ({products.length})
+                </Heading>
+
+                <Stack h="xs" overflow="auto" p="4">
+                  {products.map(product => (
+                    <CartItem
+                      readonly
+                      key={product.id}
+                      name={product.title}
+                      sku={product.variant.sku}
+                      quantity={product.quantity}
+                      price={parseFloat(product.variant.price.amount)}
+                      imageUrl={product.variant.image?.src}
+                      currency={currency}
+                      stepperQuantity={0}
+                    />
+                  ))}
+                </Stack>
+              </Stack>
+
               <FormControl isInvalid={!!errors.message}>
                 <FormLabel htmlFor="message" fontSize="sm">
-                  Haben Sie noch weitere Anmerkungen oder Informationen, die Sie uns mitteilen möchten?
+                  Haben Sie noch weitere Anmerkungen oder Informationen, die Sie
+                  uns mitteilen möchten?
                 </FormLabel>
                 <Textarea
                   id="message"
                   placeholder="Nachricht"
                   defaultValue={defaultValues?.message}
-                  {...register('message', { required: true })}
+                  {...register('message', {required: true})}
                 />
 
                 <FormErrorMessage fontSize="sm">
@@ -199,7 +241,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
 
               <FormControl isInvalid={!!errors.agreeToTerms}>
                 <Controller
-                  render={({ field, fieldState, formState }) => (
+                  render={({field, fieldState, formState}) => (
                     <CheckboxStyled
                       ref={field.ref}
                       onBlur={field.onBlur}
@@ -234,8 +276,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
             <BallonButton
               isLoading={isSubmitting}
               type="submit"
-              py="7 !important"
-            >
+              py="7 !important">
               Anfragen
             </BallonButton>
           </ModalFooter>

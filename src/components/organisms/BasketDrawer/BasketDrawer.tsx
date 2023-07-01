@@ -18,7 +18,7 @@ import {
 import {Link} from 'gatsby'
 import {FaBox} from 'react-icons/fa'
 
-import {CartItem} from './CartItem'
+import {CartItem} from '../../molecules/CartItem'
 import {CartOrderSummary} from './CartOrderSummary'
 import {CheckoutLineItem} from './stories/data'
 
@@ -104,7 +104,7 @@ export const BasketDrawer = ({
                   <CartItem
                     key={id}
                     name={product.title}
-                    description="description"
+                    sku={product.variant.sku}
                     quantity={product.quantity}
                     stepperQuantity={stepperQuantity}
                     price={parseFloat(product.variant.price.amount)}

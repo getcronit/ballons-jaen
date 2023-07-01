@@ -7,7 +7,7 @@ import {
 } from '@chakra-ui/react'
 import * as React from 'react'
 
-import {formatPrice} from '../../../common/utils'
+import {formatPrice} from '../common/utils'
 
 interface PriceTagProps {
   currency: string

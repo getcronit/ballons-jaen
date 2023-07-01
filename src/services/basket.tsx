@@ -1,13 +1,13 @@
-import { withStoreContext } from '@snek-at/gatsby-theme-shopify'
-import { sq } from '@snek-functions/origin'
-import { doNotConvertToString } from 'snek-query'
-import React, { useCallback, useMemo } from 'react'
+import {withStoreContext} from '@snek-at/gatsby-theme-shopify'
+import {sq} from '@snek-functions/origin'
+import {doNotConvertToString} from 'snek-query'
+import React, {useCallback, useMemo} from 'react'
 
-import { BasketDrawer } from '../components/organisms/BasketDrawer'
+import {BasketDrawer} from '../components/organisms/BasketDrawer'
 
-import { useAuthentication } from './authentication'
-import { useToast } from '@chakra-ui/react'
-import { OrderFormValues, OrderModal } from '../components/organisms/OrderModal'
+import {useAuthentication} from './authentication'
+import {useToast} from '@chakra-ui/react'
+import {OrderFormValues, OrderModal} from '../components/organisms/OrderModal'
 
 export interface BaseketContextProps {
   onOpen: () => void
@@ -21,9 +21,9 @@ export interface BaseketContextProps {
 }
 
 export const BasketContext = React.createContext<BaseketContextProps>({
-  onOpen: () => { },
-  onClose: () => { },
-  addProduct: () => { },
+  onOpen: () => {},
+  onClose: () => {},
+  addProduct: () => {},
   checkout: null
 })
 
@@ -106,7 +106,7 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
           {
             ...args,
             customAttributes: [
-              { key: 'stepperQuantity', value: stepperQuantity.toString() }
+              {key: 'stepperQuantity', value: stepperQuantity.toString()}
             ]
           }
         ]
@@ -116,7 +116,7 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
       onOpen()
     }
 
-    const updateProduct = async (args: { id: string; quantity: number }) => {
+    const updateProduct = async (args: {id: string; quantity: number}) => {
       const c = await createOrFetchCheckout()
 
       const newCheckout = await props.client.checkout.updateLineItems(
@@ -177,7 +177,7 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
                 sku: lineItem.variant?.sku,
                 price: lineItem.variant?.price.amount,
                 imgSrc: lineItem.variant?.image?.src
-              })), 
+              })),
               order: {
                 id: order.id,
                 totalPrice: order.totalPrice.amount,
@@ -311,19 +311,23 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
       // localStorage.removeItem('checkoutId')
     }
 
+    const cleanedLineItems = useMemo(() => {
+      return cleanLineItems(checkout?.lineItems)
+    }, [checkout?.lineItems])
+
     return (
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
-      <BasketContext.Provider value={{ onOpen, onClose, addProduct, checkout }}>
+      <BasketContext.Provider value={{onOpen, onClose, addProduct, checkout}}>
         <BasketDrawer
           isOpen={open}
           onClose={onClose}
-          products={cleanLineItems(checkout?.lineItems) as any}
+          products={cleanedLineItems}
           wholesale={isRealWholesale}
           requestCheckout={wholesale}
           // @ts-expect-error
           subtotal={parseFloat(checkout?.lineItemsSubtotalPrice?.amount || '0')}
           onProductQuantityChange={(id, quantity) => {
-            void updateProduct({ id, quantity })
+            void updateProduct({id, quantity})
           }}
           onProductRemove={id => {
             void removeProduct(id)
@@ -336,6 +340,7 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
           onClose={onOrderClose}
           onSubmit={onOrderSubmit}
           fixedValues={fixedValues}
+          products={cleanedLineItems}
         />
       </BasketContext.Provider>
     )

@@ -15,11 +15,12 @@ import {
 } from '@chakra-ui/react'
 import * as React from 'react'
 
-import {PriceTag} from './PriceTag'
+import {PriceTag} from '../PriceTag'
 
 interface CartItemProps {
+  readonly?: boolean
   name: string
-  description: string
+  sku: string
   quantity: number
   price: number
   currency: string
@@ -66,14 +67,15 @@ const QuantitySelect = (props: {
 export const CartItem = (props: CartItemProps) => {
   const {
     name,
-    description,
+    sku,
     quantity,
     imageUrl,
     currency,
     price,
     onChangeQuantity,
     onClickDelete,
-    stepperQuantity
+    stepperQuantity,
+    readonly
   } = props
 
   return (
@@ -84,14 +86,7 @@ export const CartItem = (props: CartItemProps) => {
       <Stack direction="row" spacing="5" width="full">
         <Image
           rounded="lg"
-          width={{
-            base: '90px',
-            md: '110px'
-          }}
-          height={{
-            base: '90px',
-            md: '110px'
-          }}
+          boxSize={readonly ? '16' : 28}
           fit="cover"
           src={imageUrl}
           alt={name}
@@ -104,7 +99,10 @@ export const CartItem = (props: CartItemProps) => {
               <Text fontWeight="medium" fontSize="md" noOfLines={1}>
                 {name}
               </Text>
-              <PriceTag price={price} currency={currency} />
+              <HStack>
+                {readonly && <span>{quantity} x</span>}
+                <PriceTag price={price} currency={currency} />
+              </HStack>
             </HStack>
             <Text
               color={mode('gray.400', 'gray.400')}
@@ -112,26 +110,28 @@ export const CartItem = (props: CartItemProps) => {
                 base: 'xs',
                 md: 'sm'
               }}>
-              {description}
+              Artikelnummer: {sku}
             </Text>
-            <HStack justifyContent="space-between">
-              <QuantitySelect
-                stepperQuantity={stepperQuantity}
-                value={quantity}
-                onChange={value => {
-                  onChangeQuantity?.(value)
-                }}
-              />
-              <Link
-                fontSize="sm"
-                color="blue.500"
-                _hover={{
-                  textDecoration: 'underline'
-                }}
-                onClick={onClickDelete}>
-                Delete
-              </Link>
-            </HStack>
+            {!readonly && (
+              <HStack justifyContent="space-between">
+                <QuantitySelect
+                  stepperQuantity={stepperQuantity}
+                  value={quantity}
+                  onChange={value => {
+                    onChangeQuantity?.(value)
+                  }}
+                />
+                <Link
+                  fontSize="sm"
+                  color="blue.500"
+                  _hover={{
+                    textDecoration: 'underline'
+                  }}
+                  onClick={onClickDelete}>
+                  Delete
+                </Link>
+              </HStack>
+            )}
           </Stack>
         </Box>
       </Stack>
