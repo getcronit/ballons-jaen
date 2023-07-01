@@ -42,7 +42,7 @@ export const TopNavLinks: React.FC<
   return (
     <Flex pos={'relative'}>
       <Stack {...props}>
-        {/* {navLinks.map((link, index) => {
+        {navLinks.map((link, index) => {
           return (
             <CLink
               _before={{
@@ -77,7 +77,7 @@ export const TopNavLinks: React.FC<
               {link.label}
             </CLink>
           )
-        })} */}
+        })}
       </Stack>
 
       {isEditing && (
