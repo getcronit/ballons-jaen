@@ -36,9 +36,7 @@ export const query = graphql`
         ...JaenPageChildrenData
       }
     }
-    allJaenPage(
-      filter: {id: {in: ["JaenPage /news/", "JaenPage /grosshandel/"]}}
-    ) {
+    allJaenPage(filter: {id: {in: ["JaenPage /news/"]}}) {
       nodes {
         id
         children {
