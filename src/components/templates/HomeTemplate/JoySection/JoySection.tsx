@@ -16,7 +16,7 @@ const JoySection: FC<IJoySectionProps> = () => {
         }}
         layout="fullWidth"
         alt="Menschenmenge mit Ballons in Wien"
-        src={'./bg.png'}
+        src={'./bg.jpg'}
         formats={['auto', 'webp', 'avif']}
       />
       <div
