@@ -36,8 +36,6 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
 }) => {
   const {isEditing} = useStatus()
 
-  console.log('card', 'card rerendered')
-
   return (
     <Stack
       onClick={() => !isEditing && card.linkUrl && navigate(card.linkUrl)}

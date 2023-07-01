@@ -43,8 +43,6 @@ export const onCreatePage: GatsbyNode['onCreatePage'] = async ({
   const {createPage, deletePage} = actions
   const {path} = page
 
-  console.log(`path: ${path}`)
-
   // && !page.context.featuredProductIds is a hack to prevent the onCreatePage
   // from running into an infinite loop.. I have no idea why this is happening,
   // but sadly it is. Gatsby should be able to handle this, but for some reason

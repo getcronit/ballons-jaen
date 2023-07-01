@@ -12,8 +12,6 @@ export const useNewsPages = () => {
     child => child.id !== jaenPage.id && !child.deleted
   )
 
-  console.log('index', index)
-
   return {
     ...index,
     children

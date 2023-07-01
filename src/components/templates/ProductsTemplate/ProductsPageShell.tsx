@@ -1,4 +1,4 @@
-import { ChevronDownIcon, SmallCloseIcon, SmallAddIcon } from '@chakra-ui/icons'
+import {ChevronDownIcon, SmallCloseIcon, SmallAddIcon} from '@chakra-ui/icons'
 import {
   Accordion,
   AccordionButton,
@@ -47,8 +47,8 @@ import {
   Wrap,
   WrapItem
 } from '@chakra-ui/react'
-import { GroupBase, OptionBase, Select } from 'chakra-react-select'
-import { Link } from 'gatsby'
+import {GroupBase, OptionBase, Select} from 'chakra-react-select'
+import {Link} from 'gatsby'
 import React, {
   Fragment,
   ReactNode,
@@ -56,11 +56,11 @@ import React, {
   useEffect,
   useMemo
 } from 'react'
-import { BsFilterCircleFill } from 'react-icons/bs'
-import { InfoOutlineIcon } from '@chakra-ui/icons'
-import { OverflownText } from '../../OverflownText'
-import { Ballon } from '../../../common/assets/Ballon'
-import { BallonButton } from '../../molecules/BallonButton'
+import {BsFilterCircleFill} from 'react-icons/bs'
+import {InfoOutlineIcon} from '@chakra-ui/icons'
+import {OverflownText} from '../../OverflownText'
+import {Ballon} from '../../../common/assets/Ballon'
+import {BallonButton} from '../../molecules/BallonButton'
 
 interface TagFilterOption extends OptionBase {
   label: string
@@ -91,8 +91,6 @@ export interface CategoryPickerProps {
 function CategoryPicker(props: CategoryPickerProps) {
   const [activeGroupTags, setActiveGroupTags] = React.useState<GroupedTags>({})
   const [activeTags, setActiveTags] = React.useState<ActiveTags>({})
-
-  console.log('active props', props)
 
   useEffect(() => {
     setActiveGroupTags(props.groupedCategories.activeTags)
@@ -149,7 +147,7 @@ function CategoryPicker(props: CategoryPickerProps) {
 
         return (
           <AccordionItem key={index} id={`category-accordion-item-${index}`}>
-            {({ isExpanded }) => (
+            {({isExpanded}) => (
               <>
                 <h2>
                   <AccordionButton py="4">
@@ -259,7 +257,7 @@ function TagsPicker(props: TagsPickerProps) {
 
         return (
           <AccordionItem key={index}>
-            {({ isExpanded }) => (
+            {({isExpanded}) => (
               <>
                 <h2>
                   <AccordionButton py="4">
@@ -356,10 +354,10 @@ const Filter: React.FC<{
   updateActiveTags: (tags: ActiveTags[string], group: string) => void
   onSortChange: (sort: string) => void
   sortOptions: string[]
-}> = ({ groupedTags, ...props }) => {
+}> = ({groupedTags, ...props}) => {
   const drawerDisclosure = useDisclosure()
 
-  const { Kategorie, ...tags } = groupedTags.allTags
+  const {Kategorie, ...tags} = groupedTags.allTags
 
   const LIMIT = 6 // limit of tags to show before showing the drawer button
   const ACTIVE_LIMIT = 3 // limit of tags to show before showing the drawer button
@@ -430,19 +428,17 @@ const Filter: React.FC<{
                     }>
                   } = {}
 
-                  for (const { categories, tag, label } of tags[group]) {
+                  for (const {categories, tag, label} of tags[group]) {
                     if (blacklistedTags.includes(tag)) continue
 
                     const catStr = categories.join(' > ')
 
                     if (menuStructure[catStr]) {
-                      menuStructure[catStr].push({ tag, label })
+                      menuStructure[catStr].push({tag, label})
                     } else {
-                      menuStructure[catStr] = [{ tag, label }]
+                      menuStructure[catStr] = [{tag, label}]
                     }
                   }
-
-                  console.log('menuStructure', menuStructure)
 
                   return (
                     <WrapItem key={index}>
@@ -603,14 +599,14 @@ const Filter: React.FC<{
 
             Object.entries(activeTags)
               .reduce(
-                (result: { tag: string; group: string }[], [group, tagArray]) => [
+                (result: {tag: string; group: string}[], [group, tagArray]) => [
                   ...result,
-                  ...tagArray.map(tag => ({ tag, group }))
+                  ...tagArray.map(tag => ({tag, group}))
                 ],
                 []
               )
               .slice(0, ACTIVE_LIMIT)
-              .map(({ tag, group }, index) => {
+              .map(({tag, group}, index) => {
                 return (
                   <WrapItem key={index}>
                     <Button
@@ -766,7 +762,7 @@ export default function ProductsPageShell(
   ])
 
   const updateActiveTags = (tags: string[], group: string) => {
-    const updatedActiveTags = { ...activeTags, [group]: tags }
+    const updatedActiveTags = {...activeTags, [group]: tags}
 
     setActiveTags(updatedActiveTags)
 
@@ -798,7 +794,7 @@ export default function ProductsPageShell(
       <Stack h="100%" flexDirection="column">
         <Flex h="full" py="4">
           <Box
-            display={{ base: 'none', xl: 'block' }}
+            display={{base: 'none', xl: 'block'}}
             h="100%"
             w="15%"
             mx="4"
@@ -967,7 +963,7 @@ const FilterDrawer: React.FC<
   ButtonProps & {
     children: React.ReactNode
   }
-> = ({ children, ...buttonProps }) => {
+> = ({children, ...buttonProps}) => {
   const drawerDisclosure = useDisclosure()
 
   return (
@@ -996,9 +992,9 @@ const FilterDrawer: React.FC<
   )
 }
 
-interface SidebarProps extends BoxProps { }
+interface SidebarProps extends BoxProps {}
 
-const SidebarContent = ({ children, ...rest }: SidebarProps) => {
+const SidebarContent = ({children, ...rest}: SidebarProps) => {
   return (
     <Box
       borderRight="1px"

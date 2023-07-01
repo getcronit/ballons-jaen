@@ -185,7 +185,6 @@ export const TeamMemberSection = ({members}: ITeamMemberSectionProps) =>
       const blockContext = useSectionBlockContext()
       const position = blockContext!.position + 1
 
-      console.log('position', position)
       return (
         <Box
           pos={'relative'}
