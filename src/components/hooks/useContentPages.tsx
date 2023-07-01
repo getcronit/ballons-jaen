@@ -4,24 +4,16 @@ import {useMemo} from 'react'
 export const useContentPages = () => {
   const index = useIndexField()
 
-  const templates = ['KategorieA', 'KategorieB']
+  const templates = new Set(['KategorieA', 'KategorieB'])
 
   const children = index.children.filter(
-    child => templates.includes(child.template!) && child.deleted !== true
+    child =>
+      (child.template && templates.has(child.template)) ||
+      child.id === 'JaenPage /grosshandel/'
   )
 
-  const memoedIndex = useMemo(() => {
-    return {
-      ...index,
-      children: [
-        ...children,
-        {
-          id: 'JaenPage /grosshandel/',
-          slug: 'grosshandel'
-        }
-      ]
-    }
-  }, [index, children])
-
-  return memoedIndex
+  return {
+    ...index,
+    children
+  }
 }
