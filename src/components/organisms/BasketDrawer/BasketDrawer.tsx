@@ -148,7 +148,7 @@ export const BasketDrawer = ({
               </>
             }
             checkoutButtonText={
-              wholesale || requestCheckout ? 'jetzt bestellen' : 'zur Kassa'
+              wholesale || requestCheckout ? 'jetzt anfragen' : 'zur Kassa'
             }
           />
         </DrawerFooter>
