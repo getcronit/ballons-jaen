@@ -231,7 +231,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                   id="message"
                   placeholder="Nachricht"
                   defaultValue={defaultValues?.message}
-                  {...register('message', {required: true})}
+                  {...register('message', {required: false})}
                 />
 
                 <FormErrorMessage fontSize="sm">
