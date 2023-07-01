@@ -4143,10 +4143,10 @@
     shopify-buy "^2.17.0"
     urql "^2.2.0"
 
-"@snek-at/jaen@^0.0.106":
-  version "0.0.106"
-  resolved "https://registry.yarnpkg.com/@snek-at/jaen/-/jaen-0.0.106.tgz#df7c438e0b798cba0347ee3710db6fc9cf53371f"
-  integrity sha512-jqtxGmZnHUuzKuOP8ItMqhXZPBVagmGLhhrDNNRQaSmqZgkLEu4qgqBSmz+CvZkfdq27m8+4QUaf7cZrWu+ujg==
+"@snek-at/jaen@^0.0.107":
+  version "0.0.107"
+  resolved "https://registry.yarnpkg.com/@snek-at/jaen/-/jaen-0.0.107.tgz#56b572812abdf0d750826d6dba616f570630bff4"
+  integrity sha512-+vMPv82ww5fk0rz6w/LkRN4GljbgFVUBQDmgY0RRs837n8EW8MED+Lcj3v6wWRR4wf8QTzdEELUJ0BxZvQerhQ==
   dependencies:
     "@chakra-ui/icons" "^2.0.18"
     "@chakra-ui/pro-theme" "^0.0.64"
@@ -4159,7 +4159,7 @@
     "@reach/router" "^1.3.4"
     "@reduxjs/toolkit" "^1.8.6"
     "@snek-at/snek-finder" "^1.0.0-beta.29"
-    "@snek-functions/origin" "^0.2.3"
+    "@snek-functions/origin" "^0.3.0"
     "@uiw/react-codemirror" "^4.21.4"
     ahooks "^3.7.7"
     commander "^9.4.1"
@@ -4246,13 +4246,6 @@
     framer-motion "^4.1.17"
     react "^18.2.0"
     react-dom "^18.2.0"
-
-"@snek-functions/origin@^0.2.3":
-  version "0.2.9"
-  resolved "https://registry.yarnpkg.com/@snek-functions/origin/-/origin-0.2.9.tgz#2e4bb11c7ce0278e399d6f450eccd26c00df8d91"
-  integrity sha512-0XQgEzFI0IfBQWUP6XBJwF+P3BFVoLKmMeioyO6mslFcdjoWBG1xRoZjhZu86G2Z3VSBC/ueB/M3zjIlxsn9mw==
-  dependencies:
-    snek-query "*"
 
 "@snek-functions/origin@^0.3.0":
   version "0.3.0"
