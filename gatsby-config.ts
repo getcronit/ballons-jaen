@@ -10,7 +10,8 @@ const siteUrl =
 
 const config: GatsbyConfig = {
   flags: {
-    DEV_SSR: true
+    DEV_SSR: true,
+    PARALLEL_SOURCING: true
   },
   siteMetadata: {
     title: `ballons-and-ballons`,
