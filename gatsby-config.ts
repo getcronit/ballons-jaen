@@ -11,7 +11,9 @@ const siteUrl =
 const config: GatsbyConfig = {
   flags: {
     DEV_SSR: true,
-    PARALLEL_SOURCING: true
+    PARALLEL_SOURCING: true,
+    PRESERVE_FILE_DOWNLOAD_CACHE: true,
+    FAST_DEV: true
   },
   siteMetadata: {
     title: `ballons-and-ballons`,
