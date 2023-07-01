@@ -41,16 +41,7 @@ export const useJaenNavBottom = () => {
   [Home](/)
   `
 
-  const [navLinks, setNavLinks] = useState<
-    Array<{
-      label: string
-      to: string
-    }>
-  >([])
-
-  useEffect(() => {
-    setNavLinks(extractUrlsFromMarkdown(markdown))
-  }, [markdown])
+  const navLinks = useMemo(() => extractUrlsFromMarkdown(markdown), [markdown])
 
   return {
     isEditing,

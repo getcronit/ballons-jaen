@@ -20,7 +20,6 @@ interface IBottomNavProps {
 const BottomNav: FC<IBottomNavProps> = ({pathname}) => {
   return (
     <Flex
-      //h={{ base: "14", lg: "16" }}
       py={'1'}
       //bg="white"
       //boxShadow="lightdown"
