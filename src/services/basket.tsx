@@ -238,6 +238,7 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
     }, [authentication.user])
 
     const onCheckout = async (): Promise<void> => {
+      onClose()
       setIsOrderOpen(true)
       // if (wholesale) {
       //   const emailAddress = auth.user?.email
@@ -337,7 +338,11 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
         {props.children}
         <OrderModal
           isOpen={isOrderOpen}
-          onClose={onOrderClose}
+          onClose={() => {
+            onOrderClose()
+
+            setOpen(true)
+          }}
           onSubmit={onOrderSubmit}
           fixedValues={fixedValues}
           products={cleanedLineItems}

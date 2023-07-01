@@ -84,10 +84,11 @@ export const OrderModal: React.FC<OrderModalProps> = ({
   }, [isOpen])
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="2xl">
+    <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
 
       <ModalContent
+        maxW="50rem"
         px={{
           base: 0,
           md: 4
@@ -113,8 +114,8 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                 Wir freuen uns über Ihre Kaufanfrage und werden uns
                 schnellstmöglich bei Ihnen melden.
               </Text>
-              <Stack>
-                <HStack>
+              <Stack spacing="4">
+                <HStack spacing="4">
                   <FormControl isInvalid={!!errors.firstName}>
                     <FormLabel htmlFor="firstName" fontSize="sm">
                       Vorname
@@ -150,7 +151,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                     </FormErrorMessage>
                   </FormControl>
                 </HStack>
-                <HStack>
+                <HStack spacing="4">
                   <FormControl isInvalid={!!errors.email}>
                     <FormLabel htmlFor="email" fontSize="sm">
                       E-Mail
@@ -200,7 +201,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                   Artikel ({products.length})
                 </Heading>
 
-                <Stack h="xs" overflow="auto" p="4">
+                <Stack maxH="32" overflow="auto" p="4">
                   {products.map(product => (
                     <CartItem
                       readonly
