@@ -84,12 +84,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
   }, [isOpen])
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onClose={onClose}
-      size="2xl"
-      scrollBehavior="inside"
-      blockScrollOnMount={false}>
+    <Modal isOpen={isOpen} onClose={onClose} size="2xl">
       <ModalOverlay />
 
       <ModalContent
