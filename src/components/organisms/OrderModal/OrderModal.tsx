@@ -183,7 +183,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                       placeholder="+43 123 456 789"
                       type="phone"
                       {...register('phone', {
-                        required: true
+                        required: false
                       })}
                       isDisabled={!!fixedValues?.phone}
                     />
