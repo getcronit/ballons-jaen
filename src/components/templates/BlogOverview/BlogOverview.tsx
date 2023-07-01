@@ -10,7 +10,7 @@ import BlogsSection from './BlogsSection'
 interface IBlogOverviewProps {}
 
 const BlogOverview: FC<IBlogOverviewProps> = () => {
-  const index = useNewsPages()
+  const index = useNewsPages({unlimited: true})
 
   const featuredBlog = React.useMemo(() => {
     let latestBlog: JaenPageIndexType['children'][number] | undefined =
