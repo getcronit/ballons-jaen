@@ -28,13 +28,9 @@ export const query = graphql`
     }
     allJaenPage(filter: {id: {eq: "JaenPage /wissen/"}}) {
       nodes {
-        ...JaenPageData
+        id
         children {
-          ...JaenPageDataStructure
-          ... on JaenPage {
-            jaenFields
-            template
-          }
+          ...JaenPageChildrenData
         }
       }
     }

@@ -26,11 +26,7 @@ export const query = graphql`
     jaenPage(id: {eq: $jaenPageId}) {
       ...JaenPageData
       children {
-        ...JaenPageDataStructure
-        ... on JaenPage {
-          jaenFields
-          template
-        }
+        ...JaenPageChildrenData
       }
     }
   }
