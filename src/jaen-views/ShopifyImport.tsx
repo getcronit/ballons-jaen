@@ -351,12 +351,12 @@ const ImportProductsFromExcel: React.FC<{
         try {
           if (product.id) {
             action = 'update'
-            await sq.mutate(Mutation => {
+            const [_, errors] = await sq.mutate(Mutation => {
               Mutation.shopifyProductUpdate({
                 resourceId: snekResourceId,
                 input: {
                   ...product,
-                  metafields: doNotConvertToString(product.metafields),
+                  metafields: product.metafields,
                   variants: {
                     ...product.variants,
                     taxable: true,
@@ -368,14 +368,31 @@ const ImportProductsFromExcel: React.FC<{
                 }
               })
             })
+
+            console.log('Updated', {
+              ...product,
+              metafields: product.metafields,
+              variants: {
+                ...product.variants,
+                taxable: true,
+                inventoryPolicy: 'CONTINUE',
+                inventoryItem: {
+                  tracked: false
+                }
+              }
+            })
+
+            if (errors) {
+              throw new Error(errors[0].message)
+            }
           } else {
             action = 'create'
-            const [productId] = await sq.mutate(Mutation => {
+            const [productId, errors] = await sq.mutate(Mutation => {
               return Mutation.shopifyProductCreate({
                 resourceId: snekResourceId,
                 input: {
                   ...product,
-                  metafields: doNotConvertToString(product.metafields),
+                  metafields: product.metafields,
                   variants: {
                     ...product.variants,
                     taxable: true,
@@ -387,6 +404,10 @@ const ImportProductsFromExcel: React.FC<{
                 }
               })
             })
+
+            if (errors) {
+              throw new Error(errors[0].message)
+            }
 
             // Update first column of row with product id
             row.getCell(1).value = productId
