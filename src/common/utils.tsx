@@ -66,33 +66,39 @@ export function useIsInViewport(ref: React.RefObject<HTMLElement>) {
 
 export function removeHtmlFromString(htmlString: string) {
   // Remove HTML tags
-  const htmlStringWithoutTags = htmlString.replace(/(<([^>]+)>)/gi, '');
+  const htmlStringWithoutTags = htmlString.replace(/(<([^>]+)>)/gi, '')
 
   // Decode HTML entities
-  const decodedHtmlString = htmlStringWithoutTags.replace(/&([a-z\d]+|#\d+);/gi, (match, entity) => {
-    switch (entity) {
-      case 'amp':
-        return '&';
-      case 'lt':
-        return '<';
-      case 'gt':
-        return '>';
-      case 'quot':
-        return '"';
-      case 'apos':
-        return "'";
-      default:
-        if (entity.charAt(0) === '#') {
-          const code = parseInt(entity.substr(1), entity.charAt(1) === 'x' ? 16 : 10);
-          if (!isNaN(code)) {
-            return String.fromCharCode(code);
+  const decodedHtmlString = htmlStringWithoutTags.replace(
+    /&([a-z\d]+|#\d+);/gi,
+    (match, entity) => {
+      switch (entity) {
+        case 'amp':
+          return '&'
+        case 'lt':
+          return '<'
+        case 'gt':
+          return '>'
+        case 'quot':
+          return '"'
+        case 'apos':
+          return "'"
+        default:
+          if (entity.charAt(0) === '#') {
+            const code = parseInt(
+              entity.substr(1),
+              entity.charAt(1) === 'x' ? 16 : 10
+            )
+            if (!isNaN(code)) {
+              return String.fromCharCode(code)
+            }
           }
-        }
-        return match;
+          return match
+      }
     }
-  });
+  )
 
-  return decodedHtmlString;
+  return decodedHtmlString
 }
 
 export function formatPrice(
@@ -112,19 +118,30 @@ export function formatPrice(
 export const getProductPrices = (
   product: ShopifyProduct,
   opts: {isWholesale: boolean}
-) => {
+): {
+  priceFormatted: string
+  compareAtPriceFormatted: string | null
+  discountFormatted: string | null
+  wholesalePrice: number | null
+} => {
   const metafields = getProductMetafields(product)
   const prices = getFormattedProductPrices(product)
+  let wholesalePrice = null
 
   if (opts.isWholesale) {
     const {amount: price, currency_code: currency} = JSON.parse(
       metafields.wholesale?.price || '{}'
     )
 
+    wholesalePrice = price
+
     prices.priceFormatted = formatPrice(price, {currency})
   }
 
-  return prices
+  return {
+    ...prices,
+    wholesalePrice
+  }
 }
 
 export const getThemeColor = (color: string) =>

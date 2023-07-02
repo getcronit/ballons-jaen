@@ -254,7 +254,8 @@ const ProductDetail = withStoreContext<{
     basket.addProduct({
       variantId: props.product.variants[0].shopifyId,
       quantity,
-      stepperQuantity: stepperStep
+      stepperQuantity: stepperStep,
+      wholesalePrice: prices.wholesalePrice
     })
 
     setQuantity(minQuantity)

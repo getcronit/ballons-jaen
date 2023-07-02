@@ -1,4 +1,7 @@
-import {withStoreContext} from '@snek-at/gatsby-theme-shopify'
+import {
+  getFormattedProductPrices,
+  withStoreContext
+} from '@snek-at/gatsby-theme-shopify'
 import {sq} from '@snek-functions/origin'
 import {doNotConvertToString} from 'snek-query'
 import React, {useCallback, useMemo} from 'react'
@@ -8,6 +11,7 @@ import {BasketDrawer} from '../components/organisms/BasketDrawer'
 import {useAuthentication} from './authentication'
 import {useToast} from '@chakra-ui/react'
 import {OrderFormValues, OrderModal} from '../components/organisms/OrderModal'
+import {getProductPrices} from '../common/utils'
 
 export interface BaseketContextProps {
   onOpen: () => void
@@ -16,6 +20,7 @@ export interface BaseketContextProps {
     variantId: string
     quantity: number
     stepperQuantity: number
+    wholesalePrice: number | null
   }) => void
   checkout: ShopifyBuy.Checkout | null
 }
@@ -92,11 +97,13 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
 
     const addProduct = async ({
       stepperQuantity,
+      wholesalePrice,
       ...args
     }: {
       variantId: string
       quantity: number
       stepperQuantity: number
+      wholesalePrice: number | null
     }) => {
       const c = await createOrFetchCheckout()
 
@@ -106,7 +113,11 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
           {
             ...args,
             customAttributes: [
-              {key: 'stepperQuantity', value: stepperQuantity.toString()}
+              {key: 'stepperQuantity', value: stepperQuantity.toString()},
+              {
+                key: 'wholesalePrice',
+                value: wholesalePrice?.toString() || ''
+              }
             ]
           }
         ]
@@ -313,7 +324,37 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
     }
 
     const cleanedLineItems = useMemo(() => {
-      return cleanLineItems(checkout?.lineItems)
+      const items = cleanLineItems(checkout?.lineItems)
+
+      // overwrite lineItem.variant?.price.amount, with the actual price if it is a wholesale user
+      if (wholesale) {
+        return items.map(item => {
+          const variant = item.variant
+
+          if (!variant) {
+            return item
+          }
+
+          const amount = item.customAttributes?.find(
+            (attr: {key: string}) => attr.key === 'wholesalePrice'
+          )?.value
+
+          console.log('AMOUNT', amount, item)
+
+          return {
+            ...item,
+            variant: {
+              ...variant,
+              price: {
+                ...variant.price,
+                amount
+              }
+            }
+          }
+        })
+      }
+
+      return items
     }, [checkout?.lineItems])
 
     return (
