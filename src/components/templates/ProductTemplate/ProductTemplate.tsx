@@ -35,7 +35,7 @@ import {navigate} from 'gatsby'
 import {GatsbyImage} from 'gatsby-plugin-image'
 import React from 'react'
 import {BsBalloonHeartFill} from 'react-icons/bs'
-import {FaRuler} from 'react-icons/fa'
+import {FaBoxes, FaRuler, FaTruck} from 'react-icons/fa'
 import {PhotoProvider, PhotoView} from 'react-photo-view'
 import {getSrcFromImageData} from '../../../common/get-src-from-image-data'
 
@@ -311,6 +311,25 @@ const ProductDetail = withStoreContext<{
           </>
         )}
 
+        {productMetatfields.details?.bundle && (
+          <>
+            <Divider />
+
+            <HStack spacing="4">
+              <Icon as={FaBoxes} boxSize={8} />
+              <Text
+                fontSize={{
+                  base: 'xs',
+                  md: 'sm'
+                }}
+                color="gray.600">
+                {productMetatfields.details.bundle}{' '}
+                {productMetatfields.details.packaging}
+              </Text>
+            </HStack>
+          </>
+        )}
+
         {productMetatfields.details?.sizeHelper && (
           <>
             <Divider />
@@ -331,59 +350,67 @@ const ProductDetail = withStoreContext<{
 
         <Divider />
 
-        <Text fontSize="xs" fontWeight="thin">
+        <Text fontSize="sm" fontWeight="thin">
           Artikelnummer: {props.product.variants[0].sku || '-'}
         </Text>
         <Divider />
 
-        {!availableForSale && (
+        {!availableForSale ? (
           <Text color="red.500">Derzeit nicht verfügbar</Text>
+        ) : (
+          <></>
         )}
 
-        <HStack>
-          <NumberInput
-            size="md"
-            maxW={24}
-            step={stepperStep}
-            defaultValue={minQuantity}
-            min={minQuantity}
-            value={quantity}
-            onChange={valueString => {
-              setQuantity(parseInt(valueString))
-            }}>
-            <NumberInputField />
-            <NumberInputStepper>
-              <NumberIncrementStepper />
-              <NumberDecrementStepper />
-            </NumberInputStepper>
-          </NumberInput>
-          <Tooltip label="Zum Onlineshop" aria-label="Zum Onlineshop">
-            <BallonButton
-              // display={{
-              //   base: 'none',
-              //   md: 'flex'
-              // }}
-              size={{
-                base: 'sm',
-                md: 'md'
-              }}
-              py="7 !important"
-              disabled={!availableForSale}
-              fontWeight="semibold"
-              textTransform="uppercase"
-              fontSize="md"
-              onClick={addProductToBasket}
-              leftIcon={<FaShoppingBasket />}>
-              In den Warenkorb
-            </BallonButton>
-          </Tooltip>
-        </HStack>
-        <Divider />
-        <Flex alignItems="center" justifyContent="center" fontSize="xl">
-          <Box mx="auto">
-            <ShareText />
-          </Box>
-        </Flex>
+        <Stack>
+          <Text color="green" fontSize="sm">
+            {productMetatfields.details?.available}
+          </Text>
+          <HStack>
+            <NumberInput
+              size="md"
+              maxW={24}
+              step={stepperStep}
+              defaultValue={minQuantity}
+              min={minQuantity}
+              value={quantity}
+              onChange={valueString => {
+                setQuantity(parseInt(valueString))
+              }}>
+              <NumberInputField />
+              <NumberInputStepper>
+                <NumberIncrementStepper />
+                <NumberDecrementStepper />
+              </NumberInputStepper>
+            </NumberInput>
+            <Tooltip label="Zum Onlineshop" aria-label="Zum Onlineshop">
+              <BallonButton
+                // display={{
+                //   base: 'none',
+                //   md: 'flex'
+                // }}
+                size={{
+                  base: 'sm',
+                  md: 'md'
+                }}
+                py="7 !important"
+                disabled={!availableForSale}
+                fontWeight="semibold"
+                textTransform="uppercase"
+                fontSize="md"
+                onClick={addProductToBasket}
+                leftIcon={<FaShoppingBasket />}>
+                In den Warenkorb
+              </BallonButton>
+            </Tooltip>
+          </HStack>
+          <Divider />
+          <Flex alignItems="center" justifyContent="center" fontSize="xl">
+            <Box mx="auto">
+              <ShareText />
+            </Box>
+          </Flex>
+        </Stack>
+
         <Divider />
       </VStack>
     </Box>

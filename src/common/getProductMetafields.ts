@@ -13,6 +13,7 @@ export interface ProductMetafields {
   details?: {
     filling: ProductFilling
     sizeHelper: string
+    packaging: string
     bundle: number
     available: string
     _SU: string
