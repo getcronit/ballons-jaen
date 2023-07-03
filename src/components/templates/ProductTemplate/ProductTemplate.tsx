@@ -264,7 +264,9 @@ const ProductDetail = withStoreContext<{
     setQuantity(minQuantity)
   }
 
-  const availableForSale = props.product.variants[0].availableForSale
+  const availableForSale =
+    (props.product.variants[0].price || prices.wholesalePrice) &&
+    props.product.variants[0].availableForSale
 
   return (
     <Box
@@ -367,16 +369,15 @@ const ProductDetail = withStoreContext<{
         </Text>
         <Divider />
 
-        {!availableForSale ? (
-          <Text color="red.500">Derzeit nicht verfügbar</Text>
-        ) : (
-          <></>
-        )}
-
         <Stack>
-          <Text color="green" fontSize="sm">
-            {productMetatfields.details?.available}
-          </Text>
+          {availableForSale ? (
+            <Text color="green" fontSize="sm">
+              {productMetatfields.details?.available}
+            </Text>
+          ) : (
+            <Text color="red.500">Derzeit nicht verfügbar</Text>
+          )}
+
           <HStack>
             <NumberInput
               size="md"
@@ -405,7 +406,7 @@ const ProductDetail = withStoreContext<{
                   md: 'md'
                 }}
                 py="7 !important"
-                disabled={!availableForSale}
+                isDisabled={!availableForSale}
                 fontWeight="semibold"
                 textTransform="uppercase"
                 fontSize="md"
