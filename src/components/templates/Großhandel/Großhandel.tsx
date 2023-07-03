@@ -3,7 +3,6 @@ import NewsSlider from '../../organisms/NewsSlider/NewsSlider'
 import AdviceSection from './AdviceSection'
 import Brands from './Brands'
 import GroßhandelHero from './GroßhandelHero/GroßhandelHero'
-import PartnersSection from './PartnersSection'
 import TwoCards from './TwoCards'
 
 interface IGroßhandelProps {}
@@ -15,7 +14,7 @@ const Großhandel: FC<IGroßhandelProps> = () => {
       <TwoCards />
       <Brands />
       <AdviceSection />
-      <PartnersSection />
+      {/* <PartnersSection /> */}
       <NewsSlider showNewsTitle={true} />
     </>
   )
