@@ -112,8 +112,13 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
         [
           {
             ...args,
+            quantity: stepperQuantity,
             customAttributes: [
-              {key: 'stepperQuantity', value: stepperQuantity.toString()},
+              {
+                key: 'stepperQuantity',
+                value: stepperQuantity.toString() || '1'
+              },
+
               {
                 key: 'wholesalePrice',
                 value: wholesalePrice?.toString() || ''
@@ -164,6 +169,58 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
       setIsOrderOpen(false)
     }
 
+    const cleanedLineItems = useMemo(() => {
+      const items = cleanLineItems(checkout?.lineItems)
+
+      // overwrite lineItem.variant?.price.amount, with the actual price if it is a wholesale user
+      if (isRealWholesale) {
+        return items.map(item => {
+          const variant = item.variant
+
+          if (!variant) {
+            return item
+          }
+
+          const amount = item.customAttributes?.find(
+            (attr: {key: string}) => attr.key === 'wholesalePrice'
+          )?.value
+
+          return {
+            ...item,
+            variant: {
+              ...variant,
+              price: {
+                ...variant.price,
+                amount
+              }
+            }
+          }
+        })
+      }
+
+      return items
+    }, [checkout?.lineItems, isRealWholesale])
+
+    const lineItemsSubtotalPrice = useMemo(() => {
+      // get sum of all line items if wholesale
+      if (isRealWholesale) {
+        return cleanedLineItems.reduce((acc, item) => {
+          const price = item.variant?.price.amount
+
+          const quantity = item.quantity
+
+          if (!price) {
+            return acc
+          }
+
+          return acc + parseFloat(price) * quantity
+        }, 0)
+      }
+
+      // @ts-expect-error
+      return parseFloat(checkout?.lineItemsSubtotalPrice?.amount || '0')
+    }, [checkout?.lineItemsSubtotalPrice, cleanedLineItems, isRealWholesale])
+
     const onOrderSubmit = async (data: OrderFormValues): Promise<void> => {
       // sleep 3 seconds to simulate a network request
 
@@ -182,7 +239,7 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
           template: {
             id: 'BALLOONS_ORDER_EMAIL',
             values: {
-              cart: checkout?.lineItems.map(lineItem => ({
+              cart: cleanedLineItems.map(lineItem => ({
                 name: lineItem.title.toString(),
                 quantity: lineItem.quantity,
                 sku: lineItem.variant?.sku,
@@ -323,38 +380,6 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
       // localStorage.removeItem('checkoutId')
     }
 
-    const cleanedLineItems = useMemo(() => {
-      const items = cleanLineItems(checkout?.lineItems)
-
-      // overwrite lineItem.variant?.price.amount, with the actual price if it is a wholesale user
-      if (isRealWholesale) {
-        return items.map(item => {
-          const variant = item.variant
-
-          if (!variant) {
-            return item
-          }
-
-          const amount = item.customAttributes?.find(
-            (attr: {key: string}) => attr.key === 'wholesalePrice'
-          )?.value
-
-          return {
-            ...item,
-            variant: {
-              ...variant,
-              price: {
-                ...variant.price,
-                amount
-              }
-            }
-          }
-        })
-      }
-
-      return items
-    }, [checkout?.lineItems, isRealWholesale])
-
     return (
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
       <BasketContext.Provider value={{onOpen, onClose, addProduct, checkout}}>
@@ -364,8 +389,7 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
           products={cleanedLineItems}
           wholesale={isRealWholesale}
           requestCheckout={wholesale}
-          // @ts-expect-error
-          subtotal={parseFloat(checkout?.lineItemsSubtotalPrice?.amount || '0')}
+          subtotal={lineItemsSubtotalPrice}
           onProductQuantityChange={(id, quantity) => {
             void updateProduct({id, quantity})
           }}
