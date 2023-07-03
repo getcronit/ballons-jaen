@@ -3,7 +3,8 @@ import {ShopifyProduct} from '@snek-at/gatsby-theme-shopify'
 export enum ProductFilling {
   AIR_ONLY = 'nur für Luftfüllung geeignet!',
   HELIUM_ONLY = 'für Heliumfüllung geeignet',
-  AIR_AND_HELIUM = 'für Helium- und Luftfüllung geeignet'
+  AIR_AND_HELIUM = 'für Helium- und Luftfüllung geeignet',
+  FILLED_WITH_HELIUM = 'Ballonpreis inklusive Helium-Füllung'
 }
 
 // "{"amount":"4.4521","currency_code":"EUR"}"

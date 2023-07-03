@@ -34,12 +34,15 @@ import {
 import {navigate} from 'gatsby'
 import {GatsbyImage} from 'gatsby-plugin-image'
 import React from 'react'
-import {BsBalloonHeartFill} from 'react-icons/bs'
+import {BsBalloonHeart, BsBalloonHeartFill} from 'react-icons/bs'
 import {FaBoxes, FaRuler, FaTruck} from 'react-icons/fa'
 import {PhotoProvider, PhotoView} from 'react-photo-view'
 import {getSrcFromImageData} from '../../../common/get-src-from-image-data'
 
-import {getProductMetafields} from '../../../common/getProductMetafields'
+import {
+  getProductMetafields,
+  ProductFilling
+} from '../../../common/getProductMetafields'
 import {getProductPrices, replaceHexColorsInHTML} from '../../../common/utils'
 import {useBasket} from '../../../services/basket'
 import {ProductSlider} from '../../molecules/ProductSlider'
@@ -294,12 +297,20 @@ const ProductDetail = withStoreContext<{
             </Box>
           ))} */}
 
-        {productMetatfields.details?.filling && (
+        {props.wholesale === false && productMetatfields.details?.filling && (
           <>
             <Divider />
 
             <HStack spacing="4">
-              <Icon as={BsBalloonHeartFill} boxSize={8} />
+              <Icon
+                as={
+                  productMetatfields.details.filling ===
+                  ProductFilling.FILLED_WITH_HELIUM
+                    ? BsBalloonHeartFill
+                    : BsBalloonHeart
+                }
+                boxSize={8}
+              />
               <Text
                 fontSize={{
                   base: 'xs',
