@@ -327,7 +327,7 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
       const items = cleanLineItems(checkout?.lineItems)
 
       // overwrite lineItem.variant?.price.amount, with the actual price if it is a wholesale user
-      if (wholesale) {
+      if (isRealWholesale) {
         return items.map(item => {
           const variant = item.variant
 
@@ -338,8 +338,6 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
           const amount = item.customAttributes?.find(
             (attr: {key: string}) => attr.key === 'wholesalePrice'
           )?.value
-
-          console.log('AMOUNT', amount, item)
 
           return {
             ...item,
@@ -355,7 +353,7 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
       }
 
       return items
-    }, [checkout?.lineItems])
+    }, [checkout?.lineItems, isRealWholesale])
 
     return (
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
