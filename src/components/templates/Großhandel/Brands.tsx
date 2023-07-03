@@ -88,7 +88,6 @@ const BrandCarousel: React.FC<{
             <Field.Text
               key={`brands.${brandIndex}.title`}
               minW="24"
-              fontSize={{base: 'md', md: 'lg'}}
               name={`brands.${brandIndex}.title`}
               defaultValue={brand.title}
               fontWeight="bold"
@@ -159,6 +158,10 @@ const BrandCarousel: React.FC<{
         key={`brands.${selectedBrandIndex}.description`}
         defaultValue={brands[selectedBrandIndex].description}
         textAlign={'center'}
+        fontSize={{
+          base: 'sm',
+          md: 'md'
+        }}
       />
     </VStack>
   )

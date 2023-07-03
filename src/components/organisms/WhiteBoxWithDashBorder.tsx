@@ -30,6 +30,7 @@ const WhiteBoxWithDashBorder: FC<IWhiteBoxWithDashBorderProps> = props => {
           as={Heading}
           //fontWeight="semibold"
           size="h8020"
+          textAlign="center"
           //variant="cursive"
           name={props.titleFieldName}
           defaultValue={`<i>${props.titleDefaultValue}</i>`}

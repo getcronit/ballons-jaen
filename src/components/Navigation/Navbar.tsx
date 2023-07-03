@@ -71,7 +71,7 @@ export const Navbar: FC<INavbarProps> = ({
         alignItems={'center'}>
         <Flex flex="1" textAlign="center">
           {mode === 'website' ? (
-            <MobileHambuger />
+            <MobileHambuger pathname={pathname} />
           ) : (
             <>
               {/* <Button

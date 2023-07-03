@@ -7,7 +7,8 @@ import {
   ImagesBlock,
   ImagesWithTextLeftBlock,
   ImagesWithTextRightBlock,
-  SliderBlock
+  SliderBlock,
+  TextBlock
 } from './blocks'
 import {Footer} from './Footer'
 import {Hero} from './Hero'
@@ -19,18 +20,28 @@ const WissenArticlePage: React.FC<WissenPageProps> = () => {
     <>
       <Hero />
 
-      <Box bg="white">
+      <Box bg="white" pt="4">
         <Container as={Stack} maxW={CONTAINER_MAX_WIDTH} spacing="8">
           <Field.Text
             as={Heading}
             asAs="h1"
-            fontSize="6xl"
+            fontSize={{
+              base: '2xl',
+              md: '3xl',
+              lg: '4xl',
+              xl: '5xl',
+              '2xl': '6xl'
+            }}
             textAlign="center"
             name="title"
             defaultValue="Ballons & Ballons: Die Geschichte"
           />
 
           <Field.Text
+            fontSize={{
+              base: 'sm',
+              md: 'md'
+            }}
             name="description"
             defaultValue={`
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in
@@ -57,7 +68,8 @@ const WissenArticlePage: React.FC<WissenPageProps> = () => {
               ImagesWithTextLeftBlock,
               ImagesWithTextRightBlock,
               SliderBlock,
-              ImageBlock
+              ImageBlock,
+              TextBlock
             ]}
           />
         </Container>

@@ -18,9 +18,11 @@ import {FaPhoneAlt} from 'react-icons/fa'
 import {Logo} from '../../common/assets/Logo'
 import {useContactModal} from '../../services/contact'
 import {BottomNavLinks} from './NavLinks'
-import { BallonButton } from '../molecules/BallonButton'
+import {BallonButton} from '../molecules/BallonButton'
 
-export const MobileHambuger: React.FC = () => {
+export const MobileHambuger: React.FC<{
+  pathname: string
+}> = ({pathname}) => {
   const {isOpen, onToggle} = useDisclosure()
 
   const contactModal = useContactModal()
@@ -69,7 +71,8 @@ export const MobileHambuger: React.FC = () => {
           <Divider />
           <DrawerBody>
             <Stack spacing="8" pt="4">
-              {/* <BottomNavLinks
+              <BottomNavLinks
+                pathname={pathname}
                 childrenTextAlign="left"
                 w="full"
                 px="2"
@@ -77,7 +80,7 @@ export const MobileHambuger: React.FC = () => {
                 spacing="6"
                 fontSize="md"
                 onClick={onToggle}
-              /> */}
+              />
 
               <Stack
                 direction="row"

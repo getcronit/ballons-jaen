@@ -6,6 +6,25 @@ import {ImagesWithText} from '../../../organisms/ImagesWithText'
 
 export {SliderBlock} from './SliderBlock'
 
+export const TextBlock = connectBlock(
+  () => {
+    return (
+      <Field.Text
+        name="text"
+        defaultValue="Example Text"
+        fontSize={{
+          base: 'sm',
+          md: 'md'
+        }}
+      />
+    )
+  },
+  {
+    label: 'TextBlock',
+    name: 'TextBlock'
+  }
+)
+
 export const ImageBlock = connectBlock(
   () => {
     return (

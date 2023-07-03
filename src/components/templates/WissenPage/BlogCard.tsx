@@ -14,12 +14,7 @@ const BlogCard: FC<IBlogCardProps> = ({slug}) => {
   const {isEditing} = useStatus()
 
   return (
-    <Flex
-      maxW={CONTAINER_MAX_WIDTH}
-      borderRadius="xl"
-      bg="white"
-      boxShadow="dark"
-      flexDir="column">
+    <Flex borderRadius="xl" bg="white" boxShadow="dark" flexDir="column">
       <Grid
         borderRadius="1.875rem"
         overflow="hidden"

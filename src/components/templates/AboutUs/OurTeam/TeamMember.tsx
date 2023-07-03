@@ -121,6 +121,21 @@ const TeamMember: FC<ITeamMemberProps> = ({
       </Flex>
 
       <Stack py="4" display={{base: 'flex', md: 'none'}} gap="2">
+        <Flex justifyContent="center">
+          <Grid placeItems="center" pos="relative">
+            <Image src="/images/about_us/profile_bg.svg" />
+            {/* <Image src={image} pos="absolute" boxShadow="dark" w="80%" borderRadius="full" /> */}
+            <AspectRatio
+              ratio={1}
+              pos="absolute"
+              boxShadow="dark"
+              overflow="hidden"
+              w="80%"
+              borderRadius="full">
+              <Field.Image name="image" />
+            </AspectRatio>
+          </Grid>
+        </Flex>
         <Flex
           align="end"
           flexDir={{base: isLeft ? 'row' : 'row-reverse'}}
@@ -151,23 +166,13 @@ const TeamMember: FC<ITeamMemberProps> = ({
               defaultValue={role}
             />
           </Box>
-          <Grid placeItems="center" pos="relative" w="38%">
-            <Image src="/images/about_us/profile_bg.svg" />
-            {/* <Image src={image} pos="absolute" boxShadow="dark" w="80%" borderRadius="full" /> */}
-            <AspectRatio
-              ratio={1}
-              pos="absolute"
-              boxShadow="dark"
-              overflow="hidden"
-              w="80%"
-              borderRadius="full">
-              <Field.Image name="image" />
-            </AspectRatio>
-          </Grid>
         </Flex>
         <Field.Text
           name="about"
-          fontSize="xs"
+          fontSize={{
+            base: 'sm',
+            md: 'md'
+          }}
           textAlign={{base: isLeft ? 'start' : 'end'}}
           //fontWeight="semibold"
           defaultValue={about}

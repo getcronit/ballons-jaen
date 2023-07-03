@@ -39,7 +39,7 @@ const WirGestaltenPartyHero: FC<IWirGestaltenPartyHeroProps> = () => {
           <Stack pos="relative" w="100%" top={{base: '4rem', md: 'unset'}}>
             <Field.Text
               as={Heading}
-              fontSize={{base: 'md', md: '2xl', lg: '3xl', xl: '4xl'}}
+              fontSize={{base: 'xl', md: '2xl', lg: '3xl', xl: '4xl'}}
               fontWeight="semibold"
               sx={{
                 'i, em': {

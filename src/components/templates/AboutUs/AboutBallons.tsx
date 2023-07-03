@@ -56,6 +56,7 @@ const AboutBallons: FC<IAboutBallonsProps> = () => {
             pos="relative">
             <Box
               pos={{base: 'absolute', md: 'unset'}}
+              display={{base: 'none', md: 'block'}}
               w="50%"
               left="-3.125rem"
               top="-11.25rem">

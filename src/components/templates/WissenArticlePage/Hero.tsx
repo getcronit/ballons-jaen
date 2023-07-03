@@ -22,10 +22,10 @@ export const Hero: FC<HeroProps> = () => {
         md: '/images/blog_overview/hero_bg.svg'
       }}
       pt={{base: 4, md: 24}}
-      pb={{base: 16, md: 24}}
       bgPos={{base: 'top', md: 'top 2rem left 0'}}
       bgRepeat="no-repeat"
-      bgSize="cover">
+      bgSize="cover"
+      px="2">
       <Stack mx="auto" w="full" maxW="6xl" spacing="4">
         <Box
           borderRadius="lg"
@@ -34,7 +34,14 @@ export const Hero: FC<HeroProps> = () => {
           mx="auto"
           w="full"
           maxW="6xl"
-          h={'xl'}>
+          h={{
+            // rems
+            base: 'xs',
+            md: 'sm',
+            lg: 'md',
+            xl: 'lg',
+            '2xl': 'xl'
+          }}>
           <Field.Image name="image" lightbox />
         </Box>
         <WissenArticleMetaBar mx="auto" w="full" maxW="6xl" />

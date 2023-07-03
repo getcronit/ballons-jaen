@@ -53,7 +53,12 @@ const CompareSection = connectBlock(
     return (
       <Stack divider={<Divider />} spacing="4">
         <VStack justifyContent="center" spacing="8">
-          <Field.Text as={Heading} name="title" defaultValue="Titel" />
+          <Field.Text
+            as={Heading}
+            name="title"
+            defaultValue="Titel"
+            textAlign="center"
+          />
 
           <ButtonGroup isAttached>
             <Field.Text
@@ -120,9 +125,24 @@ const ImageSideBySideSection = connectBlock(
     return (
       <PhotoProvider>
         <VStack spacing="8">
-          <Field.Text as={Heading} name="title" defaultValue="Titel" />
+          <Field.Text
+            as={Heading}
+            fontSize={{base: 'xl', md: '2xl', lg: '3xl', xl: '4xl'}}
+            name="title"
+            defaultValue="Titel"
+            textAlign="center"
+          />
 
-          <Grid templateColumns="repeat(2, 1fr)" gap={4} w="full" minH="lg">
+          <Grid
+            templateColumns="repeat(2, 1fr)"
+            gap={4}
+            w="full"
+            minH={{
+              base: 'xs',
+              md: 'sm',
+              lg: 'md',
+              xl: 'lg'
+            }}>
             <GridItem colSpan={1} borderRadius={'lg'} overflow="hidden">
               <Field.Image name="image1" lightbox lightboxGroup />
             </GridItem>
@@ -228,7 +248,6 @@ export const ImagesGallery3x3Section = connectBlock(
                     }}
                     transition="ease-in 0.2s"
                     boxShadow="light"
-                    bg="blue"
                     borderRadius="lg"
                     overflow="hidden"
                     boxSize={{
@@ -266,7 +285,7 @@ const FullWidthImageSection = connectBlock(
         <Field.Text
           as={Heading}
           textAlign="center"
-          fontSize={{base: 'md', md: '2xl', lg: '3xl', xl: '4xl'}}
+          fontSize={{base: 'xl', md: '2xl', lg: '3xl', xl: '4xl'}}
           fontWeight="semibold"
           name="title"
           defaultValue="In Erinnerung behalten"
@@ -302,31 +321,27 @@ const FullWidthImageSection = connectBlock(
 const TextSection = connectBlock(
   () => {
     return (
-      <Text
-        fontSize={{base: 'sm', lg: 'md'}}
-        maxW={{base: '80%', md: '60%', lg: '50%'}}
+      <Field.Text
         textAlign="center"
-        as="span"
-        my="4">
-        <Box h="4" />
-        <Field.Text
-          name="text"
-          defaultValue={`
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-      tincidunt, nisl nec ultricies lacinia, nisl nunc aliquet nisl, nec
-      lacinia nisl nunc vel nunc. Sed tincidunt, nisl nec ultricies
-      lacinia, nisl nunc aliquet nisl, nec lacinia nisl nunc vel nunc.
-    
-      <br />
+        fontSize={{
+          base: 'sm',
+          md: 'md'
+        }}
+        name="text"
+        defaultValue={`
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+  tincidunt, nisl nec ultricies lacinia, nisl nunc aliquet nisl, nec
+  lacinia nisl nunc vel nunc. Sed tincidunt, nisl nec ultricies
+  lacinia, nisl nunc aliquet nisl, nec lacinia nisl nunc vel nunc.
 
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-      tincidunt, nisl nec ultricies lacinia, nisl nunc aliquet nisl, nec
-      lacinia nisl nunc vel nunc. Sed tincidunt, nisl nec ultricies
-      lacinia, nisl nunc aliquet nisl, nec lacinia nisl nunc vel nunc.
-    `}
-        />
-        <Box h="4" />
-      </Text>
+  <br />
+
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+  tincidunt, nisl nec ultricies lacinia, nisl nunc aliquet nisl, nec
+  lacinia nisl nunc vel nunc. Sed tincidunt, nisl nec ultricies
+  lacinia, nisl nunc aliquet nisl, nec lacinia nisl nunc vel nunc.
+`}
+      />
     )
   },
   {
@@ -362,12 +377,16 @@ const SubCategoryContentSection = connectBlock(
             <Field.Text
               as={Heading}
               name="heading"
-              fontSize={{base: 'md', md: '2xl', lg: '3xl', xl: '4xl'}}
+              fontSize={{base: 'xl', md: '2xl', lg: '3xl', xl: '4xl'}}
               fontWeight="semibold"
+              textAlign="center"
               defaultValue="Überschrift"
             />
             <Field.Text
-              fontSize={{base: 'sm', lg: 'md'}}
+              fontSize={{
+                base: 'sm',
+                md: 'md'
+              }}
               textAlign="center"
               name="Text"
               defaultValue={`Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius quibusdam, atque iusto culpa libero nostrum sit fuga cumque sunt tenetur! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae ea praesentium, enim alias a nihil et aperiam
@@ -436,6 +455,7 @@ const CategoryContentSection = connectBlock(
             <Field.Text
               as={Heading}
               //variant="cursive"
+              textAlign="center"
               fontSize={{base: 'xl', md: '2xl', lg: '3xl', xl: '4xl'}}
               name="title"
               defaultValue={`<i>Überschrift</i>`}
@@ -443,13 +463,16 @@ const CategoryContentSection = connectBlock(
             <Field.Text
               as={Heading}
               textAlign="center"
-              fontSize={{base: 'md', md: 'lg', lg: 'xl', xl: '2xl'}}
+              fontSize={{base: 'lg', md: 'xl', lg: '2xl', xl: '3xl'}}
               name="subtitle"
               defaultValue="Unterüberschrift"
             />
 
             <Field.Text
-              fontSize={{base: 'sm', lg: 'md'}}
+              fontSize={{
+                base: 'sm',
+                md: 'md'
+              }}
               textAlign="center"
               name="text"
               defaultValue="Text"
@@ -604,7 +627,7 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
     }
 
     return (
-      <Stack padding={{base: 4, md: 8}} spacing="24">
+      <Stack padding={{base: 0, md: 8}} spacing="24">
         <FourCard
           sectionFieldName={settings.fieldName}
           sectionDisplayName={settings.displayName}
@@ -612,7 +635,7 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
         />
         <Flex direction={{base: 'column-reverse', md: 'row'}}>
           <Box w={{base: '100%', md: '75%'}} mr={{md: 4}}>
-            <Box mx={{base: 4, md: 'auto'}} maxW="800px" overflow="hidden">
+            <Box mx={{base: 0, md: 'auto'}} maxW="800px" overflow="hidden">
               {/* Your blog post content goes here */}
               <Field.Section
                 as={Stack}

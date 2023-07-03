@@ -23,6 +23,7 @@ const BallonGas: FC<IBallonGasProps> = () => {
         pos="relative">
         <VStack flex="1" pos={{base: 'unset', md: 'relative'}} top="-5rem">
           <Field.Text
+            textAlign="center"
             lineHeight="4rem"
             fontSize={{base: 'xl', md: '4xl', lg: '5xl', xl: '6xl'}}
             //variant="cursive"

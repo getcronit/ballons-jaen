@@ -35,7 +35,7 @@ const WhiteMobileSlider: FC<IWhiteMobileSliderProps> = ({index}) => {
   const {isEditing} = useStatus()
 
   return (
-    <Container maxW={CONTAINER_MAX_WIDTH}>
+    <Container maxW={CONTAINER_MAX_WIDTH} overflow="hidden">
       <Slider {...settings} className="white_slider">
         {index.children.map((page, i) => {
           return index.withJaenPage(

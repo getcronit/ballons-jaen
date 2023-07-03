@@ -9,7 +9,7 @@ const SliderItem = connectBlock(
   () => {
     return (
       <Box display={'flex'} justifyContent="center">
-        <Box m="2" boxSize="sm" borderRadius="xl" overflow="hidden">
+        <Box m="2" boxSize="sm" borderRadius="xl" overflow="hidden" h="xs">
           <Field.Image name="image" lightbox lightboxGroup />
         </Box>
       </Box>

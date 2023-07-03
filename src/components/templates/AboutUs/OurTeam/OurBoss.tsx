@@ -100,7 +100,27 @@ const OurBoss: FC<IOurBossProps> = ({
         </Flex>
       </Container>
 
-      <Stack pb="16" pt="4" display={{base: 'flex', md: 'none'}} px="4" gap="2">
+      <Stack
+        pb="16"
+        pt="4"
+        display={{base: 'flex', md: 'none'}}
+        px="4"
+        gap="2"
+        mx="2">
+        <Flex>
+          <Grid placeItems="center" pos="relative">
+            <Image src="/images/about_us/boss_bg.svg" />
+            <AspectRatio
+              ratio={1}
+              pos="absolute"
+              boxShadow="dark"
+              overflow="hidden"
+              w="80%"
+              borderRadius="full">
+              <Field.Image name="image" />
+            </AspectRatio>
+          </Grid>
+        </Flex>
         <Flex
           align="end"
           flexDir={{base: isLeft ? 'row' : 'row-reverse'}}
@@ -131,22 +151,13 @@ const OurBoss: FC<IOurBossProps> = ({
               defaultValue={role}
             />
           </Box>
-          <Grid placeItems="center" pos="relative" w="38%">
-            <Image src="/images/about_us/boss_bg.svg" />
-            <AspectRatio
-              ratio={1}
-              pos="absolute"
-              boxShadow="dark"
-              overflow="hidden"
-              w="80%"
-              borderRadius="full">
-              <Field.Image name="image" />
-            </AspectRatio>
-          </Grid>
         </Flex>
         <Field.Text
           name="BossAbout"
-          fontSize="xs"
+          fontSize={{
+            base: 'sm',
+            md: 'md'
+          }}
           //fontSize="xs"
           //textAlign={{ base: isLeft ? 'start' : 'end' }}
           //fontWeight="semibold"

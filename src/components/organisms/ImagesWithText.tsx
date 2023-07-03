@@ -8,14 +8,7 @@ export const ImagesWithText: React.FC<{
   orientation: 'left' | 'right'
 }> = ({orientation}) => {
   const threeCards = Array.from({length: 3}).map((_, index) => {
-    return (
-      <ImageCard
-        key={index}
-        h={{base: '15rem', lg: '15rem', xl: '20rem'}}
-        w={{base: '12.5rem', lg: '12.5rem', xl: '17.5rem'}}
-        name={`cards[${index}].image`}
-      />
-    )
+    return <ImageCard key={index} name={`cards[${index}].image`} />
   })
 
   return (
