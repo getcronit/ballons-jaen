@@ -639,8 +639,9 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
               {/* Your blog post content goes here */}
               <Field.Section
                 as={Stack}
-                props={{spacing: 20, position: 'relative', width: '100%'}}
+                props={{paddingX: {base: "0 !important"}, spacing: 20, position: 'relative', width: '100%'}}
                 sectionProps={({count}) => ({
+                  paddingX: {base: "0 !important"},
                   ref: (el: HTMLDivElement) => {
                     refs.current[count - 1] = el
                   },
