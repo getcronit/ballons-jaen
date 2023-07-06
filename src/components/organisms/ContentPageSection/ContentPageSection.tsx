@@ -631,14 +631,14 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
     }
 
     return (
-      <Stack padding={{ base: 0, md: 8 }} spacing={{base: '0', md: '24'}} bg="white">
+      <Stack padding={{ base: 0, md: 8 }} spacing={{ base: '0', md: '24' }} bg="white">
         <FourCard
           sectionFieldName={settings.fieldName}
           sectionDisplayName={settings.displayName}
           onCardClick={scrollToIndex}
         />
         <Flex direction={{ base: 'column-reverse', md: 'row' }}>
-          <Box w={{ base: '0%', md: '0%', xl: '25%' }}>
+          <Box w={{ base: '0%', md: '0%', xl: '23%' }} >
             <Box position="sticky" top={{ base: '80px', md: '20%' }}>
               {/* Anfragen button with divider */}
               <Image
@@ -648,8 +648,31 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
               />
             </Box>
           </Box>
-          <Box w={{ base: '100%', md: '75%', xl: '50%' }} mr={{ md: 4 }}>
-            <Box mx={{ base: 0, md: 'auto' }} maxW="1000px" overflow="hidden" bg='#f4f4f4' borderRadius="xl">
+          <Box
+            w={{ base: '100%', md: '75%', xl: '50%' }}
+            ml={{ base: '0%', md: '0%', xl: '2%' }}
+            mr={{ base: '0%', md: '4%', xl: '2%' }}
+          >
+            <Box
+              mx={{ base: 0, md: 'auto' }}
+              maxW="1000px"
+              overflow="hidden"
+              bg='#f4f4f4'
+              borderRadius="xl"
+              // _hover={{
+              //   transition: 'all 0.3s ease',
+              //   transform: {
+              //     md: 'scale(1.03) ',
+              //     lg: 'scale(1.03) '
+              //   },
+              //   '.show_more': {
+              //     textDecoration: 'underline',
+              //     '&>div': { boxShadow: '0 0 5px 1px white' }
+              //   }
+              // }}
+              transition="ease-in 0.2s"
+              boxShadow="darker"
+            >
               {/* Your blog post content goes here */}
               <Field.Section
                 as={Stack}
@@ -671,7 +694,7 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
               />
             </Box>
           </Box>
-          <Box w={{ base: '100%', md: '25%' }}>
+          <Box w={{ base: '100%', md: '23%' }}>
             <Box position="sticky" top={{ base: '80px', md: '20%' }}>
               {/* Anfragen button with divider */}
               <Stack textAlign="center" mb={{ base: 4, md: 8 }}>
