@@ -7,6 +7,41 @@ export enum ProductFilling {
   FILLED_WITH_HELIUM = 'Ballonpreis inklusive Helium-Füllung'
 }
 
+export const metafieldIdentifiers = [
+  {
+    namespace: 'details',
+    key: 'filling'
+  },
+  {
+    namespace: 'details',
+    key: 'sizeHelper'
+  },
+  {
+    namespace: 'details',
+    key: 'packaging'
+  },
+  {
+    namespace: 'details',
+    key: 'bundle'
+  },
+  {
+    namespace: 'details',
+    key: 'available'
+  },
+  {
+    namespace: 'details',
+    key: '_SU'
+  },
+  {
+    namespace: 'wholesale',
+    key: 'price'
+  },
+  {
+    namespace: 'wholesale',
+    key: '_SU'
+  }
+]
+
 // "{"amount":"4.4521","currency_code":"EUR"}"
 type Money = string
 

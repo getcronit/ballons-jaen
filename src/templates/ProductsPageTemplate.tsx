@@ -8,6 +8,7 @@ import {Head as JaenHead} from '@snek-at/jaen'
 import {PageProps} from 'gatsby'
 import {getImageData, getLowResolutionImageURL} from 'gatsby-plugin-image'
 import {getShopifyImage} from 'gatsby-source-shopify'
+import {metafieldIdentifiers} from '../common/getProductMetafields'
 
 import {ProductsTemplate} from '../components/templates/ProductsTemplate'
 import {
@@ -34,6 +35,7 @@ const ProductsPageTemplate: React.FC<ProductsPageTemplateProps> = props => {
   const splittedTags = prevActiveTags ? splitAllTags(prevActiveTags) : undefined
 
   const search = useProductSearch({
+    metafieldIdentifiers,
     filters: {
       mainTag: implicitTags.length > 0 ? implicitTags[0] : undefined,
       tags: splittedTags?.otherTags,

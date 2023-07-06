@@ -29,6 +29,7 @@ import {
 import {navigate} from 'gatsby'
 import React from 'react'
 import {getSrcFromImageData} from '../common/get-src-from-image-data'
+import {metafieldIdentifiers} from '../common/getProductMetafields'
 import {getProductPrices} from '../common/utils'
 import {useAuthentication} from './authentication'
 
@@ -352,7 +353,8 @@ export const SearchModalProvider: React.FC<{
     options: {
       count: 15
     },
-    persistData: false
+    persistData: false,
+    metafieldIdentifiers
   })
 
   const onSearch = (searchTerm: string) => {
