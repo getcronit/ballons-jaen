@@ -29,12 +29,12 @@ const ProductCatlog: FC<IProductCatlogProps> = () => {
             overflow="hidden"
             flex="1"
             w={{ base: '70%' }}
-            // h={{
-            //   base: '30rem',
-            //   sm: '31.25rem',
-            //   md: '35rem',
-            //   lg: '40rem'
-            // }}
+            h={{
+              base: '30rem',
+              sm: '31.25rem',
+              md: '35rem',
+              lg: '40rem'
+            }}
             >
             <Field.Image name="stack_cards" lightbox />
           </Box>

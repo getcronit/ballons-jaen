@@ -183,8 +183,9 @@ export const ProductCard = ({
           // h={'full'}
           // minH={'full'}
           borderRadius="xl"
-          border="1px"
-          borderColor="gray.200"
+          // border="1px"
+          // borderColor="gray.200"
+          boxShadow="light"
           _hover={{
             before: {borderColor: 'agt.red'},
             _after: {borderColor: 'agt.red'}

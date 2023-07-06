@@ -14,7 +14,7 @@ const NewsSlider: FC<INewsSlidesProps> = ({ showNewsTitle }) => {
   return (
     <>
       <Box
-        bg='#f4f4f4'
+        bg='#f6f8fa'
         zIndex='-1'
         pos='relative'
         px="4"
@@ -38,7 +38,7 @@ const NewsSlider: FC<INewsSlidesProps> = ({ showNewsTitle }) => {
       </Box>
 
       {/* Form mobile */}
-      <Box pos='relative' py="16" display={{ base: 'block', md: 'none' }} bg='#f4f4f4'>
+      <Box pos='relative' py="16" display={{ base: 'block', md: 'none' }} bg='#f6f8fa'>
         <Image
           borderBottom='solid white'
           borderBottomWidth={256}
