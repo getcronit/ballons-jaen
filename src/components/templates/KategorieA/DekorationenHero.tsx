@@ -7,14 +7,14 @@ import {
   Text,
   VStack
 } from '@chakra-ui/react'
-import {connectBlock, Field} from '@snek-at/jaen'
-import {FC} from 'react'
-import Slider, {Settings} from 'react-slick'
-import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
+import { connectBlock, Field } from '@snek-at/jaen'
+import { FC } from 'react'
+import Slider, { Settings } from 'react-slick'
+import { CONTAINER_MAX_WIDTH } from '../../../constant/sizes'
 import NextArrow from '../../CustomSlider/NextArrow'
 import PrevArrow from '../../CustomSlider/PrevArrow'
 import LinkButtonField from '../../fields/LinkButtonField'
-interface IDekorationenHeroProps {}
+interface IDekorationenHeroProps { }
 
 export const settings: Settings = {
   dots: true,
@@ -31,28 +31,37 @@ const DekorationenHero: FC<IDekorationenHeroProps> = () => {
   return (
     <Stack
       pos="relative"
-      bgImage="url('/images/decorationen/dekorationen_hero_bg.svg')"
-      bgSize="100%,contain"
-      bgRepeat="no-repeat"
-      bgPos={{
-        base: 'top 4.25rem left 0',
-        md: 'top 10.25rem left 0 ',
-        lg: 'top 14.25rem left 0',
-        xl: 'top 16.25rem left 0'
-      }}>
+      bg='white'
+      >
+      <Box
+        bg='#f4f4f4'
+        w="100%"
+        zIndex='-1'
+        position="absolute"
+        pt={{ base: '4.25rem', md: '10.25rem', lg: '14.25rem', xl: '16.25rem' }}
+        top='0'
+        left='0'
+      >
+      <Image
+        w="100%"
+        src="/images/decorationen/dekorationen_hero_bg.svg"
+        alt="bottom_shape_white"
+      />
+      </Box>
       <VStack
         zIndex="3"
-        mt={{base: '1rem', md: '2rem', lg: '6rem', xl: '6rem'}}>
+        pt={{ base: '1rem', md: '2rem', lg: '6rem', xl: '6rem' }}>
         <Field.Text
           as={Heading}
           asAs={'h1'}
-          lineHeight={{md: '50px', lg: '70px'}}
+          lineHeight={{ md: '50px', lg: '70px' }}
           //variant="cursive"
           name="title"
           defaultValue={`<i>Dekorationen</i>`}
           textAlign="center"
         />
         <Field.Text
+          pb='6'
           fontSize={{
             base: 'sm',
             md: 'md'
@@ -63,22 +72,22 @@ const DekorationenHero: FC<IDekorationenHeroProps> = () => {
         />
         <LinkButtonField
           name="ctaButton"
-          size={{base: 'xs', md: 'sm', xl: 'lg'}}
+          size={{ base: 'xs', md: 'sm', xl: 'lg' }}
           defaultValue="Termin vereinbaren"
           defaultUrl="/kontakt"
         />
       </VStack>
-      <Stack overflow="hidden" pb={{base: '15px', md: '0'}}>
+      <Stack overflow="hidden" pb={{ base: '15px', md: '0' }}>
         <Container
           w="full"
           h="full"
           maxW={CONTAINER_MAX_WIDTH}
-          mt={{base: '8', md: '32'}}
-          mb={{base: '8', md: '48'}}>
+          mt={{ base: '8', md: '32' }}
+          mb={{ base: '8', md: '48' }}>
           <Box
-            borderRadius={{base: '8', md: '16', lg: '24'}}
+            borderRadius='xl'
             overflow="hidden"
-            boxShadow={{base: 'light', md: 'dark'}}
+            boxShadow={{ base: 'light', md: 'dark' }}
             height={{
               // rems
               base: '25.625rem',

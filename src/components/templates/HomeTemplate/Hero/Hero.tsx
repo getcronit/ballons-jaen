@@ -8,7 +8,7 @@ import {
 import { Field } from '@snek-at/jaen'
 import { FC } from 'react'
 import { CONTAINER_MAX_WIDTH } from '../../../../constant/sizes'
-import { ParallaxHero } from '../../../molecules/ParallaxHero'
+import { MobileHero, ParallaxHero } from '../../../molecules/ParallaxHero'
 import { HBallon } from '../../../../common/assets/Ballon'
 
 
@@ -24,7 +24,7 @@ const Hero: FC<IHeroProps> = props => {
       <Box
         position="relative"
         zIndex={51}
-        h={"calc(180vh + 200px)"}
+        h={{ base: 'none', md: 'calc(180vh + 200px)' }}
         overflow={"hidden"}
         bgImage="url('/images/home/hero_line.svg')"
         bgSize="100%,contain"
@@ -35,7 +35,16 @@ const Hero: FC<IHeroProps> = props => {
           xl: 'bottom 0  left -5rem'
         }}
         bgRepeat="no-repeat">
-        <ParallaxHero noScroll={false} />
+        <Box
+          display={{ base: 'none', md: 'block' }}
+        >
+          <ParallaxHero noScroll={false} />
+        </Box>
+        <Box
+          display={{ base: 'block', md: 'none' }}
+        >
+          <MobileHero />
+        </Box>
         <Image
           position="absolute"
           bottom={"0"}

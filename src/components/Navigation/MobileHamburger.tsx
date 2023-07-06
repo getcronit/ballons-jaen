@@ -1,4 +1,4 @@
-import {CloseIcon, HamburgerIcon} from '@chakra-ui/icons'
+import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons'
 import {
   Button,
   Divider,
@@ -11,26 +11,37 @@ import {
   IconButton,
   IconButtonProps,
   Stack,
+  VStack,
   useDisclosure
 } from '@chakra-ui/react'
-import {navigate} from 'gatsby'
-import {FaPhoneAlt} from 'react-icons/fa'
-import {Logo} from '../../common/assets/Logo'
-import {useContactModal} from '../../services/contact'
-import {BottomNavLinks} from './NavLinks'
-import {BallonButton} from '../molecules/BallonButton'
+import { navigate } from 'gatsby'
+import { FaPhoneAlt, FaSearch, FaUser } from 'react-icons/fa'
+import { Logo } from '../../common/assets/Logo'
+import { useContactModal } from '../../services/contact'
+import { BottomNavLinks } from './NavLinks'
+import { BallonButton } from '../molecules/BallonButton'
+import { useSearch } from '../../services/search'
+import { useAuthentication } from '../../services/authentication'
 
 export const MobileHambuger: React.FC<{
   pathname: string
-}> = ({pathname}) => {
-  const {isOpen, onToggle} = useDisclosure()
+}> = ({ pathname }) => {
+  const { isOpen, onToggle } = useDisclosure()
 
   const contactModal = useContactModal()
+
+  const search = useSearch()
+
+  const handleOnSearchClick = () => {
+    search.onOpen()
+  }
+
+  const {user, openLoginModal, logout} = useAuthentication()
 
   return (
     <>
       <IconButton
-        display={{base: 'flex', md: 'none'}}
+        display={{ base: 'flex', md: 'none' }}
         onClick={onToggle}
         icon={
           isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
@@ -82,13 +93,13 @@ export const MobileHambuger: React.FC<{
                 onClick={onToggle}
               />
 
-              <Stack
+              <VStack
                 direction="row"
                 justify="space-between"
                 align="center"
                 spacing="4"
                 mt="4">
-                <BallonButton
+                {/* <BallonButton
                   w="full"
                   variant="outline"
                   py="7 !important"
@@ -99,8 +110,37 @@ export const MobileHambuger: React.FC<{
                     })
                   }}>
                   Anfragen
-                </BallonButton>
-              </Stack>
+                </BallonButton> */}
+                { user ? (
+                  <BallonButton
+                    w="full"
+                    variant="outline"
+                    py="7 !important"
+                    leftIcon={<FaUser />}
+                    onClick={logout}>
+                    Abmelden
+                  </BallonButton>
+                ) : (
+                  <BallonButton
+                    w="full"
+                    variant="outline"
+                    py="7 !important"
+                    leftIcon={<FaUser />}
+                    onClick={openLoginModal}>
+                    Anmelden
+                  </BallonButton>
+                )  
+                
+                }
+                {/* <BallonButton
+                  w="full"
+                  variant="outline"
+                  py="7 !important"
+                  leftIcon={<FaSearch />}
+                  onClick={handleOnSearchClick}>
+                  Artikel-Suche
+                </BallonButton> */}
+              </VStack>
             </Stack>
           </DrawerBody>
         </DrawerContent>

@@ -13,6 +13,7 @@ import {FC} from 'react'
 import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
 import {JaenPageIndexType} from '../../../types/commonTypes'
 import {WissenArticleMetaBar} from '../../organisms/WissenArticleMetaBar'
+import { BallonButton } from '../../molecules/BallonButton'
 
 const FeaturedBlog: React.FC<{
   featuredBlog: JaenPageIndexType['children'][number]
@@ -95,16 +96,17 @@ const FeaturedBlog: React.FC<{
             />
             <Flex justify="space-between" w="full" mt="4 !important">
               <Box>
-                <Button
+                <BallonButton
                   as={Link}
                   to={`/wissen/${props.featuredBlog.slug}`}
                   variant="outline"
+                  py="7 !important"
                   size={{
                     base: 'sm',
                     lg: 'md'
                   }}>
                   Weiterlesen
-                </Button>
+                </BallonButton>
               </Box>
               <WissenArticleMetaBar />
             </Flex>

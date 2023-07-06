@@ -3,6 +3,7 @@ import {useEffect, useState} from 'react'
 import {BsFillShareFill} from 'react-icons/bs'
 
 import NewsSlider from '../../organisms/NewsSlider/NewsSlider'
+import { BallonButton } from '../../molecules/BallonButton'
 
 const ShareBlogButton = () => {
   const toast = useToast()
@@ -38,9 +39,9 @@ const ShareBlogButton = () => {
   }, [isShareOpen])
 
   return (
-    <Button leftIcon={<BsFillShareFill />} size="sm" onClick={handleShareClick}>
+    <BallonButton leftIcon={<BsFillShareFill />} size="sm" onClick={handleShareClick}>
       Artikel teilen {isShareOpen && '(Kopiert)'}
-    </Button>
+    </BallonButton>
   )
 }
 
@@ -51,7 +52,7 @@ export const BlogFooter = () => {
         base: 8,
         lg: 16
       }}>
-      <VStack>
+      <VStack bg='white'>
         <ShareBlogButton />
       </VStack>
 

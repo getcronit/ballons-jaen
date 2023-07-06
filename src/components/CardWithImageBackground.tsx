@@ -45,6 +45,10 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
         transform: {
           md: 'scale(1.03) ',
           lg: 'scale(1.03) '
+        },
+        '.show_more': {
+          textDecoration: 'underline',
+          '&>div': {boxShadow: '0 0 5px 1px white'}
         }
       }}
       transition="ease-in 0.2s"
@@ -90,6 +94,7 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
             )}
 
             <HStack
+              className='show_more'
               cursor="pointer"
               _hover={{
                 textDecoration: 'underline',

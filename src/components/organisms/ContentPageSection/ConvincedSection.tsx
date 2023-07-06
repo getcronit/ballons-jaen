@@ -7,6 +7,7 @@ interface IConvincedSectionProps {}
 const ConvincedSection: FC<IConvincedSectionProps> = () => {
   return (
     <Box
+      px="6"
       w="100%"
       pos="relative"
       mx="auto"

@@ -44,8 +44,8 @@ const HeartSection: FC<IHeartSectionProps> = () => {
             p="8"
             spacing="4"
             as={TransparentCard}
-            h={{base: '21.25rem', md: 'auto', lg: 'auto'}}
-            w={{base: '19.375rem', sm: '100%', lg: '38.125rem'}}>
+            h={{md: 'auto', lg: 'auto'}}
+            w={{sm: '100%', lg: '38.125rem'}}>
             <Field.Text
               fontSize={{base: 'sm', lg: 'xl'}}
               name="heartTagline"

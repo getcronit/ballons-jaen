@@ -152,14 +152,18 @@ const CardWithImageBackgroundField: React.FC<
       <Stack
         onClick={!buttonTextField.isEditing ? handleButtonClick : undefined}
         position="relative"
-        // _hover={{
-        //   transition: 'all 0.3s ease',
-        //   transform: {
-        //     md: 'scale(1.03) ',
-        //     lg: 'scale(1.03) '
-        //   }
-        // }}
-        // transition="ease-in 0.2s"
+        _hover={{
+          transition: 'all 0.3s ease',
+          transform: {
+            md: 'scale(1.03) ',
+            lg: 'scale(1.03) '
+          },
+          '.show_more': {
+            textDecoration: 'underline',
+            '&>div': {boxShadow: '0 0 5px 1px white'}
+          }
+        }}
+        transition="ease-in 0.2s"
         boxShadow="darker"
         color="white"
         justify="end"
@@ -192,6 +196,7 @@ const CardWithImageBackgroundField: React.FC<
               )}
 
               <HStack
+                className='show_more'
                 cursor="pointer"
                 _hover={{
                   textDecoration: 'underline',
