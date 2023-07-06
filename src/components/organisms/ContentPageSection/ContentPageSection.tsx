@@ -657,7 +657,7 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
               mx={{ base: 0, md: 'auto' }}
               maxW="1000px"
               overflow="hidden"
-              bg='#f4f4f4'
+              bg='#f6f8fa'
               borderRadius="xl"
               // _hover={{
               //   transition: 'all 0.3s ease',

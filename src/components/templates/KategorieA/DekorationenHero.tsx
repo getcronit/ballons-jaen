@@ -34,7 +34,7 @@ const DekorationenHero: FC<IDekorationenHeroProps> = () => {
       bg='white'
       >
       <Box
-        bg='#f4f4f4'
+        bg='#f6f8fa'
         w="100%"
         zIndex='-1'
         position="absolute"

@@ -13,7 +13,7 @@ import 'slick-carousel/slick/slick-theme.css'
 
 export const colors = {
   gray: {
-    100: '#F4F4F4',
+    100: '#f6f8fa',
     500: '#E6E6E6',
     700: '#606060'
   },
@@ -269,7 +269,7 @@ const theme = extendTheme(
     styles: {
       global: {
         'html, body': {
-          background: '#f4f4f4 !important'
+          background: '#f6f8fa !important'
         },
         'i, em': {
           fontFamily: 'Red Buttery, sans-serif',
