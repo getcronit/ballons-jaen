@@ -10,6 +10,8 @@ import {ContactModalProvider} from './services/contact'
 import {SearchModalProvider} from './services/search'
 
 import {LayoutMode} from './types/commonTypes'
+import { SideButtons } from './components/molecules/SideButtons'
+import { navigate } from 'gatsby'
 
 export interface LayoutProps {
   location: {
@@ -32,6 +34,7 @@ export const Layout: React.FC<LayoutProps> = ({
           <SearchProvider>
             <SearchModalProvider>
               <Navigation mode={mode} pathname={location.pathname} />
+              <SideButtons />
             </SearchModalProvider>
           </SearchProvider>
 

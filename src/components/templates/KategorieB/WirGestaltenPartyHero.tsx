@@ -8,80 +8,101 @@ import {
   Stack,
   Text
 } from '@chakra-ui/react'
-import {Field} from '@snek-at/jaen'
-import {FC} from 'react'
-import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
+import { Field } from '@snek-at/jaen'
+import { FC } from 'react'
+import { CONTAINER_MAX_WIDTH } from '../../../constant/sizes'
 import LinkButtonField from '../../fields/LinkButtonField'
 
-interface IWirGestaltenPartyHeroProps {}
+interface IWirGestaltenPartyHeroProps { }
 
 const WirGestaltenPartyHero: FC<IWirGestaltenPartyHeroProps> = () => {
   return (
     <>
-      <Container maxW={CONTAINER_MAX_WIDTH}>
-        <Flex
-          align={{base: 'start', md: 'center'}}
-          pos="relative"
-          h={{
-            base: '25rem',
-            sm: '31.25rem',
-            md: '43.75rem',
-            lg: '62.5rem',
-            xl: '75rem'
-          }}>
-          <Image
-            pos="absolute"
-            top="0"
-            left={{base: '-20%', md: '-40%'}}
-            h={{base: '-20%', md: 'full'}}
-            src="/images/we_design_party/shape.svg"
-          />
-          <Stack pos="relative" w="100%" top={{base: '4rem', md: 'unset'}}>
-            <Field.Text
-              as={Heading}
-              fontSize={{base: 'xl', md: '2xl', lg: '3xl', xl: '4xl'}}
-              fontWeight="semibold"
-              sx={{
-                'i, em': {
-                  fontSize: '1.5em',
-                  verticalAlign: 'text-top'
-                }
-              }}
-              name="title"
-              defaultValue="Wir gestalten </br> <i>Ihre Party</i>"
-            />
+      <Box pos='relative'>
 
-            <Field.Text
-              display={{base: 'none', sm: 'block'}}
-              fontSize={{base: 'sm', lg: 'md'}}
-              maxW={{md: '70%'}}
-              name="text"
-              defaultValue={
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in libero risus semper'
-              }
-            />
-            <LinkButtonField
-              name="cta"
-              size={{base: 'xs', md: 'lg'}}
-              mt={{base: '8 !important', md: '4'}}
-            />
-          </Stack>
-          <Grid
-            placeItems="center"
-            pos="relative"
-            top={{base: '1.25rem', md: 'unset'}}>
-            <Box
-              overflow="hidden"
-              borderRadius="full"
-              boxShadow="light"
-              // w={{ base: "17.5rem", sm: "auto " }}
-              w={{base: '30vh', md: '40vh'}}
-              h={{base: '30vh', md: '40vh'}}>
-              <Field.Image name="heroImage" lightbox />
-            </Box>
-          </Grid>
-        </Flex>
-      </Container>
+
+        <Container maxW={CONTAINER_MAX_WIDTH}>
+          <Flex
+            pt={{ base: '4', md: '48' }}
+            align={{ base: 'center', md: 'center' }}
+           direction={{ base: 'column-reverse', md: 'row' }}
+          >
+
+
+            {/* <Image
+              zIndex={'-1'}
+              //bg={'blue'}
+              pos="absolute"
+              top={{base: '0%', md: '-30%'}}
+              //right='-50%'
+              // bottom='-50%'
+              left={{base: '-30%', md: '-10%'}}
+              //h='200%'
+              w='1200px'
+              minW='1200px'
+              src="/images/we_design_party/shape.svg"
+            /> */}
+
+            <Stack pos="relative" w="100%" mt={{ base: '16', md: 'unset' }}
+              _before={{
+                zIndex: '-1',
+                top: '-250px',
+                left: '-250px',
+                pos: 'absolute',
+                content: `""`,
+                h: '1000px',
+                w: '1000px',
+                bgImage: '/images/we_design_party/shape.svg',
+                bgSize: "100%,contain",
+                bgRepeat: "no-repeat"
+              }}
+            >
+
+              <Field.Text
+                as={Heading}
+                fontSize={{ base: 'xl', md: '2xl', lg: '3xl', xl: '4xl' }}
+                fontWeight="semibold"
+                sx={{
+                  'i, em': {
+                    fontSize: '1.5em',
+                    verticalAlign: 'text-top'
+                  }
+                }}
+                name="title"
+                defaultValue="Wir gestalten </br> <i>Ihre Party</i>"
+              />
+
+              <Field.Text
+                pb={{ base: '8 !important', md: '4' }}
+                display={{ base: 'none', sm: 'block' }}
+                fontSize={{ base: 'sm', lg: 'md' }}
+                maxW={{ md: '70%' }}
+                name="text"
+                defaultValue={
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in libero risus semper'
+                }
+              />
+              <LinkButtonField
+                name="cta"
+                size={{ base: 'xs', md: 'lg' }}
+              />
+            </Stack>
+            <Grid
+              placeItems="center"
+              pos="relative"
+              top={{ base: '1.25rem', md: 'unset' }}>
+              <Box
+                overflow="hidden"
+                borderRadius="full"
+                boxShadow="light"
+                // w={{ base: "17.5rem", sm: "auto " }}
+                boxSize={{ sm: "xs", md: "sm", lg: "md", xl: "lg" }}>
+                <Field.Image name="heroImage" defaultValue='/images/content/oh_happy_day.gif' lightbox overload />
+              </Box>
+            </Grid>
+          </Flex>
+        </Container>
+      </Box>
     </>
   )
 }

@@ -9,6 +9,7 @@ interface IBallonGasProps {}
 const BallonGas: FC<IBallonGasProps> = () => {
   return (
     <Flex
+      w={"full"}
       bgRepeat="no-repeat"
       bgSize="cover"
       bgPos="center"

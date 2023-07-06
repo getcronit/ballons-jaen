@@ -7,7 +7,7 @@ interface IImaginationSectionProps {}
 
 const ImaginationSection: FC<IImaginationSectionProps> = () => {
   return (
-    <VStack py="40" gap={{ base: 16, md: 24 }} pos="relative">
+    <VStack py="40" gap={{ base: 16, md: 24 }} pos="relative" bg='white'>
       <ImaginationUpperSection />
       <Image
         display={{ base: "block", md: "none" }}

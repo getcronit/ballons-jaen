@@ -1,5 +1,6 @@
 import {
   Button,
+  ButtonProps,
   IconButton,
   Menu,
   MenuButton,
@@ -14,9 +15,9 @@ import {useIsClient} from '../../common/useIsClient'
 import {useAuthentication} from '../../services/authentication'
 import {useBasket} from '../../services/basket'
 
-export interface NavAuthButtonProps {}
+export interface NavAuthButtonProps extends ButtonProps {}
 
-export const NavAuthButton: React.FC<NavAuthButtonProps> = () => {
+export const NavAuthButton: React.FC<NavAuthButtonProps> = (props) => {
   const {user, openLoginModal, logout} = useAuthentication()
 
   const basket = useBasket()
@@ -34,6 +35,7 @@ export const NavAuthButton: React.FC<NavAuthButtonProps> = () => {
       icon={<FaUser />}
       aria-label="Login"
       onClick={openLoginModal}
+      {...props}
     />
   )
 

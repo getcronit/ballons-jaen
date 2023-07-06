@@ -13,6 +13,7 @@ import React, {FC, useEffect, useState} from 'react'
 import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
 import {JaenPageIndexType} from '../../../types/commonTypes'
 import BlogCard from './BlogCard'
+import { BallonButton } from '../../molecules/BallonButton'
 
 interface IBlogsSectionProps {
   blogs: JaenPageIndexType['children']
@@ -30,7 +31,7 @@ const BlogsSection: FC<IBlogsSectionProps> = props => {
 
   if (props.blogs.length === 0) {
     return (
-      <Box my="64">
+      <Box my="64" bg='white'>
         <Heading as="h2" size="lg" textAlign="center" mb={4}>
           Derzeit sind keine weiteren Beiträge vorhanden.
         </Heading>
@@ -40,7 +41,8 @@ const BlogsSection: FC<IBlogsSectionProps> = props => {
 
   return (
     <>
-      <Container maxW={CONTAINER_MAX_WIDTH} mt={{base: '-16', md: '16'}}>
+      <Box bg='white'>
+      <Container maxW={CONTAINER_MAX_WIDTH} pt={{base: '0', md: '16'}}>
         <Field.Text
           as={Heading}
           fontWeight="semibold"
@@ -50,11 +52,7 @@ const BlogsSection: FC<IBlogsSectionProps> = props => {
         />
         <Divider mb="8" mt="4" bg="red.500" h="1px" border="0" />
       </Container>
-      <Box
-        bgImage="/images/blog_overview/blog_shape.svg"
-        bgPos="right -20rem bottom 20rem"
-        bgSize="60%"
-        bgRepeat="no-repeat">
+      <Box>
         <Container maxW={CONTAINER_MAX_WIDTH}>
           <Grid
             gridTemplateColumns={{md: 'repeat(2,1fr)', xl: 'repeat(3,1fr)'}}
@@ -73,16 +71,19 @@ const BlogsSection: FC<IBlogsSectionProps> = props => {
             })}
           </Grid>
           <VStack>
-            <Button
+            <BallonButton
               display={maxLoadedBlogs < props.blogs.length ? 'flex' : 'none'}
               size={{base: 'sm', md: 'md'}}
               mt="16"
+              py="7 !important"
               variant="outline"
               onClick={loadMoreBlogs}>
               Mehr Beiträge anzeigen
-            </Button>
+            </BallonButton>
           </VStack>
         </Container>
+      </Box>
+      
       </Box>
     </>
   )

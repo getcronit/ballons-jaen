@@ -18,7 +18,7 @@ const FourCard: FC<IFourCardProps> = ({
   const {isEditing} = useStatus()
 
   return (
-    <Container maxW={CONTAINER_MAX_WIDTH} mb={{base: 16, md: 0}}>
+    <Container maxW={CONTAINER_MAX_WIDTH} mb={{base: 8, md: 0}}>
       <Field.Section
         as={SimpleGrid}
         props={{

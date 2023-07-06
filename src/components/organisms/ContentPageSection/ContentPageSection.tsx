@@ -19,7 +19,7 @@ import {
   Text,
   VStack
 } from '@chakra-ui/react'
-import {BallonButton} from '../../molecules/BallonButton'
+import { BallonButton } from '../../molecules/BallonButton'
 import {
   connectBlock,
   Field,
@@ -39,12 +39,12 @@ import React, {
 import Slider from 'react-slick'
 import BallonGas from './BallonGas'
 
-import {removeHtmlFromString} from '../../../common/utils'
+import { removeHtmlFromString } from '../../../common/utils'
 import FourCard from '../FourCard/FourCard'
 import ConvincedSection from './ConvincedSection'
-import {useContactModal} from '../../../services/contact'
+import { useContactModal } from '../../../services/contact'
 
-export interface ContentPageSectionProps {}
+export interface ContentPageSectionProps { }
 
 const CompareSection = connectBlock(
   () => {
@@ -81,14 +81,14 @@ const CompareSection = connectBlock(
           </ButtonGroup>
 
           <Field.Text
-            style={{textAlign: 'center'}}
+            style={{ textAlign: 'center' }}
             display={isCompareAToggled ? 'block' : 'none'}
             name="description-a"
             defaultValue="Text"
           />
 
           <Field.Text
-            style={{textAlign: 'center'}}
+            style={{ textAlign: 'center' }}
             display={!isCompareAToggled ? 'block' : 'none'}
             name="description-b"
             defaultValue="Text"
@@ -127,7 +127,7 @@ const ImageSideBySideSection = connectBlock(
         <VStack spacing="8">
           <Field.Text
             as={Heading}
-            fontSize={{base: 'xl', md: '2xl', lg: '3xl', xl: '4xl'}}
+            fontSize={{ base: 'xl', md: '2xl', lg: '3xl', xl: '4xl' }}
             name="title"
             defaultValue="Titel"
             textAlign="center"
@@ -177,9 +177,9 @@ export const ImagesGallery3x3Section = connectBlock(
       <>
         <VStack
           py="4"
-          display={{base: 'none', md: 'flex'}}
+          display={{ base: 'none', md: 'flex' }}
           pos="relative"
-          gap={{base: '4', md: '8', lg: '10', xl: '14'}}
+          gap={{ base: '4', md: '8', lg: '10', xl: '14' }}
           w="full">
           <PhotoProvider maskOpacity={0.8}>
             <Grid templateColumns="repeat(3, 1fr)" gap={2} boxSize="full">
@@ -222,7 +222,7 @@ export const ImagesGallery3x3Section = connectBlock(
         {/* for Mobile */}
         <Box
           // overflow="hidden"
-          display={{base: 'block', md: 'none'}}
+          display={{ base: 'block', md: 'none' }}
           sx={{
             'ul.slick-dots': {
               top: 'auto'
@@ -261,7 +261,7 @@ export const ImagesGallery3x3Section = connectBlock(
                       name={imageFieldName}
                       lightboxGroup
                       lightbox
-                      //defaultValue={defaultImages[i]}
+                    //defaultValue={defaultImages[i]}
                     />
                   </Box>
                 )
@@ -285,15 +285,15 @@ const FullWidthImageSection = connectBlock(
         <Field.Text
           as={Heading}
           textAlign="center"
-          fontSize={{base: 'xl', md: '2xl', lg: '3xl', xl: '4xl'}}
+          fontSize={{ base: 'xl', md: '2xl', lg: '3xl', xl: '4xl' }}
           fontWeight="semibold"
           name="title"
           defaultValue="In Erinnerung behalten"
-          //variant="cursive"
+        //variant="cursive"
         />
         <Box
-          my={{base: '4 !important', md: '12 !important'}}
-          borderRadius={{base: '.625rem', md: '2rem'}}
+          my={{ base: '4 !important', md: '12 !important' }}
+          borderRadius={{ base: '.625rem', md: '2rem' }}
           // minH={{
           //   base: "11.25rem",
           //   md: "18.75rem",
@@ -322,6 +322,8 @@ const TextSection = connectBlock(
   () => {
     return (
       <Field.Text
+        //border="10px solid red"
+        px="6"
         textAlign="center"
         fontSize={{
           base: 'sm',
@@ -377,7 +379,7 @@ const SubCategoryContentSection = connectBlock(
             <Field.Text
               as={Heading}
               name="heading"
-              fontSize={{base: 'xl', md: '2xl', lg: '3xl', xl: '4xl'}}
+              fontSize={{ base: 'xl', md: '2xl', lg: '3xl', xl: '4xl' }}
               fontWeight="semibold"
               textAlign="center"
               defaultValue="Überschrift"
@@ -398,7 +400,7 @@ Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora necessitatibus
 
           <Field.Section
             as={Stack}
-            props={{spacing: 20, py: 8}}
+            props={{ spacing: 20, py: 8 }}
             sectionProps={{
               py: {
                 base: '4',
@@ -436,6 +438,8 @@ const CategoryContentSection = connectBlock(
     return (
       <VStack spacing="20">
         <VStack
+          //border="10px solid red"
+          px="6"
           pos={'relative'}
           w="full"
           py={{
@@ -446,9 +450,9 @@ const CategoryContentSection = connectBlock(
           <Image
             zIndex="-999"
             pos="absolute"
-            top={{base: '0rem'}}
-            w={{base: '40%', md: '60%', lg: '70%', xl: '58%'}}
-            left={{base: '0', lg: '-64px', xl: 0}}
+            top={{ base: '0rem' }}
+            w={{ base: '40%', md: '60%', lg: '70%', xl: '58%' }}
+            left={{ base: '0', lg: '-64px', xl: 0 }}
             src="/images/decorationen/shapes/shape.svg"
           />
           <VStack pos="relative" zIndex="1">
@@ -456,14 +460,14 @@ const CategoryContentSection = connectBlock(
               as={Heading}
               //variant="cursive"
               textAlign="center"
-              fontSize={{base: 'xl', md: '2xl', lg: '3xl', xl: '4xl'}}
+              fontSize={{ base: 'xl', md: '2xl', lg: '3xl', xl: '4xl' }}
               name="title"
               defaultValue={`<i>Überschrift</i>`}
             />
             <Field.Text
               as={Heading}
               textAlign="center"
-              fontSize={{base: 'lg', md: 'xl', lg: '2xl', xl: '3xl'}}
+              fontSize={{ base: 'lg', md: 'xl', lg: '2xl', xl: '3xl' }}
               name="subtitle"
               defaultValue="Unterüberschrift"
             />
@@ -482,7 +486,7 @@ const CategoryContentSection = connectBlock(
 
         <Field.Section
           as={Stack}
-          props={{spacing: 20, width: '100%'}}
+          props={{ spacing: 20, width: '100%' }}
           sectionProps={{
             py: {
               base: '4',
@@ -596,7 +600,7 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
         }, [])
 
         return (
-          <Box key={index} mb={{base: 4, md: 8}}>
+          <Box key={index} mb={{ base: 4, md: 8 }}>
             <Link
               color={isActive ? 'red' : 'black'}
               onClick={() => {
@@ -627,20 +631,31 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
     }
 
     return (
-      <Stack padding={{base: 0, md: 8}} spacing="24">
+      <Stack padding={{ base: 0, md: 8 }} spacing={{base: '0', md: '24'}} bg="white">
         <FourCard
           sectionFieldName={settings.fieldName}
           sectionDisplayName={settings.displayName}
           onCardClick={scrollToIndex}
         />
-        <Flex direction={{base: 'column-reverse', md: 'row'}}>
-          <Box w={{base: '100%', md: '75%'}} mr={{md: 4}}>
-            <Box mx={{base: 0, md: 'auto'}} maxW="800px" overflow="hidden">
+        <Flex direction={{ base: 'column-reverse', md: 'row' }}>
+          <Box w={{ base: '0%', md: '0%', xl: '25%' }}>
+            <Box position="sticky" top={{ base: '80px', md: '20%' }}>
+              {/* Anfragen button with divider */}
+              <Image
+                w="100%"
+                src="/images/content/shiny_balloons.png"
+                alt="bottom_shape_white"
+              />
+            </Box>
+          </Box>
+          <Box w={{ base: '100%', md: '75%', xl: '50%' }} mr={{ md: 4 }}>
+            <Box mx={{ base: 0, md: 'auto' }} maxW="1000px" overflow="hidden" bg='#f4f4f4' borderRadius="xl">
               {/* Your blog post content goes here */}
               <Field.Section
                 as={Stack}
-                props={{spacing: 20, position: 'relative', width: '100%'}}
-                sectionProps={({count}) => ({
+                props={{ paddingX: { base: "0 !important" }, spacing: 20, position: 'relative', width: '100%' }}
+                sectionProps={({ count }) => ({
+                  paddingX: { base: "0 !important" },
                   ref: (el: HTMLDivElement) => {
                     refs.current[count - 1] = el
                   },
@@ -656,10 +671,10 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
               />
             </Box>
           </Box>
-          <Box w={{base: '100%', md: '25%'}}>
-            <Box position="sticky" top={{base: '80px', md: '20%'}}>
+          <Box w={{ base: '100%', md: '25%' }}>
+            <Box position="sticky" top={{ base: '80px', md: '20%' }}>
               {/* Anfragen button with divider */}
-              <Stack textAlign="center" mb={{base: 4, md: 8}}>
+              <Stack textAlign="center" mb={{ base: 4, md: 8 }}>
                 <BallonButton
                   variant="solid"
                   size="md"
@@ -670,11 +685,11 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
                   Jetzt anfragen
                 </BallonButton>
 
-                <Flex align="center">
+                <Flex align="center" pt='8'>
                   <Divider />
                   <Link
                     fontSize="sm"
-                    display={{base: 'block', md: 'none'}}
+                    display={{ base: 'block', md: 'none' }}
                     padding="2"
                     aria-label="Table of Contents"
                     onClick={onOpen}>
@@ -705,9 +720,9 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
               </Drawer>
               {/* Table of contents on desktop */}
               <Box
-                display={{base: 'none', md: 'block'}}
+                display={{ base: 'none', md: 'block' }}
                 position="sticky"
-                top={{base: 'unset', md: '10%'}}>
+                top={{ base: 'unset', md: '10%' }}>
                 <Links />
               </Box>
             </Box>
