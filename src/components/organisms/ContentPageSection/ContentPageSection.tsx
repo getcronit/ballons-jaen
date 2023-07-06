@@ -702,6 +702,7 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
                   variant="solid"
                   size="md"
                   mx="auto"
+                  py="7 !important"
                   onClick={() => {
                     contactModal.onOpen()
                   }}>
