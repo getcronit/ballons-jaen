@@ -18,17 +18,13 @@ interface IWirGestaltenPartyHeroProps { }
 const WirGestaltenPartyHero: FC<IWirGestaltenPartyHeroProps> = () => {
   return (
     <>
-      <Box pos='relative'>
-
-
+      <Box pos='relative' overflowX='clip'>
         <Container maxW={CONTAINER_MAX_WIDTH}>
           <Flex
             pt={{ base: '4', md: '48' }}
             align={{ base: 'center', md: 'center' }}
-           direction={{ base: 'column-reverse', md: 'row' }}
+            direction={{ base: 'column-reverse', md: 'row' }}
           >
-
-
             {/* <Image
               zIndex={'-1'}
               //bg={'blue'}
@@ -74,7 +70,7 @@ const WirGestaltenPartyHero: FC<IWirGestaltenPartyHeroProps> = () => {
 
               <Field.Text
                 pb={{ base: '8 !important', md: '4' }}
-                display={{ base: 'none', sm: 'block' }}
+                //display={{ base: 'none', sm: 'block' }}
                 fontSize={{ base: 'sm', lg: 'md' }}
                 maxW={{ md: '70%' }}
                 name="text"
@@ -96,7 +92,7 @@ const WirGestaltenPartyHero: FC<IWirGestaltenPartyHeroProps> = () => {
                 borderRadius="full"
                 boxShadow="light"
                 // w={{ base: "17.5rem", sm: "auto " }}
-                boxSize={{ sm: "xs", md: "sm", lg: "md", xl: "lg" }}>
+                boxSize={{ base: '2xs', sm: "xs", md: "sm", lg: "md", xl: "lg" }}>
                 <Field.Image name="heroImage" defaultValue='/images/content/oh_happy_day.gif' lightbox overload />
               </Box>
             </Grid>
