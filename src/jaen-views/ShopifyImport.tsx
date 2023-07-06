@@ -302,7 +302,7 @@ const ImportProductsFromExcel: React.FC<{
 
       const row = worksheet.getRow(i)
 
-      const shouldDeleteRow = getValueOrEmpty(row, 'BC') === '#'
+      const shouldDeleteRow = getValueOrEmpty(row, 'BD') === '#'
       const productTitle = getValueOrEmpty(row, 'G')
 
       let action: 'update' | 'delete' | 'create' = 'create'
