@@ -1,10 +1,11 @@
-import {VStack, Grid, Box} from '@chakra-ui/react'
-import {connectBlock, Field, PhotoProvider, useField} from '@snek-at/jaen'
+import { VStack, Grid, Box, chakra } from '@chakra-ui/react'
+import { connectBlock, Field, PhotoProvider, useField } from '@snek-at/jaen'
 import React from 'react'
 import Slider from 'react-slick'
-import {ImagesWithText} from '../../../organisms/ImagesWithText'
+import { ImagesWithText } from '../../../organisms/ImagesWithText'
+import { BiBorderRadius } from 'react-icons/bi'
 
-export {SliderBlock} from './SliderBlock'
+export { SliderBlock } from './SliderBlock'
 
 export const TextBlock = connectBlock(
   () => {
@@ -29,20 +30,45 @@ export const ImageBlock = connectBlock(
   () => {
     return (
       <Box
-        borderRadius={'lg'}
+        borderRadius={'xl'}
         overflow="hidden"
         maxW="80%"
         mx="auto"
+        sx={{
+          '.rounded': {
+            filter: 'url("#filter-radius")'
+          }
+        }}
         h={{
           base: '30vh',
           md: '50vh',
           lg: '60vh'
         }}>
+        {/* <!-- Magic for border radius --> */}
+        <chakra.svg visibility={"hidden"} width="0" height="0">
+          <defs>
+            <filter id="filter-radius">
+              {/* <!-- Create a blur of 4px radius from the original image --> */}
+              {/* <!-- (Transparent pixels are ignored, thus the blur radius starts at the corner of the image) --> */}
+              <feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blur" />
+              {/* <!-- Filter out the pixels where alpha values that are too low, in this case the blurred corners are filtered out --> */}
+              <feColorMatrix
+                in="blur"
+                mode="matrix"
+                values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 100 -50"
+                result="mask"
+              />
+              {/* <!-- As the final result is now blurred, we need to use the mask we obtained from previous step to cut from the original source --> */}
+              <feComposite in="SourceGraphic" in2="mask" operator="atop" />
+            </filter>
+          </defs>
+        </chakra.svg>
         <Field.Image
+          imgClassName='rounded'
           name="image"
-          objectFit="cover"
+          objectFit="contain"
           lightbox
-          backgroundColor="var(--chakra-colors-red-50)"
+          //backgroundColor="var(--chakra-colors-red-50)"
         />
       </Box>
     )
@@ -91,9 +117,9 @@ export const ImagesBlock = connectBlock(
       <>
         <VStack
           py="4"
-          display={{base: 'none', md: 'flex'}}
+          display={{ base: 'none', md: 'flex' }}
           pos="relative"
-          gap={{base: '4', md: '8', lg: '10', xl: '14'}}
+          gap={{ base: '4', md: '8', lg: '10', xl: '14' }}
           w="full">
           <PhotoProvider maskOpacity={0.8}>
             <Grid templateColumns="repeat(3, 1fr)" gap={2} boxSize="full">
@@ -136,7 +162,7 @@ export const ImagesBlock = connectBlock(
         {/* for Mobile */}
         <Box
           // overflow="hidden"
-          display={{base: 'block', md: 'none'}}
+          display={{ base: 'block', md: 'none' }}
           sx={{
             'ul.slick-dots': {
               top: 'auto'
@@ -176,7 +202,7 @@ export const ImagesBlock = connectBlock(
                       name={imageFieldName}
                       lightboxGroup
                       lightbox
-                      //defaultValue={defaultImages[i]}
+                    //defaultValue={defaultImages[i]}
                     />
                   </Box>
                 )
