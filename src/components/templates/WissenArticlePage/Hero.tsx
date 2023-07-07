@@ -28,7 +28,7 @@ export const Hero: FC<HeroProps> = () => {
       px="2">
       <Stack mx="auto" w="full" maxW="6xl" spacing="4">
         <Box
-          borderRadius="lg"
+          borderRadius="xl"
           boxShadow="dark"
           overflow={'hidden'}
           mx="auto"
