@@ -39,7 +39,7 @@ const ShareBlogButton = () => {
   }, [isShareOpen])
 
   return (
-    <BallonButton leftIcon={<BsFillShareFill />} size="sm" onClick={handleShareClick}>
+    <BallonButton leftIcon={<BsFillShareFill />} size="sm" onClick={handleShareClick} py="7 !important">
       Artikel teilen {isShareOpen && '(Kopiert)'}
     </BallonButton>
   )
