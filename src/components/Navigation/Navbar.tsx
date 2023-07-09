@@ -231,7 +231,7 @@ export const Navbar: FC<INavbarProps> = ({
                     aria-label="Warenkorb"
                     size="md"
                     variant={'ghost'}
-                    icon={<FaShoppingCart />}
+                    icon={<Icon  filter="drop-shadow(1px 2px 2px rgb(0 0 0 / 0.1))" as={FaShoppingCart} />}
                     onClick={onBasketClick}
                   />
                 </Tooltip>

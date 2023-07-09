@@ -1,9 +1,8 @@
-import { Box } from "@chakra-ui/react"
+import { Box, chakra } from "@chakra-ui/react"
 
 export const SkylineL1 = (props: any) => {
   return (
-    <Box
-      as="svg"
+    <chakra.svg
       xmlns="http://www.w3.org/2000/svg"
       //width="11.3778in"
       //height="45.5111in"
@@ -481,14 +480,13 @@ export const SkylineL1 = (props: any) => {
              918.00,462.00 919.00,458.00 919.00,458.00
              919.00,458.00 919.00,462.00 919.00,462.00
              923.98,458.26 921.73,453.75 918.00,450.00 Z" />
-    </Box>
+    </chakra.svg>
   )
 }
 
 export const SkylineL2 = (props: any) => {
   return (
-    <Box
-      as="svg"
+    <chakra.svg
       xmlns="http://www.w3.org/2000/svg"
       //width="11.3778in"
       //height="45.5111in"
@@ -3604,14 +3602,13 @@ export const SkylineL2 = (props: any) => {
            C 577.00,584.00 578.00,584.00 578.00,584.00
              578.00,584.00 577.00,585.00 577.00,585.00
              577.00,585.00 577.00,584.00 577.00,584.00 Z" />
-    </Box>
+    </chakra.svg>
   )
 }
 
 export const SkylineL3 = (props: any) => {
   return (
-    <Box
-      as="svg"
+    <chakra.svg
       xmlns="http://www.w3.org/2000/svg"
       //width="11.3778in"
       //height="45.5111in"
@@ -5548,6 +5545,6 @@ export const SkylineL3 = (props: any) => {
              1017.77,625.69 1018.77,628.49 1024.00,630.18
              1024.00,630.18 1024.09,768.09 1024.09,768.09
              1024.09,768.09 -0.06,768.12 -0.06,768.12 Z" />
-    </Box>
+    </chakra.svg>
   )
 }

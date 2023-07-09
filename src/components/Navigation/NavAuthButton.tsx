@@ -1,6 +1,7 @@
 import {
   Button,
   ButtonProps,
+  Icon,
   IconButton,
   Menu,
   MenuButton,
@@ -32,7 +33,7 @@ export const NavAuthButton: React.FC<NavAuthButtonProps> = (props) => {
     <IconButton
       variant="ghost"
       size="md"
-      icon={<FaUser />}
+      icon={<Icon filter="drop-shadow(1px 2px 2px rgb(0 0 0 / 0.1))" as={FaUser} />}
       aria-label="Login"
       onClick={openLoginModal}
       {...props}

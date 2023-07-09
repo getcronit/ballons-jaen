@@ -1,9 +1,11 @@
 import React from 'react'
-import {isChrome} from '../utils'
+import { isChrome } from '../utils'
+import { chakra } from '@chakra-ui/react'
 
 export const Ballon = (props: any) => {
   return (
-    <svg
+    <chakra.svg
+      filter="drop-shadow(1px 2px 2px rgb(0 0 0 / 0.1))"
       xmlns="http://www.w3.org/2000/svg"
       height={148}
       viewBox="0 0 250 400"
@@ -62,13 +64,14 @@ export const Ballon = (props: any) => {
              20.15,64.90 46.75,33.65 80.25,26.40
              85.50,25.25 99.20,24.80 104.75,25.55 Z"
       />
-    </svg>
+    </chakra.svg>
   )
 }
 
 export const HBallon = (props: any) => {
   return (
-    <svg
+    <chakra.svg
+      filter="drop-shadow(1px 2px 2px rgb(0 0 0 / 0.1))"
       xmlns="http://www.w3.org/2000/svg"
       height={148}
       viewBox="0 0 250 400"
@@ -127,6 +130,6 @@ export const HBallon = (props: any) => {
              177.13,207.10 174.48,207.85 174.48,207.85
              174.48,207.85 175.85,206.42 175.85,206.42 Z"
       />
-    </svg>
+    </chakra.svg>
   )
 }
