@@ -78,7 +78,7 @@ export const BasketDrawer = ({
   return (
     <Drawer isOpen={isOpen} placement="right" size="md" onClose={onClose}>
       <DrawerOverlay />
-      <DrawerContent>
+      <DrawerContent borderLeftRadius="lg">
         <DrawerCloseButton size="lg" />
         <DrawerHeader fontWeight="normal">
           <Heading fontSize="lg" as="h2" fontWeight="normal">

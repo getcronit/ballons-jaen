@@ -52,7 +52,7 @@ export const MobileHambuger: React.FC<{
 
       <Drawer placement="left" onClose={onToggle} isOpen={isOpen}>
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent borderRightRadius="lg">
           <DrawerCloseButton />
           <DrawerHeader>
             {/* <Image
