@@ -35,6 +35,7 @@ export const SideButtons: React.FC = () => {
       zIndex="999">
       <Tooltip label="Infos">
         <IconButton
+          filter="drop-shadow(1px 2px 2px rgb(0 0 0 / 0.1))"
           w={{ base: '100%', md: 'unset' }}
           aria-label="Location"
           icon={<FiMapPin />}
@@ -46,6 +47,7 @@ export const SideButtons: React.FC = () => {
         aria-label="Kontakt"
       >
         <IconButton
+          filter="drop-shadow(1px 2px 2px rgb(0 0 0 / 0.1))"
           w={{ base: '100%', md: 'unset' }}
           aria-label="Contact"
           icon={<FiMail />}
@@ -58,6 +60,7 @@ export const SideButtons: React.FC = () => {
       </Tooltip>
       <Tooltip label="Artikel-Suche">
         <IconButton
+          filter="drop-shadow(1px 2px 2px rgb(0 0 0 / 0.1))"
           w={{ base: '100%', md: 'unset' }}
           aria-label="Search"
           icon={<FiSearch />}

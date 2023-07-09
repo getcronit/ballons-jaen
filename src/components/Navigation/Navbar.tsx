@@ -102,6 +102,7 @@ export const Navbar: FC<INavbarProps> = ({
               </Tooltip>
 
               <IconButton
+                filter="drop-shadow(1px 2px 2px rgb(0 0 0 / 0.1))"
                 mt="1"
                 display={{
                   base: 'flex',
@@ -207,6 +208,7 @@ export const Navbar: FC<INavbarProps> = ({
                   aria-label="Zum Onlineshop"
                 >
                   <IconButton
+                    filter="drop-shadow(1px 2px 2px rgb(0 0 0 / 0.1))"
                     display={{
                       base: 'flex',
                       md: 'none'

@@ -132,6 +132,7 @@ export const BallonButton = forwardRef<BallonButtonProps, 'button'>(
             fill="currentColor"
             //stroke="currentColor"
             stroke="#E3000F"
+            filter="drop-shadow(1px 2px 2px rgb(0 0 0 / 0.1))"
             //strokeWidth="5"
             strokeWidth="2"
             d="M22,5C12.2,5.3,4,13.1,4,23s8.2,17.8,18,18c9.9,0.2,78.2,0.3,88,0c9.8-0.3,18-8.1,18-18s-8.1-17.8-18-18 C100.1,4.8,31.9,4.7,22,5z"
