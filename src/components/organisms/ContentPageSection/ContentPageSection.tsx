@@ -734,7 +734,7 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
 
               <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
                 <DrawerOverlay />
-                <DrawerContent>
+                <DrawerContent borderLeftRadius="lg">
                   <DrawerCloseButton />
                   <DrawerHeader>Inhaltsverzeichnis</DrawerHeader>
                   <DrawerBody>

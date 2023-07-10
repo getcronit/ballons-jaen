@@ -104,12 +104,13 @@ export const ProductsTemplate = (props: ProductsTemplateProps) => {
       onActiveTagsChange={updateTags}
       sortOptions={props.sortOptions}
       onSortChange={props.onSortChange}>
-      <Box w="100%" p={2}>
+      <Box w="full"  pt="4" pl={{base: "2", md: "12"}} pr={{base: "2", md: "12"}}>
         <ProductGrid
           wholesale={props.wholesale}
           products={props.products}
           columns={{ base: 2, sm: 2, md: 3, lg: 3, xl: 4, '2xl': 5 }}
           spacing={4}
+
         />
 
         <Center my={4}>

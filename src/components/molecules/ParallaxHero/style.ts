@@ -53,14 +53,15 @@ export const Section = (noScroll?: boolean) => css`
     width: 24px;
     height: 24px;
     margin-left: -12px;
-    border-left: 1px solid red;
-    border-bottom: 1px solid red;
+    border-left: 1px solid #E3000F;
+    border-bottom: 1px solid #E3000F;
     -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
     -webkit-animation: sdb07 2s infinite;
     animation: sdb07 2s infinite;
     opacity: 0;
     box-sizing: border-box;
+    filter: drop-shadow(1px 2px 2px rgb(0 0 0 / 0.1));
   }
   #scrollarrows a span:nth-of-type(1) {
     -webkit-animation-delay: 0s;

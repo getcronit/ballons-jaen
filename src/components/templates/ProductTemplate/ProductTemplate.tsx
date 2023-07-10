@@ -91,8 +91,14 @@ export const ProductTemplate = ({
       sortOptions={['Alphabetisch', 'Preis aufsteigend', 'Preis absteigend']}
       onSortChange={() => {}}>
       <Stack
+        p="16"
+        ml={{base: "2", md: "12"}}
+        mr={{base: "2", md: "12"}}
+        bg="white"
+        borderRadius="xl"
         dir="column"
-        w="100%"
+        boxShadow="sm"
+        //w="100%"
         my="8"
         spacing={{
           base: 8,
@@ -101,7 +107,7 @@ export const ProductTemplate = ({
           xl: 20
         }}>
         <Stack spacing={12}>
-          <Stack direction={{base: 'column', lg: 'row'}} mx={8}>
+          <Stack direction={{base: 'column', lg: 'row'}} >
             <Box
               w={{
                 base: '100%',
@@ -521,14 +527,17 @@ const ImageSlider = (props: {
           <Center
             cursor="zoom-in"
             boxSize={{
-              base: '20rem',
-              md: '30rem',
-              lg: '35rem'
+              base: 'none',
+              md: '20rem',
+              lg: '25rem',
+              xl: '27rem',
+              "2xl": '30rem'
             }}
             p="2"
             borderRadius="xl"
-            border="1px"
-            borderColor="gray.200"
+            // border="1px"
+            // borderColor="gray.200"
+            boxShadow="sm"
             bg="white">
             {curMedia?.image ? (
               <GatsbyImage

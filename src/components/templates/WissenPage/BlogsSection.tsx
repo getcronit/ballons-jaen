@@ -31,7 +31,7 @@ const BlogsSection: FC<IBlogsSectionProps> = props => {
 
   if (props.blogs.length === 0) {
     return (
-      <Box my="64" bg='white'>
+      <Box py="64" bg='white'>
         <Heading as="h2" size="lg" textAlign="center" mb={4}>
           Derzeit sind keine weiteren Beiträge vorhanden.
         </Heading>

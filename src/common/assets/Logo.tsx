@@ -1,11 +1,11 @@
 import React from 'react'
-import {isChrome} from '../utils'
-import {Box} from '@chakra-ui/react'
+import { isChrome } from '../utils'
+import { Box, chakra } from '@chakra-ui/react'
 
 export const Logo = (props: any) => {
   return (
-    <Box
-      as="svg"
+    <chakra.svg
+      filter="drop-shadow(1px 2px 2px rgb(0 0 0 / 0.1))"
       xmlns="http://www.w3.org/2000/svg"
       width="24rem"
       viewBox="0 0 16356 1380"
@@ -818,6 +818,6 @@ export const Logo = (props: any) => {
              7988.87,857.00 7941.42,795.00 7941.42,795.00
              7937.23,789.61 7927.44,774.28 7921.91,772.09 Z"
       />
-    </Box>
+    </chakra.svg>
   )
 }

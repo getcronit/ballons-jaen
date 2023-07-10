@@ -790,9 +790,9 @@ export default function ProductsPageShell(
   }
 
   return (
-    <Box h="calc(100vh - 60px)">
+    <Box h="calc(100vh - 60px - 4rem)">
       <Stack h="100%" flexDirection="column">
-        <Flex h="full" py="4">
+        <Flex h="full" pt="4">
           <Box
             display={{base: 'none', xl: 'block'}}
             h="100%"
@@ -802,7 +802,7 @@ export default function ProductsPageShell(
             borderRadius="lg"
             pos="sticky"
             top="0"
-            boxShadow="sm">
+            boxShadow="light">
             <CategoryPicker
               groupedCategories={groupedCategories}
               activeTags={activeTags}
@@ -811,7 +811,27 @@ export default function ProductsPageShell(
             />
           </Box>
 
-          <Box flex="1" pos="relative" overflowY="scroll">
+          <Box flex="1" pos="relative" overflowY="scroll"
+            sx={{
+              "@media screen and (min-width: 768px)": {
+                "::-webkit-scrollbar": {
+                  w: "16px",
+                  h: "16px"
+                },
+                
+                "::-webkit-scrollbar-corner": {
+                  bg: "rgb(240, 241, 244)"
+                },
+                
+                "::-webkit-scrollbar-thumb": {
+                  bg: "rgba(105, 112, 125, 0.5)",
+                  backgroundClip: "content-box",
+                  borderRadius: "16px",
+                  border: "4px solid rgb(240, 241, 244)"
+                }
+              }
+            }}
+          >
             <Stack
               direction="column"
               borderRadius="lg"
@@ -820,8 +840,9 @@ export default function ProductsPageShell(
               top="0"
               zIndex="3"
               p="4"
-              mx="2"
-              boxShadow="lg">
+              ml={{base: "2", md: "12"}}
+              mr={{base: "2", md: "12"}}
+              boxShadow="light">
               <Filter
                 groupedTags={groupedTags}
                 activeTags={activeTags}
