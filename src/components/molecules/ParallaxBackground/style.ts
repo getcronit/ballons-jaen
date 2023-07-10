@@ -18,7 +18,7 @@ export const Section = (
   noScroll: boolean | undefined
 ) => css`
   perspective: 100px;
-  height: 200vh;
+  height: 250vh;
   overflow-x: hidden;
   overflow-y: ${noScroll ? 'scroll' : 'hidden'};
   position: absolute;
