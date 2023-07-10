@@ -4,7 +4,7 @@
   text-rendering: geometricPrecision !important;
 } */
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 16px;
   height: 16px;
 }
@@ -19,7 +19,7 @@
   background-clip: content-box;
   border-radius: 16px;
   border: 4px solid rgb(240, 241, 244);
-}
+} */
 
 .slick-dots li {
   background: #e6e8e5;

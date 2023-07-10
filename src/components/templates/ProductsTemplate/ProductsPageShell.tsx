@@ -811,7 +811,27 @@ export default function ProductsPageShell(
             />
           </Box>
 
-          <Box flex="1" pos="relative" overflowY="scroll">
+          <Box flex="1" pos="relative" overflowY="scroll"
+            sx={{
+              "@media screen and (min-width: 768px)": {
+                "::-webkit-scrollbar": {
+                  w: "16px",
+                  h: "16px"
+                },
+                
+                "::-webkit-scrollbar-corner": {
+                  bg: "rgb(240, 241, 244)"
+                },
+                
+                "::-webkit-scrollbar-thumb": {
+                  bg: "rgba(105, 112, 125, 0.5)",
+                  backgroundClip: "content-box",
+                  borderRadius: "16px",
+                  border: "4px solid rgb(240, 241, 244)"
+                }
+              }
+            }}
+          >
             <Stack
               direction="column"
               borderRadius="lg"
@@ -820,8 +840,8 @@ export default function ProductsPageShell(
               top="0"
               zIndex="3"
               p="4"
-              ml="4"
-              mr={{base: "4", md: "12"}}
+              ml={{base: "2", md: "12"}}
+              mr={{base: "2", md: "12"}}
               boxShadow="light">
               <Filter
                 groupedTags={groupedTags}

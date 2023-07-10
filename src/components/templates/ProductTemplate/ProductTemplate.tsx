@@ -92,8 +92,8 @@ export const ProductTemplate = ({
       onSortChange={() => {}}>
       <Stack
         p="16"
-        ml="4"
-        mr="12"
+        ml={{base: "2", md: "12"}}
+        mr={{base: "2", md: "12"}}
         bg="white"
         borderRadius="xl"
         dir="column"
@@ -527,9 +527,11 @@ const ImageSlider = (props: {
           <Center
             cursor="zoom-in"
             boxSize={{
-              base: '20rem',
-              md: '30rem',
-              lg: '35rem'
+              base: 'none',
+              md: '20rem',
+              lg: '25rem',
+              xl: '27rem',
+              "2xl": '30rem'
             }}
             p="2"
             borderRadius="xl"
