@@ -8,7 +8,10 @@
 name: Deploy
 
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions#on
-on: push
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
 
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobs
 jobs:
