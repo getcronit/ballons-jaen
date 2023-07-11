@@ -63,5 +63,5 @@ jobs:
 
   build:
     needs: migrate
-    uses: ./.github/workflows/gatsby.yaml
+    uses: ./.github/workflows/deploy.yaml
     secrets: inherit
