@@ -107,11 +107,22 @@ jobs:
           path: ./public
 
   # Job to deploy the build artifacts to GitHub Pages and Cloudflare Pages.
-  deploy:
+  deploy-github-pages:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
+    needs: build
+    steps:
+      # Deploy the build artifacts to GitHub Pages
+      # See: https://github.com/actions/deploy-pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
+
+  # Job to deploy the build artifacts to Cloudflare Pages.
+  deploy-cloudflare:
+    runs-on: macos-latest
     needs: build
     steps:
       # Download the build artifacts
@@ -120,13 +131,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: github-pages
-
-      # Deploy the build artifacts to GitHub Pages
-      # See: https://github.com/actions/deploy-pages
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
-
       # Deploy the build artifacts to Cloudflare Pages
       # See: https://github.com/cloudflare/pages-action
       - name: Deploy to Cloudflare Pages
@@ -136,4 +140,5 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: snek
           directory: ./public
-          wranglerVersion: '3' # Optional: Specify the Wrangler version
+          # Optional: Specify the Wrangler version
+          wranglerVersion: '3'
