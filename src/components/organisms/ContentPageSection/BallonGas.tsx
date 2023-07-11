@@ -1,4 +1,4 @@
-import {Box, Flex, Text, VStack} from '@chakra-ui/react'
+import {Box, Flex, Heading, Text, VStack} from '@chakra-ui/react'
 import {Field} from '@snek-at/jaen'
 import {FC} from 'react'
 import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
@@ -9,7 +9,7 @@ interface IBallonGasProps {}
 const BallonGas: FC<IBallonGasProps> = () => {
   return (
     <Flex
-      w={"full"}
+      w={'full'}
       bgRepeat="no-repeat"
       bgSize="cover"
       bgPos="center"
@@ -24,6 +24,8 @@ const BallonGas: FC<IBallonGasProps> = () => {
         pos="relative">
         <VStack flex="1" pos={{base: 'unset', md: 'relative'}} top="-5rem">
           <Field.Text
+            as={Heading}
+            size="h8020"
             textAlign="center"
             lineHeight="4rem"
             fontSize={{base: 'xl', md: '4xl', lg: '5xl', xl: '6xl'}}
