@@ -5,7 +5,7 @@
 # in the LICENSE file at https://snek.at/license
 
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions#name
-name: Deploy Jaen
+name: Deploy
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -25,9 +25,11 @@ on:
 
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobs
 jobs:
-  jaen-deploy:
+  deploy:
     uses: schett-net/ami/.github/workflows/jaen-deploy.yaml@main
     # https://docs.github.com/en/actions/using-workflows/reusing-workflows#using-inputs-and-secrets-in-a-reusable-workflow
+    with:
+      CLOUDFLARE_PROJECT_NAME: 'ballons'
     secrets:
       GATSBY_MYSHOPIFY_URL: ${{ secrets.GATSBY_MYSHOPIFY_URL }}
       GATSBY_STOREFRONT_API_KEY: ${{ secrets.GATSBY_STOREFRONT_API_KEY }}
