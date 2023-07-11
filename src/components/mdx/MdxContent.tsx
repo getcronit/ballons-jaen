@@ -1,18 +1,34 @@
-import { FC } from 'react'
-import { Field } from '@snek-at/jaen'
-import { Container, Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
+import {FC} from 'react'
+import {Field} from '@snek-at/jaen'
+import {
+  Accordion,
+  AccordionButton,
+  AccordionItem,
+  AccordionPanel,
+  Box,
+  Container,
+  Table,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr
+} from '@chakra-ui/react'
 
 // Default custom components (replaces HTML tags)
-import Text from './text/Text';
-import Heading from './heading/Heading';
-import List from './list/List';
-import ListItem from './list/ListItem';
-import Link from './core/Link';
+import Text from './text/Text'
+import Heading from './heading/Heading'
+import List from './list/List'
+import ListItem from './list/ListItem'
+import Link from './core/Link'
 
-export interface MdxContentProps { }
+export interface MdxContentProps {
+  components?: {
+    [key: string]: FC<any>
+  }
+}
 
-export const MdxContent: React.FC<MdxContentProps> = () => {
-
+export const MdxContent: React.FC<MdxContentProps> = ({components = {}}) => {
   return (
     <Field.Mdx
       name="content"
@@ -29,7 +45,9 @@ export const MdxContent: React.FC<MdxContentProps> = () => {
         ul: (props: any) => <List {...props}></List>,
         ol: (props: any) => <List variant="ordered" {...props}></List>,
         li: (props: any) => <ListItem {...props}></ListItem>,
-        a: (props: any) => <Link href={props.href} {...props} />,
+        a: (props: any) => (
+          <Link href={props.href} {...props} color="red.500" />
+        ),
         // TABLE
         table: (props: any) => (
           <Table variant="striped" w="fit-content" {...props} />
@@ -39,7 +57,9 @@ export const MdxContent: React.FC<MdxContentProps> = () => {
         tr: (props: any) => <Tr {...props} />,
         th: (props: any) => <Th {...props} />,
         td: (props: any) => <Td {...props} />,
+        // CUSTOM
+        ...components
       }}
     />
-  );
-};
+  )
+}
