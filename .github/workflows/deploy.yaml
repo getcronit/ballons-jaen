@@ -5,7 +5,7 @@
 # in the LICENSE file at https://snek.at/license
 
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions#name
-name: Publish
+name: Deploy
 
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions#on
 on: push
