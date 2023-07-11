@@ -1,5 +1,19 @@
 {
-  "siteMetadata": {},
+  "siteMetadata": {
+    "siteUrl": "https://ballons.pages.dev",
+    "title": "Ballons & Ballons",
+    "description": "Ihr Spezialist für Ballons, Ballongas, Partyartikel und Dekorationen. Seit mehr als 30 Jahren im Geschäft! Sie bekommen alles aus einer Hand.",
+    "image": "https://osg.snek.at/storage/BQACAgQAAxkDAAIh5mStbkBvM8GQvMJu2XOJnzidxl0ZAAK6EAAChxhwUal9blAxknGhLwQ",
+    "author": {
+      "name": null
+    },
+    "organization": {
+      "name": "Ballons & Ballons",
+      "url": "https://ballons.pages.dev",
+      "logo": "https://osg.snek.at/storage/BQACAgQAAxkDAAIh5mStbkBvM8GQvMJu2XOJnzidxl0ZAAK6EAAChxhwUal9blAxknGhLwQ"
+    },
+    "social": null
+  },
   "widgets": [
     {
       "name": "menu",
@@ -78,22 +92,5 @@
       "createdAt": "2023-07-11T15:31:40.399Z",
       "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIh6mStdWhbpGzI4_1HBGqFEw7P6vTXAALWEAAChxhwUfCsV0Uw7mRELwQ"
     }
-  ],
-  "site": {
-    "siteMetadata": {
-      "siteUrl": "https://ballons.pages.dev",
-      "title": "Ballons & Ballons",
-      "description": "Ihr Spezialist für Ballons, Ballongas, Partyartikel und Dekorationen. Seit mehr als 30 Jahren im Geschäft! Sie bekommen alles aus einer Hand.",
-      "image": "https://osg.snek.at/storage/BQACAgQAAxkDAAIh5mStbkBvM8GQvMJu2XOJnzidxl0ZAAK6EAAChxhwUal9blAxknGhLwQ",
-      "author": {
-        "name": null
-      },
-      "organization": {
-        "name": "Ballons & Ballons",
-        "url": "https://ballons.pages.dev",
-        "logo": "https://osg.snek.at/storage/BQACAgQAAxkDAAIh5mStbkBvM8GQvMJu2XOJnzidxl0ZAAK6EAAChxhwUal9blAxknGhLwQ"
-      },
-      "social": null
-    }
-  }
+  ]
 }
