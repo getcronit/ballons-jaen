@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, {useMemo} from 'react'
 import {
   Box,
   SimpleGrid,
@@ -10,24 +10,24 @@ import {
   Image
 } from '@chakra-ui/react'
 
-import { useScrollSync } from '../../hooks/scroll'
-import { useContentPages } from '../../hooks/useContentPages'
+import {useScrollSync} from '../../hooks/scroll'
+import {useContentPages} from '../../hooks/useContentPages'
 import CardWithImageBackground from '../../CardWithImageBackground'
 import * as style from './style'
-import { ParallaxBackground } from '../ParallaxBackground'
+import {ParallaxBackground} from '../ParallaxBackground'
 import TextLoop from 'react-text-loop'
-import { Field } from '@snek-at/jaen'
+import {Field} from '@snek-at/jaen'
 import LinkButtonField from '../../fields/LinkButtonField'
-import { CONTAINER_MAX_WIDTH } from '../../../constant/sizes'
-import { HBallon } from '../../../common/assets/Ballon'
-import { SkylineL1, SkylineL2, SkylineL3 } from '../../../common/assets/Skyline'
+import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
+import {HBallon} from '../../../common/assets/Ballon'
+import {SkylineL1, SkylineL2, SkylineL3} from '../../../common/assets/Skyline'
 
 export interface ParallaxHeroProps {
   noScroll?: boolean
 }
 
-export const ParallaxHero = ({ noScroll }: ParallaxHeroProps) => {
-  const { ref, scrollTop } = useScrollSync()
+export const ParallaxHero = ({noScroll}: ParallaxHeroProps) => {
+  const {ref, scrollTop} = useScrollSync()
   const contentPagesIndex = useContentPages()
 
   const switchingHeadline = (
@@ -46,7 +46,7 @@ export const ParallaxHero = ({ noScroll }: ParallaxHeroProps) => {
           return (
             <Field.Text
               key={index}
-              fontSize={{ base: '2xl', md: '4xl', lg: '6xl' }}
+              fontSize={{base: '2xl', md: '4xl', lg: '6xl'}}
               mb="8 !important"
               fontWeight="semibold"
               textAlign="center"
@@ -64,10 +64,10 @@ export const ParallaxHero = ({ noScroll }: ParallaxHeroProps) => {
       <SimpleGrid
         w="full"
         placeItems="center"
-        mb={{ lg: 10 }}
+        mb={{lg: 10}}
         mt="0"
-        mx={{ base: '0', xl: '5vw' }}
-        minChildWidth={{ base: '100%', lg: '300px' }}
+        mx={{base: '0', xl: '5vw'}}
+        minChildWidth={{base: '100%', lg: '300px'}}
         spacing="30px">
         {contentPagesIndex.children.map((page, i) =>
           contentPagesIndex.withJaenPage(
@@ -75,7 +75,7 @@ export const ParallaxHero = ({ noScroll }: ParallaxHeroProps) => {
             <GridItem
               justifySelf="center"
               minH={'300px'}
-              h={{ base: '30vw', lg: '60vh' }}
+              h={{base: '30vw', lg: '60vh'}}
               minW={'300px'}
               w={{
                 base: '80vw',
@@ -107,7 +107,7 @@ export const ParallaxHero = ({ noScroll }: ParallaxHeroProps) => {
         css={style.Section(noScroll)}
         ref={ref}
         //mt={{ base: '3.5rem', md: '4rem', lg: '8rem' }}
-        pt={{ base: 'calc(150vh - 7.5rem)', lg: 'calc(150vh - 8rem)' }}>
+        pt={{base: 'calc(150vh - 7.5rem)', lg: 'calc(150vh - 8rem)'}}>
         <Box className="parallax__layer parallax__layer__0">
           <SkylineL1
             position={'absolute'}
@@ -191,14 +191,14 @@ export const ParallaxHero = ({ noScroll }: ParallaxHeroProps) => {
           position={'absolute'}
           justifyContent="center"
           alignContent="center"
-          height={{ md: 'calc(100vh - 7.5rem)', lg: 'calc(100vh - 8rem)' }}
-          display={{ base: 'none', md: 'flex' }}>
+          height={{md: 'calc(100vh - 7.5rem)', lg: 'calc(100vh - 8rem)'}}
+          display={{base: 'none', md: 'flex'}}>
           {switchingHeadline}
           <Field.Text
             as={Heading}
             name="heroTextBallons"
             defaultValue="<i>Ballons</i>"
-            fontSize={{ base: '2xl', md: '8xl', lg: '9xl' }}
+            fontSize={{base: '2xl', md: '8xl', lg: '9xl'}}
             fontWeight="semibold"
             textAlign="center"
           />
@@ -209,10 +209,10 @@ export const ParallaxHero = ({ noScroll }: ParallaxHeroProps) => {
             align="flex-start"
             gap="4">
             <LinkButtonField
-              name="littleThingsButton1"
+              name="heroButton1"
               defaultValue="Zum Shop"
               defaultUrl={`/products`}
-              size={{ base: 'sm', md: 'md' }}
+              size={{base: 'sm', md: 'md'}}
               ml="3"
             />
             <Box
@@ -227,10 +227,10 @@ export const ParallaxHero = ({ noScroll }: ParallaxHeroProps) => {
               </a>
             </Box>
             <LinkButtonField
-              name="littleThingsButton2"
+              name="heroButton2"
               defaultValue="Großhandel"
               defaultUrl={`/grosshandel`}
-              size={{ base: 'sm', md: 'md' }}
+              size={{base: 'sm', md: 'md'}}
               variant="outline"
               ml="3"
             />
