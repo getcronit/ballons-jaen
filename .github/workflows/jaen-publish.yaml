@@ -41,7 +41,7 @@ jobs:
       # https://classic.yarnpkg.com/lang/en/docs/cli/install/#toc-yarn-install-pure-lockfile
       - name: Install Jaen globally
         # https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstepsrun
-        run: npm i -g "@snek-at/jaen@0.0.31"
+        run: npm i -g "@snek-at/jaen@0.0.108"
 
       - name: Migrate Jaen Data 📝
         # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#
