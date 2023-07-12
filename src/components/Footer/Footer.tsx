@@ -11,7 +11,7 @@ const Footer: FC<IFooterProps> = () => {
   return (
     <Box bg="black.500" py="16" as="nav">
       <UpperFooter />
-      <SocialIcons />
+      {/* <SocialIcons /> */}
       <BottomFooter />
     </Box>
   )
