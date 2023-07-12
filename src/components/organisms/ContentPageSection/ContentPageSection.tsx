@@ -2,7 +2,7 @@ import {
   Box,
   Button,
   ButtonGroup,
-  Container,
+  chakra,
   Divider,
   Drawer,
   DrawerBody,
@@ -44,7 +44,7 @@ import {removeHtmlFromString} from '../../../common/utils'
 import FourCard from '../FourCard/FourCard'
 import ConvincedSection from './ConvincedSection'
 import {useContactModal} from '../../../services/contact'
-import {HBallon} from '../../../common/assets/Ballon'
+import HBalloon  from '../../../common/assets/hballoon.inline.svg'
 
 export interface ContentPageSectionProps {}
 
@@ -668,7 +668,8 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
               base: '100%',
               '2xl': 'md'
             }}>
-            <HBallon
+            <chakra.svg
+              as={HBalloon}
               mt="14"
               h={{
                 base: '44',
