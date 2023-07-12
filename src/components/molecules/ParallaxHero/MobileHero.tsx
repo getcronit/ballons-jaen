@@ -1,20 +1,24 @@
 import {
   Box,
+  Image,
   GridItem,
   HStack,
   Heading,
   SimpleGrid,
-  Stack
+  Stack,
+  chakra
 } from '@chakra-ui/react'
 import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
-import {HBallon} from '../../../common/assets/Ballon'
+import HBalloon  from '../../../common/assets/hballoon.inline.svg'
 import {Field} from '@snek-at/jaen'
 import LinkButtonField from '../../fields/LinkButtonField'
 import {useScrollSync} from '../../hooks/scroll'
 import {useMemo} from 'react'
 import {useContentPages} from '../../hooks/useContentPages'
 import CardWithImageBackground from '../../CardWithImageBackground'
-import {SkylineL1, SkylineL2, SkylineL3} from '../../../common/assets/Skyline'
+import SkylineL1  from '../../../common/assets/skyline1.inline.svg'
+import SkylineL2  from '../../../common/assets/skyline2.inline.svg'
+import SkylineL3  from '../../../common/assets/skyline3.inline.svg'
 import * as style from './style'
 
 export const MobileHero = () => {
@@ -69,21 +73,24 @@ export const MobileHero = () => {
     <Box
       //bgColor={'white'}
       css={style.Section(noScroll)}>
-      <SkylineL1
+      <chakra.svg
+        as={SkylineL1}
         position={'absolute'}
         top={'0'}
         left={'0'}
         width={'100%'}
         minWidth={'2500px'}
       />
-      <SkylineL2
+      <chakra.svg
+        as={SkylineL2}
         position={'absolute'}
         top={'0'}
         left={'0'}
         width={'100%'}
         minWidth={'2500px'}
       />
-      <SkylineL3
+      <chakra.svg
+        as={SkylineL3}
         position={'absolute'}
         top={'0'}
         left={'0'}
@@ -101,7 +108,7 @@ export const MobileHero = () => {
         alignItems={'center'}
         display={{base: 'flex', md: 'none'}}>
         <HStack>
-          <HBallon className="background-Ballon" />
+          <HBalloon className="background-Ballon" />
           <Field.Text
             as={Heading}
             name="heroTextBallons"

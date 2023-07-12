@@ -22,6 +22,14 @@ const config: GatsbyConfig = {
   jsxRuntime: 'automatic',
   plugins: [
     {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /\.inline\.svg$/,
+        },
+      }
+    },    
+    {
       resolve: '@snek-at/gatsby-theme-shopify',
       options: {
         productPageTemplate: path.resolve(

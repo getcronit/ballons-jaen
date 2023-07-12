@@ -43,10 +43,10 @@ export const Section = (noScroll?: boolean) => css`
 
   ${parallaxMake(3)}
 
-  #scrollarrows a {
+  #scrollarrows {
     position: relative;
   }
-  #scrollarrows a span {
+  #scrollarrows span {
     position: absolute;
     top: 0;
     left: 50%;
@@ -63,16 +63,16 @@ export const Section = (noScroll?: boolean) => css`
     box-sizing: border-box;
     filter: drop-shadow(1px 2px 2px rgb(0 0 0 / 0.1));
   }
-  #scrollarrows a span:nth-of-type(1) {
+  #scrollarrows span:nth-of-type(1) {
     -webkit-animation-delay: 0s;
     animation-delay: 0s;
   }
-  #scrollarrows a span:nth-of-type(2) {
+  #scrollarrows span:nth-of-type(2) {
     top: 16px;
     -webkit-animation-delay: .15s;
     animation-delay: .15s;
   }
-  #scrollarrows a span:nth-of-type(3) {
+  #scrollarrows span:nth-of-type(3) {
     top: 32px;
     -webkit-animation-delay: .3s;
     animation-delay: .3s;
