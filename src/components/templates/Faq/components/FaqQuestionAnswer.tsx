@@ -37,8 +37,8 @@ export const FaqQuestionAnswer: React.FC<{
             </HStack>
             <AccordionIcon />
           </AccordionButton>
-          <AccordionPanel pr="4rem">
-            <Text size="b2012">{children}</Text>
+          <AccordionPanel pr="4rem" fontSize="b2012">
+            {children}
           </AccordionPanel>
         </Stack>
       )}
