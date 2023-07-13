@@ -4,12 +4,13 @@ import {
   Container,
   Heading,
   HStack,
+  chakra,
 } from '@chakra-ui/react'
 import { Field } from '@snek-at/jaen'
 import { FC } from 'react'
 import { CONTAINER_MAX_WIDTH } from '../../../../constant/sizes'
 import { MobileHero, ParallaxHero } from '../../../molecules/ParallaxHero'
-import { HBallon } from '../../../../common/assets/Ballon'
+import TopShape from '../../../../common/assets/shapes/top_shape.inline.svg'
 
 
 export interface IHeroProps {
@@ -45,13 +46,21 @@ const Hero: FC<IHeroProps> = props => {
         >
           <MobileHero />
         </Box>
-        <Image
+        {/* <Image
           position="absolute"
           bottom={"0"}
           left={"0"}
           w="100%"
           src="/images/home/reisges/top_shape.svg"
           alt="bottom_shape_white"
+        /> */}
+        <chakra.svg
+          as={TopShape}
+          position="absolute"
+          bottom={"0"}
+          left={"0"}
+          w="100%"
+          h="auto"
         />
       </Box>
     </>

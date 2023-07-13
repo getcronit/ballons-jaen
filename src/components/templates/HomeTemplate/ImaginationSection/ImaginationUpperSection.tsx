@@ -1,6 +1,7 @@
-import {Box, Heading, Image, Text, VStack} from '@chakra-ui/react'
+import {Box, Heading, Image, Text, VStack, chakra} from '@chakra-ui/react'
 import {Field} from '@snek-at/jaen'
 import {FC} from 'react'
+import Underline from '../../../../common/assets/underline.inline.svg'
 
 interface IImaginationUpperSectionProps {}
 
@@ -27,11 +28,19 @@ const ImaginationUpperSection: FC<IImaginationUpperSectionProps> = () => {
           name="imaginationText"
           defaultValue="<i>Alles</i>"
         />
-        <Image
+        {/* <Image
           pos="absolute"
           bottom="0"
           src="/images/home/imagination/underline.svg"
           alt="underline"
+        /> */}
+        <chakra.svg
+          as={Underline}
+          position="absolute"
+          bottom={'0'}
+          left={'0'}
+          w="100%"
+          h="auto"
         />
       </Box>
     </VStack>

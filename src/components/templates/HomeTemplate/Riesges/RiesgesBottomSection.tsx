@@ -1,5 +1,6 @@
 import {
   Box,
+  chakra,
   Flex,
   Grid,
   Heading,
@@ -11,6 +12,7 @@ import {
 import {Field} from '@snek-at/jaen'
 import {FC, ReactNode} from 'react'
 import LinkButtonField from '../../../fields/LinkButtonField'
+import PinkBlob from '../../../../common/assets/shapes/pink_blob.inline.svg'
 
 export interface ISortiment {
   heading: ReactNode
@@ -140,12 +142,15 @@ const RiesgesBottomSection: FC<IRiesgesBottomSectionProps> = () => {
             gap="1"
             flexDir={{base: 'column', xl: 'row'}}
             mb="5">
-            <Image
+            <Box w="100%" maxW={{base: '3.75rem', lg: '5.375rem'}}>
+              <chakra.svg p="1rem" pt="0" as={PinkBlob} w="100%" h="auto" />
+            </Box>
+            {/* <Image
               w={{base: '3.75rem', lg: '5.375rem'}}
               h={{base: '2.8125rem', lg: '4.6875rem'}}
               src="/images/home/reisges/pink_blob.svg"
               alt="pink blob"
-            />
+            /> */}
             <Stack spacing="0">
               <Field.Text
                 name={`items-heading-${index}`}
