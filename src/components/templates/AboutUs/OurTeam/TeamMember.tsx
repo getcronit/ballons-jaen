@@ -18,12 +18,10 @@ import {Interface} from 'readline'
 import {CONTAINER_MAX_WIDTH} from '../../../../constant/sizes'
 
 interface ITeamMemberProps {
-  member: IMember
+  isLeft: boolean
 }
 
-interface ITeamMemberSectionProps {
-  members: IMember[]
-}
+interface ITeamMemberSectionProps {}
 
 interface IMember {
   image: string
@@ -35,13 +33,11 @@ interface IMember {
   about: string
 }
 
-const TeamMember: FC<ITeamMemberProps> = ({
-  member: {image, name, qoute, qualities, isLeft, about, role}
-}) => {
+const TeamMember: FC<ITeamMemberProps> = ({isLeft}) => {
   return (
     <>
       <Flex
-        justify={{md: isLeft ? 'start' : 'end'}}
+        justify={{md: isLeft ? 'left' : 'right'}}
         py="8"
         display={{base: 'none', md: 'flex'}}>
         <Flex
@@ -73,9 +69,9 @@ const TeamMember: FC<ITeamMemberProps> = ({
               as={Heading}
               size="h3015"
               fontWeight="semibold"
-              //textAlign={{ base: isLeft ? 'start' : 'end' }}
+              //textAlign={{ base: isLeft ? 'left' : 'right' }}
               //fontWeight="semibold"
-              defaultValue={name}
+              defaultValue={'Name'}
             />
           </VStack>
           <Stack>
@@ -88,9 +84,9 @@ const TeamMember: FC<ITeamMemberProps> = ({
               color="red.500"
               size="h4015"
               fontWeight="semibold"
-              textAlign={{base: isLeft ? 'start' : 'end'}}
+              textAlign={'left'}
               //fontWeight="semibold"
-              defaultValue={qoute}
+              defaultValue={'"Quote"'}
             />
             {/* <Text fontSize="sm" fontWeight="semibold">
               {role}
@@ -98,9 +94,9 @@ const TeamMember: FC<ITeamMemberProps> = ({
             <Field.Text
               name="role"
               fontWeight="semibold"
-              textAlign={{base: isLeft ? 'start' : 'end'}}
+              textAlign={'left'}
               //fontWeight="semibold"
-              defaultValue={role}
+              defaultValue={'Role'}
             />
             {/* {
               <UnorderedList ml="8 !important">
@@ -112,9 +108,9 @@ const TeamMember: FC<ITeamMemberProps> = ({
             <Field.Text
               name="about"
               //fontSize="xs"
-              textAlign={{base: isLeft ? 'start' : 'end'}}
+              textAlign={'left'}
               //fontWeight="semibold"
-              defaultValue={about}
+              defaultValue={'About'}
             />
           </Stack>
         </Flex>
@@ -139,7 +135,7 @@ const TeamMember: FC<ITeamMemberProps> = ({
         <Flex
           align="end"
           flexDir={{base: isLeft ? 'row' : 'row-reverse'}}
-          textAlign={{base: isLeft ? 'start' : 'end'}}>
+          textAlign={{base: isLeft ? 'left' : 'right'}}>
           <Box flex="1">
             {/* <Heading fontSize="md" fontWeight="semibold" color="red.600">
               {name}
@@ -150,9 +146,9 @@ const TeamMember: FC<ITeamMemberProps> = ({
               fontSize="md"
               color="red.600"
               fontWeight="semibold"
-              //textAlign={{ base: isLeft ? 'start' : 'end' }}
+              //textAlign={{ base: isLeft ? 'left' : 'right' }}
               //fontWeight="semibold"
-              defaultValue={name}
+              defaultValue={'Name'}
             />
             {/* <Text fontSize="sm" fontWeight="semibold">
               {role}
@@ -161,9 +157,9 @@ const TeamMember: FC<ITeamMemberProps> = ({
               name="role"
               fontSize="sm"
               fontWeight="semibold"
-              //textAlign={{ base: isLeft ? 'start' : 'end' }}
+              //textAlign={{ base: isLeft ? 'left' : 'right' }}
               //fontWeight="semibold"
-              defaultValue={role}
+              defaultValue={'Role'}
             />
           </Box>
         </Flex>
@@ -173,9 +169,9 @@ const TeamMember: FC<ITeamMemberProps> = ({
             base: 'sm',
             md: 'md'
           }}
-          textAlign={{base: isLeft ? 'start' : 'end'}}
+          textAlign={{base: isLeft ? 'left' : 'right'}}
           //fontWeight="semibold"
-          defaultValue={about}
+          defaultValue={'About'}
         />
       </Stack>
     </>
@@ -184,39 +180,37 @@ const TeamMember: FC<ITeamMemberProps> = ({
 
 export default TeamMember
 
-export const TeamMemberSection = ({members}: ITeamMemberSectionProps) =>
-  connectBlock(
-    () => {
-      const blockContext = useSectionBlockContext()
-      const position = blockContext!.position + 1
+export const TeamMemberSection = connectBlock(
+  () => {
+    const blockContext = useSectionBlockContext()
+    const position = blockContext!.position + 1
 
-      return (
-        <Box
-          pos={'relative'}
-          pt={
-            position % 2 === 0
-              ? {
-                  base: '20',
-                  md: '32'
-                }
-              : {
-                  base: '8',
-                  md: '12'
-                }
-          }
-          pb={{
-            base: '12',
-            md: '20'
-          }}
-          //bgImage={blockContext!.position % 2 !== 0 ? '/images/about_us/thread1.svg' : undefined}
-          bgImage={{
-            md:
-              position % 3 === 0 ? '/images/about_us/side_shape.svg' : undefined
-          }}
-          bgRepeat="no-repeat"
-          bgPos="right -8rem bottom 0"
-          bgSize="20rem">
-          {/* <Box
+    return (
+      <Box
+        pos={'relative'}
+        pt={
+          position % 2 === 0
+            ? {
+                base: '20',
+                md: '32'
+              }
+            : {
+                base: '8',
+                md: '12'
+              }
+        }
+        pb={{
+          base: '12',
+          md: '20'
+        }}
+        //bgImage={blockContext!.position % 2 !== 0 ? '/images/about_us/thread1.svg' : undefined}
+        bgImage={{
+          md: position % 3 === 0 ? '/images/about_us/side_shape.svg' : undefined
+        }}
+        bgRepeat="no-repeat"
+        bgPos="right -8rem bottom 0"
+        bgSize="20rem">
+        {/* <Box
             top={position % 5 !== 0 ? { base: '-20', md: '-32' } : '0'}
             right={"0"}
             h={"100%"}
@@ -233,34 +227,27 @@ export const TeamMemberSection = ({members}: ITeamMemberSectionProps) =>
             bgPos={position % 5 !== 0 ? "0 -20px" : "0"}
             bgSize="contain"
           > */}
-          <Box
-            top={{base: '-20', md: '-32'}}
-            right={'0'}
-            h={'100%'}
-            w={'100%'}
-            pos="absolute"
-            bgImage={
-              position % 2 === 0 ? '/images/about_us/thread1.svg' : undefined
-            }
-            bgRepeat="no-repeat"
-            bgPos={'0 -20px'}
-            bgSize="contain"
-            pointerEvents="none"></Box>
-          <Container maxW={CONTAINER_MAX_WIDTH}>
-            <TeamMember
-              member={{
-                ...members[
-                  blockContext!.position <= 4 ? blockContext!.position : 0
-                ],
-                isLeft: blockContext!.position % 2 === 0
-              }}
-            />
-          </Container>
-        </Box>
-      )
-    },
-    {
-      name: 'TeamMemberSection',
-      label: 'TeamMember'
-    }
-  )
+        <Box
+          top={{base: '-20', md: '-32'}}
+          right={'0'}
+          h={'100%'}
+          w={'100%'}
+          pos="absolute"
+          bgImage={
+            position % 2 === 0 ? '/images/about_us/thread1.svg' : undefined
+          }
+          bgRepeat="no-repeat"
+          bgPos={'0 -20px'}
+          bgSize="contain"
+          pointerEvents="none"></Box>
+        <Container maxW={CONTAINER_MAX_WIDTH}>
+          <TeamMember isLeft={blockContext!.position % 2 === 0} />
+        </Container>
+      </Box>
+    )
+  },
+  {
+    name: 'TeamMemberSection',
+    label: 'TeamMember'
+  }
+)

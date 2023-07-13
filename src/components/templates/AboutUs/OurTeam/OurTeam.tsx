@@ -17,79 +17,6 @@ import {Field} from '@snek-at/jaen'
 interface IOurTeamProps {}
 
 const OurTeam: FC<IOurTeamProps> = () => {
-  const teamMembers = [
-    {
-      image: '/images/about_us/sectionProfile.png',
-      name: 'Inge T.',
-      qoute: '“Unser Fels in der Brandung”',
-      qualities: [
-        'flexibel und hoch energetisch',
-        'hilft immer mit wo’s brennt',
-        'die beste Mischung aus Erfahrung und Routine'
-      ],
-      isLeft: true,
-      role: 'Ballon Meister',
-      about:
-        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam'
-    },
-    {
-      image: '/images/about_us/sectionProfile.png',
-      name: 'Silvia F.',
-      qoute: '“Die Akribische”',
-      qualities: [
-        'erst zufrieden, wenn der Kunde zufrieden ist',
-        'Perfektionistin',
-        'liebt Checklisten'
-      ],
-      role: 'Ballon Meister',
-      isLeft: false,
-      about:
-        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam'
-    },
-    {
-      image: '/images/about_us/sectionProfile.png',
-      name: 'Monika K.',
-      qoute: '“Die Vorausschauende”',
-      qualities: [
-        'überschaut',
-        'während der Chef noch',
-        'wieder alles im Griff'
-      ],
-      role: 'Ballon Meister',
-      isLeft: true,
-      about:
-        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam'
-    },
-    {
-      image: '/images/about_us/sectionProfile.png',
-      name: 'Slavko',
-      qoute: '“Die Extraportion Energie”',
-      qualities: [
-        'erst zufrieden, wenn der Kunde zufrieden ist',
-        'Perfektionistin',
-        'liebt Checklisten'
-      ],
-      role: 'Ballon Meister',
-      isLeft: false,
-      about:
-        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam'
-    },
-    {
-      image: '/images/about_us/sectionProfile.png',
-      name: 'Monika K.',
-      qoute: '“Die Organisatorin”',
-      qualities: [
-        'rettet regelmäßig die Welt',
-        'bekannt für ihre schnelle Lösungen',
-        'jeden Tag eine neue'
-      ],
-      role: 'Ballon Meister',
-      isLeft: true,
-      about:
-        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam'
-    }
-  ]
-
   const bossData = {
     image: '/images/about_us/bossProfile.png',
     name: 'Nik D.',
@@ -149,7 +76,7 @@ const OurTeam: FC<IOurTeamProps> = () => {
           // }}
           name="content"
           label="Content"
-          blocks={[TeamMemberSection({members: teamMembers})]}
+          blocks={[TeamMemberSection]}
         />
 
         {/* <Box
