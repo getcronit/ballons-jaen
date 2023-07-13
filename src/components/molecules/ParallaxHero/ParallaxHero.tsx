@@ -21,9 +21,9 @@ import {Field} from '@snek-at/jaen'
 import LinkButtonField from '../../fields/LinkButtonField'
 import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
 import {HBallon} from '../../../common/assets/Ballon'
-import SkylineL1  from '../../../common/assets/skyline1.inline.svg'
-import SkylineL2  from '../../../common/assets/skyline2.inline.svg'
-import SkylineL3  from '../../../common/assets/skyline3.inline.svg'
+import SkylineL1 from '../../../common/assets/skyline1.inline.svg'
+import SkylineL2 from '../../../common/assets/skyline2.inline.svg'
+import SkylineL3 from '../../../common/assets/skyline3.inline.svg'
 
 export interface ParallaxHeroProps {
   noScroll?: boolean
