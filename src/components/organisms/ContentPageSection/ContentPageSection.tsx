@@ -647,7 +647,7 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
           onCardClick={scrollToIndex}
         />
 
-        <Stack spacing="8">
+        <Stack spacing="8" display={{base: 'flex', xl: 'none'}}>
           <BallonButton
             variant="solid"
             size="md"
