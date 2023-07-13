@@ -21,9 +21,9 @@ export const WissenArticleMetaBar: React.FC<StackProps> = ({...props}) => {
     return value.split(',').map(tag => tag.trim())
   }, [heroTagsField.value, heroTagsField.staticValue])
 
-  const {jaenPage} = usePageContext()
+  // const {jaenPage} = usePageContext()
 
-  const publishedDate = jaenPage.jaenPageMetadata?.datePublished
+  // const publishedDate = jaenPage.jaenPageMetadata?.datePublished
 
   return (
     <Wrap py="4" px="8" borderRadius="lg" justify="space-between" {...props}>
@@ -41,7 +41,7 @@ export const WissenArticleMetaBar: React.FC<StackProps> = ({...props}) => {
         )}
       </WrapItem>
 
-      <WrapItem>
+      {/* <WrapItem>
         {publishedDate ? (
           <>
             {new Date(publishedDate).toLocaleDateString('de-DE', {
@@ -55,7 +55,7 @@ export const WissenArticleMetaBar: React.FC<StackProps> = ({...props}) => {
             Unveröffentlicht
           </Tag>
         )}
-      </WrapItem>
+      </WrapItem> */}
     </Wrap>
   )
 }
