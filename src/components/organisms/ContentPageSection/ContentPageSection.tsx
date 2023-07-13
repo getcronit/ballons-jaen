@@ -14,10 +14,14 @@ import {
   Grid,
   GridItem,
   Heading,
+  HStack,
   Image,
   Link,
+  ListItem,
+  OrderedList,
   Stack,
   Text,
+  UnorderedList,
   VStack
 } from '@chakra-ui/react'
 import {BallonButton} from '../../molecules/BallonButton'
@@ -44,7 +48,7 @@ import {removeHtmlFromString} from '../../../common/utils'
 import FourCard from '../FourCard/FourCard'
 import ConvincedSection from './ConvincedSection'
 import {useContactModal} from '../../../services/contact'
-import HBalloon  from '../../../common/assets/hballoon.inline.svg'
+import HBalloon from '../../../common/assets/hballoon.inline.svg'
 
 export interface ContentPageSectionProps {}
 
@@ -602,7 +606,7 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
         }, [])
 
         return (
-          <Box key={index} mb={{base: 4, md: 8}}>
+          <ListItem key={index} mb={{base: 4, md: 8}}>
             <Link
               color={isActive ? 'red' : 'black'}
               onClick={() => {
@@ -612,12 +616,12 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
               }}>
               {title}
             </Link>
-          </Box>
+          </ListItem>
         )
       }
 
       return (
-        <>
+        <UnorderedList>
           {section.section.items.map((item, i) => {
             return (
               <HeadingLink
@@ -628,7 +632,7 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
               />
             )
           })}
-        </>
+        </UnorderedList>
       )
     }
 
@@ -642,16 +646,50 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
           sectionDisplayName={settings.displayName}
           onCardClick={scrollToIndex}
         />
+
+        <Stack spacing="8">
+          <BallonButton
+            variant="solid"
+            size="md"
+            mx="auto"
+            py="7 !important"
+            onClick={() => {
+              contactModal.onOpen()
+            }}>
+            Jetzt anfragen
+          </BallonButton>
+
+          <Flex align="center" pt="8" justifyContent="center">
+            <Divider maxW="20%" />
+            <Text fontSize="sm" p="2">
+              Inhaltsverzeichnis
+            </Text>
+            <Divider maxW="20%" />
+          </Flex>
+
+          <HStack w="full" justifyContent="center">
+            <Stack mx="8" spacing="1">
+              <Links />
+            </Stack>
+            <chakra.svg
+              as={HBalloon}
+              mt="14"
+              h={{
+                base: '44',
+                xl: 'xs'
+              }}
+            />
+          </HStack>
+        </Stack>
+
         <Stack
-          direction={{base: 'column-reverse', '2xl': 'row'}}
+          direction={{base: 'column-reverse', xl: 'row'}}
           spacing="8"
           m={{
             base: 0,
-            sm: '12',
             md: '16',
             lg: '20',
-            xl: '24',
-            '2xl': 0
+            xl: '0'
           }}>
           {/* <Box
             w={{
@@ -664,24 +702,28 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
             </Box>
           </Box> */}
           <Box
+            display={{base: 'none', '2xl': 'block'}}
             w={{
               base: '100%',
-              '2xl': 'md'
+              xl: 'xs'
             }}>
             <chakra.svg
               as={HBalloon}
               mt="14"
               h={{
                 base: '44',
-                '2xl': 'xs'
+                xl: 'xs'
               }}
               w="full"
             />
           </Box>
           <Flex
             // bg="red"
-            w="full"
-            maxW="1000px"
+            flex="1"
+            maxW={{
+              base: '100%',
+              '2xl': '1000px'
+            }}
             mx="auto"
             bg="#f6f8fa"
             borderRadius="xl"
@@ -726,64 +768,48 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
               blocks={[CategoryContentSection]}
             />
           </Flex>
-          <Box
-            w={{
-              base: '100%',
-              '2xl': 'md'
-            }}>
-            <Box position="sticky" top={{base: '80px', '2xl': '15%'}}>
-              <Stack textAlign="center" mb={{base: 4, '2xl': 8}}>
-                <BallonButton
-                  variant="solid"
-                  size="md"
-                  mx="auto"
-                  py="7 !important"
-                  onClick={() => {
-                    contactModal.onOpen()
+          <Box pos="relative">
+            <Stack
+              spacing="8"
+              position="sticky"
+              top={{base: '80px', xl: '15%'}}
+              w={{
+                base: '100%',
+                xl: 'xs'
+              }}
+              overflow={'hidden'}
+              display={{base: 'none', xl: 'flex'}}
+              textAlign="left"
+              flexDir={{base: 'row', xl: 'column'}}>
+              <BallonButton
+                variant="solid"
+                size="md"
+                mx="auto"
+                py="7 !important"
+                onClick={() => {
+                  contactModal.onOpen()
+                }}>
+                Jetzt anfragen
+              </BallonButton>
+
+              <Flex align="center" pt="8">
+                <Divider />
+                <Text
+                  fontSize="sm"
+                  p="2"
+                  display={{
+                    base: 'none',
+                    xl: 'block'
                   }}>
-                  Jetzt anfragen
-                </BallonButton>
+                  Inhaltsverzeichnis
+                </Text>
+                <Divider />
+              </Flex>
 
-                <Flex align="center" pt="8">
-                  <Divider />
-                  <Link
-                    fontSize="sm"
-                    display={{base: 'block', '2xl': 'none'}}
-                    padding="2"
-                    aria-label="Table of Contents"
-                    onClick={onOpen}>
-                    Inhaltsverzeichnis
-                  </Link>
-                  <Text
-                    fontSize="sm"
-                    p="2"
-                    display={{
-                      base: 'none',
-                      '2xl': 'block'
-                    }}>
-                    Inhaltsverzeichnis
-                  </Text>
-                  <Divider />
-                </Flex>
-              </Stack>
-
-              <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
-                <DrawerOverlay />
-                <DrawerContent borderLeftRadius="lg">
-                  <DrawerCloseButton />
-                  <DrawerHeader>Inhaltsverzeichnis</DrawerHeader>
-                  <DrawerBody>
-                    <Links />
-                  </DrawerBody>
-                </DrawerContent>
-              </Drawer>
-              <Box
-                display={{base: 'none', '2xl': 'block'}}
-                position="sticky"
-                top={{base: 'unset', '2xl': '10%'}}>
+              <Stack mx="8" spacing="1">
                 <Links />
-              </Box>
-            </Box>
+              </Stack>
+            </Stack>
           </Box>
         </Stack>
       </Stack>
