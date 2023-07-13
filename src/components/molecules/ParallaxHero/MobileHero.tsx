@@ -9,16 +9,16 @@ import {
   chakra
 } from '@chakra-ui/react'
 import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
-import HBalloon  from '../../../common/assets/hballoon.inline.svg'
+import HBalloon from '../../../common/assets/hballoon.inline.svg'
 import {Field} from '@snek-at/jaen'
 import LinkButtonField from '../../fields/LinkButtonField'
 import {useScrollSync} from '../../hooks/scroll'
 import {useMemo} from 'react'
 import {useContentPages} from '../../hooks/useContentPages'
 import CardWithImageBackground from '../../CardWithImageBackground'
-import SkylineL1  from '../../../common/assets/skyline1.inline.svg'
-import SkylineL2  from '../../../common/assets/skyline2.inline.svg'
-import SkylineL3  from '../../../common/assets/skyline3.inline.svg'
+import SkylineL1 from '../../../common/assets/skyline1.inline.svg'
+import SkylineL2 from '../../../common/assets/skyline2.inline.svg'
+import SkylineL3 from '../../../common/assets/skyline3.inline.svg'
 import * as style from './style'
 
 export const MobileHero = () => {
@@ -145,11 +145,9 @@ export const MobileHero = () => {
           alignSelf="flex-end"
           h="100px"
           visibility={scrollTop < 100 ? 'visible' : 'hidden'}>
-          <a>
-            <span></span>
-            <span></span>
-            <span></span>
-          </a>
+          <span></span>
+          <span></span>
+          <span></span>
         </Box>
       </Stack>
       <Box>{grid}</Box>
