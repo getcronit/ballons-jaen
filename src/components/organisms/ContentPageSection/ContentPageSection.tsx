@@ -44,7 +44,8 @@ import {removeHtmlFromString} from '../../../common/utils'
 import FourCard from '../FourCard/FourCard'
 import ConvincedSection from './ConvincedSection'
 import {useContactModal} from '../../../services/contact'
-import HBalloon  from '../../../common/assets/hballoon.inline.svg'
+import HBalloon from '../../../common/assets/hballoon.inline.svg'
+import Shape1 from '../../../common/assets/shapes/shape1.inline.svg'
 
 export interface ContentPageSectionProps {}
 
@@ -449,13 +450,22 @@ const CategoryContentSection = connectBlock(
             md: '12'
           }}
           spacing="12">
-          <Image
+          {/* <Image
             zIndex="-999"
             pos="absolute"
             top={{base: '0rem'}}
             w={{base: '40%', md: '60%', lg: '70%', xl: '58%'}}
             left={{base: '0', lg: '-64px', xl: 0}}
             src="/images/decorationen/shapes/shape.svg"
+          /> */}
+          <chakra.svg
+            as={Shape1}
+            zIndex="-999"
+            pos="absolute"
+            top={{base: '0rem'}}
+            w={{base: '40%', md: '60%', lg: '70%', xl: '58%'}}
+            h="auto"
+            left={{base: '0', lg: '-64px', xl: 0}}
           />
           <VStack pos="relative" zIndex="1">
             <Field.Text

@@ -1,6 +1,8 @@
-import {Box, Image} from '@chakra-ui/react'
+import {Box, Image, chakra} from '@chakra-ui/react'
 import {FC} from 'react'
 import WhiteBoxWithDashBorder from '../WhiteBoxWithDashBorder'
+import Shape1 from '../../../common/assets/shapes/shape1.inline.svg'
+import Shape2 from '../../../common/assets/shapes/shape2.inline.svg'
 
 interface IConvincedSectionProps {}
 
@@ -14,9 +16,36 @@ const ConvincedSection: FC<IConvincedSectionProps> = () => {
       maxW="93.75rem"
       mt={{base: 16, md: '-14', lg: '0'}}
       pt={{base: '40', md: '24', xl: '40'}}
-      pb="16"
-      overflow="hidden">
-      <Image
+      pb="16">
+      <chakra.svg
+        as={Shape2}
+        pos="absolute"
+        top={{md: '0px'}}
+        left={{base: '-50px', md: '0', lg: '0', '2xl': '50px'}}
+        height="100%"
+        maxH={{base: '150px', md: '200px', lg: '250px'}}
+        width="auto"
+      />
+      <chakra.svg
+        as={Shape2}
+        pos="absolute"
+        bottom="0"
+        right={{base: '-30px', md: '50px', lg: '50px', '2xl': '150px'}}
+        height="100%"
+        maxH={{base: '120px', md: '120px', lg: '150px'}}
+        width="auto"
+        transform="rotate(180deg)"
+      />
+      <chakra.svg
+        as={Shape1}
+        pos="absolute"
+        top="0"
+        right={{base: '-190px', md: '-110px', xl: '-110px', '2xl': '-5'}}
+        maxH="18.75rem"
+        width="auto"
+        transform="rotate(200deg)"
+      />
+      {/* <Image
         pos="absolute"
         top={{md: '0px'}}
         left={{base: '-50px', md: '0', lg: '0', '2xl': '50px'}}
@@ -38,7 +67,7 @@ const ConvincedSection: FC<IConvincedSectionProps> = () => {
         maxH="18.75rem"
         transform="rotate(180deg)"
         src="/images/decorationen/shapes/shape.svg"
-      />
+      /> */}
 
       <WhiteBoxWithDashBorder
         titleFieldName="convincedTitle"
