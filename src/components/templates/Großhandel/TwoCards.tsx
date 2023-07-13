@@ -1,7 +1,11 @@
-import {Box, Container, Image} from '@chakra-ui/react'
+import {Box, Container, Image, chakra} from '@chakra-ui/react'
 import {FC} from 'react'
 import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
 import HorizontalImageCard from '../../organisms/HorizontalImageCard'
+
+import TopShape from '../../../common/assets/shapes/top_shape.inline.svg'
+import Shape2 from '../../../common/assets/shapes/shape2.inline.svg'
+import CardLine from '../../../common/assets/card_line.inline.svg'
 
 interface ITwoCardsProps {}
 
@@ -13,7 +17,24 @@ const TwoCards: FC<ITwoCardsProps> = () => {
         //overflow="hidden"
         pb={{md: '10', xl: 8}}
         pt={{base: '16', lg: 48}}>
-        <Image
+        <chakra.svg
+          as={TopShape}
+          position="absolute"
+          top={'0'}
+          left={'0'}
+          transform={'scaley(-1)'}
+          w="100%"
+          h="auto"
+        />
+        <chakra.svg
+          as={CardLine}
+          display={{base: 'none', md: 'block'}}
+          pos="absolute"
+          top="0"
+          w="full"
+          h="auto"
+        />
+        {/* <Image
           position="absolute"
           top={'0'}
           left={'0'}
@@ -28,7 +49,7 @@ const TwoCards: FC<ITwoCardsProps> = () => {
           pos="absolute"
           top="0"
           w="full"
-        />
+        /> */}
         <Container
           maxW={CONTAINER_MAX_WIDTH}
           pos="relative"
@@ -52,7 +73,7 @@ const TwoCards: FC<ITwoCardsProps> = () => {
         </Container>
       </Box>
       <Box pt={{'2xl': 16}} pb="10" pos="relative" overflow="hidden">
-        <Image
+        {/* <Image
           display={{base: 'none', md: 'block'}}
           src="/images/großhandel/shape2.svg"
           pos="absolute"
@@ -69,6 +90,25 @@ const TwoCards: FC<ITwoCardsProps> = () => {
           w="100%"
           src="/images/home/reisges/top_shape.svg"
           alt="bottom_shape_white"
+        /> */}
+        <chakra.svg
+          as={Shape2}
+          display={{base: 'none', md: 'block'}}
+          pos="absolute"
+          top="0"
+          right="0"
+          w="25%"
+          h="auto"
+          transform="rotate(270deg)"
+        />
+        <chakra.svg
+          as={TopShape}
+          position="absolute"
+          bottom={'0'}
+          left={'0'}
+          transform={'scalex(-1)'}
+          w="100%"
+          h="auto"
         />
         <Container maxW={CONTAINER_MAX_WIDTH} pos="relative">
           <HorizontalImageCard
