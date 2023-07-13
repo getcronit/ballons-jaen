@@ -1,4 +1,13 @@
-import {Button, Flex, Grid, Heading, Image, Stack, Text} from '@chakra-ui/react'
+import {
+  Box,
+  Button,
+  Flex,
+  Grid,
+  Heading,
+  Image,
+  Stack,
+  Text
+} from '@chakra-ui/react'
 import {Field, useStatus} from '@snek-at/jaen'
 import {Link} from 'gatsby'
 import {FC} from 'react'
@@ -15,15 +24,10 @@ const BlogCard: FC<IBlogCardProps> = ({slug}) => {
 
   return (
     <Flex borderRadius="xl" bg="white" boxShadow="dark" flexDir="column">
-      <Grid
-        borderRadius="1.875rem"
-        overflow="hidden"
-        flex="1"
-        maxH={{base: '8.125rem', sm: '13.75rem', md: '37.5rem'}}>
+      <Box borderRadius="1.875rem" overflow="hidden" h="xs">
         <Field.Image name="image" />
-      </Grid>
+      </Box>
       <Stack
-        flex="1"
         gap={{base: 2, md: 0}}
         spacing="4"
         px={{base: 4, md: 6}}
