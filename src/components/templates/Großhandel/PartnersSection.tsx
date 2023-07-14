@@ -68,7 +68,7 @@ const PartnersSection: FC<IPartnersSectionProps> = () => {
           defaultUrl={`/grosshandel/?contact=Ich%20repr%C3%A4sentiere%20[Ihr%20Unternehmen].%20Wir%20sind%20ein%20etabliertes%20Unternehmen%20in%20der%20[Ihr%20Gesch%C3%A4ftsbereich],%20das%20daran%20interessiert%20ist,%20Ihre%20Auswahl%20an%20Ballonprodukten%20in%20unser%20Sortiment%20aufzunehmen.`}
         />
       </VStack>
-      <Image
+      {/* <Image
         zIndex={'-1'}
         mb="-10rem"
         position="relative"
@@ -78,7 +78,7 @@ const PartnersSection: FC<IPartnersSectionProps> = () => {
         w="100%"
         src="/images/großhandel/großhandel_bg.svg"
         alt="bottom_shape_white"
-      />
+      /> */}
     </>
   )
 }
