@@ -116,7 +116,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
               </Text>
               <Stack spacing="4">
                 <HStack spacing="4">
-                  <FormControl isInvalid={!!errors.firstName}>
+                  <FormControl isRequired isInvalid={!!errors.firstName}>
                     <FormLabel htmlFor="firstName" fontSize="sm">
                       Vorname
                     </FormLabel>
@@ -133,7 +133,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                       {errors.firstName?.message}
                     </FormErrorMessage>
                   </FormControl>
-                  <FormControl isInvalid={!!errors.lastName}>
+                  <FormControl isRequired isInvalid={!!errors.lastName}>
                     <FormLabel htmlFor="lastName" fontSize="sm">
                       Nachname
                     </FormLabel>
@@ -152,7 +152,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                   </FormControl>
                 </HStack>
                 <HStack spacing="4">
-                  <FormControl isInvalid={!!errors.email}>
+                  <FormControl isRequired isInvalid={!!errors.email}>
                     <FormLabel htmlFor="email" fontSize="sm">
                       E-Mail
                     </FormLabel>
@@ -235,7 +235,7 @@ export const OrderModal: React.FC<OrderModalProps> = ({
                 </FormErrorMessage>
               </FormControl>
 
-              <FormControl isInvalid={!!errors.agreeToTerms}>
+              <FormControl isRequired isInvalid={!!errors.agreeToTerms}>
                 <Controller
                   render={({field, fieldState, formState}) => (
                     <CheckboxStyled
