@@ -22,23 +22,28 @@ const ConvincedSection: FC<IConvincedSectionProps> = () => {
           pos="absolute"
           top={{md: '0px'}}
           left={{base: '-50px', md: '0', lg: '0', '2xl': '50px'}}
+          height="100%"
           maxH={{base: '150px', md: '200px', lg: '250px'}}
+          width="auto"
         />
         <chakra.svg
           as={Shape2}
           pos="absolute"
           bottom="0"
           right={{base: '-30px', md: '50px', lg: '50px', '2xl': '150px'}}
+          height="100%"
           maxH={{base: '120px', md: '120px', lg: '150px'}}
+          width="auto"
           transform="rotate(180deg)"
         />
         <chakra.svg
           as={Shape1}
           pos="absolute"
           top="0"
-          right={{base: '-180px', md: '-100px', xl: '-100px', '2xl': '0'}}
+          right={{base: '-190px', md: '-110px', xl: '-110px', '2xl': '-5'}}
           maxH="18.75rem"
-          transform="rotate(180deg)"
+          width="auto"
+          transform="rotate(200deg)"
         />
         {/* <Image
           pos="absolute"
