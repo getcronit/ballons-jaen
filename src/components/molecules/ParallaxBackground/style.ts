@@ -6,7 +6,7 @@ const parallaxMake = (parallax__layers: number) => {
     let x = (parallax__layers - i) / 2
 
     styles['.parallax__layer__' + i] = {
-      transform: `translateZ(${-100 * x}px) scale(${x / 2 + 3})`
+      transform: `translateZ(${-100 * x}px)`
     }
   }
   return styles
@@ -17,7 +17,7 @@ export const Section = (
   backgroundColor: string,
   noScroll: boolean | undefined
 ) => css`
-  perspective: 100px;
+  perspective: 400px;
   height: 250vh;
   overflow-x: hidden;
   overflow-y: ${noScroll ? 'scroll' : 'hidden'};
