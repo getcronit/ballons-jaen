@@ -157,8 +157,8 @@
   },
   "JaenPage /kontakt/": {
     "context": {
-      "createdAt": "2023-07-13T14:44:01.453Z",
-      "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIiTGSwDbEyb9KM6-v1Ndk_v_Ut1KiUAAJrEAACOziBUZ-kIjE9aq0RLwQ"
+      "createdAt": "2023-07-14T16:28:17.395Z",
+      "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIiU2Sxd6Hx92F4pO7JIZE9CzzYpA0MAALEDwACWzOJUUeIwosDB79ELwQ"
     },
     "migrations": [
       {
@@ -200,6 +200,10 @@
       {
         "createdAt": "2023-07-13T14:44:01.453Z",
         "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIiTGSwDbEyb9KM6-v1Ndk_v_Ut1KiUAAJrEAACOziBUZ-kIjE9aq0RLwQ"
+      },
+      {
+        "createdAt": "2023-07-14T16:28:17.395Z",
+        "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIiU2Sxd6Hx92F4pO7JIZE9CzzYpA0MAALEDwACWzOJUUeIwosDB79ELwQ"
       }
     ]
   },
