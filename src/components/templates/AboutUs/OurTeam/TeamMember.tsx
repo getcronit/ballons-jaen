@@ -10,12 +10,14 @@ import {
   UnorderedList,
   VStack,
   AspectRatio,
-  Container
+  Container,
+  chakra
 } from '@chakra-ui/react'
 import {Field, connectBlock, useSectionBlockContext} from '@snek-at/jaen'
 import {FC} from 'react'
 import {Interface} from 'readline'
 import {CONTAINER_MAX_WIDTH} from '../../../../constant/sizes'
+import Shape1 from '../../../../common/assets/shapes/shape1.inline.svg'
 
 interface ITeamMemberProps {
   isLeft: boolean
@@ -49,16 +51,29 @@ const TeamMember: FC<ITeamMemberProps> = ({isLeft}) => {
           justify="space-between">
           <VStack>
             <Grid placeItems="center" pos="relative">
-              <Image src="/images/about_us/profile_bg.svg" />
+              {/* <Image src="/images/about_us/profile_bg.svg" /> */}
+              <chakra.svg
+                as={Shape1}
+                sx={{
+                  '#Selection': {
+                    fill: "#f6f8fa",
+                  }
+                }}
+                w="30rem"
+                maxW="100%"
+                h="auto"
+                pb= "1rem"
+                transform="rotate(190deg)"
+              />
               {/* <Image src={image} pos="absolute" boxShadow="dark" w="80%" borderRadius="full" /> */}
               <AspectRatio
                 ratio={1}
                 pos="absolute"
                 boxShadow="dark"
                 overflow="hidden"
-                w="80%"
+                w="75%"
                 borderRadius="full">
-                <Field.Image name="image" />
+                <Field.Image name="image"/>
               </AspectRatio>
             </Grid>
             {/* <Heading size="h3015" fontWeight="semibold">
@@ -110,6 +125,7 @@ const TeamMember: FC<ITeamMemberProps> = ({isLeft}) => {
               //fontSize="xs"
               textAlign={'left'}
               //fontWeight="semibold"
+              listStylePosition="inside"
               defaultValue={'About'}
             />
           </Stack>
@@ -119,7 +135,19 @@ const TeamMember: FC<ITeamMemberProps> = ({isLeft}) => {
       <Stack py="4" display={{base: 'flex', md: 'none'}} gap="2">
         <Flex justifyContent="center">
           <Grid placeItems="center" pos="relative">
-            <Image src="/images/about_us/profile_bg.svg" />
+            {/* <Image src="/images/about_us/profile_bg.svg" /> */}
+            <chakra.svg
+                as={Shape1}
+                sx={{
+                  '#Selection': {
+                    fill: "#f6f8fa",
+                  }
+                }}
+                w="30rem"
+                maxW="100%"
+                h="auto"
+                transform="rotate(160deg)"
+              />
             {/* <Image src={image} pos="absolute" boxShadow="dark" w="80%" borderRadius="full" /> */}
             <AspectRatio
               ratio={1}
@@ -169,8 +197,15 @@ const TeamMember: FC<ITeamMemberProps> = ({isLeft}) => {
             base: 'sm',
             md: 'md'
           }}
-          textAlign={{base: isLeft ? 'left' : 'right'}}
           //fontWeight="semibold"
+          listStylePosition="inside"
+          //transform={'scalex(-1)'}
+          sx={{
+            "*": {
+              direction: isLeft ? "lrt" : "rtl",
+              textAlign: isLeft ? 'left' : 'right'
+            }
+          }}
           defaultValue={'About'}
         />
       </Stack>
