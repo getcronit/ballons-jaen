@@ -34,11 +34,11 @@ const FaqBallons: FC<IFaqBallonsProps> = () => {
           />
         </Container>
       </Box>
-      <Image
+      {/* <Image
         mt={{base: 32, md: 60, xl: 80}}
         src="/images/faq/bottom-bg.svg"
         w="full"
-      />
+      /> */}
     </>
   )
 }
