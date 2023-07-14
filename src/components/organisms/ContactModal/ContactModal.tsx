@@ -25,7 +25,7 @@ export interface ContactFormValues {
   firstName: string
   lastName: string
   email: string
-  phone: string
+  phone?: string
   message: string
 
   agreeToTerms: boolean
@@ -107,7 +107,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
               </Text>
 
               <HStack>
-                <FormControl isInvalid={!!errors.firstName}>
+                <FormControl isRequired isInvalid={!!errors.firstName}>
                   <FormLabel htmlFor="firstName" fontSize="sm">
                     Vorname
                   </FormLabel>
@@ -124,7 +124,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                     {errors.firstName?.message}
                   </FormErrorMessage>
                 </FormControl>
-                <FormControl isInvalid={!!errors.lastName}>
+                <FormControl isRequired isInvalid={!!errors.lastName}>
                   <FormLabel htmlFor="lastName" fontSize="sm">
                     Nachname
                   </FormLabel>
@@ -143,7 +143,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                 </FormControl>
               </HStack>
               <HStack>
-              <FormControl isInvalid={!!errors.email}>
+              <FormControl isRequired isInvalid={!!errors.email}>
                 <FormLabel htmlFor="email" fontSize="sm">
                   E-Mail
                 </FormLabel>
@@ -170,7 +170,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                   placeholder="+43 123 456 789"
                   type="phone"
                   {...register('phone', {
-                    required: true
+                    required: false
                   })}
                   isDisabled={!!fixedValues?.phone}
                 />
@@ -180,7 +180,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                 </FormErrorMessage>
               </FormControl>
               </HStack>
-              <FormControl isInvalid={!!errors.message}>
+              <FormControl isRequired isInvalid={!!errors.message}>
                 <FormLabel htmlFor="message" fontSize="sm">
                   Wie können wir Ihnen helfen?
                 </FormLabel>
@@ -196,7 +196,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                 </FormErrorMessage>
               </FormControl>
 
-              <FormControl isInvalid={!!errors.agreeToTerms}>
+              <FormControl isRequired isInvalid={!!errors.agreeToTerms}>
                 <Controller
                   render={({ field, fieldState, formState }) => (
                     <CheckboxStyled
