@@ -135,7 +135,6 @@ export const ParallaxBackground = ({
       <Box
         className="parallax__layer parallax__layer__8"
         pl="10%"
-        pt={{md: 'calc(1% + 7.5rem)', lg: 'calc(1% + 38rem)'}}
         display={{base: 'none', md: 'none', lg: 'none', xl: 'block'}}>
         <chakra.svg
           as={Balloon}
@@ -168,7 +167,7 @@ export const ParallaxBackground = ({
       <Box
         className="parallax__layer parallax__layer__11"
         pl="60%"
-        pt={{md: 'calc(20% + 37.5rem)', lg: 'calc(20% + 38rem)'}}
+        pt={{md: 'calc(20% + 20rem)'}}
         display={{base: 'none', md: 'none', lg: 'none', xl: 'block'}}>
         <chakra.svg
           as={Balloon}
@@ -178,8 +177,8 @@ export const ParallaxBackground = ({
       </Box>
       <Box
         className="parallax__layer parallax__layer__12"
-        pl="72%"
-        pt={{md: 'calc(5% + 27.5rem)', lg: 'calc(5% + 28rem)'}}
+        pl="80%"
+        pt={{md: 'calc(5% + 0rem)'}}
         display={{base: 'none', md: 'block', lg: 'block', xl: 'block'}}>
         <chakra.svg
           as={Balloon}
