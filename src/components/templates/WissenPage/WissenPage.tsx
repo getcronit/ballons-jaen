@@ -1,17 +1,20 @@
-import { Box, Container, Image } from '@chakra-ui/react'
+import {Box, Container, Image, chakra} from '@chakra-ui/react'
 import React from 'react'
-import { CONTAINER_MAX_WIDTH } from '../../../constant/sizes'
-import { JaenPageIndexType } from '../../../types/commonTypes'
-import { useNewsPages } from '../../hooks/useNewsPages'
+import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
+import {JaenPageIndexType} from '../../../types/commonTypes'
+import {useNewsPages} from '../../hooks/useNewsPages'
 import HorizontalImageCard from '../../organisms/HorizontalImageCard'
 import BlogOverview from '../BlogOverview/BlogOverview'
 import BlogOverviewHero from './BlogOverviewHero'
 import BlogsSection from './BlogsSection'
 
-export interface WissenPageProps { }
+import TopShape from '../../../common/assets/shapes/top_shape.inline.svg'
+import CardLine from '../../../common/assets/card_line.inline.svg'
+
+export interface WissenPageProps {}
 
 const WissenPage: React.FC<WissenPageProps> = () => {
-  const index = useNewsPages({ unlimited: true })
+  const index = useNewsPages({unlimited: true})
 
   return (
     <>
@@ -23,9 +26,9 @@ const WissenPage: React.FC<WissenPageProps> = () => {
       <Box
         pos="relative"
         overflow="hidden"
-        pb={{ md: '10', xl: 32 }}
-        pt={{ base: '16', lg: 48 }}>
-        <Image
+        pb={{md: '10', xl: 32}}
+        pt={{base: '16', lg: 48}}>
+        {/* <Image
           zIndex='-1'
           position="absolute"
           top={'0'}
@@ -41,11 +44,24 @@ const WissenPage: React.FC<WissenPageProps> = () => {
           pos="absolute"
           top="0"
           w="full"
+        /> */}
+        <chakra.svg
+          as={TopShape}
+          borderBottom="solid white"
+          borderBottomWidth={32}
+          zIndex="-1"
+          position="absolute"
+          top={'0'}
+          left={'0'}
+          transform={'scaley(-1)'}
+          w="100%"
+          h="auto"
         />
+        <chakra.svg as={CardLine} pos="absolute" top="0" w="full" h="auto" />
         <Container
           maxW={CONTAINER_MAX_WIDTH}
           pos="relative"
-          mb={{ base: '16 !important', md: '0' }}>
+          mb={{base: '16 !important', md: '0'}}>
           <HorizontalImageCard
             card={{
               tagFieldName: 'blogOverviewCard1Tag',
