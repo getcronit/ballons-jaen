@@ -1,16 +1,27 @@
-import {Grid, Heading, Stack, Text, VStack} from '@chakra-ui/react'
+import {
+  Image,
+  Grid,
+  Heading,
+  Stack,
+  Text,
+  VStack,
+  chakra,
+  Box
+} from '@chakra-ui/react'
 import {Field} from '@snek-at/jaen'
 import {StaticImage} from 'gatsby-plugin-image'
 import {FC} from 'react'
 import LinkButtonField from '../../../fields/LinkButtonField'
 import {TransparentCard} from '../../../TransparentCard'
+import BallonText from '../../../../common/assets/joy.inline.svg'
 
 interface IJoySectionProps {}
 
 const JoySection: FC<IJoySectionProps> = () => {
   return (
-    <Grid minH={'100vh'} h={{base: '43.125rem', md: '60rem'}}>
-      <StaticImage
+    <Grid minH={'100vh'} h={{base: '43.125rem', md: '60rem'}} pos="relative">
+      {/* <Image
+        as={StaticImage}
         style={{
           gridArea: '1/1'
         }}
@@ -18,14 +29,25 @@ const JoySection: FC<IJoySectionProps> = () => {
         alt="Menschenmenge mit Ballons in Wien"
         src={'./bg.jpg'}
         formats={['auto', 'webp', 'avif']}
-      />
-      <div
+      /> */}
+
+      <Box
+        overflow="hidden"
+        pos="relative"
         style={{
           gridArea: '1/1',
           position: 'relative',
           placeItems: 'center',
           display: 'grid'
         }}>
+        <chakra.svg
+          pos="absolute"
+          as={BallonText}
+          preserveAspectRatio="xMinYMin slice"
+          minW="100%"
+          minH="100%"
+          h="auto"
+        />
         <Stack
           spacing="6"
           justify="center"
@@ -68,7 +90,7 @@ const JoySection: FC<IJoySectionProps> = () => {
             size={{base: 'sm', md: 'md'}}
           />
         </Stack>
-      </div>
+      </Box>
     </Grid>
   )
 }
