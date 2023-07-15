@@ -16,6 +16,7 @@ const ConvincedSection: FC<IConvincedSectionProps> = () => {
       maxW="93.75rem"
       mt={{base: 16, md: '-14', lg: '0'}}
       pt={{base: '40', md: '24', xl: '40'}}
+      overflowX="hidden"
       pb="16">
       <chakra.svg
         as={Shape2}

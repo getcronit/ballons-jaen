@@ -164,7 +164,7 @@ const CardWithImageBackgroundField: React.FC<
             }
           }}
           transition="ease-in 0.2s"
-          boxShadow="darker"
+          boxShadow="dark"
           color="white"
           justify="end"
           h={h ?? 'full'}

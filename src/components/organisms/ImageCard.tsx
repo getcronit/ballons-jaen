@@ -18,7 +18,7 @@ export const ImageCard: FC<
         }
       }}
       transition="ease-in 0.2s"
-      boxShadow="darker"
+      boxShadow="dark"
       color="white"
       h={{
         base: '12.5rem',
