@@ -16,15 +16,15 @@
   },
   "widgets": [
     {
-      "name": "menu",
+      "name": "footerOther",
       "data": {
-        "markdown": "\n[Partyshop](/partyshop)\n[Deko & Design](/deko-design)\n[Grosshandel](/grosshandel)\n[Ballongas](ballongas)\n[Wissen](/wissen)\n[Kontakt](/kontakt)\n  "
+        "markdown": "\n    [Home](/)\n    [Kontakt](/kontakt)\n    [FAQs](/faq)    [AGB](/agb)\n    [Datenschutz](/datenschutz)\n    [Impressum](/impressum)\n  "
       }
     },
     {
       "name": "footerCategory",
       "data": {
-        "markdown": "\n[Partyshop](/partyshop)\n[Deko & Design](/deko-design)\n[Grosshandel](/grosshandel)\n[Ballongas](ballongas)\n[Wissen](/news)\n[Kontakt](/kontakt)"
+        "markdown": "\n[Partyshop](/partyshop)\n[Deko & Design](/deko-design)\n[Grosshandel](/grosshandel)\n[Ballongas](ballongas)\n[Wissen](/wissen)\n[Kontakt](/kontakt)"
       }
     },
     {
@@ -123,6 +123,10 @@
     {
       "createdAt": "2023-07-14T17:21:53.362Z",
       "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIiVGSxg6z4EAQrkfKNSs0fT9RUt7W4AALMDwACWzOJUUd2o6s9mnZ3LwQ"
+    },
+    {
+      "createdAt": "2023-07-15T13:06:41.294Z",
+      "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIiZWSymTbbZSF6i9Vhw20gVigdzGVwAAKcEAACW1qQUae_ItZIf07JLwQ"
     }
   ],
   "site": {
