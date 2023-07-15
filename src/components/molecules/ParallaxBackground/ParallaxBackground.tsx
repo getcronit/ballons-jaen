@@ -65,29 +65,19 @@ export const ParallaxBackground = ({
           className="parallax__layer parallax__layer__0"
           pl="0%"
           pt={{md: '90%'}}
-          display={{base: 'none', md: 'block', lg: 'block', xl: 'block'}}>
+          display={{base: 'none', '2xl': 'block'}}>
           <chakra.svg
             as={Balloon}
             className="background-Ballon"
             {...customProps(9)}
           />
         </Box>
-        <Box
-          className="parallax__layer parallax__layer__1"
-          pl="0%"
-          pt={{md: '50%'}}
-          display={{base: 'none', md: 'block', lg: 'block', xl: 'block'}}>
-          <chakra.svg
-            as={Balloon}
-            className="background-Ballon"
-            {...customProps(9)}
-          />
-        </Box>
+
         <Box
           className="parallax__layer parallax__layer__2"
           pl="90%"
           pt={{md: '50%'}}
-          display={{base: 'none', md: 'block', lg: 'block', xl: 'block'}}>
+          display={{base: 'none', '2xl': 'block'}}>
           <chakra.svg
             as={Balloon}
             className="background-Ballon"
@@ -98,7 +88,7 @@ export const ParallaxBackground = ({
           className="parallax__layer parallax__layer__3"
           pl="0%"
           pt={{md: '20%'}}
-          display={{base: 'none', md: 'block', lg: 'block', xl: 'block'}}>
+          display={{base: 'none', '2xl': 'block'}}>
           <chakra.svg
             as={Balloon}
             className="background-Ballon"
@@ -108,8 +98,8 @@ export const ParallaxBackground = ({
         <Box
           className="parallax__layer parallax__layer__4"
           pl="0%"
-          pt={{md: '50%'}}
-          display={{base: 'none', md: 'block', lg: 'block', xl: 'block'}}>
+          pt={{md: '60%'}}
+          display={{base: 'none', '2xl': 'block'}}>
           <chakra.svg
             as={Balloon}
             className="background-Ballon"
@@ -120,7 +110,7 @@ export const ParallaxBackground = ({
           className="parallax__layer parallax__layer__5"
           pl="80%"
           pt={{md: '65%'}}
-          display={{base: 'none', md: 'block', lg: 'block', xl: 'block'}}>
+          display={{base: 'none', '2xl': 'block'}}>
           <chakra.svg
             as={Balloon}
             className="background-Ballon"
@@ -142,7 +132,7 @@ export const ParallaxBackground = ({
           className="parallax__layer parallax__layer__7"
           pl="50%"
           pt={{md: '45%'}}
-          display={{base: 'none', md: 'block', lg: 'block', xl: 'block'}}>
+          display={{base: 'none', '2xl': 'block'}}>
           <chakra.svg
             as={Balloon}
             className="background-Ballon"
@@ -164,7 +154,7 @@ export const ParallaxBackground = ({
           className="parallax__layer parallax__layer__9"
           pl="20%"
           pt={{md: '60%'}}
-          display={{base: 'none', md: 'block', lg: 'block', xl: 'block'}}>
+          display={{base: 'none', '2xl': 'block'}}>
           <chakra.svg
             as={Balloon}
             className="background-Ballon"
@@ -248,16 +238,32 @@ export const ParallaxBackground = ({
         lg: 'top 0 left 0',
         xl: 'top 0 left 0'
       }}>
-      <Box className="parallax__layer parallax__layer__0" pl="90%" pt={{md: 'calc(1% + 17.5rem)', lg: 'calc(1% + 18rem)'}} display={{ base: 'none', md: 'none', lg: 'none', xl: 'block' }}>
+      <Box
+        className="parallax__layer parallax__layer__0"
+        pl="90%"
+        pt={{md: 'calc(1% + 17.5rem)', lg: 'calc(1% + 18rem)'}}
+        display={{base: 'none', md: 'none', lg: 'none', xl: 'block'}}>
         <chakra.svg as={Balloon} className="background-Ballon" />
       </Box>
-      <Box className="parallax__layer parallax__layer__1" pl="60%" pt={{md: 'calc(30% + 37.5rem)', lg: 'calc(30% + 38rem)'}} display={{ base: 'none', md: 'none', lg: 'block', xl: 'block' }}>
+      <Box
+        className="parallax__layer parallax__layer__1"
+        pl="60%"
+        pt={{md: 'calc(30% + 37.5rem)', lg: 'calc(30% + 38rem)'}}
+        display={{base: 'none', md: 'none', lg: 'block', xl: 'block'}}>
         <chakra.svg as={Balloon} className="background-Ballon" />
       </Box>
-      <Box className="parallax__layer parallax__layer__2" pl="3%" pt={{md: 'calc(70% + 37.5rem)', lg: 'calc(70% + 38rem)'}} display={{ base: 'none', md: 'block', lg: 'block', xl: 'block' }}>
+      <Box
+        className="parallax__layer parallax__layer__2"
+        pl="3%"
+        pt={{md: 'calc(70% + 37.5rem)', lg: 'calc(70% + 38rem)'}}
+        display={{base: 'none', md: 'block', lg: 'block', xl: 'block'}}>
         <chakra.svg as={Balloon} className="background-Ballon" />
       </Box>
-      <Box className="parallax__layer parallax__layer__3" pl="80%" pt={{md: 'calc(1% + 37.5rem)', lg: 'calc(1% + 38rem)'}} display={{ base: 'none', md: 'none', lg: 'none', xl: 'block' }}>
+      <Box
+        className="parallax__layer parallax__layer__3"
+        pl="80%"
+        pt={{md: 'calc(1% + 37.5rem)', lg: 'calc(1% + 38rem)'}}
+        display={{base: 'none', md: 'none', lg: 'none', xl: 'block'}}>
         <chakra.svg as={Balloon} className="background-Ballon" />
       </Box>
       <Box
@@ -270,22 +276,46 @@ export const ParallaxBackground = ({
           {...customProps(4)}
         />
       </Box>
-      <Box className="parallax__layer parallax__layer__5" pl="80%" pt={{md: 'calc(60% + 37.5rem)', lg: 'calc(60% + 38rem)'}} display={{ base: 'none', md: 'block', lg: 'block', xl: 'block' }}>
+      <Box
+        className="parallax__layer parallax__layer__5"
+        pl="80%"
+        pt={{md: 'calc(60% + 37.5rem)', lg: 'calc(60% + 38rem)'}}
+        display={{base: 'none', md: 'block', lg: 'block', xl: 'block'}}>
         <chakra.svg as={Balloon} className="background-Ballon" />
       </Box>
-      <Box className="parallax__layer parallax__layer__6" pl="1%" pt={{md: 'calc(20% + 37.5rem)', lg: 'calc(20% + 38rem)'}} display={{ base: 'none', md: 'none', lg: 'none', xl: 'block' }}>
+      <Box
+        className="parallax__layer parallax__layer__6"
+        pl="1%"
+        pt={{md: 'calc(20% + 37.5rem)', lg: 'calc(20% + 38rem)'}}
+        display={{base: 'none', md: 'none', lg: 'none', xl: 'block'}}>
         <chakra.svg as={Balloon} className="background-Ballon" />
       </Box>
-      <Box className="parallax__layer parallax__layer__7" pl="10%" pt={{md: 'calc(30% + 37.5rem)', lg: 'calc(30% + 38rem)'}} display={{ base: 'none', md: 'none', lg: 'block', xl: 'block' }}>
+      <Box
+        className="parallax__layer parallax__layer__7"
+        pl="10%"
+        pt={{md: 'calc(30% + 37.5rem)', lg: 'calc(30% + 38rem)'}}
+        display={{base: 'none', md: 'none', lg: 'block', xl: 'block'}}>
         <chakra.svg as={Balloon} className="background-Ballon" />
       </Box>
-      <Box className="parallax__layer parallax__layer__8" pl="10%" pt={{md: 'calc(1% + 7.5rem)', lg: 'calc(1% + 38rem)'}} display={{ base: 'none', md: 'none', lg: 'none', xl: 'block' }}>
+      <Box
+        className="parallax__layer parallax__layer__8"
+        pl="10%"
+        pt={{md: 'calc(1% + 7.5rem)', lg: 'calc(1% + 38rem)'}}
+        display={{base: 'none', md: 'none', lg: 'none', xl: 'block'}}>
         <chakra.svg as={Balloon} className="background-Ballon" />
       </Box>
-      <Box className="parallax__layer parallax__layer__9" pl="50%" pt={{md: 'calc(50% + 37.5rem)', lg: 'calc(50% + 38rem)'}} display={{ base: 'none', md: 'block', lg: 'block', xl: 'block' }}>
+      <Box
+        className="parallax__layer parallax__layer__9"
+        pl="50%"
+        pt={{md: 'calc(50% + 37.5rem)', lg: 'calc(50% + 38rem)'}}
+        display={{base: 'none', md: 'block', lg: 'block', xl: 'block'}}>
         <chakra.svg as={Balloon} className="background-Ballon" />
       </Box>
-      <Box className="parallax__layer parallax__layer__10" pl="80%" pt={{md: 'calc(40% + 37.5rem)', lg: 'calc(40% + 38rem)'}} display={{ base: 'none', md: 'block', lg: 'block', xl: 'block' }}>
+      <Box
+        className="parallax__layer parallax__layer__10"
+        pl="80%"
+        pt={{md: 'calc(40% + 37.5rem)', lg: 'calc(40% + 38rem)'}}
+        display={{base: 'none', md: 'block', lg: 'block', xl: 'block'}}>
         <chakra.svg as={Balloon} className="background-Ballon" />
       </Box>
       <Box
