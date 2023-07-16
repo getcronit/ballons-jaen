@@ -43,7 +43,7 @@ const JoySection: FC<IJoySectionProps> = () => {
         <chakra.svg
           pos="absolute"
           as={BallonText}
-          preserveAspectRatio="xMinYMin slice"
+          //preserveAspectRatio="xMinYMin slice"
           minW="100%"
           minH="100%"
           h="auto"
