@@ -148,6 +148,7 @@ export const ParallaxHero = ({noScroll}: ParallaxHeroProps) => {
         />
 
         <Stack
+          pointerEvents="none"
           w={CONTAINER_MAX_WIDTH}
           left={`calc(50% - ${CONTAINER_MAX_WIDTH} / 2 )`}
           top={'0'}
@@ -173,6 +174,7 @@ export const ParallaxHero = ({noScroll}: ParallaxHeroProps) => {
             gap="4">
             <LinkButtonField
               name="heroButton1"
+              pointerEvents="auto"
               defaultValue="Zum Shop"
               defaultUrl={`/products`}
               size={{base: 'sm', md: 'md'}}
@@ -189,6 +191,7 @@ export const ParallaxHero = ({noScroll}: ParallaxHeroProps) => {
             </Box>
             <LinkButtonField
               name="heroButton2"
+              pointerEvents="auto"
               defaultValue="Großhandel"
               defaultUrl={`/grosshandel`}
               size={{base: 'sm', md: 'md'}}
@@ -197,7 +200,7 @@ export const ParallaxHero = ({noScroll}: ParallaxHeroProps) => {
             />
           </HStack>
         </Stack>
-        <Box className="parallax__cover">{grid}</Box>
+        <Box className="parallax__cover" pointerEvents="none">{grid}</Box>
       </Box>
     </>
   )

@@ -29,6 +29,7 @@ export const Section = (
 
   .parallax__layer {
     position: absolute;
+    pointer-events: none;
     -webkit-transform: translate3d(0,0,0);
     shape-rendering="geometricPrecision";
     top: 0;
