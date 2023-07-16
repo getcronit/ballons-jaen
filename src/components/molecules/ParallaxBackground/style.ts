@@ -6,7 +6,7 @@ const parallaxMake = (parallax__layers: number) => {
     let x = (parallax__layers - i) / 2
 
     styles['.parallax__layer__' + i] = {
-      transform: `translateZ(${-100 * x}px)`
+      transform: `translateZ(${-50 * x}px)`
     }
   }
   return styles
@@ -29,6 +29,7 @@ export const Section = (
 
   .parallax__layer {
     position: absolute;
+    pointer-events: none;
     -webkit-transform: translate3d(0,0,0);
     shape-rendering="geometricPrecision";
     top: 0;

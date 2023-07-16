@@ -38,6 +38,7 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
 
   return (
     <Stack
+      pointerEvents="auto"
       onClick={() => !isEditing && card.linkUrl && navigate(card.linkUrl)}
       position="relative"
       _hover={{
