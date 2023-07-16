@@ -20,6 +20,7 @@ import SkylineL1 from '../../../common/assets/skyline1.inline.svg'
 import SkylineL2 from '../../../common/assets/skyline2.inline.svg'
 import SkylineL3 from '../../../common/assets/skyline3.inline.svg'
 import * as style from './style'
+import BallonSvg from '../ParallaxBackground/BallonSvg'
 
 export const MobileHero = () => {
   const {ref, scrollTop} = useScrollSync()
@@ -108,7 +109,7 @@ export const MobileHero = () => {
         alignItems={'center'}
         display={{base: 'flex', md: 'none'}}>
         <HStack>
-          <HBalloon className="background-Ballon" />
+          <BallonSvg as={HBalloon}  className="background-Ballon"/>
           <Field.Text
             as={Heading}
             name="heroTextBallons"
