@@ -21,7 +21,7 @@ export const ParallaxBackground = ({
   noScroll,
   ...props
 }: ParallaxBackgroundProps) => {
-  const {ref} = useScrollSync(offsetTop, offset)
+  const {ref} = useScrollSync(offset, offsetTop)
 
   const sigmoid = (x: number) => {
     return 1 / (1 + Math.exp(-x))
