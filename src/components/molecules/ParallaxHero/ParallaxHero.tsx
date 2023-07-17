@@ -29,7 +29,7 @@ export interface ParallaxHeroProps {
 }
 
 export const ParallaxHero = ({noScroll}: ParallaxHeroProps) => {
-  const {ref, scrollTop} = useScrollSync()
+  const {ref, scrollTop} = useScrollSync(500)
   const contentPagesIndex = useContentPages()
 
   const switchingHeadline = (

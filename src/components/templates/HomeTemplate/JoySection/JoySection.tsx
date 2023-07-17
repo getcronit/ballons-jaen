@@ -10,16 +10,28 @@ import {
 } from '@chakra-ui/react'
 import {Field} from '@snek-at/jaen'
 import {StaticImage} from 'gatsby-plugin-image'
-import {FC} from 'react'
+import {FC, useEffect, useRef} from 'react'
 import LinkButtonField from '../../../fields/LinkButtonField'
 import {TransparentCard} from '../../../TransparentCard'
 import BallonText from '../../../../common/assets/joy.inline.svg'
+import {useScrollSync} from '../../../hooks/scroll'
+import {NonceProvider} from 'chakra-react-select'
 
 interface IJoySectionProps {}
 
 const JoySection: FC<IJoySectionProps> = () => {
+  const sectionRef: React.RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null)
+  const {ref, scrollTop} = useScrollSync(-500, undefined, undefined, .1, sectionRef)
+
   return (
-    <Grid minH={'100vh'} h={{base: '43.125rem', md: '60rem'}} pos="relative">
+    <Grid
+      ref={sectionRef}
+      minH={'100vh'}
+      h={{base: '43.125rem', md: '50rem'}}
+      pos="relative"
+      sx={{
+        perspective: '1000px'
+      }}>
       {/* <Image
         as={StaticImage}
         style={{
@@ -40,14 +52,37 @@ const JoySection: FC<IJoySectionProps> = () => {
           placeItems: 'center',
           display: 'grid'
         }}>
-        <chakra.svg
+        <Box
+          //display={{base: 'none', md: 'block'}}
+          w="full"
+          minH="100vh"
           pos="absolute"
+          top="0"
+          bottom="0"
+          left="0"
+          right="0"
+          overflow="hidden"
+          ref={ref}
+          //transform="translateZ(1000px)"
+          >
+          <chakra.svg
+            as={BallonText}
+            placeSelf={'start'}
+            //preserveAspectRatio="xMinYMin slice"
+            minW="100%"
+            minH="100%"
+            h="auto"
+          />
+        </Box>
+        {/* <chakra.svg
           as={BallonText}
+          display={{base: 'block', md: 'none'}}
+          placeSelf={'start'}
           //preserveAspectRatio="xMinYMin slice"
           minW="100%"
           minH="100%"
           h="auto"
-        />
+        /> */}
         <Stack
           spacing="6"
           justify="center"
