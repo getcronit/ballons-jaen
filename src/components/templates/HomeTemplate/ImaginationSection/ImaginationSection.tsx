@@ -1,14 +1,16 @@
 import { Image, VStack } from "@chakra-ui/react"
-import { FC } from "react"
+import { FC, useRef } from "react"
 import ImaginationBottomSection from "./ImaginationBottomSection"
 import ImaginationUpperSection from "./ImaginationUpperSection"
 
 interface IImaginationSectionProps {}
 
 const ImaginationSection: FC<IImaginationSectionProps> = () => {
+  const sectionRef: React.RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null)
+
   return (
-    <VStack py="40" gap={{ base: 16, md: 24 }} pos="relative" bg='white'>
-      <ImaginationUpperSection />
+    <VStack ref={sectionRef} py="40" gap={{ base: 16, md: 24 }} pos="relative" bg='white'>
+      <ImaginationUpperSection sectionRef={sectionRef}/>
       {/* <Image
         display={{ base: "block", md: "none" }}
         mt="-10.375rem !important"
