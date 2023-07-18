@@ -82,6 +82,7 @@ const Fonts = () => (
         src: local('red_buttery-webfont'),
           url(/fonts/red_buttery-webfont.woff) format('woff'),
           url(/fonts/red_buttery-webfont.woff2) format('woff2');
+        font-display: swap;
       }
     `}
   />
