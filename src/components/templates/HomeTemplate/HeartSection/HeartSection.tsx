@@ -11,13 +11,18 @@ interface IHeartSectionProps {}
 
 const HeartSection: FC<IHeartSectionProps> = () => {
   return (
-    <Grid minH={'100vh'} h={{base: '33.75rem', sm: 'auto'}}>
+    <Grid minH={'100vh'} h={{base: '33.75rem', sm: 'auto'}} sx={{
+      "#heartbg": {
+        objectPosition: {base: '-100px top', md: "left top"}
+      }
+    }}>
       <StaticImage
-        objectPosition={'top left'}
+        id="heartbg"
+        objectFit='cover'
+        //objectPosition={{base: '-100px top' md: "left top"}}
         style={{
           gridArea: '1/1'
         }}
-        imgStyle={{objectPosition: 'top'}}
         layout="fullWidth"
         alt="Herzballons gebunden an ein Paket"
         src={'./bg.jpg'}
