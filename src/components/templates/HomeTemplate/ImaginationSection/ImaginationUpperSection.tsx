@@ -9,7 +9,8 @@ interface IImaginationUpperSectionProps {
 }
 
 const ImaginationUpperSection: FC<IImaginationUpperSectionProps> = ({sectionRef}) => {
-  const {display} = useScrollShow(-500, undefined, undefined, sectionRef)
+  const {display: displayDesktop} = useScrollShow(-500, undefined, undefined, sectionRef)
+  const {display: displayMobile} = useScrollShow(0, undefined, undefined, sectionRef)
   
   return (
     <VStack id="testo">
@@ -19,7 +20,7 @@ const ImaginationUpperSection: FC<IImaginationUpperSectionProps> = ({sectionRef}
         textAlign="center"
         fontSize={{base: 'md', md: 'xl', lg: '2xl'}}
         name="imaginationHeading"
-        defaultValue="Was man mit Ballons alles machen kann...<br/>Mit ein wenig Phatansie...?"
+        defaultValue="Was man mit Ballons alles machen kann...<br/>Mit ein wenig Phantasie...?"
       />
       <Box
         pos="relative"
@@ -27,7 +28,7 @@ const ImaginationUpperSection: FC<IImaginationUpperSectionProps> = ({sectionRef}
         px={{base: 4, md: '6', lg: '8'}}>
         <Field.Text
           as={Heading}
-          opacity={display ? "1" : "0"}
+          opacity={{base: displayMobile ? "1" : "0", md: displayDesktop ? "1" : "0"}}
           transition='all 0.3s ease'
           lineHeight={{base: '3.75rem', lg: '6.25rem'}}
           //variant="cursive"
@@ -46,7 +47,7 @@ const ImaginationUpperSection: FC<IImaginationUpperSectionProps> = ({sectionRef}
           position="absolute"
           bottom={'0'}
           left={'0'}
-          display={display ? "block" : "none"}
+          display={{base: displayMobile ? "block" : "none", md: displayDesktop ? "block" : "none"}}
           sx={{
             path: {
               strokeDasharray: "1000",
