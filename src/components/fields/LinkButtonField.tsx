@@ -1,4 +1,4 @@
-import { EditIcon } from '@chakra-ui/icons'
+import {EditIcon} from '@chakra-ui/icons'
 import {
   Box,
   Button,
@@ -18,24 +18,24 @@ import {
   Stack,
   useDisclosure
 } from '@chakra-ui/react'
-import { useForm } from 'react-hook-form'
+import {useForm} from 'react-hook-form'
 
-import { Field, useField } from '@snek-at/jaen'
-import { navigate } from 'gatsby'
+import {Field, useField} from '@snek-at/jaen'
+import {navigate} from 'gatsby'
 import React from 'react'
-import { validateUrl } from '../../common/utils'
-import { BallonButton } from '../molecules/BallonButton'
+import {validateUrl} from '../../common/utils'
+import {BallonButton} from '../molecules/BallonButton'
 
 const UpdateUrlForm: React.FC<{
   onSaved: (url: string) => void
   onCancle: () => void
   initUrl: string
-}> = ({ onSaved, onCancle, initUrl }) => {
+}> = ({onSaved, onCancle, initUrl}) => {
   const {
     handleSubmit,
     register,
     reset,
-    formState: { errors, isSubmitting }
+    formState: {errors, isSubmitting}
   } = useForm<{
     url: string
   }>({
@@ -51,7 +51,7 @@ const UpdateUrlForm: React.FC<{
     })
   }, [initUrl, reset])
 
-  const onSubmit = (data: { url: string }) => {
+  const onSubmit = (data: {url: string}) => {
     onSaved(data.url)
 
     // reset the form
@@ -96,8 +96,8 @@ const LinkButtonField: React.FC<
     defaultValue?: string
     defaultUrl?: string
   } & ButtonProps
-> = ({ name, defaultValue, defaultUrl, ...buttonProps }) => {
-  const { onOpen, onClose, isOpen } = useDisclosure()
+> = ({name, defaultValue, defaultUrl, ...buttonProps}) => {
+  const {onOpen, onClose, isOpen} = useDisclosure()
   const firstFieldRef = React.useRef(null)
 
   const hiddenUrlFieldName = `${name}.url`
@@ -123,7 +123,6 @@ const LinkButtonField: React.FC<
       ''
 
     setUrlValue(valueWithoutHTML)
-
   }, [defaultUrl, hiddenUrlField])
 
   const handleButtonClick = () => {
@@ -131,7 +130,7 @@ const LinkButtonField: React.FC<
   }
 
   return (
-    <Box pos={'relative'} maxW={'fit-content'}>
+    <Box pos={'relative'} maxW={'fit-content'} pointerEvents="auto">
       <Field.Text
         as={BallonButton}
         py="7 !important"
