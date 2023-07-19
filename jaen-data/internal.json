@@ -135,9 +135,27 @@
     {
       "createdAt": "2023-07-19T10:11:56.801Z",
       "fileUrl": "https://gist.githubusercontent.com/schettn/144cf1d35554be01ae07626e18ab82f3/raw/512199aed7fbb81fe0a9c217f0cc4cce53e1a72b/m2.json"
+    },
+    {
+      "createdAt": "2023-07-19T11:41:44.444Z",
+      "fileUrl": "https://osg.snek.at/storage/BQACAgQAAxkDAAIiwWS3y31MJ1I0cOw1u4WhM4l4rY0_AAKOEQAC7e3AUWyGTx-fZOnxLwQ"
     }
   ],
   "site": {
-    "siteMetadata": {}
+    "siteMetadata": {
+      "siteUrl": "https://ballons.snek.at",
+      "title": "Ballons & Ballons",
+      "description": "Ihr Spezialist für Ballons, Ballongas, Partyartikel und Dekorationen. Seit mehr als 30 Jahren im Geschäft! Sie bekommen alles aus einer Hand.",
+      "image": "https://osg.snek.at/storage/BQACAgQAAxkDAAIh5mStbkBvM8GQvMJu2XOJnzidxl0ZAAK6EAAChxhwUal9blAxknGhLwQ",
+      "author": {
+        "name": ""
+      },
+      "organization": {
+        "name": "Ballons & Ballons",
+        "url": "https://ballons.snek.at",
+        "logo": "https://osg.snek.at/storage/BQACAgQAAxkDAAIh5mStbkBvM8GQvMJu2XOJnzidxl0ZAAK6EAAChxhwUal9blAxknGhLwQ"
+      },
+      "social": null
+    }
   }
 }
