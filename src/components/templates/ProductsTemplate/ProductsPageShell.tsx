@@ -245,7 +245,9 @@ export interface TagsPickerProps {
 }
 
 function TagsPicker(props: TagsPickerProps) {
-  const allTagsArray = Object.keys(props.groupedTags.allTags)
+  const allTagsArray = Object.keys(
+    sortGroupedTagsGroup(props.groupedTags.allTags)
+  )
   const activeTagsArray = Object.keys(props.groupedTags.activeTags).map(cat =>
     allTagsArray.indexOf(cat)
   )
@@ -342,6 +344,41 @@ function TagsPicker(props: TagsPickerProps) {
   )
 }
 
+const sortGroupedTagsGroup = (tags: GroupedTags): GroupedTags => {
+  const prefferedOrder = [
+    'Thema',
+    'Kategorie',
+    'Größe',
+    'Farbe',
+    'Form',
+    'Druck',
+    'Sortiment',
+    'Hersteller',
+    'Divers'
+  ]
+
+  const sorted = Object.entries(tags).sort(([a], [b]) => {
+    const aIndex = prefferedOrder.indexOf(a)
+    const bIndex = prefferedOrder.indexOf(b)
+
+    if (aIndex === -1 && bIndex === -1) {
+      return a.localeCompare(b)
+    }
+
+    if (aIndex === -1) {
+      return 1
+    }
+
+    if (bIndex === -1) {
+      return -1
+    }
+
+    return aIndex - bIndex
+  })
+
+  return Object.fromEntries(sorted)
+}
+
 const Filter: React.FC<{
   groupedTags: {
     allTags: GroupedTags
@@ -357,7 +394,7 @@ const Filter: React.FC<{
 }> = ({groupedTags, ...props}) => {
   const drawerDisclosure = useDisclosure()
 
-  const {Kategorie, ...tags} = groupedTags.allTags
+  const {Kategorie, ...tags} = sortGroupedTagsGroup(groupedTags.allTags)
 
   const LIMIT = 6 // limit of tags to show before showing the drawer button
   const ACTIVE_LIMIT = 3 // limit of tags to show before showing the drawer button
@@ -811,27 +848,29 @@ export default function ProductsPageShell(
             />
           </Box>
 
-          <Box flex="1" pos="relative" overflowY="scroll"
+          <Box
+            flex="1"
+            pos="relative"
+            overflowY="scroll"
             sx={{
-              "@media screen and (min-width: 768px)": {
-                "::-webkit-scrollbar": {
-                  w: "16px",
-                  h: "16px"
+              '@media screen and (min-width: 768px)': {
+                '::-webkit-scrollbar': {
+                  w: '16px',
+                  h: '16px'
                 },
-                
-                "::-webkit-scrollbar-corner": {
-                  bg: "rgb(240, 241, 244)"
+
+                '::-webkit-scrollbar-corner': {
+                  bg: 'rgb(240, 241, 244)'
                 },
-                
-                "::-webkit-scrollbar-thumb": {
-                  bg: "rgba(105, 112, 125, 0.5)",
-                  backgroundClip: "content-box",
-                  borderRadius: "16px",
-                  border: "4px solid rgb(240, 241, 244)"
+
+                '::-webkit-scrollbar-thumb': {
+                  bg: 'rgba(105, 112, 125, 0.5)',
+                  backgroundClip: 'content-box',
+                  borderRadius: '16px',
+                  border: '4px solid rgb(240, 241, 244)'
                 }
               }
-            }}
-          >
+            }}>
             <Stack
               direction="column"
               borderRadius="lg"
@@ -840,8 +879,8 @@ export default function ProductsPageShell(
               top="0"
               zIndex="3"
               p="4"
-              ml={{base: "2", md: "12"}}
-              mr={{base: "2", md: "12"}}
+              ml={{base: '2', md: '12'}}
+              mr={{base: '2', md: '12'}}
               boxShadow="light">
               <Filter
                 groupedTags={groupedTags}
