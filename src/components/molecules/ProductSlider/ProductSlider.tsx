@@ -32,7 +32,10 @@ export const ProductSlider = ({
         w="100%"
         elementProps={{
           height: '100%',
-          width: 'xs'
+          width: {
+            base: '15rem',
+            sm: 'xs'
+          }
         }}>
         {products.map((product, index) => (
           <ProductCard

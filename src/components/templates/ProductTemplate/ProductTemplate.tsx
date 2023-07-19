@@ -91,58 +91,69 @@ export const ProductTemplate = ({
       sortOptions={['Alphabetisch', 'Preis aufsteigend', 'Preis absteigend']}
       onSortChange={() => {}}>
       <Stack
-        p="16"
-        ml={{base: "2", md: "12"}}
-        mr={{base: "2", md: "12"}}
+        ml={{base: '2', md: '12'}}
+        mr={{base: '2', md: '12'}}
         bg="white"
         borderRadius="xl"
         dir="column"
         boxShadow="sm"
         //w="100%"
         my="8"
-        spacing={{
-          base: 8,
-          md: 12,
-          lg: 16,
-          xl: 20
-        }}>
-        <Stack spacing={12}>
-          <Stack direction={{base: 'column', lg: 'row'}} >
-            <Box
-              w={{
-                base: '100%',
-                lg: '50%'
-              }}
-              pos="relative">
-              <ImageSlider
-                featuredMedia={shopifyProduct.featuredMedia}
-                media={shopifyProduct.media}
-              />
-            </Box>
+        pb="16">
+        <Stack
+          px="16"
+          pt="16"
+          spacing={{
+            base: 8,
+            md: 12,
+            lg: 16,
+            xl: 20
+          }}>
+          <Stack spacing={12}>
+            <Stack direction={{base: 'column', lg: 'row'}}>
+              <Box
+                w={{
+                  base: '100%',
+                  lg: '50%'
+                }}
+                pos="relative">
+                <ImageSlider
+                  featuredMedia={shopifyProduct.featuredMedia}
+                  media={shopifyProduct.media}
+                />
+              </Box>
 
-            <Box
-              w={{
-                base: '100%',
-                lg: '50%'
-              }}
-              position={{base: 'relative', lg: 'sticky'}}
-              top={{
-                base: '0',
-                lg: 44
-              }}
-              h="fit-content">
-              <ProductDetail
-                wholesale={wholesale}
-                product={shopifyProduct}
-                onWishlistAdd={onWishlistAdd}
-                isOnWishList={isOnWishList}
-                onGoBack={onGoBack}
-              />
+              <Box
+                w={{
+                  base: '100%',
+                  lg: '50%'
+                }}
+                position={{base: 'relative', lg: 'sticky'}}
+                top={{
+                  base: '0',
+                  lg: 44
+                }}
+                h="fit-content">
+                <ProductDetail
+                  wholesale={wholesale}
+                  product={shopifyProduct}
+                  onWishlistAdd={onWishlistAdd}
+                  isOnWishList={isOnWishList}
+                  onGoBack={onGoBack}
+                />
+              </Box>
+            </Stack>
+            <Box>
+              <ProductMoreDetail description={shopifyProduct.descriptionHtml} />
             </Box>
           </Stack>
-          <Box>
-            <ProductMoreDetail description={shopifyProduct.descriptionHtml} />
-          </Box>
+
+          {/* <Stack spacing="8">
+          <Heading size="xl" textAlign="center" my="8">
+            Neuigkeiten
+          </Heading>
+          <NewsSlider />
+        </Stack> */}
         </Stack>
         <ProductSlider
           heading="Ähnliche Produkte"
@@ -150,13 +161,6 @@ export const ProductTemplate = ({
           prefixPath="/products"
           wholesale={wholesale}
         />
-
-        {/* <Stack spacing="8">
-          <Heading size="xl" textAlign="center" my="8">
-            Neuigkeiten
-          </Heading>
-          <NewsSlider />
-        </Stack> */}
       </Stack>
     </ProductsPageShell>
   )
@@ -531,7 +535,7 @@ const ImageSlider = (props: {
               md: '20rem',
               lg: '25rem',
               xl: '27rem',
-              "2xl": '30rem'
+              '2xl': '30rem'
             }}
             p="2"
             borderRadius="xl"
