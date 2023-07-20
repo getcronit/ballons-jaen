@@ -26,10 +26,9 @@ const PrevArrow: FC<IPrevArrowProps> = ({
       bg="transparent"
       _hover={{bg: 'transparent'}}
       _active={{bg: 'transparent'}}
-      display={{base: 'none', md: 'block'}}
       _focus={{bg: 'transparent'}}
       aria-label={'Previous'}
-      fontSize={{md: '2xl', xl: '4xl'}}
+      fontSize={'4xl !important'}
       icon={<Icon as={FaChevronCircleLeft} />}
     />
   )
