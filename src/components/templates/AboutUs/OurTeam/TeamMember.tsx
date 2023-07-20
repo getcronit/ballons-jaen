@@ -143,7 +143,7 @@ const TeamMember: FC<ITeamMemberProps> = ({isLeft}) => {
             textAlign="center"
             as={Heading}
             asAs="h3"
-            size="lg"
+            fontSize="md"
             color="red.500"
             fontWeight="semibold"
             //fontWeight="semibold"
