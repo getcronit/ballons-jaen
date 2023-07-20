@@ -56,13 +56,13 @@ const TeamMember: FC<ITeamMemberProps> = ({isLeft}) => {
                 as={Shape1}
                 sx={{
                   '#Selection': {
-                    fill: "#f6f8fa",
+                    fill: '#f6f8fa'
                   }
                 }}
                 w="30rem"
                 maxW="100%"
                 h="auto"
-                pb= "1rem"
+                pb="1rem"
                 transform="rotate(190deg)"
               />
               {/* <Image src={image} pos="absolute" boxShadow="dark" w="80%" borderRadius="full" /> */}
@@ -73,7 +73,7 @@ const TeamMember: FC<ITeamMemberProps> = ({isLeft}) => {
                 overflow="hidden"
                 w="75%"
                 borderRadius="full">
-                <Field.Image name="image"/>
+                <Field.Image name="image" />
               </AspectRatio>
             </Grid>
             {/* <Heading size="h3015" fontWeight="semibold">
@@ -133,21 +133,37 @@ const TeamMember: FC<ITeamMemberProps> = ({isLeft}) => {
       </Flex>
 
       <Stack py="4" display={{base: 'flex', md: 'none'}} gap="2">
-        <Flex justifyContent="center">
+        <Stack
+          justifyContent="center"
+          spacing="4"
+          boxSize="fit-content"
+          mx="auto">
+          <Field.Text
+            name="qoute"
+            textAlign="center"
+            as={Heading}
+            asAs="h3"
+            size="lg"
+            color="red.500"
+            fontWeight="semibold"
+            //fontWeight="semibold"
+            defaultValue={'"Quote"'}
+          />
+
           <Grid placeItems="center" pos="relative">
             {/* <Image src="/images/about_us/profile_bg.svg" /> */}
             <chakra.svg
-                as={Shape1}
-                sx={{
-                  '#Selection': {
-                    fill: "#f6f8fa",
-                  }
-                }}
-                w="30rem"
-                maxW="100%"
-                h="auto"
-                transform="rotate(160deg)"
-              />
+              as={Shape1}
+              sx={{
+                '#Selection': {
+                  fill: '#f6f8fa'
+                }
+              }}
+              w="30rem"
+              maxW="100%"
+              h="auto"
+              transform="rotate(160deg)"
+            />
             {/* <Image src={image} pos="absolute" boxShadow="dark" w="80%" borderRadius="full" /> */}
             <AspectRatio
               ratio={1}
@@ -159,20 +175,16 @@ const TeamMember: FC<ITeamMemberProps> = ({isLeft}) => {
               <Field.Image name="image" />
             </AspectRatio>
           </Grid>
-        </Flex>
+        </Stack>
         <Flex
           align="end"
           flexDir={{base: isLeft ? 'row' : 'row-reverse'}}
           textAlign={{base: isLeft ? 'left' : 'right'}}>
           <Box flex="1">
-            {/* <Heading fontSize="md" fontWeight="semibold" color="red.600">
-              {name}
-            </Heading> */}
             <Field.Text
               name="name"
               as={Heading}
               fontSize="md"
-              color="red.600"
               fontWeight="semibold"
               //textAlign={{ base: isLeft ? 'left' : 'right' }}
               //fontWeight="semibold"
@@ -201,8 +213,8 @@ const TeamMember: FC<ITeamMemberProps> = ({isLeft}) => {
           listStylePosition="inside"
           //transform={'scalex(-1)'}
           sx={{
-            "*": {
-              direction: isLeft ? "lrt" : "rtl",
+            '*': {
+              direction: isLeft ? 'lrt' : 'rtl',
               textAlign: isLeft ? 'left' : 'right'
             }
           }}
