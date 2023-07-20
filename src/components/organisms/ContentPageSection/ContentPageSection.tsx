@@ -50,6 +50,8 @@ import ConvincedSection from './ConvincedSection'
 import {useContactModal} from '../../../services/contact'
 import HBalloon from '../../../common/assets/hballoon.inline.svg'
 import Shape1 from '../../../common/assets/shapes/shape1.inline.svg'
+import {SliderBox} from '../SliderBox'
+import {blogSliderSettings} from '../../../constant/slider'
 
 export interface ContentPageSectionProps {}
 
@@ -239,7 +241,7 @@ export const ImagesGallery3x3Section = connectBlock(
             }
           }}>
           <PhotoProvider maskOpacity={0.8}>
-            <Slider {...mobileSliderSettings}>
+            <Box as={SliderBox(blogSliderSettings)}>
               {new Array(9).fill('').map((_, i) => {
                 const imageFieldName = `images.${i}`
 
@@ -273,7 +275,7 @@ export const ImagesGallery3x3Section = connectBlock(
                   </Box>
                 )
               })}
-            </Slider>
+            </Box>
           </PhotoProvider>
         </Box>
       </>
