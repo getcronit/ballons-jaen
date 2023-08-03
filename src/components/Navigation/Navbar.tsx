@@ -1,4 +1,4 @@
-import { ChevronDownIcon, CloseIcon, HamburgerIcon } from '@chakra-ui/icons'
+import {ChevronDownIcon, CloseIcon, HamburgerIcon} from '@chakra-ui/icons'
 import {
   Box,
   Button,
@@ -13,18 +13,21 @@ import {
   Tooltip,
   useDisclosure
 } from '@chakra-ui/react'
-import { BallonButton } from '../molecules/BallonButton'
-import { Link as GatsbyLink, navigate } from 'gatsby'
-import { FC } from 'react'
-import { AiOutlineArrowLeft, AiOutlineShop } from 'react-icons/ai'
-import { FaPhoneAlt, FaShopify, FaShoppingCart } from 'react-icons/fa'
-import { LayoutMode } from '../../types/commonTypes'
-import { SearchbarButton } from '../molecules/Searchbar'
-import BottomNav from './BottomNav'
-import { NavAuthButton } from './NavAuthButton'
 
-import { Logo } from '../../common/assets/Logo'
-import { MobileHambuger } from './MobileHamburger'
+import HBalloon from '../../common/assets/hballoon.inline.svg'
+
+import {BallonButton} from '../molecules/BallonButton'
+import {Link as GatsbyLink, navigate} from 'gatsby'
+import {FC} from 'react'
+import {AiOutlineArrowLeft, AiOutlineShop} from 'react-icons/ai'
+import {FaPhoneAlt, FaShopify, FaShoppingCart} from 'react-icons/fa'
+import {LayoutMode} from '../../types/commonTypes'
+import {SearchbarButton} from '../molecules/Searchbar'
+import BottomNav from './BottomNav'
+import {NavAuthButton} from './NavAuthButton'
+
+import {Logo} from '../../common/assets/Logo'
+import {MobileHambuger} from './MobileHamburger'
 
 interface INavbarProps {
   mode: LayoutMode
@@ -65,8 +68,8 @@ export const Navbar: FC<INavbarProps> = ({
         direction="row"
         spacing="4"
         h={'60px'}
-        py={{ base: 2 }}
-        px={{ base: 4 }}
+        py={{base: 2}}
+        px={{base: 4}}
         justifyContent="space-between"
         alignItems={'center'}>
         <Flex flex="1" textAlign="center">
@@ -96,8 +99,8 @@ export const Navbar: FC<INavbarProps> = ({
                   as={GatsbyLink}
                   variant="link"
                   to="/"
-                  leftIcon={<AiOutlineArrowLeft />}>
-                  Zurück zur Startseite
+                  leftIcon={<Icon as={HBalloon} boxSize="8" />}>
+                  Startseite
                 </Button>
               </Tooltip>
 
@@ -159,7 +162,7 @@ export const Navbar: FC<INavbarProps> = ({
                 base: mode === 'store' ? 'flex' : 'none',
                 md: 'flex'
               }}
-            // defaultIsOpen={mode === 'store'}
+              // defaultIsOpen={mode === 'store'}
             />
 
             {/* <Tooltip
@@ -186,10 +189,7 @@ export const Navbar: FC<INavbarProps> = ({
 
             {mode === 'website' ? (
               <>
-                <Tooltip
-                  label="Zum Onlineshop"
-                  aria-label="Zum Onlineshop"
-                >
+                <Tooltip label="Zum Onlineshop" aria-label="Zum Onlineshop">
                   <BallonButton
                     display={{
                       base: 'none',
@@ -203,10 +203,7 @@ export const Navbar: FC<INavbarProps> = ({
                   </BallonButton>
                 </Tooltip>
 
-                <Tooltip
-                  label="Zum Onlineshop"
-                  aria-label="Zum Onlineshop"
-                >
+                <Tooltip label="Zum Onlineshop" aria-label="Zum Onlineshop">
                   <IconButton
                     filter="drop-shadow(1px 2px 2px rgb(0 0 0 / 0.1))"
                     display={{
@@ -231,7 +228,12 @@ export const Navbar: FC<INavbarProps> = ({
                     aria-label="Warenkorb"
                     size="md"
                     variant={'ghost'}
-                    icon={<Icon  filter="drop-shadow(1px 2px 2px rgb(0 0 0 / 0.1))" as={FaShoppingCart} />}
+                    icon={
+                      <Icon
+                        filter="drop-shadow(1px 2px 2px rgb(0 0 0 / 0.1))"
+                        as={FaShoppingCart}
+                      />
+                    }
                     onClick={onBasketClick}
                   />
                 </Tooltip>
@@ -242,7 +244,7 @@ export const Navbar: FC<INavbarProps> = ({
       </Stack>
 
       <Flex
-        display={{ base: 'none', md: mode === 'website' ? 'flex' : 'none' }}
+        display={{base: 'none', md: mode === 'website' ? 'flex' : 'none'}}
         justifyContent="center">
         <BottomNav pathname={pathname} />
       </Flex>
