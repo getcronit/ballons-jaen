@@ -3,13 +3,22 @@ import {
   Badge,
   Box,
   BoxProps,
+  Divider,
   Flex,
   HStack,
+  Icon,
+  IconButton,
   Image,
   LinkBox,
   LinkOverlay,
+  List,
+  ListIcon,
+  ListItem,
   Spacer,
+  Stack,
+  StackDivider,
   Text,
+  Tooltip,
   useColorModeValue,
   VStack
 } from '@chakra-ui/react'
@@ -21,9 +30,16 @@ import {
 import {Link as GatsbyLink} from 'gatsby'
 import {GatsbyImage, getSrcSet, IGatsbyImageData} from 'gatsby-plugin-image'
 import React from 'react'
+import {BsBalloonHeartFill, BsBalloonHeart} from 'react-icons/bs'
+import {FaBoxes, FaRuler, FaShoppingBasket} from 'react-icons/fa'
 import {getSrcFromImageData} from '../../../common/get-src-from-image-data'
+import {
+  getProductMetafields,
+  ProductFilling
+} from '../../../common/getProductMetafields'
 
 import {getProductPrices} from '../../../common/utils'
+import {useBasket} from '../../../services/basket'
 import * as styles from './styles'
 
 export interface ProductCardProps {
@@ -86,6 +102,23 @@ export const ProductCard = ({
     })
   }
 
+  const productMetatfields = getProductMetafields(product)
+
+  const basket = useBasket()
+
+  const stepperStep = wholesale
+    ? parseInt(productMetatfields.wholesale?._SU || '1')
+    : parseInt(productMetatfields.details?._SU || '1')
+
+  const addProductToBasket = () => {
+    basket.addProduct({
+      variantId: product.variants[0].shopifyId,
+      quantity: 1,
+      stepperQuantity: stepperStep,
+      wholesalePrice: prices.wholesalePrice
+    })
+  }
+
   return (
     <LinkBox
       display="block"
@@ -102,7 +135,7 @@ export const ProductCard = ({
         position="relative"
         cursor="pointer"
         bg="primary"
-        px={{base: '1', md: '2', lg: '3'}}
+        px={{base: '2', lg: '3'}}
         py="5"
         // h={'full'}
         minH="full"
@@ -112,58 +145,140 @@ export const ProductCard = ({
         // borderColor="border"
         // mt="3"
       >
-        <Box position="relative">
-          <AspectRatio ratio={10 / 9}>
-            <>
-              <input
-                type="radio"
-                className="radioimg"
-                name={'imgbox-' + cardId}
-                id={`imgbox-${cardId}-${0}`}
-                key={0}
-                ref={el => (radioRef.current[0] = el)}
-                readOnly
-                checked></input>
-              <ImageBoxWithTags
-                image={product.featuredMedia?.image}
-                tags={coloredBadges}
-                className="main"
-              />
-            </>
-          </AspectRatio>
+        <Stack>
+          <Box position="relative" p="4">
+            <AspectRatio ratio={10 / 9}>
+              <>
+                <input
+                  type="radio"
+                  className="radioimg"
+                  name={'imgbox-' + cardId}
+                  id={`imgbox-${cardId}-${0}`}
+                  key={0}
+                  ref={el => (radioRef.current[0] = el)}
+                  readOnly
+                  checked></input>
+                <ImageBoxWithTags
+                  image={product.featuredMedia?.image}
+                  tags={coloredBadges}
+                  className="main"
+                />
+              </>
+            </AspectRatio>
 
-          {product.media.slice(0, 3).map((media, index) => (
-            <Box key={index}>
-              {index !== 0 && (
-                <Box>
-                  <input
-                    type="radio"
-                    className="radioimg"
-                    name={'imgbox-' + cardId}
-                    id={`imgbox-${cardId}-${index}`}
-                    ref={el => (radioRef.current[index] = el)}
-                  />
-                  <ImageBoxWithTags
-                    image={media.image}
-                    tags={coloredBadges}
-                    className="preview"
-                  />
-                </Box>
+            {product.media.slice(0, 3).map((media, index) => (
+              <Box key={index}>
+                {index !== 0 && (
+                  <Box>
+                    <input
+                      type="radio"
+                      className="radioimg"
+                      name={'imgbox-' + cardId}
+                      id={`imgbox-${cardId}-${index}`}
+                      ref={el => (radioRef.current[index] = el)}
+                    />
+                    <ImageBoxWithTags
+                      image={media.image}
+                      tags={coloredBadges}
+                      className="preview"
+                    />
+                  </Box>
+                )}
+              </Box>
+            ))}
+          </Box>
+
+          <Stack divider={<StackDivider />} spacing="4">
+            <Stack>
+              <LinkOverlay
+                as={GatsbyLink}
+                fontSize="md"
+                to={path}
+                fontWeight={'semibold'}>
+                {product.title}
+              </LinkOverlay>
+              <Text fontSize="sm" color="gray.600">
+                {tags.otherTags.map(tag => tag.split(':')[1]).join(', ')}
+              </Text>
+            </Stack>
+
+            <List spacing="2" gap="0">
+              {wholesale === false && productMetatfields.details?.filling && (
+                <ListItem>
+                  <HStack spacing="4">
+                    <ListIcon
+                      as={
+                        productMetatfields.details.filling ===
+                        ProductFilling.FILLED_WITH_HELIUM
+                          ? BsBalloonHeartFill
+                          : BsBalloonHeart
+                      }
+                      boxSize={4}
+                    />
+                    <Text
+                      textAlign="left"
+                      noOfLines={1}
+                      fontSize={'xs'}
+                      color="gray.600">
+                      {productMetatfields.details.filling}
+                    </Text>
+                  </HStack>
+                </ListItem>
               )}
-            </Box>
-          ))}
-        </Box>
 
+              {productMetatfields.details?.bundle && (
+                <ListItem>
+                  <HStack spacing="4">
+                    <ListIcon as={FaBoxes} boxSize={4} />
+                    <Text
+                      textAlign="left"
+                      noOfLines={1}
+                      fontSize={'xs'}
+                      color="gray.600">
+                      {productMetatfields.details.bundle}{' '}
+                      {productMetatfields.details.packaging}
+                    </Text>
+                  </HStack>
+                </ListItem>
+              )}
+
+              {productMetatfields.details?.sizeHelper && (
+                <ListItem>
+                  <HStack spacing="4">
+                    <ListIcon as={FaRuler} boxSize={4} />
+                    <Text
+                      textAlign="left"
+                      noOfLines={1}
+                      fontSize={'xs'}
+                      color="gray.600">
+                      {productMetatfields.details.sizeHelper}
+                    </Text>
+                  </HStack>
+                </ListItem>
+              )}
+            </List>
+
+            <HStack>
+              <ProductPrices prices={prices} />
+              <Text fontSize="xs" color="gray.600" textAlign="center">
+                {taxable ? 'inkl.' : 'exkl.'} USt.
+              </Text>
+
+              <Spacer />
+
+              <IconButton
+                aria-label="Warenkorb"
+                icon={<FaShoppingBasket />}
+                variant="ghost"
+                onClick={addProductToBasket}
+              />
+            </HStack>
+          </Stack>
+        </Stack>
+        {/* 
         <Text fontSize="sm" noOfLines={1}>
           {tags.otherString}
-        </Text>
-        <LinkOverlay as={GatsbyLink} to={path} fontWeight={'semibold'}>
-          {product.title}
-        </LinkOverlay>
-        <ProductPrices prices={prices} />
-        <Text fontSize="xs" color="gray.600" textAlign="center">
-          {taxable ? 'inkl.' : 'exkl.'} USt.
-        </Text>
+        </Text> */}
         {/* <Spacer
             position="absolute"
             className="bspacer"

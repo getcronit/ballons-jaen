@@ -14,7 +14,7 @@ export const metafieldIdentifiers = [
   },
   {
     namespace: 'details',
-    key: 'sizeHelper'
+    key: 'bundle'
   },
   {
     namespace: 'details',
@@ -22,8 +22,9 @@ export const metafieldIdentifiers = [
   },
   {
     namespace: 'details',
-    key: 'bundle'
+    key: 'sizeHelper'
   },
+
   {
     namespace: 'details',
     key: 'available'

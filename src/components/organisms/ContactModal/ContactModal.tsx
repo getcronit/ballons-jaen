@@ -16,10 +16,10 @@ import {
   Text,
   Textarea
 } from '@chakra-ui/react'
-import { BallonButton } from '../../molecules/BallonButton'
+import {BallonButton} from '../../molecules/BallonButton'
 import React from 'react'
-import { Controller, useForm } from 'react-hook-form'
-import { CheckboxStyled } from '../../CheckboxStyled'
+import {Controller, useForm} from 'react-hook-form'
+import {CheckboxStyled} from '../../CheckboxStyled'
 
 export interface ContactFormValues {
   firstName: string
@@ -61,7 +61,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     control,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitting }
+    formState: {errors, isSubmitting}
   } = useForm<ContactFormValues>({})
 
   React.useEffect(() => {
@@ -75,7 +75,11 @@ export const ContactModal: React.FC<ContactModalProps> = ({
   }, [isOpen])
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="2xl">
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      size="2xl"
+      blockScrollOnMount={false}>
       <ModalOverlay />
 
       <ModalContent>
@@ -143,42 +147,42 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                 </FormControl>
               </HStack>
               <HStack>
-              <FormControl isRequired isInvalid={!!errors.email}>
-                <FormLabel htmlFor="email" fontSize="sm">
-                  E-Mail
-                </FormLabel>
-                <Input
-                  id="email"
-                  placeholder="max.mustermann@example.com"
-                  type="email"
-                  {...register('email', {
-                    required: true
-                  })}
-                  isDisabled={!!fixedValues?.email}
-                />
+                <FormControl isRequired isInvalid={!!errors.email}>
+                  <FormLabel htmlFor="email" fontSize="sm">
+                    E-Mail
+                  </FormLabel>
+                  <Input
+                    id="email"
+                    placeholder="max.mustermann@example.com"
+                    type="email"
+                    {...register('email', {
+                      required: true
+                    })}
+                    isDisabled={!!fixedValues?.email}
+                  />
 
-                <FormErrorMessage fontSize="sm">
-                  {errors.email?.message}
-                </FormErrorMessage>
-              </FormControl>
-              <FormControl isInvalid={!!errors.email}>
-                <FormLabel htmlFor="phone" fontSize="sm">
-                  Telefonnummer
-                </FormLabel>
-                <Input
-                  id="phone"
-                  placeholder="+43 123 456 789"
-                  type="phone"
-                  {...register('phone', {
-                    required: false
-                  })}
-                  isDisabled={!!fixedValues?.phone}
-                />
+                  <FormErrorMessage fontSize="sm">
+                    {errors.email?.message}
+                  </FormErrorMessage>
+                </FormControl>
+                <FormControl isInvalid={!!errors.email}>
+                  <FormLabel htmlFor="phone" fontSize="sm">
+                    Telefonnummer
+                  </FormLabel>
+                  <Input
+                    id="phone"
+                    placeholder="+43 123 456 789"
+                    type="phone"
+                    {...register('phone', {
+                      required: false
+                    })}
+                    isDisabled={!!fixedValues?.phone}
+                  />
 
-                <FormErrorMessage fontSize="sm">
-                  {errors.email?.message}
-                </FormErrorMessage>
-              </FormControl>
+                  <FormErrorMessage fontSize="sm">
+                    {errors.email?.message}
+                  </FormErrorMessage>
+                </FormControl>
               </HStack>
               <FormControl isRequired isInvalid={!!errors.message}>
                 <FormLabel htmlFor="message" fontSize="sm">
@@ -188,7 +192,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                   id="message"
                   placeholder="Nachricht"
                   defaultValue={defaultValues?.message}
-                  {...register('message', { required: true })}
+                  {...register('message', {required: true})}
                 />
 
                 <FormErrorMessage fontSize="sm">
@@ -198,7 +202,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
 
               <FormControl isRequired isInvalid={!!errors.agreeToTerms}>
                 <Controller
-                  render={({ field, fieldState, formState }) => (
+                  render={({field, fieldState, formState}) => (
                     <CheckboxStyled
                       ref={field.ref}
                       onBlur={field.onBlur}
@@ -233,8 +237,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
             <BallonButton
               isLoading={isSubmitting}
               type="submit"
-              py="7 !important"
-            >
+              py="7 !important">
               Senden
             </BallonButton>
           </ModalFooter>

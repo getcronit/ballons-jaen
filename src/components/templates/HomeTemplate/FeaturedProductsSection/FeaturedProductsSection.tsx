@@ -7,6 +7,7 @@ import {ProductGrid} from '../../../molecules/ProductGrid'
 //import { StickyStrokeLogo } from '../../../molecules/StickyStrokeLogo'
 import LinkButtonField from '../../../fields/LinkButtonField'
 import * as style from './style'
+import {useAuthentication} from '../../../../services/authentication'
 
 export interface FeaturedProductsSectionProps {
   name: string
@@ -27,6 +28,8 @@ export const FeaturedProducts = ({
   featuredProducts,
   productsPagePath
 }: FeaturedProductsProps) => {
+  const user = useAuthentication()
+
   return (
     <>
       {/* '      <StickyStrokeLogo
@@ -61,6 +64,7 @@ export const FeaturedProducts = ({
             products={featuredProducts}
             spacing="5"
             columns={{base: 2, md: 3, xl: 4}}
+            wholesale={!!user.user}
           />
           <Center mt="10" mb="16">
             <LinkButtonField
