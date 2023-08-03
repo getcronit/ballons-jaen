@@ -49,6 +49,7 @@ export interface ProductCardProps {
   bwidth?: string
   bcolor?: string
   prefixPath?: string
+  searchLocation?: string
   taxable?: boolean
   wholesale?: boolean
 }
@@ -60,10 +61,15 @@ export const ProductCard = ({
   bwidth,
   bcolor,
   prefixPath,
+  searchLocation,
   taxable,
   wholesale
 }: ProductCardProps) => {
-  const path = prefixPath ? `${prefixPath}/${product.handle}` : product.handle
+  let path = prefixPath ? `${prefixPath}/${product.handle}` : product.handle
+
+  if (searchLocation) {
+    path = `${path}?${searchLocation}`
+  }
 
   const radioRef = React.useRef<Array<HTMLInputElement | null>>([])
 

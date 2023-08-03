@@ -13,6 +13,7 @@ export interface ProductGridProps extends SimpleGridProps {
   heading?: string
   products: ShopifyProduct[]
   prefixPath?: string
+  searchLocation?: string
   wholesale?: boolean
 }
 
@@ -20,6 +21,7 @@ export const ProductGrid = ({
   heading,
   products,
   prefixPath,
+  searchLocation,
   wholesale,
   ...gridProps
 }: ProductGridProps) => {
@@ -40,6 +42,7 @@ export const ProductGrid = ({
           return (
             <ProductCard
               prefixPath={prefixPath}
+              searchLocation={searchLocation}
               product={item}
               key={item.id}
               left={(index + 1) % v === 0}

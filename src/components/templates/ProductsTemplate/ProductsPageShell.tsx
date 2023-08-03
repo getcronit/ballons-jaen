@@ -1,4 +1,9 @@
-import {ChevronDownIcon, SmallCloseIcon, SmallAddIcon} from '@chakra-ui/icons'
+import {
+  ChevronDownIcon,
+  InfoOutlineIcon,
+  SmallAddIcon,
+  SmallCloseIcon
+} from '@chakra-ui/icons'
 import {
   Accordion,
   AccordionButton,
@@ -9,8 +14,6 @@ import {
   BoxProps,
   Button,
   ButtonProps,
-  Checkbox,
-  CheckboxProps,
   Divider,
   Drawer,
   DrawerBody,
@@ -19,48 +22,26 @@ import {
   DrawerHeader,
   DrawerOverlay,
   Flex,
-  Grid,
-  GridItem,
-  Heading,
   HStack,
-  Icon,
-  Input,
   Menu,
   MenuButton,
-  MenuDivider,
-  MenuGroup,
-  MenuItem,
   MenuItemOption,
   MenuList,
   MenuOptionGroup,
-  Radio,
   Select as CSelect,
-  Spacer,
   Stack,
-  StackDivider,
-  StackProps,
   Text,
   Tooltip,
   useColorModeValue,
   useDisclosure,
-  useStyleConfig,
   Wrap,
   WrapItem
 } from '@chakra-ui/react'
-import {GroupBase, OptionBase, Select} from 'chakra-react-select'
-import {Link} from 'gatsby'
-import React, {
-  Fragment,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useMemo
-} from 'react'
+import {OptionBase} from 'chakra-react-select'
+import React, {ReactNode, useEffect, useMemo} from 'react'
 import {BsFilterCircleFill} from 'react-icons/bs'
-import {InfoOutlineIcon} from '@chakra-ui/icons'
-import {OverflownText} from '../../OverflownText'
-import {Ballon} from '../../../common/assets/Ballon'
 import {BallonButton} from '../../molecules/BallonButton'
+import {OverflownText} from '../../OverflownText'
 
 interface TagFilterOption extends OptionBase {
   label: string
@@ -764,6 +745,8 @@ export default function ProductsPageShell(
     return grouped
   }, [props.allTags, props.activeTags])
 
+  console.log('groupedTags', groupedTags)
+
   const [activeTags, setActiveTags] = React.useState<ActiveTags>(() => {
     const s = Object.entries(groupedTags.activeTags).reduce(
       (acc, [group, tags]) => ({
@@ -775,6 +758,20 @@ export default function ProductsPageShell(
 
     return s
   })
+
+  useEffect(() => {
+    setActiveTags(
+      Object.entries(groupedTags.activeTags).reduce(
+        (acc, [group, tags]) => ({
+          ...acc,
+          [group]: tags.map(tag => tag.tag)
+        }),
+        {}
+      ) as Record<string, string[]>
+    )
+  }, [groupedTags.activeTags])
+
+  console.log('activeTags', activeTags, props.activeTags)
 
   const groupedCategories = React.useMemo(() => {
     const grouped: {
@@ -789,6 +786,13 @@ export default function ProductsPageShell(
       groupedTags.allTags.Kategorie?.map(c => c.tag),
       grouped.allTags
     )
+
+    console.log(
+      'groupedTags.activeTags.Kategorie',
+      activeTags.Kategorie,
+      groupedTags.activeTags
+    )
+
     groupCategoriesTags(activeTags.Kategorie, grouped.activeTags)
 
     return grouped
@@ -797,6 +801,8 @@ export default function ProductsPageShell(
     groupedTags.activeTags.Kategorie,
     activeTags
   ])
+
+  console.log('groupedCategories', groupedCategories)
 
   const updateActiveTags = (tags: string[], group: string) => {
     const updatedActiveTags = {...activeTags, [group]: tags}

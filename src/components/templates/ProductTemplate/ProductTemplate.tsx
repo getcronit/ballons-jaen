@@ -33,7 +33,7 @@ import {
 } from '@snek-at/gatsby-theme-shopify'
 import {navigate} from 'gatsby'
 import {GatsbyImage} from 'gatsby-plugin-image'
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {BsBalloonHeart, BsBalloonHeartFill} from 'react-icons/bs'
 import {FaBoxes, FaRuler, FaTruck} from 'react-icons/fa'
 import {PhotoProvider, PhotoView} from 'react-photo-view'
@@ -70,12 +70,18 @@ export const ProductTemplate = ({
 }: ProductTemplateProps) => {
   const productTags = getProductTags(shopifyProduct)
 
-  const allActiveTags = [
-    ...productTags.categoryTags,
-    ...productTags.otherTags,
-    `Typ:${shopifyProduct.productType}`,
-    `Hersteller:${shopifyProduct.vendor}`
-  ]
+  const [allActiveTags, setAllActiveTags] = useState<string[]>([])
+
+  console.log('allActiveTags', allActiveTags, allTags)
+
+  useEffect(() => {
+    // get all active tags from location search
+    const urlParams = new URLSearchParams(window.location.search)
+
+    const activeTags = urlParams.getAll('t')
+
+    setAllActiveTags(activeTags)
+  }, [])
 
   return (
     <ProductsPageShell

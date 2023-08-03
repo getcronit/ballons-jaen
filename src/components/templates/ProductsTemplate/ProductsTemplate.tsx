@@ -97,6 +97,15 @@ export const ProductsTemplate = (props: ProductsTemplateProps) => {
 
   const allActiveTags = buildAllTags(props.activeFilters)
 
+  // map actie tags in a url encoded string
+  const searchLocation = React.useMemo(() => {
+    const tags = allActiveTags
+      .map(tag => `t=${encodeURIComponent(tag)}`)
+      .join('&')
+
+    return tags
+  }, [allActiveTags])
+
   return (
     <SimpleCategorySidebar
       allTags={allTags}
@@ -114,6 +123,7 @@ export const ProductsTemplate = (props: ProductsTemplateProps) => {
           products={props.products}
           columns={{base: 1, sm: 2, md: 3, lg: 3, xl: 4, '2xl': 5}}
           spacing={4}
+          searchLocation={searchLocation}
         />
 
         <Center my={4}>
