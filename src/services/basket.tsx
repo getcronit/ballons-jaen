@@ -97,6 +97,7 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
 
     const addProduct = async ({
       stepperQuantity,
+      quantity,
       wholesalePrice,
       ...args
     }: {
@@ -112,7 +113,7 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
         [
           {
             ...args,
-            quantity: stepperQuantity,
+            quantity: quantity,
             customAttributes: [
               {
                 key: 'stepperQuantity',
