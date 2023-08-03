@@ -1,5 +1,8 @@
 import {
   Box,
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
   Button,
   Center,
   Divider,
@@ -7,12 +10,16 @@ import {
   Heading,
   HStack,
   Icon,
+  List,
+  ListIcon,
+  ListItem,
   NumberDecrementStepper,
   NumberIncrementStepper,
   NumberInput,
   NumberInputField,
   NumberInputStepper,
   Stack,
+  StackDivider,
   Text,
   Tooltip,
   useClipboard,
@@ -31,11 +38,12 @@ import {
   ShopifyProduct,
   withStoreContext
 } from '@snek-at/gatsby-theme-shopify'
-import {navigate} from 'gatsby'
+import {Link, navigate} from 'gatsby'
 import {GatsbyImage} from 'gatsby-plugin-image'
 import React, {useEffect, useState} from 'react'
 import {BsBalloonHeart, BsBalloonHeartFill} from 'react-icons/bs'
-import {FaBoxes, FaRuler, FaTruck} from 'react-icons/fa'
+import {FaBoxes, FaChevronRight, FaRuler, FaTruck} from 'react-icons/fa'
+import {ChevronRightIcon} from '@chakra-ui/icons'
 import {PhotoProvider, PhotoView} from 'react-photo-view'
 import {getSrcFromImageData} from '../../../common/get-src-from-image-data'
 
@@ -116,29 +124,39 @@ export const ProductTemplate = ({
             xl: 20
           }}>
           <Stack spacing={12}>
-            <Stack direction={{base: 'column', lg: 'row'}}>
-              <Box
-                w={{
-                  base: '100%',
-                  lg: '50%'
-                }}
-                pos="relative">
+            <Breadcrumb separator={<ChevronRightIcon boxSize="6" />}>
+              <BreadcrumbItem>
+                <BreadcrumbLink as={Link} to="/products/">
+                  Alle Artikel
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+
+              <BreadcrumbItem isCurrentPage>
+                <BreadcrumbLink
+                  as={Link}
+                  to={`/products/${shopifyProduct.handle}`}>
+                  {shopifyProduct.handle}
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+            </Breadcrumb>
+            <Stack direction={{base: 'column', lg: 'row'}} spacing="14">
+              <Box pos="relative">
                 <ImageSlider
                   featuredMedia={shopifyProduct.featuredMedia}
                   media={shopifyProduct.media}
                 />
               </Box>
 
-              <Box
-                w={{
-                  base: '100%',
-                  lg: '50%'
-                }}
+              <Stack
+                spacing="8"
+                w="full"
                 position={{base: 'relative', lg: 'sticky'}}
                 top={{
                   base: '0',
                   lg: 44
                 }}
+                px={{base: 0, md: 4}}
+                m={{base: 0, md: 1}}
                 h="fit-content">
                 <ProductDetail
                   wholesale={wholesale}
@@ -147,7 +165,7 @@ export const ProductTemplate = ({
                   isOnWishList={isOnWishList}
                   onGoBack={onGoBack}
                 />
-              </Box>
+              </Stack>
             </Stack>
             <Box>
               <ProductMoreDetail description={shopifyProduct.descriptionHtml} />
@@ -190,7 +208,7 @@ function Price({
           md: 'flex-start'
         }}>
         <Text
-          fontSize="md"
+          fontSize="sm"
           fontWeight="semibold"
           color="gray.600"
           textDecoration="line-through">
@@ -198,7 +216,7 @@ function Price({
         </Text>
 
         <Heading
-          fontSize="lg"
+          fontSize="md"
           mt={{
             base: 0,
             md: 4
@@ -212,7 +230,7 @@ function Price({
   }
 
   return (
-    <Heading size="lg" fontWeight="semibold">
+    <Heading size="md" fontWeight="semibold">
       {priceFormatted}
     </Heading>
   )
@@ -285,21 +303,19 @@ const ProductDetail = withStoreContext<{
     props.product.variants[0].availableForSale
 
   return (
-    <Box
-      overflow="hidden"
-      px={{base: 0, md: 4}}
-      py={{base: 4, md: 8}}
-      m={{base: 0, md: 1}}
-      alignSelf="flex-start">
-      <VStack align="left" spacing="4">
-        <Heading as="h1" size="lg">
-          {props.product.title}
-        </Heading>
-        <Price prices={prices} />
+    <Box overflow="hidden" alignSelf="flex-start">
+      <VStack align="left" spacing="4" divider={<StackDivider />}>
+        <Stack>
+          <Heading as="h1" fontSize="2xl">
+            {props.product.title}
+          </Heading>
 
-        <Text fontSize="xs" color="gray.600">
-          {taxable ? 'inkl.' : 'exkl.'} USt.
-        </Text>
+          <Text fontSize="sm" color="gray.600">
+            {tags.otherTags.map(tag => tag.split(':')[1]).join(', ')}
+          </Text>
+
+          <Text fontSize="sm">{props.product.description || '-'}</Text>
+        </Stack>
 
         {/* <Divider />
 
@@ -315,132 +331,136 @@ const ProductDetail = withStoreContext<{
             </Box>
           ))} */}
 
-        {props.wholesale === false && productMetatfields.details?.filling && (
-          <>
-            <Divider />
-
-            <HStack spacing="4">
-              <Icon
-                as={
-                  productMetatfields.details.filling ===
-                  ProductFilling.FILLED_WITH_HELIUM
-                    ? BsBalloonHeartFill
-                    : BsBalloonHeart
-                }
-                boxSize={8}
-              />
-              <Text
-                fontSize={{
-                  base: 'xs',
-                  md: 'sm'
-                }}
-                color="gray.600">
-                {productMetatfields.details.filling}
-              </Text>
-            </HStack>
-          </>
-        )}
-
-        {productMetatfields.details?.bundle && (
-          <>
-            <Divider />
-
-            <HStack spacing="4">
-              <Icon as={FaBoxes} boxSize={8} />
-              <Text
-                fontSize={{
-                  base: 'xs',
-                  md: 'sm'
-                }}
-                color="gray.600">
-                {productMetatfields.details.bundle}{' '}
-                {productMetatfields.details.packaging}
-              </Text>
-            </HStack>
-          </>
-        )}
-
-        {productMetatfields.details?.sizeHelper && (
-          <>
-            <Divider />
-
-            <HStack spacing="4">
-              <Icon as={FaRuler} boxSize={8} />
-              <Text
-                fontSize={{
-                  base: 'xs',
-                  md: 'sm'
-                }}
-                color="gray.600">
-                {productMetatfields.details.sizeHelper}
-              </Text>
-            </HStack>
-          </>
-        )}
-
-        <Divider />
-
-        <Text fontSize="sm" fontWeight="thin">
-          Artikelnummer: {props.product.variants[0].sku || '-'}
-        </Text>
-        <Divider />
-
-        <Stack>
-          {availableForSale ? (
-            <Text color="green" fontSize="sm">
-              {productMetatfields.details?.available}
-            </Text>
-          ) : (
-            <Text color="red.500">Derzeit nicht verfügbar</Text>
+        <List spacing="4">
+          {props.wholesale === false && productMetatfields.details?.filling && (
+            <ListItem>
+              <HStack spacing="4">
+                <ListIcon
+                  as={
+                    productMetatfields.details.filling ===
+                    ProductFilling.FILLED_WITH_HELIUM
+                      ? BsBalloonHeartFill
+                      : BsBalloonHeart
+                  }
+                  boxSize={8}
+                />
+                <Text
+                  fontSize={{
+                    base: 'xs',
+                    md: 'sm'
+                  }}
+                  color="gray.600">
+                  {productMetatfields.details.filling}
+                </Text>
+              </HStack>
+            </ListItem>
           )}
 
-          <HStack>
-            <NumberInput
-              size="md"
-              maxW={24}
-              step={stepperStep}
-              defaultValue={minQuantity}
-              min={minQuantity}
-              value={quantity}
-              onChange={valueString => {
-                setQuantity(parseInt(valueString))
-              }}>
-              <NumberInputField />
-              <NumberInputStepper>
-                <NumberIncrementStepper />
-                <NumberDecrementStepper />
-              </NumberInputStepper>
-            </NumberInput>
-            <Tooltip label="Zum Onlineshop" aria-label="Zum Onlineshop">
-              <BallonButton
-                // display={{
-                //   base: 'none',
-                //   md: 'flex'
-                // }}
-                size={{
-                  base: 'sm',
-                  md: 'md'
-                }}
-                py="7 !important"
-                isDisabled={!availableForSale}
-                fontWeight="semibold"
-                textTransform="uppercase"
-                fontSize="md"
-                onClick={addProductToBasket}
-                leftIcon={<FaShoppingBasket />}>
-                In den Warenkorb
-              </BallonButton>
-            </Tooltip>
-          </HStack>
-          <Divider />
-          <Flex alignItems="center" justifyContent="center" fontSize="xl">
-            <Box mx="auto">
-              <ShareText />
-            </Box>
-          </Flex>
+          {productMetatfields.details?.bundle && (
+            <ListItem>
+              <HStack spacing="4">
+                <ListIcon as={FaBoxes} boxSize={8} />
+                <Text
+                  fontSize={{
+                    base: 'xs',
+                    md: 'sm'
+                  }}
+                  color="gray.600">
+                  {productMetatfields.details.bundle}{' '}
+                  {productMetatfields.details.packaging}
+                </Text>
+              </HStack>
+            </ListItem>
+          )}
+
+          {productMetatfields.details?.sizeHelper && (
+            <ListItem>
+              <HStack spacing="4">
+                <ListIcon as={FaRuler} boxSize={8} />
+                <Text
+                  fontSize={{
+                    base: 'xs',
+                    md: 'sm'
+                  }}
+                  color="gray.600">
+                  {productMetatfields.details.sizeHelper}
+                </Text>
+              </HStack>
+            </ListItem>
+          )}
+        </List>
+
+        <Text fontSize="sm">
+          Artikelnummer:{' '}
+          <Text as="span" fontSize="sm" color="gray.600">
+            {props.product.variants[0].sku || '-'}
+          </Text>
+        </Text>
+
+        <Stack>
+          <Stack spacing="4" mt="4">
+            <HStack>
+              <Price prices={prices} />
+
+              <Text fontSize="xs" color="gray.600">
+                {taxable ? 'inkl.' : 'exkl.'} USt.
+              </Text>
+            </HStack>
+
+            {availableForSale ? (
+              <Text color="green" fontSize="sm">
+                {productMetatfields.details?.available}
+              </Text>
+            ) : (
+              <Text color="red.500">Derzeit nicht verfügbar</Text>
+            )}
+
+            <HStack>
+              <NumberInput
+                size="md"
+                maxW={24}
+                step={stepperStep}
+                defaultValue={minQuantity}
+                min={minQuantity}
+                value={quantity}
+                onChange={valueString => {
+                  setQuantity(parseInt(valueString))
+                }}>
+                <NumberInputField />
+                <NumberInputStepper>
+                  <NumberIncrementStepper />
+                  <NumberDecrementStepper />
+                </NumberInputStepper>
+              </NumberInput>
+              <Tooltip label="Zum Onlineshop" aria-label="Zum Onlineshop">
+                <BallonButton
+                  // display={{
+                  //   base: 'none',
+                  //   md: 'flex'
+                  // }}
+                  size={{
+                    base: 'sm',
+                    md: 'md'
+                  }}
+                  py="7 !important"
+                  isDisabled={!availableForSale}
+                  fontWeight="semibold"
+                  textTransform="uppercase"
+                  fontSize="md"
+                  onClick={addProductToBasket}
+                  leftIcon={<FaShoppingBasket />}>
+                  In den Warenkorb
+                </BallonButton>
+              </Tooltip>
+            </HStack>
+          </Stack>
         </Stack>
 
-        <Divider />
+        <Flex alignItems="center" justifyContent="center" fontSize="xl">
+          <Box mx="auto">
+            <ShareText />
+          </Box>
+        </Flex>
       </VStack>
     </Box>
   )
@@ -538,16 +558,16 @@ const ImageSlider = (props: {
             cursor="zoom-in"
             boxSize={{
               base: 'none',
-              md: '20rem',
-              lg: '25rem',
-              xl: '27rem',
-              '2xl': '30rem'
+              sm: 'xs',
+              md: 'xs',
+              lg: 'sm',
+              xl: 'md',
+              '2xl': 'lg'
             }}
             p="2"
             borderRadius="xl"
             // border="1px"
             // borderColor="gray.200"
-            boxShadow="sm"
             bg="white">
             {curMedia?.image ? (
               <GatsbyImage
