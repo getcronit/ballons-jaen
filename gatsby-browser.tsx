@@ -21,3 +21,16 @@ export const wrapPageElement: GatsbyBrowser['wrapPageElement'] = ({
     </PageWrapper>
   )
 }
+
+export const shouldUpdateScroll: GatsbyBrowser['shouldUpdateScroll'] = ({
+  routerProps: {location}
+}) => {
+  // check if restoreScroll is set on the location
+  if (location.state?.noScroll) {
+    // if yes, use the state to scroll to the respective position
+    return false
+  }
+
+  // if not, scroll to top
+  return true
+}

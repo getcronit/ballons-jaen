@@ -21,7 +21,7 @@ import {
 import {useForm} from 'react-hook-form'
 
 import {Field, useField} from '@snek-at/jaen'
-import {navigate} from 'gatsby'
+import {Link, navigate} from 'gatsby'
 import React from 'react'
 import {validateUrl} from '../../common/utils'
 import {BallonButton} from '../molecules/BallonButton'
@@ -134,11 +134,12 @@ const LinkButtonField: React.FC<
       <Field.Text
         as={BallonButton}
         py="7 !important"
-        asAs={'span'}
-        bgColor={'blue'}
+        asAs={Link}
+        to={urlValue}
+        state={{noScroll: true}}
         {...buttonProps}
         // onClick only if not editing
-        onClick={buttonTextField.isEditing ? undefined : handleButtonClick}
+        // onClick={buttonTextField.isEditing ? undefined : handleButtonClick}
         mr={3}
         //disabled={buttonTextField.isEditing}
         cursor={

@@ -8,7 +8,7 @@ export default function ScrollToTop({
   pathname: string
 }) {
   useEffect(() => {
-    if (window.location.hash === '') {
+    if (window.location.hash === '' && window.location.search === '') {
       const canControlScrollRestoration = 'scrollRestoration' in window.history
       if (canControlScrollRestoration) {
         window.history.scrollRestoration = 'manual'
