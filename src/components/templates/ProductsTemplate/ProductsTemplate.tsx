@@ -79,9 +79,7 @@ export const ProductsTemplate = (props: ProductsTemplateProps) => {
               if (props.isFetching) return
               props.fetchNextPage()
             }}
-            display={
-              !props.products.length || !props.hasNextPage ? 'none' : 'block'
-            }
+            display={!props.hasNextPage ? 'none' : 'flex'}
             isLoading={props.isFetching}>
             Mehr Artikel laden
           </BallonButton>
