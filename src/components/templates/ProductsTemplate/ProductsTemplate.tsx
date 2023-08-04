@@ -79,8 +79,8 @@ export const ProductsTemplate = (props: ProductsTemplateProps) => {
               if (props.isFetching) return
               props.fetchNextPage()
             }}
-            disabled={
-              props.isFetching || !props.products.length || !props.hasNextPage
+            display={
+              !props.products.length || !props.hasNextPage ? 'none' : 'block'
             }
             isLoading={props.isFetching}>
             Mehr Artikel laden
