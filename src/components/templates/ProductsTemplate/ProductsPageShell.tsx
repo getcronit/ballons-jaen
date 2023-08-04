@@ -833,7 +833,12 @@ export default function ProductsPageShell(
   }
 
   return (
-    <Flex p="4" pos="relative">
+    <Flex
+      p={{
+        base: 0,
+        xl: 4
+      }}
+      pos="relative">
       <Box
         display={{base: 'none', xl: 'block'}}
         bg="white"

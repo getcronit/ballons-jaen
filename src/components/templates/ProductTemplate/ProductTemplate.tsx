@@ -105,7 +105,11 @@ export const ProductTemplate = ({
       my="8"
       pb="16">
       <Stack
-        px="16"
+        px={{
+          base: 4,
+
+          xl: 8
+        }}
         pt="16"
         spacing={{
           base: 8,
@@ -129,8 +133,8 @@ export const ProductTemplate = ({
               </BreadcrumbLink>
             </BreadcrumbItem>
           </Breadcrumb>
-          <Container maxW="full">
-            <HStack direction={{base: 'column', lg: 'row'}} spacing="14">
+          <Container maxW="full" mx="auto">
+            <Stack direction={{base: 'column', lg: 'row'}} spacing="14">
               <Box pos="relative">
                 <ImageSlider
                   featuredMedia={shopifyProduct.featuredMedia}
@@ -157,7 +161,7 @@ export const ProductTemplate = ({
                   onGoBack={onGoBack}
                 />
               </Stack>
-            </HStack>
+            </Stack>
           </Container>
           <Box>
             <ProductMoreDetail description={shopifyProduct.descriptionHtml} />

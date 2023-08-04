@@ -61,7 +61,7 @@ export const ProductsTemplate = (props: ProductsTemplateProps) => {
         scrollRestoration
         wholesale={props.wholesale}
         products={props.products}
-        columns={{base: 1, sm: 2, md: 3, lg: 3, xl: 4, '2xl': 5}}
+        columns={{base: 2, sm: 2, md: 3, lg: 3, xl: 4, '2xl': 5}}
         spacing={4}
         searchLocation={searchLocation}
       />
@@ -69,7 +69,7 @@ export const ProductsTemplate = (props: ProductsTemplateProps) => {
       <Center my={4}>
         {props.products.length === 0 && !props.isFetching ? (
           <Heading as="h2" size="lg" mt={4}>
-            Keine Artikel gefunden
+            Keine Artikel gefunden {props.products.length}
           </Heading>
         ) : (
           <BallonButton
