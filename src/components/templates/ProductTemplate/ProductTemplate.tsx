@@ -116,10 +116,7 @@ export const ProductTemplate = ({
         <Stack spacing={12}>
           <Breadcrumb separator={<ChevronRightIcon boxSize="6" />}>
             <BreadcrumbItem>
-              <BreadcrumbLink
-                onClick={() => {
-                  window.history.back()
-                }}>
+              <BreadcrumbLink as={Link} to="/products">
                 Alle Artikel
               </BreadcrumbLink>
             </BreadcrumbItem>

@@ -15,6 +15,7 @@ import {ProductCard} from '../ProductCard'
 export interface ProductGridProps extends SimpleGridProps {
   heading?: string
   products: ShopifyProduct[]
+  scrollRestoration?: boolean
   prefixPath?: string
   searchLocation?: string
   wholesale?: boolean
@@ -23,6 +24,7 @@ export interface ProductGridProps extends SimpleGridProps {
 export const ProductGrid = ({
   heading,
   products,
+  scrollRestoration,
   prefixPath,
   searchLocation,
   wholesale,
@@ -32,26 +34,15 @@ export const ProductGrid = ({
     ? useBreakpointValue(gridProps.columns as any)
     : 0 || 0
 
-  const containerRef = useRef(null)
-
-  const location = useLocation()
-
-  // Save the scroll position on unmounting the component
   useEffect(() => {
-    return () => {
-      if (containerRef.current) {
-        sessionStorage.setItem('scrollPosition', containerRef.current.scrollTop)
-      }
-    }
-  }, [location.pathname])
+    const scrollPosition = window.sessionStorage.getItem('scrollPosition')
 
-  // Restore the scroll position on mounting the component
-  useEffect(() => {
-    const scrollPosition = sessionStorage.getItem('scrollPosition')
-    if (scrollPosition && containerRef.current) {
-      containerRef.current.scrollTop = parseInt(scrollPosition, 10)
+    if (scrollPosition && scrollRestoration) {
+      window.scrollTo(0, parseInt(scrollPosition))
+
+      window.sessionStorage.removeItem('scrollPosition')
     }
-  }, [location.pathname])
+  }, [scrollRestoration])
 
   return (
     <>
@@ -61,17 +52,28 @@ export const ProductGrid = ({
         </Box>
       )}
 
-      <SimpleGrid ref={containerRef} {...gridProps}>
+      <SimpleGrid {...gridProps}>
         {products.map((item, index) => {
           return (
-            <ProductCard
-              prefixPath={prefixPath}
-              searchLocation={searchLocation}
-              product={item}
+            <Box
+              id={`product-${item.id}`}
               key={item.id}
-              left={(index + 1) % v === 0}
-              wholesale={wholesale}
-            />
+              onClick={() => {
+                if (scrollRestoration) {
+                  window.sessionStorage.setItem(
+                    'scrollPosition',
+                    window.scrollY.toString()
+                  )
+                }
+              }}>
+              <ProductCard
+                prefixPath={prefixPath}
+                searchLocation={searchLocation}
+                product={item}
+                left={(index + 1) % v === 0}
+                wholesale={wholesale}
+              />
+            </Box>
           )
         })}
       </SimpleGrid>
