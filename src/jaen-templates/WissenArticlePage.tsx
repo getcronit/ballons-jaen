@@ -6,15 +6,7 @@ import {WissenArticlePage} from '../components/templates/WissenArticlePage'
 import {Layout} from '../Layout'
 
 const Page = (props: PageProps) => {
-  return (
-    <Layout
-      location={{
-        pathname: props.location.pathname,
-        search: props.location.search
-      }}>
-      <WissenArticlePage />
-    </Layout>
-  )
+  return <WissenArticlePage />
 }
 
 export default connectTemplate(Page, {

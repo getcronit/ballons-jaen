@@ -5,15 +5,7 @@ import {Layout} from '../Layout'
 import ContactAboutUs from '../components/templates/ContactAboutUs/ContactAboutUs'
 
 const Page = (props: PageProps) => {
-  return (
-    <Layout
-      location={{
-        pathname: props.location.pathname,
-        search: props.location.search
-      }}>
-      <ContactAboutUs />
-    </Layout>
-  )
+  return <ContactAboutUs />
 }
 
 export default connectPage(Page, {

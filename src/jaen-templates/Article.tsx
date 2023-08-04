@@ -5,15 +5,7 @@ import BlogPage from '../components/templates/BlogPage/BlogPage'
 import {Layout} from '../Layout'
 
 const Page = (props: PageProps) => {
-  return (
-    <Layout
-      location={{
-        pathname: props.location.pathname,
-        search: props.location.search
-      }}>
-      <BlogPage />
-    </Layout>
-  )
+  return <BlogPage />
 }
 
 export default connectTemplate(Page, {

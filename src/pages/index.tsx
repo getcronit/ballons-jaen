@@ -12,15 +12,7 @@ const Page = (
     }
   }>
 ) => {
-  return (
-    <Layout
-      location={{
-        pathname: props.location.pathname,
-        search: props.location.search
-      }}>
-      <HomePage featuredProducts={props.data.featuredProducts.nodes} />
-    </Layout>
-  )
+  return <HomePage featuredProducts={props.data.featuredProducts.nodes} />
 }
 
 export default connectPage(Page, {

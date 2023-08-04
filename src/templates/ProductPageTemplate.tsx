@@ -8,7 +8,7 @@ import {connectTemplate, Head as JaenHead, PageProps} from '@snek-at/jaen'
 import {graphql, navigate} from 'gatsby'
 import React from 'react'
 
-import {buildAllTags} from '../components/templates/ProductsTemplate/ProductsTemplate'
+import {buildAllTags} from '../components/templates/ProductsTemplate/buildAllTags'
 import {ProductTemplate} from '../components/templates/ProductTemplate'
 
 import {Layout} from '../Layout'
@@ -44,23 +44,16 @@ const ProductPageTemplate = connectTemplate<ProductPageTemplateProps>(
     return (
       <>
         {/* <SEO pagePath={props.path} pageMeta={buildProductPageMeta()} /> */}
-        <Layout
-          location={{
-            pathname: props.location.pathname,
-            search: props.location.search
-          }}
-          mode="store">
-          <ProductTemplate
-            path={props.path}
-            wholesale={wholesale}
-            allTags={allTags}
-            shopifyProduct={props.data.shopifyProduct}
-            relatedProducts={props.data.relatedProducts}
-            onWishlistAdd={() => {}}
-            isOnWishList={false}
-            onGoBack={handleOnGoBack}
-          />
-        </Layout>
+        <ProductTemplate
+          path={props.path}
+          wholesale={wholesale}
+          allTags={allTags}
+          shopifyProduct={props.data.shopifyProduct}
+          relatedProducts={props.data.relatedProducts}
+          onWishlistAdd={() => {}}
+          isOnWishList={false}
+          onGoBack={handleOnGoBack}
+        />
       </>
     )
   },

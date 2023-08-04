@@ -5,15 +5,7 @@ import GroßhandelPage from '../components/templates/Großhandel/Großhandel'
 import {Layout} from '../Layout'
 
 const Page = (props: PageProps) => {
-  return (
-    <Layout
-      location={{
-        pathname: props.location.pathname,
-        search: props.location.search
-      }}>
-      <GroßhandelPage />
-    </Layout>
-  )
+  return <GroßhandelPage />
 }
 
 export default connectPage(Page, {

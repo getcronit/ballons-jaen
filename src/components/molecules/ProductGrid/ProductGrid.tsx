@@ -6,6 +6,9 @@ import {
   useBreakpointValue
 } from '@chakra-ui/react'
 import {ShopifyProduct} from '@snek-at/gatsby-theme-shopify'
+import {useScrollRestoration} from 'gatsby'
+import {useRef, useEffect} from 'react'
+import {useLocation} from '@reach/router'
 
 import {ProductCard} from '../ProductCard'
 
@@ -29,6 +32,27 @@ export const ProductGrid = ({
     ? useBreakpointValue(gridProps.columns as any)
     : 0 || 0
 
+  const containerRef = useRef(null)
+
+  const location = useLocation()
+
+  // Save the scroll position on unmounting the component
+  useEffect(() => {
+    return () => {
+      if (containerRef.current) {
+        sessionStorage.setItem('scrollPosition', containerRef.current.scrollTop)
+      }
+    }
+  }, [location.pathname])
+
+  // Restore the scroll position on mounting the component
+  useEffect(() => {
+    const scrollPosition = sessionStorage.getItem('scrollPosition')
+    if (scrollPosition && containerRef.current) {
+      containerRef.current.scrollTop = parseInt(scrollPosition, 10)
+    }
+  }, [location.pathname])
+
   return (
     <>
       {heading && (
@@ -37,7 +61,7 @@ export const ProductGrid = ({
         </Box>
       )}
 
-      <SimpleGrid {...gridProps}>
+      <SimpleGrid ref={containerRef} {...gridProps}>
         {products.map((item, index) => {
           return (
             <ProductCard

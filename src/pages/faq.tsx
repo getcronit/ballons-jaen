@@ -5,15 +5,7 @@ import FaqPage from '../components/templates/Faq/Faq'
 import {Layout} from '../Layout'
 
 const Page = (props: PageProps) => {
-  return (
-    <Layout
-      location={{
-        pathname: props.location.pathname,
-        search: props.location.search
-      }}>
-      <FaqPage />
-    </Layout>
-  )
+  return <FaqPage />
 }
 
 export default connectPage(Page, {

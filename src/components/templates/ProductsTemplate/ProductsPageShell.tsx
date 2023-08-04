@@ -833,78 +833,54 @@ export default function ProductsPageShell(
   }
 
   return (
-    <Box h="calc(100vh - 60px - 4rem)">
-      <Stack h="100%" flexDirection="column">
-        <Flex h="full" pt="4">
-          <Box
-            display={{base: 'none', xl: 'block'}}
-            h="100%"
-            w="15%"
-            mx="4"
-            bg="white"
-            borderRadius="lg"
-            pos="sticky"
-            top="0"
-            boxShadow="light">
-            <CategoryPicker
-              groupedCategories={groupedCategories}
-              activeTags={activeTags}
-              updateActiveTags={updateActiveTags}
-              addOrRemoveTag={addOrRemoveTag}
-            />
-          </Box>
+    <Flex p="4" pos="relative">
+      <Box
+        display={{base: 'none', xl: 'block'}}
+        bg="white"
+        borderRadius="lg"
+        pos="sticky"
+        top="4"
+        w="20rem"
+        h="calc(100vh - 4rem)"
+        boxShadow="light">
+        <CategoryPicker
+          groupedCategories={groupedCategories}
+          activeTags={activeTags}
+          updateActiveTags={updateActiveTags}
+          addOrRemoveTag={addOrRemoveTag}
+        />
+      </Box>
 
-          <Box
-            flex="1"
-            pos="relative"
-            overflowY="scroll"
-            sx={{
-              '@media screen and (min-width: 768px)': {
-                '::-webkit-scrollbar': {
-                  w: '16px',
-                  h: '16px'
-                },
+      <Box
+        w={{
+          base: '100%',
+          xl: 'calc(100% - 20rem)'
+        }}>
+        <Stack
+          direction="column"
+          borderRadius="lg"
+          bg="white"
+          pos="sticky"
+          top="0"
+          zIndex="3"
+          p="4"
+          ml={{base: '2', md: '12'}}
+          mr={{base: '2', md: '12'}}
+          boxShadow="light">
+          <Filter
+            groupedTags={groupedTags}
+            activeTags={activeTags}
+            sortOptions={props.sortOptions}
+            addOrRemoveTag={addOrRemoveTag}
+            clearActiveTags={clearActiveTags}
+            updateActiveTags={updateActiveTags}
+            onSortChange={props.onSortChange}
+          />
+        </Stack>
 
-                '::-webkit-scrollbar-corner': {
-                  bg: 'rgb(240, 241, 244)'
-                },
-
-                '::-webkit-scrollbar-thumb': {
-                  bg: 'rgba(105, 112, 125, 0.5)',
-                  backgroundClip: 'content-box',
-                  borderRadius: '16px',
-                  border: '4px solid rgb(240, 241, 244)'
-                }
-              }
-            }}>
-            <Stack
-              direction="column"
-              borderRadius="lg"
-              bg="white"
-              pos="sticky"
-              top="0"
-              zIndex="3"
-              p="4"
-              ml={{base: '2', md: '12'}}
-              mr={{base: '2', md: '12'}}
-              boxShadow="light">
-              <Filter
-                groupedTags={groupedTags}
-                activeTags={activeTags}
-                sortOptions={props.sortOptions}
-                addOrRemoveTag={addOrRemoveTag}
-                clearActiveTags={clearActiveTags}
-                updateActiveTags={updateActiveTags}
-                onSortChange={props.onSortChange}
-              />
-            </Stack>
-            <Box flex="1" pos="relative">
-              {props.children}
-            </Box>
-          </Box>
-        </Flex>
-      </Stack>
-    </Box>
+        {props.children}
+      </Box>
+    </Flex>
   )
 
   // return (

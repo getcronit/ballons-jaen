@@ -5,15 +5,7 @@ import ImprintPage from '../components/templates/Imprint/Imprint'
 import {Layout} from '../Layout'
 
 const Page = (props: PageProps) => {
-  return (
-    <Layout
-      location={{
-        pathname: props.location.pathname,
-        search: props.location.search
-      }}>
-      <ImprintPage />
-    </Layout>
-  )
+  return <ImprintPage />
 }
 
 export default connectPage(Page, {

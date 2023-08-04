@@ -5,6 +5,7 @@ import {
   BreadcrumbLink,
   Button,
   Center,
+  Container,
   Divider,
   Flex,
   Heading,
@@ -92,101 +93,93 @@ export const ProductTemplate = ({
   }, [])
 
   return (
-    <ProductsPageShell
-      allTags={allTags}
-      activeTags={allActiveTags}
-      onActiveTagsChange={tags => {
-        void navigate('/products', {
-          state: {
-            activeTags: tags
-          }
-        })
-      }}
-      sortOptions={['Alphabetisch', 'Preis aufsteigend', 'Preis absteigend']}
-      onSortChange={() => {}}>
+    <Stack
+      pos={'relative'}
+      ml={{base: '2', md: '12'}}
+      mr={{base: '2', md: '12'}}
+      bg="white"
+      borderRadius="xl"
+      dir="column"
+      boxShadow="sm"
+      //w="100%"
+      my="8"
+      pb="16">
       <Stack
-        ml={{base: '2', md: '12'}}
-        mr={{base: '2', md: '12'}}
-        bg="white"
-        borderRadius="xl"
-        dir="column"
-        boxShadow="sm"
-        //w="100%"
-        my="8"
-        pb="16">
-        <Stack
-          px="16"
-          pt="16"
-          spacing={{
-            base: 8,
-            md: 12,
-            lg: 16,
-            xl: 20
-          }}>
-          <Stack spacing={12}>
-            <Breadcrumb separator={<ChevronRightIcon boxSize="6" />}>
-              <BreadcrumbItem>
-                <BreadcrumbLink as={Link} to="/products/">
-                  Alle Artikel
-                </BreadcrumbLink>
-              </BreadcrumbItem>
+        px="16"
+        pt="16"
+        spacing={{
+          base: 8,
+          md: 12,
+          lg: 16,
+          xl: 20
+        }}>
+        <Stack spacing={12}>
+          <Breadcrumb separator={<ChevronRightIcon boxSize="6" />}>
+            <BreadcrumbItem>
+              <BreadcrumbLink
+                onClick={() => {
+                  window.history.back()
+                }}>
+                Alle Artikel
+              </BreadcrumbLink>
+            </BreadcrumbItem>
 
-              <BreadcrumbItem isCurrentPage>
-                <BreadcrumbLink
-                  as={Link}
-                  to={`/products/${shopifyProduct.handle}`}>
-                  {shopifyProduct.handle}
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-            </Breadcrumb>
-            <Stack direction={{base: 'column', lg: 'row'}} spacing="14">
-              <Box pos="relative">
-                <ImageSlider
-                  featuredMedia={shopifyProduct.featuredMedia}
-                  media={shopifyProduct.media}
-                />
-              </Box>
-
-              <Stack
-                spacing="8"
-                w="full"
-                position={{base: 'relative', lg: 'sticky'}}
-                top={{
-                  base: '0',
-                  lg: 44
-                }}
-                px={{base: 0, md: 4}}
-                m={{base: 0, md: 1}}
-                h="fit-content">
-                <ProductDetail
-                  wholesale={wholesale}
-                  product={shopifyProduct}
-                  onWishlistAdd={onWishlistAdd}
-                  isOnWishList={isOnWishList}
-                  onGoBack={onGoBack}
-                />
-              </Stack>
-            </Stack>
-            <Box>
-              <ProductMoreDetail description={shopifyProduct.descriptionHtml} />
+            <BreadcrumbItem isCurrentPage>
+              <BreadcrumbLink
+                as={Link}
+                to={`/products/${shopifyProduct.handle}`}>
+                {shopifyProduct.handle}
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+          </Breadcrumb>
+          <Stack direction={{base: 'column', lg: 'row'}} spacing="14">
+            <Box pos="relative">
+              <ImageSlider
+                featuredMedia={shopifyProduct.featuredMedia}
+                media={shopifyProduct.media}
+              />
             </Box>
-          </Stack>
 
-          {/* <Stack spacing="8">
-          <Heading size="xl" textAlign="center" my="8">
-            Neuigkeiten
-          </Heading>
-          <NewsSlider />
-        </Stack> */}
+            <Stack
+              spacing="8"
+              w="full"
+              position={{base: 'relative', lg: 'sticky'}}
+              top={{
+                base: '0',
+                lg: 44
+              }}
+              px={{base: 0, md: 4}}
+              m={{base: 0, md: 1}}
+              h="fit-content">
+              <ProductDetail
+                wholesale={wholesale}
+                product={shopifyProduct}
+                onWishlistAdd={onWishlistAdd}
+                isOnWishList={isOnWishList}
+                onGoBack={onGoBack}
+              />
+            </Stack>
+          </Stack>
+          <Box>
+            <ProductMoreDetail description={shopifyProduct.descriptionHtml} />
+          </Box>
         </Stack>
-        <ProductSlider
-          heading="Ähnliche Produkte"
-          products={relatedProducts.nodes}
-          prefixPath="/products"
-          wholesale={wholesale}
-        />
+
+        {/* <Stack spacing="8">
+      <Heading size="xl" textAlign="center" my="8">
+        Neuigkeiten
+      </Heading>
+      <NewsSlider />
+    </Stack> */}
       </Stack>
-    </ProductsPageShell>
+
+      <ProductSlider
+        heading="Ähnliche Produkte"
+        products={relatedProducts.nodes}
+        prefixPath="/products"
+        wholesale={wholesale}
+      />
+    </Stack>
   )
 }
 

@@ -8,14 +8,13 @@ import {Head as JaenHead} from '@snek-at/jaen'
 import {PageProps} from 'gatsby'
 import {getImageData, getLowResolutionImageURL} from 'gatsby-plugin-image'
 import {getShopifyImage} from 'gatsby-source-shopify'
+import {useEffect} from 'react'
 import {metafieldIdentifiers} from '../common/getProductMetafields'
 
 import {ProductsTemplate} from '../components/templates/ProductsTemplate'
-import {
-  ProductsTemplateProps,
-  splitAllTags
-} from '../components/templates/ProductsTemplate/ProductsTemplate'
-import {Layout} from '../Layout'
+import {ProductsTemplateProps} from '../components/templates/ProductsTemplate/ProductsTemplate'
+import {splitAllTags} from '../components/templates/ProductsTemplate/splitAllTags'
+import {Layout, useProducts} from '../Layout'
 import {useAuthentication} from '../services/authentication'
 
 export type ProductsPageTemplateProps = PageProps<
@@ -27,104 +26,28 @@ export type ProductsPageTemplateProps = PageProps<
 >
 
 const ProductsPageTemplate: React.FC<ProductsPageTemplateProps> = props => {
-  const {implicitTags, tags, maxPrice, minPrice, vendors, productTypes} =
-    props.pageContext
-
-  const prevActiveTags = props.location.state?.activeTags
-
-  const splittedTags = prevActiveTags ? splitAllTags(prevActiveTags) : undefined
-
-  const search = useProductSearch({
-    metafieldIdentifiers,
-    filters: {
-      mainTag: implicitTags.length > 0 ? implicitTags[0] : undefined,
-      tags: splittedTags?.otherTags,
-      vendors: splittedTags?.vendorTags,
-      productTypes: splittedTags?.productTypeTags
-    }
-  })
-
-  const onSortChange = (sort: string) => {
-    let sortKey
-
-    let reverse
-
-    switch (sort) {
-      case 'Alphabetisch':
-        sortKey = 'TITLE'
-        reverse = false
-        break
-      case 'Preis aufsteigend':
-        sortKey = 'PRICE'
-        reverse = false
-        break
-      case 'Preis absteigend':
-        sortKey = 'PRICE'
-        reverse = true
-        break
-      default:
-        sortKey = 'TITLE'
-        reverse = false
-    }
-
-    search.onChangeOptions({
-      sortKey,
-      reverse
-    })
-  }
-
-  const updateFilter = (filters: Partial<ProductsTemplateProps['filters']>) => {
-    search.onChangeFilter({
-      ...filters,
-      maxPrice: filters.maxPrice || undefined,
-      minPrice: filters.minPrice || undefined
-    })
-  }
+  const {products, isFetching, hasNextPage, fetchNextPage, activeFilters} =
+    useProducts()
 
   const auth = useAuthentication()
 
   const wholesale = !!auth.user
 
   return (
-    <>
-      <Layout
-        location={{
-          pathname: props.location.pathname,
-          search: props.location.search
-        }}
-        mode="store">
-        <ProductsTemplate
-          wholesale={wholesale}
-          path={props.path}
-          products={search.products}
-          isFetching={search.isFetching}
-          hasNextPage={search.hasNextPage}
-          fetchNextPage={search.fetchNextPage}
-          filters={{
-            tags,
-            vendors,
-            productTypes,
-            minPrice,
-            maxPrice
-          }}
-          activeFilters={search.filters}
-          updateFilter={updateFilter}
-          sortOptions={[
-            'Alphabetisch',
-            'Preis aufsteigend',
-            'Preis absteigend'
-          ]}
-          onSortChange={onSortChange}
-        />
-      </Layout>
-    </>
+    <ProductsTemplate
+      wholesale={wholesale}
+      path={props.path}
+      products={products}
+      activeFilters={activeFilters}
+      isFetching={isFetching}
+      hasNextPage={hasNextPage}
+      fetchNextPage={fetchNextPage}
+    />
   )
 }
 
 export default (props: ProductsPageTemplateProps) => (
-  <SearchProvider>
-    <ProductsPageTemplate {...props} />
-  </SearchProvider>
+  <ProductsPageTemplate {...props} />
 )
 
 export const Head = (props: ProductsPageTemplateProps) => {

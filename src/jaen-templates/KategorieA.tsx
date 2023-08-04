@@ -5,15 +5,7 @@ import KategorieA from '../components/templates/KategorieA/KategorieA'
 import {Layout} from '../Layout'
 
 const Page = (props: PageProps) => {
-  return (
-    <Layout
-      location={{
-        pathname: props.location.pathname,
-        search: props.location.search
-      }}>
-      <KategorieA />
-    </Layout>
-  )
+  return <KategorieA />
 }
 
 export default connectTemplate(Page, {

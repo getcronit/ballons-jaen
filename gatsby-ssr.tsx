@@ -5,6 +5,7 @@
  */
 
 import {GatsbySSR} from 'gatsby'
+import {Layout} from './src/Layout'
 import {AuthenticationProvider} from './src/services/authentication'
 import {PageWrapper} from './src/Wrapper'
 
@@ -26,12 +27,13 @@ export const onRenderBody: GatsbySSR['onRenderBody'] = ({
   ])
 }
 
-export const wrapPageElement: GatsbySSR['wrapPageElement'] = ({element}) => {
-  // return <PageWrapper>{element}</PageWrapper>
+export const wrapPageElement: GatsbySSR['wrapPageElement'] = ({
+  element,
+  props
+}) => {
+  if (props.location.pathname.startsWith('/admin')) {
+    return <>{element}</>
+  }
 
-  return (
-    <PageWrapper>
-      <AuthenticationProvider>{element}</AuthenticationProvider>
-    </PageWrapper>
-  )
+  return <Layout {...props}>{element}</Layout>
 }
