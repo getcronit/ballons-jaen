@@ -120,7 +120,7 @@ export const ProductTemplate = ({
         <Stack spacing={12}>
           <Breadcrumb separator={<ChevronRightIcon boxSize="6" />}>
             <BreadcrumbItem>
-              <BreadcrumbLink as={Link} to="/products">
+              <BreadcrumbLink as={Link} to="/products" color="red.500">
                 Alle Artikel
               </BreadcrumbLink>
             </BreadcrumbItem>
