@@ -1,10 +1,10 @@
-import {Box, Heading} from '@chakra-ui/react'
+import {Heading, StackProps} from '@chakra-ui/react'
 import {ShopifyProduct} from '@snek-at/gatsby-theme-shopify'
 import {Slider} from '@snek-at/uikit'
 
 import {ProductCard} from '../ProductCard'
 
-export interface ProductSliderProps {
+export interface ProductSliderProps extends StackProps {
   products: ShopifyProduct[]
   heading?: string
   prefixPath?: string
@@ -15,7 +15,8 @@ export const ProductSlider = ({
   products,
   heading,
   prefixPath,
-  wholesale
+  wholesale,
+  ...stackProps
 }: ProductSliderProps) => {
   return (
     <>
@@ -36,7 +37,8 @@ export const ProductSlider = ({
             base: '15rem',
             sm: 'xs'
           }
-        }}>
+        }}
+        {...stackProps}>
         {products.map((product, index) => (
           <ProductCard
             key={product.id}

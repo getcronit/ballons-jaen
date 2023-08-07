@@ -90,7 +90,7 @@ interface IRiesgesBottomSectionProps {}
 
 const RiesgesBottomSection: FC<IRiesgesBottomSectionProps> = () => {
   return (
-    <Flex flexDir={{base: 'column', xl: 'row'}} gap="10" pb="10">
+    <Flex flexDir={{base: 'column', xl: 'row'}} gap="10" pb={{base: "0", sm: "10"}}>
       <Stack flex="1">
         <Field.Text
           as={Heading}

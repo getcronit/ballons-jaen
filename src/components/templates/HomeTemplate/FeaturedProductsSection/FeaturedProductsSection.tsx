@@ -8,6 +8,7 @@ import {ProductGrid} from '../../../molecules/ProductGrid'
 import LinkButtonField from '../../../fields/LinkButtonField'
 import * as style from './style'
 import {useAuthentication} from '../../../../services/authentication'
+import {ProductSlider} from '../../../molecules/ProductSlider'
 
 export interface FeaturedProductsSectionProps {
   name: string
@@ -60,10 +61,19 @@ export const FeaturedProducts = ({
             <Bullet color="agt.yellow" w="unset" fontSize="xl" mt="5" mb="10" />
           </Box> */}
           <ProductGrid
+            display={{base: 'none', sm: 'grid'}}
             prefixPath={productsPagePath}
             products={featuredProducts}
             spacing="5"
             columns={{base: 2, md: 3, xl: 4}}
+            wholesale={!!user.user}
+          />
+          <ProductSlider
+            h={"100%"}
+            display={{base: 'flex', sm: 'none'}}
+            //heading="Ähnliche Produkte"
+            products={featuredProducts}
+            prefixPath="/products"
             wholesale={!!user.user}
           />
           <Center mt="10" mb="16">
