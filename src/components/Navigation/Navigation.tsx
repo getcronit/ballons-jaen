@@ -8,6 +8,7 @@ import {useContactModal} from '../../services/contact'
 import {useSearch} from '../../services/search'
 import {LayoutMode} from '../../types/commonTypes'
 import TopNav from './TopNav'
+import {useAuthentication} from '@snek-at/jaen'
 
 interface INavigationProps {
   mode: LayoutMode
@@ -18,6 +19,8 @@ const Navigation: FC<INavigationProps> = ({mode, pathname}) => {
   const basket = useBasket()
   const search = useSearch()
   const contactModal = useContactModal()
+
+  const {isAuthenticated} = useAuthentication()
 
   const handleOnBasketClick = () => {
     basket.onOpen()
@@ -36,6 +39,7 @@ const Navigation: FC<INavigationProps> = ({mode, pathname}) => {
   return (
     <>
       <TopNav
+        marginTop={isAuthenticated ? '3.5rem' : undefined}
         display={
           mode === 'website'
             ? {
@@ -46,10 +50,11 @@ const Navigation: FC<INavigationProps> = ({mode, pathname}) => {
         }
       />
       <Box
+        // marginTop={isAuthenticated ? '3.5rem' : undefined}
         as="nav"
         zIndex="sticky"
         pos={mode === 'website' ? 'sticky' : 'relative'}
-        top="0"
+        top={isAuthenticated ? '3.5rem' : '0'}
         bg="rgba(255,255,255,.9)"
         backdropFilter={'blur(7px)'}>
         <Stack

@@ -27,6 +27,7 @@ import {splitAllTags} from './components/templates/ProductsTemplate/splitAllTags
 import {metafieldIdentifiers} from './common/getProductMetafields'
 import {ProductsTemplateProps} from './components/templates/ProductsTemplate/ProductsTemplate'
 import {buildAllTags} from './components/templates/ProductsTemplate/buildAllTags'
+import {useAuthentication} from '@snek-at/jaen'
 
 export interface LayoutProps extends Omit<PageProps, 'children'> {
   children: React.ReactElement
