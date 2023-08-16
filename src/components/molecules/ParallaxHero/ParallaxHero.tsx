@@ -196,6 +196,7 @@ export const ParallaxHero = ({noScroll}: ParallaxHeroProps) => {
               defaultUrl={`/grosshandel`}
               size={{base: 'sm', md: 'md'}}
               variant="outline"
+              sx={{"svg": {color: "white !important"}}}
               ml="3"
             />
           </HStack>
