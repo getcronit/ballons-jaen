@@ -4288,10 +4288,10 @@
     shopify-buy "^2.17.0"
     urql "^2.2.0"
 
-"@snek-at/jaen@^0.0.108":
-  version "0.0.108"
-  resolved "https://registry.yarnpkg.com/@snek-at/jaen/-/jaen-0.0.108.tgz#708def5bc69dadaa2e555bfda74b2a434d65498a"
-  integrity sha512-CkhyOoJh++ISDqu9HAbq6qsYrtnK+ZN66cIV10CzCPdeht1aT64rNU/MGuMZcjH4ULzXwDUmcpSLutOhe6zCcQ==
+"@snek-at/jaen@^0.0.112":
+  version "0.0.112"
+  resolved "https://registry.yarnpkg.com/@snek-at/jaen/-/jaen-0.0.112.tgz#031d2497b6dcdfd47e1b8067526da28e5437b584"
+  integrity sha512-7m8qu7dNppKC8qMNWwckLXNBYdwmxaqtDui1xg8whjSRb2SIlfCRVQQq+2L62CyLGHUrX2a1SgbGIip36bX3fQ==
   dependencies:
     "@chakra-ui/icons" "^2.0.18"
     "@chakra-ui/pro-theme" "^0.0.64"
@@ -9222,10 +9222,10 @@ gatsby-plugin-image@^2.12.1, gatsby-plugin-image@^3:
     objectFitPolyfill "^2.3.5"
     prop-types "^15.8.1"
 
-gatsby-plugin-jaen@^0.0.31:
-  version "0.0.31"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-jaen/-/gatsby-plugin-jaen-0.0.31.tgz#1e7b051c512d75f2436c9a6da7c492fdf65f3e80"
-  integrity sha512-sThCG/KeDvyTA8kRNoRDsdQWHniHVzLVTmJZMToGrrU/LL2niVBCv59a6hulaWcQEO7EA2bJZE2gYGknLpL13A==
+gatsby-plugin-jaen@^0.0.32:
+  version "0.0.32"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-jaen/-/gatsby-plugin-jaen-0.0.32.tgz#bbbd12cf05da200544e5814a57d3f5648cde6891"
+  integrity sha512-dRnfDmyshDKOvT8DcIj5kFPR4gRTHVLwJBB2pzzmbg3WiU4dsgzu9FD7Eep0CnuGzQLCUdzvEZWufgqkYAPGMg==
   dependencies:
     "@chakra-ui/gatsby-plugin" "^3.1.1"
     gatsby-plugin-compile-es6-packages "^2.1.1"

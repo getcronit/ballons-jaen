@@ -39,7 +39,7 @@ const Navigation: FC<INavigationProps> = ({mode, pathname}) => {
   return (
     <>
       <TopNav
-        marginTop={isAuthenticated ? '3.5rem' : undefined}
+        paddingTop={isAuthenticated ? '3.5rem' : undefined}
         display={
           mode === 'website'
             ? {
@@ -50,11 +50,14 @@ const Navigation: FC<INavigationProps> = ({mode, pathname}) => {
         }
       />
       <Box
-        // marginTop={isAuthenticated ? '3.5rem' : undefined}
+        // mt={isAuthenticated ? '3.5rem' : undefined}
         as="nav"
-        zIndex="sticky"
+        zIndex="1"
         pos={mode === 'website' ? 'sticky' : 'relative'}
-        top={isAuthenticated ? '3.5rem' : '0'}
+        top={
+          mode === 'website' ? (isAuthenticated ? '3.5rem' : '0') : undefined
+        }
+        mt={mode === 'store' ? (isAuthenticated ? '3.5rem' : '0') : undefined}
         bg="rgba(255,255,255,.9)"
         backdropFilter={'blur(7px)'}>
         <Stack

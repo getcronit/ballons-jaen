@@ -22,7 +22,7 @@
     "@emotion/styled": "^11.10.6",
     "@react-icons/all-files": "^4.1.0",
     "@snek-at/gatsby-theme-shopify": "^1.14.5",
-    "@snek-at/jaen": "^0.0.110",
+    "@snek-at/jaen": "^0.0.112",
     "@snek-at/uikit": "^1.1.0",
     "@snek-functions/origin": "^0.3.0",
     "chakra-react-select": "^4.4.0",
