@@ -7,7 +7,9 @@
 // You can delete this file if you're not using it
 
 import {GatsbyBrowser} from 'gatsby'
+
 import {Layout} from './src/Layout'
+import './src/styles/global.css'
 
 export const wrapPageElement: GatsbyBrowser['wrapPageElement'] = ({
   element,
