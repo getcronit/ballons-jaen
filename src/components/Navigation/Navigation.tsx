@@ -52,7 +52,7 @@ const Navigation: FC<INavigationProps> = ({mode, pathname}) => {
       <Box
         // mt={isAuthenticated ? '3.5rem' : undefined}
         as="nav"
-        zIndex="1"
+        zIndex="60"
         pos={mode === 'website' ? 'sticky' : 'relative'}
         top={
           mode === 'website' ? (isAuthenticated ? '3.5rem' : '0') : undefined
