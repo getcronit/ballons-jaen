@@ -7,7 +7,7 @@ interface IBottomFooterProps { }
 
 const BottomFooter: FC<IBottomFooterProps> = () => {
   return (
-    <VStack gap="3" mb={{base: '10', md: '0'}}>
+    <VStack gap="3" my={{base: '10', md: '10'}}>
       <Text
         lineHeight="6"
         fontSize="xs"
