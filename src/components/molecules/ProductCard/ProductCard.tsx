@@ -155,24 +155,22 @@ export const ProductCard = ({
           <Box position="relative" p="4">
             <AspectRatio ratio={10 / 9}>
               <>
-                <input
+                {/* <input
                   type="radio"
-                  className="radioimg"
                   name={'imgbox-' + cardId}
                   id={`imgbox-${cardId}-${0}`}
                   key={0}
                   ref={el => (radioRef.current[0] = el)}
                   readOnly
-                  checked></input>
+                  checked></input> */}
                 <ImageBoxWithTags
                   image={product.featuredMedia?.image}
                   tags={coloredBadges}
-                  className="main"
                 />
               </>
             </AspectRatio>
 
-            {product.media.slice(0, 3).map((media, index) => (
+            {/* {product.media.slice(0, 3).map((media, index) => (
               <Box key={index}>
                 {index !== 0 && (
                   <Box>
@@ -191,7 +189,7 @@ export const ProductCard = ({
                   </Box>
                 )}
               </Box>
-            ))}
+            ))} */}
           </Box>
 
           <Stack divider={<StackDivider />} spacing="4">
