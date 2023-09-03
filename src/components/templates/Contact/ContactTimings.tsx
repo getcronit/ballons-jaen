@@ -103,11 +103,11 @@ const ContactTimings: FC<IContactTimingsProps> = ({}) => {
             flex="1"
             boxShadow="dark"
             borderRadius="xl"
+            spacing="8"
             mx={{base: 4, md: '0'}}>
             <Field.Text
               //variant="cursive"
               size="50"
-              mb="8"
               textAlign="center"
               name="timingHeading2"
               defaultValue={`<i>Öffnungszeiten</i>`}
@@ -136,6 +136,14 @@ const ContactTimings: FC<IContactTimingsProps> = ({}) => {
                 </Flex>
               ))}
             </Stack>
+
+            <Field.Text
+              mt="4"
+              size="b2012"
+              name="timingNote"
+              fontWeight="semibold"
+              defaultValue="Lieferungen sind nach Absprache an jedem Tag möglich. Bitte kontaktieren Sie uns, um einen Liefertermin zu vereinbaren."
+            />
           </Stack>
         </Flex>
       </Container>
