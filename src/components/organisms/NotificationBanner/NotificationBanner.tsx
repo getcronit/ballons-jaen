@@ -10,7 +10,7 @@ import {
   Text,
   useModalContext
 } from '@chakra-ui/react'
-import {Field} from '@snek-at/jaen'
+import {Field} from '@atsnek/jaen'
 
 // import "@fontsource/poppins/100.css"
 

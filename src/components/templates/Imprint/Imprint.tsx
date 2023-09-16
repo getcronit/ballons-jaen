@@ -1,5 +1,5 @@
 import {FC} from 'react'
-import {Field} from '@snek-at/jaen'
+import {Field} from '@atsnek/jaen'
 import {Container} from '@chakra-ui/react'
 import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
 

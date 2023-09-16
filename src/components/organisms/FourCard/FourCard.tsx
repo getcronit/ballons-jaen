@@ -1,5 +1,5 @@
 import {Container, SimpleGrid} from '@chakra-ui/react'
-import {Field, useStatus} from '@snek-at/jaen'
+import {Field, useContentManagement} from '@atsnek/jaen'
 import {FC} from 'react'
 import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
 import {FourCardItem} from './FourCardItem'
@@ -15,7 +15,7 @@ const FourCard: FC<IFourCardProps> = ({
   sectionDisplayName,
   onCardClick
 }) => {
-  const {isEditing} = useStatus()
+  const {isEditing} = useContentManagement()
 
   return (
     <Container maxW={CONTAINER_MAX_WIDTH} mb={{base: 8, md: 0}}>

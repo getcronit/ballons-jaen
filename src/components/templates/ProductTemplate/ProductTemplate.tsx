@@ -81,8 +81,6 @@ export const ProductTemplate = ({
 
   const [allActiveTags, setAllActiveTags] = useState<string[]>([])
 
-  console.log('allActiveTags', allActiveTags, allTags)
-
   useEffect(() => {
     // get all active tags from location search
     const urlParams = new URLSearchParams(window.location.search)
@@ -368,21 +366,22 @@ const ProductDetail = withStoreContext<{
           </ListItem>
         )}
 
-        {productMetatfields.details?.sizeHelper && (
-          <ListItem>
-            <HStack spacing="4">
-              <ListIcon as={FaRuler} boxSize={8} />
-              <Text
-                fontSize={{
-                  base: 'xs',
-                  md: 'sm'
-                }}
-                color="gray.600">
-                {productMetatfields.details.sizeHelper}
-              </Text>
-            </HStack>
-          </ListItem>
-        )}
+        {productMetatfields.details?.sizeHelper &&
+          productMetatfields.details.sizeHelper !== '[object Object]' && (
+            <ListItem>
+              <HStack spacing="4">
+                <ListIcon as={FaRuler} boxSize={8} />
+                <Text
+                  fontSize={{
+                    base: 'xs',
+                    md: 'sm'
+                  }}
+                  color="gray.600">
+                  {productMetatfields.details.sizeHelper}
+                </Text>
+              </HStack>
+            </ListItem>
+          )}
       </List>
 
       <Text fontSize="sm">

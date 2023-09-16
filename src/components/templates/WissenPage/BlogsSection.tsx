@@ -8,7 +8,7 @@ import {
   Text,
   VStack
 } from '@chakra-ui/react'
-import {Field} from '@snek-at/jaen'
+import {Field} from '@atsnek/jaen'
 import React, {FC, useEffect, useState} from 'react'
 import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
 import {JaenPageIndexType} from '../../../types/commonTypes'
@@ -16,7 +16,7 @@ import BlogCard from './BlogCard'
 import {BallonButton} from '../../molecules/BallonButton'
 
 interface IBlogsSectionProps {
-  blogs: JaenPageIndexType['children']
+  blogs: JaenPageIndexType['childPages']
   withJaenPage: JaenPageIndexType['withJaenPage']
 }
 

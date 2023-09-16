@@ -33,7 +33,7 @@ import {
   useSectionField,
   UseSectionField,
   PhotoProvider
-} from '@snek-at/jaen'
+} from '@atsnek/jaen'
 import React, {
   forwardRef,
   useCallback,
@@ -132,7 +132,7 @@ const CompareSection = connectBlock(
 const ImageSideBySideSection = connectBlock(
   () => {
     return (
-      <PhotoProvider>
+      <PhotoProvider maskOpacity={0.8}>
         <VStack spacing="8">
           <Field.Text
             as={Heading}
@@ -579,8 +579,7 @@ export const ContentPageSection: React.FC<ContentPageSectionProps> =
         sectionBlockPath: UseSectionField['sectionPath']
       }) => {
         const field = useField<string>('title', 'IMA:TextField', {
-          path: sectionBlockPath,
-          id
+          block: {path: sectionBlockPath, id}
         })
 
         const title = removeHtmlFromString(

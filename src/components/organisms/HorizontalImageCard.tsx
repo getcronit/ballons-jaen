@@ -1,5 +1,5 @@
 import {Box, Flex, Grid, GridItem, Heading, Stack, Text} from '@chakra-ui/react'
-import {Field} from '@snek-at/jaen'
+import {Field} from '@atsnek/jaen'
 import {FC} from 'react'
 import {CONTAINER_MAX_WIDTH} from '../../constant/sizes'
 import LinkButtonField from '../fields/LinkButtonField'

@@ -1,32 +1,22 @@
-import {
-  Box,
-  Image,
-  Container,
-  Heading,
-  HStack,
-  chakra,
-} from '@chakra-ui/react'
-import { Field } from '@snek-at/jaen'
-import { FC } from 'react'
-import { CONTAINER_MAX_WIDTH } from '../../../../constant/sizes'
-import { MobileHero, ParallaxHero } from '../../../molecules/ParallaxHero'
+import {Box, Image, Container, Heading, HStack, chakra} from '@chakra-ui/react'
+import {Field} from '@atsnek/jaen'
+import {FC} from 'react'
+import {CONTAINER_MAX_WIDTH} from '../../../../constant/sizes'
+import {MobileHero, ParallaxHero} from '../../../molecules/ParallaxHero'
 import TopShape from '../../../../common/assets/shapes/top_shape.inline.svg'
-
 
 export interface IHeroProps {
   anchor?: string
 }
 
 const Hero: FC<IHeroProps> = props => {
-
   return (
     <>
       {/* For Mobile */}
       <Box
         position="relative"
-        zIndex={51}
-        h={{ base: 'none', md: 'calc(180vh + 200px)' }}
-        overflow={"hidden"}
+        h={{base: 'none', md: 'calc(180vh + 200px)'}}
+        overflow={'hidden'}
         bgImage="url('/images/home/hero_line.svg')"
         bgSize="100%,contain"
         bgPos={{
@@ -36,14 +26,10 @@ const Hero: FC<IHeroProps> = props => {
           xl: 'bottom 0  left -5rem'
         }}
         bgRepeat="no-repeat">
-        <Box
-          display={{ base: 'none', md: 'block' }}
-        >
+        <Box display={{base: 'none', md: 'block'}}>
           <ParallaxHero noScroll={false} />
         </Box>
-        <Box
-          display={{ base: 'block', md: 'none' }}
-        >
+        <Box display={{base: 'block', md: 'none'}}>
           <MobileHero />
         </Box>
         {/* <Image
@@ -57,8 +43,8 @@ const Hero: FC<IHeroProps> = props => {
         <chakra.svg
           as={TopShape}
           position="absolute"
-          bottom={"0"}
-          left={"0"}
+          bottom={'0'}
+          left={'0'}
           w="100%"
           h="auto"
         />

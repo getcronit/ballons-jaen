@@ -1,8 +1,8 @@
-import {useIndexField, usePageContext} from '@snek-at/jaen'
+import {useJaenPageIndex, usePageContext} from '@atsnek/jaen'
 import {useMemo} from 'react'
 
 export const useNewsPages = (options?: {unlimited?: boolean}) => {
-  const index = useIndexField({
+  const index = useJaenPageIndex({
     jaenPageId: 'JaenPage /wissen/'
   })
 
@@ -10,11 +10,11 @@ export const useNewsPages = (options?: {unlimited?: boolean}) => {
   const {jaenPage} = usePageContext()
 
   // Limit children count to 3 (sort by date)
-  const children = index.children
+  const children = index.childPages
     .filter(child => child.id !== jaenPage.id)
     .sort((a, b) => {
-      const aDate = new Date(a.jaenPageMetadata?.datePublished || '')
-      const bDate = new Date(b.jaenPageMetadata?.datePublished || '')
+      const aDate = new Date(a.jaenPageMetadata?.blogPost?.date || '')
+      const bDate = new Date(b.jaenPageMetadata?.blogPost?.date || '')
 
       return bDate.getTime() - aDate.getTime()
     })

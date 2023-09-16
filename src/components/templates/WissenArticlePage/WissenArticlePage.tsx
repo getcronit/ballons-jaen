@@ -1,6 +1,5 @@
 import {Box, Container, Divider, Heading, Icon, Stack} from '@chakra-ui/react'
-import {Editor, Field} from '@snek-at/jaen'
-import {FaAd, FaGripLines} from 'react-icons/fa'
+import {Field} from '@atsnek/jaen'
 import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
 import {
   ImageBlock,
@@ -62,7 +61,8 @@ const WissenArticlePage: React.FC<WissenPageProps> = () => {
 
           <Divider />
 
-          <Editor
+          <Field.Editor
+            name="editor"
             blocks={[
               ImagesBlock,
               ImagesWithTextLeftBlock,

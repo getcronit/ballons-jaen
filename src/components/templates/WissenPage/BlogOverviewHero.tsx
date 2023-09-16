@@ -7,19 +7,19 @@ import {
   Stack,
   VStack
 } from '@chakra-ui/react'
-import {Field, useStatus} from '@snek-at/jaen'
+import {Field, useContentManagement} from '@atsnek/jaen'
 import {Link} from 'gatsby'
 import {FC} from 'react'
 import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
 import {JaenPageIndexType} from '../../../types/commonTypes'
 import {WissenArticleMetaBar} from '../../organisms/WissenArticleMetaBar'
-import { BallonButton } from '../../molecules/BallonButton'
+import {BallonButton} from '../../molecules/BallonButton'
 
 const FeaturedBlog: React.FC<{
-  featuredBlog: JaenPageIndexType['children'][number]
+  featuredBlog: JaenPageIndexType['childPages'][number]
   withJaenPage: JaenPageIndexType['withJaenPage']
 }> = props => {
-  const {isEditing} = useStatus()
+  const {isEditing} = useContentManagement()
 
   return (
     <>
@@ -118,7 +118,7 @@ const FeaturedBlog: React.FC<{
 }
 
 interface IBlogOverviewHeroProps {
-  featuredBlog?: JaenPageIndexType['children'][number]
+  featuredBlog?: JaenPageIndexType['childPages'][number]
   withJaenPage: JaenPageIndexType['withJaenPage']
 }
 

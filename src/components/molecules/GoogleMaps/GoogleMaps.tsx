@@ -11,7 +11,7 @@ import {
   Spinner,
   Text
 } from '@chakra-ui/react'
-import {getCookieConsentApi} from '@snek-at/jaen'
+import {useCookieConsentContext} from '@atsnek/jaen'
 import {useEffect, useState} from 'react'
 // import {useCookieConsent} from '@jaenjs/jaen'
 
@@ -22,14 +22,16 @@ export interface GoogleMapsProps extends BoxProps {
 export const GoogleMaps = ({src, ...props}: GoogleMapsProps) => {
   const [isMounted, setIsMounted] = useState(false)
 
+  const cc = useCookieConsentContext()
+
   useEffect(() => {
     setIsMounted(true)
   }, [])
 
   const handleAccept = () => {
-    const CookieConsentApi = getCookieConsentApi()
+    if (!cc) throw new Error('CookieConsentContext is not initialized')
 
-    CookieConsentApi.accept('analytics')
+    cc.accept('analytics')
 
     setMapsEnabled(true)
   }
@@ -37,11 +39,11 @@ export const GoogleMaps = ({src, ...props}: GoogleMapsProps) => {
   const [mapsEnabled, setMapsEnabled] = useState(false)
 
   useEffect(() => {
-    const CookieConsentApi = getCookieConsentApi()
+    if (cc) {
+      const analyticsEnabled = cc.allowedCategory('analytics')
 
-    const analyticsEnabled = CookieConsentApi.allowedCategory('analytics')
-
-    setMapsEnabled(analyticsEnabled)
+      setMapsEnabled(analyticsEnabled)
+    }
   }, [])
 
   if (!isMounted) {

@@ -1,4 +1,4 @@
-import {Field, useField} from '@snek-at/jaen'
+import {Field, useField} from '@atsnek/jaen'
 import {FC} from 'react'
 import {MdLocalPhone, MdLocationPin, MdMail} from 'react-icons/md'
 import ContactBottomSection from './ContactBottomSection'

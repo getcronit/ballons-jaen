@@ -8,7 +8,7 @@ import {useContactModal} from '../../services/contact'
 import {useSearch} from '../../services/search'
 import {LayoutMode} from '../../types/commonTypes'
 import TopNav from './TopNav'
-import {useAuthentication} from '@snek-at/jaen'
+import {useAuthenticationContext} from '@atsnek/jaen'
 
 interface INavigationProps {
   mode: LayoutMode
@@ -20,7 +20,7 @@ const Navigation: FC<INavigationProps> = ({mode, pathname}) => {
   const search = useSearch()
   const contactModal = useContactModal()
 
-  const {isAuthenticated} = useAuthentication()
+  const {isAuthenticated} = useAuthenticationContext()
 
   const handleOnBasketClick = () => {
     basket.onOpen()
@@ -39,7 +39,6 @@ const Navigation: FC<INavigationProps> = ({mode, pathname}) => {
   return (
     <>
       <TopNav
-        paddingTop={isAuthenticated ? '3.5rem' : undefined}
         display={
           mode === 'website'
             ? {
@@ -50,14 +49,11 @@ const Navigation: FC<INavigationProps> = ({mode, pathname}) => {
         }
       />
       <Box
-        // mt={isAuthenticated ? '3.5rem' : undefined}
         as="nav"
-        zIndex="60"
+        zIndex="5"
         pos={mode === 'website' ? 'sticky' : 'relative'}
-        top={
-          mode === 'website' ? (isAuthenticated ? '3.5rem' : '0') : undefined
-        }
-        mt={mode === 'store' ? (isAuthenticated ? '3.5rem' : '0') : undefined}
+        top={mode === 'website' ? (isAuthenticated ? '4rem' : '0') : undefined}
+        // mt={mode === 'store' ? (isAuthenticated ? '4rem' : '0') : undefined}
         bg="rgba(255,255,255,.9)"
         backdropFilter={'blur(7px)'}>
         <Stack

@@ -16,7 +16,7 @@ import {
 
 import {FC} from 'react'
 import {CONTAINER_MAX_WIDTH} from '../../../../constant/sizes'
-import {Field} from '@snek-at/jaen'
+import {Field} from '@atsnek/jaen'
 import TopShape from '../../../../common/assets/shapes/top_shape.inline.svg'
 import Shape1 from '../../../../common/assets/shapes/shape1.inline.svg'
 import CardLine from '../../../../common/assets/card_line.inline.svg'
@@ -63,7 +63,14 @@ const OurBoss: FC<IOurBossProps> = ({
           w="100%"
           height="auto"
         />
-        <chakra.svg as={CardLine} pos="absolute" top="0" w="full" h="auto" />
+        <chakra.svg
+          as={CardLine}
+          pos="absolute"
+          top="0"
+          w="full"
+          h="auto"
+          zIndex="-1"
+        />
         <Container
           pt="40"
           pb="40"
@@ -85,7 +92,7 @@ const OurBoss: FC<IOurBossProps> = ({
                   sx={{
                     '#Selection': {
                       fill: '#E3000F',
-                      fillOpacity: "0.3"
+                      fillOpacity: '0.3'
                     }
                   }}
                   w="45rem"
@@ -158,20 +165,20 @@ const OurBoss: FC<IOurBossProps> = ({
             <Grid placeItems="center" pos="relative">
               {/* <Image src="/images/about_us/boss_bg.svg" /> */}
               <chakra.svg
-                  as={Shape1}
-                  sx={{
-                    '#Selection': {
-                      fill: '#E3000F',
-                      fillOpacity: "0.3"
-                    }
-                  }}
-                  w="45rem"
-                  maxW="100%"
-                  h="auto"
-                  transform="rotate(160deg)"
-                  pb="2rem"
-                  pl="2rem"
-                />
+                as={Shape1}
+                sx={{
+                  '#Selection': {
+                    fill: '#E3000F',
+                    fillOpacity: '0.3'
+                  }
+                }}
+                w="45rem"
+                maxW="100%"
+                h="auto"
+                transform="rotate(160deg)"
+                pb="2rem"
+                pl="2rem"
+              />
               <AspectRatio
                 ratio={1}
                 pos="absolute"
@@ -187,8 +194,8 @@ const OurBoss: FC<IOurBossProps> = ({
             align="end"
             flexDir={{base: isLeft ? 'row' : 'row-reverse'}}
             sx={{
-              "*": {
-                direction: isLeft ? "lrt" : "rtl",
+              '*': {
+                direction: isLeft ? 'lrt' : 'rtl',
                 textAlign: isLeft ? 'left' : 'right'
               }
             }}>

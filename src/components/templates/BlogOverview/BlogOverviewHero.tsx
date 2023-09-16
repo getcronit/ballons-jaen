@@ -7,7 +7,7 @@ import {
   Stack,
   VStack
 } from '@chakra-ui/react'
-import {Field} from '@snek-at/jaen'
+import {Field} from '@atsnek/jaen'
 import {Link} from 'gatsby'
 import {FC} from 'react'
 import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
@@ -16,7 +16,7 @@ import {BlogMeta} from '../BlogPage/BlogMeta'
 import {BlogTags} from '../BlogPage/BlogTags'
 
 const FeaturedBlog: React.FC<{
-  featuredBlog: JaenPageIndexType['children'][number]
+  featuredBlog: JaenPageIndexType['childPages'][number]
   withJaenPage: JaenPageIndexType['withJaenPage']
 }> = props => {
   return (
@@ -115,7 +115,7 @@ const FeaturedBlog: React.FC<{
 }
 
 interface IBlogOverviewHeroProps {
-  featuredBlog?: JaenPageIndexType['children'][number]
+  featuredBlog?: JaenPageIndexType['childPages'][number]
   withJaenPage: JaenPageIndexType['withJaenPage']
 }
 

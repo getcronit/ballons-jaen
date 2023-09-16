@@ -1,17 +1,17 @@
-import {connectTemplate} from '@snek-at/jaen'
+import {PageConfig} from '@atsnek/jaen'
 import {graphql, PageProps} from 'gatsby'
 import KategorieA from '../components/templates/KategorieA/KategorieA'
-
-import {Layout} from '../Layout'
 
 const Page = (props: PageProps) => {
   return <KategorieA />
 }
 
-export default connectTemplate(Page, {
+export default Page
+
+export const pageConfig: PageConfig = {
   label: 'Kategorie A',
-  children: []
-})
+  childTemplates: []
+}
 
 export const query = graphql`
   query ($jaenPageId: String!) {
@@ -19,7 +19,7 @@ export const query = graphql`
     allJaenPage(filter: {id: {eq: "JaenPage /wissen/"}}) {
       nodes {
         id
-        children {
+        childPages {
           ...JaenPageChildrenData
         }
       }
@@ -27,4 +27,4 @@ export const query = graphql`
   }
 `
 
-export {Head} from '@snek-at/jaen'
+export {Head} from '@atsnek/jaen'

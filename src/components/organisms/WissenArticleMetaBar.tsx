@@ -7,7 +7,7 @@ import {
   Wrap,
   WrapItem
 } from '@chakra-ui/react'
-import {Field, useField, usePageContext} from '@snek-at/jaen'
+import {Field, useField, usePageContext} from '@atsnek/jaen'
 import {useMemo} from 'react'
 
 export const WissenArticleMetaBar: React.FC<StackProps> = ({...props}) => {

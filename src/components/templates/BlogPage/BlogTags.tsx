@@ -1,5 +1,5 @@
 import {Box, HStack, Tag} from '@chakra-ui/react'
-import {connectBlock, Field} from '@snek-at/jaen'
+import {connectBlock, Field} from '@atsnek/jaen'
 
 const BlogTagItem = connectBlock(
   () => {

@@ -1,5 +1,5 @@
 import {Box, Grid, GridItem} from '@chakra-ui/react'
-import {Field, PhotoProvider} from '@snek-at/jaen'
+import {Field, PhotoProvider} from '@atsnek/jaen'
 import React, {FC, useCallback, useState} from 'react'
 
 import {CONTAINER_MAX_WIDTH} from '../../../../constant/sizes'

@@ -1,16 +1,18 @@
-import {connectPage} from '@snek-at/jaen'
+import {PageConfig} from '@atsnek/jaen'
 import {graphql, PageProps} from 'gatsby'
 
 import ImprintPage from '../components/templates/Imprint/Imprint'
-import {Layout} from '../Layout'
 
 const Page = (props: PageProps) => {
   return <ImprintPage />
 }
 
-export default connectPage(Page, {
-  label: 'Impressum'
-})
+export default Page
+
+export const pageConfig: PageConfig = {
+  label: 'Impressum',
+  childTemplates: []
+}
 
 export const query = graphql`
   query ($jaenPageId: String!) {
@@ -18,4 +20,4 @@ export const query = graphql`
   }
 `
 
-export {Head} from '@snek-at/jaen'
+export {Head} from '@atsnek/jaen'

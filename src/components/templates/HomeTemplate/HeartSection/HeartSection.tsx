@@ -1,5 +1,5 @@
 import {Box, Container, Grid, Heading, Stack, Text} from '@chakra-ui/react'
-import {Field} from '@snek-at/jaen'
+import {Field} from '@atsnek/jaen'
 import {StaticImage} from 'gatsby-plugin-image'
 import {FC} from 'react'
 
@@ -11,14 +11,17 @@ interface IHeartSectionProps {}
 
 const HeartSection: FC<IHeartSectionProps> = () => {
   return (
-    <Grid minH={'100vh'} h={{base: '33.75rem', sm: 'auto'}} sx={{
-      "#heartbg": {
-        objectPosition: {base: '-100px top', md: "left top"}
-      }
-    }}>
+    <Grid
+      minH={'100vh'}
+      h={{base: '33.75rem', sm: 'auto'}}
+      sx={{
+        '#heartbg': {
+          objectPosition: {base: '-100px top', md: 'left top'}
+        }
+      }}>
       <StaticImage
         id="heartbg"
-        objectFit='cover'
+        objectFit="cover"
         //objectPosition={{base: '-100px top' md: "left top"}}
         style={{
           gridArea: '1/1'

@@ -1,4 +1,4 @@
-import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons'
+import {CloseIcon, HamburgerIcon} from '@chakra-ui/icons'
 import {
   Button,
   Divider,
@@ -14,19 +14,19 @@ import {
   VStack,
   useDisclosure
 } from '@chakra-ui/react'
-import { navigate } from 'gatsby'
-import { FaPhoneAlt, FaSearch, FaUser } from 'react-icons/fa'
-import { Logo } from '../../common/assets/Logo'
-import { useContactModal } from '../../services/contact'
-import { BottomNavLinks } from './NavLinks'
-import { BallonButton } from '../molecules/BallonButton'
-import { useSearch } from '../../services/search'
-import { useAuthentication } from '../../services/authentication'
+import {navigate} from 'gatsby'
+import {FaPhoneAlt, FaSearch, FaUser} from 'react-icons/fa'
+import {Logo} from '../../common/assets/Logo'
+import {useContactModal} from '../../services/contact'
+import {BottomNavLinks} from './NavLinks'
+import {BallonButton} from '../molecules/BallonButton'
+import {useSearch} from '../../services/search'
+import {useAuthenticationContext} from '@atsnek/jaen'
 
 export const MobileHambuger: React.FC<{
   pathname: string
-}> = ({ pathname }) => {
-  const { isOpen, onToggle } = useDisclosure()
+}> = ({pathname}) => {
+  const {isOpen, onToggle} = useDisclosure()
 
   const contactModal = useContactModal()
 
@@ -36,12 +36,12 @@ export const MobileHambuger: React.FC<{
     search.onOpen()
   }
 
-  const {user, openLoginModal, logout} = useAuthentication()
+  const {user, openLoginModal, logout} = useAuthenticationContext()
 
   return (
     <>
       <IconButton
-        display={{ base: 'flex', md: 'none' }}
+        display={{base: 'flex', md: 'none'}}
         onClick={onToggle}
         icon={
           isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
@@ -111,7 +111,7 @@ export const MobileHambuger: React.FC<{
                   }}>
                   Anfragen
                 </BallonButton> */}
-                { user ? (
+                {user ? (
                   <BallonButton
                     w="full"
                     variant="outline"
@@ -129,9 +129,7 @@ export const MobileHambuger: React.FC<{
                     onClick={openLoginModal}>
                     Anmelden
                   </BallonButton>
-                )  
-                
-                }
+                )}
                 {/* <BallonButton
                   w="full"
                   variant="outline"

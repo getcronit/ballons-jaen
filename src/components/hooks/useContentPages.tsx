@@ -1,12 +1,14 @@
-import {useIndexField} from '@snek-at/jaen'
-import {useMemo} from 'react'
+import {useJaenPageIndex} from '@atsnek/jaen'
 
 export const useContentPages = () => {
-  const index = useIndexField()
+  const index = useJaenPageIndex()
 
-  const templates = new Set(['KategorieA', 'KategorieB'])
+  const templates = new Set([
+    'JaenTemplate KategorieA',
+    'JaenTemplate KategorieB'
+  ])
 
-  const children = index.children.filter(
+  const children = index.childPages.filter(
     child =>
       (child.template && templates.has(child.template)) ||
       child.id === 'JaenPage /grosshandel/'

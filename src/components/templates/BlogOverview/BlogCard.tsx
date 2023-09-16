@@ -1,5 +1,5 @@
 import {Button, Flex, Grid, Heading, Image, Stack, Text} from '@chakra-ui/react'
-import {Field} from '@snek-at/jaen'
+import {Field} from '@atsnek/jaen'
 import {Link} from 'gatsby'
 import {FC} from 'react'
 import {BiChevronRight} from 'react-icons/bi'

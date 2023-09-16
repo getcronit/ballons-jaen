@@ -7,7 +7,7 @@ import {
   Stack,
   Text
 } from '@chakra-ui/react'
-import {Field} from '@snek-at/jaen'
+import {Field} from '@atsnek/jaen'
 
 export const FaqQuestionAnswer: React.FC<{
   question: string

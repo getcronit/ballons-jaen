@@ -1,5 +1,5 @@
 import {Container, Flex, Heading, Text, VStack} from '@chakra-ui/react'
-import {Field} from '@snek-at/jaen'
+import {Field} from '@atsnek/jaen'
 import {FC} from 'react'
 
 interface IHeroFaqProps {}

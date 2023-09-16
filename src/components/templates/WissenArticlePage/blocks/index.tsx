@@ -1,11 +1,11 @@
-import { VStack, Grid, Box, chakra } from '@chakra-ui/react'
-import { connectBlock, Field, PhotoProvider, useField } from '@snek-at/jaen'
+import {VStack, Grid, Box, chakra} from '@chakra-ui/react'
+import {connectBlock, Field, PhotoProvider, useField} from '@atsnek/jaen'
 import React from 'react'
 import Slider from 'react-slick'
-import { ImagesWithText } from '../../../organisms/ImagesWithText'
-import { BiBorderRadius } from 'react-icons/bi'
+import {ImagesWithText} from '../../../organisms/ImagesWithText'
+import {BiBorderRadius} from 'react-icons/bi'
 
-export { SliderBlock } from './SliderBlock'
+export {SliderBlock} from './SliderBlock'
 
 export const TextBlock = connectBlock(
   () => {
@@ -45,12 +45,16 @@ export const ImageBlock = connectBlock(
           lg: '60vh'
         }}>
         {/* <!-- Magic for border radius --> */}
-        <chakra.svg visibility={"hidden"} width="0" height="0">
+        <chakra.svg visibility={'hidden'} width="0" height="0">
           <defs>
             <filter id="filter-radius">
               {/* <!-- Create a blur of 4px radius from the original image --> */}
               {/* <!-- (Transparent pixels are ignored, thus the blur radius starts at the corner of the image) --> */}
-              <feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blur" />
+              <feGaussianBlur
+                in="SourceGraphic"
+                stdDeviation="15"
+                result="blur"
+              />
               {/* <!-- Filter out the pixels where alpha values that are too low, in this case the blurred corners are filtered out --> */}
               <feColorMatrix
                 in="blur"
@@ -64,7 +68,7 @@ export const ImageBlock = connectBlock(
           </defs>
         </chakra.svg>
         <Field.Image
-          imgClassName='rounded'
+          imgClassName="rounded"
           name="image"
           objectFit="contain"
           lightbox
@@ -117,9 +121,9 @@ export const ImagesBlock = connectBlock(
       <>
         <VStack
           py="4"
-          display={{ base: 'none', md: 'flex' }}
+          display={{base: 'none', md: 'flex'}}
           pos="relative"
-          gap={{ base: '4', md: '8', lg: '10', xl: '14' }}
+          gap={{base: '4', md: '8', lg: '10', xl: '14'}}
           w="full">
           <PhotoProvider maskOpacity={0.8}>
             <Grid templateColumns="repeat(3, 1fr)" gap={2} boxSize="full">
@@ -162,7 +166,7 @@ export const ImagesBlock = connectBlock(
         {/* for Mobile */}
         <Box
           // overflow="hidden"
-          display={{ base: 'block', md: 'none' }}
+          display={{base: 'block', md: 'none'}}
           sx={{
             'ul.slick-dots': {
               top: 'auto'
@@ -202,7 +206,7 @@ export const ImagesBlock = connectBlock(
                       name={imageFieldName}
                       lightboxGroup
                       lightbox
-                    //defaultValue={defaultImages[i]}
+                      //defaultValue={defaultImages[i]}
                     />
                   </Box>
                 )

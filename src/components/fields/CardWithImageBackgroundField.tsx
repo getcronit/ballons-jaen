@@ -1,8 +1,17 @@
-import { Box, Grid, Heading, HStack, Stack, Text } from '@chakra-ui/react'
-import { Field, useField } from '@snek-at/jaen'
-import { BiChevronRight } from 'react-icons/bi'
+import {
+  Box,
+  Grid,
+  Heading,
+  HStack,
+  LinkBox,
+  LinkOverlay,
+  Stack,
+  Text
+} from '@chakra-ui/react'
+import {Field, useField} from '@atsnek/jaen'
+import {BiChevronRight} from 'react-icons/bi'
 
-import { EditIcon } from '@chakra-ui/icons'
+import {EditIcon} from '@chakra-ui/icons'
 import {
   Button,
   ButtonGroup,
@@ -18,11 +27,11 @@ import {
   PopoverTrigger,
   useDisclosure
 } from '@chakra-ui/react'
-import { useForm } from 'react-hook-form'
+import {useForm} from 'react-hook-form'
 
-import { navigate } from 'gatsby'
+import {Link, navigate} from 'gatsby'
 import React from 'react'
-import { validateUrl } from '../../common/utils'
+import {validateUrl} from '../../common/utils'
 
 interface ICardWithImageBackgroundProps {
   card: {
@@ -45,12 +54,12 @@ const UpdateUrlForm: React.FC<{
   onSaved: (url: string) => void
   onCancle: () => void
   initUrl: string
-}> = ({ onSaved, onCancle, initUrl }) => {
+}> = ({onSaved, onCancle, initUrl}) => {
   const {
     handleSubmit,
     register,
     reset,
-    formState: { errors, isSubmitting }
+    formState: {errors, isSubmitting}
   } = useForm<{
     url: string
   }>({
@@ -66,7 +75,7 @@ const UpdateUrlForm: React.FC<{
     })
   }, [initUrl, reset])
 
-  const onSubmit = (data: { url: string }) => {
+  const onSubmit = (data: {url: string}) => {
     onSaved(data.url)
 
     // reset the form
@@ -122,157 +131,160 @@ const CardWithImageBackgroundField: React.FC<
   h,
   isSmallText = false
 }) => {
-    const { onOpen, onClose, isOpen } = useDisclosure()
-    const firstFieldRef = React.useRef(null)
+  const {onOpen, onClose, isOpen} = useDisclosure()
+  const firstFieldRef = React.useRef(null)
 
-    const hiddenUrlFieldName = `${name}.url`
-    const hiddenUrlFieldDefaultValue = defaultUrl || 'https://example.com'
+  const hiddenUrlFieldName = `${name}.url`
+  const hiddenUrlFieldDefaultValue = defaultUrl || 'https://example.com'
 
-    const buttonTextField = useField<string>(name, 'IMA:TextField')
-    const hiddenUrlField = useField<string>(hiddenUrlFieldName, 'IMA:TextField')
+  const buttonTextField = useField<string>(name, 'IMA:TextField')
+  const hiddenUrlField = useField<string>(hiddenUrlFieldName, 'IMA:TextField')
 
-    const handleUrlChange = (url: string) => {
-      hiddenUrlField.write(url)
-    }
+  console.log('hiddenUrlField', hiddenUrlField)
 
-    const handleButtonClick = () => {
-      navigate(urlValue)
-    }
+  const handleUrlChange = (url: string) => {
+    hiddenUrlField.write(url)
+  }
 
-    const urlValue = React.useMemo(() => {
-      const valueWithoutHTML =
-        hiddenUrlField.value?.replace(/<[^>]*>?/gm, '') ||
-        hiddenUrlFieldDefaultValue ||
-        ''
-      return valueWithoutHTML
-    }, [hiddenUrlField.value])
+  const handleButtonClick = () => {
+    navigate(urlValue)
+  }
 
-    return (
-      <Box pos={'relative'} h="full" w="full" minW={minW || '20rem'}>
-        <Stack
-          onClick={!buttonTextField.isEditing ? handleButtonClick : undefined}
-          position="relative"
-          _hover={{
-            transition: 'all 0.3s ease',
-            transform: {
-              md: 'scale(1.03) ',
-              lg: 'scale(1.03) '
-            },
-            '.show_more': {
-              textDecoration: 'underline',
-              '&>div': { boxShadow: '0 0 5px 1px white' }
-            }
-          }}
-          transition="ease-in 0.2s"
-          boxShadow="dark"
-          color="white"
-          justify="end"
-          h={h ?? 'full'}
-          w={w ?? {}}
-          borderRadius="xl"
-          overflow={'hidden'}
-          minW={minW || '20rem'}>
-          {card.imageFieldName && <Field.Image name={card.imageFieldName} />}
-          <Box position="absolute" w='full'>
-            {displayContent && (
-              <Stack
-                p="6"
-                pb="4"
-                w='full'
-                bg='rgba(0,0,0,.2)'
-                //backdropFilter='blur(7px)'
-                borderRadius='xl'
-                will-change='transform'
-              >
-                {card.headingFieldName && (
-                  <Field.Text
-                    as={Heading}
-                    fontSize={{ base: 'lg', xl: 'xl' }}
-                    fontWeight="700"
-                    name={card.headingFieldName}
-                    defaultValue={card.headingDefaultValue ?? ''}
-                  />
-                )}
+  const urlValue = React.useMemo(() => {
+    const value = hiddenUrlField.value || hiddenUrlField.staticValue
 
-                {card.textFieldName && (
-                  <Field.Text
-                    fontSize={{ base: 'sm', lg: isSmallText ? 'sm' : 'md' }}
-                    maxW="80%"
-                    name={card.textFieldName}
-                    defaultValue={card.textDefaultValue ?? ''}
-                  />
-                )}
+    const valueWithoutHTML =
+      value?.replace(/<[^>]*>?/gm, '') || hiddenUrlFieldDefaultValue || ''
+    return valueWithoutHTML
+  }, [
+    hiddenUrlField.value,
+    hiddenUrlField.staticValue,
+    hiddenUrlFieldDefaultValue
+  ])
 
-                <HStack
-                  className='show_more'
-                  cursor="pointer"
-                  _hover={{
-                    textDecoration: 'underline',
-                    '&>div': { boxShadow: '0 0 5px 1px white' }
-                  }}
-                  // _hover={{
-                  //   transform: {
-                  //     md: "scale(1.05) translateX(0px)",
-                  //     lg: "scale(1.05) translateX(5px)",
-                  //   },
-                  // }}
-                  transition="ease-in 0.2s">
-                  <Text
-                    onClick={
-                      !buttonTextField.isEditing ? handleButtonClick : undefined
-                    }
-                    fontSize={{ base: 'sm', lg: 'md' }}
-                    fontWeight="700">
+  return (
+    <LinkBox pos={'relative'} h="full" w="full" minW={minW || '20rem'}>
+      <Stack
+        onClick={!buttonTextField.isEditing ? handleButtonClick : undefined}
+        position="relative"
+        _hover={{
+          transition: 'all 0.3s ease',
+          transform: {
+            md: 'scale(1.03) ',
+            lg: 'scale(1.03) '
+          },
+          '.show_more': {
+            textDecoration: 'underline',
+            '&>div': {boxShadow: '0 0 5px 1px white'}
+          }
+        }}
+        transition="ease-in 0.2s"
+        boxShadow="dark"
+        color="white"
+        justify="end"
+        h={h ?? 'full'}
+        w={w ?? {}}
+        borderRadius="xl"
+        overflow={'hidden'}
+        minW={minW || '20rem'}>
+        {card.imageFieldName && <Field.Image name={card.imageFieldName} />}
+        <Box position="absolute" w="full">
+          {displayContent && (
+            <Stack
+              p="6"
+              pb="4"
+              w="full"
+              bg="rgba(0,0,0,.2)"
+              //backdropFilter='blur(7px)'
+              borderRadius="xl"
+              will-change="transform">
+              {card.headingFieldName && (
+                <Field.Text
+                  as={Heading}
+                  fontSize={{base: 'lg', xl: 'xl'}}
+                  fontWeight="700"
+                  name={card.headingFieldName}
+                  defaultValue={card.headingDefaultValue ?? ''}
+                />
+              )}
+
+              {card.textFieldName && (
+                <Field.Text
+                  fontSize={{base: 'sm', lg: isSmallText ? 'sm' : 'md'}}
+                  maxW="80%"
+                  name={card.textFieldName}
+                  defaultValue={card.textDefaultValue ?? ''}
+                />
+              )}
+
+              <HStack
+                className="show_more"
+                cursor="pointer"
+                _hover={{
+                  textDecoration: 'underline',
+                  '&>div': {boxShadow: '0 0 5px 1px white'}
+                }}
+                // _hover={{
+                //   transform: {
+                //     md: "scale(1.05) translateX(0px)",
+                //     lg: "scale(1.05) translateX(5px)",
+                //   },
+                // }}
+                transition="ease-in 0.2s">
+                <LinkOverlay as={Link} to={urlValue}>
+                  <Text fontSize={{base: 'sm', lg: 'md'}} fontWeight="700">
                     Mehr anzeigen
                   </Text>
-                  <Grid
-                    placeItems="center"
-                    h={{ base: '4', lg: '6' }}
-                    w={{ base: '4', lg: '6' }}
-                    color="red.500"
-                    bg="white"
-                    fontSize={{ lg: 'lg' }}
-                    borderRadius="full"
-                    boxShadow="0 0 0px 0px white"
-                    transition="ease-in 0.2s">
-                    <BiChevronRight />
-                  </Grid>
-                </HStack>
-              </Stack>
-            )}
-          </Box>
-        </Stack>
-        {buttonTextField.isEditing && (
-          <Box pos={'absolute'} right={0} top={0}>
-            <Popover
-              isOpen={isOpen}
-              initialFocusRef={firstFieldRef}
-              onOpen={onOpen}
-              onClose={onClose}
-              placement="right"
-              closeOnBlur={false}>
-              <PopoverTrigger>
-                <IconButton
-                  size="sm"
-                  icon={<EditIcon />}
-                  aria-label={''}
-                  colorScheme="jaen"
-                />
-              </PopoverTrigger>
-              <PopoverContent p={5}>
-                <PopoverArrow />
-                <PopoverCloseButton />
-                <UpdateUrlForm
-                  onSaved={handleUrlChange}
-                  onCancle={onClose}
-                  initUrl={urlValue}
-                />
-              </PopoverContent>
-            </Popover>
-          </Box>
-        )}
-      </Box>
-    )
-  }
+                </LinkOverlay>
+
+                <Grid
+                  placeItems="center"
+                  h={{base: '4', lg: '6'}}
+                  w={{base: '4', lg: '6'}}
+                  color="red.500"
+                  bg="white"
+                  fontSize={{lg: 'lg'}}
+                  borderRadius="full"
+                  boxShadow="0 0 0px 0px white"
+                  transition="ease-in 0.2s">
+                  <BiChevronRight />
+                </Grid>
+              </HStack>
+            </Stack>
+          )}
+        </Box>
+      </Stack>
+      {buttonTextField.isEditing && (
+        <Box pos={'absolute'} right={0} top={0}>
+          <Popover
+            isOpen={isOpen}
+            initialFocusRef={firstFieldRef}
+            onOpen={onOpen}
+            onClose={onClose}
+            placement="right"
+            closeOnBlur={false}>
+            <PopoverTrigger>
+              <IconButton
+                size="sm"
+                icon={<EditIcon />}
+                aria-label={''}
+                colorScheme="jaen"
+              />
+            </PopoverTrigger>
+            <PopoverContent p={5}>
+              <PopoverArrow />
+              <PopoverCloseButton />
+              <UpdateUrlForm
+                onSaved={handleUrlChange}
+                onCancle={onClose}
+                initUrl={urlValue}
+              />
+            </PopoverContent>
+          </Popover>
+        </Box>
+      )}
+    </LinkBox>
+  )
+}
 
 export default CardWithImageBackgroundField

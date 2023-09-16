@@ -9,7 +9,7 @@ import {
   Stack,
   Text
 } from '@chakra-ui/react'
-import {Field} from '@snek-at/jaen'
+import {Field} from '@atsnek/jaen'
 import {FC, ReactNode} from 'react'
 import LinkButtonField from '../../../fields/LinkButtonField'
 import PinkBlob from '../../../../common/assets/shapes/pink_blob.inline.svg'
@@ -90,7 +90,10 @@ interface IRiesgesBottomSectionProps {}
 
 const RiesgesBottomSection: FC<IRiesgesBottomSectionProps> = () => {
   return (
-    <Flex flexDir={{base: 'column', xl: 'row'}} gap="10" pb={{base: "0", sm: "10"}}>
+    <Flex
+      flexDir={{base: 'column', xl: 'row'}}
+      gap="10"
+      pb={{base: '0', sm: '10'}}>
       <Stack flex="1">
         <Field.Text
           as={Heading}

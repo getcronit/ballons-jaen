@@ -119,7 +119,7 @@ export const ProductCard = ({
   const addProductToBasket = () => {
     basket.addProduct({
       variantId: product.variants[0].shopifyId,
-      quantity: 1,
+      quantity: stepperStep,
       stepperQuantity: stepperStep,
       wholesalePrice: prices.wholesalePrice
     })
@@ -246,20 +246,21 @@ export const ProductCard = ({
                 </ListItem>
               )}
 
-              {productMetatfields.details?.sizeHelper && (
-                <ListItem>
-                  <HStack spacing="4">
-                    <ListIcon as={FaRuler} boxSize={4} />
-                    <Text
-                      textAlign="left"
-                      noOfLines={1}
-                      fontSize={'xs'}
-                      color="gray.600">
-                      {productMetatfields.details.sizeHelper}
-                    </Text>
-                  </HStack>
-                </ListItem>
-              )}
+              {productMetatfields.details?.sizeHelper &&
+                productMetatfields.details.sizeHelper !== '[object Object]' && (
+                  <ListItem>
+                    <HStack spacing="4">
+                      <ListIcon as={FaRuler} boxSize={4} />
+                      <Text
+                        textAlign="left"
+                        noOfLines={1}
+                        fontSize={'xs'}
+                        color="gray.600">
+                        {productMetatfields.details.sizeHelper}
+                      </Text>
+                    </HStack>
+                  </ListItem>
+                )}
             </List>
 
             <HStack>

@@ -1,53 +1,43 @@
-import {
-  ProductPageContext,
-  ProductPageData,
-  ProductsPageContext,
-  ProductsPageData,
-  SearchProvider,
-  ShopifyProduct,
-  useProductSearch
-} from '@snek-at/gatsby-theme-shopify'
-import React, {createContext, useContext, useEffect} from 'react'
+import {SearchProvider, useProductSearch} from '@snek-at/gatsby-theme-shopify'
+import React from 'react'
+import {LightMode} from '@chakra-ui/react'
 
-import Footer from './components/Footer/Footer'
-import Navigation from './components/Navigation/Navigation'
-import ScrollToTop from './components/ScrollTop'
+import '../../styles/global.css'
 
-import {BasketDrawerProvider} from './services/basket'
-import {ContactModalProvider} from './services/contact'
-import {SearchModalProvider} from './services/search'
+import Footer from '../../components/Footer/Footer'
+import Navigation from '../../components/Navigation/Navigation'
+import ScrollToTop from '../../components/ScrollTop'
 
-import {LayoutMode} from './types/commonTypes'
-import {SideButtons} from './components/molecules/SideButtons'
+import {BasketDrawerProvider} from '../../services/basket'
+import {ContactModalProvider} from '../../services/contact'
+import {SearchModalProvider} from '../../services/search'
+
 import {navigate, PageProps} from 'gatsby'
-import {AuthenticationProvider} from './services/authentication'
-import Fonts from './styles/fonts'
-import ProductsPageShell from './components/templates/ProductsTemplate/ProductsPageShell'
-import {splitAllTags} from './components/templates/ProductsTemplate/splitAllTags'
-import {metafieldIdentifiers} from './common/getProductMetafields'
-import {ProductsTemplateProps} from './components/templates/ProductsTemplate/ProductsTemplate'
-import {buildAllTags} from './components/templates/ProductsTemplate/buildAllTags'
-import {useAuthentication} from '@snek-at/jaen'
+import {metafieldIdentifiers} from '../../common/getProductMetafields'
+import {SideButtons} from '../../components/molecules/SideButtons'
+import {buildAllTags} from '../../components/templates/ProductsTemplate/buildAllTags'
+import ProductsPageShell from '../../components/templates/ProductsTemplate/ProductsPageShell'
+import {ProductsTemplateProps} from '../../components/templates/ProductsTemplate/ProductsTemplate'
+import {splitAllTags} from '../../components/templates/ProductsTemplate/splitAllTags'
+import Fonts from '../../styles/fonts'
+import {ProductsContext} from '../../contexts/products'
+import {LayoutProps} from '@atsnek/jaen'
 
-export interface LayoutProps extends Omit<PageProps, 'children'> {
-  children: React.ReactElement
-}
-
-export const Layout: React.FC<LayoutProps> = ({children, ...props}) => {
-  const isStore = props.location.pathname.startsWith('/products')
+export const Layout: React.FC<LayoutProps> = ({children, pageProps}) => {
+  const isStore = pageProps.location.pathname.startsWith('/products')
 
   return (
-    <ScrollToTop pathname={props.location.pathname}>
-      <Fonts />
+    <ScrollToTop pathname={pageProps.location.pathname}>
+      <LightMode>
+        <Fonts />
 
-      <AuthenticationProvider>
-        <ContactModalProvider location={props.location}>
+        <ContactModalProvider location={pageProps.location}>
           <BasketDrawerProvider>
             <SearchProvider>
               <SearchModalProvider>
                 <Navigation
                   mode={isStore ? 'store' : 'website'}
-                  pathname={props.location.pathname}
+                  pathname={pageProps.location.pathname}
                 />
                 <SideButtons />
               </SearchModalProvider>
@@ -55,7 +45,7 @@ export const Layout: React.FC<LayoutProps> = ({children, ...props}) => {
 
             {isStore ? (
               <SearchProvider>
-                <ShopShell {...(props as any)}>{children}</ShopShell>
+                <ShopShell {...(pageProps as any)}>{children}</ShopShell>
               </SearchProvider>
             ) : (
               <>{children}</>
@@ -64,7 +54,7 @@ export const Layout: React.FC<LayoutProps> = ({children, ...props}) => {
 
           <Footer />
         </ContactModalProvider>
-      </AuthenticationProvider>
+      </LightMode>
     </ScrollToTop>
   )
 }
@@ -209,30 +199,4 @@ export const ShopShell: React.FC<ShopShellProps> = ({
   )
 }
 
-// Define the products context type
-interface ProductsContextType {
-  products: ShopifyProduct[]
-  isFetching: boolean
-  hasNextPage: boolean
-  fetchNextPage: () => void
-  activeFilters: Partial<{
-    tags: ProductsPageContext['tags']
-    vendors: ProductsPageContext['vendors']
-    productTypes: ProductsPageContext['productTypes']
-    minPrice: ProductsPageContext['minPrice']
-    maxPrice: ProductsPageContext['maxPrice']
-  }>
-}
-
-// Create a new context for the products
-const ProductsContext = createContext<ProductsContextType>({
-  products: [],
-  isFetching: false,
-  hasNextPage: false,
-  fetchNextPage: () => {},
-  activeFilters: {}
-})
-
-// Create a custom hook to access the products context
-export const useProducts = () =>
-  useContext<ProductsContextType>(ProductsContext)
+export default Layout

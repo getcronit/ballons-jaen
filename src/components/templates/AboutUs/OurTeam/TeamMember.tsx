@@ -13,7 +13,7 @@ import {
   Container,
   chakra
 } from '@chakra-ui/react'
-import {Field, connectBlock, useSectionBlockContext} from '@snek-at/jaen'
+import {Field, connectBlock, useSectionBlockContext} from '@atsnek/jaen'
 import {FC} from 'react'
 import {Interface} from 'readline'
 import {CONTAINER_MAX_WIDTH} from '../../../../constant/sizes'
@@ -279,7 +279,6 @@ export const TeamMemberSection = connectBlock(
           right={'0'}
           h={'100%'}
           w={'100%'}
-          pos="absolute"
           bgImage={
             position % 2 === 0 ? '/images/about_us/thread1.svg' : undefined
           }

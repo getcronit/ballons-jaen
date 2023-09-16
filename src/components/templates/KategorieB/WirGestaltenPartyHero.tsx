@@ -8,23 +8,22 @@ import {
   Stack,
   Text
 } from '@chakra-ui/react'
-import { Field } from '@snek-at/jaen'
-import { FC } from 'react'
-import { CONTAINER_MAX_WIDTH } from '../../../constant/sizes'
+import {Field} from '@atsnek/jaen'
+import {FC} from 'react'
+import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
 import LinkButtonField from '../../fields/LinkButtonField'
 
-interface IWirGestaltenPartyHeroProps { }
+interface IWirGestaltenPartyHeroProps {}
 
 const WirGestaltenPartyHero: FC<IWirGestaltenPartyHeroProps> = () => {
   return (
     <>
-      <Box pos='relative' overflowX='clip'>
+      <Box pos="relative" overflowX="clip">
         <Container maxW={CONTAINER_MAX_WIDTH}>
           <Flex
-            pt={{ base: '4', md: '48' }}
-            align={{ base: 'center', md: 'center' }}
-            direction={{ base: 'column-reverse', md: 'row' }}
-          >
+            pt={{base: '4', md: '48'}}
+            align={{base: 'center', md: 'center'}}
+            direction={{base: 'column-reverse', md: 'row'}}>
             {/* <Image
               zIndex={'-1'}
               //bg={'blue'}
@@ -39,7 +38,10 @@ const WirGestaltenPartyHero: FC<IWirGestaltenPartyHeroProps> = () => {
               src="/images/we_design_party/shape.svg"
             /> */}
 
-            <Stack pos="relative" w="100%" mt={{ base: '16', md: 'unset' }}
+            <Stack
+              pos="relative"
+              w="100%"
+              mt={{base: '16', md: 'unset'}}
               _before={{
                 zIndex: '-1',
                 top: '-250px',
@@ -49,14 +51,12 @@ const WirGestaltenPartyHero: FC<IWirGestaltenPartyHeroProps> = () => {
                 h: '1000px',
                 w: '1000px',
                 bgImage: '/images/we_design_party/shape.svg',
-                bgSize: "100%,contain",
-                bgRepeat: "no-repeat"
-              }}
-            >
-
+                bgSize: '100%,contain',
+                bgRepeat: 'no-repeat'
+              }}>
               <Field.Text
                 as={Heading}
-                fontSize={{ base: 'xl', md: '2xl', lg: '3xl', xl: '4xl' }}
+                fontSize={{base: 'xl', md: '2xl', lg: '3xl', xl: '4xl'}}
                 fontWeight="semibold"
                 sx={{
                   'i, em': {
@@ -69,31 +69,33 @@ const WirGestaltenPartyHero: FC<IWirGestaltenPartyHeroProps> = () => {
               />
 
               <Field.Text
-                pb={{ base: '8 !important', md: '4' }}
+                pb={{base: '8 !important', md: '4'}}
                 //display={{ base: 'none', sm: 'block' }}
-                fontSize={{ base: 'sm', lg: 'md' }}
-                maxW={{ md: '70%' }}
+                fontSize={{base: 'sm', lg: 'md'}}
+                maxW={{md: '70%'}}
                 name="text"
                 defaultValue={
                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in libero risus semper'
                 }
               />
-              <LinkButtonField
-                name="cta"
-                size={{ base: 'xs', md: 'lg' }}
-              />
+              <LinkButtonField name="cta" size={{base: 'xs', md: 'lg'}} />
             </Stack>
             <Grid
               placeItems="center"
               pos="relative"
-              top={{ base: '1.25rem', md: 'unset' }}>
+              top={{base: '1.25rem', md: 'unset'}}>
               <Box
                 overflow="hidden"
                 borderRadius="full"
                 boxShadow="light"
                 // w={{ base: "17.5rem", sm: "auto " }}
-                boxSize={{ base: '2xs', sm: "xs", md: "sm", lg: "md", xl: "lg" }}>
-                <Field.Image name="heroImage" defaultValue='/images/content/oh_happy_day.gif' lightbox overload />
+                boxSize={{base: '2xs', sm: 'xs', md: 'sm', lg: 'md', xl: 'lg'}}>
+                <Field.Image
+                  name="heroImage"
+                  defaultValue="/images/content/oh_happy_day.gif"
+                  lightbox
+                  overload
+                />
               </Box>
             </Grid>
           </Flex>

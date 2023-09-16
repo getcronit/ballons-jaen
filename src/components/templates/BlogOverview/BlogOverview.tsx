@@ -13,7 +13,7 @@ const BlogOverview: FC<IBlogOverviewProps> = () => {
   const index = useNewsPages({unlimited: true})
 
   const featuredBlog = React.useMemo(() => {
-    let latestBlog: JaenPageIndexType['children'][number] | undefined =
+    let latestBlog: JaenPageIndexType['childPages'][number] | undefined =
       undefined
 
     for (const child of index.children) {
@@ -21,9 +21,9 @@ const BlogOverview: FC<IBlogOverviewProps> = () => {
         latestBlog = child
       } else {
         const latestBlogDate = new Date(
-          latestBlog.jaenPageMetadata?.datePublished || ''
+          latestBlog.jaenPageMetadata?.blogPost?.date || ''
         )
-        const childDate = new Date(child.jaenPageMetadata?.datePublished || '')
+        const childDate = new Date(child.jaenPageMetadata?.blogPost?.date || '')
 
         if (childDate > latestBlogDate) {
           latestBlog = child
@@ -40,8 +40,8 @@ const BlogOverview: FC<IBlogOverviewProps> = () => {
 
     // sort by date
     blogs.sort((a, b) => {
-      const aDate = new Date(a.jaenPageMetadata?.datePublished || '')
-      const bDate = new Date(b.jaenPageMetadata?.datePublished || '')
+      const aDate = new Date(a.jaenPageMetadata?.blogPost?.date || '')
+      const bDate = new Date(b.jaenPageMetadata?.blogPost?.date || '')
 
       return bDate.getTime() - aDate.getTime()
     })

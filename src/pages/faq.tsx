@@ -1,16 +1,23 @@
-import {connectPage} from '@snek-at/jaen'
+import {PageConfig} from '@atsnek/jaen'
 import {graphql, PageProps} from 'gatsby'
 
 import FaqPage from '../components/templates/Faq/Faq'
-import {Layout} from '../Layout'
 
 const Page = (props: PageProps) => {
   return <FaqPage />
 }
 
-export default connectPage(Page, {
-  label: 'FAQ'
-})
+export default Page
+
+export const pageConfig: PageConfig = {
+  label: 'Frage & Antwort',
+  icon: 'FaQuestion',
+  childTemplates: [],
+  menu: {
+    type: 'app',
+    order: 400
+  }
+}
 
 export const query = graphql`
   query ($jaenPageId: String!) {
@@ -18,4 +25,4 @@ export const query = graphql`
   }
 `
 
-export {Head} from '@snek-at/jaen'
+export {Head} from '@atsnek/jaen'

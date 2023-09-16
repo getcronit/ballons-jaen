@@ -8,7 +8,7 @@ import {
   ContactFormValues,
   ContactModal
 } from '../components/organisms/ContactModal'
-import {useAuthentication} from './authentication'
+import {useAuthenticationContext} from '@atsnek/jaen'
 import {useQueryRouter} from '../components/hooks/useQueryRouter'
 import {navigate} from 'gatsby'
 
@@ -59,7 +59,7 @@ export const ContactModalProvider: React.FC<ContactModalDrawerProps> = ({
 
   const toast = useToast()
 
-  const authentication = useAuthentication()
+  const authentication = useAuthenticationContext()
 
   const onOpen: ContactModalContextProps['onOpen'] = args => {
     const updatedMeta = {
@@ -131,9 +131,9 @@ export const ContactModalProvider: React.FC<ContactModalDrawerProps> = ({
     }
 
     return {
-      firstName: authentication.user.firstName,
-      lastName: authentication.user.lastName,
-      email: authentication.user.email
+      firstName: authentication.user.details?.firstName,
+      lastName: authentication.user.details?.lastName,
+      email: authentication.user.primaryEmail
     }
   }, [authentication.user])
 

@@ -13,13 +13,13 @@ import {
 import {Link, navigate} from 'gatsby'
 import {FaUser} from 'react-icons/fa'
 import {useIsClient} from '../../common/useIsClient'
-import {useAuthentication} from '../../services/authentication'
+import {useAuthenticationContext} from '@atsnek/jaen'
 import {useBasket} from '../../services/basket'
 
 export interface NavAuthButtonProps extends ButtonProps {}
 
-export const NavAuthButton: React.FC<NavAuthButtonProps> = (props) => {
-  const {user, openLoginModal, logout} = useAuthentication()
+export const NavAuthButton: React.FC<NavAuthButtonProps> = props => {
+  const {user, openLoginModal, logout} = useAuthenticationContext()
 
   const basket = useBasket()
 
@@ -33,7 +33,9 @@ export const NavAuthButton: React.FC<NavAuthButtonProps> = (props) => {
     <IconButton
       variant="ghost"
       size="md"
-      icon={<Icon filter="drop-shadow(1px 2px 2px rgb(0 0 0 / 0.1))" as={FaUser} />}
+      icon={
+        <Icon filter="drop-shadow(1px 2px 2px rgb(0 0 0 / 0.1))" as={FaUser} />
+      }
       aria-label="Login"
       onClick={openLoginModal}
       {...props}

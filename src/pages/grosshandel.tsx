@@ -1,16 +1,23 @@
-import {connectPage} from '@snek-at/jaen'
+import {PageConfig} from '@atsnek/jaen'
 import {graphql, PageProps} from 'gatsby'
 
 import GroßhandelPage from '../components/templates/Großhandel/Großhandel'
-import {Layout} from '../Layout'
 
 const Page = (props: PageProps) => {
   return <GroßhandelPage />
 }
 
-export default connectPage(Page, {
-  label: 'Großhandel'
-})
+export default Page
+
+export const pageConfig: PageConfig = {
+  label: 'Großhandel',
+  icon: 'FaWarehouse',
+  childTemplates: [],
+  menu: {
+    type: 'app',
+    order: 200
+  }
+}
 
 export const query = graphql`
   query ($jaenPageId: String!) {
@@ -18,7 +25,7 @@ export const query = graphql`
     allJaenPage(filter: {id: {eq: "JaenPage /wissen/"}}) {
       nodes {
         id
-        children {
+        childPages {
           ...JaenPageChildrenData
         }
       }
@@ -26,4 +33,4 @@ export const query = graphql`
   }
 `
 
-export {Head} from '@snek-at/jaen'
+export {Head} from '@atsnek/jaen'

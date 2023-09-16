@@ -1,9 +1,8 @@
 import {ShopifyProduct} from '@snek-at/gatsby-theme-shopify'
-import {connectPage, PageProps} from '@snek-at/jaen'
+import {PageConfig, PageProps} from '@atsnek/jaen'
 import {graphql} from 'gatsby'
 
 import HomePage from '../components/templates/HomeTemplate/Home'
-import {Layout} from '../Layout'
 
 const Page = (
   props: PageProps<{
@@ -15,23 +14,31 @@ const Page = (
   return <HomePage featuredProducts={props.data.featuredProducts.nodes} />
 }
 
-export default connectPage(Page, {
-  label: 'Home',
-  children: ['KategorieA', 'KategorieB']
-})
+export default Page
+
+export const pageConfig: PageConfig = {
+  label: 'Ballons & Ballons',
+  icon: 'FaHome',
+  childTemplates: ['KategorieA', 'KategorieB', 'WissenArticlePage'],
+  menu: {
+    label: 'Startseite',
+    type: 'app',
+    order: 100
+  }
+}
 
 export const query = graphql`
   query ($featuredProductIds: [String!]!, $jaenPageId: String!) {
     jaenPage(id: {eq: $jaenPageId}) {
       ...JaenPageData
-      children {
+      childPages {
         ...JaenPageChildrenData
       }
     }
     allJaenPage(filter: {id: {in: ["JaenPage /wissen/"]}}) {
       nodes {
         id
-        children {
+        childPages {
           ...JaenPageChildrenData
         }
       }
@@ -46,4 +53,4 @@ export const query = graphql`
   }
 `
 
-export {Head} from '@snek-at/jaen'
+export {Head} from '@atsnek/jaen'

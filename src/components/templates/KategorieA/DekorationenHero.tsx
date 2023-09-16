@@ -8,7 +8,7 @@ import {
   VStack,
   chakra
 } from '@chakra-ui/react'
-import {connectBlock, Field} from '@snek-at/jaen'
+import {connectBlock, Field} from '@atsnek/jaen'
 import {FC} from 'react'
 import Slider, {Settings} from 'react-slick'
 import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'

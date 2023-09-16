@@ -1,5 +1,5 @@
 import {Box, Heading, Stack, Text} from '@chakra-ui/react'
-import {Field} from '@snek-at/jaen'
+import {Field} from '@atsnek/jaen'
 import {FC} from 'react'
 import LinkButtonField from '../../../fields/LinkButtonField'
 

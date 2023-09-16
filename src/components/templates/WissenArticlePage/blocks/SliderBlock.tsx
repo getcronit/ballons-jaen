@@ -1,5 +1,5 @@
 import {Box, Stack} from '@chakra-ui/react'
-import {connectBlock, Field, PhotoProvider} from '@snek-at/jaen'
+import {connectBlock, Field, PhotoProvider} from '@atsnek/jaen'
 import React from 'react'
 import {CONTAINER_MAX_WIDTH} from '../../../../constant/sizes'
 import {blogSliderSettings} from '../../../../constant/slider'

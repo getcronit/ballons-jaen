@@ -8,7 +8,7 @@ import {
   Stack,
   Text
 } from '@chakra-ui/react'
-import {Field, PhotoProvider} from '@snek-at/jaen'
+import {Field, PhotoProvider} from '@atsnek/jaen'
 import {FC} from 'react'
 import {CONTAINER_MAX_WIDTH} from '../../../../constant/sizes'
 import CardWithImageBackground from '../../../CardWithImageBackground'

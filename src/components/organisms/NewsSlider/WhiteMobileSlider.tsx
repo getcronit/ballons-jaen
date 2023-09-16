@@ -9,7 +9,7 @@ import {
   VStack
 } from '@chakra-ui/react'
 import {BallonButton} from '../../molecules/BallonButton'
-import {Field, useStatus} from '@snek-at/jaen'
+import {Field, useContentManagement} from '@atsnek/jaen'
 import {Link} from 'gatsby'
 import {FC} from 'react'
 import Slider from 'react-slick'
@@ -26,18 +26,18 @@ const WhiteMobileSlider: FC<IWhiteMobileSliderProps> = ({index}) => {
 
   var settings = {
     dots: true,
-    infinite: index.children.length > slidesToShow,
+    infinite: index.childPages.length > slidesToShow,
     speed: 500,
     slidesToShow,
     slidesToScroll: 1
   }
 
-  const {isEditing} = useStatus()
+  const {isEditing} = useContentManagement()
 
   return (
-    <Container maxW={CONTAINER_MAX_WIDTH} overflow="hidden">
+    <Container maxW={CONTAINER_MAX_WIDTH} overflow="hidden" pos='relative' zIndex='1'>
       <Slider {...settings} className="white_slider">
-        {index.children.map((page, i) => {
+        {index.childPages.map((page, i) => {
           return index.withJaenPage(
             page.id,
             <Box key={i}>

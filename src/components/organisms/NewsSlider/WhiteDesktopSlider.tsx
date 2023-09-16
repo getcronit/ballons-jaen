@@ -8,7 +8,7 @@ import {
   Text
 } from '@chakra-ui/react'
 import {BallonButton} from '../../molecules/BallonButton'
-import {Field, useStatus} from '@snek-at/jaen'
+import {Field} from '@atsnek/jaen'
 import {Link} from 'gatsby'
 import {FC} from 'react'
 import Slider from 'react-slick'
@@ -36,7 +36,11 @@ const WhiteDesktopSlider: FC<IWhiteDesktopSliderProps> = ({
   }
 
   return (
-    <Container maxW={CONTAINER_MAX_WIDTH} display={{base: 'none', md: 'block'}}>
+    <Container
+      maxW={CONTAINER_MAX_WIDTH}
+      display={{base: 'none', md: 'block'}}
+      pos="relative"
+      zIndex={1}>
       {showTitle && (
         <Text
           variant="cursive"
@@ -51,7 +55,7 @@ const WhiteDesktopSlider: FC<IWhiteDesktopSliderProps> = ({
         py="8"
         bg="white">
         <Slider {...settings} className="white_slider">
-          {index.children.map((page, i) =>
+          {index.childPages.map((page, i) =>
             index.withJaenPage(
               page.id,
               <Box key={i} py="8">

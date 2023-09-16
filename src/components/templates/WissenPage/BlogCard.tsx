@@ -8,7 +8,7 @@ import {
   Stack,
   Text
 } from '@chakra-ui/react'
-import {Field, useStatus} from '@snek-at/jaen'
+import {Field, useContentManagement} from '@atsnek/jaen'
 import {Link} from 'gatsby'
 import {FC} from 'react'
 import {BiChevronRight} from 'react-icons/bi'
@@ -20,7 +20,7 @@ interface IBlogCardProps {
 }
 
 const BlogCard: FC<IBlogCardProps> = ({slug}) => {
-  const {isEditing} = useStatus()
+  const {isEditing} = useContentManagement()
 
   return (
     <Flex borderRadius="xl" bg="white" boxShadow="dark" flexDir="column">

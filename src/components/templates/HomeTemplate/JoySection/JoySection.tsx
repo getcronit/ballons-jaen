@@ -8,7 +8,7 @@ import {
   chakra,
   Box
 } from '@chakra-ui/react'
-import {Field} from '@snek-at/jaen'
+import {Field} from '@atsnek/jaen'
 import {StaticImage} from 'gatsby-plugin-image'
 import {FC, useEffect, useRef} from 'react'
 import LinkButtonField from '../../../fields/LinkButtonField'
@@ -20,8 +20,15 @@ import {NonceProvider} from 'chakra-react-select'
 interface IJoySectionProps {}
 
 const JoySection: FC<IJoySectionProps> = () => {
-  const sectionRef: React.RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null)
-  const {ref, scrollTop} = useScrollSync(-500, undefined, undefined, .1, sectionRef)
+  const sectionRef: React.RefObject<HTMLDivElement> =
+    useRef<HTMLDivElement>(null)
+  const {ref, scrollTop} = useScrollSync(
+    -500,
+    undefined,
+    undefined,
+    0.1,
+    sectionRef
+  )
 
   return (
     <Grid
@@ -64,7 +71,7 @@ const JoySection: FC<IJoySectionProps> = () => {
           overflow="hidden"
           ref={ref}
           //transform="translateZ(1000px)"
-          >
+        >
           <chakra.svg
             as={BallonText}
             placeSelf={'start'}

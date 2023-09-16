@@ -28,6 +28,7 @@ import {NavAuthButton} from './NavAuthButton'
 
 import {Logo} from '../../common/assets/Logo'
 import {MobileHambuger} from './MobileHamburger'
+import {useAuthenticationContext} from '@atsnek/jaen'
 
 interface INavbarProps {
   mode: LayoutMode
@@ -44,6 +45,8 @@ export const Navbar: FC<INavbarProps> = ({
   onBasketClick,
   onContactClick
 }) => {
+  const {isAuthenticated} = useAuthenticationContext()
+
   return (
     <Box
       willChange={'transform'}
@@ -65,6 +68,7 @@ export const Navbar: FC<INavbarProps> = ({
         }
       }}>
       <Stack
+        display={isAuthenticated ? 'none' : 'flex'}
         direction="row"
         spacing="4"
         h={'60px'}

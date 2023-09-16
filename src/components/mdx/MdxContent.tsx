@@ -1,26 +1,13 @@
+import {Table, Tbody, Td, Th, Thead, Tr} from '@chakra-ui/react'
 import {FC} from 'react'
-import {Field} from '@snek-at/jaen'
-import {
-  Accordion,
-  AccordionButton,
-  AccordionItem,
-  AccordionPanel,
-  Box,
-  Container,
-  Table,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr
-} from '@chakra-ui/react'
 
 // Default custom components (replaces HTML tags)
-import Text from './text/Text'
+import {MdxField} from '@atsnek/jaen-fields-mdx'
+import Link from './core/Link'
 import Heading from './heading/Heading'
 import List from './list/List'
 import ListItem from './list/ListItem'
-import Link from './core/Link'
+import Text from './text/Text'
 
 export interface MdxContentProps {
   components?: {
@@ -30,7 +17,7 @@ export interface MdxContentProps {
 
 export const MdxContent: React.FC<MdxContentProps> = ({components = {}}) => {
   return (
-    <Field.Mdx
+    <MdxField
       name="content"
       components={{
         // TEXT

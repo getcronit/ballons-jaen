@@ -1,5 +1,5 @@
 import {Box, BoxProps} from '@chakra-ui/react'
-import {Field} from '@snek-at/jaen'
+import {Field} from '@atsnek/jaen'
 import {FC} from 'react'
 
 export const ImageCard: FC<

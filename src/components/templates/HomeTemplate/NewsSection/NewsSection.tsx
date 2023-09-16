@@ -1,19 +1,19 @@
-import { Box, Container, Flex } from '@chakra-ui/react'
-import { Field } from '@snek-at/jaen'
-import { FC } from 'react'
-import { CONTAINER_MAX_WIDTH } from '../../../../constant/sizes'
+import {Box, Container, Flex} from '@chakra-ui/react'
+import {Field} from '@atsnek/jaen'
+import {FC} from 'react'
+import {CONTAINER_MAX_WIDTH} from '../../../../constant/sizes'
 import NewsContent from './NewsContent'
 
-interface INewsSectionProps { }
+interface INewsSectionProps {}
 
 const NewsSection: FC<INewsSectionProps> = () => {
   return (
-    <Box bg='white'>
+    <Box bg="white">
       <Container
-        h={{ base: 'auto', lg: '44rem' }}
-        alignItems={{ base: 'center', lg: 'start' }}
+        h={{base: 'auto', lg: '44rem'}}
+        alignItems={{base: 'center', lg: 'start'}}
         justifyContent="space-between"
-        flexDirection={{ base: 'column-reverse', md: 'column', lg: 'row' }}
+        flexDirection={{base: 'column-reverse', md: 'column', lg: 'row'}}
         as={Flex}
         gap="8"
         maxW={CONTAINER_MAX_WIDTH}>

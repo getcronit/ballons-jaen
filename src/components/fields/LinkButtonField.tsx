@@ -20,7 +20,7 @@ import {
 } from '@chakra-ui/react'
 import {useForm} from 'react-hook-form'
 
-import {Field, useField} from '@snek-at/jaen'
+import {Field, useField} from '@atsnek/jaen'
 import {Link, navigate} from 'gatsby'
 import React from 'react'
 import {validateUrl} from '../../common/utils'
@@ -67,9 +67,7 @@ const UpdateUrlForm: React.FC<{
             id="url"
             placeholder={initUrl}
             {...register('url', {
-              required: 'This is required',
-              validate: value =>
-                validateUrl(value) || 'Please enter a valid url'
+              required: 'This is required'
             })}
           />
           <FormErrorMessage>

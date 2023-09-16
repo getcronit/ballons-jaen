@@ -8,7 +8,7 @@ import React, {useCallback, useMemo} from 'react'
 
 import {BasketDrawer} from '../components/organisms/BasketDrawer'
 
-import {useAuthentication} from './authentication'
+import {useAuthenticationContext} from '@atsnek/jaen'
 import {useToast} from '@chakra-ui/react'
 import {OrderFormValues, OrderModal} from '../components/organisms/OrderModal'
 import {getProductPrices} from '../common/utils'
@@ -60,7 +60,7 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
       null
     )
 
-    const auth = useAuthentication()
+    const auth = useAuthenticationContext()
 
     // Override wholesale to true for now until shopify checkout is implemented and tested
     const isRealWholesale = !!auth.user
@@ -68,15 +68,18 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
 
     React.useEffect(() => {
       void createOrFetchCheckout()
-    }, [])
+    }, [open])
 
     const createOrFetchCheckout = useCallback(async () => {
       const checkoutId = localStorage.getItem('checkoutId')
 
       if (checkoutId) {
         const newCheckout = await props.client.checkout.fetch(checkoutId)
-        setCheckout(newCheckout)
-        return newCheckout
+
+        if (newCheckout) {
+          setCheckout(newCheckout)
+          return newCheckout
+        }
       }
 
       const checkout = await props.client.checkout.create()
@@ -108,26 +111,23 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
     }) => {
       const c = await createOrFetchCheckout()
 
-      const newCheckout = await props.client.checkout.addLineItems(
-        c.id as string,
-        [
-          {
-            ...args,
-            quantity: quantity,
-            customAttributes: [
-              {
-                key: 'stepperQuantity',
-                value: stepperQuantity.toString() || '1'
-              },
+      const newCheckout = await props.client.checkout.addLineItems(c.id, [
+        {
+          ...args,
+          quantity: quantity,
+          customAttributes: [
+            {
+              key: 'stepperQuantity',
+              value: stepperQuantity.toString() || '1'
+            },
 
-              {
-                key: 'wholesalePrice',
-                value: wholesalePrice?.toString() || ''
-              }
-            ]
-          }
-        ]
-      )
+            {
+              key: 'wholesalePrice',
+              value: wholesalePrice?.toString() || ''
+            }
+          ]
+        }
+      ])
 
       setCheckout(newCheckout)
       onOpen()
@@ -164,7 +164,7 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
     const [meta, setMeta] = React.useState<Record<string, any> | null>(null)
     const [isOrderOpen, setIsOrderOpen] = React.useState(false)
 
-    const authentication = useAuthentication()
+    const authentication = useAuthenticationContext()
 
     const onOrderClose = () => {
       setIsOrderOpen(false)
@@ -300,9 +300,9 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
       }
 
       return {
-        firstName: authentication.user.firstName,
-        lastName: authentication.user.lastName,
-        email: authentication.user.email
+        firstName: authentication.user.details?.firstName,
+        lastName: authentication.user.details?.lastName,
+        email: authentication.user.primaryEmail
       }
     }, [authentication.user])
 

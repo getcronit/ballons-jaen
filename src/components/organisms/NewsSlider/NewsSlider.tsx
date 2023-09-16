@@ -16,7 +16,8 @@ const NewsSlider: FC<INewsSlidesProps> = ({showNewsTitle}) => {
     <>
       <Box
         bg="#f6f8fa"
-        zIndex="-1"
+        // zIndex="-1"
+        overflow="hidden"
         pos="relative"
         px="4"
         py={{md: '50', lg: 20}}
@@ -54,6 +55,7 @@ const NewsSlider: FC<INewsSlidesProps> = ({showNewsTitle}) => {
         pos="relative"
         py="16"
         display={{base: 'block', md: 'none'}}
+        overflow="hidden"
         bg="#f6f8fa">
         {/* <Image
           borderBottom='solid white'
@@ -71,7 +73,7 @@ const NewsSlider: FC<INewsSlidesProps> = ({showNewsTitle}) => {
           as={TopShape}
           borderBottom="solid white"
           borderBottomWidth={256}
-          zIndex="-1"
+          // zIndex="-1"
           position="absolute"
           top={'0'}
           left={'0'}

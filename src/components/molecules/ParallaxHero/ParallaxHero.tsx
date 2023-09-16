@@ -17,7 +17,7 @@ import CardWithImageBackground from '../../CardWithImageBackground'
 import * as style from './style'
 import {ParallaxBackground} from '../ParallaxBackground'
 import TextLoop from 'react-text-loop'
-import {Field} from '@snek-at/jaen'
+import {Field} from '@atsnek/jaen'
 import LinkButtonField from '../../fields/LinkButtonField'
 import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
 import SkylineL1 from '../../../common/assets/skyline1.inline.svg'
@@ -196,12 +196,14 @@ export const ParallaxHero = ({noScroll}: ParallaxHeroProps) => {
               defaultUrl={`/grosshandel`}
               size={{base: 'sm', md: 'md'}}
               variant="outline"
-              sx={{"svg": {color: "white !important"}}}
+              sx={{svg: {color: 'white !important'}}}
               ml="3"
             />
           </HStack>
         </Stack>
-        <Box className="parallax__cover" pointerEvents="none">{grid}</Box>
+        <Box className="parallax__cover" pointerEvents="none">
+          {grid}
+        </Box>
       </Box>
     </>
   )

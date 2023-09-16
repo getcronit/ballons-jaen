@@ -10,7 +10,7 @@ import {
   useBreakpointValue,
   VStack
 } from '@chakra-ui/react'
-import {connectBlock, Field} from '@snek-at/jaen'
+import {connectBlock, Field} from '@atsnek/jaen'
 import {Slider} from '@snek-at/uikit'
 import {FC, useState} from 'react'
 import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'

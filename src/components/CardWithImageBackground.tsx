@@ -1,8 +1,8 @@
-import { Box, Grid, Heading, HStack, Stack, Text } from '@chakra-ui/react'
-import { Field, useStatus } from '@snek-at/jaen'
-import { navigate } from 'gatsby'
-import { FC } from 'react'
-import { BiChevronRight } from 'react-icons/bi'
+import {Box, Grid, Heading, HStack, Stack, Text} from '@chakra-ui/react'
+import {Field, useContentManagement} from '@atsnek/jaen'
+import {navigate} from 'gatsby'
+import {FC} from 'react'
+import {BiChevronRight} from 'react-icons/bi'
 
 interface ICardWithImageBackgroundProps {
   card: {
@@ -34,7 +34,7 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
   lightboxGroup = false,
   lightbox = false
 }) => {
-  const { isEditing } = useStatus()
+  const {isEditing} = useContentManagement()
 
   return (
     <Stack
@@ -49,7 +49,7 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
         },
         '.show_more': {
           textDecoration: 'underline',
-          '&>div': { boxShadow: '0 0 5px 1px white' }
+          '&>div': {boxShadow: '0 0 5px 1px white'}
         }
       }}
       transition="ease-in 0.2s"
@@ -68,21 +68,20 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
           lightboxGroup={lightboxGroup}
         />
       )}
-      <Box position="absolute" w='full'>
+      <Box position="absolute" w="full">
         {displayContent && (
           <Stack
             p="6"
             pb="4"
-            w='full'
-            bg='rgba(0,0,0,.2)'
+            w="full"
+            bg="rgba(0,0,0,.2)"
             //backdropFilter='blur(7px)'
-            borderRadius='xl'
-            will-change='transform'
-            >
+            borderRadius="xl"
+            will-change="transform">
             {card.headingFieldName && (
               <Field.Text
                 as={Heading}
-                fontSize={{ base: 'lg', xl: 'xl' }}
+                fontSize={{base: 'lg', xl: 'xl'}}
                 fontWeight="700"
                 name={card.headingFieldName}
                 defaultValue={card.headingDefaultValue ?? ''}
@@ -93,7 +92,7 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
 
             {card.textFieldName && (
               <Field.Text
-                fontSize={{ base: 'sm', lg: isSmallText ? 'sm' : 'md' }}
+                fontSize={{base: 'sm', lg: isSmallText ? 'sm' : 'md'}}
                 maxW="80%"
                 name={card.textFieldName}
                 defaultValue={card.textDefaultValue ?? ''}
@@ -103,11 +102,11 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
             )}
 
             <HStack
-              className='show_more'
+              className="show_more"
               cursor="pointer"
               _hover={{
                 textDecoration: 'underline',
-                '&>div': { boxShadow: '0 0 5px 1px white' }
+                '&>div': {boxShadow: '0 0 5px 1px white'}
               }}
               // _hover={{
               //   transform: {
@@ -122,17 +121,17 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
 
                   navigate(card.linkUrl)
                 }}
-                fontSize={{ base: 'sm', lg: 'md' }}
+                fontSize={{base: 'sm', lg: 'md'}}
                 fontWeight="700">
                 Mehr anzeigen
               </Text>
               <Grid
                 placeItems="center"
-                h={{ base: '4', lg: '6' }}
-                w={{ base: '4', lg: '6' }}
+                h={{base: '4', lg: '6'}}
+                w={{base: '4', lg: '6'}}
                 color="red.500"
                 bg="white"
-                fontSize={{ lg: 'lg' }}
+                fontSize={{lg: 'lg'}}
                 borderRadius="full"
                 boxShadow="0 0 0px 0px white"
                 transition="ease-in 0.2s">

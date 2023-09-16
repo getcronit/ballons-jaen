@@ -31,7 +31,7 @@ import React from 'react'
 import {getSrcFromImageData} from '../common/get-src-from-image-data'
 import {metafieldIdentifiers} from '../common/getProductMetafields'
 import {getProductPrices} from '../common/utils'
-import {useAuthentication} from './authentication'
+import {useAuthenticationContext} from '@atsnek/jaen'
 
 export interface SearchContextProps {
   isOpen: boolean
@@ -107,7 +107,7 @@ export const Searchbar = (props: SearchbarProps) => {
     }
   }, [])
 
-  const auth = useAuthentication()
+  const auth = useAuthenticationContext()
 
   const wholesale = !!auth.user
 

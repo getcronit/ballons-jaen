@@ -7,7 +7,7 @@ import {ProductGrid} from '../../../molecules/ProductGrid'
 //import { StickyStrokeLogo } from '../../../molecules/StickyStrokeLogo'
 import LinkButtonField from '../../../fields/LinkButtonField'
 import * as style from './style'
-import {useAuthentication} from '../../../../services/authentication'
+import {useAuthenticationContext} from '@atsnek/jaen'
 import {ProductSlider} from '../../../molecules/ProductSlider'
 
 export interface FeaturedProductsSectionProps {
@@ -29,7 +29,7 @@ export const FeaturedProducts = ({
   featuredProducts,
   productsPagePath
 }: FeaturedProductsProps) => {
-  const user = useAuthentication()
+  const {user} = useAuthenticationContext()
 
   return (
     <>
@@ -66,15 +66,15 @@ export const FeaturedProducts = ({
             products={featuredProducts}
             spacing="5"
             columns={{base: 2, md: 3, xl: 4}}
-            wholesale={!!user.user}
+            wholesale={!!user}
           />
           <ProductSlider
-            h={"100%"}
+            h={'100%'}
             display={{base: 'flex', sm: 'none'}}
             //heading="Ähnliche Produkte"
             products={featuredProducts}
             prefixPath="/products"
-            wholesale={!!user.user}
+            wholesale={!!user}
           />
           <Center mt="10" mb="16">
             <LinkButtonField

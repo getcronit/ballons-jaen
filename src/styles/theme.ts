@@ -1,17 +1,20 @@
 import {
+  baseTheme,
   extendTheme,
   ThemeConfig,
   withDefaultColorScheme
 } from '@chakra-ui/react'
 
-import {StepsTheme as Steps} from 'chakra-ui-steps'
-
-import 'react-photo-view/dist/react-photo-view.css'
-
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
 export const colors = {
+  ...baseTheme.colors,
+  brand: {
+    ...baseTheme.colors.red,
+    500: '#E3000F',
+    600: '#E3000F'
+  },
   gray: {
     100: '#f6f8fa',
     500: '#E6E6E6',
@@ -79,7 +82,6 @@ const theme = extendTheme(
       darker: '0px 4px 10px rgba(0, 0, 0, 0.50) !important'
     },
     components: {
-      Steps,
       Tag: {
         variants: {
           normal: {
@@ -268,8 +270,8 @@ const theme = extendTheme(
     },
     styles: {
       global: {
-        'html, body': {
-          background: '#f6f8fa !important'
+        body: {
+          background: '#f6f8fa'
         },
         'i, em': {
           fontFamily: 'Red Buttery, sans-serif',
@@ -286,7 +288,7 @@ const theme = extendTheme(
     fonts
   },
   withDefaultColorScheme({
-    colorScheme: 'red'
+    colorScheme: 'brand'
   })
 )
 

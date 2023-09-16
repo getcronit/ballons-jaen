@@ -745,8 +745,6 @@ export default function ProductsPageShell(
     return grouped
   }, [props.allTags, props.activeTags])
 
-  console.log('groupedTags', groupedTags)
-
   const [activeTags, setActiveTags] = React.useState<ActiveTags>(() => {
     const s = Object.entries(groupedTags.activeTags).reduce(
       (acc, [group, tags]) => ({
@@ -771,8 +769,6 @@ export default function ProductsPageShell(
     )
   }, [groupedTags.activeTags])
 
-  console.log('activeTags', activeTags, props.activeTags)
-
   const groupedCategories = React.useMemo(() => {
     const grouped: {
       allTags: GroupedTags
@@ -787,12 +783,6 @@ export default function ProductsPageShell(
       grouped.allTags
     )
 
-    console.log(
-      'groupedTags.activeTags.Kategorie',
-      activeTags.Kategorie,
-      groupedTags.activeTags
-    )
-
     groupCategoriesTags(activeTags.Kategorie, grouped.activeTags)
 
     return grouped
@@ -801,8 +791,6 @@ export default function ProductsPageShell(
     groupedTags.activeTags.Kategorie,
     activeTags
   ])
-
-  console.log('groupedCategories', groupedCategories)
 
   const updateActiveTags = (tags: string[], group: string) => {
     const updatedActiveTags = {...activeTags, [group]: tags}
@@ -866,7 +854,7 @@ export default function ProductsPageShell(
           borderRadius="lg"
           bg="white"
           pos="sticky"
-          top="0"
+          top="4"
           zIndex="3"
           p="4"
           ml={{base: '2', md: '12'}}

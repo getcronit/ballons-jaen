@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react'
 import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
 import HBalloon from '../../../common/assets/hballoon.inline.svg'
-import {Field} from '@snek-at/jaen'
+import {Field} from '@atsnek/jaen'
 import LinkButtonField from '../../fields/LinkButtonField'
 import {useScrollSync} from '../../hooks/scroll'
 import {useMemo} from 'react'
@@ -109,7 +109,7 @@ export const MobileHero = () => {
         alignItems={'center'}
         display={{base: 'flex', md: 'none'}}>
         <HStack>
-          <BallonSvg as={HBalloon}  className="background-Ballon"/>
+          <BallonSvg as={HBalloon} className="background-Ballon" />
           <Field.Text
             as={Heading}
             name="heroTextBallons"

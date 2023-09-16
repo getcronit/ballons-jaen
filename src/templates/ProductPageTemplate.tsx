@@ -4,15 +4,14 @@ import {
   ProductsPageContext,
   SearchProvider
 } from '@snek-at/gatsby-theme-shopify'
-import {connectTemplate, Head as JaenHead, PageProps} from '@snek-at/jaen'
+import {Head as JaenHead, PageConfig, PageProps} from '@atsnek/jaen'
 import {graphql, navigate} from 'gatsby'
 import React from 'react'
 
 import {buildAllTags} from '../components/templates/ProductsTemplate/buildAllTags'
 import {ProductTemplate} from '../components/templates/ProductTemplate'
 
-import {Layout} from '../Layout'
-import {useAuthentication} from '../services/authentication'
+import {useAuthenticationContext} from '@atsnek/jaen'
 
 export type ProductPageTemplateProps = PageProps<
   ProductPageData & {
@@ -23,45 +22,39 @@ export type ProductPageTemplateProps = PageProps<
   ProductPageContext
 >
 
-const ProductPageTemplate = connectTemplate<ProductPageTemplateProps>(
-  props => {
-    const {productsPage} = props.data
+const ProductPageTemplate: React.FC<ProductPageTemplateProps> = props => {
+  const {productsPage} = props.data
 
-    const handleOnGoBack = () => {
-      void navigate(-1)
-    }
-
-    const allTags = buildAllTags({
-      tags: productsPage.pageContext.tags,
-      vendors: productsPage.pageContext.vendors,
-      productTypes: productsPage.pageContext.productTypes
-    })
-
-    const auth = useAuthentication()
-
-    const wholesale = !!auth.user
-
-    return (
-      <>
-        {/* <SEO pagePath={props.path} pageMeta={buildProductPageMeta()} /> */}
-        <ProductTemplate
-          path={props.path}
-          wholesale={wholesale}
-          allTags={allTags}
-          shopifyProduct={props.data.shopifyProduct}
-          relatedProducts={props.data.relatedProducts}
-          onWishlistAdd={() => {}}
-          isOnWishList={false}
-          onGoBack={handleOnGoBack}
-        />
-      </>
-    )
-  },
-  {
-    label: 'ProductPageTemplate',
-    children: []
+  const handleOnGoBack = () => {
+    void navigate(-1)
   }
-)
+
+  const allTags = buildAllTags({
+    tags: productsPage.pageContext.tags,
+    vendors: productsPage.pageContext.vendors,
+    productTypes: productsPage.pageContext.productTypes
+  })
+
+  const auth = useAuthenticationContext()
+
+  const wholesale = !!auth.user
+
+  return (
+    <>
+      {/* <SEO pagePath={props.path} pageMeta={buildProductPageMeta()} /> */}
+      <ProductTemplate
+        path={props.path}
+        wholesale={wholesale}
+        allTags={allTags}
+        shopifyProduct={props.data.shopifyProduct}
+        relatedProducts={props.data.relatedProducts}
+        onWishlistAdd={() => {}}
+        isOnWishList={false}
+        onGoBack={handleOnGoBack}
+      />
+    </>
+  )
+}
 
 export const query = graphql`
   query ($productId: String!, $relatedProductIds: [String!]!) {
@@ -85,51 +78,11 @@ export default (props: ProductPageTemplateProps) => (
   </SearchProvider>
 )
 
-// export const Head = (props: ProductPageTemplateProps) => {
-//   const {shopifyProduct} = props.data
-
-//   const buildProductPageMeta = () => {
-//     const title = shopifyProduct.title
-//     const description = shopifyProduct.description
-//     const longDescription =
-//       description +
-//       ` | Produkttyp: ${shopifyProduct.productType}` +
-//       ` | Hersteller: ${shopifyProduct.vendor}`
-
-//     return {
-//       title,
-//       description,
-//       longDescription,
-//       image:
-//         shopifyProduct.featuredMedia?.image.gatsbyImageData?.images?.fallback?.src
-//     }
-//   }
-
-//   const meta = buildProductPageMeta()
-
-//   return (
-//     <JaenHead {...(props as any)}>
-//       <title id="title">
-//         {meta.title} | {meta.description}
-//       </title>
-//       <meta name="meta-description" content={meta.longDescription} />
-//       <meta id="meta-image" name="image" content={meta.image} />
-//     </JaenHead>
-//   )
-// }
-
-// export const Head = (props: ProductPageTemplateProps) => {
-//   return (
-//     <JaenHead {...(props as any)}>
-//       <title id="title">AGT GunTrade - Artikel</title>
-//       <meta
-//         id="meta-description"
-//         name="description"
-//         content="Alle Artikel von AGT GunTrade im Überblick"
-//       />
-//     </JaenHead>
-//   )
-// }
+export const pageConfig: PageConfig = {
+  label: 'Produktseite',
+  showInNodeGraphVisualizer: false,
+  withoutJaenFrameStickyHeader: true
+}
 
 export const Head = (props: ProductPageTemplateProps) => {
   const shopifyProduct = props.data.shopifyProduct
@@ -137,16 +90,23 @@ export const Head = (props: ProductPageTemplateProps) => {
   return (
     <JaenHead
       {...(props as any)}
-      jaenPageMetadata={{
-        title: `${shopifyProduct.title} | Ballons & Ballons`,
-        description:
-          shopifyProduct.description +
-          ` | Produkttyp: ${shopifyProduct.productType}` +
-          ` | Hersteller: ${shopifyProduct.vendor}`,
-        datePublished: new Date(shopifyProduct.createdAt).toISOString(),
-        image:
-          shopifyProduct.featuredMedia?.image?.gatsbyImageData?.images?.fallback
-            ?.src
+      data={{
+        ...props.data,
+        jaenPage: {
+          ...props.data.jaenPage,
+          jaenPageMetadata: {
+            ...props.data.jaenPage?.jaenPageMetadata,
+            title: shopifyProduct.title,
+            description:
+              shopifyProduct.description +
+              ` | Produkttyp: ${shopifyProduct.productType}` +
+              ` | Hersteller: ${shopifyProduct.vendor}`,
+            datePublished: new Date(shopifyProduct.createdAt).toISOString(),
+            image:
+              shopifyProduct.featuredMedia?.image?.gatsbyImageData?.images
+                ?.fallback?.src
+          }
+        }
       }}
     />
   )

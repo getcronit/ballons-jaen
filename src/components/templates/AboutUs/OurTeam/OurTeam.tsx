@@ -12,7 +12,7 @@ import {FC} from 'react'
 import OurBoss from './OurBoss'
 import {TeamMemberSection} from './TeamMember'
 import {CONTAINER_MAX_WIDTH} from '../../../../constant/sizes'
-import {Field} from '@snek-at/jaen'
+import {Field} from '@atsnek/jaen'
 
 interface IOurTeamProps {}
 

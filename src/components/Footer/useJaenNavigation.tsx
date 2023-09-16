@@ -1,4 +1,4 @@
-import {useStatus, useWidget} from '@snek-at/jaen'
+import {useContentManagement, useWidget} from '@atsnek/jaen'
 
 export const extractUrlsFromMarkdown = (
   markdown: string
@@ -20,12 +20,15 @@ export const extractUrlsFromMarkdown = (
 }
 
 export const useJaenLink = (widgetName: string, defaultValue: string) => {
-  const {isEditing} = useStatus()
+  const {isEditing} = useContentManagement()
 
-  const menuWidget =
-    useWidget<{
-      markdown: string
-    }>(widgetName)
+  const [menuWidget, setMenuWidget] = useWidget<{
+    markdown: string
+  }>(widgetName, {
+    defaultData: {
+      markdown: defaultValue
+    }
+  })
 
   const markdown = menuWidget?.data?.markdown || defaultValue
 
@@ -38,7 +41,11 @@ export const useJaenLink = (widgetName: string, defaultValue: string) => {
     isEditing,
     navLinks,
     markdown,
-    updateNavigation: (markdown: string) => menuWidget.writeData({markdown})
+    updateNavigation: (markdown: string) => {
+      setMenuWidget({
+        markdown
+      })
+    }
   }
 }
 
@@ -46,12 +53,15 @@ export const useJaenText = (
   widgetName: string,
   defaultValue: Record<string, any>
 ) => {
-  const {isEditing} = useStatus()
+  const {isEditing} = useContentManagement()
 
-  const textWidget =
-    useWidget<{
-      items: Record<string, any>
-    }>(widgetName)
+  const [textWidget, setTextWidget] = useWidget<{
+    items: Record<string, any>
+  }>(widgetName, {
+    defaultData: {
+      items: defaultValue
+    }
+  })
 
   // const jsonString =
   //   textWidget?.data?.jsonString ||
@@ -63,7 +73,7 @@ export const useJaenText = (
     isEditing,
     data: {...items},
     updateJson: (fieldName: string, itemNext: any) =>
-      textWidget.writeData({
+      setTextWidget({
         items: {...items, [fieldName || '']: itemNext}
       })
   }
