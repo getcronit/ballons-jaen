@@ -11,7 +11,7 @@ import {
   Tooltip
 } from '@chakra-ui/react'
 import {Link, navigate} from 'gatsby'
-import {FaUser} from 'react-icons/fa'
+import {FaUser} from '@react-icons/all-files/fa/FaUser'
 import {useIsClient} from '../../common/useIsClient'
 import {useAuthenticationContext} from '@atsnek/jaen'
 import {useBasket} from '../../services/basket'

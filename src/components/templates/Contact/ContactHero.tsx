@@ -11,7 +11,9 @@ import {
 } from '@chakra-ui/react'
 import {Field} from '@atsnek/jaen'
 import {FC, ReactNode} from 'react'
-import {MdLocalPhone, MdLocationPin, MdMail} from 'react-icons/md'
+import {FaPhoneAlt} from '@react-icons/all-files/fa/FaPhoneAlt'
+import {FaEnvelope} from '@react-icons/all-files/fa/FaEnvelope'
+import {FaMapMarkerAlt} from '@react-icons/all-files/fa/FaMapMarkerAlt'
 
 import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
 import {GoogleMaps} from '../../molecules/GoogleMaps'
@@ -53,7 +55,7 @@ const ContactHero: FC<IContactHeroProps> = ({}) => {
               <Stack spacing={{base: 4, lg: 8}}>
                 <HStack>
                   <Box fontSize="xl" color="red.500">
-                    <MdLocationPin />
+                    <FaMapMarkerAlt />
                   </Box>
                   <Field.Text
                     name="address"
@@ -64,7 +66,7 @@ const ContactHero: FC<IContactHeroProps> = ({}) => {
 
                 <HStack>
                   <Box fontSize="xl" color="red.500">
-                    <MdLocalPhone />
+                    <FaPhoneAlt />
                   </Box>
                   <Field.Text
                     name="phone"
@@ -75,7 +77,7 @@ const ContactHero: FC<IContactHeroProps> = ({}) => {
 
                 <HStack>
                   <Box fontSize="xl" color="red.500">
-                    <MdMail />
+                    <FaEnvelope />
                   </Box>
                   <Field.Text
                     name="email"

@@ -1,3 +1,4 @@
+import {Field, useField} from '@atsnek/jaen'
 import {
   Box,
   Grid,
@@ -8,8 +9,7 @@ import {
   Stack,
   Text
 } from '@chakra-ui/react'
-import {Field, useField} from '@atsnek/jaen'
-import {BiChevronRight} from 'react-icons/bi'
+import {FaChevronRight} from '@react-icons/all-files/fa/FaChevronRight'
 
 import {EditIcon} from '@chakra-ui/icons'
 import {
@@ -247,7 +247,7 @@ const CardWithImageBackgroundField: React.FC<
                   borderRadius="full"
                   boxShadow="0 0 0px 0px white"
                   transition="ease-in 0.2s">
-                  <BiChevronRight />
+                  <FaChevronRight />
                 </Grid>
               </HStack>
             </Stack>

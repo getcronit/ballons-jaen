@@ -1,9 +1,9 @@
 import {Button, Stack, useToast, VStack} from '@chakra-ui/react'
 import {useEffect, useState} from 'react'
-import {BsFillShareFill} from 'react-icons/bs'
+import {FaShare} from '@react-icons/all-files/fa/FaShare'
 
 import NewsSlider from '../../organisms/NewsSlider/NewsSlider'
-import { BallonButton } from '../../molecules/BallonButton'
+import {BallonButton} from '../../molecules/BallonButton'
 
 const ShareBlogButton = () => {
   const toast = useToast()
@@ -39,7 +39,11 @@ const ShareBlogButton = () => {
   }, [isShareOpen])
 
   return (
-    <BallonButton leftIcon={<BsFillShareFill />} size="sm" onClick={handleShareClick} py="7 !important">
+    <BallonButton
+      leftIcon={<FaShare />}
+      size="sm"
+      onClick={handleShareClick}
+      py="7 !important">
       Artikel teilen {isShareOpen && '(Kopiert)'}
     </BallonButton>
   )
@@ -48,7 +52,7 @@ const ShareBlogButton = () => {
 export const Footer = () => {
   return (
     <Stack
-      bg='white'
+      bg="white"
       pt={{
         base: 8,
         lg: 16

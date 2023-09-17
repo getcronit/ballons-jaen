@@ -1,7 +1,6 @@
-import {Button, Icon, IconButton} from '@chakra-ui/react'
+import {Icon, IconButton} from '@chakra-ui/react'
 import {FC} from 'react'
-import {FaChevronCircleLeft, FaChevronCircleRight} from 'react-icons/fa'
-import {GoChevronLeft, GoChevronRight} from 'react-icons/go'
+import {FaChevronCircleRight} from '@react-icons/all-files/fa/FaChevronCircleRight'
 
 interface INextArrowProps {
   onClick?: () => void

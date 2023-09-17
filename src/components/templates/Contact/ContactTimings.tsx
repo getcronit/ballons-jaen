@@ -1,3 +1,4 @@
+import {Field} from '@atsnek/jaen'
 import {
   Box,
   Container,
@@ -5,14 +6,13 @@ import {
   Flex,
   Heading,
   HStack,
-  Link,
-  Stack,
-  Text
+  Stack
 } from '@chakra-ui/react'
-import {Field} from '@atsnek/jaen'
-import {FC, ReactNode} from 'react'
-import {MdLocalPhone, MdLocationPin, MdMail} from 'react-icons/md'
+import {FC} from 'react'
 
+import {FaEnvelope} from '@react-icons/all-files/fa/FaEnvelope'
+import {FaMapMarkerAlt} from '@react-icons/all-files/fa/FaMapMarkerAlt'
+import {FaPhoneAlt} from '@react-icons/all-files/fa/FaPhoneAlt'
 interface IContactTimingsProps {}
 
 const ContactTimings: FC<IContactTimingsProps> = ({}) => {
@@ -65,7 +65,7 @@ const ContactTimings: FC<IContactTimingsProps> = ({}) => {
             <Stack spacing={{md: 2, lg: 8}}>
               <HStack>
                 <Box fontSize="xl" color="red.500">
-                  <MdLocationPin />
+                  <FaMapMarkerAlt />
                 </Box>
                 <Field.Text
                   name="address"
@@ -76,7 +76,7 @@ const ContactTimings: FC<IContactTimingsProps> = ({}) => {
 
               <HStack>
                 <Box fontSize="xl" color="red.500">
-                  <MdLocalPhone />
+                  <FaPhoneAlt />
                 </Box>
                 <Field.Text
                   name="phone"
@@ -87,7 +87,7 @@ const ContactTimings: FC<IContactTimingsProps> = ({}) => {
 
               <HStack>
                 <Box fontSize="xl" color="red.500">
-                  <MdMail />
+                  <FaEnvelope />
                 </Box>
                 <Field.Text
                   name="email"

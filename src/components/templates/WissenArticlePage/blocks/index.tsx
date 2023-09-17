@@ -1,9 +1,8 @@
-import {VStack, Grid, Box, chakra} from '@chakra-ui/react'
-import {connectBlock, Field, PhotoProvider, useField} from '@atsnek/jaen'
-import React from 'react'
+import {connectBlock, Field, PhotoProvider} from '@atsnek/jaen'
+import {Box, chakra, Grid, VStack} from '@chakra-ui/react'
 import Slider from 'react-slick'
+
 import {ImagesWithText} from '../../../organisms/ImagesWithText'
-import {BiBorderRadius} from 'react-icons/bi'
 
 export {SliderBlock} from './SliderBlock'
 

@@ -1,14 +1,12 @@
 import {
   Heading as ChakraHeading,
-  HeadingProps as ChakraHeadingProps,
-  ResponsiveValue,
-  ThemeTypings
-} from '@chakra-ui/react';
-import React, { Dispatch, FC, ReactNode, SetStateAction } from 'react';
-import { FaHashtag } from 'react-icons/fa';
-import Link from '../core/Link';
-import { mainComponentBaseStyle } from '../layout/mainContent.vars';
-import { IMainContentComponentBaseProps } from '../types/mainContent';
+  HeadingProps as ChakraHeadingProps
+} from '@chakra-ui/react'
+import {FC, ReactNode} from 'react'
+import {FaHashtag} from '@react-icons/all-files/fa/FaHashtag'
+import Link from '../core/Link'
+import {mainComponentBaseStyle} from '../layout/mainContent.vars'
+import {IMainContentComponentBaseProps} from '../types/mainContent'
 
 // Font sizes for the different heading variants
 const variantFontSizes = {
@@ -18,7 +16,7 @@ const variantFontSizes = {
   h4: '20',
   h5: '18',
   h6: '16'
-};
+}
 
 const variantLinkFontSizes = {
   h1: '30',
@@ -27,17 +25,17 @@ const variantLinkFontSizes = {
   h4: '16',
   h5: '14',
   h6: '12'
-};
+}
 
 export interface IHeadingProps extends IMainContentComponentBaseProps {
-  variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-  id?: string;
-  noAnchor?: boolean;
-  customSpacing?: ChakraHeadingProps['mt'];
-  noSpacing?: boolean;
-  activeLink?: boolean;
-  setActiveLink?: () => void;
-  children?: ReactNode;
+  variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+  id?: string
+  noAnchor?: boolean
+  customSpacing?: ChakraHeadingProps['mt']
+  noSpacing?: boolean
+  activeLink?: boolean
+  setActiveLink?: () => void
+  children?: ReactNode
 }
 
 /**
@@ -54,14 +52,14 @@ const Heading: FC<IHeadingProps> = ({
   setActiveLink,
   children
 }) => {
-  let props: ChakraHeadingProps = {};
+  let props: ChakraHeadingProps = {}
   if (variant === 'h2') {
     props = {
       ...props,
       borderBottom: '1px solid',
       borderColor: 'components.separator.borderColor',
       pb: 2
-    };
+    }
   }
 
   /**
@@ -69,8 +67,8 @@ const Heading: FC<IHeadingProps> = ({
    *
    */
   const handleClick = () => {
-    if (!activeLink && setActiveLink) setActiveLink();
-  };
+    if (!activeLink && setActiveLink) setActiveLink()
+  }
 
   return (
     <ChakraHeading
@@ -84,8 +82,7 @@ const Heading: FC<IHeadingProps> = ({
         '& a': {
           opacity: 1
         }
-      }}
-    >
+      }}>
       {children}
       {!noAnchor && id && (
         <Link
@@ -98,16 +95,15 @@ const Heading: FC<IHeadingProps> = ({
           fontSize={variantLinkFontSizes[variant]}
           lineHeight={Number(variantLinkFontSizes[variant]) + 5 + 'px'}
           verticalAlign="top"
-          onClick={handleClick}
-        >
+          onClick={handleClick}>
           <FaHashtag />
         </Link>
       )}
     </ChakraHeading>
-  );
-};
+  )
+}
 Heading.defaultProps = {
   baseProps: mainComponentBaseStyle.baseProps
-};
+}
 
-export default Heading;
+export default Heading

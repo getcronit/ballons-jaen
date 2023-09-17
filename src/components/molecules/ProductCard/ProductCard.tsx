@@ -3,12 +3,9 @@ import {
   Badge,
   Box,
   BoxProps,
-  Divider,
   Flex,
   HStack,
-  Icon,
   IconButton,
-  Image,
   LinkBox,
   LinkOverlay,
   List,
@@ -18,21 +15,23 @@ import {
   Stack,
   StackDivider,
   Text,
-  Tooltip,
   useColorModeValue,
   VStack
 } from '@chakra-ui/react'
+import {BsBalloonHeart} from '@react-icons/all-files/bs/BsBalloonHeart'
+import {BsBalloonHeartFill} from '@react-icons/all-files/bs/BsBalloonHeartFill'
+import {FaBoxes} from '@react-icons/all-files/fa/FaBoxes'
+import {FaRuler} from '@react-icons/all-files/fa/FaRuler'
+import {FaShoppingBasket} from '@react-icons/all-files/fa/FaShoppingBasket'
 import {
   getFormattedProductPrices,
   getProductTags,
   ShopifyProduct
 } from '@snek-at/gatsby-theme-shopify'
 import {Link as GatsbyLink} from 'gatsby'
-import {GatsbyImage, getSrcSet, IGatsbyImageData} from 'gatsby-plugin-image'
+import {GatsbyImage, IGatsbyImageData} from 'gatsby-plugin-image'
 import React from 'react'
-import {BsBalloonHeartFill, BsBalloonHeart} from 'react-icons/bs'
-import {FaBoxes, FaRuler, FaShoppingBasket} from 'react-icons/fa'
-import {getSrcFromImageData} from '../../../common/get-src-from-image-data'
+
 import {
   getProductMetafields,
   ProductFilling

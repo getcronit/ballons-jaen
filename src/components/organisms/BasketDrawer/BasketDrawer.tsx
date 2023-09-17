@@ -16,7 +16,7 @@ import {
   AlertDescription
 } from '@chakra-ui/react'
 import {Link} from 'gatsby'
-import {FaBox} from 'react-icons/fa'
+import {FaBox} from '@react-icons/all-files/fa/FaBox'
 
 import {CartItem} from '../../molecules/CartItem'
 import {CartOrderSummary} from './CartOrderSummary'

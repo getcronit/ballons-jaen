@@ -16,13 +16,13 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@atsnek/jaen": "^1.0.0-rc.19",
+    "@atsnek/jaen": "^1.0.0-rc.20",
     "@atsnek/jaen-fields-mdx": "^1.0.0-rc.2",
     "@chakra-ui/icons": "^2.1.1",
     "@chakra-ui/react": "^2.8.1",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
-    "@react-icons/all-files": "^4.1.0",
+    "@react-icons/all-files": "https://github.com/react-icons/react-icons/releases/download/v4.11.0/react-icons-all-files-4.11.0.tgz",
     "@snek-at/gatsby-theme-shopify": "^1.14.5",
     "@snek-at/uikit": "^1.1.0",
     "@snek-functions/origin": "^0.8.3",
@@ -30,7 +30,7 @@
     "framer-motion": "^10.0.1",
     "gatsby": "^5",
     "gatsby-plugin-image": "^3",
-    "gatsby-plugin-jaen": "^1.0.0-rc.31",
+    "gatsby-plugin-jaen": "^1.0.0-rc.32",
     "gatsby-plugin-react-svg": "^3.3.0",
     "gatsby-plugin-sharp": "^5",
     "gatsby-plugin-sitemap": "^6.9.0",
@@ -38,7 +38,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.4",
-    "react-icons": "^4.8.0",
     "react-photo-view": "^1.2.3",
     "react-slick": "^0.29.0",
     "react-text-loop": "^2.3.0",
@@ -49,6 +48,7 @@
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@types/react-slick": "^0.23.10",
+    "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.31",
     "typescript": "^4.9.5"
   },
   "resolutions": {

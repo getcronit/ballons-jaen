@@ -2,7 +2,7 @@ import {Box, Grid, Heading, HStack, Stack, Text} from '@chakra-ui/react'
 import {Field, useContentManagement} from '@atsnek/jaen'
 import {navigate} from 'gatsby'
 import {FC} from 'react'
-import {BiChevronRight} from 'react-icons/bi'
+import {FaChevronRight} from '@react-icons/all-files/fa/FaChevronRight'
 
 interface ICardWithImageBackgroundProps {
   card: {
@@ -135,7 +135,7 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
                 borderRadius="full"
                 boxShadow="0 0 0px 0px white"
                 transition="ease-in 0.2s">
-                <BiChevronRight />
+                <FaChevronRight />
               </Grid>
             </HStack>
           </Stack>

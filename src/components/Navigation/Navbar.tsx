@@ -1,34 +1,30 @@
-import {ChevronDownIcon, CloseIcon, HamburgerIcon} from '@chakra-ui/icons'
 import {
   Box,
   Button,
   ButtonGroup,
-  Collapse,
   Flex,
   Icon,
   IconButton,
-  Link,
   Stack,
-  Text,
-  Tooltip,
-  useDisclosure
+  Tooltip
 } from '@chakra-ui/react'
 
 import HBalloon from '../../common/assets/hballoon.inline.svg'
 
-import {BallonButton} from '../molecules/BallonButton'
+import {FaLongArrowAltLeft} from '@react-icons/all-files/fa/FaLongArrowAltLeft'
+import {FaShopify} from '@react-icons/all-files/fa/FaShopify'
+import {FaShoppingCart} from '@react-icons/all-files/fa/FaShoppingCart'
 import {Link as GatsbyLink, navigate} from 'gatsby'
 import {FC} from 'react'
-import {AiOutlineArrowLeft, AiOutlineShop} from 'react-icons/ai'
-import {FaPhoneAlt, FaShopify, FaShoppingCart} from 'react-icons/fa'
 import {LayoutMode} from '../../types/commonTypes'
+import {BallonButton} from '../molecules/BallonButton'
 import {SearchbarButton} from '../molecules/Searchbar'
 import BottomNav from './BottomNav'
 import {NavAuthButton} from './NavAuthButton'
 
+import {useAuthenticationContext} from '@atsnek/jaen'
 import {Logo} from '../../common/assets/Logo'
 import {MobileHambuger} from './MobileHamburger'
-import {useAuthenticationContext} from '@atsnek/jaen'
 
 interface INavbarProps {
   mode: LayoutMode
@@ -119,7 +115,7 @@ export const Navbar: FC<INavbarProps> = ({
                 as={GatsbyLink}
                 to="/"
                 size="sm"
-                icon={<AiOutlineArrowLeft />}
+                icon={<FaLongArrowAltLeft />}
               />
               <NavAuthButton
                 display={{

@@ -1,8 +1,9 @@
-import {Button, Flex, Grid, Heading, Image, Stack, Text} from '@chakra-ui/react'
 import {Field} from '@atsnek/jaen'
+import {Button, Flex, Grid, Heading, Stack} from '@chakra-ui/react'
+import {FaChevronRight} from '@react-icons/all-files/fa/FaChevronRight'
 import {Link} from 'gatsby'
 import {FC} from 'react'
-import {BiChevronRight} from 'react-icons/bi'
+
 import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
 import {BlogMeta} from '../BlogPage/BlogMeta'
 import {BlogTags} from '../BlogPage/BlogTags'
@@ -83,7 +84,7 @@ const BlogCard: FC<IBlogCardProps> = ({slug}) => {
                 bg="red.500"
                 fontSize={{lg: 'lg'}}
                 borderRadius="full">
-                <BiChevronRight />
+                <FaChevronRight />
               </Grid>
             }>
             Weiterlesen

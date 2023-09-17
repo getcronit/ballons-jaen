@@ -1,6 +1,7 @@
 import {Button, ButtonGroup, HStack, Icon, IconButton} from '@chakra-ui/react'
 import {SearchProvider} from '@snek-at/gatsby-theme-shopify'
-import {FaSearch, FaShoppingBasket} from 'react-icons/fa'
+import {FaSearch} from '@react-icons/all-files/fa/FaSearch'
+import {FaShoppingBasket} from '@react-icons/all-files/fa/FaShoppingBasket'
 
 import {BasketDrawerProvider, useBasket} from '../../services/basket'
 import {SearchModalProvider, useSearch} from '../../services/search'

@@ -1,19 +1,22 @@
-import { Box, ButtonGroup, Container, Flex, HStack, IconButton, Image } from '@chakra-ui/react'
-import { BallonButton as Button } from '../molecules/BallonButton'
-import { Link, navigate } from 'gatsby'
-import { FC } from 'react'
 import {
-  AiOutlineArrowLeft,
-  AiOutlineSearch,
-  AiOutlineShop,
-  AiOutlineShoppingCart
-} from 'react-icons/ai'
-import { FaPhoneAlt, FaShoppingBag, FaUser } from 'react-icons/fa'
-import { useContactModal } from '../../services/contact'
+  Box,
+  ButtonGroup,
+  Container,
+  Flex,
+  HStack,
+  IconButton,
+  Image
+} from '@chakra-ui/react'
+import {BallonButton as Button} from '../molecules/BallonButton'
+import {Link, navigate} from 'gatsby'
+import {FC} from 'react'
+import {AiOutlineShop} from '@react-icons/all-files/ai/AiOutlineShop'
+import {AiOutlineShoppingCart} from '@react-icons/all-files/ai/AiOutlineShoppingCart'
+import {FaPhoneAlt} from '@react-icons/all-files/fa/FaPhoneAlt'
+import {useContactModal} from '../../services/contact'
 
-import { LayoutMode } from '../../types/commonTypes'
-import { NavAuthButton } from './NavAuthButton'
-import { SearchbarButton } from '../molecules/Searchbar'
+import {LayoutMode} from '../../types/commonTypes'
+import {NavAuthButton} from './NavAuthButton'
 
 interface IDesktopNavProps {
   mode: LayoutMode
@@ -21,7 +24,11 @@ interface IDesktopNavProps {
   onSearchClick?: () => void
 }
 
-const DesktopNav: FC<IDesktopNavProps> = ({ mode, onSearchClick, onBasketClick }) => {
+const DesktopNav: FC<IDesktopNavProps> = ({
+  mode,
+  onSearchClick,
+  onBasketClick
+}) => {
   const contactModal = useContactModal()
 
   return (
@@ -51,7 +58,7 @@ const DesktopNav: FC<IDesktopNavProps> = ({ mode, onSearchClick, onBasketClick }
               //as={GatsbyLink}
               //to="/"
               cursor={'pointer'}
-              spacing={{ base: '10', md: '20' }}
+              spacing={{base: '10', md: '20'}}
               alignItems={'center'}
               justifyContent={'center'}
               maxW="2xl">
@@ -69,7 +76,7 @@ const DesktopNav: FC<IDesktopNavProps> = ({ mode, onSearchClick, onBasketClick }
                 //w={{ base: '20rem', '2xl': '26.25rem' }}
                 //h="{{ base: '2.875rem', '2xl': '2.125rem' }}"
 
-                maxW={"300px"}
+                maxW={'300px'}
                 src="/images/red_logo.png"
                 alt="Logo"
               />

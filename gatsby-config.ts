@@ -39,6 +39,7 @@ const config: GatsbyConfig = {
         snekResourceId: `63571eee-f41c-4745-9130-d746c2cb97a3`
       }
     }
+    // 'gatsby-plugin-webpack-bundle-analyser-v2'
   ]
 }
 

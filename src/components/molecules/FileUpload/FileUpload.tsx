@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react'
 import React, {useCallback} from 'react'
 import {useDropzone} from 'react-dropzone'
-import {AiFillFileAdd} from 'react-icons/ai'
+import {FaFileUpload} from '@react-icons/all-files/fa/FaFileUpload'
 
 export interface FileUploadProps {
   onFilesUploaded: (files: File[]) => void
@@ -52,7 +52,7 @@ export const Dropzone: React.FC<FileUploadProps> = ({onFilesUploaded}) => {
       {uploadedFile && (
         <Box m="4">
           <HStack>
-            <Icon as={AiFillFileAdd} />
+            <Icon as={FaFileUpload} />
             <Box>{uploadedFile.name}</Box>
 
             <IconButton
@@ -78,7 +78,7 @@ export const Dropzone: React.FC<FileUploadProps> = ({onFilesUploaded}) => {
         borderColor={borderColor}
         {...getRootProps()}>
         <input {...getInputProps()} />
-        <Icon as={AiFillFileAdd} mr={2} />
+        <Icon as={FaFileUpload} mr={2} />
         <p>{dropText}</p>
       </Center>
     </VStack>

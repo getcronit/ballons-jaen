@@ -37,9 +37,9 @@ import {
   Wrap,
   WrapItem
 } from '@chakra-ui/react'
+import {FaFilter} from '@react-icons/all-files/fa/FaFilter'
 import {OptionBase} from 'chakra-react-select'
 import React, {ReactNode, useEffect, useMemo} from 'react'
-import {BsFilterCircleFill} from 'react-icons/bs'
 import {BallonButton} from '../../molecules/BallonButton'
 import {OverflownText} from '../../OverflownText'
 
@@ -1004,7 +1004,7 @@ const FilterDrawer: React.FC<
   return (
     <>
       <Button
-        leftIcon={<BsFilterCircleFill />}
+        leftIcon={<FaFilter />}
         size="sm"
         onClick={drawerDisclosure.onOpen}
         {...buttonProps}>

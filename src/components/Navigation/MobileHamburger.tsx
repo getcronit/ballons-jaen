@@ -1,6 +1,6 @@
+import {useAuthenticationContext} from '@atsnek/jaen'
 import {CloseIcon, HamburgerIcon} from '@chakra-ui/icons'
 import {
-  Button,
   Divider,
   Drawer,
   DrawerBody,
@@ -9,19 +9,17 @@ import {
   DrawerHeader,
   DrawerOverlay,
   IconButton,
-  IconButtonProps,
   Stack,
-  VStack,
-  useDisclosure
+  useDisclosure,
+  VStack
 } from '@chakra-ui/react'
+import {FaUser} from '@react-icons/all-files/fa/FaUser'
 import {navigate} from 'gatsby'
-import {FaPhoneAlt, FaSearch, FaUser} from 'react-icons/fa'
 import {Logo} from '../../common/assets/Logo'
 import {useContactModal} from '../../services/contact'
-import {BottomNavLinks} from './NavLinks'
-import {BallonButton} from '../molecules/BallonButton'
 import {useSearch} from '../../services/search'
-import {useAuthenticationContext} from '@atsnek/jaen'
+import {BallonButton} from '../molecules/BallonButton'
+import {BottomNavLinks} from './NavLinks'
 
 export const MobileHambuger: React.FC<{
   pathname: string

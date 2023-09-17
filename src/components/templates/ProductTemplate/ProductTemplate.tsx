@@ -3,10 +3,8 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
-  Button,
   Center,
   Container,
-  Divider,
   Flex,
   Heading,
   HStack,
@@ -29,7 +27,6 @@ import {
   Wrap,
   WrapItem
 } from '@chakra-ui/react'
-import {BallonButton} from '../../molecules/BallonButton'
 import {FaShare} from '@react-icons/all-files/fa/FaShare'
 import {FaShoppingBasket} from '@react-icons/all-files/fa/FaShoppingBasket'
 import {
@@ -39,13 +36,20 @@ import {
   ShopifyProduct,
   withStoreContext
 } from '@snek-at/gatsby-theme-shopify'
-import {Link, navigate} from 'gatsby'
+import {Link} from 'gatsby'
 import {GatsbyImage} from 'gatsby-plugin-image'
 import React, {useEffect, useState} from 'react'
-import {BsBalloonHeart, BsBalloonHeartFill} from 'react-icons/bs'
-import {FaBoxes, FaChevronRight, FaRuler, FaTruck} from 'react-icons/fa'
+
+import {BsBalloonHeart} from '@react-icons/all-files/bs/BsBalloonHeart'
+import {BsBalloonHeartFill} from '@react-icons/all-files/bs/BsBalloonHeartFill'
+
+import {FaBoxes} from '@react-icons/all-files/fa/FaBoxes'
+import {FaRuler} from '@react-icons/all-files/fa/FaRuler'
+
 import {ChevronRightIcon} from '@chakra-ui/icons'
 import {PhotoProvider, PhotoView} from 'react-photo-view'
+
+import {BallonButton} from '../../molecules/BallonButton'
 import {getSrcFromImageData} from '../../../common/get-src-from-image-data'
 
 import {
@@ -55,8 +59,6 @@ import {
 import {getProductPrices, replaceHexColorsInHTML} from '../../../common/utils'
 import {useBasket} from '../../../services/basket'
 import {ProductSlider} from '../../molecules/ProductSlider'
-import NewsSlider from '../../organisms/NewsSlider/NewsSlider'
-import ProductsPageShell from '../ProductsTemplate/ProductsPageShell'
 
 export interface ProductTemplateProps extends ProductPageData {
   path: string
