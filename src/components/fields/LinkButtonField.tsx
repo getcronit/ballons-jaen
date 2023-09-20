@@ -110,7 +110,7 @@ const LinkButtonField: React.FC<
   const [urlValue, setUrlValue] = React.useState<string>('/')
 
   React.useEffect(() => {
-    const hiddenUrlFieldDefaultValue = defaultUrl || 'https://example.com'
+    const hiddenUrlFieldDefaultValue = defaultUrl || '/'
 
     const valueWithoutHTML =
       (hiddenUrlField.value || hiddenUrlField.staticValue)?.replace(
@@ -123,29 +123,26 @@ const LinkButtonField: React.FC<
     setUrlValue(valueWithoutHTML)
   }, [defaultUrl, hiddenUrlField])
 
-  const handleButtonClick = () => {
-    navigate(urlValue)
+  const btn = (
+    <BallonButton
+      as={Link}
+      to={buttonTextField.isEditing ? undefined : urlValue}
+      state={{noScroll: true}}
+      mr={3}
+      isDisabled={buttonTextField.isEditing}
+      {...buttonProps}
+      py="7 !important">
+      <Field.Text name={name} defaultValue={defaultValue || 'Button Text'} />
+    </BallonButton>
+  )
+
+  if (!buttonTextField.isEditing) {
+    return btn
   }
 
   return (
     <Box pos={'relative'} maxW={'fit-content'} pointerEvents="auto">
-      <Field.Text
-        as={BallonButton}
-        py="7 !important"
-        asAs={Link}
-        to={urlValue}
-        state={{noScroll: true}}
-        {...buttonProps}
-        // onClick only if not editing
-        // onClick={buttonTextField.isEditing ? undefined : handleButtonClick}
-        mr={3}
-        //disabled={buttonTextField.isEditing}
-        cursor={
-          buttonTextField.isEditing ? 'text !important' : 'pointer !important'
-        }
-        name={name}
-        defaultValue={defaultValue || 'Button Text'}
-      />
+      {btn}
       {buttonTextField.isEditing && (
         <Box pos={'absolute'} right={0} top={0}>
           <Popover

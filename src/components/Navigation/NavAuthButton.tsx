@@ -15,6 +15,7 @@ import {FaUser} from '@react-icons/all-files/fa/FaUser'
 import {useIsClient} from '../../common/useIsClient'
 import {useAuthenticationContext} from '@atsnek/jaen'
 import {useBasket} from '../../services/basket'
+import {forwardRef} from 'react'
 
 export interface NavAuthButtonProps extends ButtonProps {}
 
@@ -29,27 +30,37 @@ export const NavAuthButton: React.FC<NavAuthButtonProps> = props => {
     return null
   }
 
-  const responsiveButton = (
-    <IconButton
-      variant="ghost"
-      size="md"
-      icon={
-        <Icon filter="drop-shadow(1px 2px 2px rgb(0 0 0 / 0.1))" as={FaUser} />
-      }
-      aria-label="Login"
-      onClick={openLoginModal}
-      {...props}
-    />
+  const ResponsiveButton = forwardRef(
+    (props: ButtonProps, ref: React.Ref<HTMLButtonElement>) => (
+      <IconButton
+        ref={ref}
+        variant="ghost"
+        size="md"
+        icon={
+          <Icon
+            filter="drop-shadow(1px 2px 2px rgb(0 0 0 / 0.1))"
+            as={FaUser}
+          />
+        }
+        aria-label="Login"
+        {...props}
+        onClick={openLoginModal}
+      />
+    )
   )
 
   if (!user) {
-    return <Tooltip label="Login">{responsiveButton}</Tooltip>
+    return (
+      <Tooltip label="Login">
+        <ResponsiveButton {...props} />
+      </Tooltip>
+    )
   }
 
   return (
     <Menu>
       <Tooltip label="Mein Konto">
-        <MenuButton>{responsiveButton}</MenuButton>
+        <MenuButton as={ResponsiveButton} {...props} />
       </Tooltip>
 
       <MenuList>
