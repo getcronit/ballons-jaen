@@ -16,7 +16,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@atsnek/jaen": "^1.0.0-rc.21",
+    "@atsnek/jaen": "^1.0.0-rc.22",
     "@atsnek/jaen-fields-mdx": "^1.0.0-rc.2",
     "@chakra-ui/icons": "^2.1.1",
     "@chakra-ui/react": "^2.8.1",
