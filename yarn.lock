@@ -70,10 +70,10 @@
     vfile-message "^4.0.2"
     vfile-statistics "^3.0.0"
 
-"@atsnek/jaen@^1.0.0-rc.22":
-  version "1.0.0-rc.22"
-  resolved "https://registry.yarnpkg.com/@atsnek/jaen/-/jaen-1.0.0-rc.22.tgz#9f1419cae557f2f65f846ac3bcb6f32a40ec7dbd"
-  integrity sha512-a7giU7kN1OeuSoiR4MNOthrVj4JyIDpi8BNnmy6vXv6ARavhbaV/SDa6CeeKUOk9m5EHUdVl30ZDGBYCweTXSQ==
+"@atsnek/jaen@^1.0.0-rc.25":
+  version "1.0.0-rc.25"
+  resolved "https://registry.yarnpkg.com/@atsnek/jaen/-/jaen-1.0.0-rc.25.tgz#e5708793b3babbddcae013cef8b6167864239dd7"
+  integrity sha512-BPkuXqKSuhU7AjZuwqSy2A6KixCV/bD6w2spjAD3JBBlOAm8UnIg+L2jB+n/RKg6aGyPCW0SGviQSDU6kI/Ncg==
   dependencies:
     "@chakra-ui/react" "^2.8.0"
     "@react-icons/all-files" "https://github.com/react-icons/react-icons/releases/download/v4.11.0/react-icons-all-files-4.11.0.tgz"
@@ -8378,11 +8378,12 @@ gatsby-graphiql-explorer@^3.12.0:
   resolved "https://registry.yarnpkg.com/gatsby-graphiql-explorer/-/gatsby-graphiql-explorer-3.12.0.tgz#13122bcd742de0f4ad51ff87c9f4c7c4def78da1"
   integrity sha512-vr86oLhif5uZ+VSTE34DYjtBDCIHWpJHh4+65fmgZh+WtDv1lyONJ/WWmyD+dNMHlGsZtR6wVvBjrj5iFRDGRw==
 
-gatsby-jaen-resource@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/gatsby-jaen-resource/-/gatsby-jaen-resource-0.0.2.tgz#121f3a756c1343b68fca9542a40aaaaa9d578d46"
-  integrity sha512-vZPcZG+6oJ+cBIXLfgLVcqb37SbSI1wYYQ/qtrpx/ocU6DtMBMzU0kNIZSRoqsWrhVLtH2CqcyCsgQrJLUcvng==
+gatsby-jaen-resource@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/gatsby-jaen-resource/-/gatsby-jaen-resource-0.0.4.tgz#ba6bca41431e6134981e3128671f5f48a0bc754f"
+  integrity sha512-alnJjZF7G9hG5P36EJCFiwhkcANPkj4UyXVC5+fjjpxiX5SPA7o00slBUoO4C8tlFScAAORDJ6U4Xk3CZbtBtw==
   dependencies:
+    "@react-icons/all-files" "https://github.com/react-icons/react-icons/releases/download/v4.11.0/react-icons-all-files-4.11.0.tgz"
     react-hook-form "^7.46.1"
     snek-query "^0.0.83"
 
@@ -8512,23 +8513,23 @@ gatsby-plugin-image@^2.12.1, gatsby-plugin-image@^3, gatsby-plugin-image@^3.11.0
     objectFitPolyfill "^2.3.5"
     prop-types "^15.8.1"
 
-gatsby-plugin-jaen@^1.0.0-rc.34:
-  version "1.0.0-rc.34"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-jaen/-/gatsby-plugin-jaen-1.0.0-rc.34.tgz#3be22bb78a9fa2f6f4d2c20423f3ef1ffc3be655"
-  integrity sha512-xe7kkXfL6jZLijFPOEQEHfq3UbKB1CzAlWony56JRswczbvHVFZhaDR1fqMlquLLUulm+s38muy5sUeDvTU0XQ==
+gatsby-plugin-jaen@^1.0.0-rc.41:
+  version "1.0.0-rc.41"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-jaen/-/gatsby-plugin-jaen-1.0.0-rc.41.tgz#aa1a387126740801fb0f496280f1628716d8f4d5"
+  integrity sha512-YOKwGGBDTfEpq8d5xG4APbFE7lNqYFGTFypHB7eXqu/aPFs1X5WPZk7Hd3K7cUNJs/ONm00zz17UlWHrNWiUkQ==
   dependencies:
     "@chakra-ui/react" "^2.8.0"
     "@emotion/react" "^11.11.1"
     "@emotion/styled" "^11.11.0"
     framer-motion "^10.13.0"
-    gatsby-jaen-resource "^0.0.2"
+    gatsby-jaen-resource "^0.0.4"
     gatsby-plugin-google-gtag "^5.12.0"
     gatsby-plugin-manifest "^5.12.0"
     gatsby-plugin-sharp "^5.11.0"
     gatsby-plugin-sitemap "^6.12.0"
     gatsby-plugin-ts-config "^2.1.3"
     gatsby-source-filesystem "^5.11.0"
-    gatsby-source-jaen "^1.0.0-rc.15"
+    gatsby-source-jaen "^1.0.0-rc.16"
     gatsby-transformer-sharp "^5.11.0"
     isomorphic-dompurify "^1.8.0"
     react-complex-tree "^2.2.0"
@@ -8773,11 +8774,12 @@ gatsby-source-filesystem@^5.11.0, gatsby-source-filesystem@^5.12.0:
     valid-url "^1.0.9"
     xstate "^4.38.0"
 
-gatsby-source-jaen@^1.0.0-rc.15:
-  version "1.0.0-rc.15"
-  resolved "https://registry.yarnpkg.com/gatsby-source-jaen/-/gatsby-source-jaen-1.0.0-rc.15.tgz#a0d28e648619b9cfd65e46ecd65208e6bfd869e3"
-  integrity sha512-bVnGZSHscHUAq2pJqUSEFKrT+98nS9W/gDfutc5VWbPOugqbkInBIKcVXWoOgRUgZOBmEikFfoPwiDrlNqb3/Q==
+gatsby-source-jaen@^1.0.0-rc.16:
+  version "1.0.0-rc.16"
+  resolved "https://registry.yarnpkg.com/gatsby-source-jaen/-/gatsby-source-jaen-1.0.0-rc.16.tgz#d352c475542c8048d275b07cc9f6b9a2cfead702"
+  integrity sha512-FIPd8q41c+pcy8k9RfrwXGeuerYC2fTmaueVYlavBjqQ5ZI/b2+cbxk39q8XGKfLiarrMwWXrstBKRKRtwkLxQ==
   dependencies:
+    "@babel/generator" "^7.22.15"
     "@babel/parser" "^7.22.11"
     "@babel/traverse" "^7.22.11"
     deepmerge "^4.2.2"
