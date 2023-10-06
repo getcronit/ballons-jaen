@@ -25,7 +25,7 @@
     "@react-icons/all-files": "https://github.com/react-icons/react-icons/releases/download/v4.11.0/react-icons-all-files-4.11.0.tgz",
     "@snek-at/gatsby-theme-shopify": "^1.14.5",
     "@snek-at/uikit": "^1.1.0",
-    "@snek-functions/origin": "^0.8.16",
+    "@snek-functions/origin": "^0.8.21",
     "chakra-react-select": "^4.4.0",
     "framer-motion": "^10.0.1",
     "gatsby": "^5",
