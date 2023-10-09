@@ -38,11 +38,6 @@ jobs:
           # https://developer.github.com/apps/building-github-apps/authenticating-with-github-apps/#http-based-git-access-by-an-installation
           git remote set-url origin "https://x-access-token:${{secrets.GITHUB_TOKEN}}@github.com/${GITHUB_REPOSITORY}.git"
 
-      # https://classic.yarnpkg.com/lang/en/docs/cli/install/#toc-yarn-install-pure-lockfile
-      - name: Install Jaen globally
-        # https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstepsrun
-        run: npm i -g "@snek-at/jaen@0.0.108"
-
       - name: Migrate Jaen Data 📝
         # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#
         working-directory: ${{github.event.client_payload.cwd}}
@@ -54,7 +49,7 @@ jobs:
           #git checkout --orphan gh-pages
           git checkout main
 
-          jaen migrate -m ${{github.event.client_payload.migrationURL}}
+          echo "${{github.event.client_payload.migrationURL}}" >> ./jaen-data/patches.txt
 
           # Git: add, commit, and push changes
           git add .
