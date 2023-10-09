@@ -87,6 +87,30 @@ export const pageConfig: PageConfig = {
 export const Head = (props: ProductPageTemplateProps) => {
   const shopifyProduct = props.data.shopifyProduct
 
+  // Create a structured data object for the product
+  const structuredData = {
+    '@context': 'http://schema.org/',
+    '@type': 'Product',
+    name: shopifyProduct.title,
+    description: shopifyProduct.description,
+    productID: shopifyProduct.id,
+    brand: {
+      '@type': 'Brand',
+      name: shopifyProduct.vendor
+    },
+    offers: {
+      '@type': 'Offer',
+      price: shopifyProduct.variants[0].price,
+      priceCurrency: 'USD', // Change this to the appropriate currency
+      availability: 'http://schema.org/InStock' // Change based on product availability
+    },
+    image:
+      shopifyProduct.featuredMedia?.image?.gatsbyImageData?.images?.fallback
+        ?.src,
+    url: props.location.href,
+    sku: shopifyProduct.variants[0].sku
+  }
+
   return (
     <JaenHead
       {...(props as any)}
@@ -107,7 +131,10 @@ export const Head = (props: ProductPageTemplateProps) => {
                 ?.fallback?.src
           }
         }
-      }}
-    />
+      }}>
+      <script type="application/ld+json">
+        {JSON.stringify(structuredData)}
+      </script>
+    </JaenHead>
   )
 }
