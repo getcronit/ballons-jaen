@@ -16,7 +16,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@atsnek/jaen": "^1.0.0-rc.31",
+    "@atsnek/jaen": "^1.0.0-rc.37",
     "@atsnek/jaen-fields-mdx": "^1.0.0-rc.2",
     "@chakra-ui/icons": "^2.1.1",
     "@chakra-ui/react": "^2.8.1",
@@ -30,7 +30,7 @@
     "framer-motion": "^10.0.1",
     "gatsby": "^5",
     "gatsby-plugin-image": "^3",
-    "gatsby-plugin-jaen": "^1.0.0-rc.52",
+    "gatsby-plugin-jaen": "^1.0.0-rc.61",
     "gatsby-plugin-react-svg": "^3.3.0",
     "gatsby-plugin-sharp": "^5",
     "gatsby-plugin-sitemap": "^6.9.0",
