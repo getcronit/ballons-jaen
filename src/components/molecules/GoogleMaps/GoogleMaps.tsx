@@ -44,7 +44,7 @@ export const GoogleMaps = ({src, ...props}: GoogleMapsProps) => {
 
       setMapsEnabled(analyticsEnabled)
     }
-  }, [])
+  }, [cc])
 
   if (!isMounted) {
     return (
