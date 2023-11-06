@@ -23,6 +23,7 @@ import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
 import SkylineL1 from '../../../common/assets/skyline1.inline.svg'
 import SkylineL2 from '../../../common/assets/skyline2.inline.svg'
 import SkylineL3 from '../../../common/assets/skyline3.inline.svg'
+import { Ballons } from '../../../common/assets/Ballons'
 
 export interface ParallaxHeroProps {
   noScroll?: boolean
@@ -158,14 +159,15 @@ export const ParallaxHero = ({noScroll}: ParallaxHeroProps) => {
           height={{md: 'calc(100vh - 7.5rem)', lg: 'calc(100vh - 8rem)'}}
           display={{base: 'none', md: 'flex'}}>
           {switchingHeadline}
-          <Field.Text
+          {/* <Field.Text
             as={Heading}
             name="heroTextBallons"
             defaultValue="<i>Ballons</i>"
             fontSize={{base: '2xl', md: '8xl', lg: '9xl'}}
             fontWeight="semibold"
             textAlign="center"
-          />
+          /> */}
+          <Ballons mb={16} mx={"auto"} color={"red.500"} h={{base: '4.5rem', md: '8.25rem', lg: '8.875rem'}} w="auto"/>
           <HStack
             mt="-5"
             justify="center"
