@@ -109,7 +109,7 @@ export const MobileHero = () => {
         justifyContent="center"
         alignItems={'center'}
         display={{base: 'flex', md: 'none'}}>
-        <HStack>
+        <HStack mt="24">
           <BallonSvg as={HBalloon} className="background-Ballon" />
           {/* <Field.Text
             as={Heading}
@@ -120,7 +120,7 @@ export const MobileHero = () => {
             textAlign="center"
             pt="2"
           /> */}
-          <Ballons mb={16} mx={"auto"} color={"red.500"} h={{base: '4.5rem', md: '8.25rem', lg: '8.875rem'}} w="auto"/>
+          <Ballons mb={12} mx={"auto"} color={"red.500"} h={{base: '4.5rem', md: '8.25rem', lg: '8.875rem'}} w="auto"/>
         </HStack>
         <Stack alignItems={'center'}>
           <LinkButtonField
