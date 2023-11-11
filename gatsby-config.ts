@@ -41,7 +41,8 @@ const config: GatsbyConfig = {
           // trackingIds: ['G-M58K75M9PG']
         }
       }
-    }
+    },
+    `gatsby-jaen-mailpress`
     // 'gatsby-plugin-webpack-bundle-analyser-v2'
   ]
 }

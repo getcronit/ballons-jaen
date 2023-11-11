@@ -29,6 +29,7 @@
     "chakra-react-select": "^4.4.0",
     "framer-motion": "^10.0.1",
     "gatsby": "^5",
+    "gatsby-jaen-mailpress": "^0.0.1",
     "gatsby-plugin-image": "^3",
     "gatsby-plugin-jaen": "^1.0.0-rc.61",
     "gatsby-plugin-react-svg": "^3.3.0",
