@@ -90,7 +90,7 @@ export const ContactModalProvider: React.FC<ContactModalDrawerProps> = ({
           }
         },
         template: {
-          id: 'BALLOONS_CONTACT_EMAIL',
+          id: '5ff2fcab-0cbc-4746-b9aa-0d6530e140b8',
           values: {
             firstName: data.firstName,
             lastName: data.lastName,
