@@ -238,7 +238,7 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
             }
           },
           template: {
-            id: 'BALLOONS_ORDER_EMAIL',
+            id: '1ad08ebb-4aa6-4bd3-9795-1f55de17890d',
             values: {
               cart: cleanedLineItems.map(lineItem => ({
                 name: lineItem.title.toString(),
