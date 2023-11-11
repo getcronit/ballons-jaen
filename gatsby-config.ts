@@ -38,7 +38,7 @@ const config: GatsbyConfig = {
       options: {
         snekResourceId: `63571eee-f41c-4745-9130-d746c2cb97a3`,
         googleAnalytics: {
-          trackingIds: ['G-M58K75M9PG']
+          // trackingIds: ['G-M58K75M9PG']
         }
       }
     }
