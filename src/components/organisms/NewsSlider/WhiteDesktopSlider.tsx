@@ -29,7 +29,7 @@ const WhiteDesktopSlider: FC<IWhiteDesktopSliderProps> = ({
 
   var settings = {
     dots: true,
-    infinite: index.children.length > slidesToShow,
+    infinite: index.childPages.length > slidesToShow,
     speed: 500,
     slidesToShow,
     slidesToScroll: 1
