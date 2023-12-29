@@ -49,6 +49,10 @@
   border-radius: 50%;
 }
 
+.slick-prev:before, .slick-next:before {
+  color: #e53e3e !important;
+}
+
 .white_slider .slick-dots li button:before {
   display: none;
 }
