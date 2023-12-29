@@ -8,20 +8,20 @@ import {
   Text,
   VStack
 } from '@chakra-ui/react'
-import {BallonButton} from '../../molecules/BallonButton'
-import {Field, useContentManagement} from '@atsnek/jaen'
-import {Link} from 'gatsby'
-import {FC} from 'react'
+import { BallonButton } from '../../molecules/BallonButton'
+import { Field, useContentManagement } from '@atsnek/jaen'
+import { Link } from 'gatsby'
+import { FC } from 'react'
 import Slider from 'react-slick'
-import {today} from '../../../common/utils'
-import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
-import {JaenPageIndexType} from '../../../types/commonTypes'
+import { today } from '../../../common/utils'
+import { CONTAINER_MAX_WIDTH } from '../../../constant/sizes'
+import { JaenPageIndexType } from '../../../types/commonTypes'
 
 interface IWhiteMobileSliderProps {
   index: JaenPageIndexType
 }
 
-const WhiteMobileSlider: FC<IWhiteMobileSliderProps> = ({index}) => {
+const WhiteMobileSlider: FC<IWhiteMobileSliderProps> = ({ index }) => {
   const slidesToShow = 1
 
   var settings = {
@@ -32,7 +32,7 @@ const WhiteMobileSlider: FC<IWhiteMobileSliderProps> = ({index}) => {
     slidesToScroll: 1
   }
 
-  const {isEditing} = useContentManagement()
+  const { isEditing } = useContentManagement()
 
   return (
     <Container maxW={CONTAINER_MAX_WIDTH} overflow="hidden" pos='relative' zIndex='1'>
@@ -60,19 +60,24 @@ const WhiteMobileSlider: FC<IWhiteMobileSliderProps> = ({index}) => {
                     pos="absolute"
                     top="-40"
                     overflow="hidden"
-                    boxSize={{base: '9.375rem'}}
+                    boxSize={{ base: '9.375rem' }}
                     bg="gray.800"
                     borderRadius="full">
                     <Field.Image name="image" />
                   </Box>
                 </Grid>
                 <VStack gap="0" flex="1" textAlign="center">
-                  <Field.Text
-                    fontSize="sm"
-                    color="gray.700"
-                    name="date"
-                    defaultValue={today()}
-                  />
+                  <Text fontSize={'sm'} color="gray.700">
+                    {page.jaenPageMetadata?.blogPost?.date
+                      ? new Date(
+                        page.jaenPageMetadata.blogPost.date
+                      ).toLocaleDateString('de-DE', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      })
+                      : today()}
+                  </Text>
                   <Field.Text
                     as={Heading}
                     color="black.500"
@@ -103,7 +108,7 @@ const WhiteMobileSlider: FC<IWhiteMobileSliderProps> = ({index}) => {
                   <BallonButton
                     as={Link}
                     to={`/wissen/${page.slug}`}
-                    size={{base: 'sm', md: 'md'}}
+                    size={{ base: 'sm', md: 'md' }}
                     variant="outline">
                     Mehr anzeigen
                   </BallonButton>
