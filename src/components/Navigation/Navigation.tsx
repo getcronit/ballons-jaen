@@ -8,7 +8,7 @@ import {useContactModal} from '../../services/contact'
 import {useSearch} from '../../services/search'
 import {LayoutMode} from '../../types/commonTypes'
 import TopNav from './TopNav'
-import {useAuthenticationContext} from '@atsnek/jaen'
+import {useAuth} from '@atsnek/jaen'
 
 interface INavigationProps {
   mode: LayoutMode
@@ -20,7 +20,7 @@ const Navigation: FC<INavigationProps> = ({mode, pathname}) => {
   const search = useSearch()
   const contactModal = useContactModal()
 
-  const {isAuthenticated} = useAuthenticationContext()
+  const {isAuthenticated} = useAuth()
 
   const handleOnBasketClick = () => {
     basket.onOpen()

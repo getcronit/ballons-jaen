@@ -6,7 +6,7 @@ import {PageConfig} from '@atsnek/jaen'
 import {PageProps} from 'gatsby'
 
 import {ProductsTemplate} from '../components/templates/ProductsTemplate'
-import {useAuthenticationContext} from '@atsnek/jaen'
+import {useAuth} from '@atsnek/jaen'
 import {useProducts} from '../contexts/products'
 
 export type ProductsPageTemplateProps = PageProps<
@@ -21,7 +21,7 @@ const ProductsPageTemplate: React.FC<ProductsPageTemplateProps> = props => {
   const {products, isFetching, hasNextPage, fetchNextPage, activeFilters} =
     useProducts()
 
-  const auth = useAuthenticationContext()
+  const auth = useAuth()
 
   const wholesale = !!auth.user
 

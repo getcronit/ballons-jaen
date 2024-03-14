@@ -13,14 +13,14 @@ import {
 import {Link, navigate} from 'gatsby'
 import {FaUser} from '@react-icons/all-files/fa/FaUser'
 import {useIsClient} from '../../common/useIsClient'
-import {useAuthenticationContext} from '@atsnek/jaen'
+import {useAuth} from '@atsnek/jaen'
 import {useBasket} from '../../services/basket'
 import {forwardRef} from 'react'
 
 export interface NavAuthButtonProps extends ButtonProps {}
 
 export const NavAuthButton: React.FC<NavAuthButtonProps> = props => {
-  const {user, openLoginModal, logout} = useAuthenticationContext()
+  const {user, openLoginModal, logout} = useAuth()
 
   const basket = useBasket()
 

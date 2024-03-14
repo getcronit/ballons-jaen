@@ -35,10 +35,24 @@ const config: GatsbyConfig = {
     },
     {
       resolve: `gatsby-plugin-jaen`,
+
       options: {
-        snekResourceId: `63571eee-f41c-4745-9130-d746c2cb97a3`,
+        remote: {
+          repository: 'atsnek/jaen-starter'
+        },
+        zitadel: {
+          organizationId: '257964756269268995',
+          clientId: '252746210698395651@services',
+          authority: 'https://accounts.cronit.io',
+          redirectUri: 'http://localhost:8000'
+        },
         googleAnalytics: {
           trackingIds: ['G-M58K75M9PG']
+        },
+        sentry: {
+          org: 'cronit',
+          project: 'jaen-my-gatsby-site',
+          dsn: 'https://de076d4e9960db9c63261282df7df44e@o4506263462871040.ingest.us.sentry.io/4506905935806464'
         }
       }
     },

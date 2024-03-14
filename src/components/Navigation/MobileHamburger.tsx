@@ -1,4 +1,4 @@
-import {useAuthenticationContext} from '@atsnek/jaen'
+import {useAuth} from '@atsnek/jaen'
 import {CloseIcon, HamburgerIcon} from '@chakra-ui/icons'
 import {
   Divider,
@@ -34,7 +34,7 @@ export const MobileHambuger: React.FC<{
     search.onOpen()
   }
 
-  const {user, openLoginModal, logout} = useAuthenticationContext()
+  const {user, openLoginModal, logout} = useAuth()
 
   return (
     <>

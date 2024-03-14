@@ -7,7 +7,7 @@ import {ProductGrid} from '../../../molecules/ProductGrid'
 //import { StickyStrokeLogo } from '../../../molecules/StickyStrokeLogo'
 import LinkButtonField from '../../../fields/LinkButtonField'
 import * as style from './style'
-import {useAuthenticationContext} from '@atsnek/jaen'
+import {useAuth} from '@atsnek/jaen'
 import {ProductSlider} from '../../../molecules/ProductSlider'
 
 export interface FeaturedProductsSectionProps {
@@ -29,7 +29,7 @@ export const FeaturedProducts = ({
   featuredProducts,
   productsPagePath
 }: FeaturedProductsProps) => {
-  const {user} = useAuthenticationContext()
+  const {user} = useAuth()
 
   return (
     <>

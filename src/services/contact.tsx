@@ -1,5 +1,5 @@
 import {useToast} from '@chakra-ui/react'
-import {getTokenPair, sq} from '@snek-functions/origin'
+import {sq} from 'gatsby-jaen-mailpress'
 import React, {useMemo} from 'react'
 import {RouteComponentProps} from '@reach/router'
 import {asEnumKey, doNotConvertToString} from 'snek-query'
@@ -8,7 +8,7 @@ import {
   ContactFormValues,
   ContactModal
 } from '../components/organisms/ContactModal'
-import {useAuthenticationContext} from '@atsnek/jaen'
+import {useAuth} from '@atsnek/jaen'
 import {useQueryRouter} from '../components/hooks/useQueryRouter'
 import {navigate} from 'gatsby'
 
@@ -59,7 +59,7 @@ export const ContactModalProvider: React.FC<ContactModalDrawerProps> = ({
 
   const toast = useToast()
 
-  const authentication = useAuthenticationContext()
+  const authentication = useAuth()
 
   const onOpen: ContactModalContextProps['onOpen'] = args => {
     const updatedMeta = {
@@ -82,23 +82,19 @@ export const ContactModalProvider: React.FC<ContactModalDrawerProps> = ({
     console.log(data, meta)
 
     const [_, errors] = await sq.mutate(m =>
-      m.mailpressMailSchedule({
+      m.sendTemplateMail({
         envelope: {
-          replyTo: {
-            value: data.email,
-            type: doNotConvertToString('EMAIL_ADDRESS') as any
-          }
+          replyTo: data.email
         },
-        template: {
-          id: '5ff2fcab-0cbc-4746-b9aa-0d6530e140b8',
-          values: {
-            firstName: data.firstName,
-            lastName: data.lastName,
-            email: data.email,
-            phone: data.phone,
-            message: data.message,
-            invokedOnUrl: meta?.url
-          }
+
+        id: '4fd4c6c5-c258-4c96-97b8-6b2e6e6cf264',
+        values: {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          phone: data.phone,
+          message: data.message,
+          invokedOnUrl: meta?.url
         }
       })
     )
@@ -131,9 +127,9 @@ export const ContactModalProvider: React.FC<ContactModalDrawerProps> = ({
     }
 
     return {
-      firstName: authentication.user.details?.firstName,
-      lastName: authentication.user.details?.lastName,
-      email: authentication.user.primaryEmail
+      firstName: authentication.user.profile.given_name,
+      lastName: authentication.user.profile.family_name,
+      email: authentication.user.profile.email
     }
   }, [authentication.user])
 

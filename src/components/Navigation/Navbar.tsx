@@ -22,7 +22,7 @@ import {SearchbarButton} from '../molecules/Searchbar'
 import BottomNav from './BottomNav'
 import {NavAuthButton} from './NavAuthButton'
 
-import {useAuthenticationContext} from '@atsnek/jaen'
+import {useAuth} from '@atsnek/jaen'
 import {Logo} from '../../common/assets/Logo'
 import {MobileHambuger} from './MobileHamburger'
 
@@ -41,7 +41,7 @@ export const Navbar: FC<INavbarProps> = ({
   onBasketClick,
   onContactClick
 }) => {
-  const {isAuthenticated} = useAuthenticationContext()
+  const {isAuthenticated} = useAuth()
 
   return (
     <Box

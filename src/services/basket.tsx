@@ -2,13 +2,13 @@ import {
   getFormattedProductPrices,
   withStoreContext
 } from '@snek-at/gatsby-theme-shopify'
-import {sq} from '@snek-functions/origin'
+import {sq} from 'gatsby-jaen-mailpress'
 import {doNotConvertToString} from 'snek-query'
 import React, {useCallback, useMemo} from 'react'
 
 import {BasketDrawer} from '../components/organisms/BasketDrawer'
 
-import {useAuthenticationContext} from '@atsnek/jaen'
+import {useAuth} from '@atsnek/jaen'
 import {useToast} from '@chakra-ui/react'
 import {OrderFormValues, OrderModal} from '../components/organisms/OrderModal'
 import {getProductPrices} from '../common/utils'
@@ -60,7 +60,7 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
       null
     )
 
-    const auth = useAuthenticationContext()
+    const auth = useAuth()
 
     // Override wholesale to true for now until shopify checkout is implemented and tested
     const isRealWholesale = !!auth.user
@@ -164,7 +164,7 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
     const [meta, setMeta] = React.useState<Record<string, any> | null>(null)
     const [isOrderOpen, setIsOrderOpen] = React.useState(false)
 
-    const authentication = useAuthenticationContext()
+    const authentication = useAuth()
 
     const onOrderClose = () => {
       setIsOrderOpen(false)
@@ -230,40 +230,35 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
       const order = await createOrFetchCheckout()
 
       const [_, errors] = await sq.mutate(m =>
-        m.mailpressMailSchedule({
+        m.sendTemplateMail({
           envelope: {
-            replyTo: {
-              value: data.email,
-              type: doNotConvertToString('EMAIL_ADDRESS') as any
-            }
+            replyTo: data.email
           },
-          template: {
-            id: '1ad08ebb-4aa6-4bd3-9795-1f55de17890d',
-            values: {
-              cart: cleanedLineItems.map(lineItem => ({
-                name: lineItem.title.toString(),
-                quantity: lineItem.quantity,
-                sku: lineItem.variant?.sku,
-                price: lineItem.variant?.price.amount,
-                imgSrc: lineItem.variant?.image?.src
-              })),
-              order: {
-                id: order.id,
-                totalPrice: order.totalPrice.amount,
-                currency: order.totalPrice.currencyCode,
-                note: data.message
-              },
-              customer: {
-                emailAddress: data.email,
-                firstName: data.firstName,
-                lastName: data.lastName,
-                phone: data.phone
-              },
-              wholesale: authentication.user ? true : false,
-              email: data.email,
-              message: data.message,
-              invokedOnUrl: meta?.url
-            }
+          id: '19144c40-4358-4dac-95bb-513461dcf20d',
+          values: {
+            cart: cleanedLineItems.map(lineItem => ({
+              name: lineItem.title.toString(),
+              quantity: lineItem.quantity,
+              sku: lineItem.variant?.sku,
+              price: lineItem.variant?.price.amount,
+              imgSrc: lineItem.variant?.image?.src
+            })),
+            order: {
+              id: order.id,
+              totalPrice: order.totalPrice.amount,
+              currency: order.totalPrice.currencyCode,
+              note: data.message
+            },
+            customer: {
+              emailAddress: data.email,
+              firstName: data.firstName,
+              lastName: data.lastName,
+              phone: data.phone
+            },
+            wholesale: authentication.user ? true : false,
+            email: data.email,
+            message: data.message,
+            invokedOnUrl: meta?.url
           }
         })
       )
@@ -300,9 +295,9 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
       }
 
       return {
-        firstName: authentication.user.details?.firstName,
-        lastName: authentication.user.details?.lastName,
-        email: authentication.user.primaryEmail
+        firstName: authentication.user.profile.given_name,
+        lastName: authentication.user.profile.family_name,
+        email: authentication.user.profile.email
       }
     }, [authentication.user])
 

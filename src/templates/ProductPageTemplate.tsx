@@ -11,7 +11,7 @@ import React from 'react'
 import {buildAllTags} from '../components/templates/ProductsTemplate/buildAllTags'
 import {ProductTemplate} from '../components/templates/ProductTemplate'
 
-import {useAuthenticationContext} from '@atsnek/jaen'
+import {useAuth} from '@atsnek/jaen'
 
 export type ProductPageTemplateProps = PageProps<
   ProductPageData & {
@@ -35,7 +35,7 @@ const ProductPageTemplate: React.FC<ProductPageTemplateProps> = props => {
     productTypes: productsPage.pageContext.productTypes
   })
 
-  const auth = useAuthenticationContext()
+  const auth = useAuth()
 
   const wholesale = !!auth.user
 
