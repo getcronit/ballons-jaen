@@ -1,12 +1,11 @@
-import { ButtonGroup, IconButton, Tooltip } from '@chakra-ui/react'
-import { FiMail } from '@react-icons/all-files/fi/FiMail'
-import { FiMapPin } from '@react-icons/all-files/fi/FiMapPin'
-import { FiSearch } from '@react-icons/all-files/fi/FiSearch'
+import {ButtonGroup, IconButton, Tooltip} from '@chakra-ui/react'
+import {FiMail} from '@react-icons/all-files/fi/FiMail'
+import {FiMapPin} from '@react-icons/all-files/fi/FiMapPin'
+import {FiSearch} from '@react-icons/all-files/fi/FiSearch'
 import React from 'react'
-import { useContactModal } from '../../../services/contact'
-import { navigate } from 'gatsby'
-import { useSearch } from '../../../services/search'
-
+import {useContactModal} from '../../../services/contact'
+import {navigate} from 'gatsby'
+import {useSearch} from '../../../services/search'
 
 export const SideButtons: React.FC = () => {
   const contactModal = useContactModal()
@@ -19,36 +18,27 @@ export const SideButtons: React.FC = () => {
   return (
     <ButtonGroup
       as="aside"
-      py='2'
-      px='1'
-      bg={{ base: 'rgba(255,255,255,.9)', md: 'transparent' }}
-      backdropFilter={{ base: 'blur(7px)', md: 'none' }}
-      //colorScheme="agt.yellowScheme"
+      py="2"
+      px="1"
       position="fixed"
-      bottom={{ base: '0', md: '50%' }}
+      bottom="50%"
       right="0"
       display="flex"
-      flexDirection={{ base: 'row', md: 'column-reverse' }}
-      w={{ base: '100%', md: 'unset' }}
+      flexDirection="column-reverse"
       spacing="0"
       gap={1.5}
       zIndex="999">
       <Tooltip label="Infos">
         <IconButton
           filter="drop-shadow(1px 2px 2px rgb(0 0 0 / 0.1))"
-          w={{ base: '100%', md: 'unset' }}
           aria-label="Location"
           icon={<FiMapPin />}
           onClick={() => navigate('/kontakt/')}
         />
       </Tooltip>
-      <Tooltip
-        label="Kontakt"
-        aria-label="Kontakt"
-      >
+      <Tooltip label="Kontakt" aria-label="Kontakt">
         <IconButton
           filter="drop-shadow(1px 2px 2px rgb(0 0 0 / 0.1))"
-          w={{ base: '100%', md: 'unset' }}
           aria-label="Contact"
           icon={<FiMail />}
           onClick={() => {
@@ -61,7 +51,6 @@ export const SideButtons: React.FC = () => {
       <Tooltip label="Artikel-Suche">
         <IconButton
           filter="drop-shadow(1px 2px 2px rgb(0 0 0 / 0.1))"
-          w={{ base: '100%', md: 'unset' }}
           aria-label="Search"
           icon={<FiSearch />}
           onClick={handleOnSearchClick}
