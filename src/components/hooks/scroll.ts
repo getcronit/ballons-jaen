@@ -17,19 +17,20 @@ export const useScrollSync = (
       const target = e.target as Document
 
       setScrollTop(target.documentElement.scrollTop)
-      if(sectionRef && !offsetTop){
-        offsetTop = sectionRef.current!.offsetTop
+      if (sectionRef?.current?.offsetTop && !offsetTop) {
+        offsetTop = sectionRef.current.offsetTop
         //alert(offsetTop)
       }
 
       if (ref.current) {
         ref.current!.scrollTop =
-        (target.documentElement.scrollTop -
-        (offsetTop ? offsetTop : ref.current!.offsetTop) -
-        (noScroll ? 999999999 : offset))/(1/(speed ? speed : 1))
+          (target.documentElement.scrollTop -
+            (offsetTop ? offsetTop : ref.current!.offsetTop) -
+            (noScroll ? 999999999 : offset)) /
+          (1 / (speed ? speed : 1))
       }
     }
-    
+
     window.addEventListener('scroll', onScrollHandler)
 
     return () => window.removeEventListener('scroll', onScrollHandler)
@@ -47,34 +48,34 @@ export const useScrollShow = (
   noScroll?: boolean,
   sectionRef?: React.RefObject<HTMLDivElement>
 ) => {
-  const [scrollTop, setScrollTop] = useState(0);
-  const [display, setDisplay] = useState(false); // new display state
+  const [scrollTop, setScrollTop] = useState(0)
+  const [display, setDisplay] = useState(false) // new display state
 
-  const ref: React.RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
+  const ref: React.RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const onScrollHandler = (e: Event) => {
-      const target = e.target as Document;
+      const target = e.target as Document
 
-      setScrollTop(target.documentElement.scrollTop);
-      if(sectionRef && !offsetTop){
-        offsetTop = sectionRef.current!.offsetTop;
+      setScrollTop(target.documentElement.scrollTop)
+      if (sectionRef?.current?.offsetTop && !offsetTop) {
+        offsetTop = sectionRef.current.offsetTop
       }
 
       const scrollPositionRelativeToRef =
-        (target.documentElement.scrollTop -
+        target.documentElement.scrollTop -
         (offsetTop ? offsetTop : ref.current!.offsetTop) -
-        (noScroll ? 999999999 : offset));
+        (noScroll ? 999999999 : offset)
 
       if (!display && scrollPositionRelativeToRef >= 0) {
-        setDisplay(true); // update display status based on the condition
+        setDisplay(true) // update display status based on the condition
       }
     }
-    
-    window.addEventListener('scroll', onScrollHandler);
 
-    return () => window.removeEventListener('scroll', onScrollHandler);
-  }, [scrollTop]); // remove display from the dependency array
+    window.addEventListener('scroll', onScrollHandler)
+
+    return () => window.removeEventListener('scroll', onScrollHandler)
+  }, [scrollTop]) // remove display from the dependency array
 
   return {
     scrollTop,
