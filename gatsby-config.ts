@@ -44,7 +44,10 @@ const config: GatsbyConfig = {
           organizationId: '257964756269268995',
           clientId: '252746210698395651@services',
           authority: 'https://accounts.cronit.io',
-          redirectUri: 'http://localhost:8000'
+          redirectUri:
+            process.env.NODE_ENV === 'production'
+              ? 'https://ballons-ballons.at'
+              : 'http://localhost:8000'
         },
         googleAnalytics: {
           trackingIds: ['G-M58K75M9PG']
