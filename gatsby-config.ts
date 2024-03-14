@@ -54,7 +54,7 @@ const config: GatsbyConfig = {
         },
         sentry: {
           org: 'cronit',
-          project: 'jaen-my-gatsby-site',
+          project: 'ballons-ballons',
           dsn: 'https://de076d4e9960db9c63261282df7df44e@o4506263462871040.ingest.us.sentry.io/4506905935806464'
         }
       }
