@@ -3883,6 +3883,11 @@
     "@radix-ui/react-primitive" "1.0.3"
     "@radix-ui/react-use-callback-ref" "1.0.1"
 
+"@radix-ui/react-icons@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-icons/-/react-icons-1.3.0.tgz#c61af8f323d87682c5ca76b856d60c2312dbcb69"
+  integrity sha512-jQxj/0LKgp+j9BiTXz3O3sgs26RNet2iLWmsPyRz2SIcR4q/4SbazXfnYwbAr+vLYKSfc7qxzyGQA1HLlYiuNw==
+
 "@radix-ui/react-id@1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-id/-/react-id-1.0.1.tgz#73cdc181f650e4df24f0b6a5b7aa426b912c88c0"
@@ -8861,16 +8866,17 @@ gatsby-plugin-image@^2.12.1, gatsby-plugin-image@^3, gatsby-plugin-image@^3.11.0
     objectFitPolyfill "^2.3.5"
     prop-types "^15.8.1"
 
-gatsby-plugin-jaen@^1.0.0-rc.84:
-  version "1.0.0-rc.84"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-jaen/-/gatsby-plugin-jaen-1.0.0-rc.84.tgz#f2613897995dd5350fb4a0fb79ece1a1af58b45c"
-  integrity sha512-K9zSXaO6lyreWIQDpoAFdUQS1DgFXMDPtxhD0HjpHvK3LbLRGtAgZ7bNyJSv5PMCq/ZnECSFxgw1b4wXejCL0A==
+gatsby-plugin-jaen@^1.0.0-rc.85:
+  version "1.0.0-rc.85"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-jaen/-/gatsby-plugin-jaen-1.0.0-rc.85.tgz#19a8d36934f2e0a8b9ad6bb1d4d4bca94cf69e73"
+  integrity sha512-II6bGg4LhBU9w32eHzOyub9pIn0vboSSpolnjfe9efaqOPiTrMhF2TRiF+iJyGxLuUX6idVn7Lo0KINlC49cJA==
   dependencies:
     "@chakra-ui/react" "^2.8.0"
     "@emotion/react" "^11.11.1"
     "@emotion/styled" "^11.11.0"
     "@radix-ui/react-avatar" "^1.0.4"
     "@radix-ui/react-dialog" "^1.0.5"
+    "@radix-ui/react-icons" "^1.3.0"
     "@radix-ui/react-separator" "^1.0.3"
     "@radix-ui/react-slot" "^1.0.2"
     "@sentry/gatsby" "^7.106.0"

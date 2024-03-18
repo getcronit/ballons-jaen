@@ -30,7 +30,7 @@
     "gatsby": "^5",
     "gatsby-jaen-mailpress": "^0.0.3",
     "gatsby-plugin-image": "^3",
-    "gatsby-plugin-jaen": "^1.0.0-rc.84",
+    "gatsby-plugin-jaen": "^1.0.0-rc.85",
     "gatsby-plugin-react-svg": "^3.3.0",
     "gatsby-plugin-sharp": "^5",
     "gatsby-plugin-sitemap": "^6.9.0",
