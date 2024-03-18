@@ -61,20 +61,10 @@ export const FeaturedProducts = ({
             <Bullet color="agt.yellow" w="unset" fontSize="xl" mt="5" mb="10" />
           </Box> */}
           <ProductGrid
-            display={{base: 'none', sm: 'grid'}}
             prefixPath={productsPagePath}
             products={featuredProducts}
-            spacing="5"
-            columns={{base: 2, md: 3, xl: 4}}
             wholesale={!!user}
-          />
-          <ProductSlider
-            h={'100%'}
-            display={{base: 'flex', sm: 'none'}}
-            //heading="Ähnliche Produkte"
-            products={featuredProducts}
-            prefixPath="/products"
-            wholesale={!!user}
+            mobileSlider
           />
           <Center mt="10" mb="16">
             <LinkButtonField

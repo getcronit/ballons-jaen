@@ -34,7 +34,7 @@ export const MobileHambuger: React.FC<{
     search.onOpen()
   }
 
-  const {user, openLoginModal, logout} = useAuth()
+  const {user, signinRedirect, signoutRedirect} = useAuth()
 
   return (
     <>
@@ -115,7 +115,7 @@ export const MobileHambuger: React.FC<{
                     variant="outline"
                     py="7 !important"
                     leftIcon={<FaUser />}
-                    onClick={logout}>
+                    onClick={() => signoutRedirect()}>
                     Abmelden
                   </BallonButton>
                 ) : (
@@ -124,7 +124,7 @@ export const MobileHambuger: React.FC<{
                     variant="outline"
                     py="7 !important"
                     leftIcon={<FaUser />}
-                    onClick={openLoginModal}>
+                    onClick={() => signinRedirect()}>
                     Anmelden
                   </BallonButton>
                 )}

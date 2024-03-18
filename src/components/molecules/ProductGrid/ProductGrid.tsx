@@ -12,7 +12,8 @@ import {useLocation} from '@reach/router'
 
 import {ProductCard} from '../ProductCard'
 
-export interface ProductGridProps extends SimpleGridProps {
+export interface ProductGridProps {
+  mobileSlider?: boolean
   heading?: string
   products: ShopifyProduct[]
   scrollRestoration?: boolean
@@ -22,18 +23,14 @@ export interface ProductGridProps extends SimpleGridProps {
 }
 
 export const ProductGrid = ({
+  mobileSlider,
   heading,
   products,
   scrollRestoration,
   prefixPath,
   searchLocation,
-  wholesale,
-  ...gridProps
+  wholesale
 }: ProductGridProps) => {
-  const v = gridProps.columns
-    ? useBreakpointValue(gridProps.columns as any)
-    : 0 || 0
-
   useEffect(() => {
     const scrollPosition = window.sessionStorage.getItem('scrollPosition')
 
@@ -52,28 +49,26 @@ export const ProductGrid = ({
         </Box>
       )}
 
-      <SimpleGrid {...gridProps}>
+      <SimpleGrid
+        overflowX="auto"
+        gap="4"
+        py="4"
+        templateColumns={{
+          base: !mobileSlider
+            ? 'repeat(2, 1fr)'
+            : `repeat(${products.length}, 1fr)`,
+          md: 'repeat(3, 1fr)',
+          xl: 'repeat(4, 1fr)'
+        }}>
         {products.map((item, index) => {
           return (
-            <Box
-              id={`product-${item.id}`}
+            <ProductCard
               key={item.id}
-              onClick={() => {
-                if (scrollRestoration) {
-                  window.sessionStorage.setItem(
-                    'scrollPosition',
-                    window.scrollY.toString()
-                  )
-                }
-              }}>
-              <ProductCard
-                prefixPath={prefixPath}
-                searchLocation={searchLocation}
-                product={item}
-                left={(index + 1) % v === 0}
-                wholesale={wholesale}
-              />
-            </Box>
+              prefixPath={prefixPath}
+              searchLocation={searchLocation}
+              product={item}
+              wholesale={wholesale}
+            />
           )
         })}
       </SimpleGrid>
