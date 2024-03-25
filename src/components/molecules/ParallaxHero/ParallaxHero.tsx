@@ -1,29 +1,28 @@
-import React, {useMemo} from 'react'
 import {
   Box,
-  SimpleGrid,
+  Flex,
   GridItem,
-  Stack,
-  Heading,
   HStack,
-  Text,
-  Image,
+  SimpleGrid,
+  Stack,
+  VStack,
   chakra
 } from '@chakra-ui/react'
+import {useMemo} from 'react'
 
-import {useScrollSync} from '../../hooks/scroll'
-import {useContentPages} from '../../hooks/useContentPages'
-import CardWithImageBackground from '../../CardWithImageBackground'
-import * as style from './style'
-import {ParallaxBackground} from '../ParallaxBackground'
-import TextLoop from 'react-text-loop'
 import {Field} from '@atsnek/jaen'
-import LinkButtonField from '../../fields/LinkButtonField'
-import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
+import TextLoop from 'react-text-loop'
+import {Ballons} from '../../../common/assets/Ballons'
 import SkylineL1 from '../../../common/assets/skyline1.inline.svg'
 import SkylineL2 from '../../../common/assets/skyline2.inline.svg'
 import SkylineL3 from '../../../common/assets/skyline3.inline.svg'
-import { Ballons } from '../../../common/assets/Ballons'
+import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
+import CardWithImageBackground from '../../CardWithImageBackground'
+import LinkButtonField from '../../fields/LinkButtonField'
+import {useScrollSync} from '../../hooks/scroll'
+import {useContentPages} from '../../hooks/useContentPages'
+import {ParallaxBackground} from '../ParallaxBackground'
+import * as style from './style'
 
 export interface ParallaxHeroProps {
   noScroll?: boolean
@@ -34,7 +33,7 @@ export const ParallaxHero = ({noScroll}: ParallaxHeroProps) => {
   const contentPagesIndex = useContentPages()
 
   const switchingHeadline = (
-    <HStack mb="10" display="flex" justifyContent="center">
+    <HStack display="flex" justifyContent="center">
       <TextLoop>
         {[
           'Teile Glück und Freude mit',
@@ -49,8 +48,7 @@ export const ParallaxHero = ({noScroll}: ParallaxHeroProps) => {
           return (
             <Field.Text
               key={index}
-              fontSize={{base: '2xl', md: '4xl', lg: '6xl'}}
-              mb="8 !important"
+              fontSize={{base: 'xl', md: '3xl', lg: '5xl'}}
               fontWeight="semibold"
               textAlign="center"
               name={`heroHeading-${index}`}
@@ -167,22 +165,41 @@ export const ParallaxHero = ({noScroll}: ParallaxHeroProps) => {
             fontWeight="semibold"
             textAlign="center"
           /> */}
-          <Ballons mb={16} mx={"auto"} color={"red.500"} h={{base: '4.5rem', md: '8.25rem', lg: '8.875rem'}} w="auto"/>
-          <HStack
-            mt="-5"
-            justify="center"
-            h={'calc(50vh - 15rem)'}
-            align="flex-start"
-            gap="4">
-            <LinkButtonField
-              name="heroButton1"
-              pointerEvents="auto"
-              defaultValue="Zum Shop"
-              defaultUrl={`/products`}
-              size={{base: 'sm', md: 'md'}}
-              ml="3"
-            />
+          <Ballons
+            mb={16}
+            mx={'auto'}
+            color={'red.500'}
+            h={{base: '4.5rem', md: '8.25rem', lg: '8.875rem'}}
+            w="auto"
+          />
+
+          <VStack>
+            <Flex justifyContent="center">
+              <LinkButtonField
+                name="heroButton1"
+                pointerEvents="auto"
+                defaultValue="Zum Shop"
+                defaultUrl={`/products`}
+                size={{base: 'sm', md: 'md'}}
+                margin="0"
+                mr="1"
+              />
+
+              <LinkButtonField
+                name="heroButton2"
+                pointerEvents="auto"
+                defaultValue="Großhandel"
+                defaultUrl={`/grosshandel`}
+                size={{base: 'sm', md: 'md'}}
+                variant="outline"
+                sx={{svg: {color: 'white !important'}}}
+                margin="0"
+                ml="1"
+              />
+            </Flex>
+
             <Box
+              w="full"
               id="scrollarrows"
               alignSelf="flex-end"
               h="100px"
@@ -191,17 +208,7 @@ export const ParallaxHero = ({noScroll}: ParallaxHeroProps) => {
               <span></span>
               <span></span>
             </Box>
-            <LinkButtonField
-              name="heroButton2"
-              pointerEvents="auto"
-              defaultValue="Großhandel"
-              defaultUrl={`/grosshandel`}
-              size={{base: 'sm', md: 'md'}}
-              variant="outline"
-              sx={{svg: {color: 'white !important'}}}
-              ml="3"
-            />
-          </HStack>
+          </VStack>
         </Stack>
         <Box className="parallax__cover" pointerEvents="none">
           {grid}

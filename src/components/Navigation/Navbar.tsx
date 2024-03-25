@@ -151,11 +151,7 @@ export const Navbar: FC<INavbarProps> = ({
           </Flex>
         </Tooltip>
         <Flex flex="1" justifyContent="end">
-          <ButtonGroup
-            spacing={{
-              base: 0,
-              md: 2
-            }}>
+          <ButtonGroup>
             <SearchbarButton
               onClick={onSearchClick}
               display={{
@@ -185,6 +181,7 @@ export const Navbar: FC<INavbarProps> = ({
                 base: 'none',
                 md: 'flex'
               }}
+              mr="2"
             />
 
             {mode === 'website' ? (
@@ -195,7 +192,6 @@ export const Navbar: FC<INavbarProps> = ({
                       base: 'none',
                       md: 'flex'
                     }}
-                    size="sm"
                     as={GatsbyLink}
                     to="/products"
                     leftIcon={<FaShopify />}>
@@ -213,7 +209,6 @@ export const Navbar: FC<INavbarProps> = ({
                     aria-label="Onlineshop"
                     as={GatsbyLink}
                     to="/products"
-                    size="md"
                     icon={<FaShopify />}
                   />
                 </Tooltip>

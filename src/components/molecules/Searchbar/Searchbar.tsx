@@ -13,6 +13,7 @@ export const SearchbarButton: React.FC<SearchbarButtonProps> = ({
     <Tooltip label="Artikel-Suche" defaultIsOpen={defaultIsOpen}>
       <IconButton
         aria-label="Search"
+        h="full"
         variant="ghost"
         size="md"
         icon={
