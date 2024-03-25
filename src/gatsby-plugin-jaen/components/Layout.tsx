@@ -28,33 +28,31 @@ export const Layout: React.FC<LayoutProps> = ({children, pageProps}) => {
 
   return (
     <ScrollToTop pathname={pageProps.location.pathname}>
-      <LightMode>
-        <Fonts />
+      <Fonts />
 
-        <ContactModalProvider location={pageProps.location}>
-          <BasketDrawerProvider>
+      <ContactModalProvider location={pageProps.location}>
+        <BasketDrawerProvider>
+          <SearchProvider>
+            <SearchModalProvider>
+              <Navigation
+                mode={isStore ? 'store' : 'website'}
+                pathname={pageProps.location.pathname}
+              />
+              <SideButtons />
+            </SearchModalProvider>
+          </SearchProvider>
+
+          {isStore ? (
             <SearchProvider>
-              <SearchModalProvider>
-                <Navigation
-                  mode={isStore ? 'store' : 'website'}
-                  pathname={pageProps.location.pathname}
-                />
-                <SideButtons />
-              </SearchModalProvider>
+              <ShopShell {...(pageProps as any)}>{children}</ShopShell>
             </SearchProvider>
+          ) : (
+            <>{children}</>
+          )}
+        </BasketDrawerProvider>
 
-            {isStore ? (
-              <SearchProvider>
-                <ShopShell {...(pageProps as any)}>{children}</ShopShell>
-              </SearchProvider>
-            ) : (
-              <>{children}</>
-            )}
-          </BasketDrawerProvider>
-
-          <Footer />
-        </ContactModalProvider>
-      </LightMode>
+        <Footer />
+      </ContactModalProvider>
     </ScrollToTop>
   )
 }

@@ -78,7 +78,9 @@ const WirGestaltenPartyHero: FC<IWirGestaltenPartyHeroProps> = () => {
                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in libero risus semper'
                 }
               />
-              <LinkButtonField name="cta" size={{base: 'xs', md: 'lg'}} />
+              <Box>
+                <LinkButtonField name="cta" size={{base: 'xs', md: 'lg'}} />
+              </Box>
             </Stack>
             <Grid
               placeItems="center"

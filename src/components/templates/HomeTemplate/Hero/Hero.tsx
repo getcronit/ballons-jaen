@@ -15,7 +15,7 @@ const Hero: FC<IHeroProps> = props => {
       {/* For Mobile */}
       <Box
         position="relative"
-        h={{base: 'none', md: 'calc(180vh + 200px)'}}
+        h={{base: 'none', md: 'calc(90vh + 200px)'}}
         overflow={'hidden'}
         bgImage="url('/images/home/hero_line.svg')"
         bgSize="100%,contain"

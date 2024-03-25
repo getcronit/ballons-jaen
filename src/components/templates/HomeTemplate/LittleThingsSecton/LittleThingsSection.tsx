@@ -80,9 +80,9 @@ const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
             fontWeight="light"
             defaultValue="At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
           />
-          <HStack
-            justify="center"
-            gap="4"
+          <Flex
+            justify="left"
+            justifyContent="left"
             flexDir={{base: 'row-reverse', md: 'row'}}>
             <LinkButtonField
               name="littleThingsButton1"
@@ -97,7 +97,7 @@ const LittleThingsSection: FC<ILittleThingsSectionProps> = () => {
               size={{base: 'sm', md: 'md'}}
               variant="outline"
             />
-          </HStack>
+          </Flex>
         </Stack>
       </Container>
     </Stack>

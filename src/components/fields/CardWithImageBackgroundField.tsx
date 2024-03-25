@@ -198,24 +198,25 @@ const CardWithImageBackgroundField: React.FC<
               //backdropFilter='blur(7px)'
               borderRadius="xl"
               will-change="transform">
-              {card.headingFieldName && (
-                <Field.Text
-                  as={Heading}
-                  fontSize={{base: 'lg', xl: 'xl'}}
-                  fontWeight="700"
-                  name={card.headingFieldName}
-                  defaultValue={card.headingDefaultValue ?? ''}
-                />
-              )}
+              <Stack spacing="0">
+                {card.headingFieldName && (
+                  <Field.Text
+                    as={Heading}
+                    fontSize={{base: 'lg', xl: 'xl'}}
+                    fontWeight="700"
+                    name={card.headingFieldName}
+                    defaultValue={card.headingDefaultValue ?? ''}
+                  />
+                )}
 
-              {card.textFieldName && (
-                <Field.Text
-                  fontSize={{base: 'sm', lg: isSmallText ? 'sm' : 'md'}}
-                  maxW="80%"
-                  name={card.textFieldName}
-                  defaultValue={card.textDefaultValue ?? ''}
-                />
-              )}
+                {card.textFieldName && (
+                  <Field.Text
+                    fontSize={{base: 'sm', lg: isSmallText ? 'sm' : 'md'}}
+                    name={card.textFieldName}
+                    defaultValue={card.textDefaultValue ?? ''}
+                  />
+                )}
+              </Stack>
 
               <HStack
                 className="show_more"
@@ -243,7 +244,6 @@ const CardWithImageBackgroundField: React.FC<
                   w={{base: '4', lg: '6'}}
                   color="red.500"
                   bg="white"
-                  fontSize={{lg: 'lg'}}
                   borderRadius="full"
                   boxShadow="0 0 0px 0px white"
                   transition="ease-in 0.2s">

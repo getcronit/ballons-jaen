@@ -1,6 +1,15 @@
-import {Box, Grid, Heading, HStack, Stack, Text} from '@chakra-ui/react'
+import {
+  Box,
+  Grid,
+  Heading,
+  HStack,
+  LinkBox,
+  LinkOverlay,
+  Stack,
+  Text
+} from '@chakra-ui/react'
 import {Field, useContentManagement} from '@atsnek/jaen'
-import {navigate} from 'gatsby'
+import {Link, navigate} from 'gatsby'
 import {FC} from 'react'
 import {FaChevronRight} from '@react-icons/all-files/fa/FaChevronRight'
 
@@ -37,9 +46,9 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
   const {isEditing} = useContentManagement()
 
   return (
-    <Stack
+    <LinkBox
+      as={Stack}
       pointerEvents="auto"
-      onClick={() => !isEditing && card.linkUrl && navigate(card.linkUrl)}
       position="relative"
       _hover={{
         transition: 'all 0.3s ease',
@@ -74,32 +83,33 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
             p="6"
             pb="4"
             w="full"
-            bg="rgba(0,0,0,.2)"
+            bgGradient="linear(to-t, rgba(0,0,0,.7), rgba(0,0,0,0))"
             //backdropFilter='blur(7px)'
             borderRadius="xl"
             will-change="transform">
-            {card.headingFieldName && (
-              <Field.Text
-                as={Heading}
-                fontSize={{base: 'lg', xl: 'xl'}}
-                fontWeight="700"
-                name={card.headingFieldName}
-                defaultValue={card.headingDefaultValue ?? ''}
-                isDisabled={card.isDisabled}
-                isRTF={false}
-              />
-            )}
+            <Stack spacing="0">
+              {card.headingFieldName && (
+                <Field.Text
+                  as={Heading}
+                  fontSize={{base: 'lg', xl: 'xl'}}
+                  fontWeight="700"
+                  name={card.headingFieldName}
+                  defaultValue={card.headingDefaultValue ?? ''}
+                  isDisabled={card.isDisabled}
+                  isRTF={false}
+                />
+              )}
 
-            {card.textFieldName && (
-              <Field.Text
-                fontSize={{base: 'sm', lg: isSmallText ? 'sm' : 'md'}}
-                maxW="80%"
-                name={card.textFieldName}
-                defaultValue={card.textDefaultValue ?? ''}
-                isDisabled={card.isDisabled}
-                isRTF={false}
-              />
-            )}
+              {card.textFieldName && (
+                <Field.Text
+                  fontSize={{base: 'sm', lg: isSmallText ? 'sm' : 'md'}}
+                  name={card.textFieldName}
+                  defaultValue={card.textDefaultValue ?? ''}
+                  isDisabled={card.isDisabled}
+                  isRTF={false}
+                />
+              )}
+            </Stack>
 
             <HStack
               className="show_more"
@@ -115,23 +125,20 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
               //   },
               // }}
               transition="ease-in 0.2s">
-              <Text
-                onClick={() => {
-                  if (isEditing || !card.linkUrl) return
-
-                  navigate(card.linkUrl)
-                }}
+              <LinkOverlay
+                as={isEditing ? 'p' : Link}
                 fontSize={{base: 'sm', lg: 'md'}}
-                fontWeight="700">
+                fontWeight="700"
+                to={card.linkUrl || '/404'}>
                 Mehr anzeigen
-              </Text>
+              </LinkOverlay>
+
               <Grid
                 placeItems="center"
                 h={{base: '4', lg: '6'}}
                 w={{base: '4', lg: '6'}}
                 color="red.500"
                 bg="white"
-                fontSize={{lg: 'lg'}}
                 borderRadius="full"
                 boxShadow="0 0 0px 0px white"
                 transition="ease-in 0.2s">
@@ -141,7 +148,7 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
           </Stack>
         )}
       </Box>
-    </Stack>
+    </LinkBox>
   )
 }
 export default CardWithImageBackground

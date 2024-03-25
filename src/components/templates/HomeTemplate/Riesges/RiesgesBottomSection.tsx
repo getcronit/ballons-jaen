@@ -113,7 +113,6 @@ const RiesgesBottomSection: FC<IRiesgesBottomSectionProps> = () => {
         />
         <Field.Text
           maxW={{base: '90%', md: '75%'}}
-          fontSize={{base: 'sm', lg: 'lg'}}
           mt="-4 !important"
           mb="2 !important"
           name="riesgesText"

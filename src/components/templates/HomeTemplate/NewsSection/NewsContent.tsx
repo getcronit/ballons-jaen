@@ -38,14 +38,14 @@ const NewsContent: FC<INewsContentProps> = () => {
         name="description"
         defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in libero risus semper"
       />
-      <LinkButtonField
-        name="newsButton"
-        defaultValue="Alle News anzeigen"
-        defaultUrl={`/news`}
-        size={{base: 'sm', lg: 'md'}}
-        fontSize={{base: 'sm', md: '1.375rem'}}
-        w={{base: '12.5rem', md: '16.875rem'}}
-      />
+      <Box>
+        <LinkButtonField
+          name="newsButton"
+          defaultValue="Alle News anzeigen"
+          defaultUrl={`/news`}
+          size={{base: 'sm', lg: 'md'}}
+        />
+      </Box>
     </Stack>
   )
 }

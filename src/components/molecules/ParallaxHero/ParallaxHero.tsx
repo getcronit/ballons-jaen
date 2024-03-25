@@ -1,5 +1,6 @@
 import {
   Box,
+  Container,
   Flex,
   GridItem,
   HStack,
@@ -30,7 +31,6 @@ export interface ParallaxHeroProps {
 
 export const ParallaxHero = ({noScroll}: ParallaxHeroProps) => {
   const {ref, scrollTop} = useScrollSync(500)
-  const contentPagesIndex = useContentPages()
 
   const switchingHeadline = (
     <HStack display="flex" justifyContent="center">
@@ -58,47 +58,6 @@ export const ParallaxHero = ({noScroll}: ParallaxHeroProps) => {
         })}
       </TextLoop>
     </HStack>
-  )
-
-  const grid = useMemo(
-    () => (
-      <SimpleGrid
-        w="full"
-        placeItems="center"
-        mb={{lg: 10}}
-        mt="0"
-        mx={{base: '0', xl: '5vw'}}
-        minChildWidth={{base: '100%', lg: '300px'}}
-        spacing="30px">
-        {contentPagesIndex.children.map((page, i) =>
-          contentPagesIndex.withJaenPage(
-            page.id || '',
-            <GridItem
-              justifySelf="center"
-              minH={'300px'}
-              h={{base: '30vw', lg: '60vh'}}
-              minW={'300px'}
-              w={{
-                base: '80vw',
-                lg: `calc(70vw / ${contentPagesIndex.children.length})`
-              }}>
-              <CardWithImageBackground
-                card={{
-                  headingFieldName: `homeHeroHeading`,
-                  headingDefaultValue: 'Title',
-                  textFieldName: `homeHeroText`,
-                  textDefaultValue: 'Text',
-                  imageFieldName: `homeHeroImage`,
-                  imageDefaultValue: undefined,
-                  linkUrl: `/${page.slug}`
-                }}
-              />
-            </GridItem>
-          )
-        )}
-      </SimpleGrid>
-    ),
-    [contentPagesIndex.children.length]
   )
 
   return (
@@ -173,8 +132,8 @@ export const ParallaxHero = ({noScroll}: ParallaxHeroProps) => {
             w="auto"
           />
 
-          <VStack>
-            <Flex justifyContent="center">
+          <VStack spacing="16">
+            <HStack justifyContent="center">
               <LinkButtonField
                 name="heroButton1"
                 pointerEvents="auto"
@@ -196,7 +155,7 @@ export const ParallaxHero = ({noScroll}: ParallaxHeroProps) => {
                 margin="0"
                 ml="1"
               />
-            </Flex>
+            </HStack>
 
             <Box
               w="full"
@@ -210,9 +169,6 @@ export const ParallaxHero = ({noScroll}: ParallaxHeroProps) => {
             </Box>
           </VStack>
         </Stack>
-        <Box className="parallax__cover" pointerEvents="none">
-          {grid}
-        </Box>
       </Box>
     </>
   )

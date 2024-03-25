@@ -11,9 +11,17 @@ import 'slick-carousel/slick/slick-theme.css'
 export const colors = {
   ...baseTheme.colors,
   brand: {
-    ...baseTheme.colors.red,
+    50: '#FFE0E2',
+    100: '#FFC7CB',
+    200: '#FF8F96',
+    300: '#FF5762',
+    400: '#FF1F2E',
     500: '#E3000F',
-    600: '#E3000F'
+    600: '#CC000E',
+    700: '#B3000C',
+    800: '#99000A',
+    900: '#800008',
+    950: '#700007'
   },
   gray: {
     100: '#f6f8fa',
@@ -21,6 +29,7 @@ export const colors = {
     700: '#606060'
   },
   red: {
+    ...baseTheme.colors.red,
     500: '#E3000F',
     600: '#E3000F'
   },

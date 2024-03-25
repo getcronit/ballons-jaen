@@ -37,8 +37,8 @@ export const Section = (noScroll?: boolean) => css`
     //position: absolute;
     bottom: 0;
     left: 0;
-    width: 98%;
-    //height: 90vh;
+    width: 100%;
+    height: 90vh;
   }
 
   ${parallaxMake(3)}
@@ -53,8 +53,8 @@ export const Section = (noScroll?: boolean) => css`
     width: 24px;
     height: 24px;
     margin-left: -12px;
-    border-left: 1px solid #E3000F;
-    border-bottom: 1px solid #E3000F;
+    border-left: 1px solid #e3000f;
+    border-bottom: 1px solid #e3000f;
     -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
     -webkit-animation: sdb07 2s infinite;
@@ -69,13 +69,13 @@ export const Section = (noScroll?: boolean) => css`
   }
   #scrollarrows span:nth-of-type(2) {
     top: 16px;
-    -webkit-animation-delay: .15s;
-    animation-delay: .15s;
+    -webkit-animation-delay: 0.15s;
+    animation-delay: 0.15s;
   }
   #scrollarrows span:nth-of-type(3) {
     top: 32px;
-    -webkit-animation-delay: .3s;
-    animation-delay: .3s;
+    -webkit-animation-delay: 0.3s;
+    animation-delay: 0.3s;
   }
   @-webkit-keyframes sdb07 {
     0% {
