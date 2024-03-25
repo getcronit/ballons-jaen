@@ -34,8 +34,8 @@ export const colors = {
 }
 
 export const fonts = {
-  // body: `'Poppins', sans-serif !important`,
-  // heading: `'Poppins', sans-serif !important`,
+  body: `'Poppins', sans-serif !important`,
+  heading: `'Poppins', sans-serif !important`,
   font_RB: `'Red Buttery', sans-serif !important`,
   font_Pro: `'Proyale', sans-serif !important`
 }
