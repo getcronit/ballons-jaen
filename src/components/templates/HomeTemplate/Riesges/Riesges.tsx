@@ -13,44 +13,46 @@ const Riesges: FC<IRiesgesProps> = () => {
 
   return (
     <Box bg="white">
-      <Container
-        as={Stack}
-        maxW={CONTAINER_MAX_WIDTH}
-        spacing="36"
-        px={{base: 0, sm: 4, md: 8}}>
-        <Flex
-          w="full"
-          justifyContent="center"
-          alignContent="center"
-          gap="8"
-          flexDir={{base: 'column', xl: 'row'}}>
-          {contentPagesIndex.children.map((page, i) => {
-            return contentPagesIndex.withJaenPage(
-              page.id,
-              <Box
-                boxSize="500px"
-                mx={{
-                  base: 'auto',
-                  xl: '0'
-                }}>
-                <CardWithImageBackground
-                  key={page.id}
-                  card={{
-                    headingFieldName: `homeHeroHeading`,
-                    headingDefaultValue: 'Title',
-                    textFieldName: `homeHeroText`,
-                    textDefaultValue: 'Text',
-                    imageFieldName: `homeHeroImage`,
-                    imageDefaultValue: undefined,
-                    linkUrl: `/${page.slug}`
+      <Container maxW={CONTAINER_MAX_WIDTH}>
+        <Stack spacing="36" px={{base: 0, sm: 4, md: 8}}>
+          <Flex
+            w="full"
+            justifyContent="center"
+            alignContent="center"
+            gap="8"
+            flexDir={{base: 'column', xl: 'row'}}>
+            {contentPagesIndex.children.map((page, i) => {
+              return contentPagesIndex.withJaenPage(
+                page.id,
+                <Box
+                  boxSize={{
+                    base: 'xs',
+                    sm: 'sm',
+                    md: 'md'
                   }}
-                />
-              </Box>
-            )
-          })}
-        </Flex>
-        {/* <RiesgesTopSection /> */}
-        <RiesgesBottomSection />
+                  mx={{
+                    base: 'auto',
+                    xl: '0'
+                  }}>
+                  <CardWithImageBackground
+                    key={page.id}
+                    card={{
+                      headingFieldName: `homeHeroHeading`,
+                      headingDefaultValue: 'Title',
+                      textFieldName: `homeHeroText`,
+                      textDefaultValue: 'Text',
+                      imageFieldName: `homeHeroImage`,
+                      imageDefaultValue: undefined,
+                      linkUrl: `/${page.slug}`
+                    }}
+                  />
+                </Box>
+              )
+            })}
+          </Flex>
+          {/* <RiesgesTopSection /> */}
+          <RiesgesBottomSection />
+        </Stack>
       </Container>
     </Box>
   )
