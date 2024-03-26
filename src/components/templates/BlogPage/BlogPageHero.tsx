@@ -25,6 +25,7 @@ const BlogPageHero: FC<IBlogPageHeroProps> = () => {
             borderRadius="1.875rem"
             boxShadow="dark"
             overflow={'hidden'}
+            isolation="isolate"
             h={{base: '30vh', xl: '50vh'}}>
             <Field.Image name="image" lightbox />
           </Box>

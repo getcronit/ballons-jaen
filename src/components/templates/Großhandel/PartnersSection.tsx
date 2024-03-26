@@ -23,6 +23,7 @@ const PartnerSection = connectBlock(
           boxSize={{base: '10rem', sm: '12rem', lg: '15rem'}}
           borderRadius="xl"
           overflow="hidden"
+          isolation="isolate"
           boxShadow="dark">
           <Field.Image name="partnersImage" lightbox lightboxGroup />
         </Box>

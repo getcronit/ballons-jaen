@@ -14,7 +14,7 @@ const BlogCard: FC<IBlogCardProps> = ({slug}) => {
 
   return (
     <Flex borderRadius="xl" bg="white" boxShadow="dark" flexDir="column">
-      <Box borderRadius="1.875rem" overflow="hidden" h="xs">
+      <Box borderRadius="1.875rem" overflow="hidden" h="xs" isolation="isolate">
         <Field.Image name="image" />
       </Box>
       <Stack

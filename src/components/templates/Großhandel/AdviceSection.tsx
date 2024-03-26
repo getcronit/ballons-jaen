@@ -68,7 +68,8 @@ const AdviceSection: FC<IAdviceSectionProps> = () => {
             xl: 'lg'
           }}
           bg="red"
-          overflow="hidden">
+          overflow="hidden"
+          isolation="isolate">
           <Field.Image name="adviceImage" objectFit="cover" />
         </Box>
       </Container>

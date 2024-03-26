@@ -27,6 +27,7 @@ const ProductCatlog: FC<IProductCatlogProps> = () => {
           <Box
             borderRadius="xl"
             overflow="hidden"
+            isolation="isolate"
             flex="1"
             w={{base: '70%'}}
             h={{

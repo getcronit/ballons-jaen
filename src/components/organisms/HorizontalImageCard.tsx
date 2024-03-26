@@ -37,6 +37,7 @@ const HorizontalImageCard: FC<IHorizontalImageCardProps> = ({
       <Box
         borderRadius="xl"
         overflow="hidden"
+        isolation="isolate"
         flex={{
           md: '1'
         }}

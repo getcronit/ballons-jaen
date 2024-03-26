@@ -71,6 +71,7 @@ const TeamMember: FC<ITeamMemberProps> = ({isLeft}) => {
                 pos="absolute"
                 boxShadow="dark"
                 overflow="hidden"
+                isolation="isolate"
                 w="75%"
                 borderRadius="full">
                 <Field.Image name="image" />
@@ -170,6 +171,7 @@ const TeamMember: FC<ITeamMemberProps> = ({isLeft}) => {
               pos="absolute"
               boxShadow="dark"
               overflow="hidden"
+              isolation="isolate"
               w="80%"
               borderRadius="full">
               <Field.Image name="image" />

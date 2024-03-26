@@ -65,6 +65,7 @@ const BrandCarousel: React.FC<{
             boxSize={isMiddleLogo ? '48' : '36'}
             borderRadius="full"
             overflow={'hidden'}
+            isolation="isolate"
             bg={
               shouldGrayOut
                 ? 'transparent'

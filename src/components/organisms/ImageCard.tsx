@@ -30,6 +30,7 @@ export const ImageCard: FC<
       w={{base: '10rem', sm: '12.5rem', md: '15rem', xl: '17.5rem'}}
       borderRadius="xl"
       overflow={'hidden'}
+      isolation="isolate"
       {...props}>
       <Field.Image name={name} lightbox lightboxGroup />
     </Box>

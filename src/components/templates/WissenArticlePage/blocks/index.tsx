@@ -147,7 +147,8 @@ export const ImagesBlock = connectBlock(
                         width="100%"
                         height="100%"
                         borderRadius="lg"
-                        overflow="hidden">
+                        overflow="hidden"
+                        isolation="isolate">
                         <Field.Image
                           objectFit="cover"
                           name={imageFieldName}
@@ -194,6 +195,7 @@ export const ImagesBlock = connectBlock(
                     bg="blue"
                     borderRadius="lg"
                     overflow="hidden"
+                    isolation="isolate"
                     boxSize={{
                       base: 'xs',
                       md: 'sm',

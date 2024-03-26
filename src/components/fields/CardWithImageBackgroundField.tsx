@@ -186,6 +186,7 @@ const CardWithImageBackgroundField: React.FC<
         w={w ?? {}}
         borderRadius="xl"
         overflow={'hidden'}
+        isolation="isolate"
         minW={minW || '20rem'}>
         {card.imageFieldName && <Field.Image name={card.imageFieldName} />}
         <Box position="absolute" w="full">

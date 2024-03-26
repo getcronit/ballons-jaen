@@ -69,6 +69,7 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
       w={w ?? {}}
       borderRadius="xl"
       overflow={'hidden'}
+      isolation="isolate"
       minW={minW || '20rem'}>
       {card.imageFieldName && (
         <Field.Image

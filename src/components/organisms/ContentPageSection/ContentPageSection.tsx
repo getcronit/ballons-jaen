@@ -259,6 +259,7 @@ export const ImagesGallery3x3Section = connectBlock(
                     boxShadow="light"
                     borderRadius="lg"
                     overflow="hidden"
+                    isolation="isolate"
                     boxSize={{
                       base: 'xs',
                       md: 'sm',
@@ -311,6 +312,7 @@ const FullWidthImageSection = connectBlock(
           // }}
           boxShadow="light"
           overflow="hidden"
+          isolation="isolate"
           h={{
             base: '30vh',
             md: '50vh',

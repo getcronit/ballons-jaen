@@ -37,6 +37,7 @@ const FeaturedBlog: React.FC<{
           <Box
             borderRadius="xl"
             overflow="hidden"
+            isolation="isolate"
             flex="1"
             maxH={{
               base: '200px',

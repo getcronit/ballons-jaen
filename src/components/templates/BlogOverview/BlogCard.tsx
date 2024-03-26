@@ -23,6 +23,7 @@ const BlogCard: FC<IBlogCardProps> = ({slug}) => {
       <Grid
         borderRadius="1.875rem"
         overflow="hidden"
+        isolation="isolate"
         flex="1"
         maxH={{base: '8.125rem', sm: '13.75rem', md: '37.5rem'}}>
         <Field.Image name="image" />

@@ -54,7 +54,8 @@ const Images = React.memo<{
                   borderRadius="xl"
                   w="full"
                   h="full"
-                  overflow="hidden">
+                  overflow="hidden"
+                  isolation="isolate">
                   <Field.Image name={imageFieldName} lightbox lightboxGroup />
                 </Box>
               </GridItem>

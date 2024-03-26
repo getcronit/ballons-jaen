@@ -24,6 +24,7 @@ const NewsSection: FC<INewsSectionProps> = () => {
         <Box
           flex="1"
           overflow="hidden"
+          isolation="isolate"
           // w={{ base: "100%", sm: "80%", md: "25rem", lg: "auto" }}
           borderRadius="xl"
           //my={{ base: "4 !important", md: "12 !important" }}

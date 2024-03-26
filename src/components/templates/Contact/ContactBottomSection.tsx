@@ -20,7 +20,8 @@ const ContactBottomSection: FC<IContactBottomSectionProps> = () => {
           mt={{base: 0, md: '-14', lg: '0'}}
           pt={{base: '40', md: '24', xl: '40'}}
           pb="16"
-          overflow="hidden">
+          overflow="hidden"
+          isolation="isolate">
           <Image
             pos="absolute"
             top={{md: '0px'}}

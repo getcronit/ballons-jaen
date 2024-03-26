@@ -88,6 +88,7 @@ const WirGestaltenPartyHero: FC<IWirGestaltenPartyHeroProps> = () => {
               top={{base: '1.25rem', md: 'unset'}}>
               <Box
                 overflow="hidden"
+                isolation="isolate"
                 borderRadius="full"
                 boxShadow="light"
                 // w={{ base: "17.5rem", sm: "auto " }}

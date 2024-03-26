@@ -59,6 +59,7 @@ const BlogOverview: FC<IBlogOverviewProps> = () => {
       <Box
         pos="relative"
         overflow="hidden"
+        isolation="isolate"
         pb={{md: '10', xl: 32}}
         pt={{base: '16', lg: 48}}>
         <Image

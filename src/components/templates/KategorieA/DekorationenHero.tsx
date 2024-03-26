@@ -82,6 +82,7 @@ const DekorationenHero: FC<IDekorationenHeroProps> = () => {
           <Box
             borderRadius="xl"
             overflow="hidden"
+            isolation="isolate"
             boxShadow={{base: 'light', md: 'dark'}}
             height={{
               // rems

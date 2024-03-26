@@ -31,6 +31,7 @@ export const Hero: FC<HeroProps> = () => {
           borderRadius="xl"
           boxShadow="dark"
           overflow={'hidden'}
+          isolation="isolate"
           mx="auto"
           w="full"
           maxW="6xl"
