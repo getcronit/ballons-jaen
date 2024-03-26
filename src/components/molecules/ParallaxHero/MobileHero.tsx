@@ -1,75 +1,19 @@
-import {
-  Box,
-  Image,
-  GridItem,
-  HStack,
-  Heading,
-  SimpleGrid,
-  Stack,
-  chakra
-} from '@chakra-ui/react'
-import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
+import {Box, HStack, Stack, chakra} from '@chakra-ui/react'
+import {Ballons} from '../../../common/assets/Ballons'
 import HBalloon from '../../../common/assets/hballoon.inline.svg'
-import {Field} from '@atsnek/jaen'
-import LinkButtonField from '../../fields/LinkButtonField'
-import {useScrollSync} from '../../hooks/scroll'
-import {useMemo} from 'react'
-import {useContentPages} from '../../hooks/useContentPages'
-import CardWithImageBackground from '../../CardWithImageBackground'
 import SkylineL1 from '../../../common/assets/skyline1.inline.svg'
 import SkylineL2 from '../../../common/assets/skyline2.inline.svg'
 import SkylineL3 from '../../../common/assets/skyline3.inline.svg'
-import * as style from './style'
+import {CONTAINER_MAX_WIDTH} from '../../../constant/sizes'
+import LinkButtonField from '../../fields/LinkButtonField'
+import {useScrollSync} from '../../hooks/scroll'
 import BallonSvg from '../ParallaxBackground/BallonSvg'
-import { Ballons } from '../../../common/assets/Ballons'
+import * as style from './style'
 
 export const MobileHero = () => {
   const {ref, scrollTop} = useScrollSync()
-  const contentPagesIndex = useContentPages()
 
   const noScroll = false
-
-  const grid = useMemo(
-    () => (
-      <SimpleGrid
-        w="full"
-        placeItems="center"
-        my="40"
-        mx={{base: '0', xl: '5vw'}}
-        minChildWidth={{base: '100%', lg: '300px'}}
-        spacing="30px">
-        {contentPagesIndex.children.map((page, i) =>
-          contentPagesIndex.withJaenPage(
-            page.id || '',
-            <GridItem
-              justifySelf="center"
-              minH={'300px'}
-              h={{base: '30vw', lg: '60vh'}}
-              minW={'300px'}
-              w={{
-                base: '80vw',
-                lg: `calc(70vw / ${contentPagesIndex.children.length})`
-              }}>
-              <CardWithImageBackground
-                w="100%"
-                minW="15rem"
-                card={{
-                  headingFieldName: `homeHeroHeading`,
-                  headingDefaultValue: 'Title',
-                  textFieldName: `homeHeroText`,
-                  textDefaultValue: 'Text',
-                  imageFieldName: `homeHeroImage`,
-                  imageDefaultValue: undefined,
-                  linkUrl: `/${page.slug}`
-                }}
-              />
-            </GridItem>
-          )
-        )}
-      </SimpleGrid>
-    ),
-    [contentPagesIndex.children.length]
-  )
 
   return (
     <Box
@@ -120,7 +64,13 @@ export const MobileHero = () => {
             textAlign="center"
             pt="2"
           /> */}
-          <Ballons mb={12} mx={"auto"} color={"red.500"} h={{base: '4.5rem', md: '8.25rem', lg: '8.875rem'}} w="auto"/>
+          <Ballons
+            mb={12}
+            mx={'auto'}
+            color={'red.500'}
+            h={{base: '4.5rem', md: '8.25rem', lg: '8.875rem'}}
+            w="auto"
+          />
         </HStack>
         <Stack alignItems={'center'}>
           <LinkButtonField
@@ -153,7 +103,6 @@ export const MobileHero = () => {
           <span></span>
         </Box>
       </Stack>
-      <Box>{grid}</Box>
     </Box>
   )
 }
