@@ -70,10 +70,10 @@
     vfile-message "^4.0.2"
     vfile-statistics "^3.0.0"
 
-"@atsnek/jaen@^1.0.0-rc.63":
-  version "1.0.0-rc.63"
-  resolved "https://registry.yarnpkg.com/@atsnek/jaen/-/jaen-1.0.0-rc.63.tgz#a8663c6bc64acf502da0725e4516e01ae0fe2281"
-  integrity sha512-FOqEaOtxD6xk102BP9YrrGxSKMdoFDMex7+aj3NfKKKIwyHt/e/zwBSHp0bLNRER8AHV+dWIXiGB9+1Jgatgcw==
+"@atsnek/jaen@^1.0.0-rc.64":
+  version "1.0.0-rc.64"
+  resolved "https://registry.yarnpkg.com/@atsnek/jaen/-/jaen-1.0.0-rc.64.tgz#4d84d17dcc115e081535785fdf4b388f1b7d8247"
+  integrity sha512-NfYp1No7MuCW+NODHdbA2eVYziwBkXEhITq2fnI9Wl8pEzMspRZgFKZtcEaqzhEGqJF2TlIM6xV3nPCdsYFVeQ==
   dependencies:
     "@chakra-ui/icons" "^2.1.1"
     "@chakra-ui/react" "^2.8.0"
