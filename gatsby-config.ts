@@ -38,7 +38,7 @@ const config: GatsbyConfig = {
 
       options: {
         remote: {
-          repository: 'atsnek/jaen-starter'
+          repository: 'ballonsballons-at/ballons-jaen'
         },
         zitadel: {
           organizationId: '257964756269268995',
@@ -55,7 +55,7 @@ const config: GatsbyConfig = {
         sentry: {
           org: 'cronit',
           project: 'ballons-ballons',
-          dsn: "https://ace8c79e4c444168727fc5375ea5c27f@sentry.cronit.io/3"
+          dsn: 'https://ace8c79e4c444168727fc5375ea5c27f@sentry.cronit.io/3'
         }
       }
     },
