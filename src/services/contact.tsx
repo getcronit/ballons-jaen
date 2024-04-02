@@ -71,8 +71,6 @@ export const ContactModalProvider: React.FC<ContactModalDrawerProps> = ({
     setIsOpen(true)
   }
   const onClose = () => {
-    navigate(location.pathname)
-
     setIsOpen(false)
   }
 
