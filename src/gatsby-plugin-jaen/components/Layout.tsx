@@ -1,5 +1,5 @@
 import {SearchProvider, useProductSearch} from '@snek-at/gatsby-theme-shopify'
-import React from 'react'
+import React, {useEffect} from 'react'
 import {LightMode} from '@chakra-ui/react'
 
 import '../../styles/global.css'
@@ -27,7 +27,7 @@ export const Layout: React.FC<LayoutProps> = ({children, pageProps}) => {
   const isStore = pageProps.location.pathname.startsWith('/products')
 
   return (
-    <ScrollToTop pathname={pageProps.location.pathname}>
+    <>
       <Fonts />
 
       <ContactModalProvider location={pageProps.location}>
@@ -53,7 +53,7 @@ export const Layout: React.FC<LayoutProps> = ({children, pageProps}) => {
 
         <Footer />
       </ContactModalProvider>
-    </ScrollToTop>
+    </>
   )
 }
 
