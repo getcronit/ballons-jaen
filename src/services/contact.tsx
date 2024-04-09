@@ -1,16 +1,14 @@
 import {useToast} from '@chakra-ui/react'
 import {sq} from 'gatsby-jaen-mailpress'
 import React, {useMemo} from 'react'
-import {RouteComponentProps} from '@reach/router'
-import {asEnumKey, doNotConvertToString} from 'snek-query'
 
+import {useAuth} from '@atsnek/jaen'
+import {navigate} from 'gatsby'
+import {useQueryRouter} from '../components/hooks/useQueryRouter'
 import {
   ContactFormValues,
   ContactModal
 } from '../components/organisms/ContactModal'
-import {useAuth} from '@atsnek/jaen'
-import {useQueryRouter} from '../components/hooks/useQueryRouter'
-import {navigate} from 'gatsby'
 
 export interface ContactModalContextProps {
   onOpen: (args?: {meta?: Record<string, any>}) => void
@@ -72,6 +70,10 @@ export const ContactModalProvider: React.FC<ContactModalDrawerProps> = ({
   }
   const onClose = () => {
     setIsOpen(false)
+    // Reset meta
+    setMeta(null)
+
+    navigate(window.location.pathname)
   }
 
   const onSubmit = async (data: ContactFormValues): Promise<void> => {
