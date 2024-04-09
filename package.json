@@ -16,7 +16,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@atsnek/jaen": "^1.0.0-rc.65",
+    "@atsnek/jaen": "^1.0.0-rc.69",
     "@atsnek/jaen-fields-mdx": "^1.0.0-rc.4",
     "@chakra-ui/icons": "^2.1.1",
     "@chakra-ui/react": "^2.8.1",
@@ -28,9 +28,9 @@
     "chakra-react-select": "^4.4.0",
     "framer-motion": "^10.0.1",
     "gatsby": "^5",
-    "gatsby-jaen-mailpress": "^0.0.3",
+    "gatsby-jaen-mailpress": "^0.0.4",
     "gatsby-plugin-image": "^3",
-    "gatsby-plugin-jaen": "^1.0.0-rc.87",
+    "gatsby-plugin-jaen": "^1.0.0-rc.91",
     "gatsby-plugin-react-svg": "^3.3.0",
     "gatsby-plugin-sharp": "^5",
     "gatsby-plugin-sitemap": "^6.9.0",
