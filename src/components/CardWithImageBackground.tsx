@@ -127,10 +127,10 @@ const CardWithImageBackground: FC<ICardWithImageBackgroundProps> = ({
               // }}
               transition="ease-in 0.2s">
               <LinkOverlay
-                as={isEditing ? 'p' : Link}
+                as={isEditing || !card.linkUrl ? 'p' : Link}
                 fontSize={{base: 'sm', lg: 'md'}}
                 fontWeight="700"
-                to={card.linkUrl || '/404'}>
+                to={card.linkUrl}>
                 Mehr anzeigen
               </LinkOverlay>
 
