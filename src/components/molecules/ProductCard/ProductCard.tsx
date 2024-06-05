@@ -41,7 +41,6 @@ import {getProductPrices} from '../../../common/utils'
 import {useBasket} from '../../../services/basket'
 
 export interface ProductCardProps {
-  onClick?: () => void
   product: ShopifyProduct
   borderline?: boolean
   left?: boolean
@@ -54,7 +53,6 @@ export interface ProductCardProps {
 }
 
 export const ProductCard = ({
-  onClick,
   product,
   borderline,
 
@@ -164,8 +162,7 @@ export const ProductCard = ({
         ':hover': {
           transform: 'scale(1.05)'
         }
-      }}
-      onClick={() => onClick()}>
+      }}>
       <ImageBoxWithTags
         image={product.featuredMedia?.image}
         tags={coloredBadges}

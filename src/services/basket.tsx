@@ -8,7 +8,7 @@ import React, {useCallback, useMemo} from 'react'
 
 import {BasketDrawer} from '../components/organisms/BasketDrawer'
 
-import {useAuth} from '@atsnek/jaen'
+import {checkUserRoles, useAuth} from '@atsnek/jaen'
 import {useToast} from '@chakra-ui/react'
 import {OrderFormValues, OrderModal} from '../components/organisms/OrderModal'
 import {getProductPrices} from '../common/utils'
@@ -62,9 +62,7 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
 
     const auth = useAuth()
 
-    // Override wholesale to true for now until shopify checkout is implemented and tested
-    const isRealWholesale = !!auth.user
-    const wholesale = true || isRealWholesale
+    const isRealWholesale = checkUserRoles(auth.user, ['wholesale'])
 
     React.useEffect(() => {
       void createOrFetchCheckout()
@@ -384,7 +382,7 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
           onClose={onClose}
           products={cleanedLineItems}
           wholesale={isRealWholesale}
-          requestCheckout={wholesale}
+          requestCheckout={true}
           subtotal={lineItemsSubtotalPrice}
           onProductQuantityChange={(id, quantity) => {
             void updateProduct({id, quantity})

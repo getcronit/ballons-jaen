@@ -251,6 +251,10 @@ const ProductDetail = withStoreContext<{
 
   const [quantity, setQuantity] = React.useState(minQuantity)
 
+  useEffect(() => {
+    setQuantity(minQuantity)
+  }, [minQuantity])
+
   const prices = getProductPrices(props.product, {
     isWholesale: props.wholesale || false
   })
