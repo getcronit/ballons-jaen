@@ -41,9 +41,9 @@ const config: GatsbyConfig = {
           repository: 'ballonsballons-at/ballons-jaen'
         },
         zitadel: {
-          organizationId: '257964756269268995',
-          clientId: '252746210698395651@services',
-          authority: 'https://accounts.cronit.io',
+          organizationId: '270250197911609348',
+          clientId: '270250453697110020@website',
+          authority: 'https://accounts2.cronit.io',
           redirectUri:
             process.env.NODE_ENV === 'production'
               ? 'https://ballons-ballons.at'
