@@ -140,7 +140,6 @@ const CardWithImageBackgroundField: React.FC<
   const buttonTextField = useField<string>(name, 'IMA:TextField')
   const hiddenUrlField = useField<string>(hiddenUrlFieldName, 'IMA:TextField')
 
-  console.log('hiddenUrlField', hiddenUrlField)
 
   const handleUrlChange = (url: string) => {
     hiddenUrlField.write(url)
