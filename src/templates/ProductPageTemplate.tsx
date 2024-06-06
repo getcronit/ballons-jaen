@@ -4,7 +4,7 @@ import {
   ProductsPageContext,
   SearchProvider
 } from '@snek-at/gatsby-theme-shopify'
-import {Head as JaenHead, PageConfig, PageProps} from '@atsnek/jaen'
+import {checkUserRoles, Head as JaenHead, PageConfig, PageProps} from '@atsnek/jaen'
 import {graphql, navigate} from 'gatsby'
 import React from 'react'
 
@@ -37,7 +37,7 @@ const ProductPageTemplate: React.FC<ProductPageTemplateProps> = props => {
 
   const auth = useAuth()
 
-  const wholesale = !!auth.user
+  const wholesale = checkUserRoles(auth.user, ['wholesale'])
 
   return (
     <>

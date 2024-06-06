@@ -37,17 +37,19 @@ const config: GatsbyConfig = {
       resolve: `gatsby-plugin-jaen`,
 
       options: {
+        pylonUrl: 'https://pylons.cronit.io/jaen/graphql',
         remote: {
           repository: 'ballonsballons-at/ballons-jaen'
         },
         zitadel: {
-          organizationId: '257964756269268995',
-          clientId: '252746210698395651@services',
-          authority: 'https://accounts.cronit.io',
+          organizationId: '270250197911609348',
+          clientId: '270250453697110020@website',
+          authority: 'https://accounts2.cronit.io',
           redirectUri:
             process.env.NODE_ENV === 'production'
               ? 'https://ballons-ballons.at'
-              : 'http://localhost:8000'
+              : 'http://localhost:8000',
+          projectIds: ['270250070505431044']
         },
         googleAnalytics: {
           trackingIds: ['G-M58K75M9PG']
@@ -59,7 +61,12 @@ const config: GatsbyConfig = {
         }
       }
     },
-    `gatsby-jaen-mailpress`
+    {
+      resolve: `gatsby-jaen-mailpress`,
+      options: {
+        pylonUrl: 'https://pylons.cronit.io/mailpress/graphql',
+      }
+    }
     // 'gatsby-plugin-webpack-bundle-analyser-v2'
   ]
 }

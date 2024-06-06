@@ -8,7 +8,7 @@ import React, {useCallback, useMemo} from 'react'
 
 import {BasketDrawer} from '../components/organisms/BasketDrawer'
 
-import {useAuth} from '@atsnek/jaen'
+import {checkUserRoles, useAuth} from '@atsnek/jaen'
 import {useToast} from '@chakra-ui/react'
 import {OrderFormValues, OrderModal} from '../components/organisms/OrderModal'
 import {getProductPrices} from '../common/utils'
@@ -62,9 +62,7 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
 
     const auth = useAuth()
 
-    // Override wholesale to true for now until shopify checkout is implemented and tested
-    const isRealWholesale = !!auth.user
-    const wholesale = true || isRealWholesale
+    const isRealWholesale = checkUserRoles(auth.user, ['wholesale'])
 
     React.useEffect(() => {
       void createOrFetchCheckout()
@@ -234,7 +232,7 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
           envelope: {
             replyTo: data.email
           },
-          id: '19144c40-4358-4dac-95bb-513461dcf20d',
+          id: '741b9cab-4835-4f1d-8ba4-927ebb80111f',
           values: {
             cart: cleanedLineItems.map(lineItem => ({
               name: lineItem.title.toString(),
@@ -255,7 +253,7 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
               lastName: data.lastName,
               phone: data.phone
             },
-            wholesale: authentication.user ? true : false,
+            wholesale: isRealWholesale,
             email: data.email,
             message: data.message,
             invokedOnUrl: meta?.url
@@ -295,9 +293,9 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
       }
 
       return {
-        firstName: authentication.user.profile.given_name,
-        lastName: authentication.user.profile.family_name,
-        email: authentication.user.profile.email
+        firstName: authentication?.user?.profile?.given_name,
+        lastName: authentication?.user?.profile?.family_name,
+        email: authentication?.user?.profile?.email
       }
     }, [authentication.user])
 
@@ -384,7 +382,7 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
           onClose={onClose}
           products={cleanedLineItems}
           wholesale={isRealWholesale}
-          requestCheckout={wholesale}
+          requestCheckout={true}
           subtotal={lineItemsSubtotalPrice}
           onProductQuantityChange={(id, quantity) => {
             void updateProduct({id, quantity})
