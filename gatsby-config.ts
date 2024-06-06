@@ -37,6 +37,7 @@ const config: GatsbyConfig = {
       resolve: `gatsby-plugin-jaen`,
 
       options: {
+        pylonUrl: 'https://pylons.cronit.io/jaen/graphql',
         remote: {
           repository: 'ballonsballons-at/ballons-jaen'
         },
