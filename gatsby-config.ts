@@ -47,7 +47,8 @@ const config: GatsbyConfig = {
           redirectUri:
             process.env.NODE_ENV === 'production'
               ? 'https://ballons-ballons.at'
-              : 'http://localhost:8000'
+              : 'http://localhost:8000',
+          projectIds: ['270250070505431044']
         },
         googleAnalytics: {
           trackingIds: ['G-M58K75M9PG']
