@@ -253,7 +253,7 @@ export const BasketDrawerProvider = withStoreContext<BasketDrawerProps>(
               lastName: data.lastName,
               phone: data.phone
             },
-            wholesale: authentication.user ? true : false,
+            wholesale: isRealWholesale,
             email: data.email,
             message: data.message,
             invokedOnUrl: meta?.url
