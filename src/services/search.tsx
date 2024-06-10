@@ -367,6 +367,7 @@ export const SearchModalProvider: React.FC<{
     const product = search.products[index]
 
     if (product) {
+      onClose()
       void navigate(`/products/${product.handle}`)
     }
   }
