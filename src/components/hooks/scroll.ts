@@ -64,7 +64,7 @@ export const useScrollShow = (
 
       const scrollPositionRelativeToRef =
         target.documentElement.scrollTop -
-        (offsetTop ? offsetTop : ref.current!.offsetTop) -
+        (offsetTop ? offsetTop : ref.current?.offsetTop || 0) -
         (noScroll ? 999999999 : offset)
 
       if (!display && scrollPositionRelativeToRef >= 0) {
