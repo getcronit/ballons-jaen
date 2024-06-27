@@ -129,7 +129,8 @@ export const ProductCard = ({
       }}
       position="relative"
       bg={useColorModeValue('white', 'gray.700')}
-      boxShadow="light"
+      border="1px"
+      borderColor="gray.200"
       px={{base: '2', lg: '3'}}
       py="5"
       minH="full"
