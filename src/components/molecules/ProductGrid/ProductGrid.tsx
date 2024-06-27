@@ -53,9 +53,10 @@ export const ProductGrid = ({
         overflowX="auto"
         gap="4"
         py="4"
+        spacing="4"
         templateColumns={{
           base: !mobileSlider
-            ? 'repeat(2, 1fr)'
+            ? 'repeat(1, 1fr)'
             : `repeat(${products.length}, 1fr)`,
           md: 'repeat(3, 1fr)',
           xl: 'repeat(4, 1fr)'

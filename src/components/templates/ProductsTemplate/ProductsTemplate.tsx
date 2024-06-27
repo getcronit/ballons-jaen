@@ -61,8 +61,6 @@ export const ProductsTemplate = (props: ProductsTemplateProps) => {
         scrollRestoration
         wholesale={props.wholesale}
         products={props.products}
-        columns={{base: 2, sm: 2, md: 3, lg: 3, xl: 4, '2xl': 5}}
-        spacing={4}
         searchLocation={searchLocation}
       />
 
