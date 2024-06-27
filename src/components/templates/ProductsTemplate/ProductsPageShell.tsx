@@ -821,12 +821,7 @@ export default function ProductsPageShell(
   }
 
   return (
-    <Flex
-      p={{
-        base: 0,
-        xl: 4
-      }}
-      pos="relative">
+    <Flex p="4" pos="relative">
       <Box
         display={{base: 'none', xl: 'block'}}
         bg="white"
@@ -848,6 +843,10 @@ export default function ProductsPageShell(
         w={{
           base: '100%',
           xl: 'calc(100% - 20rem)'
+        }}
+        mx={{
+          base: '0',
+          lg: '4'
         }}>
         <Stack
           direction="column"
@@ -857,8 +856,6 @@ export default function ProductsPageShell(
           top="4"
           zIndex="3"
           p="4"
-          ml={{base: '2', md: '12'}}
-          mr={{base: '2', md: '12'}}
           boxShadow="light">
           <Filter
             groupedTags={groupedTags}

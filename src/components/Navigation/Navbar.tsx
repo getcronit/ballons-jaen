@@ -99,8 +99,8 @@ export const Navbar: FC<INavbarProps> = ({
                   as={GatsbyLink}
                   variant="link"
                   to="/"
-                  leftIcon={<Icon as={HBalloon} boxSize="8" />}>
-                  Startseite
+                  leftIcon={<FaLongArrowAltLeft />}>
+                  Zurück
                 </Button>
               </Tooltip>
 
@@ -116,12 +116,6 @@ export const Navbar: FC<INavbarProps> = ({
                 to="/"
                 size="sm"
                 icon={<FaLongArrowAltLeft />}
-              />
-              <NavAuthButton
-                display={{
-                  base: mode === 'store' ? 'flex' : 'none',
-                  md: 'none'
-                }}
               />
             </>
           )}
@@ -176,13 +170,6 @@ export const Navbar: FC<INavbarProps> = ({
                 onClick={onContactClick}
               />
             </Tooltip> */}
-            <NavAuthButton
-              display={{
-                base: 'none',
-                md: 'flex'
-              }}
-              mr="2"
-            />
 
             {mode === 'website' ? (
               <>

@@ -56,7 +56,7 @@ export const ProductsTemplate = (props: ProductsTemplateProps) => {
   }, [allActiveTags])
 
   return (
-    <Box w="full" pt="4" px="12">
+    <Box w="full">
       <ProductGrid
         scrollRestoration
         wholesale={props.wholesale}
