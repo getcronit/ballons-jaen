@@ -1,4 +1,3 @@
-import {useAuth} from '@atsnek/jaen'
 import {CloseIcon, HamburgerIcon} from '@chakra-ui/icons'
 import {
   Divider,
@@ -10,15 +9,11 @@ import {
   DrawerOverlay,
   IconButton,
   Stack,
-  useDisclosure,
-  VStack
+  VStack,
+  useDisclosure
 } from '@chakra-ui/react'
-import {FaUser} from '@react-icons/all-files/fa/FaUser'
 import {navigate} from 'gatsby'
 import {Logo} from '../../common/assets/Logo'
-import {useContactModal} from '../../services/contact'
-import {useSearch} from '../../services/search'
-import {BallonButton} from '../molecules/BallonButton'
 import {BottomNavLinks} from './NavLinks'
 
 export const MobileHambuger: React.FC<{
@@ -26,7 +21,7 @@ export const MobileHambuger: React.FC<{
 }> = ({pathname}) => {
   const {isOpen, onToggle} = useDisclosure()
 
-  const {isAuthenticated, signinRedirect, signoutRedirect} = useAuth()
+  // const {isAuthenticated, signinRedirect, signoutRedirect} = useAuth()
 
   return (
     <>
@@ -101,7 +96,7 @@ export const MobileHambuger: React.FC<{
                   }}>
                   Anfragen
                 </BallonButton> */}
-                {isAuthenticated ? (
+                {/* {isAuthenticated ? (
                   <BallonButton
                     w="full"
                     variant="outline"
@@ -119,7 +114,7 @@ export const MobileHambuger: React.FC<{
                     onClick={() => signinRedirect()}>
                     Anmelden
                   </BallonButton>
-                )}
+                )} */}
                 {/* <BallonButton
                   w="full"
                   variant="outline"
