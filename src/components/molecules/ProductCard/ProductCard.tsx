@@ -161,7 +161,7 @@ export const ProductCard = ({
           left: '0'
         },
         ':hover': {
-          transform: 'scale(1.05)'
+          transform: 'scale(1.025)'
         }
       }}>
       <ImageBoxWithTags
