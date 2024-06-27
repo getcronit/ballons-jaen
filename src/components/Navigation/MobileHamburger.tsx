@@ -26,15 +26,7 @@ export const MobileHambuger: React.FC<{
 }> = ({pathname}) => {
   const {isOpen, onToggle} = useDisclosure()
 
-  const contactModal = useContactModal()
-
-  const search = useSearch()
-
-  const handleOnSearchClick = () => {
-    search.onOpen()
-  }
-
-  const {user, signinRedirect, signoutRedirect} = useAuth()
+  const {isAuthenticated, signinRedirect, signoutRedirect} = useAuth()
 
   return (
     <>
@@ -109,7 +101,7 @@ export const MobileHambuger: React.FC<{
                   }}>
                   Anfragen
                 </BallonButton> */}
-                {user ? (
+                {isAuthenticated ? (
                   <BallonButton
                     w="full"
                     variant="outline"
