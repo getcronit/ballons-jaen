@@ -823,6 +823,7 @@ export default function ProductsPageShell(
   return (
     <Flex p="4" pos="relative">
       <Box
+        mr="4"
         display={{base: 'none', xl: 'block'}}
         bg="white"
         borderRadius="lg"
