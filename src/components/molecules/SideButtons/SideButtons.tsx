@@ -23,7 +23,7 @@ export const SideButtons: React.FC = () => {
       position="fixed"
       bottom="50%"
       right="0"
-      display="flex"
+      display={{base: 'none', md: 'flex'}}
       flexDirection="column-reverse"
       spacing="0"
       gap={1.5}
