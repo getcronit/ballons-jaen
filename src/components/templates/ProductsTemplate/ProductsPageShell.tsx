@@ -821,9 +821,9 @@ export default function ProductsPageShell(
   }
 
   return (
-    <Flex p="4" pos="relative">
+    <Flex p="8" pos="relative">
       <Box
-        mr="4"
+        mr="8"
         display={{base: 'none', xl: 'block'}}
         bg="white"
         borderRadius="lg"
@@ -840,15 +840,7 @@ export default function ProductsPageShell(
         />
       </Box>
 
-      <Box
-        w={{
-          base: '100%',
-          xl: 'calc(100% - 20rem)'
-        }}
-        mx={{
-          base: '0',
-          lg: '4'
-        }}>
+      <Box w="full">
         <Stack
           direction="column"
           borderRadius="lg"
