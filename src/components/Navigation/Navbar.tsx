@@ -181,7 +181,8 @@ export const Navbar: FC<INavbarProps> = ({
                     }}
                     as={GatsbyLink}
                     to="/products"
-                    leftIcon={<FaShopify />}>
+                    leftIcon={<FaShopify />}
+                    size="sm">
                     Onlineshop
                   </BallonButton>
                 </Tooltip>
